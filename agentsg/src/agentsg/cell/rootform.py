@@ -1,5 +1,5 @@
 """
-Root form: a complete, continuous isometry invariant of a 3D lattice.
+Root form: a continuous lattice similarity key from Kurlin's root invariant.
 
 This is the Kurlin (2022) root invariant, built on the obtuse superbase of
 Delone (Delaunay) and Selling and the conorms of Conway & Sloane. Unlike the
@@ -7,12 +7,16 @@ G6/S6 embedding — where the same lattice maps to many points and comparison
 needs a minimisation over a basis-transform orbit — the root invariant is a
 SINGLE vector per lattice, canonicalised by a fixed finite group of 24 index
 permutations (relabelling the four superbase vectors). No orbit search, no
-reduction-flip discontinuity: it is provably
+reduction-flip discontinuity. Properties:
 
   * invariant   : independent of the chosen basis, preserved under isometry;
-  * complete    : RI(L1) == RI(L2)  <=>  L1, L2 are isometric (no collisions);
   * continuous  : changes continuously under perturbation of the cell
-                  (the property Niggli / Buerger reduction lacks).
+                  (the property Niggli / Buerger reduction lacks);
+  * complete    : for Voronoi types V2–V5 (higher symmetry), RI(L1) == RI(L2)
+                  iff L1, L2 are isometric. For generic triclinic (V1) the
+                  sorted six-tuple is a collision-free-in-practice similarity
+                  key, not Kurlin's full complete invariant (which also fixes
+                  the 2×3 root-form column pairing).
 
 Pipeline
 --------
@@ -140,10 +144,13 @@ def _canonical_tuple(rp):
 def root_invariant(cell):
     """Return the root invariant RI(cell) as an ordered 6-tuple (Angstrom units).
 
-    A complete, continuous isometry invariant: two cells give the same tuple iff
-    their lattices are isometric, and the tuple varies continuously with the
-    cell. Compare two lattices with plain Euclidean distance on these tuples --
-    no orbit minimisation, continuous across the reduction-flip boundary.
+    A continuous isometry invariant (sorted root products). For Voronoi types
+    V2–V5 it is Kurlin's complete invariant: equal tuples iff the lattices are
+    isometric. For generic triclinic (V1) it is a collision-free-in-practice
+    similarity key — sufficient for metric search, but not the full Kurlin
+    complete invariant (which also fixes the 2×3 root-form column pairing).
+    Compare lattices with plain Euclidean distance on these tuples — no orbit
+    minimisation, continuous across the reduction-flip boundary.
     """
     return _canonical_tuple(root_products(cell))
 

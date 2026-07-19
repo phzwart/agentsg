@@ -153,7 +153,7 @@ code logic changed beyond comments/docstrings.
 
 ## Phase C — API surface hygiene
 
-### [ ] C1 — Soften "complete invariant" claim for triclinic V1 (S1)
+### [x] C1 — Soften "complete invariant" claim for triclinic V1 (S1)
 
 **Goal.** Public wording must not over-claim Kurlin completeness for generic
 triclinic.

@@ -497,7 +497,9 @@ agentsg/
     ambiguity.py    reindexing operators for serial crystallography
                     (coset of Laue in the tolerance lattice group, cached)
     rootform.py     Kurlin (2022) root invariant: obtuse superbase -> conorms
-                    -> root products -> sorted six-tuple (complete, continuous)
+                    -> root products -> sorted six-tuple (continuous; complete
+                    for V2–V5, collision-free-in-practice similarity key for
+                    generic triclinic V1)
     canonical.py    flip-free reindexing via canonical superbase matching
     neartree.py     exact metric nearest-neighbour index on the root invariant
     primitive.py    conventional -> primitive cell for centred lattices
