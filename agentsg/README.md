@@ -508,9 +508,16 @@ symmetry_element_diagram(14, ax=ax2, projection="c")      # axes / planes / cent
   with the head placed just outside the cell boundary.
   `full_cell=True` (default) tiles every element copy across the cell;
   `show_general_positions=True` overlays the points (off by default);
-  `show_centring=True` marks pure lattice (centring) translations with a red node
-  and a labelled vector from the origin.
-- **Projections** -- `projection` is `'c'` (default), `'a'`, or `'b'`.
+  `show_centring=True` marks pure lattice translations with a red node +
+  fractional label (no connecting arrow — not an ITA element glyph).
+  Coincident c-axes (e.g. 4 and −4 at the origin in 4/mmm) draw as one
+  combined ITA glyph. Planes parallel to the page (the /m of 4/mmm) use the
+  ITA corner right-angle bracket; glide planes carry the ITA glide-direction
+  arrow (mirrors do not).
+- **Projections** -- `projection` is `'c'` (default), `'a'`, or `'b'`. For a
+  monoclinic group the ITA standard plate is unique-axis-b (`projection='b'`),
+  where a c-glide lies parallel to the page. The legend is projection-aware
+  (∥-page vs ⊥-page).
 - **Non-standard settings** -- pass a `SpaceGroupSetting` anywhere a group is
   accepted:
 
@@ -522,7 +529,8 @@ symmetry_element_diagram(14, ax=ax2, projection="c")      # axes / planes / cent
 
 - **Legends** -- `symbol_legend(ax)` draws the full glyph alphabet;
   `element_legend(sg, ax)` (also `ita_plate(..., legend=True)`) draws only the
-  glyphs that occur in a given group.
+  glyphs that occur in a given group (inventory from the same full-cell
+  reconstruction the diagram draws).
 - **Element classification** -- `classify_space_group(sg)` / `classify_element(W, w)`
   return the ITA element type, symbol (`'2_1'`, `'-4'`, `'c'`, `'d'`, …), axis or
   plane normal, located position, and intrinsic screw/glide translation.

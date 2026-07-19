@@ -160,12 +160,20 @@ def _line_edge_copies(c, nrm, tol=1e-3):
     ``nrm`` is the in-plane normal to the line direction. Returns the list of
     line-location points (the original plus any +/-1 shift along nrm that lands
     the line on the opposite boundary of the unit square)."""
+    # Only axis-aligned lines get the opposite-edge copy: a unit normal along
+    # x or y steps exactly one cell, mapping an edge line onto the opposite
+    # edge. For a DIAGONAL normal the unit-normal step is not a lattice vector
+    # (it would land the copy at x+y=sqrt(2), off the lattice); the diagonal
+    # family is already positioned by the (W, w+L) lattice reconstruction, so
+    # no extra edge copy is added here.
+    axis_aligned = abs(nrm[0]) < tol or abs(nrm[1]) < tol
     off = float(np.dot(c, nrm))       # signed offset of the line along nrm
     shifts = [0.0]
-    if abs(off) < tol:
-        shifts.append(1.0)
-    elif abs(off - 1.0) < tol:
-        shifts.append(-1.0)
+    if axis_aligned:
+        if abs(off) < tol:
+            shifts.append(1.0)
+        elif abs(off - 1.0) < tol:
+            shifts.append(-1.0)
     return [c + s * nrm for s in shifts]
 
 
@@ -254,6 +262,109 @@ def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
                 zorder=6)
 
 
+def _draw_combined_axis(ax, xy, max_rot, rot_k, roto, size=0.035):
+    """Draw ONE ITA glyph for all c-axis axes coincident at ``xy``.
+
+    ``max_rot`` is the highest pure-rotation order present (0 if none),
+    ``rot_k`` its screw index, ``roto`` the rotoinversion order (0 if none).
+    When a rotation and a rotoinversion share the site (e.g. 4 and -4 in
+    4/mmm), the filled rotation glyph is drawn first and the rotoinversion is
+    marked by an open square outline + centre dot on top, so both are legible
+    rather than one white glyph erasing the other.
+    """
+    if max_rot >= 2:
+        draw_axis_symbol(ax, xy, max_rot, screw_k=rot_k, rotoinv=False,
+                         size=size)
+    elif roto:
+        # rotoinversion only (no pure rotation of that order): draw it directly
+        draw_axis_symbol(ax, xy, roto, rotoinv=True, size=size)
+        return
+    if roto and max_rot >= 2:
+        # overlay the rotoinversion marker: open polygon outline + centre dot,
+        # slightly larger so it frames the filled rotation glyph
+        _draw_regular_polygon(ax, xy, abs(roto), size * 1.35, filled=False,
+                              ec="k", lw=1.0, zorder=6)
+        ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k", mew=0.8,
+                zorder=7)
+
+
+def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
+                               glide_dir=None):
+    """ITA symbol for a plane PARALLEL to the page (normal perpendicular to the
+    projection): a right-angle bracket in a cell corner, drawn with SOLID legs.
+
+    Following the ITA convention the leg style does not encode the glide type;
+    the ARROW does. A mirror (``m``) has no arrow. A glide carries an arrow
+    along the in-plane component of its glide vector:
+
+    - axial glide (a, b, c): a full arrowhead (``-|>``) -- half-lattice glide;
+    - diagonal glide (n): a half/open arrowhead (``->``) -- the (a+b)/2-type
+      diagonal glide;
+    - diamond glide (d): an open arrowhead with a barbed 1/4 tail (``-|>`` on a
+      thinner shaft) -- the quarter glide.
+
+    ``glide_dir`` is the projected in-plane glide direction (2-vector) in the
+    SAME data frame the caller draws in (x=right, y in the axis' own sense); if
+    ``None`` a 45-degree fallback is used. The glyph is rendered so it looks
+    identical ON SCREEN whether the axis y runs up (legend) or down (element
+    diagram): the corner sits at top-left with legs to the right and downward,
+    and the arrow points outward (up / up-and-left) from the corner.
+
+    ``name`` is the plane symbol ('m', 'a', 'b', 'c', 'n', 'd', ...).
+    """
+    import numpy as _np
+    x0, y0 = corner
+    # Detect axis y-orientation so the glyph reads the same on screen either
+    # way. ys = +1 when data-y increases downward (inverted axis, the element
+    # diagram); -1 when it increases upward (normal axis, the legend). "Down on
+    # screen" is then y0 + ys*size in data coords.
+    ylo, yhi = ax.get_ylim()
+    ys = 1.0 if ylo > yhi else -1.0
+    # right-angle bracket: corner at top-left on screen, legs right and DOWN.
+    ax.plot([x0, x0 + size], [y0, y0], color="k", lw=1.6, zorder=6)
+    ax.plot([x0, x0], [y0, y0 + ys * size], color="k", lw=1.6, zorder=6)
+    if name == "m":
+        return
+    # Arrow along the in-plane glide direction. Interpret glide_dir in SCREEN
+    # terms (x=right, y=up-on-screen) so the arrow is consistent across axes;
+    # map its screen-up component to data via -ys.
+    if glide_dir is None:
+        su = _np.array([1.0, 1.0])            # up-and-right fallback (screen)
+    else:
+        gd = _np.asarray(glide_dir, float)
+        # incoming gd is in data coords of the caller; convert its y to screen-up
+        su = _np.array([gd[0], -ys * gd[1]])
+    nrm = _np.hypot(*su)
+    su = su / nrm if nrm > 1e-9 else _np.array([1.0, 1.0]) / _np.sqrt(2)
+    # A glide direction is an undirected axis (the operation equals its
+    # reverse), so canonicalise to one screen sense for a consistent glyph:
+    # always point to screen-up; if it is purely horizontal, point right; the
+    # sign of the two components is chosen independently so the diagonal glide
+    # reads the same way regardless of axis orientation.
+    if abs(su[1]) < 1e-9:
+        su[0] = abs(su[0])            # purely horizontal -> point right
+    else:
+        if su[1] < 0:
+            su[1] = -su[1]            # force screen-up
+        su[0] = abs(su[0])            # diagonal -> up-and-right, consistently
+    # convert screen direction back to data coords for plotting
+    du = _np.array([su[0], -ys * su[1]])
+    base = _np.array([x0 + size * 0.25, y0 + ys * size * 0.25])
+    tip = base + du * size * 0.85
+    astyle = "-|>" if name in ("a", "b", "c", "d") else "->"
+    shaft_lw = 1.0 if name != "d" else 0.8
+    ax.annotate("", xy=tuple(tip), xytext=tuple(base),
+                arrowprops=dict(arrowstyle=astyle, color="k", lw=shaft_lw),
+                zorder=6)
+    if name == "d":
+        # d-glide: quarter-glide tick across the shaft midpoint
+        mid = 0.5 * (base + tip)
+        perp = _np.array([-du[1], du[0]]) * size * 0.12
+        ax.plot([mid[0] - perp[0], mid[0] + perp[0]],
+                [mid[1] - perp[1], mid[1] + perp[1]],
+                color="k", lw=1.0, zorder=6)
+
+
 def draw_inversion(ax, xy, size=0.012):
     ax.plot(xy[0], xy[1], "o", ms=4, mfc="white", mec="k", mew=1.0, zorder=6)
 
@@ -272,8 +383,26 @@ _PLANE_STYLE = {
 
 def draw_plane_symbol(ax, p0, p1, name):
     """Draw a plane (perpendicular to the page) as a styled line from p0 to p1."""
+    if abs(p1[0] - p0[0]) < 1e-6 and abs(p1[1] - p0[1]) < 1e-6:
+        return                        # degenerate (line only touches a corner)
     style = _PLANE_STYLE.get(name, _PLANE_STYLE["g"])
-    ax.plot([p0[0], p1[0]], [p0[1], p1[1]], zorder=4, **style)
+    # solid mirrors sit at the base layer; patterned glide planes draw a touch
+    # higher so their dash/dot signature is not chopped where bold lines cross.
+    z = 4 if name == "m" else 4.5
+    ax.plot([p0[0], p1[0]], [p0[1], p1[1]], zorder=z, **style)
+    if name == "d":
+        # ITA marks a d-glide (diamond glide) line with an arrow showing the
+        # 1/4 glide direction along the line, plus a small perpendicular tick.
+        import numpy as _np
+        p0a, p1a = _np.asarray(p0, float), _np.asarray(p1, float)
+        d = p1a - p0a
+        L = _np.hypot(*d)
+        if L > 1e-6:
+            u = d / L
+            mid = 0.5 * (p0a + p1a)
+            ax.annotate("", xy=mid + u * 0.12, xytext=mid - u * 0.12,
+                        arrowprops=dict(arrowstyle="->", color="k", lw=1.0),
+                        zorder=z + 0.1)
 
 
 def symbol_legend(ax=None):
@@ -721,9 +850,8 @@ def _draw_centring_markers(ax, sg, perm):
     centring is implied by the lattice letter and by every element being
     repeated at the centring-shifted position. For non-standard settings (where
     a det!=1 change of basis surfaces centring that the symbol does not name)
-    an explicit marker is clearer: each non-trivial centring vector is drawn as
-    a short labelled arrow from the origin to its (projected) position, and a
-    small open square marks the centring lattice node.
+    an explicit marker is clearer: each non-trivial centring lattice node is
+    marked with a red dot and its fractional coordinates.
     """
     cvs = _centring_translations(sg)
     n = 0
@@ -732,10 +860,6 @@ def _draw_centring_markers(ax, sg, perm):
             continue
         vp = _perm_vec(v, perm)             # [0]=down(a'), [1]=right(b')
         x, y = vp[1] % 1.0, vp[0] % 1.0
-        # arrow from origin to the in-plane part of the centring vector
-        ax.annotate("", xy=(x, y), xytext=(0, 0),
-                    arrowprops=dict(arrowstyle="-|>", color="0.35", lw=1.2,
-                                    ls=(0, (2, 1))), zorder=3)
         # red dot at the centring node, on top of whatever glyph sits there
         ax.plot(x, y, "o", ms=6, mfc="red", mec="red", zorder=7)
         # label the fractional vector
@@ -814,6 +938,12 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     els = _element_copies(sg) if full_cell else classify_space_group(sg)
     omitted = 0
 
+    # Establish the inverted y-axis (a' down the page, ITA convention) BEFORE
+    # drawing, so orientation-aware glyphs (the parallel-plane corner bracket)
+    # detect the correct screen sense at draw time.
+    ax.set_xlim(-0.18, 1.18)
+    ax.set_ylim(1.18, -0.18)
+
     def P(fr):
         v = _perm_vec(fr, perm)  # [0]=down(a'), [1]=right(b')
         return (v[1] % 1.0, v[0] % 1.0)
@@ -837,6 +967,31 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     ([0.0] if abs(y - 1.0) < tol else []))
         return [(cx, cy) for cx in xs for cy in ys]
 
+    # Pre-pass: collect c-axis rotation/rotoinversion elements by projected
+    # site so coincident axes (e.g. 4, -4 and 2 all at the origin in 4/mmm)
+    # become ONE combined ITA glyph instead of overdrawing each other (a white
+    # -4 square painted over a black 4 square leaves only an outline).
+    c_sites = {}
+    for el in els:
+        if el["type"] in ("rotation", "screw", "rotoinversion") \
+                and el["axis"] is not None and dcls(el["axis"]) == "c":
+            key = tuple(np.round(P(el["location"]), 3))
+            s = c_sites.setdefault(key, {"max_rot": 0, "rot_k": 0,
+                                         "roto": 0})
+            if el["type"] == "rotoinversion":
+                s["roto"] = max(s["roto"], el["order"])
+            else:
+                k = 0
+                if el["type"] == "screw" and "_" in el["symbol"]:
+                    k = int(el["symbol"].split("_")[1])
+                if el["order"] > s["max_rot"]:
+                    s["max_rot"] = el["order"]
+                    s["rot_k"] = k
+    for key, s in c_sites.items():
+        for xy in edge_copies(key):
+            _draw_combined_axis(ax, xy, s["max_rot"], s["rot_k"], s["roto"])
+
+    parallel_planes_drawn = set()   # planes parallel to the page (corner glyph)
     for el in els:
         t = el["type"]
         loc = el["location"]
@@ -847,12 +1002,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         if t in ("rotation", "screw", "rotoinversion"):
             dc = dcls(el["axis"])
             if dc == "c":
-                k = 0
-                if t == "screw" and "_" in el["symbol"]:
-                    k = int(el["symbol"].split("_")[1])
-                for xy in edge_copies(P(loc)):
-                    draw_axis_symbol(ax, xy, el["order"], screw_k=k,
-                                     rotoinv=(t == "rotoinversion"))
+                continue   # handled by the combined-glyph pre-pass above
             elif dc == "ab" and el["order"] == 2:
                 d = plot_dir(el["axis"])
                 d = d / (np.linalg.norm(d) or 1.0)
@@ -894,6 +1044,25 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     p0, p1 = _clip_line_to_box(cc, d)
                     if p0 is not None:
                         draw_plane_symbol(ax, p0, p1, el["symbol"])
+            elif dc == "c":
+                # plane PARALLEL to the page (normal along the projection axis):
+                # ITA draws a right-angle bracket in a cell corner, once per
+                # distinct plane symbol. The glide type is read off the arrow
+                # (the in-plane projection of the glide vector), not the legs.
+                if el["symbol"] not in parallel_planes_drawn:
+                    slot = len(parallel_planes_drawn)
+                    gdir = None
+                    intr = el.get("intrinsic")
+                    if intr is not None:
+                        # plot_dir returns (right, down) in the SAME data frame
+                        # the symbol draws in (y increases downward), so pass it
+                        # straight through -- no sign flip.
+                        gdir = plot_dir(np.asarray(intr, float))
+                    draw_parallel_plane_symbol(
+                        ax, el["symbol"],
+                        corner=(0.08 + 0.34 * slot, 0.08),
+                        size=0.16, glide_dir=gdir)
+                    parallel_planes_drawn.add(el["symbol"])
             else:
                 omitted += 1
             continue
@@ -910,7 +1079,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     return ax
 
 
-def element_legend(sg, ax=None):
+def element_legend(sg, ax=None, projection="c"):
     """Legend of only the symmetry elements that actually occur in ``sg``.
 
     Unlike :func:`symbol_legend` (which shows the full glyph alphabet), this
@@ -925,17 +1094,23 @@ def element_legend(sg, ax=None):
     if ax is None:
         _, ax = plt.subplots(figsize=(2.8, 3.4))
     ax.set_xlim(0, 4.3)
-    ax.set_ylim(0, 10)
     ax.axis("off")
 
-    els = classify_space_group(sg)
+    # Inventory from the SAME full-cell reconstruction the element diagram
+    # draws, so lattice-generated screws (e.g. the diagonal 2_1 in a symmorphic
+    # tetragonal group) are listed rather than only the base coset set.
+    els = _element_copies(sg)
+    perm = _PROJ[projection][0]
     perp = {}      # order -> set of screw_k for axes ⊥ page
     inplane = {"rot": False, "screw": False}
-    planes = set()
+    planes = set()          # planes ⊥ page (drawn as lines)
+    par_planes = {}         # planes ∥ page -> projected glide dir (bracket)
     has_inv = False
     for el in els:
         t, sym, axis = el["type"], el["symbol"], el["axis"]
-        dc = _dir_class(axis) if axis is not None else None
+        # classify relative to the projection axis (permute first), so the
+        # legend matches what the element diagram draws for that projection.
+        dc = _dir_class(_perm_vec(axis, perm)) if axis is not None else None
         if t == "inversion":
             has_inv = True
         elif t in ("rotation", "screw", "rotoinversion"):
@@ -950,6 +1125,13 @@ def element_legend(sg, ax=None):
         elif t in ("mirror", "glide"):
             if dc == "ab":
                 planes.add(sym)
+            elif dc == "c":
+                gdir = None
+                intr = el.get("intrinsic")
+                if intr is not None:
+                    pv = _perm_vec(np.asarray(intr, float), perm)
+                    gdir = np.array([pv[1], pv[0]])   # (right, down) data frame
+                par_planes.setdefault(sym, gdir)
 
     y = 9.3
     ax.set_title("elements present", fontsize=9)
@@ -988,6 +1170,19 @@ def element_legend(sg, ax=None):
             ax.text(1.3, y, name, fontsize=8, va="center")
             y -= 0.8
         y -= 0.3
+    if par_planes:
+        ax.text(0.05, y, "Planes ∥ page:", fontsize=8, style="italic")
+        y -= 1.0
+        for name in sorted(par_planes):
+            # draw_parallel_plane_symbol normalises for axis orientation, so the
+            # glyph looks identical to the element diagram; pass the stored
+            # (right, down) direction straight through.
+            draw_parallel_plane_symbol(ax, name, corner=(0.25, y - 0.18),
+                                       size=0.5, glide_dir=par_planes[name])
+            ax.text(1.3, y, f"{name}  (corner bracket)", fontsize=8,
+                    va="center")
+            y -= 1.0
+        y -= 0.2
     if has_inv:
         ax.text(0.05, y, "Inversion:", fontsize=8, style="italic")
         y -= 0.9
@@ -1000,10 +1195,19 @@ def element_legend(sg, ax=None):
     ax.plot(0.45, y, "o", ms=8, mfc="white", mec="k", mew=1.0)
     ax.text(0.6, y + 0.12, "+", fontsize=7)
     ax.text(1.0, y, "+ / \u2212 : height", fontsize=8, va="center")
+    # Fit the y-range to the content so element-rich groups (many rows) do not
+    # push later entries below the axis and off the canvas.
+    ax.set_ylim(y - 0.6, 10)
+    # Equal aspect so the round/polygon glyphs (2-fold lens, 4-fold square,
+    # -4 outline) are not horizontally stretched by the tall, narrow panel.
+    # adjustable="datalim" keeps the panel box (set by the caller / gridspec)
+    # and widens the x-range instead of shrinking the drawing.
+    ax.set_aspect("equal", adjustable="datalim")
     return ax
 
 
-def ita_plate(sg, figsize=None, legend=False, show_centring=False):
+def ita_plate(sg, figsize=None, legend=False, show_centring=False,
+              projection="c"):
     """Render the classic ITA pairing: general-position diagram (left) and
     symmetry-element diagram (right), with a header. Returns the Figure.
 
@@ -1018,6 +1222,10 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False):
     show_centring : bool
         Mark pure lattice (centring) translations on the element diagram (a red
         node + labelled vector); useful for non-standard settings.
+    projection : {'c', 'a', 'b'}
+        Projection axis. For monoclinic groups the ITA standard plate is the
+        unique-axis-b projection (``projection='b'``), where a c-glide plane
+        lies parallel to the page and shows its glide-direction arrow.
     """
     import matplotlib.pyplot as plt
     sg = _resolve_sg(sg)
@@ -1029,13 +1237,15 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False):
     gs = fig.add_gridspec(1, ncol, width_ratios=ratios, wspace=0.22)
     axL = fig.add_subplot(gs[0])
     axR = fig.add_subplot(gs[1])
-    general_position_diagram(sg, ax=axL, show_title=False)
+    general_position_diagram(sg, ax=axL, show_title=False,
+                             projection=projection)
     symmetry_element_diagram(sg, ax=axR, show_title=False,
-                             show_centring=show_centring)
+                             show_centring=show_centring,
+                             projection=projection)
     axL.set_title("general positions", fontsize=8)
     axR.set_title("symmetry elements", fontsize=8)
     if legend:
-        element_legend(sg, ax=fig.add_subplot(gs[2]))
+        element_legend(sg, ax=fig.add_subplot(gs[2]), projection=projection)
     order = _sg_order(sg)
     num, name = _sg_label(sg)
     system = getattr(sg, "crystal_system", None)
