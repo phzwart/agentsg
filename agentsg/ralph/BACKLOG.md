@@ -184,7 +184,7 @@ triclinic.
 
 ---
 
-### [ ] C3 — Demote `GENERATOR_TABLE` from public API (M5)
+### [x] C3 — Demote `GENERATOR_TABLE` from public API (M5)
 
 **Goal.** Starter table must not look like the way to get operators.
 

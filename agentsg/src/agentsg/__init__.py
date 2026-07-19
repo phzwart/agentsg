@@ -6,7 +6,6 @@ from .group import (
     phase_restriction, PhaseRestriction,
 )
 from .change_of_basis import ChangeOfBasis
-from .generators import GENERATOR_TABLE
 from .hall import parse_hall, ops_from_hall, LATTICE_CENTERING
 from .space_groups import SpaceGroup, space_group, SPACE_GROUPS
 from .setting import (
@@ -44,7 +43,6 @@ __all__ = [
     "transform_hkl", "phase_shift", "is_centrosymmetric", "is_reflection_centric",
     "phase_restriction", "PhaseRestriction",
     "ChangeOfBasis",
-    "GENERATOR_TABLE",
     "parse_hall", "ops_from_hall", "LATTICE_CENTERING",
     "SpaceGroup", "space_group", "SPACE_GROUPS",
     "SpaceGroupSetting", "parse_setting", "parse_cob", "format_cob",

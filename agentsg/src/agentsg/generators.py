@@ -33,6 +33,7 @@ def _vecs(*triples) -> list[Vector3]:
     return [Vector3(t) for t in triples]
 
 
+# Starter/test fixture only — Hall symbols via space_group() are authoritative.
 GENERATOR_TABLE = {
     "P1": dict(
         generators=_ops("x,y,z"),
