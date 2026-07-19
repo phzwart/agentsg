@@ -98,7 +98,7 @@ eigenvalues when `disc > 0` due to float noise.
 
 ---
 
-### [ ] B2 — Niggli reduction fuzz vs oracles (S5)
+### [x] B2 — Niggli reduction fuzz vs oracles (S5)
 
 **Goal.** Catch rare det-flips / non-idempotent reduction on near-degenerate cells.
 
