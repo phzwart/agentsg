@@ -64,7 +64,7 @@ Then full suite.
 
 ---
 
-### [ ] A3 — Promote `_discrete_allowed_origins` (M1)
+### [x] A3 — Promote `_discrete_allowed_origins` (M1)
 
 **Goal.** Stop `asu.py` importing a private from `semi_invariants`.
 

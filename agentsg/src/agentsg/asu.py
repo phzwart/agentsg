@@ -20,7 +20,7 @@ from .group import transform_hkl, point_group
 from .space_groups import SpaceGroup, space_group
 from .semi_invariants import (
     floating_origin_basis,
-    _discrete_allowed_origins,
+    discrete_allowed_origins,
     is_allowed_origin,
 )
 from . import asu_data
@@ -522,7 +522,7 @@ def optimize_asu(
     for v in floating_origin_basis(ops):
         for t in (Fraction(0), Fraction(1, 4), Fraction(1, 3), Fraction(1, 2)):
             candidates.append(Vector3(t * x for x in v.v))
-    for o in _discrete_allowed_origins(ops):
+    for o in discrete_allowed_origins(ops):
         candidates.append(o)
         for v in floating_origin_basis(ops):
             candidates.append(Vector3(

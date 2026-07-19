@@ -157,7 +157,7 @@ def _floating_axes(cont: Sequence[Vector3]) -> list[int]:
     return sorted(axes)
 
 
-def _discrete_allowed_origins(operations: Sequence[SymmetryOp]) -> list[Vector3]:
+def discrete_allowed_origins(operations: Sequence[SymmetryOp]) -> list[Vector3]:
     """Torsion representatives of allowed origins (floating axes held at 0).
 
     Floating-origin coordinates are pinned to 0 — they form a continuum and
@@ -195,6 +195,10 @@ def _discrete_allowed_origins(operations: Sequence[SymmetryOp]) -> list[Vector3]
         seen.add(key)
         found.append(o.mod1())
     return found
+
+
+# Back-compat alias for callers that imported the private name.
+_discrete_allowed_origins = discrete_allowed_origins
 
 
 # Trial semi-invariant bases — exact order of SgInfo TabTrial_si (sgsi.c).
@@ -312,7 +316,7 @@ def semi_invariants(operations: Iterable[SymmetryOp]) -> list[SemiInvariant]:
     ops = list(operations)
     rotations = list(point_group(ops))
     cont = _continuous_kernel(rotations)
-    discrete = _discrete_allowed_origins(ops)
+    discrete = discrete_allowed_origins(ops)
 
     # Property table over a small hkl box. Like SgInfo, only non-absent
     # reflections participate in trial matching (centring absences can make

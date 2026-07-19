@@ -21,6 +21,7 @@ from .identify import IdentifyResult, identify_space_group, hall_from_ops
 from .semi_invariants import (
     SemiInvariant, semi_invariants, is_semi_invariant,
     floating_origin_basis, pin_floating_origin, is_allowed_origin,
+    discrete_allowed_origins,
 )
 from .reflections import (
     reflection_conditions, EquivalentHKL,
@@ -53,6 +54,7 @@ __all__ = [
     "IdentifyResult", "identify_space_group", "hall_from_ops",
     "SemiInvariant", "semi_invariants", "is_semi_invariant",
     "floating_origin_basis", "pin_floating_origin", "is_allowed_origin",
+    "discrete_allowed_origins",
     "reflection_conditions", "EquivalentHKL",
     "equivalent_reflections", "are_equivalent_reflections",
     "epsilon_factor", "reflection_multiplicity", "laue_multiplicity",
