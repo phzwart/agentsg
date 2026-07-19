@@ -63,3 +63,33 @@ def test_reciprocal_dirichlet_smoke():
     vf = asu.volume_fraction(n=8000, seed=2)
     # Laue group of P212121 is mmm, order 8
     assert abs(vf - 1.0 / 8) < 0.04
+
+
+def test_near_degenerate_inertia_eigenvalues():
+    """Near-equal SPD eigenvalues must not collapse to Cardano triple-bogus roots."""
+    from agentsg.asu import _eigh3_sorted
+
+    # Diagonal, spread ~1e-8: old path hit p≈0 and returned three identical
+    # wrong values (~1.0000076) instead of the mean (~1).
+    A = [[1.0, 0.0, 0.0], [0.0, 1.0 + 1e-8, 0.0], [0.0, 0.0, 1.0 + 2e-8]]
+    ev = _eigh3_sorted(A)
+    mean = (3.0 + 3e-8) / 3.0
+    assert all(abs(x - mean) < 1e-9 for x in ev)
+    assert abs(ev[2] - ev[0]) < 1e-7
+
+    # Noisy near-isotropic SPD: every eigenvalue stays near 1 (sphericity ~1).
+    rng = random.Random(0)
+    for _ in range(200):
+        eps = 1e-10
+        M = [
+            [1.0 + rng.uniform(-eps, eps), rng.uniform(-eps, eps), rng.uniform(-eps, eps)],
+            [0.0, 1.0 + rng.uniform(-eps, eps), rng.uniform(-eps, eps)],
+            [0.0, 0.0, 1.0 + rng.uniform(-eps, eps)],
+        ]
+        M[1][0] = M[0][1]
+        M[2][0] = M[0][2]
+        M[2][1] = M[1][2]
+        ev = _eigh3_sorted(M)
+        assert all(abs(x - 1.0) < 1e-6 for x in ev)
+        if ev[2] > 0:
+            assert ev[0] / ev[2] > 0.999

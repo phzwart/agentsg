@@ -82,7 +82,7 @@ Then full suite.
 
 ## Phase B — correctness / robustness
 
-### [ ] B1 — Fix `_cubic_roots` degenerate branch (S4)
+### [x] B1 — Fix `_cubic_roots` degenerate branch (S4)
 
 **Goal.** SPD inertia tensors must not silently return three identical bogus
 eigenvalues when `disc > 0` due to float noise.

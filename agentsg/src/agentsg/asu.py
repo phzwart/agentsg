@@ -368,28 +368,32 @@ def _eigh3_sorted(A: list[list[float]]) -> tuple[float, float, float]:
 
 
 def _cubic_roots(a: float, b: float, c: float, d: float) -> list[float]:
-    """Real roots of aλ³ + bλ² + cλ + d = 0 (expects three real for SPD)."""
-    from math import copysign
+    """Real roots of aλ³ + bλ² + cλ + d = 0 (expects three real for SPD).
+
+    Uses the trigonometric form of the depressed cubic. For near-degenerate
+    SPD inputs, float noise can push the discriminant slightly positive (or
+    ``p`` slightly non-negative); those cases are clamped onto the three-real
+    branch rather than the one-real Cardano path, which would otherwise return
+    three identical bogus eigenvalues.
+    """
     b, c, d = b / a, c / a, d / a
     p = c - b * b / 3.0
     q = 2.0 * b * b * b / 27.0 - b * c / 3.0 + d
-    disc = (q / 2.0) ** 2 + (p / 3.0) ** 3
-    if disc <= 1e-18 and p < 0:
-        r = 2 * sqrt(-p / 3.0)
-        arg = max(-1.0, min(1.0, -q / 2.0 / sqrt((-p / 3.0) ** 3)))
+    if p >= 0.0:
+        # Triple root of the depressed cubic (all eigenvalues equal after shift).
+        ys = [0.0, 0.0, 0.0]
+    else:
+        r = 2.0 * sqrt(-p / 3.0)
+        denom = sqrt((-p / 3.0) ** 3)
+        arg = 0.0 if denom == 0.0 else (-q / 2.0) / denom
+        # Clamp acos domain when disc > 0 from float noise.
+        arg = max(-1.0, min(1.0, arg))
         phi = acos(arg)
         ys = [
             r * cos(phi / 3.0),
-            r * cos((phi + 2 * pi) / 3.0),
-            r * cos((phi + 4 * pi) / 3.0),
+            r * cos((phi + 2.0 * pi) / 3.0),
+            r * cos((phi + 4.0 * pi) / 3.0),
         ]
-    else:
-        sd = sqrt(max(disc, 0.0))
-        u = -q / 2.0 + sd
-        v = -q / 2.0 - sd
-        s = copysign(abs(u) ** (1 / 3), u)
-        t = copysign(abs(v) ** (1 / 3), v)
-        ys = [s + t, s + t, s + t]
     shift = b / 3.0
     return [y - shift for y in ys]
 
