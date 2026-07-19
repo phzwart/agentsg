@@ -118,14 +118,8 @@ _TWO_FOLD_TABLE = [(M, _two_fold_axis_direct(M), _reciprocal_axis(M))
 
 # --- Le Page delta ---------------------------------------------------------
 def _metric_tensor(cell):
-    from math import cos, radians
-    a, b, c, al, be, ga = cell
-    ca, cb, cg = cos(radians(al)), cos(radians(be)), cos(radians(ga))
-    return [
-        [a * a, a * b * cg, a * c * cb],
-        [a * b * cg, b * b, b * c * ca],
-        [a * c * cb, b * c * ca, c * c],
-    ]
+    from .cell.metric import metric_tensor
+    return metric_tensor(cell)
 
 
 def _inv3(G):
@@ -168,21 +162,8 @@ def le_page_delta(cell, u, h):
 # --- Kurlin (root-invariant) distance to a two-fold --------------------------
 def _params_from_metric(G):
     """Cell parameters from a metric tensor (angles in degrees)."""
-    a = sqrt(max(G[0][0], 0.0))
-    b = sqrt(max(G[1][1], 0.0))
-    c = sqrt(max(G[2][2], 0.0))
-    if a <= 0 or b <= 0 or c <= 0:
-        raise ValueError("non-positive cell edge in metric")
-
-    def ang(x):
-        return degrees(acos(max(-1.0, min(1.0, x))))
-
-    return (
-        a, b, c,
-        ang(G[1][2] / (b * c)),
-        ang(G[0][2] / (a * c)),
-        ang(G[0][1] / (a * b)),
-    )
+    from .cell.metric import params_from_metric
+    return params_from_metric(G)
 
 
 def _reynolds_two_fold(G, M):
@@ -326,9 +307,8 @@ def lattice_symmetry(cell, max_delta: float = 3.0) -> LatticeSymmetry:
 
 # --- tolerance metric-automorphism group (for cell comparison / reindexing) ---
 def _cell_params(G):
-    a = sqrt(G[0][0]); b = sqrt(G[1][1]); c = sqrt(G[2][2])
-    def ang(x): return degrees(acos(max(-1.0, min(1.0, x))))
-    return (a, b, c, ang(G[1][2] / (b * c)), ang(G[0][2] / (a * c)), ang(G[0][1] / (a * b)))
+    from .cell.metric import params_from_metric
+    return params_from_metric(G)
 
 
 def tolerance_metric_symmetry(cell, length_tol_pct: float = 2.0,

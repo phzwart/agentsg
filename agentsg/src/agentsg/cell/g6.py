@@ -171,22 +171,8 @@ def _op_rows(point_group_ops):
 
 def _cell_from_metric(G):
     """Cell parameters (a,b,c,α,β,γ) from a metric tensor."""
-    from math import acos, degrees
-    a = sqrt(max(G[0][0], 0.0))
-    b = sqrt(max(G[1][1], 0.0))
-    c = sqrt(max(G[2][2], 0.0))
-    if a <= 0 or b <= 0 or c <= 0:
-        raise ValueError("non-positive cell edge in metric")
-
-    def ang(x):
-        return degrees(acos(max(-1.0, min(1.0, x))))
-
-    return (
-        a, b, c,
-        ang(G[1][2] / (b * c)),
-        ang(G[0][2] / (a * c)),
-        ang(G[0][1] / (a * b)),
-    )
+    from .metric import cell_from_metric
+    return cell_from_metric(G)
 
 
 def distance_to_symmetry(cell, point_group_ops):

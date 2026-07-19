@@ -228,16 +228,9 @@ class ReindexingReference:
         loops only over the handful of dataset-constant operators, never
         enumerating or re-reducing.
         """
-        from .metric import UnitCell
-        from math import sqrt, acos, degrees
+        from .metric import UnitCell, params_from_metric
         Gf = UnitCell(*frame_cell).metric_tensor()
-
-        def params(G):
-            a = sqrt(G[0][0]); b = sqrt(G[1][1]); c = sqrt(G[2][2])
-            def ang(x): return degrees(acos(max(-1.0, min(1.0, x))))
-            return (a, b, c, ang(G[1][2] / (b * c)), ang(G[0][2] / (a * c)), ang(G[0][1] / (a * b)))
-
-        pf = params(Gf)
+        pf = params_from_metric(Gf)
         best = None
         best_res = None
         for op in self.operators:
@@ -245,7 +238,7 @@ class ReindexingReference:
             # transform reference metric by this operator: G' = W^T G_ref W
             WtG = [[sum(W[k][i] * self._G_ref[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
             Gp = [[sum(WtG[i][k] * W[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
-            pp = params(Gp)
+            pp = params_from_metric(Gp)
             dl = max(abs(pp[i] - pf[i]) / pf[i] * 100.0 for i in range(3))
             da = max(abs(pp[3 + i] - pf[3 + i]) for i in range(3))
             res = max(dl, da)
@@ -474,24 +467,17 @@ def surface_geometric_operators(space_group_key, cell,
     alone can order by residual. The geometric layer only *surfaces and
     annotates*; it does not decide.
     """
-    from .metric import UnitCell
-    from math import sqrt, acos, degrees
+    from .metric import UnitCell, params_from_metric
     ops = reindexing_ambiguity_operators(space_group_key, cell,
                                          length_tol_pct, angle_tol_deg)
     G = UnitCell(*cell).metric_tensor()
-
-    def params(Gm):
-        a = sqrt(Gm[0][0]); b = sqrt(Gm[1][1]); c = sqrt(Gm[2][2])
-        def ang(x): return degrees(acos(max(-1.0, min(1.0, x))))
-        return (a, b, c, ang(Gm[1][2] / (b * c)), ang(Gm[0][2] / (a * c)), ang(Gm[0][1] / (a * b)))
-
-    p0 = params(G)
+    p0 = params_from_metric(G)
     out = []
     for i, op in enumerate(ops):
         W = op.W.rows
         WtG = [[sum(W[k][r] * G[k][j] for k in range(3)) for j in range(3)] for r in range(3)]
         Gp = [[sum(WtG[r][k] * W[k][j] for k in range(3)) for j in range(3)] for r in range(3)]
-        pp = params(Gp)
+        pp = params_from_metric(Gp)
         dl = max(abs(pp[j] - p0[j]) / p0[j] * 100.0 for j in range(3))
         da = max(abs(pp[3 + j] - p0[3 + j]) for j in range(3))
         res = max(dl, da)

@@ -53,6 +53,52 @@ def _inv3(M):
     return [[adj[i][j] / det for j in range(3)] for i in range(3)]
 
 
+def metric_tensor(cell: Sequence[float]) -> list[list[float]]:
+    """Build the direct-space metric tensor G from cell parameters.
+
+    ``cell`` is ``(a, b, c, alpha, beta, gamma)`` with angles in degrees.
+    ``G_ij = a_i · a_j``.
+    """
+    a, b, c, alpha, beta, gamma = (float(x) for x in cell)
+    ca, cb, cg = cos(radians(alpha)), cos(radians(beta)), cos(radians(gamma))
+    return [
+        [a * a, a * b * cg, a * c * cb],
+        [a * b * cg, b * b, b * c * ca],
+        [a * c * cb, b * c * ca, c * c],
+    ]
+
+
+def params_from_metric(G: Sequence[Sequence[float]]) -> tuple[float, float, float, float, float, float]:
+    """Recover ``(a, b, c, alpha, beta, gamma)`` from a metric tensor G.
+
+    Clamping policy (single package-wide rule for cell ↔ G conversion):
+      * raise ``ValueError`` on non-positive edge lengths (``sqrt(G_ii)``);
+      * clamp cosines to ``[-1, 1]`` before ``acos`` so float noise on near-
+        orthogonal / near-degenerate angles does not raise.
+
+    Prefer raising over silently zeroing invalid edges.
+    """
+    a = sqrt(max(G[0][0], 0.0))
+    b = sqrt(max(G[1][1], 0.0))
+    c = sqrt(max(G[2][2], 0.0))
+    if a <= 0 or b <= 0 or c <= 0:
+        raise ValueError("non-positive cell edge in metric")
+
+    def ang(x: float) -> float:
+        return degrees(acos(max(-1.0, min(1.0, x))))
+
+    return (
+        a, b, c,
+        ang(G[1][2] / (b * c)),
+        ang(G[0][2] / (a * c)),
+        ang(G[0][1] / (a * b)),
+    )
+
+
+# Alias preferred by some call sites; identical to params_from_metric.
+cell_from_metric = params_from_metric
+
+
 @dataclass(frozen=True)
 class UnitCell:
     """A crystallographic unit cell defined by its six parameters.
@@ -68,13 +114,7 @@ class UnitCell:
 
     # --- metric tensor and volume ---
     def metric_tensor(self) -> list[list[float]]:
-        a, b, c = self.a, self.b, self.c
-        ca, cb, cg = cos(radians(self.alpha)), cos(radians(self.beta)), cos(radians(self.gamma))
-        return [
-            [a * a, a * b * cg, a * c * cb],
-            [a * b * cg, b * b, b * c * ca],
-            [a * c * cb, b * c * ca, c * c],
-        ]
+        return metric_tensor((self.a, self.b, self.c, self.alpha, self.beta, self.gamma))
 
     def volume(self) -> float:
         a, b, c = self.a, self.b, self.c

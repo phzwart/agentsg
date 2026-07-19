@@ -19,7 +19,6 @@ Nothing here is a transcription an oracle must be trusted for -- it is checked
 against the package's own centring table.
 """
 from __future__ import annotations
-import math
 
 _H = 0.5
 _T = 1.0 / 3.0
@@ -60,22 +59,13 @@ def lattice_letter(symbol):
 
 
 def _metric(cell):
-    a, b, c, al, be, ga = cell
-    al, be, ga = math.radians(al), math.radians(be), math.radians(ga)
-    return [[a * a, a * b * math.cos(ga), a * c * math.cos(be)],
-            [a * b * math.cos(ga), b * b, b * c * math.cos(al)],
-            [a * c * math.cos(be), b * c * math.cos(al), c * c]]
+    from .metric import metric_tensor
+    return metric_tensor(cell)
 
 
 def _cell_from_metric(G):
-    a = math.sqrt(G[0][0]); b = math.sqrt(G[1][1]); c = math.sqrt(G[2][2])
-
-    def ang(x):
-        return math.degrees(math.acos(max(-1.0, min(1.0, x))))
-    al = ang(G[1][2] / (b * c))
-    be = ang(G[0][2] / (a * c))
-    ga = ang(G[0][1] / (a * b))
-    return (a, b, c, al, be, ga)
+    from .metric import cell_from_metric
+    return cell_from_metric(G)
 
 
 def _matT_G_M(P, G):

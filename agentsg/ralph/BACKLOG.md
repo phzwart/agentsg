@@ -33,7 +33,7 @@ outside `wyckoff.py` itself (aliases OK inside wyckoff).
 
 ---
 
-### [ ] A2 — Consolidate metric ↔ param conversion (M2)
+### [x] A2 — Consolidate metric ↔ param conversion (M2)
 
 **Goal.** One clamping policy; delete ~6 duplicate converters.
 
