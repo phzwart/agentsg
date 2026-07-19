@@ -301,3 +301,46 @@ whole transform is cross-checked in the test suite against spglib's
 and volume remain the deposited conventional values; only the roots use the
 primitive lattice. This is what makes two crystals with the same lattice in
 different centred settings land at root distance 0, as they must.
+
+## Space-group diagrams (`cell/diagrams.py`)
+
+The ITA Volume A diagrams are *derived*, in the same spirit as the rest of the
+package: nothing about the printed plates is tabulated. Both diagram kinds are
+computed from the group's own `(W, w)` operations, which `space_groups`
+already produces (and which already include the centring copies).
+
+The **general-position diagram** replicates one generic point through every
+operation, drawing the ITA glyphs (open circle; `+`/`-` height sign; comma for
+an opposite-handedness image). Points that coincide in projection are spread
+into ITA split circles so an order-8 group shows eight legible markers rather
+than four overlapping pairs.
+
+The **symmetry-element diagram** rests on a single classifier,
+`classify_element(W, w)`, which recovers the ITA element from linear algebra
+alone: element type from `det`/`trace`, the axis or plane normal from the ±1
+eigenvector, the intrinsic screw/glide translation as the group-averaged part
+`(1/n)ΣWᵏw`, and the located position as the fixed locus `(W-I)x = -w_loc`. The
+screw index k falls out of the intrinsic translation, so 2₁/3₁/3₂/4₁/4₂/4₃ and
+6₁…6₅ are all distinguished — and rendered distinctly, the tail bend encoding
+handedness (k<n/2 vs k>n/2, straight at k=n/2). A single coset operation
+generates a family of parallel elements across the cell (the classic 2-folds at
+x=0 and x=½); the diagram reconstructs the family by reclassifying `(W, w+L)`
+over the lattice and centring translations rather than tabulating positions.
+
+Because the classifier consumes only `(W, w)`, it does not care whether those
+operations came from a standard space group or from a **base group with an
+attached change of basis**. `_resolve_sg` accepts anything exposing
+`operations()`, so a `SpaceGroupSetting` -- `"P 21 21 2 (2a,b-a,c)"` in the
+symbol+cob notation -- draws through the identical pipeline. A det≠1 transform
+rescales the cell and turns former lattice translations into fractional
+centring vectors; the diagram picks these up because `_centring_translations`
+reads pure lattice translations straight off the operation set (identity
+rotation, non-integer `w`) rather than off the Hermann-Mauguin lattice letter.
+
+Two honest scope limits, stated rather than hidden: elements *oblique* to the
+projection axis (the cubic body-diagonal axes in a c-projection) are counted and
+reported, not drawn at a wrong orientation; and the ITA height-fraction
+annotations are not yet rendered. Drawing imports matplotlib lazily inside the
+drawing functions; the diagram module is lazy-exported from `agentsg.cell` so
+the package runtime stays dependency-free (`pip install -e ".[plot]"` for
+matplotlib + numpy).

@@ -471,11 +471,73 @@ orthogonal), i.e. it is a single, well-defined deformation mode that is largely
 *independent* of the pure-volume direction — the anisotropic a-vs-c change of the
 dehydration series, which the decomposition surfaces directly.
 
+## Space-group diagrams (ITA-style)
+
+Draw the classic *International Tables* Volume A diagrams straight from the
+package's derived symmetry operations -- no tabulated diagram data.
+
+```python
+from agentsg.cell import ita_plate, general_position_diagram, symmetry_element_diagram
+
+fig = ita_plate(96)                        # the classic side-by-side pair for #96
+fig = ita_plate(96, legend=True)           # + a third panel listing the elements present
+fig.savefig("P43212.png", dpi=200)
+
+# or the two diagrams individually, onto your own axes
+general_position_diagram(14, ax=ax1)                      # equivalent points
+symmetry_element_diagram(14, ax=ax2, projection="c")      # axes / planes / centres
+```
+
+- **General-position diagram** -- a general point replicated through every
+  operation; open circle per point, `+`/`-` for height above/below the plane,
+  a comma for points related by an operation of opposite handedness. Points
+  coincident in projection are drawn as ITA split circles. The general point
+  defaults to `best_general_point(sg)` -- the centre of the largest sphere
+  inscribed in the asymmetric unit -- so the images are maximally separated and
+  overlap only where symmetry requires it.
+- **Symmetry-element diagram** -- every element classified from its `(W, w)`
+  and drawn with the standard ITA glyph: filled lens (2), filled triangle /
+  square / hexagon (3 / 4 / 6), and screw "pinwheel" tails whose hook direction
+  encodes handedness and hook length the screw magnitude, so 2₁, 3₁/3₂,
+  4₁/4₂/4₃ and 6₁…6₅ are all distinct (k=n/2 -- 4₂, 6₃ -- draws plain, no hook).
+  Rotoinversions are open polygons + centre dot; m / glide(a,b,c) / n / d planes
+  are bold / dashed / dot-dash / dotted lines; the inversion centre a small open
+  circle. An axis **lying in the plane** of the page is a solid line ending in a
+  **full arrowhead** for a pure 2-fold and a **half arrowhead** for a 2₁ screw
+  (the head shape, not the line style, distinguishes them -- the ITA convention),
+  with the head placed just outside the cell boundary.
+  `full_cell=True` (default) tiles every element copy across the cell;
+  `show_general_positions=True` overlays the points (off by default);
+  `show_centring=True` marks pure lattice (centring) translations with a red node
+  and a labelled vector from the origin.
+- **Projections** -- `projection` is `'c'` (default), `'a'`, or `'b'`.
+- **Non-standard settings** -- pass a `SpaceGroupSetting` anywhere a group is
+  accepted:
+
+  ```python
+  from agentsg.setting import SpaceGroupSetting
+  st = SpaceGroupSetting.parse("P 21 21 2 (2a,b-a,c)")
+  ita_plate(st, legend=True, show_centring=True)
+  ```
+
+- **Legends** -- `symbol_legend(ax)` draws the full glyph alphabet;
+  `element_legend(sg, ax)` (also `ita_plate(..., legend=True)`) draws only the
+  glyphs that occur in a given group.
+- **Element classification** -- `classify_space_group(sg)` / `classify_element(W, w)`
+  return the ITA element type, symbol (`'2_1'`, `'-4'`, `'c'`, `'d'`, …), axis or
+  plane normal, located position, and intrinsic screw/glide translation.
+
+Needs `pip install -e ".[plot]"` (matplotlib + numpy). Drawing imports matplotlib
+lazily; diagram helpers are lazy-exported from `agentsg.cell` so the core package
+stays dependency-free. See `tests/test_diagrams.py` (all-230 render smoke +
+element-content checks on a curated set).
+
 ## Install / test
 
 ```bash
 pip install -e .            # zero dependencies
-pip install -e ".[test]"    # adds pytest + gemmi + spglib (test-only oracles)
+pip install -e ".[test]"    # adds pytest + gemmi + spglib + matplotlib + numpy
+pip install -e ".[plot]"    # matplotlib + numpy (ITA diagrams only)
 pytest
 ```
 
@@ -514,6 +576,8 @@ agentsg/
     crystfel_stream.py  parse CrystFEL .stream per-crystal cells + orientation
     manifold.py     deformation graph / landmarks / symmetry junctions
     g6.py           G6/S6 metric-cone coordinates + boundary-aware distance
+                    (diagnostic; prefer rootform for Kurlin deficiency)
+    diagrams.py     ITA-style space-group diagrams (needs agentsg[plot])
 ```
 
 See `docs/DESIGN.md` for the full rationale and validation methodology.

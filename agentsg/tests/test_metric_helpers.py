@@ -66,6 +66,33 @@ def test_call_sites_agree_on_G_and_params(cell):
     _close_params(params, prim_cell_from_metric(G))
 
 
+@pytest.mark.parametrize("cell", CELLS)
+def test_compare_reindex_sublattice_use_shared_helper(cell):
+    from agentsg.cell.compare import _params_from_G
+    from agentsg.cell.sublattice import apply_to_cell
+    from agentsg.cell.reindex import _transform_metric
+
+    G = metric_tensor(cell)
+    _close_params(params_from_metric(G), _params_from_G(G))
+    # apply_to_cell with identity must recover the same params
+    _close_params(cell, apply_to_cell(cell, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+    # reindex path: transform with I then params_from_metric
+    _close_params(
+        cell,
+        params_from_metric(_transform_metric(G, ((1, 0, 0), (0, 1, 0), (0, 0, 1)))),
+    )
+
+
+@pytest.mark.parametrize("cell", CELLS)
+def test_reciprocal_uses_shared_clamping(cell):
+    uc = UnitCell(*cell)
+    rec = uc.reciprocal()
+    # Round-trip via G* should match shared helper
+    Gs = uc.reciprocal_metric_tensor()
+    p = params_from_metric(Gs)
+    _close_params((rec.a, rec.b, rec.c, rec.alpha, rec.beta, rec.gamma), p)
+
+
 def test_non_positive_edge_raises():
     with pytest.raises(ValueError, match="non-positive"):
         params_from_metric([[0.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])

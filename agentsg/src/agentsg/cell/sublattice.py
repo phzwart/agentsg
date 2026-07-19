@@ -93,14 +93,9 @@ def apply_to_cell(cell, M):
     ``cell`` is (a, b, c, alpha, beta, gamma) in degrees; returns the enlarged
     cell parameters. Volume scales by det(M) = index.
     """
-    from .metric import UnitCell
-    from math import sqrt, degrees, acos
+    from .metric import UnitCell, params_from_metric
     G = UnitCell(*cell).metric_tensor()
     # G' = M^T G M
     MtG = [[sum(M[k][i] * G[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
     Gp = [[sum(MtG[i][k] * M[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
-    a = sqrt(Gp[0][0]); b = sqrt(Gp[1][1]); c = sqrt(Gp[2][2])
-    al = degrees(acos(max(-1.0, min(1.0, Gp[1][2] / (b * c)))))
-    be = degrees(acos(max(-1.0, min(1.0, Gp[0][2] / (a * c)))))
-    ga = degrees(acos(max(-1.0, min(1.0, Gp[0][1] / (a * b)))))
-    return (a, b, c, al, be, ga)
+    return params_from_metric(Gp)

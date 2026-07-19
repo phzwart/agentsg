@@ -28,9 +28,8 @@ degrees on angles) exactly as in the paper's output.
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from math import acos, degrees, sqrt
 
-from .metric import UnitCell
+from .metric import UnitCell, params_from_metric
 from .reduction import niggli_reduce
 from .sublattice import generate_sublattices
 
@@ -58,9 +57,7 @@ def _metric(cell):
 
 
 def _params_from_G(G):
-    a = sqrt(G[0][0]); b = sqrt(G[1][1]); c = sqrt(G[2][2])
-    def ang(x): return degrees(acos(max(-1.0, min(1.0, x))))
-    return (a, b, c, ang(G[1][2] / (b * c)), ang(G[0][2] / (a * c)), ang(G[0][1] / (a * b)))
+    return params_from_metric(G)
 
 
 def _apply_M(G, M):

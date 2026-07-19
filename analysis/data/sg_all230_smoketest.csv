@@ -1,0 +1,231 @@
+number,hm,system,order,gen_mult,mult_ok,n_rep,n_full,oblique,status
+1,P 1,triclinic,1,1,True,0,0,0,ok
+2,P -1,triclinic,2,2,True,1,8,0,ok
+3,P 1 2 1,monoclinic,2,2,True,1,4,0,ok
+4,P 1 21 1,monoclinic,2,2,True,1,4,0,ok
+5,C 1 2 1,monoclinic,4,4,True,3,8,0,ok
+6,P 1 m 1,monoclinic,2,2,True,1,2,0,ok
+7,P 1 c 1,monoclinic,2,2,True,1,2,0,ok
+8,C 1 m 1,monoclinic,4,4,True,3,4,0,ok
+9,C 1 c 1,monoclinic,4,4,True,3,4,0,ok
+10,P 1 2/m 1,monoclinic,4,4,True,3,14,0,ok
+11,P 1 21/m 1,monoclinic,4,4,True,3,14,0,ok
+12,C 1 2/m 1,monoclinic,8,8,True,7,28,0,ok
+13,P 1 2/c 1,monoclinic,4,4,True,3,14,0,ok
+14,P 1 21/c 1,monoclinic,4,4,True,3,14,0,ok
+15,C 1 2/c 1,monoclinic,8,8,True,7,28,0,ok
+16,P 2 2 2,orthorhombic,4,4,True,3,12,0,ok
+17,P 2 2 21,orthorhombic,4,4,True,3,12,0,ok
+18,P 21 21 2,orthorhombic,4,4,True,3,12,0,ok
+19,P 21 21 21,orthorhombic,4,4,True,3,12,0,ok
+20,C 2 2 21,orthorhombic,8,8,True,7,24,0,ok
+21,C 2 2 2,orthorhombic,8,8,True,7,24,0,ok
+22,F 2 2 2,orthorhombic,16,16,True,15,48,0,ok
+23,I 2 2 2,orthorhombic,8,8,True,7,24,0,ok
+24,I 21 21 21,orthorhombic,8,8,True,7,24,0,ok
+25,P m m 2,orthorhombic,4,4,True,3,8,0,ok
+26,P m c 21,orthorhombic,4,4,True,3,8,0,ok
+27,P c c 2,orthorhombic,4,4,True,3,8,0,ok
+28,P m a 2,orthorhombic,4,4,True,3,8,0,ok
+29,P c a 21,orthorhombic,4,4,True,3,8,0,ok
+30,P n c 2,orthorhombic,4,4,True,3,8,0,ok
+31,P m n 21,orthorhombic,4,4,True,3,8,0,ok
+32,P b a 2,orthorhombic,4,4,True,3,8,0,ok
+33,P n a 21,orthorhombic,4,4,True,3,8,0,ok
+34,P n n 2,orthorhombic,4,4,True,3,8,0,ok
+35,C m m 2,orthorhombic,8,8,True,7,16,0,ok
+36,C m c 21,orthorhombic,8,8,True,7,16,0,ok
+37,C c c 2,orthorhombic,8,8,True,7,16,0,ok
+38,A m m 2,orthorhombic,8,8,True,7,16,0,ok
+39,A b m 2,orthorhombic,8,8,True,7,16,0,ok
+40,A m a 2,orthorhombic,8,8,True,7,16,0,ok
+41,A b a 2,orthorhombic,8,8,True,7,16,0,ok
+42,F m m 2,orthorhombic,16,16,True,15,32,0,ok
+43,F d d 2,orthorhombic,16,16,True,15,24,0,ok
+44,I m m 2,orthorhombic,8,8,True,7,16,0,ok
+45,I b a 2,orthorhombic,8,8,True,7,16,0,ok
+46,I m a 2,orthorhombic,8,8,True,7,16,0,ok
+47,P m m m,orthorhombic,8,8,True,7,26,0,ok
+48,P n n n,orthorhombic,8,8,True,7,26,0,ok
+49,P c c m,orthorhombic,8,8,True,7,26,0,ok
+50,P b a n,orthorhombic,8,8,True,7,26,0,ok
+51,P m m a,orthorhombic,8,8,True,7,26,0,ok
+52,P n n a,orthorhombic,8,8,True,7,26,0,ok
+53,P m n a,orthorhombic,8,8,True,7,26,0,ok
+54,P c c a,orthorhombic,8,8,True,7,26,0,ok
+55,P b a m,orthorhombic,8,8,True,7,26,0,ok
+56,P c c n,orthorhombic,8,8,True,7,26,0,ok
+57,P b c m,orthorhombic,8,8,True,7,26,0,ok
+58,P n n m,orthorhombic,8,8,True,7,26,0,ok
+59,P m m n,orthorhombic,8,8,True,7,26,0,ok
+60,P b c n,orthorhombic,8,8,True,7,26,0,ok
+61,P b c a,orthorhombic,8,8,True,7,26,0,ok
+62,P n m a,orthorhombic,8,8,True,7,26,0,ok
+63,C m c m,orthorhombic,16,16,True,15,52,0,ok
+64,C m c a,orthorhombic,16,16,True,15,52,0,ok
+65,C m m m,orthorhombic,16,16,True,15,52,0,ok
+66,C c c m,orthorhombic,16,16,True,15,52,0,ok
+67,C m m a,orthorhombic,16,16,True,15,52,0,ok
+68,C c c a,orthorhombic,16,16,True,15,52,0,ok
+69,F m m m,orthorhombic,32,32,True,31,104,0,ok
+70,F d d d,orthorhombic,32,32,True,31,92,0,ok
+71,I m m m,orthorhombic,16,16,True,15,52,0,ok
+72,I b a m,orthorhombic,16,16,True,15,52,0,ok
+73,I b c a,orthorhombic,16,16,True,15,52,0,ok
+74,I m m a,orthorhombic,16,16,True,15,52,0,ok
+75,P 4,tetragonal,4,4,True,3,9,0,ok
+76,P 41,tetragonal,4,4,True,3,12,0,ok
+77,P 42,tetragonal,4,4,True,3,9,0,ok
+78,P 43,tetragonal,4,4,True,3,12,0,ok
+79,I 4,tetragonal,8,8,True,7,16,0,ok
+80,I 41,tetragonal,8,8,True,7,16,0,ok
+81,P -4,tetragonal,4,4,True,3,10,0,ok
+82,I -4,tetragonal,8,8,True,7,20,0,ok
+83,P 4/m,tetragonal,8,8,True,7,25,0,ok
+84,P 42/m,tetragonal,8,8,True,7,25,0,ok
+85,P 4/n,tetragonal,8,8,True,7,23,0,ok
+86,P 42/n,tetragonal,8,8,True,7,23,0,ok
+87,I 4/m,tetragonal,16,16,True,15,48,0,ok
+88,I 41/a,tetragonal,16,16,True,15,48,0,ok
+89,P 4 2 2,tetragonal,8,8,True,7,33,0,ok
+90,P 4 21 2,tetragonal,8,8,True,7,31,0,ok
+91,P 41 2 2,tetragonal,8,8,True,7,36,0,ok
+92,P 41 21 2,tetragonal,8,8,True,7,34,0,ok
+93,P 42 2 2,tetragonal,8,8,True,7,33,0,ok
+94,P 42 21 2,tetragonal,8,8,True,7,31,0,ok
+95,P 43 2 2,tetragonal,8,8,True,7,36,0,ok
+96,P 43 21 2,tetragonal,8,8,True,7,34,0,ok
+97,I 4 2 2,tetragonal,16,16,True,15,66,0,ok
+98,I 41 2 2,tetragonal,16,16,True,15,66,0,ok
+99,P 4 m m,tetragonal,8,8,True,7,21,0,ok
+100,P 4 b m,tetragonal,8,8,True,7,21,0,ok
+101,P 42 c m,tetragonal,8,8,True,7,21,0,ok
+102,P 42 n m,tetragonal,8,8,True,7,19,0,ok
+103,P 4 c c,tetragonal,8,8,True,7,21,0,ok
+104,P 4 n c,tetragonal,8,8,True,7,21,0,ok
+105,P 42 m c,tetragonal,8,8,True,7,21,0,ok
+106,P 42 b c,tetragonal,8,8,True,7,21,0,ok
+107,I 4 m m,tetragonal,16,16,True,15,41,0,ok
+108,I 4 c m,tetragonal,16,16,True,15,41,0,ok
+109,I 41 m d,tetragonal,16,16,True,15,32,0,ok
+110,I 41 c d,tetragonal,16,16,True,15,32,0,ok
+111,P -4 2 m,tetragonal,8,8,True,7,26,0,ok
+112,P -4 2 c,tetragonal,8,8,True,7,26,0,ok
+113,P -4 21 m,tetragonal,8,8,True,7,26,0,ok
+114,P -4 21 c,tetragonal,8,8,True,7,26,0,ok
+115,P -4 m 2,tetragonal,8,8,True,7,30,0,ok
+116,P -4 c 2,tetragonal,8,8,True,7,30,0,ok
+117,P -4 b 2,tetragonal,8,8,True,7,30,0,ok
+118,P -4 n 2,tetragonal,8,8,True,7,30,0,ok
+119,I -4 m 2,tetragonal,16,16,True,15,62,0,ok
+120,I -4 c 2,tetragonal,16,16,True,15,62,0,ok
+121,I -4 2 m,tetragonal,16,16,True,15,53,0,ok
+122,I -4 2 d,tetragonal,16,16,True,15,44,0,ok
+123,P 4/m m m,tetragonal,16,16,True,15,61,0,ok
+124,P 4/m c c,tetragonal,16,16,True,15,61,0,ok
+125,P 4/n b m,tetragonal,16,16,True,15,61,0,ok
+126,P 4/n n c,tetragonal,16,16,True,15,61,0,ok
+127,P 4/m b m,tetragonal,16,16,True,15,61,0,ok
+128,P 4/m n c,tetragonal,16,16,True,15,61,0,ok
+129,P 4/n m m,tetragonal,16,16,True,15,59,0,ok
+130,P 4/n c c,tetragonal,16,16,True,15,59,0,ok
+131,P 42/m m c,tetragonal,16,16,True,15,61,0,ok
+132,P 42/m c m,tetragonal,16,16,True,15,61,0,ok
+133,P 42/n b c,tetragonal,16,16,True,15,59,0,ok
+134,P 42/n n m,tetragonal,16,16,True,15,59,0,ok
+135,P 42/m b c,tetragonal,16,16,True,15,61,0,ok
+136,P 42/m n m,tetragonal,16,16,True,15,59,0,ok
+137,P 42/n m c,tetragonal,16,16,True,15,59,0,ok
+138,P 42/n c m,tetragonal,16,16,True,15,59,0,ok
+139,I 4/m m m,tetragonal,32,32,True,31,123,0,ok
+140,I 4/m c m,tetragonal,32,32,True,31,123,0,ok
+141,I 41/a m d,tetragonal,32,32,True,31,114,0,ok
+142,I 41/a c d,tetragonal,32,32,True,31,114,0,ok
+143,P 3,trigonal,3,3,True,2,4,0,ok
+144,P 31,trigonal,3,3,True,2,7,0,ok
+145,P 32,trigonal,3,3,True,2,7,0,ok
+146,R 3,trigonal,9,9,True,8,22,0,ok
+147,P -3,trigonal,6,6,True,5,18,0,ok
+148,R -3,trigonal,18,18,True,17,76,0,ok
+149,P 3 1 2,trigonal,6,6,True,5,40,0,ok
+150,P 3 2 1,trigonal,6,6,True,5,20,0,ok
+151,P 31 1 2,trigonal,6,6,True,5,43,0,ok
+152,P 31 2 1,trigonal,6,6,True,5,23,0,ok
+153,P 32 1 2,trigonal,6,6,True,5,43,0,ok
+154,P 32 2 1,trigonal,6,6,True,5,23,0,ok
+155,R 3 2,trigonal,18,18,True,17,84,0,ok
+156,P 3 m 1,trigonal,6,6,True,5,22,0,ok
+157,P 3 1 m,trigonal,6,6,True,5,12,0,ok
+158,P 3 c 1,trigonal,6,6,True,5,22,0,ok
+159,P 3 1 c,trigonal,6,6,True,5,12,0,ok
+160,R 3 m,trigonal,18,18,True,17,66,0,ok
+161,R 3 c,trigonal,18,18,True,17,66,0,ok
+162,P -3 1 m,trigonal,12,12,True,11,62,0,ok
+163,P -3 1 c,trigonal,12,12,True,11,62,0,ok
+164,P -3 m 1,trigonal,12,12,True,11,52,0,ok
+165,P -3 c 1,trigonal,12,12,True,11,52,0,ok
+166,R -3 m,trigonal,36,36,True,35,182,0,ok
+167,R -3 c,trigonal,36,36,True,35,172,0,ok
+168,P 6,hexagonal,6,6,True,5,12,0,ok
+169,P 61,hexagonal,6,6,True,5,18,0,ok
+170,P 65,hexagonal,6,6,True,5,18,0,ok
+171,P 62,hexagonal,6,6,True,5,18,0,ok
+172,P 64,hexagonal,6,6,True,5,18,0,ok
+173,P 63,hexagonal,6,6,True,5,12,0,ok
+174,P -6,hexagonal,6,6,True,5,14,0,ok
+175,P 6/m,hexagonal,12,12,True,11,36,0,ok
+176,P 63/m,hexagonal,12,12,True,11,36,0,ok
+177,P 6 2 2,hexagonal,12,12,True,11,64,0,ok
+178,P 61 2 2,hexagonal,12,12,True,11,70,0,ok
+179,P 65 2 2,hexagonal,12,12,True,11,70,0,ok
+180,P 62 2 2,hexagonal,12,12,True,11,70,0,ok
+181,P 64 2 2,hexagonal,12,12,True,11,70,0,ok
+182,P 63 2 2,hexagonal,12,12,True,11,64,0,ok
+183,P 6 m m,hexagonal,12,12,True,11,38,0,ok
+184,P 6 c c,hexagonal,12,12,True,11,38,0,ok
+185,P 63 c m,hexagonal,12,12,True,11,38,0,ok
+186,P 63 m c,hexagonal,12,12,True,11,38,0,ok
+187,P -6 m 2,hexagonal,12,12,True,11,68,0,ok
+188,P -6 c 2,hexagonal,12,12,True,11,68,0,ok
+189,P -6 2 m,hexagonal,12,12,True,11,38,0,ok
+190,P -6 2 c,hexagonal,12,12,True,11,38,0,ok
+191,P 6/m m m,hexagonal,24,24,True,23,114,0,ok
+192,P 6/m c c,hexagonal,24,24,True,23,114,0,ok
+193,P 63/m c m,hexagonal,24,24,True,23,114,0,ok
+194,P 63/m m c,hexagonal,24,24,True,23,114,0,ok
+195,P 2 3,cubic,12,12,True,11,112,8,ok
+196,F 2 3,cubic,48,48,True,47,395,32,ok
+197,I 2 3,cubic,24,24,True,23,204,16,ok
+198,P 21 3,cubic,12,12,True,11,92,8,ok
+199,I 21 3,cubic,24,24,True,23,168,16,ok
+200,P m -3,cubic,24,24,True,23,161,16,ok
+201,P n -3,cubic,24,24,True,23,134,16,ok
+202,F m -3,cubic,96,96,True,95,559,64,ok
+203,F d -3,cubic,96,96,True,95,471,64,ok
+204,I m -3,cubic,48,48,True,47,276,32,ok
+205,P a -3,cubic,24,24,True,23,132,16,ok
+206,I a -3,cubic,48,48,True,47,231,32,ok
+207,P 4 3 2,cubic,24,24,True,23,175,12,ok
+208,P 42 3 2,cubic,24,24,True,23,169,12,ok
+209,F 4 3 2,cubic,96,96,True,95,633,48,ok
+210,F 41 3 2,cubic,96,96,True,95,656,48,ok
+211,I 4 3 2,cubic,48,48,True,47,332,24,ok
+212,P 43 3 2,cubic,24,24,True,23,154,12,ok
+213,P 41 3 2,cubic,24,24,True,23,155,12,ok
+214,I 41 3 2,cubic,48,48,True,47,295,24,ok
+215,P -4 3 m,cubic,24,24,True,23,154,12,ok
+216,F -4 3 m,cubic,96,96,True,95,531,48,ok
+217,I -4 3 m,cubic,48,48,True,47,291,24,ok
+218,P -4 3 n,cubic,24,24,True,23,154,12,ok
+219,F -4 3 c,cubic,96,96,True,95,534,48,ok
+220,I -4 3 d,cubic,48,48,True,47,229,24,ok
+221,P m -3 m,cubic,48,48,True,47,266,24,ok
+222,P n -3 n,cubic,48,48,True,47,239,24,ok
+223,P m -3 n,cubic,48,48,True,47,260,24,ok
+224,P n -3 m,cubic,48,48,True,47,233,24,ok
+225,F m -3 m,cubic,192,192,True,191,933,96,ok
+226,F m -3 c,cubic,192,192,True,191,937,96,ok
+227,F d -3 m,cubic,192,192,True,191,868,96,ok
+228,F d -3 c,cubic,192,192,True,191,871,96,ok
+229,I m -3 m,cubic,96,96,True,95,491,48,ok
+230,I a -3 d,cubic,96,96,True,95,419,48,ok

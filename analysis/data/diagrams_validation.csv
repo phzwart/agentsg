@@ -1,0 +1,27 @@
+number,hm,system,centring,order,gen_mult,mult_ok,n_elements,symbols
+1,P 1,triclinic,P,1,1,True,0,
+2,P -1,triclinic,P,2,2,True,1,-1×1
+3,P 1 2 1,monoclinic,P,2,2,True,1,2×1
+4,P 1 21 1,monoclinic,P,2,2,True,1,2_1×1
+5,C 1 2 1,monoclinic,C,4,4,True,3,2×1;2_1×1;t×1
+10,P 1 2/m 1,monoclinic,P,4,4,True,3,-1×1;2×1;m×1
+12,C 1 2/m 1,monoclinic,C,8,8,True,7,-1×2;2×1;2_1×1;a×1;m×1;t×1
+14,P 1 21/c 1,monoclinic,P,4,4,True,3,-1×1;2_1×1;c×1
+15,C 1 2/c 1,monoclinic,C,8,8,True,7,-1×2;2×1;2_1×1;c×1;n×1;t×1
+19,P 21 21 21,orthorhombic,P,4,4,True,3,2_1×3
+20,C 2 2 21,orthorhombic,C,8,8,True,7,2×2;2_1×4;t×1
+33,P n a 21,orthorhombic,P,4,4,True,3,2_1×1;a×1;n×1
+47,P m m m,orthorhombic,P,8,8,True,7,-1×1;2×3;m×3
+63,C m c m,orthorhombic,C,16,16,True,15,-1×2;2×2;2_1×4;b×1;c×1;m×2;n×2;t×1
+64,C m c a,orthorhombic,C,16,16,True,15,-1×2;2×2;2_1×4;a×1;b×2;c×1;m×1;n×1;t×1
+66,C c c m,orthorhombic,C,16,16,True,15,-1×2;2×4;2_1×2;c×2;m×1;n×3;t×1
+88,I 41/a,tetragonal,I,16,16,True,15,-1×2;-4×4;2×1;2_1×1;4_1×2;4_3×2;a×1;b×1;t×1
+96,P 43 21 2,tetragonal,P,8,8,True,7,2×2;2_1×3;4_1×1;4_3×1
+136,P 42/m n m,tetragonal,P,16,16,True,15,-1×1;-4×2;2×3;2_1×2;4_2×2;m×3;n×2
+141,I 41/a m d,tetragonal,I,32,32,True,31,-1×2;-4×4;2×6;2_1×4;4_1×2;4_3×2;a×1;b×1;d×4;m×2;n×2;t×1
+167,R -3 c,trigonal,R,36,36,True,35,-1×3;-3×6;2×5;2_1×4;3×2;3_1×2;3_2×2;c×3;g×6;t×2
+194,P 63/m m c,hexagonal,P,24,24,True,23,-1×1;-3×2;-6×2;2×6;2_1×1;3×2;6_3×2;c×3;m×4
+205,P a -3,cubic,P,24,24,True,23,-1×1;-3×8;2_1×3;3×5;3_1×3;a×1;b×1;c×1
+225,F m -3 m,cubic,F,192,192,True,191,-1×4;-3×32;-4×24;2×27;2_1×9;3×20;3_1×6;3_2×6;4×12;4_2×12;a×2;b×2;c×2;d×12;m×12;n×6;t×3
+227,F d -3 m,cubic,F,192,192,True,191,-1×4;-3×32;-4×24;2×21;2_1×15;3×20;3_1×6;3_2×6;4_1×12;4_3×12;d×24;m×9;n×3;t×3
+230,I a -3 d,cubic,I,96,96,True,95,-1×2;-3×16;-4×12;2×9;2_1×9;3×11;3_1×5;4_1×6;4_3×6;a×2;b×2;c×2;d×12;t×1

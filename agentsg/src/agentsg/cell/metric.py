@@ -128,12 +128,7 @@ class UnitCell:
     def reciprocal(self) -> "UnitCell":
         """The reciprocal unit cell (its parameters). Reciprocal lengths are in
         1/length units; a*·a = 1 etc."""
-        Gs = self.reciprocal_metric_tensor()
-        astar = sqrt(Gs[0][0]); bstar = sqrt(Gs[1][1]); cstar = sqrt(Gs[2][2])
-        alpha_s = degrees(acos(Gs[1][2] / (bstar * cstar)))
-        beta_s = degrees(acos(Gs[0][2] / (astar * cstar)))
-        gamma_s = degrees(acos(Gs[0][1] / (astar * bstar)))
-        return UnitCell(astar, bstar, cstar, alpha_s, beta_s, gamma_s)
+        return UnitCell(*params_from_metric(self.reciprocal_metric_tensor()))
 
     # --- orthogonalisation (fractional -> Cartesian) ---
     def orthogonalization_matrix(self) -> list[list[float]]:

@@ -1,6 +1,6 @@
-"""Bounded Niggli-reduction fuzz: random + near-degenerate cells vs oracles.
+"""Bounded Niggli-reduction fuzz: random + near-degenerate cells.
 
-Checks that are always required (even without gemmi/spglib):
+Always required (no optional deps):
   * det(M) in {-1, +1}
   * idempotency of reduced params
   * re-reducing an already-reduced cell yields the identity CoB
@@ -10,6 +10,10 @@ When gemmi and/or spglib are installed, also compare oracles. Near the
 type-I / type-II Niggli boundary (e.g. rhombohedral ~60°), float noise can
 pick either acute or obtuse presentation; both are lattice-equivalent, so we
 accept agreement after mapping the oracle cell through our reducer.
+
+Note: ``det(M) = -1`` is allowed — orientation-reversing changes of basis are
+valid unimodular transforms of the lattice (same metric); callers that need a
+proper rotation should check the sign.
 """
 from __future__ import annotations
 
@@ -21,7 +25,10 @@ import pytest
 from agentsg.cell.metric import UnitCell
 from agentsg.cell.reduction import niggli_reduce
 
-gemmi = pytest.importorskip("gemmi")
+try:
+    import gemmi as _gemmi
+except ImportError:
+    _gemmi = None
 
 
 def _det(M):
@@ -44,13 +51,13 @@ def _params_close(p, q, abs_tol=1e-4):
 
 def _valid_volume(p, min_vol=1.0):
     try:
-        return gemmi.UnitCell(*p).volume >= min_vol
+        return UnitCell(*p).volume() >= min_vol
     except Exception:
         return False
 
 
 def _gemmi_niggli(p):
-    gv = gemmi.GruberVector(gemmi.UnitCell(*p), None)
+    gv = _gemmi.GruberVector(_gemmi.UnitCell(*p), None)
     gv.niggli_reduce()
     return gv.cell_parameters()
 
@@ -94,13 +101,6 @@ def _try_import_spglib():
     import spglib
 
     return spglib, np
-
-
-def _spglib_niggli(p, spglib, np):
-    red = spglib.niggli_reduce(np.array(_lattice_rows(p)))
-    if red is None:
-        return None
-    return _params_from_rows(red)
 
 
 def _oracle_agree(ours, oracle, abs_tol=1e-4):
@@ -185,35 +185,53 @@ def _near_degenerate_cells(rng, n):
     return cells
 
 
-def _check_cell(p, *, spglib=None, np=None):
+def _check_structural(p):
+    """Always-on: det, idempotency, identity CoB on re-reduce."""
     red, M = niggli_reduce(*p)
     d = round(_det(M))
     assert d in (-1, 1), (p, M, d)
 
     red2, M2 = niggli_reduce(*red)
     assert _params_close(red, red2, abs_tol=1e-6), (p, red, red2)
-    # Already-reduced: CoB must be exact identity (no leftover sign flips).
     assert _is_identity(M2), (red, M2)
+    return red
 
-    gred = _gemmi_niggli(p)
-    assert _oracle_agree(red, gred), (p, red, gred)
 
+def _check_oracles(p, red, *, spglib=None, np=None):
+    if _gemmi is not None:
+        gred = _gemmi_niggli(p)
+        assert _oracle_agree(red, gred), (p, red, gred)
     if spglib is not None:
         sred = _spglib_niggli(p, spglib, np)
         assert _oracle_agree(red, sred, abs_tol=5e-3), (p, red, sred)
 
 
-def test_niggli_fuzz_random_vs_oracles():
+def _spglib_niggli(p, spglib, np):
+    red = spglib.niggli_reduce(np.array(_lattice_rows(p)))
+    if red is None:
+        return None
+    return _params_from_rows(red)
+
+
+def test_niggli_fuzz_structural_random():
     rng = random.Random(20260719)
-    cells = _random_cells(rng, 120)
-    spglib, np = _try_import_spglib()
-    for p in cells:
-        _check_cell(p, spglib=spglib, np=np)
+    for p in _random_cells(rng, 120):
+        _check_structural(p)
 
 
-def test_niggli_fuzz_near_degenerate_vs_oracles():
+def test_niggli_fuzz_structural_near_degenerate():
     rng = random.Random(20260719 + 1)
-    cells = _near_degenerate_cells(rng, 150)
+    for p in _near_degenerate_cells(rng, 150):
+        _check_structural(p)
+
+
+@pytest.mark.skipif(_gemmi is None, reason="gemmi not installed")
+def test_niggli_fuzz_vs_gemmi_oracles():
+    rng = random.Random(20260719)
+    cells = _random_cells(rng, 60) + _near_degenerate_cells(
+        random.Random(20260719 + 1), 60
+    )
     spglib, np = _try_import_spglib()
     for p in cells:
-        _check_cell(p, spglib=spglib, np=np)
+        red = _check_structural(p)
+        _check_oracles(p, red, spglib=spglib, np=np)

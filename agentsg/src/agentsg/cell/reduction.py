@@ -52,6 +52,11 @@ def niggli_reduce(a, b, c, alpha, beta, gamma, eps_rel: float = 1e-9, max_iter: 
     ``change_of_basis`` is the integer 3x3 matrix M such that the reduced basis
     vectors are (old basis) @ M.
 
+    ``det(M)`` is in ``{+1, -1}``. A negative determinant is an
+    orientation-reversing (improper) change of basis; it still describes the
+    same lattice metric. Callers that need a proper rotation should check the
+    sign.
+
     Implements the stabilised algorithm (Grosse-Kunstleve/Sauter/Adams 2004):
     all comparisons use a relative epsilon derived from the cell scale.
     """

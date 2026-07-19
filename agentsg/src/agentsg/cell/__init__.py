@@ -33,6 +33,9 @@ invariance, W^T G W = G). See docs/DESIGN.md, "The one interface point".
   * neartree.py     Exact metric nearest-neighbour index (Andrews 2001); the
                     `lattice_index` helper keys a NearTree on the root invariant
                     for fast, exact lattice search over a database.
+  * diagrams.py     ITA-style space-group diagrams (general-position +
+                    symmetry-element plates). Needs matplotlib (+ numpy); loaded
+                    lazily so the core package stays dependency-free.
 """
 from .metric import UnitCell
 from .reduction import niggli_reduce
@@ -101,19 +104,32 @@ __all__ = [
     "primitive_cell", "primitive_transform", "lattice_letter",
     "deformation_graph", "symmetry_junctions", "farthest_point_landmarks",
     "select_landmarks", "DeformationManifold",
+    # ITA diagrams (lazy; need agentsg[plot] / matplotlib+numpy):
+    "general_position_diagram", "symmetry_element_diagram", "ita_plate",
+    "classify_element", "classify_space_group", "symbol_legend",
+    "element_legend", "general_position_multiplicity", "best_general_point",
     # DuckDB-backed database + PDB builder (lazy; need agentsg[db]):
     "CellDatabase", "RootIndex", "list_pdb_ids", "fetch_pdb_cells",
     "build_pdb_database",
 ]
 
-# Lazy exports for the optional DuckDB-backed layer. Importing agentsg.cell must
-# not require DuckDB; these resolve only when actually accessed.
+# Lazy exports: DuckDB layer and ITA diagrams. Importing agentsg.cell must not
+# require DuckDB or matplotlib/numpy.
 _LAZY = {
     "CellDatabase": ("celldb", "CellDatabase"),
     "RootIndex": ("celldb", "RootIndex"),
     "list_pdb_ids": ("celldb", "list_pdb_ids"),
     "fetch_pdb_cells": ("celldb", "fetch_pdb_cells"),
     "build_pdb_database": ("pdb_app", "build_pdb_database"),
+    "general_position_diagram": ("diagrams", "general_position_diagram"),
+    "symmetry_element_diagram": ("diagrams", "symmetry_element_diagram"),
+    "ita_plate": ("diagrams", "ita_plate"),
+    "classify_element": ("diagrams", "classify_element"),
+    "classify_space_group": ("diagrams", "classify_space_group"),
+    "symbol_legend": ("diagrams", "symbol_legend"),
+    "element_legend": ("diagrams", "element_legend"),
+    "general_position_multiplicity": ("diagrams", "general_position_multiplicity"),
+    "best_general_point": ("diagrams", "best_general_point"),
 }
 
 

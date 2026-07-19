@@ -34,9 +34,8 @@ classification of 3-dimensional lattices", arXiv:2201.10543 (2022), Lemma 6.2
 (a superbase can be reconstructed from the root invariant, up to isometry).
 """
 from __future__ import annotations
-from math import sqrt
 
-from .metric import UnitCell
+from .metric import UnitCell, params_from_metric
 
 
 def _matmul(A, B):
@@ -96,17 +95,10 @@ def _find_base_reindex(cell_A, cell_B, length_tol_pct, angle_tol_deg):
     from .g6 import _unimodular_pm1
     GA = UnitCell(*cell_A).metric_tensor()
 
-    def cell_of(G):
-        a = sqrt(G[0][0]); b = sqrt(G[1][1]); c = sqrt(G[2][2])
-        from math import degrees, acos
-        ang = lambda x: degrees(acos(max(-1.0, min(1.0, x))))
-        return (a, b, c, ang(G[1][2] / (b * c)), ang(G[0][2] / (a * c)),
-                ang(G[0][1] / (a * b)))
-
     lt = max(length_tol_pct, 1e-6)
     at = max(angle_tol_deg, 1e-6)
     for P in _unimodular_pm1():
-        if _cell_close(cell_of(_transform_metric(GA, P)), cell_B, lt, at):
+        if _cell_close(params_from_metric(_transform_metric(GA, P)), cell_B, lt, at):
             return P
     return None
 

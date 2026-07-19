@@ -385,10 +385,11 @@ class DirichletAsu:
     def isoperimetric_quotient(
         self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
     ) -> float:
-        """Monte-Carlo estimate of a ``36π V² / A³`` proxy via inertia sphericity.
+        """Monte-Carlo estimate of an isoperimetric *proxy* (not true ``36π V²/A³``).
 
-        Value 1 = sphere. ``n`` / ``n_samples``: sample count
-        (``n`` aliases ``n_samples``).
+        Returns the inertia-ellipsoid sphericity ``λ_min / λ_max`` as a cheap
+        stand-in for sphericalness (1 = sphere). Surface area is not computed.
+        ``n`` / ``n_samples``: sample count (``n`` aliases ``n_samples``).
         """
         n = n if n_samples is None else n_samples
         return self.sphericity(n=n, seed=seed)

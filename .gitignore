@@ -25,3 +25,5 @@ manuscript/*.bbl
 manuscript/*.blg
 manuscript/*.pdf
 manuscript/*.synctex.gz
+symcell-update.zip
+agentsg/ralph/logs/
