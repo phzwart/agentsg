@@ -1,0 +1,3 @@
+Added `tests/test_reduction_fuzz.py`: random + near-degenerate cells, `det(M) ∈ {-1,+1}`, idempotent params with identity CoB on re-reduce, and gemmi/spglib oracle checks (type-I/II boundary via shared fixed point). No Step 3/4 bug showed up.
+
+RALPH-OK B2

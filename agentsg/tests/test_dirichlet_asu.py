@@ -55,6 +55,12 @@ def test_optimizer_at_least_matches_identity_gauge():
     assert opt.score >= base - 1e-12
     assert 0.0 <= opt.score <= 1.0
     assert "sphericity" in opt.metrics
+    assert opt.metrics["n_samples"] == n_sample
+    # n_samples alias matches n=
+    assert abs(
+        build_dirichlet_asu(ops, skinny).sphericity(n_samples=n_sample, seed=0)
+        - base
+    ) < 1e-15
 
 
 def test_reciprocal_dirichlet_smoke():

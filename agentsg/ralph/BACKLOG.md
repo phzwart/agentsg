@@ -118,7 +118,7 @@ Then full suite.
 
 ---
 
-### [ ] B3 — Make MC ASU estimators explicit (S2)
+### [x] B3 — Make MC ASU estimators explicit (S2)
 
 **Goal.** Monte-Carlo nature of Dirichlet ASU metrics must be obvious.
 

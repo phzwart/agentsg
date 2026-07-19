@@ -296,9 +296,16 @@ class DirichletAsu:
             + v2 * (G[2][0] * v0 + G[2][1] * v1 + G[2][2] * v2)
         )
 
-    def sample_points(self, n: int = 2000, seed: int = 0) -> list[list[float]]:
-        """MC samples of ASU points in the unit cell (Cartesian)."""
+    def sample_points(
+        self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
+    ) -> list[list[float]]:
+        """Monte-Carlo sample of ASU points in the unit cell (Cartesian).
+
+        ``n`` / ``n_samples``: target number of accepted ASU samples
+        (``n`` is a back-compat alias of ``n_samples``).
+        """
         import random
+        n = n if n_samples is None else n_samples
         rng = random.Random(seed)
         pts: list[list[float]] = []
         budget = n * max(20, len(self.operations) * 3)
@@ -310,9 +317,16 @@ class DirichletAsu:
                 pts.append(self._frac_to_cart(frac))
         return pts
 
-    def volume_fraction(self, n: int = 8000, seed: int = 0) -> float:
-        """Fraction of the unit cell in the ASU (≈ ``1/|G|``)."""
+    def volume_fraction(
+        self, n: int = 8000, seed: int = 0, *, n_samples: int | None = None
+    ) -> float:
+        """Monte-Carlo estimate of the ASU volume fraction (≈ ``1/|G|``).
+
+        ``n`` / ``n_samples``: number of uniform fractional-coordinate trials
+        (``n`` is a back-compat alias of ``n_samples``).
+        """
         import random
+        n = n if n_samples is None else n_samples
         rng = random.Random(seed)
         hit = 0
         for _ in range(n):
@@ -322,9 +336,14 @@ class DirichletAsu:
         return hit / n
 
     def inertia_eigenvalues(
-        self, n: int = 2000, seed: int = 0
+        self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
     ) -> tuple[float, float, float]:
-        """Eigenvalues of the Cartesian second-moment tensor of the ASU."""
+        """Monte-Carlo estimate of ASU Cartesian second-moment eigenvalues.
+
+        ``n`` / ``n_samples``: number of Monte-Carlo ASU point samples
+        (``n`` is a back-compat alias of ``n_samples``).
+        """
+        n = n if n_samples is None else n_samples
         pts = self.sample_points(n=n, seed=seed)
         if len(pts) < 10:
             return (0.0, 0.0, 0.0)
@@ -339,19 +358,39 @@ class DirichletAsu:
                     I[i][j] += d[i] * d[j]
         return _eigh3_sorted(I)
 
-    def sphericity(self, n: int = 2000, seed: int = 0) -> float:
-        """Inertia-ellipsoid sphericity ``λ_min / λ_max`` in [0, 1] (1 = sphere)."""
+    def sphericity(
+        self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
+    ) -> float:
+        """Monte-Carlo estimate of inertia-ellipsoid sphericity ``λ_min / λ_max``.
+
+        Value is in [0, 1] (1 = sphere). ``n`` / ``n_samples``: Monte-Carlo
+        sample count (``n`` is a back-compat alias of ``n_samples``).
+        """
+        n = n if n_samples is None else n_samples
         ev = self.inertia_eigenvalues(n=n, seed=seed)
         if ev[2] <= 0:
             return 0.0
         return ev[0] / ev[2]
 
-    def ellipsoid_score(self, n: int = 2000, seed: int = 0) -> float:
-        """Alias of :meth:`sphericity` (axis ratio of the inertia ellipsoid)."""
+    def ellipsoid_score(
+        self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
+    ) -> float:
+        """Monte-Carlo estimate; alias of :meth:`sphericity`.
+
+        ``n`` / ``n_samples``: sample count (``n`` aliases ``n_samples``).
+        """
+        n = n if n_samples is None else n_samples
         return self.sphericity(n=n, seed=seed)
 
-    def isoperimetric_quotient(self, n: int = 2000, seed: int = 0) -> float:
-        """``36π V² / A³`` proxy via inertia sphericity (1 = sphere)."""
+    def isoperimetric_quotient(
+        self, n: int = 2000, seed: int = 0, *, n_samples: int | None = None
+    ) -> float:
+        """Monte-Carlo estimate of a ``36π V² / A³`` proxy via inertia sphericity.
+
+        Value 1 = sphere. ``n`` / ``n_samples``: sample count
+        (``n`` aliases ``n_samples``).
+        """
+        n = n if n_samples is None else n_samples
         return self.sphericity(n=n, seed=seed)
 
 
@@ -516,6 +555,7 @@ def optimize_asu(
 ) -> OptimizedAsu:
     """Search allowed origin gauges for the most spherical Dirichlet ASU.
 
+    Scores are Monte-Carlo estimates using ``n_sample`` draws per candidate.
     Candidates: identity, floating-axis samples, and Cheshire torsion origins
     from :mod:`agentsg.semi_invariants`.
     """
@@ -545,11 +585,12 @@ def optimize_asu(
     best: OptimizedAsu | None = None
     for o in uniq:
         asu = build_dirichlet_asu(ops, cell, space=space, origin_frac=o)
-        sc = asu.sphericity(n=n_sample)
+        sc = asu.sphericity(n_samples=n_sample)
         metrics = {
             "sphericity": sc,
-            "volume_fraction": asu.volume_fraction(n=n_sample),
-            "inertia": asu.inertia_eigenvalues(n=n_sample),
+            "volume_fraction": asu.volume_fraction(n_samples=n_sample),
+            "inertia": asu.inertia_eigenvalues(n_samples=n_sample),
+            "n_samples": n_sample,
             "allowed_origin": is_allowed_origin(o, ops),
         }
         if best is None or sc > best.score:
