@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentsg"
+version = "0.4.1"
+description = "Exact-rational space-group algebra for all 230 groups (Hall parser, Wyckoff, reflection conditions) + numeric unit-cell math (metric, Niggli, exact<->numeric bridge). Zero runtime dependencies."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest", "gemmi", "spglib"]
+db = ["duckdb"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,94 @@
+sg_number,sg_hm,crystal_system,lattice_letter,count
+19,P 21 21 21,orthorhombic,P,46527
+4,P 1 21 1,monoclinic,P,34889
+5,C 1 2 1,monoclinic,C,21471
+20,C 2 2 21,orthorhombic,C,10203
+18,P 21 21 2,orthorhombic,P,8993
+1,P 1,triclinic,P,8472
+96,P 43 21 2,tetragonal,P,7917
+154,P 32 2 1,trigonal,P,6229
+92,P 41 21 2,tetragonal,P,6208
+152,P 31 2 1,trigonal,P,5920
+23,I 2 2 2,orthorhombic,I,4585
+178,P 61 2 2,hexagonal,P,3310
+146,H 3,trigonal,R,2928
+179,P 65 2 2,hexagonal,P,2800
+155,H 3 2,trigonal,R,2526
+169,P 61,hexagonal,P,2177
+170,P 65,hexagonal,P,1928
+78,P 43,tetragonal,P,1797
+18,P 2 21 21,orthorhombic,P,1609
+173,P 63,hexagonal,P,1525
+97,I 4 2 2,tetragonal,I,1258
+144,P 31,trigonal,P,1255
+76,P 41,tetragonal,P,1220
+145,P 32,trigonal,P,1152
+98,I 41 2 2,tetragonal,I,1123
+79,I 4,tetragonal,I,1103
+94,P 42 21 2,tetragonal,P,1083
+182,P 63 2 2,hexagonal,P,1023
+5,I 1 2 1,monoclinic,I,936
+198,P 21 3,cubic,P,922
+197,I 2 3,cubic,I,889
+150,P 3 2 1,trigonal,P,748
+90,P 4 21 2,tetragonal,P,659
+95,P 43 2 2,tetragonal,P,652
+180,P 62 2 2,hexagonal,P,639
+181,P 64 2 2,hexagonal,P,609
+18,P 21 2 21,orthorhombic,P,608
+91,P 41 2 2,tetragonal,P,558
+80,I 41,tetragonal,I,538
+199,I 21 3,cubic,I,479
+209,F 4 3 2,cubic,F,470
+21,C 2 2 2,orthorhombic,C,465
+24,I 21 21 21,orthorhombic,I,459
+172,P 64,hexagonal,P,443
+3,P 1 2 1,monoclinic,P,439
+168,P 6,hexagonal,P,428
+171,P 62,hexagonal,P,382
+143,P 3,trigonal,P,329
+213,P 41 3 2,cubic,P,329
+22,F 2 2 2,orthorhombic,F,280
+17,P 2 2 21,orthorhombic,P,236
+211,I 4 3 2,cubic,I,208
+151,P 31 1 2,trigonal,P,207
+153,P 32 1 2,trigonal,P,205
+212,P 43 3 2,cubic,P,191
+177,P 6 2 2,hexagonal,P,190
+75,P 4,tetragonal,P,169
+196,F 2 3,cubic,F,166
+214,I 41 3 2,cubic,I,156
+77,P 42,tetragonal,P,146
+210,F 41 3 2,cubic,F,121
+195,P 2 3,cubic,P,114
+93,P 42 2 2,tetragonal,P,107
+207,P 4 3 2,cubic,P,102
+89,P 4 2 2,tetragonal,P,94
+2,P -1,triclinic,P,50
+208,P 42 3 2,cubic,P,41
+5,B 1 1 2,monoclinic,B,36
+149,P 3 1 2,trigonal,P,34
+16,P 2 2 2,orthorhombic,P,22
+17,P 21 2 2,orthorhombic,P,15
+5,I 1 21 1,monoclinic,I,14
+4,P 1 1 21,monoclinic,P,14
+14,P 1 21/c 1,monoclinic,P,12
+17,P 2 21 2,orthorhombic,P,9
+155,R 3 2,trigonal,R,8
+14,P 1 21/n 1,monoclinic,P,8
+146,R 3,trigonal,R,8
+15,C 1 2/c 1,monoclinic,C,7
+5,C 1 21 1,monoclinic,C,6
+88,I 41/a,tetragonal,I,4
+148,H -3,trigonal,R,3
+61,P b c a,orthorhombic,P,3
+5,A 1 2 1,monoclinic,A,2
+3,P 1 1 2,monoclinic,P,2
+18,P 21 21 2 A,orthorhombic,P,2
+97,F 4 2 2,tetragonal,F,2
+147,P -3,trigonal,P,2
+90,C 4 21 2,tetragonal,C,2
+159,P 3 1 c,trigonal,P,1
+122,I -4 2 d,tetragonal,I,1
+52,P n n a,orthorhombic,P,1
+120,I -4 c 2,tetragonal,I,1

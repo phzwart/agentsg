@@ -1,0 +1,9 @@
+metric,value
+n_cells,206214
+index_build_s,4.04
+k10_p50_ms,5.0716
+k10_p90_ms,8.0839
+k10_p99_ms,10.9226
+k10_max_ms,12.9128
+correctness_kth_distance_exact,100/100
+correctness_max_abs_dist_diff,0.00e+00

@@ -1,0 +1,15 @@
+IUCrJ submission source
+========================
+Files:
+  manuscript.tex   - LaTeX source (article base; drops into IUCr class - see header)
+  figure1.png      - Figure 1 (quotient-then-lift workflow + benchmarks)
+  figure2.png      - Figure 2 (real-data validation: HEWL + BlaC XFEL)
+
+Build (any TeX Live / MiKTeX / Overleaf):
+  pdflatex manuscript.tex
+  pdflatex manuscript.tex      # second pass for \ref cross-references
+
+For final IUCr submission, change the header to:
+  \documentclass{iucr}
+  \journalcode{J}              % IUCrJ
+and move author/affiliation into IUCr's \author/\aff macros.
