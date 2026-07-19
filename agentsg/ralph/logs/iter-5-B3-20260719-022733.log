@@ -1,0 +1,3 @@
+B3 done: MC ASU methods now lead with “Monte-Carlo estimate”, accept `n_samples=` (with `n=` kept), and `OptimizedAsu.metrics` records `n_samples`.
+
+RALPH-OK B3B3 finished successfully: Monte-Carlo ASU estimators are documented and expose `n_samples`, verification passed (3281 tests), and the change is committed as `ralph: B3 make MC ASU estimators explicit`.

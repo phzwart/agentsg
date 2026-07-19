@@ -56,10 +56,10 @@ def _normalize_constraint(n: Vector3, c: Fr) -> tuple[tuple[Fr, Fr, Fr], Fr]:
                 c = -c
             break
     nn = tuple(Fr(a) for a in ints)
-    # c scales with the same integer normalisation of n
-    # Original: n·u = c with n = (ints/D)*g_old... We used n' = ints, so
-    # n = (g/D) * (ints/g wait) — n_orig = ints_before/D, n' = ints_before/g
-    # n' = (D/g) n_orig ⇒ c' = (D/g) c_orig
+    # Scale the constant by the same factor used to clear denominators and
+    # divide out gcd.  With n_orig · u ≡ c (mod 1), we set
+    #   n' = (D/g) n_orig  (primitive integer components),
+    # so the congruent constant is c' ≡ (D/g) c (mod 1).
     scale = Fr(D, g)
     c2 = frac_mod1(c * scale)
     return nn, c2

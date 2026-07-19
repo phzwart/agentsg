@@ -134,7 +134,7 @@ Then full suite.
 
 ---
 
-### [ ] B4 — Doc-only: crystal_system sentinel + Harker comment (S3, S6)
+### [x] B4 — Doc-only: crystal_system sentinel + Harker comment (S3, S6)
 
 **Goal.** Documentation / comment clarity only — no behavior change.
 

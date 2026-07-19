@@ -231,7 +231,14 @@ def evaluate_two_folds(cell, *, sort_by: str = "le_page") -> list[TwoFoldScore]:
 
 # --- main entry point ------------------------------------------------------
 class LatticeSymmetry:
-    """Result of a lattice-symmetry determination."""
+    """Result of a lattice-symmetry determination.
+
+    ``crystal_system`` is normally a holohedry name (``"triclinic"``,
+    ``"monoclinic"``, …) when the closed group order matches a known
+    centrosymmetric lattice point group.  If the order is not one of those
+    seven values, it is a sentinel string ``"order-N"`` (e.g. ``"order-6"``)
+    rather than a crystal-system name — see :data:`_ORDER_TO_SYSTEM`.
+    """
     __slots__ = ("operations", "order", "crystal_system", "two_folds",
                  "deltas", "two_fold_scores")
 
@@ -254,7 +261,8 @@ class LatticeSymmetry:
                 f"n_two_folds={len(self.two_folds)})")
 
 
-# holohedry order -> crystal system name
+# Known centrosymmetric lattice holohedry order -> crystal-system name.
+# Orders outside this map yield the sentinel ``"order-N"`` instead.
 _ORDER_TO_SYSTEM = {
     2: "triclinic", 4: "monoclinic", 8: "orthorhombic",
     16: "tetragonal", 12: "trigonal", 24: "hexagonal", 48: "cubic",
@@ -276,7 +284,9 @@ def lattice_symmetry(cell, max_delta: float = 3.0) -> LatticeSymmetry:
 
     Returns a :class:`LatticeSymmetry` with the closed operation set (exact
     integer rotations as SymmetryOp with zero translation), the holohedry order,
-    the crystal system, and the accepted two-folds with Le Page / Kurlin scores.
+    the crystal system (or ``"order-N"`` sentinel when the closed order is not
+    a known holohedry — see :data:`_ORDER_TO_SYSTEM`), and the accepted
+    two-folds with Le Page / Kurlin scores.
     """
     accepted = []
     scores = []
