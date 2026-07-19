@@ -169,7 +169,7 @@ triclinic.
 
 ---
 
-### [ ] C2 — Mark g6 deficiency APIs diagnostic vs rootform canonical (M3)
+### [x] C2 — Mark g6 deficiency APIs diagnostic vs rootform canonical (M3)
 
 **Goal.** Units and preferred API must be unambiguous (G6 Å² vs Kurlin Å).
 

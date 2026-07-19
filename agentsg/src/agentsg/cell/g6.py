@@ -13,6 +13,11 @@ structural state space" view of crystallography rests on:
      distance                          symmetry a lattice has, replacing the
                                         binary "is it tetragonal? yes/no".
 
+G6 deficiency scores (``distance_to_symmetry``, ``symmetry_deficiency_spectrum``)
+are **diagnostic / legacy**: units are Angstrom^2 (metric-cone). For canonical
+deficiency scores in Angstrom, prefer Kurlin / ``rootform`` via
+``kurlin_distance_to_symmetry`` and ``kurlin_deficiency_spectrum``.
+
 Two embeddings (Andrews & Bernstein):
 
   * G6  (Niggli):  g = (a.a, b.b, c.c, 2 b.c, 2 a.c, 2 a.b)
@@ -176,7 +181,11 @@ def _cell_from_metric(G):
 
 
 def distance_to_symmetry(cell, point_group_ops):
-    """Continuous G6 distance from a cell to the subspace fixed by a point group.
+    """Diagnostic G6 distance (Å²) from a cell to a point-group subspace.
+
+    **Diagnostic / legacy.** Units are G6 Angstrom^2 (metric-cone), not length.
+    For canonical deficiency scores in Angstrom, prefer
+    :func:`kurlin_distance_to_symmetry` (Kurlin root invariant / ``rootform``).
 
     ``point_group_ops`` is an iterable of SymmetryOp or Matrix3 (rotation parts).
     Returns ||g6(G) - g6(G_symmetrized)||, where G_symmetrized is the Reynolds
@@ -185,9 +194,8 @@ def distance_to_symmetry(cell, point_group_ops):
     symmetry; the value grows smoothly as the lattice is distorted away from it.
 
     This is BGAOL's "distance to a Bravais-lattice subspace" (Andrews &
-    Bernstein 2014) and it is the continuous replacement for a binary
-    "does this lattice have symmetry X?" test: symmetry becomes a smooth field
-    over the lattice manifold, not a yes/no with a tolerance cliff.
+    Bernstein 2014): a continuous field over the lattice manifold, not a
+    yes/no with a tolerance cliff. Kept for comparison with G6/NCDist tooling.
     """
     G = UnitCell(*cell).metric_tensor()
     Gs = _symmetrize_metric(G, _op_rows(point_group_ops))
@@ -195,7 +203,10 @@ def distance_to_symmetry(cell, point_group_ops):
 
 
 def kurlin_distance_to_symmetry(cell, point_group_ops):
-    """Kurlin root-invariant distance from a cell to a point-group subspace.
+    """Canonical Kurlin deficiency (Å) from a cell to a point-group subspace.
+
+    Preferred over :func:`distance_to_symmetry` (G6 Å² diagnostic) for
+    scoring how far a lattice sits from a symmetry subspace.
 
     Reynolds-averages the metric under ``point_group_ops``, then returns
     :func:`root_distance` between the original cell and that symmetrised cell
@@ -208,17 +219,25 @@ def kurlin_distance_to_symmetry(cell, point_group_ops):
 
 
 def symmetry_deficiency_spectrum(cell, tol_ops_by_system):
-    """Map {system_name: point_group_ops} -> {system_name: distance_to_symmetry}.
+    """Diagnostic G6 deficiency spectrum (Å²) over candidate holohedries.
 
-    A convenience wrapper: the continuous 'how close is this lattice to each
-    candidate holohedry' spectrum, in G6 Angstrom^2 units. Smallest non-trivial
-    entry is the nearest higher-symmetry lattice.
+    **Diagnostic / legacy.** Values are :func:`distance_to_symmetry` in G6
+    Angstrom^2. For the canonical spectrum in Angstrom, prefer
+    :func:`kurlin_deficiency_spectrum`.
+
+    Map ``{system_name: point_group_ops}`` -> ``{system_name: g6_distance}``.
+    Smallest non-trivial entry is the nearest higher-symmetry lattice.
     """
     return {name: distance_to_symmetry(cell, ops)
             for name, ops in tol_ops_by_system.items()}
 
 
 def kurlin_deficiency_spectrum(cell, tol_ops_by_system):
-    """Like :func:`symmetry_deficiency_spectrum` but with Kurlin root distances."""
+    """Canonical Kurlin deficiency spectrum (Å) over candidate holohedries.
+
+    Preferred over :func:`symmetry_deficiency_spectrum` (G6 Å² diagnostic).
+    Map ``{system_name: point_group_ops}`` ->
+    ``{system_name: kurlin_distance_to_symmetry}``.
+    """
     return {name: kurlin_distance_to_symmetry(cell, ops)
             for name, ops in tol_ops_by_system.items()}

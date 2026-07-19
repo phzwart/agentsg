@@ -319,7 +319,9 @@ Selling scalars), turning lattice space into a continuous manifold. Two
 primitives:
 
 ```python
-from agentsg.cell import g6_distance, distance_to_symmetry
+from agentsg.cell import (
+    g6_distance, distance_to_symmetry, kurlin_distance_to_symmetry,
+)
 from agentsg import space_group
 from agentsg.group import point_group
 
@@ -328,20 +330,23 @@ g6_distance((40, 40.001, 60, 90, 91, 90), (40, 39.999, 60, 90, 91, 90))  # ~ sma
 # raw Euclidean would JUMP by >100 across the a=b boundary:
 g6_distance(a, b, boundary_aware=False)
 
-# symmetry as a continuous field, not a yes/no:
+# preferred deficiency (Kurlin / rootform, Å):
 cubic = point_group(space_group(225).operations())
-distance_to_symmetry((50, 50, 50,   90, 90, 90), cubic)   # 0.0  (is cubic)
-distance_to_symmetry((50, 50, 51.5, 90, 90, 90), cubic)   # grows smoothly
+kurlin_distance_to_symmetry((50, 50, 50,   90, 90, 90), cubic)   # 0.0
+kurlin_distance_to_symmetry((50, 50, 51.5, 90, 90, 90), cubic)   # grows smoothly
+
+# G6 diagnostic (Å² metric-cone; legacy comparison with NCDist/BGAOL):
+distance_to_symmetry((50, 50, 51.5, 90, 90, 90), cubic)
 ```
 
 The distance is robust to cell choice and continuous across reduction boundaries
 (Andrews–Bernstein NCDist idea: minimise over the boundary-transform orbit,
 which is non-isometric so Euclidean G6 is wrong near a boundary).
-`distance_to_symmetry` measures the G6 distance to the metric subspace fixed by a
-point group (BGAOL's distance-to-Bravais-subspace) — symmetry becomes a smooth
-deficiency field over the manifold rather than a tolerance-gated binary test.
-This is the substrate for treating lattice trajectories (T, p, time) as smooth
-paths and cell clustering as nearest-neighbour search in G6/S6. See
+**Preferred path for deficiency scores:** `kurlin_distance_to_symmetry` /
+`kurlin_deficiency_spectrum` (Kurlin root invariant in Å). The G6 APIs
+`distance_to_symmetry` / `symmetry_deficiency_spectrum` remain as diagnostic
+legacy (BGAOL distance-to-Bravais-subspace in G6 Å²). For identity / clustering
+on the manifold, prefer the root invariant (`rootform`) over raw G6/S6. See
 [`docs/DESIGN.md`](docs/DESIGN.md) for the full framing and references.
 
 ## Full-PDB unit-cell database (root-invariant search)
