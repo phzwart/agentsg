@@ -9,7 +9,7 @@ Scope: code-quality only. MCP/skill facade (R1–R6) is **out of scope**.
 
 ## Phase A — foundational refactors
 
-### [ ] A1 — Extract public rational solver (M1)
+### [x] A1 — Extract public rational solver (M1)
 
 **Goal.** Stop cross-module imports of private `_solve_affine` / `_rref`.
 

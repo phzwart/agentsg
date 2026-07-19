@@ -23,7 +23,7 @@ from .symmetry_op import SymmetryOp
 from .group import close_group, point_group, centering_translations
 from .change_of_basis import ChangeOfBasis
 from .space_groups import SpaceGroup, space_group
-from .wyckoff import _solve_affine
+from .rational_solve import solve_affine as _solve_affine, rref as _rref
 from .semi_invariants import floating_origin_basis, pin_floating_origin
 
 
@@ -154,7 +154,6 @@ def _origin_shift_to_standard(
                 b = [d0.v[i] + n0[i] for i in range(3)] + [
                     d1.v[i] + n1[i] for i in range(3)
                 ]
-                from .wyckoff import _rref
                 R, c, pivots = _rref(A, b)
                 inconsistent = False
                 for i in range(len(R)):

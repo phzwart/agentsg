@@ -77,66 +77,8 @@ def general_position_multiplicity(operations: Sequence[SymmetryOp]) -> int:
 # ---------------------------------------------------------------------------
 # Exact fixed-locus solver:  solve  (W - I) x == -w  (mod 1)  over the rationals
 # ---------------------------------------------------------------------------
-
-def _rref(A: list[list[Fr]], b: list[Fr]):
-    """Reduced row echelon of [A|b] over the rationals; returns (R, c, pivots)."""
-    A = [row[:] for row in A]
-    b = b[:]
-    n = len(A)
-    m = len(A[0]) if n else 0
-    pivots = []
-    r = 0
-    for col in range(m):
-        piv = None
-        for i in range(r, n):
-            if A[i][col] != 0:
-                piv = i
-                break
-        if piv is None:
-            continue
-        A[r], A[piv] = A[piv], A[r]
-        b[r], b[piv] = b[piv], b[r]
-        inv = A[r][col]
-        A[r] = [v / inv for v in A[r]]
-        b[r] = b[r] / inv
-        for i in range(n):
-            if i != r and A[i][col] != 0:
-                f = A[i][col]
-                A[i] = [av - f * rv for av, rv in zip(A[i], A[r])]
-                b[i] = b[i] - f * b[r]
-        pivots.append(col)
-        r += 1
-        if r == n:
-            break
-    return A, b, pivots
-
-
-def _solve_affine(M: Matrix3, rhs: Vector3):
-    """Solve M x = rhs over the rationals. Returns (particular, nullspace_basis)
-    or None if inconsistent. Basis vectors span the solution space directions."""
-    A = [[M.rows[i][j] for j in range(3)] for i in range(3)]
-    b = [rhs.v[i] for i in range(3)]
-    R, c, pivots = _rref(A, b)
-    # consistency: any all-zero row of R with nonzero c is inconsistent
-    for i in range(3):
-        if all(R[i][j] == 0 for j in range(3)) and c[i] != 0:
-            return None
-    pivot_set = set(pivots)
-    free = [j for j in range(3) if j not in pivot_set]
-    # particular solution: free vars = 0
-    part = [Fr(0)] * 3
-    for ri, col in enumerate(pivots):
-        part[col] = c[ri]
-    particular = Vector3(part)
-    # null space basis
-    basis = []
-    for f in free:
-        vec = [Fr(0)] * 3
-        vec[f] = Fr(1)
-        for ri, col in enumerate(pivots):
-            vec[col] = -R[ri][f]
-        basis.append(Vector3(vec))
-    return particular, basis
+# Implementations live in rational_solve; keep private aliases for back-compat.
+from .rational_solve import rref as _rref, solve_affine as _solve_affine  # noqa: E402
 
 
 def fixed_locus(op: SymmetryOp, t_range: int = 2):

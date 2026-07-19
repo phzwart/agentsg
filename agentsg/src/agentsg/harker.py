@@ -23,7 +23,7 @@ from typing import Iterable, Sequence
 
 from .linalg import Matrix3, Vector3, IDENTITY3, frac_mod1
 from .symmetry_op import SymmetryOp
-from .wyckoff import _solve_affine, _rref
+from .rational_solve import solve_affine as _solve_affine, rref as _rref
 
 
 def _ImW(W: Matrix3) -> Matrix3:

@@ -24,7 +24,7 @@ from typing import Iterable, Sequence
 from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3, frac_mod1
 from .symmetry_op import SymmetryOp
 from .group import point_group, centering_translations, is_systematically_absent
-from .wyckoff import _rref
+from .rational_solve import rref as _rref
 
 
 def _WmI(W: Matrix3) -> Matrix3:
