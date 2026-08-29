@@ -60,6 +60,7 @@ from .g6 import (
 from .rootform import (
     delaunay_superbase, conorms, root_products, root_invariant, root_distance,
     sorted_root_key, sorted_root_distance,
+    pair_noise_scales, sorted_conorm_key, sorted_conorm_distance,
     vonorms, vonorms_from_conorms, sorted_vonorm_key, sorted_concat_key,
     similarity_invariant, similarity_distance, root_volume_decomposition,
     root_cutoff_for_edge_tolerance,
@@ -105,6 +106,7 @@ __all__ = [
     "symmetry_deficiency_spectrum", "kurlin_deficiency_spectrum",
     "delaunay_superbase", "conorms", "root_products", "root_invariant",
     "root_distance", "sorted_root_key", "sorted_root_distance",
+    "pair_noise_scales", "sorted_conorm_key", "sorted_conorm_distance",
     "vonorms", "vonorms_from_conorms", "sorted_vonorm_key", "sorted_concat_key",
     "similarity_invariant", "similarity_distance",
     "root_volume_decomposition", "root_cutoff_for_edge_tolerance",

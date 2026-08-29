@@ -53,26 +53,34 @@ the farthest-point / shortest-path machinery still works.
 from __future__ import annotations
 from heapq import heappush, heappop
 
-from .rootform import root_invariant, root_distance
+from .rootform import root_invariant, root_distance, sorted_conorm_key
 from .canonical import best_reindex_with_residual, reindexing_via_canonical
 
 
 # --------------------------------------------------------------- graph core ----
-def deformation_graph(cells, k=None, distances=None):
-    """k-nearest-neighbour graph on the root-invariant distances between cells.
+def deformation_graph(cells, k=None, distances=None, key="conorm"):
+    """k-nearest-neighbour graph on lattice keys between cells.
 
-    Each edge connects states related by a small physical deformation step; the
-    edge weight is the root-invariant distance (linear in Angstrom, a physical
-    displacement in lattice-edge space). Returns ``(D, adj)`` where ``D`` is the
-    full symmetric distance matrix (list of lists) and ``adj`` is the adjacency
+    Each edge connects states related by a small physical deformation step.
+    Default ``key='conorm'`` uses the sorted conorm key (Lipschitz in the metric;
+    preferred for noisy per-frame / serial streams). Pass ``key='root'`` for the
+    archival √ root-product key. Returns ``(D, adj)`` where ``D`` is the full
+    symmetric distance matrix (list of lists) and ``adj`` is the adjacency
     ``{i: {j: dist, ...}}`` of the kNN graph (symmetrised).
 
     ``k`` defaults to ``min(len-1, max(2, round(sqrt(len))))``. Pass a precomputed
-    ``distances`` (root-invariant distance matrix) to skip recomputation.
+    ``distances`` matrix to skip recomputation.
     """
     n = len(cells)
     if distances is None:
-        RI = [root_invariant(c) for c in cells]
+        if key in ("conorm", "sorted_conorm"):
+            RI = [sorted_conorm_key(c) for c in cells]
+        elif key in ("root", "root_invariant", "sqrt"):
+            RI = [root_invariant(c) for c in cells]
+        else:
+            raise ValueError(
+                f"unknown key={key!r}; use 'conorm' (default) or 'root'"
+            )
         D = [[0.0] * n for _ in range(n)]
         for i in range(n):
             for j in range(i + 1, n):

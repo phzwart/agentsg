@@ -34,8 +34,13 @@ Pipeline
 1. Cartesian basis (v1,v2,v3) of the lattice from the unit cell.
 2. Delaunay/Selling reduction to an OBTUSE superbase {v0,v1,v2,v3},
    v0 = -(v1+v2+v3), all conorms p_ij = -v_i.v_j >= 0.
-3. Six conorms -> six root products r_ij = sqrt(p_ij).
-4. Sort the six products into a nondecreasing 6-tuple (the search key).
+3. Six conorms -> six slot values via a monotone map f (default f=sqrt;
+   optional floored / soft-threshold / linear stabilisations for noisy data).
+4. Sort the six values into a nondecreasing 6-tuple (the search key).
+
+Optional stabilisations (``stabilize=``, default ``None`` = plain √) tame the
+Hölder-½ cusp of √ at vanishing conorms; see ``pair_noise_scales`` and
+``sorted_conorm_key``. A stabilised key is a different metric from Kurlin's.
 
 Reference: V. Kurlin, "A complete isometry classification of 3-dimensional
 lattices" (April 2026 revision); building on B. Delone (1932), E. Selling
@@ -120,10 +125,118 @@ def _clamp0(x):
     return 0.0 if -1e-9 < x < 0 else x
 
 
-def root_products(cell):
-    """The six root products r_ij = sqrt(p_ij), keyed by index pair."""
+def _superbase_lengths(cell):
+    """Lengths |v_i| of the obtuse superbase vectors."""
+    S = delaunay_superbase(cell)
+    return [sqrt(max(_dot(S[i], S[i]), 0.0)) for i in range(4)]
+
+
+def pair_noise_scales(cell, angle_sigma_deg):
+    """Per-pair conorm noise floors ``s_ij ≈ |v_i| |v_j| σ_θ`` (Angstrom²).
+
+    Angular noise is approximately Gaussian in conorm space. Pair-local floors
+    keep the long axis from setting the floor on short-edge pairs. ``angle_sigma_deg``
+    is the one-sigma angular noise in degrees.
+    """
+    import math
+    lengths = _superbase_lengths(cell)
+    sig = math.radians(float(angle_sigma_deg))
+    return {(i, j): lengths[i] * lengths[j] * sig for (i, j) in _PAIRS}
+
+
+def _resolve_floors(cell, floors, angle_sigma):
+    if floors is not None:
+        return floors
+    if angle_sigma is None:
+        raise ValueError(
+            "stabilize mode needs per-pair floors=... or angle_sigma=... (degrees)"
+        )
+    return pair_noise_scales(cell, angle_sigma)
+
+
+def _slot_map(p, s, stabilize, kappa, length_scale):
+    """Monotone per-slot map f(p); default None/'sqrt' is Kurlin √p."""
+    p = max(_clamp0(p), 0.0)
+    if stabilize is None or stabilize == "sqrt":
+        return sqrt(p)
+    if stabilize == "floored":
+        # Wiener-style: √(p+s)-√s → Lipschitz near 0, ~√p for p ≫ s
+        s = max(float(s), 0.0)
+        if s <= 0.0:
+            return sqrt(p)
+        return sqrt(p + s) - sqrt(s)
+    if stabilize == "soft_threshold":
+        # √(max(p - κ s, 0)) — shrinks near-zero slots onto the symmetry stratum
+        s = max(float(s), 0.0)
+        return sqrt(max(p - float(kappa) * s, 0.0))
+    if stabilize == "linear":
+        # p / L with L a length → Angstrom units (Lipschitz, Gaussian-noise preserving)
+        L = max(float(length_scale), 1e-12)
+        return p / L
+    raise ValueError(
+        f"unknown stabilize={stabilize!r}; use None/'sqrt'/'floored'/"
+        f"'soft_threshold'/'linear'"
+    )
+
+
+def root_products(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None):
+    """Slot-wise root (or stabilised) products, keyed by index pair.
+
+    Parameters
+    ----------
+    stabilize : None | 'sqrt' | 'floored' | 'soft_threshold' | 'linear'
+        Default ``None`` (same as ``'sqrt'``) is Kurlin ``r_ij = sqrt(p_ij)``.
+        ``floored`` uses ``sqrt(p+s)-sqrt(s)``; ``soft_threshold`` uses
+        ``sqrt(max(p-κs, 0))``; ``linear`` uses ``p/L`` with
+        ``L = max_i |v_i|``. Any monotone per-slot map preserves sorting
+        invariance and the rearrangement lower bound in the chosen metric.
+    angle_sigma : float, optional
+        Angular noise σ in degrees; used to build per-pair floors
+        ``s_ij = |v_i||v_j| σ_θ`` when ``floors`` is omitted.
+    kappa : float
+        Soft-threshold multiple of ``s`` (table default 2).
+    floors : dict, optional
+        Explicit per-pair ``s_ij`` (Angstrom²), overriding ``angle_sigma``.
+
+    A stabilised key is a *different* metric from Kurlin's √ root products: the
+    floor chooses the resolution at which near-zero conorms are treated as
+    symmetric. Archive search should keep the default; serial/noisy frames may
+    prefer ``floored``, ``soft_threshold``, or :func:`sorted_conorm_key`.
+    """
     p = conorms(cell)
-    return {ij: sqrt(_clamp0(p[ij])) for ij in _PAIRS}
+    if stabilize is None or stabilize == "sqrt":
+        return {ij: sqrt(_clamp0(p[ij])) for ij in _PAIRS}
+
+    lengths = _superbase_lengths(cell)
+    length_scale = max(lengths) if lengths else 1.0
+    s_map = None
+    if stabilize in ("floored", "soft_threshold"):
+        s_map = _resolve_floors(cell, floors, angle_sigma)
+
+    out = {}
+    for ij in _PAIRS:
+        s = 0.0 if s_map is None else s_map[ij]
+        out[ij] = _slot_map(p[ij], s, stabilize, kappa, length_scale)
+    return out
+
+
+def sorted_conorm_key(cell):
+    """Sorted six conorms ``sort(p)`` in Angstrom² (Lipschitz / S⁶-like key).
+
+    Preferred for noisy per-frame statistics (e.g. XFEL PCA): linear in the
+    metric tensor, no Hölder-½ amplification at vanishing conorms. Still one
+    key per lattice and still a pure sort, so the rearrangement lower bound
+    holds. Not in length units — use √ roots for archival length-unit search.
+    """
+    p = conorms(cell)
+    return tuple(sorted(_clamp0(p[ij]) for ij in _PAIRS))
+
+
+def sorted_conorm_distance(cell_A, cell_B):
+    """Euclidean distance between sorted conorm keys (Angstrom²)."""
+    a = sorted_conorm_key(cell_A)
+    b = sorted_conorm_key(cell_B)
+    return sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
 
 
 def vonorms_from_conorms(p):
@@ -158,9 +271,9 @@ def sorted_vonorm_key(cell):
     return tuple(sorted(sqrt(_clamp0(v)) for v in vonorms(cell)))
 
 
-def sorted_concat_key(cell):
+def sorted_concat_key(cell, **kw):
     """Concatenated sorted 6-root ‖ sorted √vonorm key in R^13."""
-    return sorted_root_key(cell) + sorted_vonorm_key(cell)
+    return sorted_root_key(cell, **kw) + sorted_vonorm_key(cell)
 
 
 def _canonical_tuple(rp):
@@ -180,34 +293,40 @@ def _canonical_tuple(rp):
     return tuple(sorted(rp[ij] for ij in _PAIRS))
 
 
-def sorted_root_key(cell):
-    """Return the sorted six root products as a Euclidean search key (Angstrom).
+def sorted_root_key(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None):
+    """Return the sorted six-slot search key (default: √ conorms, Angstrom).
 
     Continuous and basis-invariant, but deliberately many-to-one except on
-    Voronoi types V3 and V5. Compare with :func:`sorted_root_distance`. Do not
-    treat equality as a lattice-identity proof.
+    Voronoi types V3 and V5. Optional ``stabilize`` selects a monotone slot map
+    (see :func:`root_products`); default ``None`` preserves archive √ behaviour.
+    Do not treat equality as a lattice-identity proof.
     """
-    return _canonical_tuple(root_products(cell))
+    return _canonical_tuple(root_products(
+        cell, stabilize=stabilize, angle_sigma=angle_sigma,
+        kappa=kappa, floors=floors,
+    ))
 
 
-def root_invariant(cell):
+def root_invariant(cell, **kw):
     """Back-compat alias for :func:`sorted_root_key`.
 
     Historical name retained; this is the sorted search key, not Kurlin's
-    complete ordered root invariant.
+    complete ordered root invariant. Keyword args forwarded to
+    :func:`sorted_root_key` (e.g. ``stabilize=``).
     """
-    return sorted_root_key(cell)
+    return sorted_root_key(cell, **kw)
 
 
-def sorted_root_distance(cell_A, cell_B):
+def sorted_root_distance(cell_A, cell_B, **kw):
     """Euclidean distance between sorted root keys (conservative search metric)."""
-    a = sorted_root_key(cell_A); b = sorted_root_key(cell_B)
-    return sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
+    a = sorted_root_key(cell_A, **kw)
+    b = sorted_root_key(cell_B, **kw)
+    return sqrt(sum((a[i] - b[i]) ** 2 for i in range(len(a))))
 
 
-def root_distance(cell_A, cell_B):
+def root_distance(cell_A, cell_B, **kw):
     """Back-compat alias for :func:`sorted_root_distance`."""
-    return sorted_root_distance(cell_A, cell_B)
+    return sorted_root_distance(cell_A, cell_B, **kw)
 
 
 def sorted_key_lower_bound(x, y, G=None):
@@ -290,7 +409,10 @@ def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=11.0):
     * ``noise_frac`` -- accept when the deficiency is within measurement noise of
       fractional size ``noise_frac`` (e.g. ``0.01`` for 1 % cell precision).
       Returns ``z * noise_frac * ||key||``; the default ``z=11`` is the p95 of the
-      noise null distribution (``z=12.4`` for p99), empirically scale-invariant.
+      noise null distribution (``z=12.4`` for p99), empirically scale-invariant
+      under *edge-length* perturbations. It is not calibrated for angular noise
+      at vanishing conorms (Hölder-½ regime of plain √); use a stabilised key or
+      sorted conorms when that regime dominates.
 
     Exactly one of ``volume_tol`` / ``noise_frac`` must be given. In both cases
     the returned cutoff is ``(dimensionless) * ||key||``, so it automatically
