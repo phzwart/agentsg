@@ -153,14 +153,14 @@ def test_params_match_spglib_fuzz():
         assert worst < 1e-3 * max(red[:3]), (cell, red, sp)
 
 
-def test_agrees_with_niggli_reduce_on_params():
-    """Reduced parameters match the existing niggli_reduce (it is only the
-    tracked CoB that differed); params are the shared, tested contract."""
+def test_agrees_with_niggli_reduce_fully():
+    """niggli_reduce is a wrapper around niggli_gk: params and CoB match."""
     rng = random.Random(2024)
     parent = (8.0, 6.0, 11.0, 90.0, 90.3, 90.0)
     for _ in range(200):
         cell = _scramble(parent, rng)
-        red_gk, _ = niggli_gk(cell)
-        red_ref, _ = niggli_reduce(*cell)
+        red_gk, M_gk = niggli_gk(cell)
+        red_ref, M_ref = niggli_reduce(*cell)
+        assert M_gk == M_ref
         for x, y in zip(red_gk, red_ref):
-            assert math.isclose(x, y, abs_tol=1e-4 * max(red_gk[:3]))
+            assert math.isclose(x, y, abs_tol=1e-12)
