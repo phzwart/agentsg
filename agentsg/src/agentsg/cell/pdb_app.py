@@ -146,6 +146,15 @@ def _cli(argv=None):
         bs = int(argv[2]) if len(argv) > 2 else 250
         build_pdb_database(db_path, batch_size=bs)
         return 0
+    if cmd == "backfill-similarity":
+        if len(argv) < 2:
+            print("usage: pdb_app backfill-similarity <db_path>")
+            return 2
+        db = CellDatabase(argv[1])
+        n = db.backfill_similarity_invariants(progress=True)
+        print(f"backfilled {n:,} rows in {argv[1]}")
+        db.close()
+        return 0
     if cmd == "query":
         # query <db> --cell a b c al be ga [-k K] [--sg N]
         db_path = argv[1]
@@ -171,7 +180,7 @@ def _cli(argv=None):
             print(f"{pdb_id}\t{dist:.4f}")
         db.close()
         return 0
-    print(f"unknown command: {cmd!r} (use build | query)")
+    print(f"unknown command: {cmd!r} (use build | backfill-similarity | query)")
     return 2
 
 

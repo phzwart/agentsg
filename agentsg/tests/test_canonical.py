@@ -259,3 +259,127 @@ def test_superbase_variants_on_boundary():
     assert len(near) > 1
     generic = superbase_variants((50.0, 60.0, 70.0, 71.0, 83.0, 95.0))
     assert len(generic) == 1
+
+
+def test_integer_inverse_matches_fraction_on_unimodular():
+    """The reindexing fast path replaces the exact-rational inverse with an
+    integer adjugate inverse for unimodular W. Assert the two agree exactly on a
+    range of unimodular integer matrices (and that _inv3_unimod refuses a
+    non-unimodular one, so the Fraction fallback is exercised)."""
+    import random
+    from fractions import Fraction
+    from agentsg.cell.canonical import _inv3_unimod, _inv3_frac
+
+    rng = random.Random(0)
+    checked = 0
+    for _ in range(2000):
+        M = [[rng.randint(-3, 3) for _ in range(3)] for _ in range(3)]
+        a, b, c = M[0]; d, e, f = M[1]; g, h, i = M[2]
+        det = a*(e*i-f*h) - b*(d*i-f*g) + c*(d*h-e*g)
+        ii = _inv3_unimod(M)
+        if det in (1, -1):
+            assert ii is not None
+            fi = _inv3_frac(M)
+            for r in range(3):
+                for col in range(3):
+                    assert Fraction(ii[r][col]) == fi[r][col]
+            checked += 1
+        else:
+            assert ii is None  # non-unimodular -> integer path declines
+    assert checked > 50  # ensure we actually tested the unimodular branch
+
+
+def test_reindex_root_gate():
+    """The root-gated reindex: accepts same-form pairs (true op in coset),
+    rejects a genuinely different lattice, and the gate value controls it."""
+    import random
+    import numpy as np
+    from agentsg.cell import reindex
+    from agentsg.cell.metric import UnitCell, params_from_metric
+
+    parent = (8.0, 6.0, 11.0, 90.0, 90.3, 90.0)
+    Gp = np.array(UnitCell(*parent).metric_tensor())
+
+    def cart(c):
+        return np.array(UnitCell(*c).orthogonalization_matrix()).T
+
+    def perturb(c, mag, rng):
+        B = cart(c).copy()
+        for i in range(3):
+            v = np.array([rng.gauss(0, 1) for _ in range(3)])
+            v /= np.linalg.norm(v)
+            B[i] += v * mag
+        return params_from_metric((B @ B.T).tolist())
+
+    def rlcob(rng, base, me=2, el=5.0):
+        while True:
+            M = np.array([[rng.randint(-me, me) for _ in range(3)] for _ in range(3)])
+            if round(np.linalg.det(M)) not in (1, -1):
+                continue
+            Bp = M.T @ np.array(UnitCell(*base).metric_tensor()) @ M
+            try:
+                p = params_from_metric(Bp.tolist())
+            except Exception:
+                continue
+            if max(p[:3]) / min(p[:3]) > el or any(a < 20 or a > 160 for a in p[3:]):
+                continue
+            return M.astype(int)
+
+    def is_correct(P, Msc):
+        Q = Msc @ np.array(P)
+        return np.abs(Q.T @ Gp @ Q - Gp).sum() / np.abs(Gp).sum() < 0.09
+
+    rng = random.Random(0)
+    other = (9.5, 7.2, 13.0, 90.0, 101.0, 90.0)
+    acc = rec = rej = 0
+    n = 60
+    for _ in range(n):
+        cr = perturb(parent, 0.2, rng)
+        co = perturb(parent, 0.2, rng)
+        Msc = rlcob(rng, co)
+        cos = params_from_metric(
+            (Msc.T @ np.array(UnitCell(*co).metric_tensor()) @ Msc).tolist())
+        ops, rd = reindex(cos, cr, max_root_dist=2.5)
+        if ops:
+            acc += 1
+            if any(is_correct(P, Msc) for P in ops):
+                rec += 1
+        cod = perturb(other, 0.2, rng)
+        Md = rlcob(rng, cod)
+        cosd = params_from_metric(
+            (Md.T @ np.array(UnitCell(*cod).metric_tensor()) @ Md).tolist())
+        opsd, _ = reindex(cos, cosd, max_root_dist=2.5)
+        if not opsd:
+            rej += 1
+    assert acc >= n * 0.95        # nearly all same-form accepted
+    assert rec == acc             # every accepted coset contains the true operator
+    assert rej >= n * 0.95        # nearly all different-lattice rejected
+
+
+def test_reindex_gate_value_matters():
+    """A tight root gate rejects a deformation a loose gate accepts."""
+    import random
+    import numpy as np
+    from agentsg.cell import reindex
+    from agentsg.cell.metric import UnitCell, params_from_metric
+
+    parent = (8.0, 6.0, 11.0, 90.0, 90.3, 90.0)
+
+    def cart(c):
+        return np.array(UnitCell(*c).orthogonalization_matrix()).T
+
+    def perturb(c, mag, rng):
+        B = cart(c).copy()
+        for i in range(3):
+            v = np.array([rng.gauss(0, 1) for _ in range(3)])
+            v /= np.linalg.norm(v)
+            B[i] += v * mag
+        return params_from_metric((B @ B.T).tolist())
+
+    rng = random.Random(1)
+    cr = perturb(parent, 0.3, rng)
+    co = perturb(parent, 0.3, rng)
+    loose, rd = reindex(co, cr, max_root_dist=3.0)
+    tight, rd2 = reindex(co, cr, max_root_dist=0.3)
+    assert rd == rd2                 # same measured distance
+    assert loose != [] and tight == []   # gate decides acceptance

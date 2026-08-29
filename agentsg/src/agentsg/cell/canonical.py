@@ -195,6 +195,35 @@ def _matmul_frac(A, B):
              for col in range(3)] for r in range(3)]
 
 
+def _inv3_unimod(M):
+    """Exact INTEGER inverse of a unimodular (det = +-1) integer matrix.
+
+    Returns None if ``det`` is not +-1. For a unimodular integer matrix the
+    inverse is ``det * adjugate`` and is itself integer, so no rational
+    arithmetic is needed. This is the fast path for lattice reindexing, where
+    the matrix W is built from three superbase vectors and is always unimodular
+    (any three of the four zero-sum superbase vectors form a primitive basis).
+    Fractional-coordinate / space-group work, where the denominator is genuinely
+    non-trivial, must use :func:`_inv3_frac` instead.
+    """
+    a, b, c = M[0]
+    d, e, f = M[1]
+    g, h, i = M[2]
+    det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+    if det not in (1, -1):
+        return None
+    adj = [[(e * i - f * h), -(b * i - c * h), (b * f - c * e)],
+           [-(d * i - f * g), (a * i - c * g), -(a * f - c * d)],
+           [(d * h - e * g), -(a * h - b * g), (a * e - b * d)]]
+    return [[adj[r][col] * det for col in range(3)] for r in range(3)]
+
+
+def _matmul_int(A, B):
+    """Integer 3x3 matrix product (no rational arithmetic)."""
+    return [[sum(A[r][k] * B[k][col] for k in range(3))
+             for col in range(3)] for r in range(3)]
+
+
 def _transform_metric_int(G, P):
     """G' = P^T G P for an integer matrix P (float G)."""
     PtG = [[sum(P[k][r] * G[k][b] for k in range(3)) for b in range(3)]
@@ -287,16 +316,25 @@ def reindexing_via_canonical(cell_A, cell_B, boundary_rel=1e-3,
                 for s in (1, -1):
                     W = [[s * CB[perm[1]][r], s * CB[perm[2]][r], s * CB[perm[3]][r]]
                          for r in range(3)]
-                    Winv = _inv3_frac(W)
-                    if Winv is None:
-                        continue
-                    # P = U . W^{-1}: exact integer change of basis matching A's
-                    # superbase (variant CA) to B's (variant CB) under this
-                    # relabelling. P maps B-basis coords to A-basis, so
-                    # P^T G_A P = G_B is the reindexing we want.
-                    P = _int_or_none(_matmul_frac(U, Winv))
-                    if P is None:
-                        continue
+                    # W is built from three of the four zero-sum superbase
+                    # vectors, so it is always unimodular and its inverse is
+                    # exactly integer -- take the fast integer path. (Should W
+                    # ever be non-unimodular, fall back to exact rationals so
+                    # correctness is never at risk.)
+                    Winv = _inv3_unimod(W)
+                    if Winv is not None:
+                        # P = U . W^{-1}: exact integer change of basis matching
+                        # A's superbase (variant CA) to B's (variant CB) under
+                        # this relabelling. P maps B-basis coords to A-basis, so
+                        # P^T G_A P = G_B is the reindexing we want.
+                        P = _matmul_int(U, Winv)
+                    else:
+                        Winv_f = _inv3_frac(W)
+                        if Winv_f is None:
+                            continue
+                        P = _int_or_none(_matmul_frac(U, Winv_f))
+                        if P is None:
+                            continue
                     det = (P[0][0] * (P[1][1] * P[2][2] - P[1][2] * P[2][1])
                            - P[0][1] * (P[1][0] * P[2][2] - P[1][2] * P[2][0])
                            + P[0][2] * (P[1][0] * P[2][1] - P[1][1] * P[2][0]))
@@ -407,12 +445,16 @@ def best_reindex_with_residual(cell_A, cell_B, boundary_rel=1e-3):
                 for s in (1, -1):
                     W = [[s * CB[perm[1]][r], s * CB[perm[2]][r], s * CB[perm[3]][r]]
                          for r in range(3)]
-                    Winv = _inv3_frac(W)
-                    if Winv is None:
-                        continue
-                    P = _int_or_none(_matmul_frac(U, Winv))
-                    if P is None:
-                        continue
+                    Winv = _inv3_unimod(W)
+                    if Winv is not None:
+                        P = _matmul_int(U, Winv)
+                    else:
+                        Winv_f = _inv3_frac(W)
+                        if Winv_f is None:
+                            continue
+                        P = _int_or_none(_matmul_frac(U, Winv_f))
+                        if P is None:
+                            continue
                     det = (P[0][0] * (P[1][1] * P[2][2] - P[1][2] * P[2][1])
                            - P[0][1] * (P[1][0] * P[2][2] - P[1][2] * P[2][0])
                            + P[0][2] * (P[1][0] * P[2][1] - P[1][1] * P[2][0]))
@@ -424,3 +466,131 @@ def best_reindex_with_residual(cell_A, cell_B, boundary_rel=1e-3):
                     if resid < best_res:
                         best_res, best_P = resid, P
     return best_P, best_res
+
+
+def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=1e-3):
+    """All integer operators tied (within a relative band) with the minimum
+    metric residual -- the reindexing coset P.H (H = lattice holohedry). No
+    acceptance gate; the caller decides whether to accept via the root distance.
+    """
+    GA = _metric(cell_A)
+    GB = _metric(cell_B)
+    scale = abs(GB[0][0]) + abs(GB[1][1]) + abs(GB[2][2])
+    vA = superbase_variants(cell_A, boundary_rel=boundary_rel)
+    vB = superbase_variants(cell_B, boundary_rel=boundary_rel)
+    scored = []
+    best_res = float("inf")
+    for CA in vA:
+        U = [[CA[1][r], CA[2][r], CA[3][r]] for r in range(3)]
+        for CB in vB:
+            for perm in _PERMS:
+                for s in (1, -1):
+                    W = [[s * CB[perm[1]][r], s * CB[perm[2]][r], s * CB[perm[3]][r]]
+                         for r in range(3)]
+                    Winv = _inv3_unimod(W)
+                    if Winv is not None:
+                        P = _matmul_int(U, Winv)
+                    else:
+                        Winv_f = _inv3_frac(W)
+                        if Winv_f is None:
+                            continue
+                        P = _int_or_none(_matmul_frac(U, Winv_f))
+                        if P is None:
+                            continue
+                    det = (P[0][0] * (P[1][1] * P[2][2] - P[1][2] * P[2][1])
+                           - P[0][1] * (P[1][0] * P[2][2] - P[1][2] * P[2][0])
+                           + P[0][2] * (P[1][0] * P[2][1] - P[1][1] * P[2][0]))
+                    if abs(det) != 1:
+                        continue
+                    Gp = _transform_metric_int(GA, P)
+                    resid = max(abs(Gp[a][b] - GB[a][b])
+                                for a in range(3) for b in range(3))
+                    scored.append((resid, tuple(tuple(int(x) for x in row) for row in P)))
+                    if resid < best_res:
+                        best_res = resid
+    if not scored:
+        return []
+    band = best_res + band_rel * scale
+    return sorted({P for resid, P in scored if resid <= band})
+
+
+def reindex(cell_A, cell_B, max_volume_frac=None, max_root_dist=None,
+            boundary_rel=6e-2, band_rel=1e-3):
+    """Reindex ``cell_A`` onto ``cell_B``, gated solely by the Kurlin root distance.
+
+    This is the recommended entry point for cell reindexing. It splits the
+    problem into the two questions that are actually distinct:
+
+    1. **Should we reindex at all?** -- decided by the *setting-invariant* Kurlin
+       root distance between the two lattices. If ``root_distance(A, B) >
+       max_root_dist`` the cells are not the same lattice within the accepted
+       deformation and an empty coset is returned.
+    2. **What is the reindexing?** -- the Selling/canonical-superbase coset,
+       returned in full when (1) passes.
+
+    The metric residual ``|P^T G_A P - G_B|`` is deliberately NOT used as the
+    acceptance gate: it is setting-dependent (two settings of the *same* lattice
+    can have a large residual), which is exactly the ambiguity the Selling route
+    exists to defeat. The root distance is a lattice invariant -- blind to
+    setting, sensitive only to genuine lattice difference -- so it is the correct
+    quantity to threshold. See :func:`agentsg.cell.rootform.root_distance`.
+
+    The gate is expressed as a **fractional volume change**, which is
+    scale-free: the absolute root distance grows ~linearly with cell size for
+    the *same* fractional deformation (``root_distance ~ ||RI(cell)||``), so a
+    fixed Angstrom threshold is too tight for large cells and too loose for
+    small ones. The volume-fraction gate divides that scale out. Internally it
+    becomes the per-cell root radius
+    ``symmetry_cutoff(cell_A, volume_tol=max_volume_frac) =
+    |(1+max_volume_frac)**(1/3) - 1| * ||RI(cell_A)||`` -- the root distance a
+    pure isotropic volume change of ``max_volume_frac`` would produce.
+
+    Parameters
+    ----------
+    cell_A, cell_B : (a, b, c, alpha, beta, gamma)
+        The cell to reindex and the reference, respectively.
+    max_volume_frac : float, optional
+        Acceptance threshold as a fractional volume change (e.g. ``0.05`` = "treat
+        cells within a 5 % isotropic volume change as the same lattice"). This is
+        the recommended, **scale-free** knob: it transfers unchanged across cell
+        sizes and crystal systems. Exactly one of ``max_volume_frac`` /
+        ``max_root_dist`` must be given.
+    max_root_dist : float, optional
+        Absolute root-distance threshold in Angstrom -- a legacy/expert override
+        for when you want a raw distance rather than a volume fraction. NOT
+        scale-free: a value tuned on an 8 A cell will not transfer to an 80 A
+        cell. Prefer ``max_volume_frac``. Exactly one of the two must be given.
+    boundary_rel : float
+        Delaunay boundary-variant tolerance for superbase enumeration. The
+        default ``6e-2`` is wide enough to stay complete under substantial
+        deformation; lower it toward ``1e-3`` for near-exact-lattice work.
+    band_rel : float
+        Relative width of the residual band defining the coset (operators within
+        ``band_rel * tr|G_B|`` of the minimum residual are all returned).
+
+    Returns
+    -------
+    (ops, root_dist) : (list of 3x3 int tuples, float)
+        ``ops`` is the reindexing coset (empty if the root gate rejects), and
+        ``root_dist`` is the measured Kurlin root distance (always returned, so
+        the caller can inspect the decision).
+
+    Notes
+    -----
+    The returned coset is a coset, not a single operator, because the reindexing
+    solution is intrinsically ``P.H`` with ``H`` the lattice metric-symmetry
+    group. A unique operator is selected only by a tie-breaker outside geometry
+    (an intensity correlation, or a fixed reference-frame convention) acting over
+    this same coset.
+    """
+    from .rootform import root_distance, symmetry_cutoff
+    if (max_volume_frac is None) == (max_root_dist is None):
+        raise ValueError("give exactly one of max_volume_frac or max_root_dist")
+    rd = root_distance(cell_A, cell_B)
+    if max_volume_frac is not None:
+        gate = symmetry_cutoff(cell_A, volume_tol=max_volume_frac)
+    else:
+        gate = max_root_dist
+    if rd > gate:
+        return [], rd
+    return _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=band_rel), rd

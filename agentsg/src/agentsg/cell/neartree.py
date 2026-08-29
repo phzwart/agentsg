@@ -180,10 +180,10 @@ def build_neartree(points, distance):
 
 
 # ----------------------------------------------------------------------------
-# Lattice index: a NearTree keyed on the Kurlin root invariant
+# Lattice index: a KD-tree keyed on the Kurlin root invariant
 # ----------------------------------------------------------------------------
 def lattice_index(cells_with_ids):
-    """Build a NearTree over lattices, keyed on the root invariant.
+    """Build a KD-tree over lattices, keyed on the root invariant.
 
     Parameters
     ----------
@@ -194,42 +194,12 @@ def lattice_index(cells_with_ids):
     The index uses the root invariant (Kurlin 2022) as the point and plain
     Euclidean distance on it as the metric -- a single vector per lattice, no
     orbit minimisation, continuous across the reduction-flip boundary. Queries
-    (``nearest``/``k_nearest``/``within``) take a query *cell*; distances are in
-    Angstrom (root-product units).
+    (``nearest_cell``/``k_nearest_cells``/``within_cells``) take a query *cell*;
+    distances are in Angstrom (root-product units).
 
-    This is the fast, exact manifold index: precompute each lattice's root
-    invariant once at insert time, and every query is O(log N)-ish Euclidean
-    branch-and-bound rather than an orbit search per comparison.
+    Requires scipy (``pip install agentsg[db]``).
     """
+    from .rootindex import build_root_index
     from .rootform import root_invariant
-    import math
-
-    def dist(a, b):
-        return math.sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
-
-    tree = _RootInvariantTree(dist, root_invariant)
-    for cell, payload in cells_with_ids:
-        tree.insert_cell(cell, payload)
-    return tree
-
-
-class _RootInvariantTree(NearTree):
-    """NearTree whose points are root invariants; accepts cells at the API edge."""
-
-    __slots__ = ("_ri",)
-
-    def __init__(self, distance, root_invariant_fn):
-        super().__init__(distance)
-        self._ri = root_invariant_fn
-
-    def insert_cell(self, cell, payload=None):
-        self.insert(self._ri(cell), payload)
-
-    def nearest_cell(self, cell, radius=float("inf")):
-        return self.nearest(self._ri(cell), radius)
-
-    def k_nearest_cells(self, cell, k):
-        return self.k_nearest(self._ri(cell), k)
-
-    def within_cells(self, cell, radius):
-        return self.within(self._ri(cell), radius)
+    pts = [(root_invariant(cell), payload) for cell, payload in cells_with_ids]
+    return build_root_index(pts)

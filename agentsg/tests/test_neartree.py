@@ -2,6 +2,9 @@
 import math
 import random
 import pytest
+
+pytest.importorskip("scipy")
+
 from agentsg.cell.neartree import NearTree, build_neartree, lattice_index
 from agentsg.cell.rootform import root_distance
 from agentsg.cell.metric import UnitCell

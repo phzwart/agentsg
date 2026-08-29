@@ -11,7 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy"]
-db = ["duckdb"]
+db = ["duckdb", "numpy", "scipy"]
 plot = ["matplotlib", "numpy"]
 
 [tool.setuptools.packages.find]

@@ -3,6 +3,7 @@ either is unavailable)."""
 import pytest
 
 duckdb = pytest.importorskip("duckdb")
+pytest.importorskip("scipy")
 
 from agentsg.cell.celldb import CellDatabase
 
@@ -14,6 +15,9 @@ def test_add_and_query_in_memory():
     db.add_cell("LYZ2", (79.0, 79.0, 38.0, 90, 90, 90), 96, "P 43 21 2")
     db.add_cell("ORTH", (59.1, 68.5, 30.5, 90, 90, 90), 19, "P 21 21 21")
     assert len(db) == 3
+    row = db.sql("SELECT r0,s0 FROM cells WHERE pdb_id='LYZ1'")[0]
+    assert row[1] is not None
+    assert row[0] != row[1] or row[0] == 0
     res = db.nearest((79.0, 79.0, 38.0, 90, 90, 90), k=3)
     ids = [pid for pid, _ in res]
     # the two lysozyme cells rank first, orthorhombic last

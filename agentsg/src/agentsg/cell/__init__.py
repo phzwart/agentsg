@@ -30,15 +30,15 @@ invariance, W^T G W = G). See docs/DESIGN.md, "The one interface point".
                     obtuse superbase, no orbit minimisation, continuous across
                     the reduction-flip boundary. The preferred manifold
                     coordinate; g6.py is kept for comparison / compatibility.
-  * neartree.py     Exact metric nearest-neighbour index (Andrews 2001); the
-                    `lattice_index` helper keys a NearTree on the root invariant
-                    for fast, exact lattice search over a database.
+  * neartree.py     Exact metric nearest-neighbour index (Andrews 2001) for
+                    arbitrary metrics; `lattice_index` builds a scipy cKDTree on
+                    the root invariant for fast Euclidean search.
   * diagrams.py     ITA-style space-group diagrams (general-position +
                     symmetry-element plates). Needs matplotlib (+ numpy); loaded
                     lazily so the core package stays dependency-free.
 """
 from .metric import UnitCell
-from .reduction import niggli_reduce
+from .reduction import niggli_reduce, niggli_gk
 from .constraints import (
     metric_is_invariant, symmetrize_metric, free_metric_parameters,
 )
@@ -69,7 +69,14 @@ from .reindex import reindexing_operators, reindexing_operator, twin_laws
 from .canonical import (
     canonical_superbase, superbase_variants, reindexing_via_canonical,
     reindexing_operator_via_canonical, best_reindex_with_residual,
-    calibrate_verify_tol,
+    calibrate_verify_tol, reindex,
+)
+from .selling_group import (
+    selling_group, selling_group_S4, selling_generators,
+    selling_generators_S4, expand_group, permutation_cob, inversion_cob,
+)
+from .selling_settings import (
+    selling_settings, distinct_settings, SellingSetting,
 )
 from .crystfel_stream import parse_stream, read_cells, stream_summary
 from .primitive import primitive_cell, primitive_transform, lattice_letter
@@ -79,7 +86,7 @@ from .manifold import (
 )
 
 __all__ = [
-    "UnitCell", "niggli_reduce",
+    "UnitCell", "niggli_reduce", "niggli_gk",
     "metric_is_invariant", "symmetrize_metric", "free_metric_parameters",
     "generate_sublattices", "sublattice_count", "is_hermite_normal_form",
     "apply_to_cell",
@@ -98,8 +105,11 @@ __all__ = [
     "NearTree", "build_neartree", "lattice_index",
     "reindexing_operators", "reindexing_operator", "twin_laws",
     "canonical_superbase", "superbase_variants", "reindexing_via_canonical",
-    "reindexing_operator_via_canonical", "best_reindex_with_residual",
+    "reindexing_operator_via_canonical", "best_reindex_with_residual", "reindex",
     "calibrate_verify_tol",
+    "selling_group", "selling_group_S4", "selling_generators",
+    "selling_generators_S4", "expand_group", "permutation_cob", "inversion_cob",
+    "selling_settings", "distinct_settings", "SellingSetting",
     "parse_stream", "read_cells", "stream_summary",
     "primitive_cell", "primitive_transform", "lattice_letter",
     "deformation_graph", "symmetry_junctions", "farthest_point_landmarks",

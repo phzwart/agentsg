@@ -14,7 +14,7 @@ Two layers:
     components r0..r5. SQL handles coarse prefiltering (by space group, by
     volume band); the exact ranking is done in memory.
 
-  * Exact ranking -- an in-memory NearTree (:mod:`agentsg.cell.neartree`) over
+  * Exact ranking -- an in-memory cKDTree (:mod:`agentsg.cell.rootindex`) over
     the root invariants, giving exact k-NN / radius queries in root-product
     (Angstrom) units.
 
@@ -31,7 +31,7 @@ only :class:`CellDatabase` needs it. The PDB fetch uses only the standard librar
 from __future__ import annotations
 import json
 import urllib.request
-from .rootform import root_invariant
+from .rootform import root_invariant, similarity_invariant
 from .metric import UnitCell
 from .primitive import primitive_cell
 
@@ -111,7 +111,8 @@ CREATE TABLE IF NOT EXISTS cells (
     alpha DOUBLE, beta DOUBLE, gamma DOUBLE,
     volume DOUBLE,
     sg_number INTEGER, sg_hm VARCHAR,
-    r0 DOUBLE, r1 DOUBLE, r2 DOUBLE, r3 DOUBLE, r4 DOUBLE, r5 DOUBLE
+    r0 DOUBLE, r1 DOUBLE, r2 DOUBLE, r3 DOUBLE, r4 DOUBLE, r5 DOUBLE,
+    s0 DOUBLE, s1 DOUBLE, s2 DOUBLE, s3 DOUBLE, s4 DOUBLE, s5 DOUBLE
 );
 """
 
@@ -136,6 +137,15 @@ class CellDatabase:
                 "CellDatabase needs DuckDB: pip install agentsg[db]") from exc
         self._db = duckdb.connect(path)
         self._db.execute(_SCHEMA)
+        self._migrate_schema()
+
+    def _migrate_schema(self):
+        """Add similarity-invariant columns to existing databases."""
+        cols = {row[0] for row in self._db.execute("DESCRIBE cells").fetchall()}
+        for i in range(6):
+            name = f"s{i}"
+            if name not in cols:
+                self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
 
     # -- ingestion --
     def add_cell(self, pdb_id, cell, sg_number=None, sg_hm=None):
@@ -152,13 +162,47 @@ class CellDatabase:
             vol = UnitCell(*cell).volume()
             prim = _primitive_for_roots(cell, sg_hm)
             ri = root_invariant(prim)
+            si = similarity_invariant(prim)
         except Exception:
             return False
         self._db.execute(
-            "INSERT OR REPLACE INTO cells VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT OR REPLACE INTO cells "
+            "(pdb_id, a, b, c, alpha, beta, gamma, volume, sg_number, sg_hm, "
+            "r0, r1, r2, r3, r4, r5, s0, s1, s2, s3, s4, s5) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             [pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
-             vol, sg_number, sg_hm, ri[0], ri[1], ri[2], ri[3], ri[4], ri[5]])
+             vol, sg_number, sg_hm,
+             ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
+             si[0], si[1], si[2], si[3], si[4], si[5]])
         return True
+
+    def backfill_similarity_invariants(self, *, progress=False, batch=10_000):
+        """Compute s0..s5 = similarity_invariant(primitive cell) for existing rows."""
+        rows = self._db.execute(
+            "SELECT pdb_id, a, b, c, alpha, beta, gamma, sg_hm "
+            "FROM cells WHERE s0 IS NULL"
+        ).fetchall()
+        n = 0
+        for row in rows:
+            pdb_id = row[0]
+            cell = tuple(row[1:7])
+            sg_hm = row[7]
+            try:
+                prim = _primitive_for_roots(cell, sg_hm)
+                si = similarity_invariant(prim)
+            except Exception:
+                continue
+            self._db.execute(
+                "UPDATE cells SET s0=?, s1=?, s2=?, s3=?, s4=?, s5=? "
+                "WHERE pdb_id=?",
+                [si[0], si[1], si[2], si[3], si[4], si[5], pdb_id],
+            )
+            n += 1
+            if progress and n % batch == 0:
+                print(f"  backfilled {n:,}/{len(rows):,} similarity invariants")
+        if progress and rows:
+            print(f"  backfilled {n:,}/{len(rows):,} similarity invariants")
+        return n
 
     def add_pdb(self, ids, batch_size=250, progress=False):
         """Fetch the given PDB ids from RCSB and insert them. Returns count."""
@@ -180,9 +224,14 @@ class CellDatabase:
         return self._db.execute(query, params or []).fetchall()
 
     # -- nearest-neighbour search --
-    def _candidates(self, sg_number=None, volume=None, volume_tol=0.25):
+    def _candidates(self, sg_number=None, match_sg_hm=None, volume=None,
+                    volume_tol=0.25):
         where, params = [], []
-        if sg_number is not None:
+        if match_sg_hm is not None:
+            # Exact Hermann-Mauguin match (preferred over IT number: the same
+            # number can host several deposited settings, e.g. C 1 2 1 vs I 1 2 1).
+            where.append("sg_hm = ?"); params.append(match_sg_hm)
+        elif sg_number is not None:
             where.append("sg_number = ?"); params.append(sg_number)
         if volume is not None:
             where.append("volume BETWEEN ? AND ?")
@@ -192,31 +241,30 @@ class CellDatabase:
             sql += " WHERE " + " AND ".join(where)
         return self._db.execute(sql, params).fetchall()
 
-    def nearest(self, cell, k=10, sg_number=None, volume_band=None, sg_hm=None):
+    def nearest(self, cell, k=10, sg_number=None, volume_band=None, sg_hm=None,
+                match_sg_hm=None):
         """Return the k nearest lattices to ``cell`` as (pdb_id, distance).
 
         Optional SQL prefilters shrink the candidate set before exact ranking:
-        ``sg_number`` restricts to one space-group number; ``volume_band`` (a
-        fractional tolerance, e.g. 0.25) restricts to cells within that fraction
-        of the query volume. Ranking is exact root-invariant Euclidean distance.
+        ``match_sg_hm`` restricts to one Hermann-Mauguin setting (preferred);
+        ``sg_number`` restricts to one IT number (all deposited settings of that
+        number); ``volume_band`` (a fractional tolerance, e.g. 0.25) restricts to
+        cells within that fraction of the query volume. Ranking is exact
+        root-invariant Euclidean distance.
 
         ``sg_hm`` is the query cell's space-group symbol; when the query lattice
         is centred, pass it so the query root is computed on the *primitive*
         cell, matching how the stored roots were computed. Without it the query
         cell is assumed primitive.
         """
-        import math
-        from .neartree import build_neartree
+        from .rootindex import build_root_index
         vol = UnitCell(*cell).volume() if volume_band is not None else None
-        rows = self._candidates(sg_number=sg_number, volume=vol,
-                                volume_tol=volume_band or 0.25)
+        rows = self._candidates(sg_number=sg_number, match_sg_hm=match_sg_hm,
+                                volume=vol, volume_tol=volume_band or 0.25)
         if not rows:
             return []
-        def dist(a, b):
-            return math.sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
-        tree = build_neartree(((r[1:], r[0]) for r in rows), dist)
-        q = root_invariant(_primitive_for_roots(cell, sg_hm))
-        return tree.k_nearest(q, k)
+        idx = build_root_index(((tuple(r[1:7]), r[0]) for r in rows))
+        return idx.k_nearest(cell, k=k, sg_hm=sg_hm)
 
     def nearest_with_supercells(self, cell, k=10, max_index=4,
                                 length_tol_pct=3.0, angle_tol_deg=5.0,
@@ -303,33 +351,27 @@ class CellDatabase:
 
     # -- persistent fast index (build tree once, query many) --
     def build_index(self, sg_number=None, shuffle=True):
-        """Build an in-memory root-invariant NearTree from stored r0..r5.
+        """Build an in-memory root-invariant KD-tree from stored r0..r5.
 
         Unlike :meth:`nearest`, which rebuilds a tree per call, this constructs
         the index once from the precomputed root columns (no root recompute) and
         returns a :class:`RootIndex` supporting repeated sub-millisecond queries.
         Optionally restrict to one space-group number.
+
+        ``shuffle`` is accepted for API compatibility but ignored (cKDTree build
+        order does not affect correctness or balance).
         """
-        import math
-        import random
-        from .neartree import build_neartree
+        from .rootindex import build_root_index
         sql = "SELECT pdb_id, r0,r1,r2,r3,r4,r5 FROM cells"
         params = []
         if sg_number is not None:
             sql += " WHERE sg_number = ?"; params.append(sg_number)
         rows = self._db.execute(sql, params).fetchall()
-        pts = [(tuple(r[1:]), r[0]) for r in rows if r[1] is not None]
-        if shuffle:
-            random.shuffle(pts)
-
-        def dist(a, b):
-            return math.sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
-
-        tree = build_neartree(pts, dist)
-        return RootIndex(tree, dist)
+        pts = [(tuple(r[1:7]), r[0]) for r in rows if r[1] is not None]
+        return build_root_index(pts)
 
     def compare_query(self, cell, k=10, sg_number=None, volume_band=None,
-                      sg_hm=None):
+                      sg_hm=None, match_sg_hm=None):
         """Alias for :meth:`nearest` -- k nearest PDB entries to ``cell``.
 
         Returns a list of (pdb_id, root_distance) sorted by distance. Pass
@@ -337,45 +379,46 @@ class CellDatabase:
         :class:`RootIndex` once with :meth:`build_index` instead.
         """
         return self.nearest(cell, k=k, sg_number=sg_number,
-                             volume_band=volume_band, sg_hm=sg_hm)
+                             volume_band=volume_band, sg_hm=sg_hm,
+                             match_sg_hm=match_sg_hm)
+
+    def within(self, cell, radius, sg_number=None, volume_band=None, sg_hm=None,
+               match_sg_hm=None):
+        """Return all PDB entries within ``radius`` (Å, root distance) of ``cell``.
+
+        Optional SQL prefilters match :meth:`nearest` (``match_sg_hm`` preferred
+        over ``sg_number``). Pass ``sg_hm`` for a centred query lattice so the
+        query root is computed on the primitive cell. Returns (pdb_id, distance)
+        sorted by distance.
+        """
+        from .rootindex import build_root_index
+        vol = UnitCell(*cell).volume() if volume_band is not None else None
+        rows = self._candidates(sg_number=sg_number, match_sg_hm=match_sg_hm,
+                                volume=vol, volume_tol=volume_band or 0.25)
+        if not rows:
+            return []
+        idx = build_root_index(((tuple(r[1:7]), r[0]) for r in rows))
+        return idx.within(cell, radius, sg_hm=sg_hm)
+
+    def lookup_cells(self, pdb_ids):
+        """Return {pdb_id: {sg_number, sg_hm, cell, volume}} for the given ids."""
+        if not pdb_ids:
+            return {}
+        placeholders = ",".join("?" * len(pdb_ids))
+        rows = self._db.execute(
+            f"SELECT pdb_id, sg_number, sg_hm, a,b,c,alpha,beta,gamma, volume "
+            f"FROM cells WHERE pdb_id IN ({placeholders})",
+            list(pdb_ids)).fetchall()
+        return {
+            r[0]: {
+                "sg_number": r[1], "sg_hm": r[2],
+                "cell": list(r[3:9]), "volume": r[9],
+            }
+            for r in rows
+        }
 
     def close(self):
         self._db.close()
 
 
-class RootIndex:
-    """A prebuilt root-invariant NearTree for fast repeated cell queries.
-
-    Construct via :meth:`CellDatabase.build_index`. Queries take a *cell*
-    ``(a,b,c,alpha,beta,gamma)``; the root invariant of the query is computed
-    once per call and matched against the precomputed database roots by exact
-    Euclidean distance (Angstrom, root-product units).
-    """
-
-    __slots__ = ("_tree", "_dist")
-
-    def __init__(self, tree, dist):
-        self._tree = tree
-        self._dist = dist
-
-    def __len__(self):
-        return len(self._tree)
-
-    def k_nearest(self, cell, k=10, sg_hm=None):
-        """Return the k nearest (pdb_id, distance) to ``cell``.
-
-        Pass ``sg_hm`` for a centred query lattice so the query root is computed
-        on the primitive cell (matching the stored roots).
-        """
-        q = root_invariant(_primitive_for_roots(cell, sg_hm))
-        return self._tree.k_nearest(q, k)
-
-    def nearest(self, cell, sg_hm=None):
-        """Return the single nearest (pdb_id, distance) to ``cell``."""
-        q = root_invariant(_primitive_for_roots(cell, sg_hm))
-        return self._tree.nearest(q)
-
-    def within(self, cell, radius, sg_hm=None):
-        """Return all (pdb_id, distance) within ``radius`` of ``cell``."""
-        q = root_invariant(_primitive_for_roots(cell, sg_hm))
-        return self._tree.within(q, radius)
+from .rootindex import RootIndex  # re-export

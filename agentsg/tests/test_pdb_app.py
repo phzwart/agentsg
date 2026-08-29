@@ -10,6 +10,7 @@ import urllib.error
 import pytest
 
 pytest.importorskip("duckdb")
+pytest.importorskip("scipy")
 
 from agentsg.cell import pdb_app
 from agentsg.cell.celldb import CellDatabase

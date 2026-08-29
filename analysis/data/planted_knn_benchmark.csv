@@ -1,0 +1,13 @@
+metric,value
+n_cells,3000
+index_backend,scipy.cKDTree
+index_build_s,0.037
+n_queries,40
+k,1
+recovered,40
+query_mean_ms,0.0216
+query_p50_ms,0.0214
+reduction_flip_same_ref,True
+reduction_flip_d_hi,0.02
+reduction_flip_d_lo,0.02
+reduction_flip_d_diff,0.0

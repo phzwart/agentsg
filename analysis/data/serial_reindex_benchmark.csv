@@ -1,0 +1,12 @@
+metric,value
+n_frames,200
+n_unimodular_tested,6960
+n_reference_operators,2
+brute_mean_ms,23.301
+brute_p50_ms,20.07
+coset_resolve_mean_ms,0.068
+coset_resolve_p50_ms,0.068
+root_first_full_mean_ms,3.156
+root_first_full_p50_ms,0.018
+speedup_coset_mean,343.2
+speedup_coset_p50,296.3

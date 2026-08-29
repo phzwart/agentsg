@@ -1,0 +1,16 @@
+metric,value
+stream,blac_new_v0_nomulti.stream
+n_frames,14445
+n_indexed,12474
+indexing_rate_pct,86.4
+cell_mean_a,41.83
+cell_mean_b,41.85
+cell_mean_c,233.31
+c_median_A,233.29
+c_mad_A,0.127
+c_scatter_parallel_cstar_A,0.218
+c_scatter_oblique_A,0.126
+n_parallel_cstar,141
+n_oblique_cstar,12333
+n_with_orientation,12474
+root_invariant_dim,6
