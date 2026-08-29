@@ -126,6 +126,43 @@ def root_products(cell):
     return {ij: sqrt(_clamp0(p[ij])) for ij in _PAIRS}
 
 
+def vonorms_from_conorms(p):
+    """Seven vonorms from six conorms (Kurlin Def. 2.6 / ABS D7).
+
+    Four vertex vonorms ``v_i^2 = sum_{j≠i} p_ij`` and three opposite-edge
+    pair vonorms ``v_{ij}^2 = p_ik+p_il+p_jk+p_jl`` for complementary pairs
+    ``{i,j}`` / ``{k,l}``. Returns a length-7 list (squared lengths).
+    """
+    def _p(i, j):
+        return p[(i, j) if i < j else (j, i)]
+
+    vertex = []
+    for i in range(4):
+        others = [j for j in range(4) if j != i]
+        vertex.append(sum(_p(i, j) for j in others))
+    # opposite edge pairs of the tetrahedron K4
+    opp = ((0, 1, 2, 3), (0, 2, 1, 3), (0, 3, 1, 2))
+    pairs = []
+    for i, j, k, l in opp:
+        pairs.append(_p(i, k) + _p(i, l) + _p(j, k) + _p(j, l))
+    return vertex + pairs
+
+
+def vonorms(cell):
+    """Seven vonorms (squared lengths) of the obtuse superbase of ``cell``."""
+    return vonorms_from_conorms(conorms(cell))
+
+
+def sorted_vonorm_key(cell):
+    """Sorted square roots of the seven vonorms (Angstrom; ABS D7 / Kurlin voform)."""
+    return tuple(sorted(sqrt(_clamp0(v)) for v in vonorms(cell)))
+
+
+def sorted_concat_key(cell):
+    """Concatenated sorted 6-root ‖ sorted √vonorm key in R^13."""
+    return sorted_root_key(cell) + sorted_vonorm_key(cell)
+
+
 def _canonical_tuple(rp):
     """Sort the six root products into the Euclidean search key.
 
