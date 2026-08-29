@@ -25,14 +25,14 @@ invariance, W^T G W = G). See docs/DESIGN.md, "The one interface point".
                     manifold, distances robust to cell choice and the Niggli
                     reduction-flip, and symmetry as a continuous distance-to-
                     subspace rather than a binary test.
-  * rootform.py     Kurlin (2022) root invariant: a COMPLETE, CONTINUOUS
-                    isometry invariant -- one ordered vector per lattice from the
-                    obtuse superbase, no orbit minimisation, continuous across
-                    the reduction-flip boundary. The preferred manifold
-                    coordinate; g6.py is kept for comparison / compatibility.
+  * rootform.py     Sorted six root products: continuous Euclidean search key
+                    (injective for V3/V5; many-to-one for V1/V2/V4). Preferred
+                    retrieval coordinate; g6.py is diagnostic/legacy.
+  * selling_closure.py  Typed Selling-superbase closure (Kurlin 4.1--4.5) for
+                    exact certification / reindexing (main_v5).
   * neartree.py     Exact metric nearest-neighbour index (Andrews 2001) for
                     arbitrary metrics; `lattice_index` builds a scipy cKDTree on
-                    the root invariant for fast Euclidean search.
+                    the sorted root key for fast Euclidean search.
   * diagrams.py     ITA-style space-group diagrams (general-position +
                     symmetry-element plates). Needs matplotlib (+ numpy); loaded
                     lazily so the core package stays dependency-free.
@@ -59,10 +59,15 @@ from .g6 import (
 )
 from .rootform import (
     delaunay_superbase, conorms, root_products, root_invariant, root_distance,
+    sorted_root_key, sorted_root_distance,
     similarity_invariant, similarity_distance, root_volume_decomposition,
     root_cutoff_for_edge_tolerance,
     root_distance_to_volume_ratio, volume_ratio_to_root_distance,
     symmetry_cutoff,
+)
+from .selling_closure import (
+    voronoi_type, selling_superbase_closure, selling_closure_representatives,
+    closure_class_count,
 )
 from .neartree import NearTree, build_neartree, lattice_index
 from .reindex import reindexing_operators, reindexing_operator, twin_laws
@@ -98,10 +103,13 @@ __all__ = [
     "distance_to_symmetry", "kurlin_distance_to_symmetry",
     "symmetry_deficiency_spectrum", "kurlin_deficiency_spectrum",
     "delaunay_superbase", "conorms", "root_products", "root_invariant",
-    "root_distance", "similarity_invariant", "similarity_distance",
+    "root_distance", "sorted_root_key", "sorted_root_distance",
+    "similarity_invariant", "similarity_distance",
     "root_volume_decomposition", "root_cutoff_for_edge_tolerance",
     "root_distance_to_volume_ratio", "volume_ratio_to_root_distance",
     "symmetry_cutoff",
+    "voronoi_type", "selling_superbase_closure", "selling_closure_representatives",
+    "closure_class_count",
     "NearTree", "build_neartree", "lattice_index",
     "reindexing_operators", "reindexing_operator", "twin_laws",
     "canonical_superbase", "superbase_variants", "reindexing_via_canonical",

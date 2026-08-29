@@ -1,53 +1,29 @@
 """
-Bet-free reindexing via the canonical (Delaunay/Selling) superbase -- Kurlin 2022.
+Bet-free reindexing via the typed Selling-superbase closure (main_v5 / Kurlin).
 
-The reduction-flip problem
---------------------------
-Two settings of the SAME lattice, indexed on different frames of a serial
-experiment, can Niggli-reduce to *different* canonical cells when the cell sits
-near a reduction-cone boundary (a<->c or a<->b near-degeneracy). Methods that
-recover the relating operator by enlarging a symmetry group with an angular
-tolerance (LePage max_delta; the tolerance metric-automorphism coset used by
-:mod:`agentsg.cell.ambiguity` and, in spirit, by dials.cosym) then make a *bet*:
-the flip operator is recovered only if it happens to fall inside the enlarged
-group. Past the tolerance -- a loose near-degeneracy, or noise larger than the
-delta -- the operator drops out and the flip is silently missed.
+Search vs certification
+-----------------------
+Continuous Euclidean retrieval uses the *sorted* six root products
+(:mod:`agentsg.cell.rootform`). Exact identity and reindexing use the finite
+type-dependent Selling-superbase closure (:mod:`agentsg.cell.selling_closure`):
+one isometry class for V1 (S4 x {+/-I}), and 2/3/3/4 non-isometric classes for
+V2--V5. Matching over that closure recovers an exact integer ``P`` with
+``P^T G_A P = G_B`` without tolerance-gated symmetry enumeration.
 
-The bet-free alternative
-------------------------
-The Delaunay/Selling reduction underlying Kurlin's root invariant is *continuous
-across the flip*: both settings reduce to the SAME obtuse superbase (identical
-conorms), so the reindexing operator is recovered by matching the two superbases
-over the FINITE group of 24 index permutations of the four superbase vectors
-(Kurlin 2022, Def 5.1) -- a fixed, bounded search, with no tolerance-thresholded
-symmetry group to fall out of.
-
-Concretely, tracking the superbase in INTEGER lattice coordinates (not Cartesian)
-makes the recovered change of basis exact: if A and B are the same lattice, the
-operator P with ``P^T G_A P = G_B`` is an exact integer matrix, recovered as
-``P = U . W^{-1}`` where U, W are the integer superbase coordinates of A and B
-under a conorm-matching index permutation. The metric is used only to drive the
-reduction and to verify candidates; the operator itself is integer-exact.
+``superbase_variants`` remains available as an optional *noise* expander for
+near-boundary measured cells; it is not the definition of the typed closure.
 
 Functions
 ---------
 * :func:`canonical_superbase`   -- integer superbase coords + conorms of a cell.
-* :func:`reindexing_via_canonical` -- the reindexing coset A -> B, bet-free.
-* :func:`best_reindex_with_residual` -- best operator + raw metric residual, no
-  threshold (the primitive for measuring deformation / calibrating tolerances).
-* :func:`calibrate_verify_tol`  -- derive the residual threshold from a baseline
-  of known same- and different-lattice pairs, because a relative/absolute
-  tolerance is only meaningful relative to the scales present in the data.
+* :func:`reindexing_via_canonical` -- the reindexing coset A -> B over the
+  Selling-superbase closure.
+* :func:`best_reindex_with_residual` -- best operator + raw metric residual.
+* :func:`calibrate_verify_tol`  -- data-driven residual threshold.
 
 These complement :func:`agentsg.cell.reindex.reindexing_operators` (brute
-unimodular enumeration -- also exact, but O(6960) per call) and
-:class:`agentsg.cell.ambiguity.ReindexingReference` (fast tolerance-coset,
-which makes the bet). This module is the exact, tolerance-group-free route.
-
-Reference: V. Kurlin, "A complete isometry classification of 3-dimensional
-lattices", arXiv:2201.10543 (2022), Def 5.1 (24 index permutations), Lemma 6.2
-(superbase reconstruction). Dependency-free; exact integer/rational arithmetic
-for the operator, float only to drive the reduction.
+unimodular enumeration) and :class:`agentsg.cell.ambiguity.ReindexingReference`
+(tolerance-coset). Reference: Kurlin Lemmas 4.1--4.5; manuscript/main_v5.tex.
 """
 from __future__ import annotations
 from fractions import Fraction
@@ -116,22 +92,16 @@ def canonical_superbase(cell, max_iter=1000, rel_eps=1e-9):
 
 
 def superbase_variants(cell, boundary_rel=1e-3, max_variants=64):
-    """All obtuse superbases within ``boundary_rel`` of the reduced one.
+    """Optional noise expander: obtuse superbases near the reduced one.
 
-    The obtuse (Delaunay/Selling) superbase is UNIQUE only in the interior of a
-    Delaunay type. On a boundary -- a conorm ``p_ij = -v_i.v_j`` passing through
-    zero (e.g. a monoclinic angle near 90 deg, where ``a.c ~ 0``) -- the Selling
-    flip of that pair produces an equally-valid obtuse superbase. Two settings of
-    one lattice straddling such a boundary reduce to genuinely DIFFERENT integer
-    superbases, so matching within the 24 relabellings of a single superbase
-    misses the operator relating them (the reduction-flip problem, reappearing
-    inside the superbase). Enumerating the finite closure of boundary flips
-    restores completeness.
+    For exact typed closure use :func:`agentsg.cell.selling_closure.selling_superbase_closure`.
+    This BFS expands Selling flips whenever a conorm is within ``boundary_rel`` of
+    zero — useful for measured cells whose near-orthogonal angles are displaced
+    by noise. It is *not* Kurlin's type-dependent class list (default
+    ``max_variants=64`` can miss members of a 32-element V5 closure).
 
     Returns a list of superbases (each four integer coordinate triples in the
-    original cell basis). ``boundary_rel`` is relative to the largest squared
-    superbase edge; raise it to treat a near-degeneracy as a boundary (needed for
-    noisy cells), lower it toward 0 to keep only the single reduced superbase.
+    original cell basis).
     """
     G = _metric(cell)
     C0, _ = canonical_superbase(cell)
@@ -250,63 +220,69 @@ def _roots_close(rA, rB, perm, tol):
     return True
 
 
-def reindexing_via_canonical(cell_A, cell_B, boundary_rel=1e-3,
-                             verify_rel=1e-6, verify_abs=0.0, conorm_tol=None):
-    """Reindexing operators A -> B via canonical-superbase matching (bet-free).
+def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True):
+    """Class representatives of the typed closure, plus optional noise variants.
+
+    When ``boundary_rel > 0``, near-zero conorm flips from
+    :func:`superbase_variants` are merged in for noisy measured cells. Exact
+    typed certification uses ``boundary_rel=0`` (default).
+    """
+    from .selling_closure import selling_closure_representatives
+    seen = {}
+    if use_typed_closure:
+        for C in selling_closure_representatives(cell):
+            seen[tuple(tuple(v) for v in C)] = C
+        if boundary_rel > 0:
+            for C in superbase_variants(cell, boundary_rel=boundary_rel):
+                seen[tuple(tuple(v) for v in C)] = C
+    else:
+        br = boundary_rel if boundary_rel > 0 else 1e-3
+        for C in superbase_variants(cell, boundary_rel=br):
+            seen[tuple(tuple(v) for v in C)] = C
+    if not seen:
+        C0, _ = canonical_superbase(cell)
+        seen[tuple(tuple(v) for v in C0)] = C0
+    return list(seen.values())
+
+
+def reindexing_via_canonical(cell_A, cell_B, boundary_rel=0.0,
+                             verify_rel=1e-6, verify_abs=0.0, conorm_tol=None,
+                             use_typed_closure=True):
+    """Reindexing operators A -> B via Selling-superbase closure matching.
 
     Returns the list of integer operators ``P`` (as row-tuples) with
-    ``P^T G_A P == G_B`` -- the reindexing coset -- recovered by matching the two
-    Delaunay superbases over the finite group of 24 index permutations, WITHOUT
-    building any tolerance-thresholded symmetry group. Empty list if A and B are
-    not the same lattice (no candidate operator reproduces B's metric within
-    tolerance).
+    ``P^T G_A P == G_B`` -- the reindexing coset -- recovered by matching the
+    finite typed Selling-superbase closures of A and B over S4 index
+    permutations and central inversion. Empty list if A and B are not the same
+    lattice within tolerance.
 
     Parameters
     ----------
     boundary_rel : float
-        Relative tolerance (fraction of the largest squared superbase edge) for
-        treating a conorm as a Delaunay boundary and enumerating the alternative
-        obtuse superbase there. Default ``1e-3`` catches the near-90-deg
-        monoclinic case; raise it for noisy cells whose boundary conorms are
-        displaced by measurement error, lower it toward 0 to match only the single
-        reduced superbase (faster, but incomplete on boundaries).
+        Relative tolerance for the optional :func:`superbase_variants` noise
+        expander. Default ``0`` uses the typed Kurlin closure only. Raise
+        (e.g. ``1e-3``) for noisy cells whose near-orthogonal angles are
+        displaced from exact zeros.
+    use_typed_closure : bool
+        If True (default), start from
+        :func:`~agentsg.cell.selling_closure.selling_closure_representatives`.
+        If False, fall back to ``superbase_variants`` only (legacy).
     conorm_tol : float, optional
-        Unused (kept for backward compatibility); superseded by the variant
-        enumeration, which is complete rather than a pruning heuristic.
+        Unused (kept for backward compatibility).
     verify_rel : float
         RELATIVE tolerance on the metric residual ``|P^T G_A P - G_B|``, as a
-        fraction of the metric scale ``tr|G_B|``. Default ``1e-6`` accepts only
-        essentially-exact operators (two settings of the *same* lattice). The
-        residual grows with any true lattice DEFORMATION between A and B (it is
-        exact only when they are the identical lattice), so raise ``verify_rel``
-        to treat near-lattices as matching -- e.g. for a short deformation hop
-        between adjacent trajectory states. This is the one knob that decides
-        "how different may B be and still count as A's lattice".
+        fraction of the metric scale ``tr|G_B|``. Default ``1e-6``.
     verify_abs : float
         Absolute floor on the residual tolerance (default 0). The effective
         tolerance is ``max(verify_abs, verify_rel * tr|G_B|)``.
-
-    Notes
-    -----
-    Because the operator is built as ``P = U . W^{-1}`` over exact integer
-    superbase coordinates and inverted with rational arithmetic, an accepted
-    ``P`` is an EXACT integer unimodular matrix -- there is no float operator to
-    round. The tolerances act only on the (possibly noisy or deformed) metric
-    comparison, never on the operator, which is always exact.
     """
     GA = _metric(cell_A)
     GB = _metric(cell_B)
     tol = max(verify_abs,
               verify_rel * (abs(GB[0][0]) + abs(GB[1][1]) + abs(GB[2][2])))
 
-    # Enumerate obtuse-superbase VARIANTS of both cells. The reduced superbase is
-    # unique only in the interior of a Delaunay type; on a boundary (a conorm
-    # ~ 0, e.g. a monoclinic angle near 90 deg) two settings of one lattice
-    # reduce to different superbases. Matching across the finite boundary-variant
-    # closure of both cells is what makes this complete -- it removes the residual
-    # "reduction flip inside the superbase" that a single-superbase match misses.
-    vA = superbase_variants(cell_A, boundary_rel=boundary_rel)
-    vB = superbase_variants(cell_B, boundary_rel=boundary_rel)
+    vA = _closure_for_match(cell_A, boundary_rel, use_typed_closure)
+    vB = _closure_for_match(cell_B, boundary_rel, use_typed_closure)
 
     found = set()
     for CA in vA:
@@ -419,24 +395,18 @@ def calibrate_verify_tol(same_pairs, different_pairs=None):
             "diff_residuals": diff_res}
 
 
-def best_reindex_with_residual(cell_A, cell_B, boundary_rel=1e-3):
+def best_reindex_with_residual(cell_A, cell_B, boundary_rel=0.0):
     """Best canonical reindexing operator A -> B and its metric residual.
 
     Unlike :func:`reindexing_via_canonical`, this applies NO acceptance
     threshold: it returns ``(P, resid)`` for the integer operator ``P`` that
-    minimises ``|P^T G_A P - G_B|`` over all 48 signed index permutations, where
-    ``resid`` is that minimum residual (in metric-tensor units). This is the
-    primitive the manifold layer uses to MEASURE the deformation between two
-    lattice states along a trajectory: ``resid`` is ~0 for the same lattice and
-    grows smoothly with deformation, so a short hop has a small residual and a
-    long hop a large one -- the signal that says "route through a landmark".
-    Returns ``(None, inf)`` only if no integer unimodular candidate exists (which
-    should not happen for valid cells).
+    minimises ``|P^T G_A P - G_B|`` over the typed Selling-superbase closure.
+    Returns ``(None, inf)`` only if no integer unimodular candidate exists.
     """
     GA = _metric(cell_A)
     GB = _metric(cell_B)
-    vA = superbase_variants(cell_A, boundary_rel=boundary_rel)
-    vB = superbase_variants(cell_B, boundary_rel=boundary_rel)
+    vA = _closure_for_match(cell_A, boundary_rel)
+    vB = _closure_for_match(cell_B, boundary_rel)
     best_P, best_res = None, float("inf")
     for CA in vA:
         U = [[CA[1][r], CA[2][r], CA[3][r]] for r in range(3)]
@@ -476,8 +446,8 @@ def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=1e-3):
     GA = _metric(cell_A)
     GB = _metric(cell_B)
     scale = abs(GB[0][0]) + abs(GB[1][1]) + abs(GB[2][2])
-    vA = superbase_variants(cell_A, boundary_rel=boundary_rel)
-    vB = superbase_variants(cell_B, boundary_rel=boundary_rel)
+    vA = _closure_for_match(cell_A, boundary_rel)
+    vB = _closure_for_match(cell_B, boundary_rel)
     scored = []
     best_res = float("inf")
     for CA in vA:

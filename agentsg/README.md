@@ -571,14 +571,13 @@ agentsg/
     compare.py      compare_cells: metric-symmetry / cell comparison
     ambiguity.py    reindexing operators for serial crystallography
                     (coset of Laue in the tolerance lattice group, cached)
-    rootform.py     Kurlin (2022) root invariant: obtuse superbase -> conorms
-                    -> root products -> sorted six-tuple (continuous; complete
-                    for V2–V5, collision-free-in-practice similarity key for
-                    generic triclinic V1)
-    canonical.py    flip-free reindexing via canonical superbase matching
-    neartree.py     exact metric nearest-neighbour index on the root invariant
+    rootform.py     sorted six root products (Euclidean search key; continuous;
+                    injective for V3/V5 only; many-to-one for V1/V2/V4 — certify
+                    identity via Selling-superbase closure, not key equality)
+    canonical.py    exact reindexing via typed Selling-superbase closure
+    neartree.py     exact metric nearest-neighbour index on the sorted root key
     primitive.py    conventional -> primitive cell for centred lattices
-                    (A/B/C/I/F/R/H); the root invariant is a lattice invariant
+                    (A/B/C/I/F/R/H); the sorted key is a lattice (not cell) key
     celldb.py       DuckDB-backed cell database + RootIndex (needs agentsg[db])
     pdb_app.py      resumable full-PDB downloader/builder + query CLI
     crystfel_stream.py  parse CrystFEL .stream per-crystal cells + orientation

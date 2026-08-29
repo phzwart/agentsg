@@ -1,22 +1,33 @@
 """
-Root form: a continuous lattice similarity key from Kurlin's root invariant.
+Sorted root-product search key from Kurlin's root products.
 
-This is the Kurlin (2022) root invariant, built on the obtuse superbase of
-Delone (Delaunay) and Selling and the conorms of Conway & Sloane. Unlike the
-G6/S6 embedding — where the same lattice maps to many points and comparison
-needs a minimisation over a basis-transform orbit — the root invariant is a
-SINGLE vector per lattice, canonicalised by a fixed finite group of 24 index
-permutations (relabelling the four superbase vectors). No orbit search, no
-reduction-flip discontinuity. Properties:
+Kurlin (2022 / April 2026) builds six root products ``r_ij = sqrt(p_ij)`` from
+the obtuse (Selling / Delaunay) superbase and arranges them in a type-dependent
+``2x3`` root form that retains opposite-edge pairing. That structured form is
+the complete isometry classification. This module deliberately uses a coarser
+object for Euclidean retrieval:
 
-  * invariant   : independent of the chosen basis, preserved under isometry;
-  * continuous  : changes continuously under perturbation of the cell
-                  (the property Niggli / Buerger reduction lacks);
-  * complete    : for Voronoi types V2–V5 (higher symmetry), RI(L1) == RI(L2)
-                  iff L1, L2 are isometric. For generic triclinic (V1) the
-                  sorted six-tuple is a collision-free-in-practice similarity
-                  key, not Kurlin's full complete invariant (which also fixes
-                  the 2×3 root-form column pairing).
+  * the six root products, globally sorted into a nondecreasing 6-tuple
+    (``sorted_root_key`` / ``root_invariant``);
+
+Properties of the sorted key:
+
+  * invariant   : independent of the chosen basis (same multiset of root
+                  products on every obtuse-superbase branch of one lattice);
+  * continuous  : sorting is continuous through product ties; the key also
+                  stays continuous across Voronoi-type boundaries because all
+                  members of a lattice's Selling-superbase closure share the
+                  same sorted multiset;
+  * Euclidean   : plain L2 distance on the 6-tuple; by the rearrangement
+                  inequality this distance lower-bounds any physically allowed
+                  relabelling-orbit distance (conservative radius filter);
+  * many-to-one : not injective for Voronoi types V1, V2, V4 (forgotten pairing);
+                  injective for V3 and V5. Equality of sorted keys is never a
+                  proof of lattice identity — certify with the exact operator
+                  test over the Selling-superbase closure.
+
+``root_invariant`` / ``root_distance`` remain as back-compat aliases for
+``sorted_root_key`` / ``sorted_root_distance``. They are *not* Kurlin Def. 5.1.
 
 Pipeline
 --------
@@ -24,12 +35,12 @@ Pipeline
 2. Delaunay/Selling reduction to an OBTUSE superbase {v0,v1,v2,v3},
    v0 = -(v1+v2+v3), all conorms p_ij = -v_i.v_j >= 0.
 3. Six conorms -> six root products r_ij = sqrt(p_ij).
-4. Canonicalise over the 24 index permutations of {0,1,2,3} to a unique
-   ordered invariant (the root invariant RI).
+4. Sort the six products into a nondecreasing 6-tuple (the search key).
 
 Reference: V. Kurlin, "A complete isometry classification of 3-dimensional
-lattices", arXiv:2201.10543 (2022); building on B. Delone (1932), E. Selling
+lattices" (April 2026 revision); building on B. Delone (1932), E. Selling
 (1874), J. H. Conway & N. J. A. Sloane, "Low-dimensional lattices VI" (1992).
+See manuscript/main_v5.tex for the search/certify architecture.
 
 Dependency-free; float arithmetic (distances/roots are inherently numeric).
 """
@@ -116,49 +127,73 @@ def root_products(cell):
 
 
 def _canonical_tuple(rp):
-    """Canonicalise the six root products into a unique ordered invariant.
+    """Sort the six root products into the Euclidean search key.
 
     The 24 index permutations of the superbase act on the six root products by
     permutation, so the multiset of root products is the permutation-invariant
-    content. We canonicalise to the SORTED six-tuple.
+    content. We project further to the globally sorted six-tuple, which forgets
+    tetrahedral edge pairing.
 
-    Why sorting (rather than a fixed-layout lex-min): for the higher-symmetry
-    Voronoi types V2-V5 -- every orthorhombic, tetragonal, hexagonal, cubic and
-    monoclinic lattice, i.e. one or more zero conorms -- the obtuse superbase is
-    not unique up to index permutation, so a layout-dependent canonical form is
-    setting-dependent (two axis orderings yield superbases with genuinely
-    different tetrahedron edge structures). Kurlin's Definition 5.1 handles this
-    by reducing each Voronoi type's root form precisely to its sorted non-zero
-    products; the sorted six-tuple reproduces those per-type invariants uniformly
-    and is invariant across all settings.
-
-    Completeness: for V2-V5 the sorted products ARE Kurlin's complete invariant.
-    For the generic triclinic type V1 the complete invariant additionally fixes
-    the column pairing of the 2x3 root form; the sorted multiset drops that, but
-    is empirically collision-free on random triclinic lattices -- sufficient for
-    metric similarity search. See docs and Kurlin (2022), Definition 5.1.
+    This is *not* Kurlin Definition 5.1 (the type-dependent ordered 2x3 root
+    form). Sorting is continuous through product ties and yields one key per
+    lattice because all members of the Selling-superbase closure share the same
+    sorted multiset. Injectivity of the sorted key: V3 and V5 yes; V1, V2, V4
+    no (finite pairing collisions). Use the exact operator test for identity.
     """
     return tuple(sorted(rp[ij] for ij in _PAIRS))
 
 
-def root_invariant(cell):
-    """Return the root invariant RI(cell) as an ordered 6-tuple (Angstrom units).
+def sorted_root_key(cell):
+    """Return the sorted six root products as a Euclidean search key (Angstrom).
 
-    A continuous isometry invariant (sorted root products). For Voronoi types
-    V2–V5 it is Kurlin's complete invariant: equal tuples iff the lattices are
-    isometric. For generic triclinic (V1) it is a collision-free-in-practice
-    similarity key — sufficient for metric search, but not the full Kurlin
-    complete invariant (which also fixes the 2×3 root-form column pairing).
-    Compare lattices with plain Euclidean distance on these tuples — no orbit
-    minimisation, continuous across the reduction-flip boundary.
+    Continuous and basis-invariant, but deliberately many-to-one except on
+    Voronoi types V3 and V5. Compare with :func:`sorted_root_distance`. Do not
+    treat equality as a lattice-identity proof.
     """
     return _canonical_tuple(root_products(cell))
 
 
-def root_distance(cell_A, cell_B):
-    """Euclidean distance between root invariants (a true, continuous metric)."""
-    a = root_invariant(cell_A); b = root_invariant(cell_B)
+def root_invariant(cell):
+    """Back-compat alias for :func:`sorted_root_key`.
+
+    Historical name retained; this is the sorted search key, not Kurlin's
+    complete ordered root invariant.
+    """
+    return sorted_root_key(cell)
+
+
+def sorted_root_distance(cell_A, cell_B):
+    """Euclidean distance between sorted root keys (conservative search metric)."""
+    a = sorted_root_key(cell_A); b = sorted_root_key(cell_B)
     return sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
+
+
+def root_distance(cell_A, cell_B):
+    """Back-compat alias for :func:`sorted_root_distance`."""
+    return sorted_root_distance(cell_A, cell_B)
+
+
+def sorted_key_lower_bound(x, y, G=None):
+    """Rearrangement lower bound: ``||sort(x)-sort(y)|| <= min_σ∈G ||x-σy||``.
+
+    When ``G`` is omitted, uses all of ``S_6`` and the equality
+    ``||sort(x)-sort(y)|| = min_{σ∈S6} ||x-σy||`` holds. For any physically
+    allowed relabelling group ``G ⊆ S_6`` the sorted distance is therefore a
+    certified lower bound on the orbit distance (main_v5 Lemma).
+    """
+    from itertools import permutations
+    sx = tuple(sorted(x))
+    sy = tuple(sorted(y))
+    sorted_d = sqrt(sum((sx[i] - sy[i]) ** 2 for i in range(len(sx))))
+    if G is None:
+        return sorted_d, sorted_d
+    best = float("inf")
+    y = tuple(y)
+    for sigma in G:
+        d = sqrt(sum((x[i] - y[sigma[i]]) ** 2 for i in range(len(x))))
+        if d < best:
+            best = d
+    return sorted_d, best
 
 
 def _cell_volume(cell):
@@ -171,103 +206,103 @@ def _cell_volume(cell):
 
 
 def root_distance_to_volume_ratio(distance, cell):
-    """Convert a Kurlin root distance to the equivalent isotropic volume ratio.
+    """Convert a sorted-key distance to the equivalent isotropic volume ratio.
 
-    For a *pure isotropic* volume change the root invariant scales linearly with
-    the length scale factor, so ``distance = |(V'/V)**(1/3) - 1| * ||RI(cell)||``.
+    For a *pure isotropic* volume change the root key scales linearly with
+    the length scale factor, so ``distance = |(V'/V)**(1/3) - 1| * ||key||``.
     Inverting gives the fractional volume change a given distance corresponds to::
 
-        V'/V = (1 + distance / ||RI(cell)||)**3
+        V'/V = (1 + distance / ||key||)**3
 
     Returns the volume ratio ``V'/V >= 1`` (a magnitude -- the sign of the change
     is not recoverable from an unsigned distance). Exact only for pure scaling;
     for a general cell pair apply it to the ``volume_component`` from
     :func:`root_volume_decomposition`, not the total distance.
     """
-    nrho = sqrt(sum(x * x for x in root_invariant(cell)))
+    nrho = sqrt(sum(x * x for x in sorted_root_key(cell)))
     if nrho <= 0:
         return 1.0
     return (1.0 + distance / nrho) ** 3
 
 
 def volume_ratio_to_root_distance(volume_ratio, cell):
-    """Root distance produced by a pure isotropic volume change of ``volume_ratio``.
+    """Sorted-key distance produced by a pure isotropic volume change.
 
     The inverse of :func:`root_distance_to_volume_ratio`::
 
-        distance = |volume_ratio**(1/3) - 1| * ||RI(cell)||
+        distance = |volume_ratio**(1/3) - 1| * ||key||
 
     Use it to turn a volume tolerance ("treat cells within 5 % volume as the
-    same") into a scale-correct Kurlin cutoff for a specific cell.
+    same") into a scale-correct cutoff for a specific cell.
     """
-    nrho = sqrt(sum(x * x for x in root_invariant(cell)))
+    nrho = sqrt(sum(x * x for x in sorted_root_key(cell)))
     return abs(volume_ratio ** (1.0 / 3.0) - 1.0) * nrho
 
 
 def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=11.0):
-    """Scale-correct Kurlin cutoff for accepting a symmetrised cell.
+    """Scale-correct sorted-key cutoff for accepting a symmetrised cell.
 
     A Kurlin symmetry deficiency (distance from a cell to its Reynolds-symmetrised
     metric) has units of length and grows with cell size, so an absolute Angstrom
     cutoff does not transfer between cells. Both sensible references are
-    proportional to the cell's own root-invariant norm ``||RI(cell)||``:
+    proportional to the cell's own key norm ``||key||``:
 
     * ``volume_tol`` -- accept when the deficiency is no larger than a pure
       isotropic volume change of this fraction (e.g. ``0.05`` for 5 %). Returns
-      ``|(1+volume_tol)**(1/3) - 1| * ||RI||``. The interpretable knob.
+      ``|(1+volume_tol)**(1/3) - 1| * ||key||``. The interpretable knob.
     * ``noise_frac`` -- accept when the deficiency is within measurement noise of
       fractional size ``noise_frac`` (e.g. ``0.01`` for 1 % cell precision).
-      Returns ``z * noise_frac * ||RI||``; the default ``z=11`` is the p95 of the
+      Returns ``z * noise_frac * ||key||``; the default ``z=11`` is the p95 of the
       noise null distribution (``z=12.4`` for p99), empirically scale-invariant.
 
     Exactly one of ``volume_tol`` / ``noise_frac`` must be given. In both cases
-    the returned cutoff is ``(dimensionless) * ||RI(cell)||``, so it automatically
+    the returned cutoff is ``(dimensionless) * ||key||``, so it automatically
     tracks cell scale and the per-system spread (cubic/trigonal rhombohedral
     primitives included) without a separate per-system table.
     """
     if (volume_tol is None) == (noise_frac is None):
         raise ValueError("give exactly one of volume_tol or noise_frac")
-    nrho = sqrt(sum(x * x for x in root_invariant(cell)))
+    nrho = sqrt(sum(x * x for x in sorted_root_key(cell)))
     if volume_tol is not None:
         return abs((1.0 + volume_tol) ** (1.0 / 3.0) - 1.0) * nrho
     return z * noise_frac * nrho
 
 
 def similarity_invariant(cell):
-    """Volume-normalised root invariant RI(cell) / V**(1/3) (a *similarity* key).
+    """Volume-normalised sorted key ``key / V**(1/3)`` (a *similarity* key).
 
-    Dividing the root invariant by the cube root of the cell volume removes the
-    overall length scale: two lattices are *similar* (identical up to isotropic
-    scaling) iff their similarity invariants coincide, exactly as in the
-    manuscript's similarity relation RI(A)/V(A)**(1/3) = RI(B)/V(B)**(1/3).
-    Returns a 6-tuple (dimensionless).
+    Dividing by the cube root of the cell volume removes the overall length
+    scale: two lattices are *similar* (identical up to isotropic scaling) when
+    their similarity keys coincide (up to the known many-to-one collisions of
+    the sorted projection). Returns a 6-tuple (dimensionless).
     """
     s = _cell_volume(cell) ** (1.0 / 3.0)
-    ri = root_invariant(cell)
+    ri = sorted_root_key(cell)
     return tuple(r / s for r in ri)
 
 
 def similarity_distance(cell_A, cell_B):
-    """Euclidean distance between volume-normalised root invariants.
+    """Euclidean distance between volume-normalised sorted keys.
 
-    Zero iff the two lattices are similar (isotropic-scale copies). This is the
-    shape-only counterpart of :func:`root_distance`, blind to volume.
+    Zero when the two lattices are similar at the level of the sorted key
+    (isotropic-scale copies, up to pairing collisions). Shape-only counterpart
+    of :func:`sorted_root_distance`, blind to volume.
     """
     a = similarity_invariant(cell_A); b = similarity_invariant(cell_B)
     return sqrt(sum((a[i] - b[i]) ** 2 for i in range(6)))
 
 
 def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
-    """Root-distance cutoff corresponding to an accepted cell-edge change.
+    """Sorted-key distance cutoff corresponding to an accepted cell-edge change.
 
     Answers: "I am willing to treat two lattices as the same if their cell edges
-    differ by at most ``max_edge_change`` Angstrom -- what root-distance radius is
+    differ by at most ``max_edge_change`` Angstrom -- what key-space radius is
     that?"
 
-    The root invariant carries units of length and, for an orthogonal cell, is
-    exactly ``sorted(0, 0, 0, a, b, c)``: changing one edge by delta moves one root
-    component by exactly delta, so ``root_distance == delta`` (slope k = 1), and
-    changing all three edges by delta gives exactly ``sqrt(3) * delta``.
+    The sorted key carries units of length and, for an orthogonal cell, is
+    exactly ``sorted(0, 0, 0, a, b, c)``: changing one edge by delta moves one
+    component by exactly delta, so ``sorted_root_distance == delta`` (slope k = 1),
+    and changing all three edges by delta gives exactly ``sqrt(3) * delta``.
     Empirically the single-edge slope has median k = 1.00 for near-orthogonal
     lattices (tetragonal, orthorhombic, hexagonal, monoclinic, triclinic in the
     PDB), but it is LARGER for cells whose primitive basis is strongly
@@ -285,7 +320,7 @@ def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
     cell : tuple, optional
         If given, the cutoff is *calibrated exactly for this cell* by perturbing
         each of its edges by ``max_edge_change`` and taking the largest resulting
-        root distance -- exact rather than the generic bound (captures the
+        key distance -- exact rather than the generic bound (captures the
         angle/length coupling of a non-orthogonal cell).
     n_edges : int
         Number of edges assumed to change simultaneously for the analytic bound
@@ -295,11 +330,11 @@ def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
     Returns
     -------
     float
-        The root-distance cutoff (Angstrom). Two lattices within this root
+        The sorted-key distance cutoff (Angstrom). Two lattices within this
         distance differ by at most ``max_edge_change`` per edge, to first order.
     """
     if cell is not None:
-        base = root_invariant(cell)
+        base = sorted_root_key(cell)
         a, b, c, al, be, ga = cell
         worst = 0.0
         for i in range(3):
@@ -307,39 +342,39 @@ def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
                 e = [a, b, c]
                 e[i] = max(e[i] + sgn * max_edge_change, 1e-3)
                 pert = (e[0], e[1], e[2], al, be, ga)
-                d = sqrt(sum((base[j] - root_invariant(pert)[j]) ** 2
+                d = sqrt(sum((base[j] - sorted_root_key(pert)[j]) ** 2
                              for j in range(6)))
                 if d > worst:
                     worst = d
         # all edges together (upper envelope for this cell)
         e = (max(a + max_edge_change, 1e-3), max(b + max_edge_change, 1e-3),
              max(c + max_edge_change, 1e-3), al, be, ga)
-        d = sqrt(sum((base[j] - root_invariant(e)[j]) ** 2 for j in range(6)))
+        d = sqrt(sum((base[j] - sorted_root_key(e)[j]) ** 2 for j in range(6)))
         return max(worst, d)
     return float(n_edges) ** 0.5 * float(max_edge_change)
 
 
 def root_volume_decomposition(cell_A, cell_B):
-    """Split the root distance between two lattices into volume and shape parts.
+    """Split the sorted-key distance between two lattices into volume and shape.
 
-    The root invariant scales *linearly* with the cell's length scale factor
+    The sorted key scales *linearly* with the cell's length scale factor
     ``s = (V_B / V_A)**(1/3)`` (conorms carry units of length**2, roots their
     square root), so a pure isotropic volume change contributes an exactly
-    predictable amount to the root distance. This function factors an observed
-    root distance into
+    predictable amount to the key distance. This function factors an observed
+    distance into
 
     * ``volume_component`` -- the distance from ``cell_A`` to the isotropically
-      rescaled ``cell_A`` whose volume equals ``V_B``: ``|s - 1| * ||RI(A)||``.
+      rescaled ``cell_A`` whose volume equals ``V_B``: ``|s - 1| * ||key(A)||``.
       This is the part of the separation forced purely by the volume change.
-    * ``shape_residual`` -- the root distance between that rescaled ``cell_A``
+    * ``shape_residual`` -- the key distance between that rescaled ``cell_A``
       and ``cell_B``: the genuine shape change at matched volume. Equivalently
       ``||V_B**(1/3)|| * similarity_distance(A, B)`` up to the scaling of A.
     * ``coupling_angle_deg`` -- the angle (degrees) between the volume leg and
-      the shape leg in root space. 90 deg means shape change is independent of
+      the shape leg in key space. 90 deg means shape change is independent of
       the volume change; smaller angles mean the two are coupled (e.g. an
       anisotropic dehydration series, where losing volume also changes shape).
 
-    Returns a dict with keys ``total`` (== :func:`root_distance`),
+    Returns a dict with keys ``total`` (== :func:`sorted_root_distance`),
     ``volume_component``, ``shape_residual``, ``scale_factor`` (s),
     ``volume_ratio`` (V_B / V_A) and ``coupling_angle_deg``. ``total`` and the
     two legs satisfy ``total <= volume_component + shape_residual`` (triangle
@@ -349,11 +384,11 @@ def root_volume_decomposition(cell_A, cell_B):
     import math
     VA = _cell_volume(cell_A); VB = _cell_volume(cell_B)
     s = (VB / VA) ** (1.0 / 3.0)
-    riA = root_invariant(cell_A)
+    riA = sorted_root_key(cell_A)
     a, b, c, al, be, ga = cell_A
     scaled_A = (a * s, b * s, c * s, al, be, ga)
-    riS = root_invariant(scaled_A)
-    riB = root_invariant(cell_B)
+    riS = sorted_root_key(scaled_A)
+    riB = sorted_root_key(cell_B)
 
     leg_vol = [riS[i] - riA[i] for i in range(6)]
     leg_shape = [riB[i] - riS[i] for i in range(6)]

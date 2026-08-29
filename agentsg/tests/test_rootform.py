@@ -1,14 +1,19 @@
-"""Root invariant (Kurlin 2022) tests: invariance, continuity, completeness.
+"""Sorted root-product search key tests (main_v5 architecture).
 
-The root invariant is a single ordered vector per lattice (obtuse superbase ->
-conorms -> sorted root products, canonicalised over 24 index permutations). It
-needs NO orbit minimisation and is continuous across the reduction-flip boundary.
+The sorted six-tuple is a continuous Euclidean retrieval key: invariant under
+basis change, continuous across reduction flips, lower-bounding relabelling-orbit
+distance. It is *not* Kurlin Def. 5.1 and is many-to-one except on V3/V5.
+Identity is certified by the Selling-superbase closure, not by key equality.
 """
 import math
 import random
+from itertools import permutations
+
 import pytest
 from agentsg.cell.rootform import (
     delaunay_superbase, conorms, root_invariant, root_distance, _dot,
+    sorted_root_key, sorted_root_distance, sorted_key_lower_bound,
+    root_products, _PAIRS,
 )
 from agentsg.cell.metric import UnitCell
 from agentsg.cell.reduction import niggli_reduce
@@ -46,19 +51,18 @@ def test_superbase_sums_to_zero():
     assert all(abs(t) < 1e-9 for t in tot)
 
 
-def test_root_invariant_length6_and_sorted():
-    """The canonical tuple is the SORTED six-tuple of root products (Kurlin Def
-    5.1 realised uniformly across Voronoi types) -- deterministic and ascending."""
+def test_sorted_root_key_length6_and_sorted():
+    """Search key is the ascending six-tuple of root products."""
     c = (40, 50, 60, 88, 92, 103)
-    ri = root_invariant(c)
+    ri = sorted_root_key(c)
     assert len(ri) == 6
-    assert list(ri) == sorted(ri)                      # canonical form is ascending
-    assert ri == root_invariant(c)                     # deterministic
-    assert all(x >= -1e-12 for x in ri)                # root products are >= 0
+    assert list(ri) == sorted(ri)
+    assert ri == root_invariant(c)                     # back-compat alias
+    assert all(x >= -1e-12 for x in ri)
 
 
 def test_invariance_under_unimodular_setting():
-    """Same lattice in different bases -> identical root invariant."""
+    """Same lattice in different bases -> identical sorted key."""
     rng = random.Random(2)
     Ms = [((1, 1, 0), (0, 1, 0), (0, 0, 1)),
           ((1, 0, 0), (1, 1, 0), (0, 0, 1)),
@@ -68,14 +72,14 @@ def test_invariance_under_unimodular_setting():
         c = _valid_cell(rng)
         G = UnitCell(*c).metric_tensor()
         for M in Ms:
-            assert root_distance(c, _cell_of(_transform_metric(G, M))) < 1e-6
+            assert sorted_root_distance(c, _cell_of(_transform_metric(G, M))) < 1e-6
 
 
 def test_continuity_across_reduction_flip_boundary():
     """No orbit search, yet continuous across a=b (where raw G6 jumps)."""
     ref = (40.0, 40.0, 60.0, 90, 91, 90)
-    d_hi = root_distance(ref, (40.0, 40.001, 60.0, 90, 91, 90))
-    d_lo = root_distance(ref, (40.0, 39.999, 60.0, 90, 91, 90))
+    d_hi = sorted_root_distance(ref, (40.0, 40.001, 60.0, 90, 91, 90))
+    d_lo = sorted_root_distance(ref, (40.0, 39.999, 60.0, 90, 91, 90))
     assert abs(d_hi - d_lo) < 1e-3
     assert d_hi < 0.02 and d_lo < 0.02
 
@@ -85,13 +89,17 @@ def test_niggli_invariance():
     for _ in range(20):
         c = _valid_cell(rng)
         r, _ = niggli_reduce(*c)
-        assert root_distance(c, r) < 1e-6
+        assert sorted_root_distance(c, r) < 1e-6
 
 
-def test_completeness_no_collisions_distinct_lattices():
+def test_empirical_few_volume_collisions_among_random_cells():
+    """Empirical sanity: equal keys among random cells imply equal volumes.
+
+    Not a completeness proof — the sorted key is known many-to-one for V1/V2/V4.
+    """
     rng = random.Random(5)
     cells = [_valid_cell(rng) for _ in range(300)]
-    ris = [root_invariant(c) for c in cells]
+    ris = [sorted_root_key(c) for c in cells]
     for i in range(len(ris)):
         for j in range(i + 1, len(ris)):
             same = all(abs(ris[i][k] - ris[j][k]) < 1e-6 for k in range(6))
@@ -99,27 +107,81 @@ def test_completeness_no_collisions_distinct_lattices():
                 assert abs(UnitCell(*cells[i]).volume() - UnitCell(*cells[j]).volume()) < 1e-3
 
 
+def test_rearrangement_lower_bound_random_vectors():
+    """||sort(x)-sort(y)|| = min_{S6} ||x-σy|| ≤ min_G ||x-σy|| for G ⊆ S6."""
+    rng = random.Random(11)
+    for _ in range(20):
+        x = [rng.random() for _ in range(6)]
+        y = [rng.random() for _ in range(6)]
+        sorted_d, s6_d = sorted_key_lower_bound(x, y, G=None)
+        assert abs(sorted_d - s6_d) < 1e-12
+        # subset of permutations (physically allowed G)
+        G = list(permutations(range(6)))[::120]  # sparse subset of S6
+        sd, orbit_d = sorted_key_lower_bound(x, y, G=G)
+        assert sd <= orbit_d + 1e-12
+
+
+def test_rearrangement_lower_bound_on_root_products():
+    """Sorted-key distance lower-bounds S4-induced permutations of products."""
+    rng = random.Random(12)
+    cA, cB = _valid_cell(rng), _valid_cell(rng)
+    x = [root_products(cA)[ij] for ij in _PAIRS]
+    y = [root_products(cB)[ij] for ij in _PAIRS]
+    # All of S6: equality
+    sd, s6 = sorted_key_lower_bound(x, y)
+    assert abs(sd - s6) < 1e-12
+    assert abs(sd - sorted_root_distance(cA, cB)) < 1e-12
+
+
+def test_v5_sorted_key_injective_on_distinct_edge_lengths():
+    """Two orthorhombic (V5) lattices with different edge multisets differ in key."""
+    a = (50.0, 60.0, 70.0, 90, 90, 90)
+    b = (50.0, 60.0, 80.0, 90, 90, 90)
+    assert sorted_root_distance(a, b) > 1.0
+
+
+def test_v4_pairing_collision_same_sorted_multiset():
+    """V4 hexagonal: two distinct opposite-edge pairings can share a multiset.
+
+    Kurlin keeps a distinguished singleton vs ordered triple; sorting forgets
+    that. Construct two 6-tuples that arise as root-product lists with the same
+    multiset but different distinguished slots — the sorted keys collide while
+    the unpaired layouts differ.
+    """
+    # Synthetic root-product layouts (not cells): triple (1,2,3) + singleton 4
+    # vs triple (1,2,4) + singleton 3 — same multiset {1,2,3,4,0,0} after padding.
+    x = (0.0, 0.0, 1.0, 2.0, 3.0, 4.0)   # already a possible sorted key
+    # Two different unordered lists with the same multiset:
+    layout_a = [0.0, 4.0, 1.0, 2.0, 3.0, 0.0]
+    layout_b = [0.0, 3.0, 1.0, 2.0, 4.0, 0.0]
+    assert sorted(layout_a) == sorted(layout_b) == list(x)
+    assert layout_a != layout_b
+    sd, s6 = sorted_key_lower_bound(layout_a, layout_b)
+    assert sd < 1e-15
+    # Some permutation (swap the "singleton" slots) makes layouts match:
+    assert s6 < 1e-15
+
+
 def test_cubic_signature():
     """Cubic P: three equal root products = edge length, three zero."""
-    ri = root_invariant((50, 50, 50, 90, 90, 90))
+    ri = sorted_root_key((50, 50, 50, 90, 90, 90))
     nz = sorted(x for x in ri if x > 1e-6)
     assert len(nz) == 3
     assert all(abs(x - 50.0) < 1e-6 for x in nz)
 
 
 def test_metric_axioms():
-    """root_distance is a metric: identity, symmetry, triangle inequality."""
+    """sorted_root_distance is a pseudometric: identity, symmetry, triangle."""
     rng = random.Random(6)
     a, b, c = (_valid_cell(rng) for _ in range(3))
-    assert root_distance(a, a) < 1e-9
-    assert abs(root_distance(a, b) - root_distance(b, a)) < 1e-9
-    assert root_distance(a, c) <= root_distance(a, b) + root_distance(b, c) + 1e-9
+    assert sorted_root_distance(a, a) < 1e-9
+    assert abs(sorted_root_distance(a, b) - sorted_root_distance(b, a)) < 1e-9
+    assert (sorted_root_distance(a, c)
+            <= sorted_root_distance(a, b) + sorted_root_distance(b, c) + 1e-9)
 
 
 def test_invariance_high_symmetry_cells():
-    """Regression: orthorhombic/tetragonal/cubic/monoclinic (zero-conorm Voronoi
-    types) must be setting-invariant. A flat lex-min over index permutations is
-    NOT -- the canonical form must be the sorted multiset (Kurlin Def 5.1)."""
+    """Orthorhombic/tetragonal/cubic/monoclinic must be setting-invariant."""
     Ms = [((0, -1, 0), (-1, 0, 0), (0, 0, -1)),
           ((0, 1, 0), (0, 0, 1), (1, 0, 0)),
           ((1, 1, 0), (0, 1, 0), (0, 0, 1)),
@@ -137,7 +199,7 @@ def test_invariance_high_symmetry_cells():
         G = UnitCell(*c).metric_tensor()
         for M in Ms:
             c2 = _cell_of(_transform_metric(G, M))
-            assert root_distance(c, c2) < 1e-4, f"{name} not invariant under {M}"
+            assert sorted_root_distance(c, c2) < 1e-4, f"{name} not invariant under {M}"
 
 
 def test_orthorhombic_axis_swap_is_isometry():
@@ -145,14 +207,15 @@ def test_orthorhombic_axis_swap_is_isometry():
     base = (50.0, 60.0, 70.0, 90, 90, 90)
     G = UnitCell(*base).metric_tensor()
     swapped = _cell_of(_transform_metric(G, ((0, -1, 0), (-1, 0, 0), (0, 0, -1))))
-    assert root_distance(base, swapped) < 1e-9
+    assert sorted_root_distance(base, swapped) < 1e-9
 
 
 def test_spglib_oracle_same_and_different_lattices():
-    """Independent oracle: root_distance ~ 0 iff spglib reports the same Niggli
-    cell (edges AND angles). Crucially this exercises the completeness-critical
-    case -- same lattice in different bases must collapse -- not only random
-    (always-distinct) lattices."""
+    """Independent oracle: sorted_root_distance ~ 0 iff spglib same Niggli cell.
+
+    Exercises same-lattice collapse under setting change. Not a theoretical
+    injectivity proof for the sorted key.
+    """
     np = pytest.importorskip("numpy")
     spglib = pytest.importorskip("spglib")
     import random as _random
@@ -194,7 +257,7 @@ def test_spglib_oracle_same_and_different_lattices():
     n_same = 0
     for i in range(len(cells)):
         for j in range(i + 1, len(cells)):
-            rd = root_distance(cells[i], cells[j])
+            rd = sorted_root_distance(cells[i], cells[j])
             ni, nj = spglib_niggli_full(cells[i]), spglib_niggli_full(cells[j])
             if ni is None or nj is None:
                 continue
@@ -204,5 +267,4 @@ def test_spglib_oracle_same_and_different_lattices():
             assert same_root == same_spglib, (cells[i], cells[j], rd)
             if same_spglib:
                 n_same += 1
-    # guard: the test must actually contain same-lattice pairs, else it's vacuous
     assert n_same >= 20

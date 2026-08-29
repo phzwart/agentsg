@@ -18,18 +18,17 @@ also *centrosymmetric*: negating every vector,
 preserves the zero sum and preserves obtuseness (each product v_i.v_j is
 unchanged), yet -I is not one of the 24 relabellings -- because -v_i equals
 v0 + v_j + v_k (the sum of the other three), never a single superbase vector.
-The full group of change-of-basis operators covering *all* obtuse superbases of
-a generic lattice is therefore
+The full group of change-of-basis operators covering all obtuse superbases of
+a *generic* (Voronoi type V1) lattice is therefore
 
     S4 x {+I, -I},   order 48,
 
-a faithful subgroup of GL(3, Z).  (For a lattice with extra metric symmetry the
-distinct obtuse superbases number fewer than 48 -- several group elements then
-map the cell to the same metric -- but the group acting on the superbase is
-always this order-48 group.)  The reduction algorithm itself walks a path
-through this group toward a Delaunay-reduced representative; this module exposes
-the whole group so a caller can enumerate every obtuse superbase of a cell, or
-generate the group from a minimal set of generators and expand it by closure.
+a faithful subgroup of GL(3, Z).  At higher-symmetry Voronoi types V2--V5,
+Kurlin's Lemmas 4.2--4.5 add further *non-isometric* obtuse-superbase classes
+that are not reached by this single-class group alone; the type-dependent
+finite closure is built by :mod:`agentsg.cell.selling_closure`.  This module
+exposes the V1 / single-class orbit so callers can enumerate settings of one
+obtuse-superbase class, or generate the group from a minimal generating set.
 
 Elements with det = +1 are proper (orientation-preserving) changes of basis;
 det = -1 are improper.  A transposition, a 4-cycle, and the inversion -I

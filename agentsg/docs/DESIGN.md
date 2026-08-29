@@ -273,25 +273,28 @@ agentsg provides the metric primitives exactly and dependency-free; it does not
 those are engineering layers on top of these primitives for large-scale cell
 database search.
 
-## The root-invariant database, and why roots are computed on the primitive cell
+## Sorted-root search keys, Selling closure, and why roots use the primitive cell
 
-The root-invariant layer (`rootform.py`, `neartree.py`, `celldb.py`,
-`pdb_app.py`) indexes lattices by Kurlin's (2022) complete continuous root
-invariant: obtuse superbase → six conorms → root products → sorted six-tuple.
-Equality of root invariants tests lattice isometry directly, with no orbit
-minimisation, and Euclidean distance between them is a true metric on lattice
-space — the substrate for nearest-neighbour cell search over the whole PDB.
+The retrieval layer (`rootform.py`, `neartree.py`, `celldb.py`, `pdb_app.py`)
+indexes lattices by a **sorted six-tuple of root products** (obtuse superbase →
+conorms → `r_ij` → `sort`). This is a continuous Euclidean *search key*, not
+Kurlin's complete ordered `2×3` root form. By the rearrangement inequality its
+L2 distance lower-bounds any physically allowed relabelling-orbit distance, so
+radius queries are conservative. The key is injective for Voronoi types V3 and
+V5 and many-to-one for V1/V2/V4; lattice identity is certified only by the exact
+operator test over the type-dependent **Selling-superbase closure**
+(`selling_closure.py` / `canonical.py`). See `manuscript/main_v5.tex`.
 
-A correctness invariant governs the whole layer: **the root invariant is an
-invariant of the lattice, i.e. of the full translation group, which is the
-*primitive* lattice.** A deposited unit cell is the *conventional* cell; for a
-centred Bravais type (A, B, C, I, F, R, and the "H" hexagonal-axes label for
+A correctness invariant governs the whole layer: **the sorted key is a key of
+the lattice, i.e. of the full translation group, which is the *primitive*
+lattice.** A deposited unit cell is the *conventional* cell; for a centred
+Bravais type (A, B, C, I, F, R, and the "H" hexagonal-axes label for
 rhombohedral groups) the conventional corner lattice is only a sublattice — it
 omits the centring nodes. Feeding the conventional basis to Selling reduction
-describes the wrong lattice and yields a root that is wrong by tens of Ångström
+describes the wrong lattice and yields a key that is wrong by tens of Ångström
 in root-product units (45–130 Å for common centred groups). `primitive.py`
 therefore reduces every centred conventional cell to its primitive cell (IT Vol.
-A Table 5.1.3.1 matrices, det = 1/multiplicity) before the root is taken, both on
+A Table 5.1.3.1 matrices, det = 1/multiplicity) before the key is taken, both on
 ingestion (`CellDatabase.add_cell`, keyed on the space-group symbol) and on query
 (`nearest`/`RootIndex`, via an optional `sg_hm`). The primitive matrices are
 self-validated at import against the package's own `hall.LATTICE_CENTERING`
@@ -300,7 +303,7 @@ whole transform is cross-checked in the test suite against spglib's
 `find_primitive` (test-only oracle, as everywhere else). Stored cell parameters
 and volume remain the deposited conventional values; only the roots use the
 primitive lattice. This is what makes two crystals with the same lattice in
-different centred settings land at root distance 0, as they must.
+different centred settings land at sorted-key distance 0, as they must.
 
 ## Space-group diagrams (`cell/diagrams.py`)
 

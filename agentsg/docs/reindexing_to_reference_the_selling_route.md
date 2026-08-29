@@ -102,19 +102,21 @@ S₄ × {±I} of superbase relabellings and their negations
 that could relate your cell to the reference. Each is integer and unimodular by
 construction, so it can only *reindex* the lattice, never distort it.
 
-### 2b. Close the Delaunay boundary (the reduction-flip trap)
+### 2b. Close the Selling-superbase orbit (typed closure)
 
-The obtuse superbase is unique only in the *interior* of a Delaunay type. When a
-conorm passes through zero — e.g. a monoclinic angle near 90°, where one product
-vᵢ·vⱼ ≈ 0 — two settings of the same lattice reduce to genuinely **different**
-superbases. Matching only within the 24 relabellings of your single superbase
-then **misses** the operator relating them. This is the notorious reduction-flip
-problem, reappearing inside the superbase.
+The obtuse superbase is unique only in the *interior* of a Delaunay type. At
+Voronoi types V2–V5, Kurlin's Lemmas 4.2–4.5 add further *non-isometric*
+obtuse-superbase classes (2/3/3/4 classes; a primitive orthorhombic V5 lattice
+has 32 superbases). Matching only within the 24 relabellings of one reduced
+superbase then misses operators that change class. Exact certification
+enumerates the typed closure via `selling_superbase_closure` /
+`selling_closure_representatives`, then matches with $S_4\times\{\pm I\}$.
+Optional `superbase_variants` only expands near-zero conorms for noisy measured
+cells — it is not the definition of the closure.
 
-agentsg closes this by enumerating the finite set of boundary-flip variants of
-*both* cells (`superbase_variants`, controlled by `boundary_rel`) and matching
-across the closure. That restores completeness: if the two cells are the same
-lattice, the operator relating them is guaranteed to be found.
+The sorted six root products (`sorted_root_key`) are the continuous Euclidean
+search key (many-to-one except V3/V5). Identity is never assigned by key
+equality alone.
 
 ### 2c. The verification residual
 

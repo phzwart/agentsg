@@ -160,8 +160,8 @@ triclinic.
 
 **Do.**
 1. Soften wording in `src/agentsg/cell/rootform.py` module / `root_invariant`
-   docstrings: complete for V2–V5; collision-free-in-practice similarity key for
-   generic triclinic (V1).
+   docstrings: injective for V3/V5; many-to-one search key for V1/V2/V4
+   (main_v5); identity via Selling-superbase closure, not key equality.
 2. Align the same caveat in `agentsg/README.md` wherever root invariant is
    described as complete.
 
