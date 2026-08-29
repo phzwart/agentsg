@@ -24,9 +24,11 @@ hops, so the global frame is path-consistent.
 
 Two layers (mirroring the reindexing design)
 --------------------------------------------
-* The ROOT INVARIANT (isometry invariant, continuous across reduction flips)
+* The ROOT / CONORM KEY (isometry-aware, continuous across reduction flips)
   gives the path-consistent manifold COORDINATE and the distance used to build
-  the deformation graph. It is blind to the setting, so it never flips.
+  the deformation graph. Default is the sorted-conorm key (Lipschitz); pass
+  ``key='root'`` for archival √ root products. It is blind to the setting, so
+  it never flips.
 * The FIXED-SETTING METRIC locates SYMMETRY JUNCTIONS -- states where the lattice
   momentarily gains symmetry during the deformation (a metric degeneracy, e.g.
   a == c or an angle -> 90 deg). The invariant cannot see these by construction,

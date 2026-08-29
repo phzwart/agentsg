@@ -79,10 +79,10 @@ def test_p63_angle_noise_stabilisation_reduces_shift():
     rng = random.Random(11)
     base = P63
     sigmas = (0.01, 0.05, 0.10)
-    # Order-of-magnitude bands around the audit table (fixed per-pair floors).
+    # Order-of-magnitude bands with invariant floor s = σ_θ · T.
     expected = {
         None: {0.01: (0.8, 2.5), 0.05: (2.0, 5.0), 0.10: (3.0, 7.0)},
-        "floored": {0.01: (0.2, 1.0), 0.05: (0.5, 2.0), 0.10: (0.6, 2.2)},
+        "floored": {0.01: (0.1, 0.6), 0.05: (0.3, 1.2), 0.10: (0.3, 1.4)},
         "soft_threshold": {0.01: (0.0, 0.15), 0.05: (0.0, 0.4), 0.10: (0.05, 0.7)},
         "linear": {0.01: (0.0, 0.08), 0.05: (0.0, 0.25), 0.10: (0.0, 0.4)},
     }
@@ -128,12 +128,41 @@ def test_p63_angle_noise_stabilisation_reduces_shift():
                 )
 
 
-def test_pair_noise_scales_pair_local():
+def test_pair_noise_scales_are_global_invariant():
     s = pair_noise_scales(P63, 0.1)
     assert len(s) == 6
-    # long-axis pairs should have larger floors than short-short pairs
     vals = list(s.values())
-    assert max(vals) > 5 * min(vals)
+    assert all(abs(v - vals[0]) < 1e-12 for v in vals)
+    assert vals[0] > 0
+
+
+def test_stabilised_key_invariant_odd_vs_even_cuboid():
+    """Invariant T-floor: odd and even Selling bases give the same key."""
+    from agentsg.cell.canonical import _metric, canonical_superbase, _dotG
+    from agentsg.cell.selling_closure import selling_superbase_closure
+    import math
+
+    ortho = (3.0, 4.0, 5.0, 90.0, 90.0, 90.0)
+    G = _metric(ortho)
+    C0, _ = canonical_superbase(ortho)
+    sig0 = tuple(sorted(round(_dotG(C0[i], C0[i], G), 8) for i in range(4)))
+    Ce = next(
+        C for C in selling_superbase_closure(ortho)
+        if tuple(sorted(round(_dotG(C[i], C[i], G), 8) for i in range(4))) != sig0
+    )
+    P = tuple(tuple(Ce[j + 1][i] for j in range(3)) for i in range(3))
+    PtG = [[sum(P[k][r] * G[k][b] for k in range(3)) for b in range(3)]
+           for r in range(3)]
+    GB = [[sum(PtG[r][k] * P[k][b] for k in range(3)) for b in range(3)]
+          for r in range(3)]
+    a = math.sqrt(GB[0][0]); b = math.sqrt(GB[1][1]); c = math.sqrt(GB[2][2])
+    ang = lambda x: math.degrees(math.acos(max(-1.0, min(1.0, x))))
+    even = (a, b, c, ang(GB[1][2] / (b * c)), ang(GB[0][2] / (a * c)),
+            ang(GB[0][1] / (a * b)))
+    assert sorted_root_distance(ortho, even) < 1e-9
+    assert sorted_root_distance(
+        ortho, even, stabilize="floored", angle_sigma=0.05) < 1e-9
+    assert sorted_root_distance(ortho, even, stabilize="linear") < 1e-9
 
 
 def test_deformation_graph_defaults_to_conorm():

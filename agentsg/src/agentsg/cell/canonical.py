@@ -220,17 +220,24 @@ def _roots_close(rA, rB, perm, tol):
     return True
 
 
-def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True):
-    """Class representatives of the typed closure, plus optional noise variants.
+def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True,
+                       angle_sigma=None):
+    """Full typed Selling-superbase closure, plus optional noise variants.
+
+    Matching must run over the *full* closure, not class representatives:
+    members within one isometry class are related by lattice automorphisms,
+    and those automorphisms *are* the reindexing coset. Representatives alone
+    under-count the coset on high-symmetry cells.
 
     When ``boundary_rel > 0``, near-zero conorm flips from
-    :func:`superbase_variants` are merged in for noisy measured cells. Exact
-    typed certification uses ``boundary_rel=0`` (default).
+    :func:`superbase_variants` are merged in for noisy measured cells.
+    ``angle_sigma`` (degrees) widens the typed-closure zero tolerance so
+    near-symmetric noisy cells are classified as V2--V5 rather than V1.
     """
-    from .selling_closure import selling_closure_representatives
+    from .selling_closure import selling_superbase_closure
     seen = {}
     if use_typed_closure:
-        for C in selling_closure_representatives(cell):
+        for C in selling_superbase_closure(cell, angle_sigma=angle_sigma):
             seen[tuple(tuple(v) for v in C)] = C
         if boundary_rel > 0:
             for C in superbase_variants(cell, boundary_rel=boundary_rel):
@@ -245,9 +252,9 @@ def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True):
     return list(seen.values())
 
 
-def reindexing_via_canonical(cell_A, cell_B, boundary_rel=0.0,
+def reindexing_via_canonical(cell_A, cell_B, boundary_rel=None,
                              verify_rel=1e-6, verify_abs=0.0, conorm_tol=None,
-                             use_typed_closure=True):
+                             use_typed_closure=True, angle_sigma=None):
     """Reindexing operators A -> B via Selling-superbase closure matching.
 
     Returns the list of integer operators ``P`` (as row-tuples) with
@@ -258,14 +265,19 @@ def reindexing_via_canonical(cell_A, cell_B, boundary_rel=0.0,
 
     Parameters
     ----------
-    boundary_rel : float
+    boundary_rel : float or None
         Relative tolerance for the optional :func:`superbase_variants` noise
-        expander. Default ``0`` uses the typed Kurlin closure only. Raise
-        (e.g. ``1e-3``) for noisy cells whose near-orthogonal angles are
-        displaced from exact zeros.
+        expander. Default ``None`` uses ``1e-3`` (serial / measured cells).
+        Pass ``0`` for exact archive metrics so only the typed Kurlin closure
+        is used. Raise further (e.g. ``1e-2``) for very noisy frames.
+    angle_sigma : float, optional
+        Angular noise σ in degrees for typed-closure zero classification.
+        When set, near-zero conorms within a few σ of the invariant noise
+        floor are treated as zeros so V2--V5 types are recovered on noisy
+        high-symmetry cells.
     use_typed_closure : bool
-        If True (default), start from
-        :func:`~agentsg.cell.selling_closure.selling_closure_representatives`.
+        If True (default), start from the full
+        :func:`~agentsg.cell.selling_closure.selling_superbase_closure`.
         If False, fall back to ``superbase_variants`` only (legacy).
     conorm_tol : float, optional
         Unused (kept for backward compatibility).
@@ -276,13 +288,17 @@ def reindexing_via_canonical(cell_A, cell_B, boundary_rel=0.0,
         Absolute floor on the residual tolerance (default 0). The effective
         tolerance is ``max(verify_abs, verify_rel * tr|G_B|)``.
     """
+    if boundary_rel is None:
+        boundary_rel = 1e-3
     GA = _metric(cell_A)
     GB = _metric(cell_B)
     tol = max(verify_abs,
               verify_rel * (abs(GB[0][0]) + abs(GB[1][1]) + abs(GB[2][2])))
 
-    vA = _closure_for_match(cell_A, boundary_rel, use_typed_closure)
-    vB = _closure_for_match(cell_B, boundary_rel, use_typed_closure)
+    vA = _closure_for_match(cell_A, boundary_rel, use_typed_closure,
+                            angle_sigma=angle_sigma)
+    vB = _closure_for_match(cell_B, boundary_rel, use_typed_closure,
+                            angle_sigma=angle_sigma)
 
     found = set()
     for CA in vA:

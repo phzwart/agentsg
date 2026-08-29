@@ -50,6 +50,31 @@ def _opposite_pair(i, j):
     return tuple(sorted(k for k in range(4) if k != i and k != j))
 
 
+def _conorm_sum(C, G):
+    """T = Σ_{i<j} p_ij with p_ij = -v_i·v_j (invariant on the closure)."""
+    T = 0.0
+    for i in range(4):
+        for j in range(i + 1, 4):
+            T += max(0.0, -_dotG(C[i], C[j], G))
+    return T
+
+
+def _zero_tol(C, G, tol_rel=1e-9, angle_sigma=None, noise_mult=3.0):
+    """Absolute conorm tolerance for zero detection / obtuseness.
+
+    Default is a tiny relative floor. With ``angle_sigma`` (degrees), widen to
+    a few σ of the invariant global noise scale ``σ_θ · T / 6`` so noisy
+    high-symmetry cells are classified as V2--V5 rather than V1.
+    """
+    tol = _conorm_tol(C, G, tol_rel)
+    if angle_sigma is not None:
+        import math
+        sig = math.radians(float(angle_sigma))
+        T = _conorm_sum(C, G)
+        tol = max(tol, float(noise_mult) * sig * T / 6.0)
+    return tol
+
+
 def voronoi_type_from_superbase(C, G, tol=None):
     """Classify Voronoi type V1--V5 from an obtuse superbase's zero conorms.
 
@@ -74,11 +99,17 @@ def voronoi_type_from_superbase(C, G, tol=None):
     return 4
 
 
-def voronoi_type(cell, tol_rel=1e-9):
-    """Voronoi type (1..5) of ``cell`` from its Selling-reduced superbase."""
+def voronoi_type(cell, tol_rel=1e-9, angle_sigma=None):
+    """Voronoi type (1..5) of ``cell`` from its Selling-reduced superbase.
+
+    Pass ``angle_sigma`` (degrees) to treat near-zero conorms within a few σ
+    of the invariant noise floor as zeros (needed for noisy serial frames).
+    """
     G = _metric(cell)
     C, _ = canonical_superbase(cell)
-    return voronoi_type_from_superbase(C, G, tol=_conorm_tol(C, G, tol_rel))
+    return voronoi_type_from_superbase(
+        C, G, tol=_zero_tol(C, G, tol_rel, angle_sigma=angle_sigma),
+    )
 
 
 def _selling_flip(C, i, j):
@@ -123,7 +154,7 @@ def _class_seeds(C0, G, tol):
     return seeds
 
 
-def selling_superbase_closure(cell, tol_rel=1e-9):
+def selling_superbase_closure(cell, tol_rel=1e-9, angle_sigma=None):
     """Finite Selling-superbase closure of ``cell`` (typed, Kurlin 4.1--4.5).
 
     Returns distinct obtuse superbases as ordered 4-tuples of integer coordinate
@@ -132,11 +163,13 @@ def selling_superbase_closure(cell, tol_rel=1e-9):
     isometry classes; generic V1 has a single reduced representative (the match
     loop in :mod:`canonical` still applies S4 x {+/-I}).
 
+    Pass ``angle_sigma`` (degrees) to widen zero detection for noisy cells.
+
     All members share the same sorted root-product multiset (main_v5).
     """
     G = _metric(cell)
     C0, _ = canonical_superbase(cell)
-    tol = _conorm_tol(C0, G, tol_rel)
+    tol = _zero_tol(C0, G, tol_rel, angle_sigma=angle_sigma)
 
     seen = {}
     frontier = []
@@ -161,22 +194,44 @@ def selling_superbase_closure(cell, tol_rel=1e-9):
     return list(seen.values())
 
 
-def selling_closure_representatives(cell, tol_rel=1e-9):
-    """One obtuse superbase per isometry class (for fast matching).
+def _s4_canonical_coform(C, G):
+    """Lex-minimal 6-conorm tuple over S4 index relabellings (class signature)."""
+    import itertools
+    pairs = ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3))
+    best = None
+    for perm in itertools.permutations(range(4)):
+        vals = []
+        for a, b in pairs:
+            ia, ib = perm[a], perm[b]
+            vals.append(round(-_dotG(C[ia], C[ib], G), 10))
+        t = tuple(vals)
+        if best is None or t < best:
+            best = t
+    return best
 
-    Matching over S4 x {+/-I} of these representatives is equivalent to matching
-    over the full closure, and much cheaper for V5 (4 reps instead of 32).
+
+def selling_closure_representatives(cell, tol_rel=1e-9, angle_sigma=None):
+    """One obtuse superbase per isometry class (diagnostic / class count).
+
+    Deduplicates the full closure by the S4-canonical coform (lex-minimal
+    6-tuple of conorms under index relabelling). This is *not* a substitute
+    for matching over the full closure: members within one class are related
+    by lattice automorphisms that form the reindexing coset. Use
+    :func:`selling_superbase_closure` for certification / coset recovery.
     """
     G = _metric(cell)
-    closure = selling_superbase_closure(cell, tol_rel=tol_rel)
+    closure = selling_superbase_closure(
+        cell, tol_rel=tol_rel, angle_sigma=angle_sigma,
+    )
     by_class = {}
     for C in closure:
-        lengths2 = tuple(round(_dotG(C[i], C[i], G), 8) for i in range(4))
-        sig = tuple(sorted(lengths2))
+        sig = _s4_canonical_coform(C, G)
         by_class.setdefault(sig, C)
     return list(by_class.values())
 
 
-def closure_class_count(cell, tol_rel=1e-9):
+def closure_class_count(cell, tol_rel=1e-9, angle_sigma=None):
     """Number of isometry classes in the closure (1 for V1; up to 4 for V5)."""
-    return len(selling_closure_representatives(cell, tol_rel=tol_rel))
+    return len(selling_closure_representatives(
+        cell, tol_rel=tol_rel, angle_sigma=angle_sigma,
+    ))

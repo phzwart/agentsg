@@ -383,3 +383,58 @@ def test_reindex_gate_value_matters():
     tight, rd2 = reindex(co, cr, max_root_dist=0.3)
     assert rd == rd2                 # same measured distance
     assert loose != [] and tight == []   # gate decides acceptance
+
+
+# ------------------------------------------- coset sizes on symmetric cells ----
+def _even_class_cell(ortho):
+    """Present an orthorhombic cuboid in an even-class Selling basis."""
+    from agentsg.cell.canonical import _metric, canonical_superbase, _dotG
+    from agentsg.cell.selling_closure import selling_superbase_closure
+    G = _metric(ortho)
+    C0, _ = canonical_superbase(ortho)
+    sig0 = tuple(sorted(round(_dotG(C0[i], C0[i], G), 8) for i in range(4)))
+    Ce = None
+    for C in selling_superbase_closure(ortho):
+        sig = tuple(sorted(round(_dotG(C[i], C[i], G), 8) for i in range(4)))
+        if sig != sig0:
+            Ce = C
+            break
+    assert Ce is not None
+    P = tuple(tuple(Ce[j + 1][i] for j in range(3)) for i in range(3))
+    return _cell_of(_transform(G, P))
+
+
+def test_coset_orthorhombic_self_has_mmm_order_8():
+    """Primitive orthorhombic self-match: full closure recovers |mmm|=8."""
+    ortho = (3.0, 4.0, 5.0, 90.0, 90.0, 90.0)
+    ops = reindexing_via_canonical(ortho, ortho, boundary_rel=0)
+    assert len(ops) == 8
+
+
+def test_coset_hexagonal_self_has_order_24():
+    """P6₃-like hexagonal self-match: full closure recovers 24 operators."""
+    hex_cell = (41.8, 41.8, 233.0, 90.0, 90.0, 120.0)
+    ops = reindexing_via_canonical(hex_cell, hex_cell, boundary_rel=0)
+    assert len(ops) == 24
+
+
+def test_coset_odd_vs_even_cuboid_has_order_8():
+    """Odd-class cuboid vs even-class presentation: still the full mmm coset."""
+    ortho = (3.0, 4.0, 5.0, 90.0, 90.0, 90.0)
+    even = _even_class_cell(ortho)
+    ops0 = reindexing_via_canonical(ortho, even, boundary_rel=0)
+    ops = reindexing_via_canonical(ortho, even)  # default noise expander
+    assert len(ops0) == 8
+    assert len(ops) == 8
+
+
+def test_noisy_hex_classified_with_angle_sigma():
+    """0.05° noise looks like V1 at tol=1e-9; angle_sigma restores V4."""
+    from agentsg.cell.selling_closure import voronoi_type
+    hex_cell = (41.8, 41.8, 233.0, 90.0, 90.0, 120.0)
+    noisy = (41.8, 41.8, 233.0, 90.05, 89.97, 120.04)
+    assert voronoi_type(noisy) == 1
+    assert voronoi_type(noisy, angle_sigma=0.05) == 4
+    # modest metric tolerance recovers the full coset against the clean reference
+    ops = reindexing_via_canonical(hex_cell, noisy, verify_rel=1e-3, boundary_rel=0)
+    assert len(ops) == 24

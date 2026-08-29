@@ -131,25 +131,44 @@ def _superbase_lengths(cell):
     return [sqrt(max(_dot(S[i], S[i]), 0.0)) for i in range(4)]
 
 
-def pair_noise_scales(cell, angle_sigma_deg):
-    """Per-pair conorm noise floors ``s_ij ≈ |v_i| |v_j| σ_θ`` (Angstrom²).
+def conorm_sum(cell):
+    """Invariant T = Σ_{i<j} p_ij (same on every Selling-closure member)."""
+    p = conorms(cell)
+    return sum(_clamp0(p[ij]) for ij in _PAIRS)
 
-    Angular noise is approximately Gaussian in conorm space. Pair-local floors
-    keep the long axis from setting the floor on short-edge pairs. ``angle_sigma_deg``
-    is the one-sigma angular noise in degrees.
+
+def noise_floor(cell, angle_sigma_deg, c=1.0):
+    """Closure-invariant global conorm floor ``s = c · σ_θ · T`` (Angstrom²).
+
+    ``T = Σ p_ij`` is unchanged by Selling flips (Kurlin Lemma A.1 with ε=0
+    permutes the conorms). Per-pair floors ``|v_i||v_j|σ_θ`` are *not*
+    closure-invariant (even-class superbases have different edge lengths).
     """
     import math
-    lengths = _superbase_lengths(cell)
-    sig = math.radians(float(angle_sigma_deg))
-    return {(i, j): lengths[i] * lengths[j] * sig for (i, j) in _PAIRS}
+    T = conorm_sum(cell)
+    return float(c) * math.radians(float(angle_sigma_deg)) * T
+
+
+def pair_noise_scales(cell, angle_sigma_deg, c=1.0):
+    """Global invariant floor broadcast to all six pairs (API compat).
+
+    Historically named for per-pair scales; now returns the same
+    :func:`noise_floor` value for every pair so stabilised keys remain
+    one-per-lattice across the Selling closure.
+    """
+    s = noise_floor(cell, angle_sigma_deg, c=c)
+    return {ij: s for ij in _PAIRS}
 
 
 def _resolve_floors(cell, floors, angle_sigma):
     if floors is not None:
+        if isinstance(floors, (int, float)):
+            s = float(floors)
+            return {ij: s for ij in _PAIRS}
         return floors
     if angle_sigma is None:
         raise ValueError(
-            "stabilize mode needs per-pair floors=... or angle_sigma=... (degrees)"
+            "stabilize mode needs floors=... or angle_sigma=... (degrees)"
         )
     return pair_noise_scales(cell, angle_sigma)
 
@@ -170,7 +189,7 @@ def _slot_map(p, s, stabilize, kappa, length_scale):
         s = max(float(s), 0.0)
         return sqrt(max(p - float(kappa) * s, 0.0))
     if stabilize == "linear":
-        # p / L with L a length → Angstrom units (Lipschitz, Gaussian-noise preserving)
+        # p / L with L = √T (closure-invariant length) → Angstrom units
         L = max(float(length_scale), 1e-12)
         return p / L
     raise ValueError(
@@ -187,16 +206,18 @@ def root_products(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None
     stabilize : None | 'sqrt' | 'floored' | 'soft_threshold' | 'linear'
         Default ``None`` (same as ``'sqrt'``) is Kurlin ``r_ij = sqrt(p_ij)``.
         ``floored`` uses ``sqrt(p+s)-sqrt(s)``; ``soft_threshold`` uses
-        ``sqrt(max(p-κs, 0))``; ``linear`` uses ``p/L`` with
-        ``L = max_i |v_i|``. Any monotone per-slot map preserves sorting
-        invariance and the rearrangement lower bound in the chosen metric.
+        ``sqrt(max(p-κs, 0))``; ``linear`` uses ``p/√T`` with invariant
+        ``T = Σ p_ij``. A monotone per-slot map ``f(p)`` preserves one key
+        per lattice and the rearrangement lower bound only when ``f`` depends
+        on ``p`` and *lattice invariants* (not basis-dependent lengths).
     angle_sigma : float, optional
-        Angular noise σ in degrees; used to build per-pair floors
-        ``s_ij = |v_i||v_j| σ_θ`` when ``floors`` is omitted.
+        Angular noise σ in degrees; builds the invariant floor
+        ``s = σ_θ · T`` when ``floors`` is omitted.
     kappa : float
         Soft-threshold multiple of ``s`` (table default 2).
-    floors : dict, optional
-        Explicit per-pair ``s_ij`` (Angstrom²), overriding ``angle_sigma``.
+    floors : float or dict, optional
+        Explicit global floor (Angstrom²) or per-pair dict; overrides
+        ``angle_sigma``. Prefer a scalar / invariant floor.
 
     A stabilised key is a *different* metric from Kurlin's √ root products: the
     floor chooses the resolution at which near-zero conorms are treated as
@@ -207,8 +228,8 @@ def root_products(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None
     if stabilize is None or stabilize == "sqrt":
         return {ij: sqrt(_clamp0(p[ij])) for ij in _PAIRS}
 
-    lengths = _superbase_lengths(cell)
-    length_scale = max(lengths) if lengths else 1.0
+    T = sum(_clamp0(p[ij]) for ij in _PAIRS)
+    length_scale = sqrt(max(T, 0.0))  # √T: closure-invariant length
     s_map = None
     if stabilize in ("floored", "soft_threshold"):
         s_map = _resolve_floors(cell, floors, angle_sigma)
