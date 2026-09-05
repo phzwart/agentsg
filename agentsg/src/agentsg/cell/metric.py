@@ -16,30 +16,35 @@ Conventions:
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from math import cos, sin, sqrt, radians, degrees, acos, asin, pi
+from math import cos, sin, sqrt, radians, degrees, acos, asin
 from typing import Sequence
 
 Vec = Sequence[float]
 
 
 def _mat_vec(M, v):
+    """Matrix-vector product M @ v for 3x3 M and 3-element vector v."""
     return [sum(M[i][j] * v[j] for j in range(3)) for i in range(3)]
 
 
 def _mat_mat(A, B):
+    """Matrix-matrix product A @ B for 3x3 matrices."""
     return [[sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 
 
 def _transpose(M):
+    """Transpose of a 3x3 matrix."""
     return [[M[j][i] for j in range(3)] for i in range(3)]
 
 
 def _det3(M):
+    """Determinant of a 3x3 float matrix."""
     (a, b, c), (d, e, f), (g, h, i) = M
     return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
 
 
 def _inv3(M):
+    """Inverse of a 3x3 float matrix via cofactor expansion."""
     det = _det3(M)
     if abs(det) < 1e-300:
         raise ValueError("singular matrix")
@@ -85,6 +90,7 @@ def params_from_metric(G: Sequence[Sequence[float]]) -> tuple[float, float, floa
         raise ValueError("non-positive cell edge in metric")
 
     def ang(x: float) -> float:
+        """Convert cosine x to degrees, clamped to [-1, 1]."""
         return degrees(acos(max(-1.0, min(1.0, x))))
 
     return (
@@ -114,15 +120,18 @@ class UnitCell:
 
     # --- metric tensor and volume ---
     def metric_tensor(self) -> list[list[float]]:
+        """Direct-space 3x3 metric tensor G = [[a·a, a·b, a·c], ...]."""
         return metric_tensor((self.a, self.b, self.c, self.alpha, self.beta, self.gamma))
 
     def volume(self) -> float:
+        """Unit cell volume V = a b c sqrt(1 - cos²α - cos²β - cos²γ + 2cosα cosβ cosγ)."""
         a, b, c = self.a, self.b, self.c
         ca, cb, cg = cos(radians(self.alpha)), cos(radians(self.beta)), cos(radians(self.gamma))
         return a * b * c * sqrt(max(0.0, 1 - ca*ca - cb*cb - cg*cg + 2*ca*cb*cg))
 
     # --- reciprocal cell ---
     def reciprocal_metric_tensor(self) -> list[list[float]]:
+        """Reciprocal metric tensor G* = G^-1."""
         return _inv3(self.metric_tensor())
 
     def reciprocal(self) -> "UnitCell":
@@ -149,9 +158,11 @@ class UnitCell:
         return _inv3(self.orthogonalization_matrix())
 
     def orthogonalize(self, frac: Vec) -> list[float]:
+        """Convert fractional coordinates to Cartesian coordinates (in length units)."""
         return _mat_vec(self.orthogonalization_matrix(), list(frac))
 
     def fractionalize(self, cart: Vec) -> list[float]:
+        """Convert Cartesian coordinates to fractional coordinates."""
         return _mat_vec(self.fractionalization_matrix(), list(cart))
 
     # --- d-spacings and reflection geometry ---

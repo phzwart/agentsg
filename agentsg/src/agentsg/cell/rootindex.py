@@ -16,6 +16,7 @@ from .rootform import root_invariant
 
 
 def _primitive_for_roots(cell, sg_hm):
+    """Obtain primitive cell if space group is known, else return input cell."""
     if not sg_hm:
         return cell
     try:
@@ -63,6 +64,7 @@ class RootIndex:
         return len(self._ids)
 
     def _query_root(self, cell, sg_hm=None):
+        """Compute the 6D root invariant coordinate for the query cell."""
         return np.asarray(
             root_invariant(_primitive_for_roots(cell, sg_hm)), dtype=np.float64)
 
@@ -96,10 +98,13 @@ class RootIndex:
 
     # aliases used by lattice_index
     def nearest_cell(self, cell, sg_hm=None):
+        """Find the single closest stored cell to query cell."""
         return self.nearest(cell, sg_hm=sg_hm)
 
     def k_nearest_cells(self, cell, k, sg_hm=None):
+        """Find k closest stored cells to query cell."""
         return self.k_nearest(cell, k=k, sg_hm=sg_hm)
 
     def within_cells(self, cell, radius, sg_hm=None):
+        """Find all stored cells within radius Å of query cell."""
         return self.within(cell, radius, sg_hm=sg_hm)

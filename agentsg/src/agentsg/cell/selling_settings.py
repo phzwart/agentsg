@@ -26,7 +26,6 @@ from fractions import Fraction as Fr
 from ..linalg import Matrix3, Vector3
 from ..change_of_basis import ChangeOfBasis
 from ..setting import SpaceGroupSetting, format_cob
-from ..space_groups import space_group
 from .metric import UnitCell, params_from_metric
 from .canonical import canonical_superbase
 from .selling_group import selling_group

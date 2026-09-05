@@ -53,19 +53,23 @@ class CellMatch:
 
 
 def _metric(cell):
+    """Compute 3x3 numeric metric tensor from cell parameters."""
     return UnitCell(*cell).metric_tensor()
 
 
 def _params_from_G(G):
+    """Compute cell parameters (a, b, c, alpha, beta, gamma) from 3x3 metric tensor."""
     return params_from_metric(G)
 
 
 def _apply_M(G, M):
+    """Compute transformed metric tensor M^T G M."""
     MtG = [[sum(M[k][i] * G[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
     return [[sum(MtG[i][k] * M[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 
 
 def _deviations(cell, target):
+    """Compute percentage length deviations and degree angle differences."""
     dl = tuple((cell[i] - target[i]) / target[i] * 100.0 for i in range(3))
     da = tuple(cell[3 + i] - target[3 + i] for i in range(3))
     return dl + da

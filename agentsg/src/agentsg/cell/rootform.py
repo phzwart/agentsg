@@ -70,6 +70,7 @@ def _cart_basis(cell):
 
 
 def _dot(a, b):
+    """Euclidean dot product of two 3-vectors."""
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
 
@@ -169,6 +170,7 @@ def pair_noise_scales(cell, angle_sigma_deg, c=1.0):
 
 
 def _resolve_floors(cell, floors, angle_sigma):
+    """Normalize user-supplied noise floors into a dict mapping superbase pair to floor value."""
     if floors is not None:
         if isinstance(floors, (int, float)):
             s = float(floors)
@@ -276,6 +278,7 @@ def vonorms_from_conorms(p):
     ``{i,j}`` / ``{k,l}``. Returns a length-7 list (squared lengths).
     """
     def _p(i, j):
+        """Extract conorm p_ij using canonical index ordering i < j."""
         return p[(i, j) if i < j else (j, i)]
 
     vertex = []
@@ -366,7 +369,6 @@ def sorted_key_lower_bound(x, y, G=None):
     allowed relabelling group ``G ⊆ S_6`` the sorted distance is therefore a
     certified lower bound on the orbit distance (main_v5 Lemma).
     """
-    from itertools import permutations
     sx = tuple(sorted(x))
     sy = tuple(sorted(y))
     sorted_d = sqrt(sum((sx[i] - sy[i]) ** 2 for i in range(len(sx))))

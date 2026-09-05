@@ -8,12 +8,13 @@ and inversion are exact -- no floating point anywhere in this module.
 from __future__ import annotations
 import re
 from fractions import Fraction
-from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3, F
+from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3
 
 _TERM_RE = re.compile(r'([+-]?)(\d*)([xyz])|([+-]?)(\d+)(?:/(\d+))?')
 
 
 def _parse_component(s: str) -> tuple[Fraction, Fraction, Fraction, Fraction]:
+    """Parse one coordinate component string (e.g. ``'-x+1/2'``) into (cx, cy, cz, const)."""
     s = s.replace(' ', '')
     coeffs = {'x': Fraction(0), 'y': Fraction(0), 'z': Fraction(0)}
     const = Fraction(0)
@@ -37,6 +38,8 @@ def _parse_component(s: str) -> tuple[Fraction, Fraction, Fraction, Fraction]:
 
 
 class SymmetryOp:
+    """Exact Seitz symmetry operator (W, w) acting as x' = W x + w (mod 1)."""
+
     __slots__ = ("W", "w")
 
     def __init__(self, W: Matrix3, w: Vector3):
@@ -48,6 +51,7 @@ class SymmetryOp:
         return SymmetryOp(self.W @ other.W, (self.W @ other.w) + self.w)
 
     def inverse(self) -> "SymmetryOp":
+        """Exact operator inverse (W^-1, -W^-1 w)."""
         Winv = self.W.inverse()
         return SymmetryOp(Winv, -(Winv @ self.w))
 
@@ -62,10 +66,12 @@ class SymmetryOp:
 
     @classmethod
     def identity(cls) -> "SymmetryOp":
+        """Return the identity operator (I, 0)."""
         return cls(IDENTITY3, ZERO3)
 
     @classmethod
     def from_xyz(cls, triplet: str) -> "SymmetryOp":
+        """Parse an ITA xyz triplet such as ``'-x+1/2, y, -z+1/2'``."""
         comps = triplet.split(',')
         if len(comps) != 3:
             raise ValueError(f"expected 3 comma-separated components, got {triplet!r}")
@@ -77,6 +83,7 @@ class SymmetryOp:
         return cls(Matrix3(rows), Vector3(consts))
 
     def as_xyz(self) -> str:
+        """Format the operator as a standard ITA xyz triplet."""
         names = ('x', 'y', 'z')
         parts = []
         for row, t in zip(self.W.rows, self.w.v):

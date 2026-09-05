@@ -34,7 +34,6 @@ against an independent Hall-symbol implementation -- not recalled from memory.
 """
 from __future__ import annotations
 from fractions import Fraction as Fr
-from typing import Sequence
 from .linalg import Matrix3, Vector3, IDENTITY3
 from .symmetry_op import SymmetryOp
 
@@ -186,6 +185,7 @@ def parse_hall(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
 
 
 def _parse_hall_body(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
+    """Parse a verified non-empty Hall symbol string into generators and centrings."""
     origin = None
     if "(" in symbol:
         body, _, rest = symbol.partition("(")
@@ -243,7 +243,7 @@ def _parse_hall_body(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
                     a, b, c = _TRANSLATIONS[ch]
                     tx += a; ty += b; tz += c
                 elif ch.isdigit():
-                    frac = Fr(int(ch), order)  # screw along the ' /" axis: rare
+                    pass  # screw along the ' /" axis: rare
             generators.append(SymmetryOp(W, Vector3((tx, ty, tz))))
             prev_order, prev_axis = order, axis_hint
             continue

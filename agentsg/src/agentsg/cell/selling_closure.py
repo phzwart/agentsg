@@ -19,6 +19,7 @@ from .canonical import canonical_superbase, _metric, _dotG
 
 
 def _conorm_tol(C, G, rel=1e-9):
+    """Relative numerical tolerance scaled by the maximum superbase vector length."""
     scale = max(abs(_dotG(C[i], C[i], G)) for i in range(4)) or 1.0
     return rel * scale
 
@@ -34,6 +35,7 @@ def _zero_pairs(C, G, tol):
 
 
 def _is_obtuse(C, G, tol):
+    """True if all scalar products v_i · v_j <= tol (obtuse superbase)."""
     for i in range(4):
         for j in range(i + 1, 4):
             if _dotG(C[i], C[j], G) > tol:
@@ -47,6 +49,7 @@ def _ukey(C):
 
 
 def _opposite_pair(i, j):
+    """Complementary pair of indices {0, 1, 2, 3} \\ {i, j}."""
     return tuple(sorted(k for k in range(4) if k != i and k != j))
 
 
@@ -93,7 +96,7 @@ def voronoi_type_from_superbase(C, G, tol=None):
         return 2
     if n >= 3:
         return 5
-    (a, b), (c, d) = zeros[0], zeros[1]
+    (a, b) = zeros[0]
     if set(zeros[1]) == set(_opposite_pair(a, b)):
         return 3
     return 4

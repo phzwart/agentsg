@@ -21,11 +21,12 @@ from __future__ import annotations
 from fractions import Fraction as Fr
 from itertools import product
 from typing import Iterable, Sequence
-from .linalg import Matrix3, Vector3, IDENTITY3, frac_mod1
+from .linalg import Matrix3, Vector3
 from .symmetry_op import SymmetryOp
 
 
 def _vec_mod1(v: Vector3) -> Vector3:
+    """Reduce components of a vector into [0, 1)."""
     return v.mod1()
 
 
@@ -76,7 +77,7 @@ def general_position_multiplicity(operations: Sequence[SymmetryOp]) -> int:
 # Exact fixed-locus solver:  solve  (W - I) x == -w  (mod 1)  over the rationals
 # ---------------------------------------------------------------------------
 # Implementations live in rational_solve; keep private aliases for back-compat.
-from .rational_solve import rref as _rref, solve_affine as _solve_affine  # noqa: E402
+from .rational_solve import rref as _rref, solve_affine as _solve_affine  # noqa: E402, F401
 
 
 def fixed_locus(op: SymmetryOp, t_range: int = 2):

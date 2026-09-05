@@ -137,7 +137,8 @@ def _det(M: Sequence[Sequence[int]]) -> int:
     return int(d)
 
 
-def _dot(a: Sequence, b: Sequence):
+def _dot(a: Sequence, b: Sequence) -> Fraction:
+    """Exact rational dot product of two sequences."""
     return sum((Fraction(x) * Fraction(y) for x, y in zip(a, b)), Fraction(0))
 
 
@@ -145,6 +146,7 @@ def _dot(a: Sequence, b: Sequence):
 
 
 def _W_rows(op: SymmetryOp) -> tuple[tuple[int, ...], ...]:
+    """Integer rows of a SymmetryOp rotation part."""
     return tuple(tuple(int(x) for x in row) for row in op.W.rows)
 
 
@@ -171,6 +173,7 @@ def _intersect(b1, b2) -> list[list[int]]:
 
 
 def _hkey(basis) -> tuple:
+    """Canonical row-HNF tuple key for a basis."""
     return tuple(tuple(r) for r in _row_hnf(basis))
 
 
@@ -238,6 +241,7 @@ def _canon_congruence(f: Sequence[int], m: int):
         return None
 
     def reduce_mod(v):
+        """Reduce integer components into (-m/2, m/2]."""
         out = []
         for x in v:
             r = x % m
@@ -252,6 +256,7 @@ def _canon_congruence(f: Sequence[int], m: int):
     neg = reduce_mod([-x for x in f])
 
     def rank(v):
+        """Tie-breaker score preferring positive terms in canonical ITA order."""
         # ITA: -h+k+l rather than h-k-l (more positive terms); -h+k rather
         # than h-k (the later letters stay positive)
         return (sum(v), [1 if x > 0 else (-1 if x < 0 else 0) for x in reversed(v)])
@@ -272,6 +277,7 @@ def _congruence_lattice(congs: Sequence[tuple[tuple[int, ...], int]], d: int):
 
 
 def _index(basis, d) -> int:
+    """Sublattice index (determinant magnitude) for a full-rank basis."""
     if len(basis) < d:
         return 0
     return abs(_det(basis))
@@ -332,6 +338,7 @@ def _letters(basis) -> list[str]:
 
 
 def _term(coef: int, sym: str, first: bool) -> str:
+    """Format one algebraic term with sign and magnitude (e.g. '+2k', '-h')."""
     if coef == 0:
         return ""
     mag = "" if abs(coef) == 1 else str(abs(coef))
@@ -380,7 +387,6 @@ def crystal_family(operations: Iterable[SymmetryOp]) -> tuple[str, int]:
             continue
         axes.setdefault(tuple(fix[0]), 0)
         axes[tuple(fix[0])] = max(axes[tuple(fix[0])], n)
-    orders = sorted(axes.values(), reverse=True)
     unit = {(1, 0, 0): 0, (0, 1, 0): 1, (0, 0, 1): 2}
     if any(n == 3 and d not in unit for d, n in axes.items()) and \
             sum(1 for n in axes.values() if n == 3) >= 4:
@@ -400,6 +406,7 @@ def crystal_family(operations: Iterable[SymmetryOp]) -> tuple[str, int]:
 
 
 def _matrix_order(W, max_n=6) -> int:
+    """Order of integer rotation matrix W (smallest n>=1 with W^n = I)."""
     P = [[int(i == j) for j in range(3)] for i in range(3)]
     for n in range(1, max_n + 1):
         P = [[sum(P[i][k] * W[k][j] for k in range(3)) for j in range(3)]
@@ -436,6 +443,7 @@ _NAME_RANK = {"hkl": 0,
 
 
 def _name_rank(name: str, hexagonal: bool = False) -> tuple:
+    """Sort key prioritizing standard ITA reflection-class ordering."""
     r = _NAME_RANK.get(name, 50 + len(name))
     if hexagonal and name in ("h-hl", "h-h0"):
         r -= 5          # ITA names the h-h0l / h-h00 zones first in hexagonal groups
@@ -443,6 +451,7 @@ def _name_rank(name: str, hexagonal: bool = False) -> tuple:
 
 
 def format_conditions(congs, letters) -> str:
+    """Format a list of ((c1, c2, ...), m) congruences as an ITA condition string."""
     by_mod: dict[int, list[str]] = {}
     # ITA lists single-letter forms in h, k, l order: "h, k = 2n"
     order = {L: i for i, L in enumerate(_LETTERS)}
@@ -457,6 +466,7 @@ def format_conditions(congs, letters) -> str:
 
 
 def _stabiliser(basis, Ws):
+    """Subgroup of point-group matrices that fix every vector in the stratum."""
     return [W for W in Ws
             if all(all(sum(b[i] * W[i][j] for i in range(3)) == b[j]
                        for j in range(3)) for b in basis)]

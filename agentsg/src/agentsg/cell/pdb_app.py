@@ -133,6 +133,7 @@ def build_pdb_database(db_path="pdb_cells.duckdb", ids=None, resume=True,
 
 
 def _cli(argv=None):
+    """Command-line entry point for pdb_app commands."""
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help"):
         print(__doc__)

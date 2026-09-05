@@ -1,3 +1,19 @@
+"""
+agentsg: exact-rational space-group algebra for all 230 groups.
+
+Features:
+* Exact-rational linear algebra (Fraction-based, no fixed denominators).
+* Hall symbol parser and generator table for all 230 standard space groups.
+* Group closure, point groups, centring vectors, and systematic absences.
+* Change-of-basis operations and arbitrary Hermann-Mauguin / Hall settings.
+* Wyckoff positions, site-symmetry stabilisers, and orbits derived from first principles.
+* Reflection conditions derived as sublattices in projection.
+* Harker sections and self-Patterson vectors.
+* Direct and reciprocal asymmetric units (bricks and Dirichlet Voronoi domains).
+* Semi-invariants and continuous / discrete origin degrees of freedom.
+* Metric lattice symmetry, Le Page delta, and tolerance metric automorphisms.
+* Zero runtime dependencies.
+"""
 from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3, frac_mod1
 from .symmetry_op import SymmetryOp
 from .group import (
@@ -35,6 +51,10 @@ from .harker import (
     HarkerConstraint, HarkerLocus,
     harker_sections, harker_vector, site_from_harker,
 )
+from .wyckoff import (
+    site_symmetry_ops, site_symmetry_point_group, site_symmetry_order,
+    orbit, multiplicity, general_position_multiplicity, fixed_locus,
+)
 
 __all__ = [
     "Matrix3", "Vector3", "IDENTITY3", "ZERO3", "frac_mod1",
@@ -60,4 +80,6 @@ __all__ = [
     "build_dirichlet_asu", "optimize_asu", "laue_class",
     "HarkerConstraint", "HarkerLocus",
     "harker_sections", "harker_vector", "site_from_harker",
+    "site_symmetry_ops", "site_symmetry_point_group", "site_symmetry_order",
+    "orbit", "multiplicity", "general_position_multiplicity", "fixed_locus",
 ]

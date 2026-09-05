@@ -87,6 +87,7 @@ def list_pdb_ids(timeout=60):
 
 
 def _graphql_batch(ids, timeout=60):
+    """Query RCSB GraphQL endpoint for a batch of PDB entry ids."""
     q = ('{entries(entry_ids:%s){rcsb_id '
          'cell{length_a length_b length_c angle_alpha angle_beta angle_gamma} '
          'symmetry{space_group_name_H_M Int_Tables_number}}}' % json.dumps(list(ids)))
@@ -249,6 +250,7 @@ class CellDatabase:
     # -- nearest-neighbour search --
     def _candidates(self, sg_number=None, match_sg_hm=None, volume=None,
                     volume_tol=0.25):
+        """Fetch candidate rows from SQLite/DuckDB matching optional space group and volume filters."""
         where, params = [], []
         if match_sg_hm is not None:
             # Exact Hermann-Mauguin match (preferred over IT number: the same
@@ -340,6 +342,7 @@ class CellDatabase:
         )
 
         def _consider(pdb_id, index, distance_pct, relation, M):
+            """Record or update a candidate match if its distance improves on previous records."""
             row = self._db.execute(
                 "SELECT a,b,c,alpha,beta,gamma,sg_number,sg_hm FROM cells "
                 "WHERE pdb_id=?", [pdb_id]).fetchone()
@@ -460,7 +463,15 @@ class CellDatabase:
         }
 
     def close(self):
+        """Close the underlying DuckDB / SQLite database connection."""
         self._db.close()
 
 
-from .rootindex import RootIndex  # re-export
+from .rootindex import RootIndex  # noqa: F401 re-export
+
+__all__ = [
+    "CellDatabase",
+    "RootIndex",
+    "fetch_pdb_cells",
+    "list_pdb_ids",
+]

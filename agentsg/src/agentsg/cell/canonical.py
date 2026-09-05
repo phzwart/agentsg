@@ -39,6 +39,7 @@ _PERMS = tuple(permutations(range(4)))
 
 
 def _metric(cell):
+    """Compute 3x3 numeric metric tensor from cell parameters."""
     return UnitCell(*cell).metric_tensor()
 
 
@@ -109,6 +110,7 @@ def superbase_variants(cell, boundary_rel=1e-3, max_variants=64):
     tol = boundary_rel * scale
 
     def key(C):
+        """Canonical tuple key of superbase coordinates."""
         return tuple(tuple(v) for v in C)
 
     seen = {}
@@ -161,6 +163,7 @@ def _inv3_frac(M):
 
 
 def _matmul_frac(A, B):
+    """Matrix multiplication A @ B over fractions."""
     return [[sum(Fraction(A[r][k]) * B[k][col] for k in range(3))
              for col in range(3)] for r in range(3)]
 

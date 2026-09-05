@@ -39,11 +39,13 @@ from .metric import UnitCell, params_from_metric
 
 
 def _matmul(A, B):
+    """Matrix multiplication of two 3x3 matrices."""
     return tuple(tuple(sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3))
                  for i in range(3))
 
 
 def _transp(A):
+    """Transpose of a 3x3 matrix."""
     return tuple(tuple(A[j][i] for j in range(3)) for i in range(3))
 
 
@@ -113,6 +115,7 @@ def _find_base_reindex(cell_A, cell_B, length_tol_pct, angle_tol_deg):
 
 
 def _transform_metric(G, M):
+    """Compute transformed metric tensor M^T G M."""
     MtG = [[sum(M[k][i] * G[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
     return [[sum(MtG[i][k] * M[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 

@@ -27,6 +27,7 @@ from .rational_solve import solve_affine as _solve_affine, rref as _rref
 
 
 def _ImW(W: Matrix3) -> Matrix3:
+    """Compute (I - W) as an exact Matrix3."""
     return Matrix3([
         [(1 if i == j else 0) - W.rows[i][j] for j in range(3)]
         for i in range(3)
@@ -73,6 +74,7 @@ class HarkerConstraint:
     constant: Fr
 
     def satisfied(self, u: Vector3 | Sequence, tol: Fr | None = None) -> bool:
+        """True if Patterson vector ``u`` satisfies ``n · u ≡ c (mod 1)``."""
         if isinstance(u, Vector3):
             uv = u
         else:
@@ -109,7 +111,7 @@ class HarkerLocus:
 
     @property
     def kind(self) -> str:
-        d = 3 - self.rank  # codimension = number of independent constraints
+        """Geometric locus dimension category: 'section' (plane), 'line', or 'point'."""
         if self.rank == 2:
             return "section"
         if self.rank == 1:
@@ -119,6 +121,7 @@ class HarkerLocus:
         return "unknown"
 
     def contains(self, u: Vector3 | Sequence) -> bool:
+        """True if Patterson vector ``u`` satisfies all defining constraints of this locus."""
         return all(c.satisfied(u) for c in self.constraints)
 
     def __str__(self) -> str:
@@ -158,6 +161,7 @@ def _left_nullspace(M: Matrix3) -> list[Vector3]:
 
 
 def _matrix_rank(M: Matrix3) -> int:
+    """Exact rank of a 3x3 matrix over the rationals."""
     A = [[M.rows[i][j] for j in range(3)] for i in range(3)]
     b = [Fr(0), Fr(0), Fr(0)]
     _R, _c, pivots = _rref(A, b)
@@ -165,6 +169,7 @@ def _matrix_rank(M: Matrix3) -> int:
 
 
 def _locus_key(constraints: Sequence[HarkerConstraint]) -> tuple:
+    """Canonical hashable key for a set of Harker constraints."""
     return tuple(sorted(
         (c.normal.v, c.constant) for c in constraints
     ))
@@ -213,6 +218,7 @@ def harker_sections(
 
 
 def _unique_constraints(cons: Sequence[HarkerConstraint]) -> list[HarkerConstraint]:
+    """Deduplicate Harker constraints preserving first appearance order."""
     seen = set()
     out = []
     for c in cons:

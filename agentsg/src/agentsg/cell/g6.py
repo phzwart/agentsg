@@ -80,6 +80,7 @@ def s6(cell):
 
 
 def _euclid(u, v):
+    """Euclidean distance between two numeric sequences."""
     return sqrt(sum((u[i] - v[i]) ** 2 for i in range(len(u))))
 
 
@@ -166,6 +167,7 @@ def _symmetrize_metric(G, rot_rows):
 
 
 def _op_rows(point_group_ops):
+    """Extract float 3x3 rotation matrices from point group operations or matrices."""
     rows = []
     for op in point_group_ops:
         W = op.W if hasattr(op, "W") else op

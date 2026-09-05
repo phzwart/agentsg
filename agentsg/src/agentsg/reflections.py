@@ -78,6 +78,7 @@ _CLASS_SUBST = {
 def _point_group_orbit(
     hkl: tuple[int, int, int], operations: Sequence[SymmetryOp],
 ) -> set[tuple[int, int, int]]:
+    """Distinct Miller indices produced by acting on hkl with the point-group rotations."""
     v = Vector3(hkl)
     return {
         (int(hp.v[0]), int(hp.v[1]), int(hp.v[2]))
@@ -208,6 +209,7 @@ def _points_satisfying(
     work: list[tuple[int, int, int]],
     constraints: Sequence[tuple[tuple[int, int, int], int]],
 ) -> set[tuple[int, int, int]]:
+    """Subset of reflections in work that satisfy all given congruences."""
     out = set()
     for hkl in work:
         h, k, l = hkl
@@ -236,6 +238,7 @@ def _minimise_constraints(
 
 
 def _format_constraints(constraints: list[tuple[tuple[int, int, int], int]]) -> str:
+    """Format integer linear congruences into an ITA condition string."""
     if not constraints:
         return ""
     by_mod: dict[int, list[tuple[int, int, int]]] = {}
@@ -335,6 +338,7 @@ def reflection_conditions_grid(operations: Sequence[SymmetryOp], rng: int = 6) -
 
 
 def _as_int_hkl(hkl: Vector3) -> tuple[int, int, int]:
+    """Coerce Vector3 to an integer triple (h, k, l)."""
     if any(x.denominator != 1 for x in hkl.v):
         raise ValueError("hkl must be integral")
     return int(hkl.v[0]), int(hkl.v[1]), int(hkl.v[2])
@@ -402,6 +406,7 @@ class EquivalentHKL:
 
     @property
     def N(self) -> int:
+        """Number of symmetry mates in the orbit."""
         return len(self.hkls)
 
 

@@ -32,6 +32,7 @@ from typing import Iterator, Sequence
 
 
 def _divisors(n: int):
+    """Return all positive integer divisors of n in increasing order."""
     return [d for d in range(1, n + 1) if n % d == 0]
 
 

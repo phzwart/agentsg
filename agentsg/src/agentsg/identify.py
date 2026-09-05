@@ -29,6 +29,7 @@ from .semi_invariants import floating_origin_basis, pin_floating_origin
 
 
 def _WmI(W: Matrix3) -> Matrix3:
+    """Compute (W - I) as an exact Matrix3."""
     return Matrix3([
         [W.rows[i][j] - (1 if i == j else 0) for j in range(3)]
         for i in range(3)
@@ -36,6 +37,7 @@ def _WmI(W: Matrix3) -> Matrix3:
 
 
 def _group_by_W(ops: Iterable[SymmetryOp]) -> dict[Matrix3, list[Vector3]]:
+    """Group translation vectors by their rotation matrix W."""
     out: dict[Matrix3, list[Vector3]] = {}
     for op in ops:
         out.setdefault(op.W, []).append(op.w)
@@ -43,6 +45,7 @@ def _group_by_W(ops: Iterable[SymmetryOp]) -> dict[Matrix3, list[Vector3]]:
 
 
 def _shift_translations(ws: list[Vector3], delta: Vector3) -> frozenset[Vector3]:
+    """Shift a collection of translation vectors by delta (mod 1)."""
     return frozenset((w + delta).mod1() for w in ws)
 
 
@@ -60,6 +63,7 @@ def _delta_relating(ws_in: list[Vector3], ws_std: list[Vector3]) -> Vector3 | No
 
 
 def _conjugate_by_origin(ops: frozenset[SymmetryOp], p: Vector3) -> frozenset[SymmetryOp]:
+    """Conjugate an operation set by the origin shift (I, p)."""
     cob = ChangeOfBasis(IDENTITY3, p)
     return frozenset(cob.apply_to_op(op) for op in ops)
 
@@ -119,7 +123,6 @@ def _origin_shift_to_standard(
     D = 1
     for d in dens:
         D = lcm(D, d)
-    free_grid = tuple(Fr(k, D) for k in range(D))
 
     def _accept(p: Vector3) -> Vector3 | None:
         """Pin floating components, then verify conjugation."""
@@ -256,14 +259,17 @@ class IdentifyResult:
 
     @property
     def number(self) -> int:
+        """Space-group number (1-230)."""
         return self.space_group.number
 
     @property
     def hall(self) -> str:
+        """Hall symbol of the matched space group."""
         return self.space_group.hall
 
     @property
     def hermann_mauguin(self) -> str:
+        """Hermann-Mauguin symbol of the matched space group."""
         return self.space_group.hermann_mauguin
 
 
@@ -273,6 +279,7 @@ _BY_FINGERPRINT: dict[tuple[int, frozenset[Matrix3]], list[SpaceGroup]] | None =
 
 
 def _ensure_cache() -> None:
+    """Precompute and cache standard operation sets and point-group fingerprints for all 230 groups."""
     global _OPS_CACHE, _BY_OPS, _BY_FINGERPRINT
     if _OPS_CACHE is not None:
         return
@@ -306,6 +313,7 @@ def identify_space_group(
     assert _BY_OPS is not None and _BY_FINGERPRINT is not None and _OPS_CACHE is not None
 
     def _result(sg: SpaceGroup, p: Vector3) -> IdentifyResult:
+        """Construct IdentifyResult with pinned origin and floating origin basis."""
         ops_sg = _OPS_CACHE[sg.number]
         float_basis = floating_origin_basis(ops_sg)
         pinned = pin_floating_origin(p, ops_sg)

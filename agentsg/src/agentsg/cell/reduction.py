@@ -27,10 +27,10 @@ to machine precision. A post-condition assertion enforces this on every return.
 """
 from __future__ import annotations
 from math import sqrt, cos, radians, degrees, acos
-from typing import Tuple
 
 
 def _params_to_scalars(a, b, c, al, be, ga):
+    """Convert cell parameters to scalar products (A, B, C, xi, eta, zeta)."""
     A = a * a
     B = b * b
     C = c * c
@@ -41,6 +41,7 @@ def _params_to_scalars(a, b, c, al, be, ga):
 
 
 def _scalars_to_params(A, B, C, xi, eta, zeta):
+    """Convert scalar products (A, B, C, xi, eta, zeta) back to cell parameters."""
     a = sqrt(A); b = sqrt(B); c = sqrt(C)
     al = degrees(acos(max(-1.0, min(1.0, xi / (2 * b * c)))))
     be = degrees(acos(max(-1.0, min(1.0, eta / (2 * a * c)))))
@@ -49,6 +50,7 @@ def _scalars_to_params(A, B, C, xi, eta, zeta):
 
 
 def _matmul(P, Q):
+    """Multiply two 3x3 matrices represented as nested lists."""
     return [[sum(P[i][k] * Q[k][j] for k in range(3)) for j in range(3)]
             for i in range(3)]
 
@@ -63,6 +65,7 @@ def _transform_metric(G, M):
 
 
 def _gram_from_params(a, b, c, alpha, beta, gamma):
+    """Construct 3x3 Gram matrix from unit-cell parameters."""
     A, B, C, xi, eta, zeta = _params_to_scalars(a, b, c, alpha, beta, gamma)
     return [
         [A, zeta / 2.0, eta / 2.0],
@@ -176,19 +179,24 @@ def niggli_gk(cell, eps_rel: float = 1e-9, max_iter: int = 1000):
     M = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
     def _apply(T):
+        """Accumulate change-of-basis matrix M <- M @ T."""
         nonlocal M
         M = _matmul(M, T)
 
     def gt(x, y):
+        """Tolerance-guarded x > y."""
         return x > y + eps
 
     def lt(x, y):
+        """Tolerance-guarded x < y."""
         return x < y - eps
 
     def eq(x, y):
+        """Tolerance-guarded equality |x - y| <= eps."""
         return abs(x - y) <= eps
 
     def sign(x):
+        """Tolerance-guarded signum (-1, 0, or 1)."""
         if gt(x, 0):
             return 1
         if lt(x, 0):

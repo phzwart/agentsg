@@ -28,7 +28,6 @@ from __future__ import annotations
 import re
 from fractions import Fraction as Fr
 from itertools import product
-from typing import Iterable
 
 from .linalg import Matrix3, Vector3, IDENTITY3
 from .symmetry_op import SymmetryOp
@@ -57,6 +56,7 @@ _TERM_RE = re.compile(
 
 
 def _parse_field(field: str) -> tuple[Fr, Fr, Fr, Fr]:
+    """Parse one linear combination field (e.g. ``'a+b-c;1/2'``) into (c_a, c_b, c_c, const)."""
     s = field.replace(" ", "")
     if not s:
         raise ValueError("empty change-of-basis field")
@@ -171,6 +171,7 @@ class SpaceGroupSetting:
 
     @classmethod
     def parse(cls, text: str) -> "SpaceGroupSetting":
+        """Parse a setting specification like ``'P 21 21 21 (b,c,a)'`` into a SpaceGroupSetting."""
         base, cob = parse_setting(text)
         return cls(base, cob)
 
@@ -201,9 +202,11 @@ class SpaceGroupSetting:
         return close_group(transformed, max_order=max_order)
 
     def order(self) -> int:
+        """Total number of operations in this setting."""
         return len(self.operations())
 
-    def change_of_basis_matrix(self):
+    def change_of_basis_matrix(self) -> Matrix3:
+        """Matrix P relating new basis vectors to the standard basis: (a',b',c') = (a,b,c) P."""
         return self.cob.P
 
     def __str__(self) -> str:
@@ -214,6 +217,7 @@ class SpaceGroupSetting:
 
 
 def _fmt_frac(f: Fr) -> str:
+    """Format a Fraction as an exact string without trailing .0."""
     if f.denominator == 1:
         return str(f.numerator)
     return f"{f.numerator}/{f.denominator}"

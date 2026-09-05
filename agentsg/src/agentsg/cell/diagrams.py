@@ -87,6 +87,7 @@ def _sg_label(sg):
 
 
 def _sg_order(sg):
+    """Return the order of the space group object or setting."""
     o = getattr(sg, "order", None)
     return o() if callable(o) else (o if o is not None else len(_sg_ops(sg)))
 
@@ -161,6 +162,7 @@ def cell_frame(sg, projection="c"):
     col = {p: i for i, p in enumerate(pairs)}
 
     def gidx(i, j):
+        """Map symmetric matrix indices (i, j) to 6D column vector index."""
         return col[(i, j) if i <= j else (j, i)]
 
     rows = []
@@ -225,11 +227,13 @@ class _Frame:
         return v / n if n > 1e-12 else v
 
     def limits(self, pad=0.15):
+        """Compute (x_limits, y_limits) with padding for the cell bounding box."""
         xs = [c[0] for c in self.corners]
         ys = [c[1] for c in self.corners]
         return (min(xs) - pad, max(xs) + pad), (max(ys) + pad, min(ys) - pad)
 
     def draw_cell(self, ax, lw=1.2):
+        """Draw the projected unit cell boundary polygon onto matplotlib ax."""
         from matplotlib.patches import Polygon
         ax.add_patch(Polygon(self.corners, closed=True, fill=False, ec="k",
                              lw=lw, zorder=2))
@@ -403,6 +407,7 @@ def _draw_lens(ax, xy, size, angle=0.0, **kw):
 
 
 def _draw_regular_polygon(ax, xy, n, size, filled=True, **kw):
+    """Draw a regular polygon with n vertices centered at xy."""
     from matplotlib.patches import RegularPolygon
     ax.add_patch(RegularPolygon(xy, numVertices=n, radius=size,
                                 orientation=np.pi / n,
@@ -579,6 +584,7 @@ def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
 
 
 def draw_inversion(ax, xy, size=0.012):
+    """Draw an ITA inversion centre symbol (small open circle) at xy."""
     ax.plot(xy[0], xy[1], "o", ms=4, mfc="white", mec="k", mew=1.0, zorder=6)
 
 
@@ -680,6 +686,7 @@ def best_general_point(sg, n_grid=12, refine=3, interior_wt=0.03):
     ops = [(W, w) for W, w, _ in _sg_ops(sg)]
 
     def score(x):
+        """Evaluate point x: minimum distance to its symmetry images plus interior bonus."""
         x = np.asarray(x, float)
         dmin = np.inf
         for W, w in ops:
@@ -833,7 +840,6 @@ def _axis_direction(W, proper):
     """Rotation axis (proper) or mirror-plane normal (improper) as an integer-ish
     direction. For proper rotation it is the +1 eigenvector of W; for a mirror it
     is the -1 eigenvector of W."""
-    target = 1.0 if proper else -1.0
     # for rotoinversions the "axis" is the +1 eigenvector of -W (proper part)
     M = W if proper else -W
     vals, vecs = np.linalg.eig(M)
@@ -1187,9 +1193,8 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     frame = _Frame(cell_frame(sg, projection))
     frame.draw_cell(ax)
 
-    n_centring = 0
     if show_centring:
-        n_centring = _draw_centring_markers(ax, sg, perm, frame)
+        _draw_centring_markers(ax, sg, perm, frame)
 
     if show_general_positions:
         general_position_diagram(sg, ax=ax, show_title=False,
@@ -1214,6 +1219,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         return (v[1] % 1.0, v[0] % 1.0)
 
     def dcls(axis):
+        """Classify direction of axis after permutation."""
         return _dir_class(_perm_vec(axis, perm)) if axis is not None else None
 
     def frac_dir(axis):
@@ -1295,6 +1301,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 d = d / (np.linalg.norm(d) or 1.0)
 
                 def draw_axis_line(p0, p1, dp, _full=(t == "rotation")):
+                    """Draw an in-plane 2-fold or 2_1 screw axis line with exit arrowhead."""
                     # ITA convention for an axis lying in the plane of the
                     # page: a SOLID line; a pure 2-fold carries a FULL
                     # (two-barbed) arrowhead, a 2_1 screw a HALF (one-barbed)

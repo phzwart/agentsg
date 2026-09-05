@@ -90,6 +90,7 @@ class NearTree:
         return (best[1], best[0]) if best[1] is not None else (None, float("inf"))
 
     def _nearest(self, query, best):
+        """Recursive branch-and-bound nearest neighbor search using triangle inequality."""
         if self._left_obj is not None:
             d = self._distance(query, self._left_obj[0])
             if d < best[0]:
@@ -116,6 +117,7 @@ class NearTree:
         return out
 
     def _within(self, query, radius, out):
+        """Recursive range search collecting all points within radius into out."""
         if self._left_obj is not None:
             d = self._distance(query, self._left_obj[0])
             if d <= radius:
@@ -146,7 +148,9 @@ class NearTree:
         return [(p, d) for d, p in heap]
 
     def _knn(self, query, k, heap):
+        """Recursive bounded search maintaining the top-k nearest neighbors."""
         def consider(obj):
+            """Evaluate candidate object against current top-k heap."""
             if obj is None:
                 return
             d = self._distance(query, obj[0])

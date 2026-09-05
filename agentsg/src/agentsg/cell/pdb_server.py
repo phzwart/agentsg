@@ -84,12 +84,14 @@ _PIPELINE = {
 
 
 def _parse_cell(raw) -> tuple[float, ...]:
+    """Validate and convert raw cell tuple/list into 6 floats."""
     if not isinstance(raw, (list, tuple)) or len(raw) != 6:
         raise ValueError("cell must be a list of six numbers (a,b,c,alpha,beta,gamma)")
     return tuple(float(x) for x in raw)
 
 
 def _resolve_space_group(sg) -> tuple[int, str]:
+    """Resolve space group number or Hermann-Mauguin string to (number, hm_string)."""
     if sg is None:
         raise ValueError("sg is required (space-group number or Hermann-Mauguin symbol)")
     key = int(sg) if isinstance(sg, str) and sg.strip().isdigit() else sg
@@ -154,6 +156,7 @@ def search_compatible(
 
 
 def _parse_search_params(data: dict[str, Any]) -> dict[str, Any]:
+    """Parse query-string or JSON search parameters into canonical keyword arguments."""
     if "cell" in data:
         cell = _parse_cell(data["cell"])
     else:
@@ -203,13 +206,17 @@ class _PdbSearchServer:
 
 
 def make_handler(state: _PdbSearchServer):
+    """Construct an HTTP request handler closure bound to a search server state."""
     class Handler(BaseHTTPRequestHandler):
+        """HTTP request handler for PDB cell search service."""
         server_version = "agentsg-pdb-server/0.1"
 
         def log_message(self, fmt, *args):
+            """Log formatted message to standard error."""
             sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
 
         def _json(self, status: int, payload: dict[str, Any]):
+            """Serialize dictionary payload as JSON and write HTTP response."""
             body = json.dumps(payload, indent=2).encode()
             self.send_response(status)
             self.send_header("Content-Type", "application/json")
@@ -218,12 +225,14 @@ def make_handler(state: _PdbSearchServer):
             self.wfile.write(body)
 
         def _read_json(self) -> dict[str, Any]:
+            """Read and deserialize JSON body from incoming HTTP request."""
             length = int(self.headers.get("Content-Length", "0"))
             if length <= 0:
                 raise ValueError("POST body required")
             return json.loads(self.rfile.read(length).decode())
 
         def do_GET(self):
+            """Handle GET requests for /health and /search."""
             path = urlparse(self.path).path
             if path == "/health":
                 self._json(200, {
@@ -248,6 +257,7 @@ def make_handler(state: _PdbSearchServer):
                 self._json(500, {"error": str(exc)})
 
         def do_POST(self):
+            """Handle POST requests for /search."""
             path = urlparse(self.path).path
             if path != "/search":
                 self._json(404, {"error": "not found", "paths": ["/health", "/search"]})
@@ -285,6 +295,7 @@ def run_server(db_path: str, host: str = "127.0.0.1", port: int = 8765):
 
 
 def _cli(argv=None):
+    """Command-line entry point for running the HTTP PDB search server."""
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--db", default="pdb_cells.duckdb",

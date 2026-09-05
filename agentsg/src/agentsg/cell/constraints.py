@@ -14,7 +14,6 @@ gamma=120, and so on -- the crystal-system restrictions are a *consequence* of
 this equation, not a separate table.
 """
 from __future__ import annotations
-from typing import Iterable, Sequence
 
 
 def _matT_G_mat(W, G):

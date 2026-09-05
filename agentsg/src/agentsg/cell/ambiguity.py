@@ -60,7 +60,7 @@ from ..linalg import Matrix3, Vector3, IDENTITY3
 from ..symmetry_op import SymmetryOp
 from ..group import close_group, point_group
 from ..space_groups import space_group, SpaceGroup
-from ..lattice_symmetry import lattice_symmetry, tolerance_metric_symmetry
+from ..lattice_symmetry import tolerance_metric_symmetry
 from .reduction import niggli_reduce
 
 _NEG_I = Matrix3([[Fr(-1), Fr(0), Fr(0)],
@@ -357,6 +357,7 @@ class AmbiguityResolution:
 
 
 def _laue_rows(sg_key):
+    """Rotation matrix rows for the crystal Laue group."""
     sg = space_group(sg_key) if not isinstance(sg_key, SpaceGroup) else sg_key
     return [W.rows for W in _laue_matrices(sg)]
 
@@ -395,6 +396,7 @@ def _map_to_asu(h, laue_rows, style="ccp4", sg_key=None):
 
 
 def _pearson(pairs):
+    """Compute Pearson correlation coefficient between pairs of scalar observations."""
     n = len(pairs)
     if n < 2:
         return 0.0

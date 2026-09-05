@@ -21,13 +21,14 @@ from itertools import product
 from math import lcm
 from typing import Iterable, Sequence
 
-from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3, frac_mod1
+from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3
 from .symmetry_op import SymmetryOp
 from .group import point_group, centering_translations, is_systematically_absent
 from .rational_solve import rref as _rref
 
 
 def _WmI(W: Matrix3) -> Matrix3:
+    """Compute (W - I) as an exact Matrix3."""
     return Matrix3([
         [W.rows[i][j] - (1 if i == j else 0) for j in range(3)]
         for i in range(3)
@@ -104,6 +105,7 @@ def pin_floating_origin(p: Vector3, operations: Iterable[SymmetryOp]) -> Vector3
 
 
 def _in_centering(v: Vector3, centering: Sequence[Vector3]) -> bool:
+    """True if vector v is congruent modulo 1 to one of the centring translations."""
     vm = v.mod1()
     return any(vm == c for c in centering)
 
@@ -275,6 +277,7 @@ class SemiInvariant:
     modulus: int
 
     def accepts(self, h: int, k: int, l: int) -> bool:
+        """True if reflection (h, k, l) satisfies the semi-invariant congruence."""
         u = self.vector[0] * h + self.vector[1] * k + self.vector[2] * l
         if self.modulus == 0:
             return u == 0
@@ -286,6 +289,7 @@ def _verify_si(
     cont: Sequence[Vector3],
     discrete: Sequence[Vector3],
 ) -> bool:
+    """Verify directly that h·v = 0 for continuous and h·o ∈ Z for discrete allowed origins."""
     hv = Vector3((h, k, l))
     for v in cont:
         # Continuous freedom: phase must be strictly invariant (h·v = 0).
@@ -301,6 +305,7 @@ def _matches_trial(
     trial: list[tuple[tuple[int, int, int], int]],
     h: int, k: int, l: int,
 ) -> bool:
+    """True if (h, k, l) satisfies all congruences in the trial set."""
     for vec, mod in trial:
         u = vec[0] * h + vec[1] * k + vec[2] * l
         if mod == 0:
@@ -385,6 +390,7 @@ def semi_invariants(operations: Iterable[SymmetryOp]) -> list[SemiInvariant]:
 
 
 def math_gcd(a: int, b: int) -> int:
+    """Greatest common divisor of two integers."""
     from math import gcd
     return gcd(a, b)
 

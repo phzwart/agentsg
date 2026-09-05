@@ -26,10 +26,12 @@ _TWOTHIRD = Fr(2, 3)
 
 
 def _ops(*xyz_strings: str) -> list[SymmetryOp]:
+    """Helper to convert multiple xyz strings to a list of SymmetryOp instances."""
     return [SymmetryOp.from_xyz(s) for s in xyz_strings]
 
 
 def _vecs(*triples) -> list[Vector3]:
+    """Helper to convert multiple coordinate triples to a list of Vector3 instances."""
     return [Vector3(t) for t in triples]
 
 

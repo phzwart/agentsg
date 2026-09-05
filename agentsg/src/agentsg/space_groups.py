@@ -253,6 +253,7 @@ SPACE_GROUPS: tuple[tuple[int, str, str, str], ...] = (
 _BY_NUMBER = {r[0]: r for r in SPACE_GROUPS}
 
 def _norm_hm(s: str) -> str:
+    """Normalize a Hermann-Mauguin symbol string for case- and whitespace-insensitive matching."""
     return s.replace(' ', '').replace('_', '').lower()
 
 _BY_HM = {_norm_hm(r[1]): r for r in SPACE_GROUPS}
@@ -260,6 +261,7 @@ _BY_HALL = {r[2]: r for r in SPACE_GROUPS}
 
 
 def _norm_hm_nodash(s: str) -> str:
+    """Normalize a Hermann-Mauguin symbol string with minus signs stripped."""
     return _norm_hm(s).replace('-', '')
 
 # Dash-insensitive fallback (e.g. "fm3m" for "F m -3 m"), but ONLY for symbols
@@ -309,10 +311,12 @@ class SpaceGroup:
 
     @lru_cache(maxsize=None)
     def operations(self):
+        """Return the closed set of exact Seitz symmetry operations for this space group."""
         gens, cent = parse_hall(self.hall)
         return close_group(gens, cent)
 
     def order(self) -> int:
+        """Return the order of the space group in its conventional setting."""
         return len(self.operations())
 
     def __repr__(self):
@@ -329,6 +333,7 @@ def space_group(key) -> SpaceGroup:
 
 
 def _sg_cache_key(key):
+    """Normalize user key (number, HM symbol, Hall symbol) to an internal cache key tuple."""
     if isinstance(key, int):
         if key not in _BY_NUMBER:
             raise KeyError(f'space-group number {key} out of range 1..230')
@@ -348,6 +353,7 @@ def _sg_cache_key(key):
 
 @lru_cache(maxsize=None)
 def _space_group_cached(cache_key) -> SpaceGroup:
+    """Retrieve or instantiate a cached SpaceGroup instance."""
     kind, val = cache_key
     if kind == 'n':
         return SpaceGroup(_BY_NUMBER[val])

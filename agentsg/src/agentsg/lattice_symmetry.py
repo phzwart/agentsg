@@ -27,11 +27,10 @@ from __future__ import annotations
 from fractions import Fraction as Fr
 from itertools import product
 from math import acos, degrees, sqrt
-from typing import Sequence
 
 from .linalg import Matrix3, Vector3, IDENTITY3
 from .symmetry_op import SymmetryOp
-from .group import close_group, point_group
+from .group import close_group
 
 
 # --- the Lebedev set, computed once ---------------------------------------
@@ -41,6 +40,7 @@ def _mat_pow_in_set(M, max_order=6):
     P = [[1 if i == j else 0 for j in range(n)] for i in range(n)]
 
     def mul(A, B):
+        """Multiply two n x n integer matrices."""
         return [[sum(A[i][k] * B[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
 
     for _ in range(max_order):
@@ -52,13 +52,15 @@ def _mat_pow_in_set(M, max_order=6):
     return False
 
 
-def _det3_int(M):
+def _det3_int(M) -> int:
+    """Determinant of a 3x3 integer matrix."""
     return (M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1])
             - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0])
             + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]))
 
 
 def _lebedev_matrices():
+    """All 480 unimodular integer 3x3 matrices with elements in {-1, 0, 1} and finite order."""
     out = []
     for e in product((-1, 0, 1), repeat=9):
         M = [list(e[0:3]), list(e[3:6]), list(e[6:9])]
@@ -70,6 +72,7 @@ def _lebedev_matrices():
 
 
 def _matmul_int(A, B):
+    """Multiply two 3x3 integer matrices."""
     return [[sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 
 
@@ -98,6 +101,7 @@ def _two_fold_axis_direct(M):
 
 
 def _igcd3(v):
+    """Greatest common divisor of three integers."""
     from math import gcd
     g = 0
     for x in v:
@@ -118,11 +122,13 @@ _TWO_FOLD_TABLE = [(M, _two_fold_axis_direct(M), _reciprocal_axis(M))
 
 # --- Le Page delta ---------------------------------------------------------
 def _metric_tensor(cell):
+    """Compute 3x3 numeric metric tensor from cell parameters."""
     from .cell.metric import metric_tensor
     return metric_tensor(cell)
 
 
 def _inv3(G):
+    """Inverse of a 3x3 numeric symmetric matrix."""
     d = (G[0][0] * (G[1][1] * G[2][2] - G[1][2] * G[2][1])
          - G[0][1] * (G[1][0] * G[2][2] - G[1][2] * G[2][0])
          + G[0][2] * (G[1][0] * G[2][1] - G[1][1] * G[2][0]))
@@ -336,6 +342,7 @@ def lattice_symmetry(cell, max_delta: float = 3.0,
 
 # --- tolerance metric-automorphism group (for cell comparison / reindexing) ---
 def _cell_params(G):
+    """Compute cell parameters (a, b, c, alpha, beta, gamma) from a 3x3 metric tensor."""
     from .cell.metric import params_from_metric
     return params_from_metric(G)
 

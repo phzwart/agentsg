@@ -59,16 +59,19 @@ def lattice_letter(symbol):
 
 
 def _metric(cell):
+    """Compute 3x3 numeric metric tensor from cell parameters."""
     from .metric import metric_tensor
     return metric_tensor(cell)
 
 
 def _cell_from_metric(G):
+    """Compute cell parameters from 3x3 metric tensor."""
     from .metric import cell_from_metric
     return cell_from_metric(G)
 
 
 def _matT_G_M(P, G):
+    """Compute transformed metric tensor P^T G P."""
     # Pᵀ G P for 3x3 lists
     PT = [[P[j][i] for j in range(3)] for i in range(3)]
     GP = [[sum(G[i][k] * P[k][j] for k in range(3)) for j in range(3)]
@@ -112,6 +115,7 @@ def _validate():
     from ..hall import LATTICE_CENTERING
 
     def inv3(M):
+        """Invert 3x3 numeric matrix via cofactor expansion."""
         det = (M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1])
                - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0])
                + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]))

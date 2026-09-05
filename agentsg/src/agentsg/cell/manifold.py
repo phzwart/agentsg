@@ -55,7 +55,7 @@ the farthest-point / shortest-path machinery still works.
 from __future__ import annotations
 from heapq import heappush, heappop
 
-from .rootform import root_invariant, root_distance, sorted_conorm_key
+from .rootform import root_invariant, sorted_conorm_key
 from .canonical import best_reindex_with_residual, reindexing_via_canonical
 
 
@@ -359,5 +359,6 @@ class DeformationManifold:
 
 
 def _matmul_int(A, B):
+    """Multiply two 3x3 integer matrices."""
     return [[sum(A[r][k] * B[k][c] for k in range(3)) for c in range(3)]
             for r in range(3)]

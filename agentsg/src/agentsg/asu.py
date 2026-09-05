@@ -33,6 +33,7 @@ _NEG_I = Matrix3([[-1, 0, 0], [0, -1, 0], [0, 0, -1]])
 # ---------------------------------------------------------------------------
 
 def _sg_number(key) -> int:
+    """Extract standard space-group number (1-230) from an int, SpaceGroup, or symbol."""
     if isinstance(key, int):
         return key
     if isinstance(key, SpaceGroup):
@@ -84,14 +85,17 @@ class ReciprocalAsu:
 
     @classmethod
     def from_space_group(cls, key) -> "ReciprocalAsu":
+        """Instantiate reciprocal ASU for a space group (number, symbol, or SpaceGroup)."""
         n = _sg_number(key)
         return cls(n, asu_data.RECIPROCAL_CONDITION_INDEX[n - 1])
 
     @property
     def condition_str(self) -> str:
+        """Textual inequality condition defining the reciprocal ASU."""
         return asu_data.RECIPROCAL_CONDITIONS[self._cond_idx]
 
     def is_in(self, hkl: Sequence[int] | Vector3) -> bool:
+        """True if Miller index (h, k, l) lies inside the reciprocal ASU."""
         if isinstance(hkl, Vector3):
             h, k, l = int(hkl.v[0]), int(hkl.v[1]), int(hkl.v[2])
         else:
@@ -146,6 +150,7 @@ class AxisBound:
     hi: Fraction
 
     def contains(self, x: Fraction) -> bool:
+        """True if scalar x lies within [0, hi) or [0, hi]."""
         if x < 0:
             return False
         if self.closed_hi:
@@ -165,6 +170,7 @@ class DirectAsuBrick:
 
     @classmethod
     def from_space_group(cls, key) -> "DirectAsuBrick":
+        """Instantiate conventional direct-space ASU brick for a space group."""
         n = _sg_number(key)
         idx = asu_data.ASU_BRICK_INDEX[n - 1]
         xc, xh, yc, yh, zc, zh = asu_data.ASU_BRICK_BOUNDS[idx]
@@ -179,9 +185,11 @@ class DirectAsuBrick:
 
     @property
     def bounds(self) -> tuple[AxisBound, AxisBound, AxisBound]:
+        """Triple of AxisBound objects (x_bound, y_bound, z_bound)."""
         return self.x, self.y, self.z
 
     def contains(self, xyz: Sequence | Vector3) -> bool:
+        """True if fractional coordinates (x, y, z) reduced mod 1 fall within the brick."""
         if isinstance(xyz, Vector3):
             x, y, z = xyz.v
         else:
@@ -233,6 +241,7 @@ class DirichletAsu:
     _ops_f: list[tuple[tuple[tuple[float, float, float], ...], tuple[float, float, float]]]
 
     def contains_cart(self, cart: Sequence[float], tol: float = 1e-9) -> bool:
+        """True if Cartesian coordinate vector lies on or inside all defining facets."""
         for f in self.facets:
             if (
                 f.normal[0] * cart[0]
@@ -244,6 +253,7 @@ class DirichletAsu:
         return True
 
     def _frac_to_cart(self, fv: Sequence[float]) -> list[float]:
+        """Convert fractional coordinates to Cartesian using direct or reciprocal metric."""
         if self.space == "direct":
             return self.cell.orthogonalize(fv)
         Mr = self.cell.reciprocal().orthogonalization_matrix()
@@ -258,6 +268,7 @@ class DirichletAsu:
         return self.is_asu_representative(frac, tol=tol)
 
     def contains_frac(self, frac: Sequence | Vector3, tol: float = 1e-8) -> bool:
+        """Test whether fractional coordinate vector lies in the Dirichlet ASU."""
         return self.contains(frac, tol=tol)
 
     def is_asu_representative(
@@ -447,6 +458,7 @@ def _cubic_roots(a: float, b: float, c: float, d: float) -> list[float]:
 
 
 def _laue_ops(operations: Sequence[SymmetryOp]) -> list[SymmetryOp]:
+    """Generate the full Laue group operations with zero translation."""
     mats = set(point_group(operations))
     if _NEG_I not in mats:
         mats |= {_NEG_I @ W for W in list(mats)}
@@ -473,6 +485,7 @@ def build_dirichlet_asu(
     use_ops = _laue_ops(ops) if space == "reciprocal" else ops
 
     def to_cart(frac_v: Vector3) -> list[float]:
+        """Convert Vector3 in fractional coordinates to Cartesian list[float]."""
         fv = [float(x) for x in frac_v.v]
         if space == "direct":
             return cell.orthogonalize(fv)
@@ -548,6 +561,8 @@ def build_dirichlet_asu(
 
 @dataclass(frozen=True)
 class OptimizedAsu:
+    """Result of searching allowed origin gauges for an optimal Dirichlet domain."""
+
     asu: DirichletAsu
     score: float
     origin_shift: Vector3

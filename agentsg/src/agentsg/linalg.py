@@ -9,12 +9,13 @@ translation-base-factor design (``tr_vec`` defaults to a denominator of 12).
 """
 from __future__ import annotations
 from fractions import Fraction
-from typing import Iterable, Tuple
+from typing import Iterable
 
 Number = Fraction | int
 
 
 def F(x) -> Fraction:
+    """Coerce an integer, float-like, or Fraction into an exact Fraction."""
     return x if isinstance(x, Fraction) else Fraction(x)
 
 
@@ -25,6 +26,8 @@ def frac_mod1(x: Fraction) -> Fraction:
 
 
 class Vector3:
+    """Exact 3-vector with components stored as exact fractions."""
+
     __slots__ = ("v",)
 
     def __init__(self, v: Iterable):
@@ -42,9 +45,11 @@ class Vector3:
         return Vector3(-a for a in self.v)
 
     def mod1(self) -> "Vector3":
+        """Component-wise reduction into the interval [0, 1)."""
         return Vector3(frac_mod1(a) for a in self.v)
 
     def dot(self, other: "Vector3") -> Fraction:
+        """Exact rational dot product with another Vector3."""
         return sum((a * b for a, b in zip(self.v, other.v)), Fraction(0))
 
     def __eq__(self, other) -> bool:
@@ -58,6 +63,8 @@ class Vector3:
 
 
 class Matrix3:
+    """Exact 3x3 matrix with entries stored as exact fractions."""
+
     __slots__ = ("rows",)
 
     def __init__(self, rows: Iterable[Iterable]):
@@ -80,13 +87,16 @@ class Matrix3:
         return NotImplemented
 
     def transpose(self) -> "Matrix3":
+        """Return the transpose matrix."""
         return Matrix3(zip(*self.rows))
 
     def det(self) -> Fraction:
+        """Exact rational determinant."""
         (a, b, c), (d, e, f), (g, h, i) = self.rows
         return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
 
     def inverse(self) -> "Matrix3":
+        """Exact rational matrix inverse via cofactor expansion."""
         (a, b, c), (d, e, f), (g, h, i) = self.rows
         det = self.det()
         if det == 0:

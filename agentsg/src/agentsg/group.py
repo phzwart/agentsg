@@ -20,6 +20,12 @@ def close_group(
     centering_vectors: Sequence[Vector3] = (Vector3((0, 0, 0)),),
     max_order: int = 192,
 ) -> frozenset[SymmetryOp]:
+    """Compute the closed space-group operation set by repeated composition.
+
+    Combines the generator operations with lattice centring vectors until no new
+    operations are produced. Raises :class:`RuntimeError` if the order exceeds
+    ``max_order`` (default 192, the maximum order of any conventional 3D space group).
+    """
     centering_ops = [SymmetryOp(IDENTITY3, v) for v in centering_vectors]
     seeds = list(generators) + centering_ops
     elements: set[SymmetryOp] = {SymmetryOp.identity()}
