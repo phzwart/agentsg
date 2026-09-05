@@ -41,9 +41,11 @@ sg = space_group(225)                       # or "Fm-3m", or "F 4 2 3", or 225
 print(sg, "order", sg.order())              # 192
 ops = sg.operations()                       # closed, exact operation set
 
-# --- reflection conditions, DERIVED from the operators (no table) ---
+# --- reflection conditions, DERIVED from the operators (no table, no hkl
+#     enumeration): classes are the stabiliser strata of reciprocal space,
+#     the condition on each is a sublattice -- see reflection_lattice.py ---
 print(reflection_conditions(list(ops)))
-#   {'hkl': 'h+l, k+l = 2n', 'h00': 'h = 2n', ...}   (F-centring + ...)
+#   {'hkl': 'h+k, h+l = 2n', '0kl': 'k, l = 2n', 'hhl': 'h+l = 2n', 'h00': 'h = 2n', ...}
 
 # --- Wyckoff multiplicity & site symmetry, computed exactly ---
 ops = list(space_group(225).operations())

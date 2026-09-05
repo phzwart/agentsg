@@ -4,7 +4,7 @@ reporter."""
 import pytest
 from agentsg.space_groups import space_group, SPACE_GROUPS
 from agentsg.group import is_systematically_absent
-from agentsg.reflections import reflection_conditions, _CLASSES
+from agentsg.reflections import reflection_conditions, reflection_conditions_grid, _CLASSES
 from agentsg.linalg import Vector3
 
 gemmi = pytest.importorskip("gemmi")
@@ -34,7 +34,7 @@ def test_reported_conditions_reproduce_absences(n):
     """
     from agentsg.reflections import _SUBCLASSES, _CLASS_SEL, _generic_members
     ops = list(space_group(n).operations())
-    cond = reflection_conditions(ops)
+    cond = reflection_conditions_grid(ops)
     for name, sel in _CLASSES:
         members = [(h, k, l) for (h, k, l) in _HKLS if sel(h, k, l)]
         if not members:
@@ -54,9 +54,9 @@ def test_known_conditions_present():
     assert c19["h00"] == "h = 2n"
     assert c19["0k0"] == "k = 2n"
     assert c19["00l"] == "l = 2n"
-    # Ia-3d: hhl h+k+l = 4n (d-glide)
+    # Ia-3d: hhl 2h+l = 4n (d-glide), in ITA's form on the class letters
     c230 = reflection_conditions(list(space_group(230).operations()))
-    assert "h+k+l = 4n" in c230["hhl"]
+    assert c230["hhl"] == "2h+l = 4n"
     # P21: only the serial screw, no spurious general "restricted"
     c4 = reflection_conditions(list(space_group(4).operations()))
     assert c4 == {"0k0": "k = 2n"}
