@@ -1,3 +1,0 @@
-Promoted `_discrete_allowed_origins` → `discrete_allowed_origins` in `semi_invariants.py`, kept the private alias, switched `asu.py` to the public name, and exported it from the package `__init__`.
-
-RALPH-OK A3A3 is done: `discrete_allowed_origins` is public (with `_discrete_allowed_origins` kept as an alias), `asu.py` uses the public name, and it’s exported from the package. Verify was green; commit `ralph: A3 promote discrete_allowed_origins to public API` is on `main`.

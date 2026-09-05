@@ -109,16 +109,19 @@ coset of the *original* centring — the forward `mod1()` reduction erases the
 distinction between operators differing by a centring translation. The test
 encodes the correct (weaker) invariant.
 
-## The one interface point (exact ↔ numeric)
+## Exact ↔ numeric boundary
 
-`cell/constraints.py` is the *only* file in `cell/` allowed to import from the
-symmetry side. It carries the identity
+Historically this document said ``cell/constraints.py`` was the *only* cell
+module allowed to import from the symmetry side. That is no longer accurate:
+several cell workflows (reindexing ambiguity, Selling settings, primitive
+reduction, PDB search, diagrams) import space-group symbols or operators.
+``constraints.py`` remains the *metric* bridge — the identity
 
     W^T G W = G   for every point-group operation W,
 
-and three functions built on it: `metric_is_invariant` (check a numeric metric
-against an exact point group), `symmetrize_metric` (Reynolds-average a noisy
-metric onto the invariant subspace), and `free_metric_parameters` (the
+and the three functions built on it: `metric_is_invariant` (check a numeric
+metric against an exact point group), `symmetrize_metric` (Reynolds-average a
+noisy metric onto the invariant subspace), and `free_metric_parameters` (the
 dimension of the invariant metric space). The last *derives* the crystal-system
 cell restrictions — 6 (triclinic), 4 (monoclinic), 3 (orthorhombic), 2
 (tetragonal/trigonal/hexagonal), 1 (cubic) — from the point group alone, for

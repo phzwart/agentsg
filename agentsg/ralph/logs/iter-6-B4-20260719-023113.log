@@ -1,3 +1,0 @@
-**B4** done: documented the `"order-N"` `crystal_system` sentinel in `lattice_symmetry.py`, and replaced the garbled `D/g` scaling comment in `harker.py` `_normalize_constraint`. Docs/comments only; 3281 tests green.
-
-RALPH-OK B4

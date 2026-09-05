@@ -1,10 +1,11 @@
 """
 celldb: a persistent unit-cell / symmetry database keyed on the root invariant.
 
-Builds and queries a lattice database whose search key is the Kurlin (2022) root
-invariant (:mod:`agentsg.cell.rootform`) -- a complete, continuous isometry
-invariant, so "find lattices like this" is exact nearest-neighbour search with no
-orbit minimisation and no reduction-flip discontinuity.
+Builds and queries a lattice database whose search key is the Kurlin (2022)
+sorted root invariant (:mod:`agentsg.cell.rootform`) — a continuous Euclidean
+key that is injective for V3/V5 and many-to-one for V1/V2/V4, so "find lattices
+like this" is nearest-neighbour search with no orbit minimisation and no
+reduction-flip discontinuity.
 
 Two layers:
 
@@ -34,6 +35,28 @@ import urllib.request
 from .rootform import root_invariant, similarity_invariant
 from .metric import UnitCell
 from .primitive import primitive_cell
+
+
+def _hm_setting_variants(hm: str) -> list[str]:
+    """Hermann–Mauguin strings that denote the same deposited setting.
+
+    PDB uses the hexagonal-axes letter ``H`` for R-centred groups; agentsg's
+    table uses ``R``. Both refer to the same Bravais type on hexagonal axes.
+    """
+    s = str(hm).strip()
+    out = [s]
+    if len(s) >= 1 and s[0] in "Hh" and (len(s) == 1 or s[1] in " -"):
+        out.append("R" + s[1:])
+    elif len(s) >= 1 and s[0] in "Rr" and (len(s) == 1 or s[1] in " -"):
+        out.append("H" + s[1:])
+    # unique, preserve order
+    seen = set()
+    uniq = []
+    for v in out:
+        if v not in seen:
+            seen.add(v)
+            uniq.append(v)
+    return uniq
 
 
 def _primitive_for_roots(cell, sg_hm):
@@ -230,7 +253,10 @@ class CellDatabase:
         if match_sg_hm is not None:
             # Exact Hermann-Mauguin match (preferred over IT number: the same
             # number can host several deposited settings, e.g. C 1 2 1 vs I 1 2 1).
-            where.append("sg_hm = ?"); params.append(match_sg_hm)
+            # H and R are the same Bravais type on hexagonal axes (PDB uses H).
+            variants = _hm_setting_variants(match_sg_hm)
+            where.append("(" + " OR ".join("sg_hm = ?" for _ in variants) + ")")
+            params.extend(variants)
         elif sg_number is not None:
             where.append("sg_number = ?"); params.append(sg_number)
         if volume is not None:
@@ -291,42 +317,58 @@ class CellDatabase:
         where ``relation`` is 'isometric' (index 1), 'db_is_supercell' (db cell =
         query x index), or 'db_is_sublattice' (query = db cell x index), and
         ``M`` is the integer sublattice matrix (None for isometric hits).
+        ``distance`` is always a length residual in **percent** (compare_cells'
+        ``max_length_dev``, or the equivalent %-mapped root residual for
+        index-lookup hits) so ranking never mixes Å and percent.
         """
-        import math
         from .sublattice import generate_sublattices, apply_to_cell
         from .reduction import niggli_reduce
         from .compare import compare_cells
 
         q_vol = UnitCell(*cell).volume()
         results = {}                       # pdb_id -> best record
+        # Unify residuals in length-percent units: root-Å hits are mapped through
+        # the same edge-tolerance calibration used for acceptance, so they sort
+        # with compare_cells' max_length_dev (%) instead of mixing Å and %.
+        edge_tol_A = (length_tol_pct / 100.0) * (
+            abs(cell[0]) + abs(cell[1]) + abs(cell[2])
+        ) / 3.0
+        from .rootform import root_cutoff_for_edge_tolerance
+        root_cut = max(
+            root_cutoff_for_edge_tolerance(edge_tol_A, cell=cell),
+            1e-12,
+        )
 
-        def _consider(pdb_id, index, distance, relation, M):
+        def _consider(pdb_id, index, distance_pct, relation, M):
             row = self._db.execute(
                 "SELECT a,b,c,alpha,beta,gamma,sg_number,sg_hm FROM cells "
                 "WHERE pdb_id=?", [pdb_id]).fetchone()
-            rec = {"pdb_id": pdb_id, "index": index, "distance": distance,
+            rec = {"pdb_id": pdb_id, "index": index, "distance": distance_pct,
                    "relation": relation,
                    "cell": tuple(row[:6]), "sg_number": row[6], "sg_hm": row[7],
                    "M": M}
             prev = results.get(pdb_id)
             # keep the smaller distance for a given cell; a genuine (small-distance)
             # super/sub-lattice match should win over a far "isometric" mislabel.
-            if prev is None or distance < prev["distance"]:
+            if prev is None or distance_pct < prev["distance"]:
                 results[pdb_id] = rec
 
         # index 1: isometric hits from the fast index, kept only within tolerance
-        for pdb_id, dist in self.nearest(cell, k=k):
-            if dist <= length_tol_pct:
-                _consider(pdb_id, 1, dist, "isometric", None)
+        for pdb_id, dist_A in self.nearest(cell, k=k):
+            if dist_A <= root_cut:
+                # Map Å residual onto the length-% scale used by compare_cells.
+                _consider(pdb_id, 1, (dist_A / root_cut) * length_tol_pct,
+                          "isometric", None)
 
         # db_is_supercell: query's index-r sublattices, looked up in the index
         for r in range(2, max_index + 1):
             for M in generate_sublattices(r):
                 sup = apply_to_cell(cell, M)
                 red, _ = niggli_reduce(*sup)
-                for pdb_id, dist in self.nearest(red, k=k):
-                    if dist <= length_tol_pct:        # root-dist ~ Angstrom scale
-                        _consider(pdb_id, r, dist, "db_is_supercell",
+                for pdb_id, dist_A in self.nearest(red, k=k):
+                    if dist_A <= root_cut:
+                        _consider(pdb_id, r, (dist_A / root_cut) * length_tol_pct,
+                                  "db_is_supercell",
                                   tuple(tuple(row) for row in M))
 
         # db_is_sublattice / general: volume-banded candidates via compare_cells

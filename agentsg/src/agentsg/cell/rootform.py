@@ -114,21 +114,29 @@ def delaunay_superbase(cell, max_iter=1000):
     raise RuntimeError("Delaunay reduction did not converge")
 
 
-def conorms(cell):
-    """The six conorms p_ij = -v_i.v_j (>= 0) of the obtuse superbase."""
-    S = delaunay_superbase(cell)
-    return {(i, j): -_dot(S[i], S[j]) for (i, j) in _PAIRS}
+def _clamp0(x, scale=None):
+    """Map float-noise negatives to 0 using the same relative 1e-9 as Delaunay.
 
-
-def _clamp0(x):
-    # tiny negatives from float noise -> 0 before sqrt
-    return 0.0 if -1e-9 < x < 0 else x
+    ``scale`` is a positive Å² magnitude (typically max |v_i|² of the superbase).
+    An absolute −1e−9 cutoff is wrong for large cells, where noise grows as cell².
+    """
+    if x >= 0.0:
+        return float(x)
+    tol = 1e-9 * (float(scale) if scale is not None else 1.0)
+    return 0.0 if x > -tol else float(x)
 
 
 def _superbase_lengths(cell):
     """Lengths |v_i| of the obtuse superbase vectors."""
     S = delaunay_superbase(cell)
     return [sqrt(max(_dot(S[i], S[i]), 0.0)) for i in range(4)]
+
+
+def conorms(cell):
+    """The six conorms p_ij = -v_i.v_j (>= 0) of the obtuse superbase."""
+    S = delaunay_superbase(cell)
+    scale = max(abs(_dot(S[i], S[i])) for i in range(4)) or 1.0
+    return {(i, j): _clamp0(-_dot(S[i], S[j]), scale) for (i, j) in _PAIRS}
 
 
 def conorm_sum(cell):

@@ -37,6 +37,15 @@ from .space_groups import space_group, SpaceGroup
 from .group import close_group
 
 
+def _is_crystallographic_W(W: Matrix3) -> bool:
+    """True if W is an integer matrix with det ±1 (crystallographic rotation)."""
+    for row in W.rows:
+        for x in row:
+            if x.denominator != 1:
+                return False
+    return W.det() in (1, -1, Fr(1), Fr(-1))
+
+
 # --- parse one linear-combination field into (coeff_a, coeff_b, coeff_c, const) ---
 _LETTER = {"a": 0, "b": 1, "c": 2, "x": 0, "y": 1, "z": 2}
 _TERM_RE = re.compile(
@@ -166,10 +175,30 @@ class SpaceGroupSetting:
         return cls(base, cob)
 
     def operations(self) -> frozenset[SymmetryOp]:
+        """Closed operation set in the new setting.
+
+        Requires every transformed rotation to be crystallographic (integer,
+        det ±1). Non-unimodular axis scalings such as ``P 4 (2a,b,c)`` do not
+        yield a space group on the new basis and raise ``ValueError``.
+        Supercells like ``F m -3 m (2a,2b,2c)`` are allowed: ``max_order`` scales
+        with ``|det(P)|`` so newly surfaced centring can close.
+        """
         base_ops = self.base.operations()
         transformed = [self.cob.apply_to_op(op) for op in base_ops]
         transformed.extend(_lattice_coset_ops(self.cob))
-        return close_group(transformed)
+        bad = [op for op in transformed if not _is_crystallographic_W(op.W)]
+        if bad:
+            raise ValueError(
+                f"change of basis {format_cob(self.cob)} produces "
+                f"non-crystallographic rotation(s) (non-integer or |det|≠1); "
+                f"example W={bad[0].W.rows}. Use a unimodular P, or a pure "
+                f"lattice scaling such as (2a,2b,2c) that preserves integer W."
+            )
+        det = abs(self.cob.P.det())
+        # |det| integer ⇒ supercell multiplicity; allow up to 192 × multiplicity.
+        mult = int(det) if det.denominator == 1 and det >= 1 else max(1, int(det.numerator) or 1)
+        max_order = max(192, 192 * mult)
+        return close_group(transformed, max_order=max_order)
 
     def order(self) -> int:
         return len(self.operations())

@@ -274,6 +274,27 @@ _BY_HM_NODASH = {
     if _nodash_counts[_norm_hm_nodash(r[1])] == 1
 }
 
+# Short monoclinic aliases derived from the unique-axis-b table rows themselves:
+# "P 1 21 1" → "P21", "C 1 2/c 1" → "C2/c". Only registered when unique.
+for _row in SPACE_GROUPS:
+    if _row[3] != 'monoclinic':
+        continue
+    _parts = _row[1].split()
+    if len(_parts) == 4 and _parts[1] == '1' and _parts[3] == '1':
+        _short = _norm_hm(_parts[0] + _parts[2])
+        if _short not in _BY_HM:
+            _BY_HM[_short] = _row
+
+# PDB / IT "H" lattice letter is the hexagonal-axes label for R-centred groups.
+# Alias every leading-R Hermann–Mauguin to its H form (and vice versa on lookup).
+for _row in SPACE_GROUPS:
+    _hm = _row[1]
+    if _hm.startswith('R '):
+        _h_hm = 'H ' + _hm[2:]
+        _key = _norm_hm(_h_hm)
+        if _key not in _BY_HM:
+            _BY_HM[_key] = _row
+
 
 class SpaceGroup:
     """A space group resolved from the standard-setting table.
@@ -299,20 +320,40 @@ class SpaceGroup:
 
 
 def space_group(key) -> SpaceGroup:
-    """Look up a space group by number (1-230), Hermann-Mauguin symbol, or Hall symbol."""
+    """Look up a space group by number (1-230), Hermann-Mauguin symbol, or Hall symbol.
+
+    Results are cached at module level so repeated ``space_group(n).operations()``
+    calls reuse the same instance (and its cached closed operator set).
+    """
+    return _space_group_cached(_sg_cache_key(key))
+
+
+def _sg_cache_key(key):
     if isinstance(key, int):
         if key not in _BY_NUMBER:
             raise KeyError(f'space-group number {key} out of range 1..230')
-        return SpaceGroup(_BY_NUMBER[key])
+        return ('n', key)
     if isinstance(key, str):
         if key in _BY_HALL:
-            return SpaceGroup(_BY_HALL[key])
+            return ('hall', key)
         nk = _norm_hm(key)
         if nk in _BY_HM:
-            return SpaceGroup(_BY_HM[nk])
+            return ('hm', nk)
         ndk = _norm_hm_nodash(key)
         if ndk in _BY_HM_NODASH:
-            return SpaceGroup(_BY_HM_NODASH[ndk])
+            return ('hmnd', ndk)
         raise KeyError(f'unknown space-group symbol {key!r}')
     raise TypeError(f'space_group key must be int or str, got {type(key).__name__}')
+
+
+@lru_cache(maxsize=None)
+def _space_group_cached(cache_key) -> SpaceGroup:
+    kind, val = cache_key
+    if kind == 'n':
+        return SpaceGroup(_BY_NUMBER[val])
+    if kind == 'hall':
+        return SpaceGroup(_BY_HALL[val])
+    if kind == 'hm':
+        return SpaceGroup(_BY_HM[val])
+    return SpaceGroup(_BY_HM_NODASH[val])
 

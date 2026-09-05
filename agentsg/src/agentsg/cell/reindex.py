@@ -90,7 +90,11 @@ def _find_base_reindex(cell_A, cell_B, length_tol_pct, angle_tol_deg):
     Matching is on the metric of B, NOT merely on 'same lattice as B' -- a
     reindexing must reproduce B's actual cell parameters (up to orientation),
     otherwise identity would spuriously 'reindex' A onto every setting of its own
-    lattice. Searches the unimodular det=+-1 set.
+    lattice.
+
+    First tries the bounded {-1,0,1}-entry unimodular set (fast common case),
+    then falls back to canonical superbase matching, which finds any integer
+    unimodular P (including entries outside {-1,0,1}).
     """
     from .g6 import _unimodular_pm1
     GA = UnitCell(*cell_A).metric_tensor()
@@ -98,6 +102,11 @@ def _find_base_reindex(cell_A, cell_B, length_tol_pct, angle_tol_deg):
     lt = max(length_tol_pct, 1e-6)
     at = max(angle_tol_deg, 1e-6)
     for P in _unimodular_pm1():
+        if _cell_close(params_from_metric(_transform_metric(GA, P)), cell_B, lt, at):
+            return P
+    # General unimodular search via matching obtuse superbases.
+    from .canonical import reindexing_via_canonical
+    for P in reindexing_via_canonical(cell_A, cell_B, boundary_rel=0.0):
         if _cell_close(params_from_metric(_transform_metric(GA, P)), cell_B, lt, at):
             return P
     return None

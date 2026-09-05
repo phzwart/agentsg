@@ -1,15 +1,18 @@
 IUCrJ submission source
 ========================
 Files:
-  manuscript.tex   - LaTeX source (article base; drops into IUCr class - see header)
+  main_v11.tex     - LaTeX source (latest versioned draft; article base;
+                     drops into IUCr class - see header)
   figure1.png      - Figure 1 (quotient-then-lift workflow + benchmarks)
   figure2.png      - Figure 2 (real-data validation: HEWL + BlaC XFEL)
   figure3.png      - Figure 3 (reduction-flip gate)
   figure4.png      - Figure 4 (PDB latent-grid entropy effective rank)
 
+Older drafts (main_v5…main_v9, "main _v8.tex") are kept for history only.
+
 Build (any TeX Live / MiKTeX / Overleaf):
-  pdflatex manuscript.tex
-  pdflatex manuscript.tex      # second pass for \ref cross-references
+  pdflatex main_v11.tex
+  pdflatex main_v11.tex      # second pass for \ref cross-references
 
 For final IUCr submission, change the header to:
   \documentclass{iucr}

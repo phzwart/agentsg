@@ -26,4 +26,10 @@ manuscript/*.blg
 manuscript/*.pdf
 manuscript/*.synctex.gz
 symcell-update.zip
+
+# Large / regenerable data (build with agentsg.cell.celldb / analysis scripts)
+data/*.duckdb
+*.duckdb
+
+# Ralph loop logs (regenerable)
 agentsg/ralph/logs/

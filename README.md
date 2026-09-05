@@ -9,9 +9,9 @@ reindexing layer, and the manuscript describing the method.
 .
 ├── agentsg/            the installable package (src/, tests/, docs/, pyproject.toml)
 │   ├── src/agentsg/    zero-dependency runtime
-│   ├── tests/          1750 tests (pytest)
+│   ├── tests/          ~3600 tests (pytest)
 │   └── docs/           DESIGN.md, reduction-flip literature note, etc.
-├── manuscript/         IUCrJ communication (LaTeX + figures)
+├── manuscript/         IUCrJ communication (LaTeX + figures; see main_v11.tex)
 ├── analysis/           database-build & calibration figures + data
 │   ├── figures/
 │   └── data/           CSV summaries + .npz calibration arrays
@@ -23,23 +23,23 @@ reindexing layer, and the manuscript describing the method.
 ## Quick start
 
 ```bash
-cd agentsg
+# from the repository root
 python -m venv .venv && source .venv/bin/activate
-pip install -e ".[db]"          # db extra pulls in duckdb; core runtime needs nothing
-pytest -q                        # 1750 tests
+pip install -e ".[db,test]"     # or: cd agentsg && pip install -e ".[db,test]"
+pytest -q                        # ~3600 tests
 ```
 
 ```python
 from agentsg.cell import root_invariant, root_distance, root_cutoff_for_edge_tolerance
-from agentsg.cell import CellDatabase, RootIndex
+from agentsg.cell import CellDatabase
 
-# compare two cells by their root invariant (orbit-free, continuous, exact)
+# compare two cells by their root invariant (orbit-free, continuous)
 d = root_distance((78,78,37,90,90,90), (79,79,38,90,90,90))
 
 # open the prebuilt PDB database and do a fast nearest-neighbour search
 db  = CellDatabase("../data/pdb_cells.duckdb")
-idx = RootIndex(db)                              # persistent NearTree, builds in ~4 s
-hits = idx.k_nearest((100,100,100,90,90,90), k=20)   # ~5 ms median over 206k cells
+idx = db.build_index()                       # cKDTree over stored roots
+hits = idx.k_nearest((100,100,100,90,90,90), k=20)
 
 # choose a search radius from an edge tolerance you're willing to accept
 r = root_cutoff_for_edge_tolerance(10, cell=(100,100,100,90,90,90))
@@ -70,9 +70,9 @@ tests only).
 
 ## Manuscript
 
-`manuscript/manuscript.tex` — the IUCrJ communication. Compile with `pdflatex`
-(figures `figure1.png`, `figure2.png`, `figure3.png` ship alongside). Drops into
-the IUCr class with `\documentclass{iucr}` and `\journalcode{J}`.
+`manuscript/main_v11.tex` — the IUCrJ communication (latest versioned source).
+Compile with `pdflatex` (figures `figure1.png` … `figure4.png` ship alongside).
+See `manuscript/SUBMISSION_NOTES.txt`.
 
 ## Provenance note
 

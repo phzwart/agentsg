@@ -15,6 +15,7 @@ from agentsg.linalg import IDENTITY3
 
 @pytest.mark.parametrize("sg,cell,expected", [
     (75, (50, 50, 80, 90, 90, 90), 2),      # P4  -> tetragonal metric, 4/mmm : 4/m
+    (75, (80, 80, 50, 90, 90, 90), 2),      # same SG with c unique short (Niggli reorders)
     (19, (40, 50, 60, 90, 90, 90), 1),      # P212121 orthorhombic -> none
     (1, (40, 50, 60, 88, 92, 103), 1),      # P1 triclinic -> none
     (143, (50, 50, 80, 90, 90, 120), 4),    # P3 -> 6/mmm : -3

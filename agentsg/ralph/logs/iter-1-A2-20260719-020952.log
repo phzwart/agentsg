@@ -1,3 +1,0 @@
-**A2** consolidated cell ↔ metric conversion into `agentsg.cell.metric` (`metric_tensor`, `params_from_metric` / `cell_from_metric`) and routed lattice_symmetry, g6, ambiguity, and primitive through thin wrappers. Full suite green (3278 passed).
-
-RALPH-OK A2A2 finished successfully: shared metric helpers landed, suite passed (3278), and the commit is on `main` as `ralph: A2 consolidate metric ↔ param conversion`.

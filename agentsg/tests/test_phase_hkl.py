@@ -72,6 +72,16 @@ def test_phase_restriction_values():
     pr4 = phase_restriction(Vector3((0, 1, 0)), ops4)
     assert pr4.absent
 
+    # P2221: screw puts restricted phase at 1/4, not the raw shift 1/2
+    ops17 = list(space_group(17).operations())
+    pr17 = phase_restriction(Vector3((1, 0, 1)), ops17)
+    assert not pr17.absent and pr17.centric and pr17.phase == Fraction(1, 4)
+
+    # Fd-3m origin choice 1: inversion off origin → phase 3/8, not 0
+    ops227 = list(space_group(227).operations())
+    pr227 = phase_restriction(Vector3((1, 1, 1)), ops227)
+    assert not pr227.absent and pr227.centric and pr227.phase == Fraction(3, 8)
+
 
 @pytest.mark.parametrize("n", _GROUPS)
 def test_equivalent_orbit_closed(n):

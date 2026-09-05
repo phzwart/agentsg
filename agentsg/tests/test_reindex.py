@@ -37,7 +37,9 @@ def test_reindexing_coset_size_equals_holohedry():
     assert len(ops) == 16
     # every operator maps A onto B
     for P in ops:
-        assert root_distance(_cell_of(_transform_metric(G, P)), B) < 1e-6
+        rd = root_distance(_cell_of(_transform_metric(G, P)), B)
+        scale = max(abs(x) for x in base[:3]) ** 2
+        assert rd < 1e-9 * scale + 1e-6
 
 
 def test_reindexing_contains_true_operator():

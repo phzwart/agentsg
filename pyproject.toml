@@ -1,0 +1,37 @@
+# Installable from the repository root:
+#   pip install .
+#   pip install "git+https://github.com/phzwart/agentsg.git"
+# The package sources live under agentsg/src/agentsg.
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentsg"
+version = "0.5.0"
+description = "Exact-rational space-group algebra for all 230 groups (Hall parser, Wyckoff, reflection conditions) + numeric unit-cell math (metric, Niggli, exact<->numeric bridge). Zero runtime dependencies."
+readme = "agentsg/README.md"
+license = { text = "MIT" }
+authors = [{ name = "P. H. Zwart" }]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy", "duckdb", "scipy"]
+db = ["duckdb", "numpy", "scipy"]
+plot = ["matplotlib", "numpy"]
+
+[project.urls]
+Repository = "https://github.com/phzwart/agentsg"
+
+[tool.setuptools.package-dir]
+"" = "agentsg/src"
+
+[tool.setuptools.packages.find]
+where = ["agentsg/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["agentsg/tests"]
+markers = [
+    "slow: long-running fuzz / calibration / all-230 stress tests",
+]

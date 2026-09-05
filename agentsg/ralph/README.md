@@ -4,7 +4,7 @@ Autonomous code-quality backlog runner for `agentsg`.
 
 ## Prerequisites
 
-1. Git repo at `/Users/phzwart/Projects/agentsg` (parent of this package).
+1. Git repo at the parent of this package (`../` from here; `git rev-parse --show-toplevel`).
 2. `cursor-agent` on PATH (`~/.local/bin` after `curl https://cursor.com/install -fsS | bash`).
 3. **Authenticated:** `cursor-agent login` (once). Without login, use the manual
    protocol in `PROMPT.md` or set `CURSOR_API_KEY`.

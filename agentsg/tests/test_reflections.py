@@ -29,26 +29,26 @@ def test_absences_match_gemmi(row):
 
 @pytest.mark.parametrize("n", [1, 2, 14, 15, 19, 62, 88, 141, 194, 225, 227, 230])
 def test_reported_conditions_reproduce_absences(n):
-    """Every reported condition string must, when applied, reproduce the exact
-    absent/present split it summarises."""
+    """Classes with no reported condition must have no intrinsic absences among
+    point-group-orbit-generic members.
+    """
+    from agentsg.reflections import _SUBCLASSES, _CLASS_SEL, _generic_members
     ops = list(space_group(n).operations())
     cond = reflection_conditions(ops)
-    # for a handful of the named classes, verify no reflection contradicts the
-    # derived absence rule (the reporter derives from the same rule, so this is
-    # a self-consistency guard).
     for name, sel in _CLASSES:
         members = [(h, k, l) for (h, k, l) in _HKLS if sel(h, k, l)]
         if not members:
             continue
-        # if reported as unrestricted, none may be absent
+        sub_sels = [_CLASS_SEL[s] for s in _SUBCLASSES[name]]
+        generic = _generic_members(members, sub_sels, ops)
         if name not in cond:
-            assert not any(is_systematically_absent(Vector3(m), ops) for m in members), (n, name)
+            assert not any(is_systematically_absent(Vector3(m), ops) for m in generic), (n, name)
 
 
 def test_known_conditions_present():
     # F-centring integral condition on Fm-3m
     c225 = reflection_conditions(list(space_group(225).operations()))
-    assert c225["hkl"]  # non-empty integral condition (F-centring)
+    assert "hkl" in c225 and "2n" in c225["hkl"]
     # 21 screw serial conditions on P212121
     c19 = reflection_conditions(list(space_group(19).operations()))
     assert c19["h00"] == "h = 2n"
@@ -56,4 +56,10 @@ def test_known_conditions_present():
     assert c19["00l"] == "l = 2n"
     # Ia-3d: hhl h+k+l = 4n (d-glide)
     c230 = reflection_conditions(list(space_group(230).operations()))
-    assert c230["hhl"] == "h+k+l = 4n"
+    assert "h+k+l = 4n" in c230["hhl"]
+    # P21: only the serial screw, no spurious general "restricted"
+    c4 = reflection_conditions(list(space_group(4).operations()))
+    assert c4 == {"0k0": "k = 2n"}
+    # P61: 6-fold screw
+    c169 = reflection_conditions(list(space_group(169).operations()))
+    assert c169["00l"] == "l = 6n"

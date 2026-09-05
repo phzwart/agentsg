@@ -13,11 +13,12 @@ breaking one of them, stop, revert, and write `BLOCKED.md`.
 
 ## Exact / numeric boundary
 
-- Preserve the hard package split: exact-rational symmetry lives in `agentsg.*`;
+- Preserve the package split: exact-rational symmetry lives in `agentsg.*`;
   numeric cell math lives in `agentsg.cell.*`.
-- `agentsg.cell` may import exact symmetry **only** via
-  `agentsg.cell.constraints` (the single sanctioned bridge: `W^T G W = G`).
-- Do not introduce new exact↔numeric crossings.
+- The metric bridge is `agentsg.cell.constraints` (`W^T G W = G`). Other cell
+  modules may import space-group symbols/operators when a workflow needs them
+  (ambiguity, Selling, primitive, PDB); do not invent new *metric* crossings.
+- Do not introduce new runtime dependencies.
 
 ## Dependencies
 
@@ -49,5 +50,5 @@ breaking one of them, stop, revert, and write `BLOCKED.md`.
 - One backlog task → one commit, message form: `ralph: <task-id> <short summary>`.
 - On failure after retries: `git checkout -- .` (and `git clean -fd` only for
   untracked files you created this iteration), then append to `BLOCKED.md`.
-- Working tree for commits is the **repo root** `/Users/phzwart/Projects/agentsg`
-  (git lives there). Package work and `pytest` run from `agentsg/`.
+- Working tree for commits is the **git repo root** (parent of this package;
+  `git rev-parse --show-toplevel`). Package work and `pytest` run from `agentsg/`.

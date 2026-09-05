@@ -58,6 +58,23 @@ def test_origin_shift_various():
         assert recovered == ops
 
 
+def test_origin_shift_quarter_on_choice2_groups():
+    """Origin shifts of 1/4 (as in IT origin-choice-2 settings) must be recovered.
+
+    Sampling free variables on the translation-lattice denominator grid, and
+    trying δ modulo the centering coset, is enough — no per-group table.
+    """
+    shift = Vector3((Fr(1, 4), Fr(1, 4), Fr(1, 4)))
+    for n in (48, 50, 59, 70, 88, 203, 227):
+        ops = space_group(n).operations()
+        conj = frozenset(ChangeOfBasis(IDENTITY3, -shift).apply_to_op(op) for op in ops)
+        hit = identify_space_group(conj)
+        assert hit is not None, n
+        assert hit.number == n
+        recovered = frozenset(hit.change_of_basis.apply_to_op(op) for op in conj)
+        assert recovered == ops
+
+
 def test_p1_from_identity():
     hit = identify_space_group([SymmetryOp.identity()])
     assert hit is not None

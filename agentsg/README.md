@@ -25,7 +25,7 @@ suite, as independent oracles — never imported by the package itself.
   reduction, and the exact↔numeric bridge — all cross-checked against gemmi to
   machine precision.
 
-**1264 tests pass.**
+**~3600 tests collected** (run ``pytest -q`` from ``agentsg/``).
 
 ## Quick look
 

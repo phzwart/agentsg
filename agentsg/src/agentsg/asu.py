@@ -106,14 +106,22 @@ class ReciprocalAsu:
         """Map ``hkl`` into the ASU.
 
         Returns ``(hkl_asu, isym)`` where ``isym`` follows the MTZ convention
-        relative to the given ``operations`` order: for 0-based index ``i``,
+        relative to ``operations`` order: for 0-based index ``i``,
         ``2*i+1`` means a direct image and ``2*i+2`` a Friedel image.
+
+        If ``operations`` is unordered (``set`` / ``frozenset``), it is sorted
+        by ``(W, w)`` so ``isym`` is deterministic; ordered sequences keep the
+        caller's order (needed to match gemmi / MTZ when that order is given).
         """
         if isinstance(hkl, Vector3):
             h0 = Vector3(hkl.v)
         else:
             h0 = Vector3((int(hkl[0]), int(hkl[1]), int(hkl[2])))
-        for i, op in enumerate(operations):
+        if isinstance(operations, (set, frozenset)):
+            ops = sorted(operations, key=lambda op: (op.W.rows, tuple(op.w.v)))
+        else:
+            ops = list(operations)
+        for i, op in enumerate(ops):
             ht = transform_hkl(h0, op.W)
             t = (int(ht.v[0]), int(ht.v[1]), int(ht.v[2]))
             if self.is_in(t):

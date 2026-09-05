@@ -269,7 +269,8 @@ _ORDER_TO_SYSTEM = {
 }
 
 
-def lattice_symmetry(cell, max_delta: float = 3.0) -> LatticeSymmetry:
+def lattice_symmetry(cell, max_delta: float = 3.0,
+                     length_tol_pct: float = 2.0) -> LatticeSymmetry:
     """Determine the metric (lattice) symmetry of a unit cell.
 
     Parameters
@@ -281,6 +282,10 @@ def lattice_symmetry(cell, max_delta: float = 3.0) -> LatticeSymmetry:
         with delta <= max_delta are accepted. Acceptance remains Le-Page-gated;
         each accepted two-fold also carries its Kurlin root-invariant distance
         to the {I, M}-symmetrised metric (see :class:`TwoFoldScore`).
+    length_tol_pct : maximum percent length change allowed under MᵀGM vs G.
+        Le Page is purely angular; without this gate a few-percent edge mismatch
+        can still look "tetragonal". Default 2% (same scale as
+        :func:`tolerance_metric_symmetry`).
 
     Returns a :class:`LatticeSymmetry` with the closed operation set (exact
     integer rotations as SymmetryOp with zero translation), the holohedry order,
@@ -288,15 +293,29 @@ def lattice_symmetry(cell, max_delta: float = 3.0) -> LatticeSymmetry:
     a known holohedry — see :data:`_ORDER_TO_SYSTEM`), and the accepted
     two-folds with Le Page / Kurlin scores.
     """
+    G = _metric_tensor(cell)
+    ref = _cell_params(G)
     accepted = []
     scores = []
     for M, u, h in _TWO_FOLD_TABLE:
         d = le_page_delta(cell, u, h)
-        if d <= max_delta:
-            accepted.append(M)
-            scores.append(TwoFoldScore(
-                M, u, h, d, kurlin_distance_to_two_fold(cell, M),
-            ))
+        if d > max_delta:
+            continue
+        MtG = [[sum(M[k][i] * G[k][j] for k in range(3)) for j in range(3)]
+               for i in range(3)]
+        Gp = [[sum(MtG[i][k] * M[k][j] for k in range(3)) for j in range(3)]
+              for i in range(3)]
+        try:
+            p = _cell_params(Gp)
+            dl = max(abs(p[i] - ref[i]) / ref[i] * 100.0 for i in range(3))
+        except (ValueError, ZeroDivisionError):
+            continue
+        if dl > length_tol_pct:
+            continue
+        accepted.append(M)
+        scores.append(TwoFoldScore(
+            M, u, h, d, kurlin_distance_to_two_fold(cell, M),
+        ))
     # The lattice holohedry always contains the inversion centre: every lattice
     # is centrosymmetric (t and -t are both lattice vectors). The Lebedev set is
     # proper rotations (det = +1) only, so we seed the closure with -I to recover

@@ -90,24 +90,34 @@ def _coset_reps(L: frozenset, H: frozenset) -> list:
 
 
 @lru_cache(maxsize=256)
-def _cached_ambiguity(sg_key, cell_sig, len_tol, ang_tol):
+def _cached_ambiguity(sg_key, cell_sig, M_sig, len_tol, ang_tol):
+    """Coset reps in the *input* basis.
+
+    ``cell_sig`` is the Niggli-reduced cell (cache coalescing). ``M_sig`` is the
+    integer change-of-basis input→reduced. Metric symmetry H is computed in the
+    reduced basis; the crystal Laue group L is conjugated into that basis so the
+    quotient is well-defined, then coset representatives are mapped back to the
+    input basis via M. No special cases: just change-of-basis conjugation.
+    """
     sg = space_group(sg_key)
-    cell = tuple(v / 1000.0 for v in cell_sig)  # undo the integer signature
-    L = _laue_matrices(sg)
-    # The quotient is taken inside the TOLERANCE metric-automorphism group, not
-    # the exact holohedry: this is what catches pseudo-symmetry (beta~90) and the
-    # cell-choice / Niggli reduction-flip transforms (a~b swaps) that a single
-    # exact reduced cell hides. See lattice_symmetry.tolerance_metric_symmetry.
+    reduced = tuple(v / 1000.0 for v in cell_sig)
+    M = Matrix3([[Fr(x) for x in row] for row in M_sig])
+    Minv = M.inverse()
+    L_in = _laue_matrices(sg)
+    L = frozenset(Minv @ R @ M for R in L_in)
     H = frozenset(op.W for op in
-                  tolerance_metric_symmetry(cell, length_tol_pct=len_tol, angle_tol_deg=ang_tol))
+                  tolerance_metric_symmetry(reduced, length_tol_pct=len_tol, angle_tol_deg=ang_tol))
     if not (L <= H):
-        # the tolerance metric symmetry is lower than the Laue group -- the cell
-        # does not support the space group at this tolerance; no valid reindexing
-        # beyond the identity.
-        reps = [IDENTITY3]
+        reps_in = [IDENTITY3]
     else:
-        reps = _coset_reps(L, H)
-    return tuple(SymmetryOp(R, Vector3((0, 0, 0))) for R in reps)
+        reps_red = _coset_reps(L, H)
+        reps_in = [M @ R @ Minv for R in reps_red]
+    # Deterministic order: identity first, then by matrix entries.
+    reps_in = sorted(reps_in, key=lambda R: (R != IDENTITY3, R.rows))
+    if IDENTITY3 in reps_in:
+        reps_in.remove(IDENTITY3)
+        reps_in.insert(0, IDENTITY3)
+    return tuple(SymmetryOp(R, Vector3((0, 0, 0))) for R in reps_in)
 
 
 def reindexing_ambiguity_operators(space_group_key, cell,
@@ -120,7 +130,9 @@ def reindexing_ambiguity_operators(space_group_key, cell,
     space_group_key : space-group number, Hermann-Mauguin or Hall symbol, or a
         SpaceGroup instance.
     cell : (a, b, c, alpha, beta, gamma), angles in degrees. It is Niggli-reduced
-        internally so equivalent cells hit the same cache entry.
+        internally so equivalent cells hit the same cache entry; operators are
+        always returned in the *input* basis (Laue and metric symmetry are
+        aligned through the Niggli change of basis).
     length_tol_pct : tolerance (percent) on edge lengths for the metric-symmetry
         determination.
     angle_tol_deg : tolerance (degrees) on angles.
@@ -132,7 +144,7 @@ def reindexing_ambiguity_operators(space_group_key, cell,
     reindexings but also the pseudo-symmetry branches (e.g. a monoclinic cell
     with beta near 90 gets its pseudo-orthorhombic partner) and the cell-choice
     transforms across Niggli reduction boundaries. The result is memoised; the
-    same (space group, reduced cell, tolerances) never recomputes.
+    same (space group, reduced cell, Niggli CoB, tolerances) never recomputes.
 
     Apply an operator to Miller indices with :func:`apply_to_hkl_batch` (or
     ``op.W`` directly). Picking the correct branch per frame (correlation to a
@@ -143,10 +155,14 @@ def reindexing_ambiguity_operators(space_group_key, cell,
     else:
         sg_key = space_group_key
     # canonicalise the cell via Niggli reduction, then a milliangstrom/millidegree
-    # integer signature so nearby cells share a cache slot
-    reduced, _ = niggli_reduce(*cell)
+    # integer signature so nearby cells share a cache slot. Keep M so Laue (input
+    # basis) and H (reduced basis) are compared in the same frame.
+    reduced, M_raw = niggli_reduce(*cell)
     cell_sig = tuple(int(round(v * 1000)) for v in reduced)
-    return _cached_ambiguity(sg_key, cell_sig, round(length_tol_pct, 3), round(angle_tol_deg, 3))
+    M_sig = tuple(tuple(int(x) for x in row) for row in M_raw)
+    return _cached_ambiguity(
+        sg_key, cell_sig, M_sig, round(length_tol_pct, 3), round(angle_tol_deg, 3),
+    )
 
 
 def apply_to_hkl_batch(op, hkl):

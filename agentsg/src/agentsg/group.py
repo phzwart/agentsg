@@ -107,7 +107,13 @@ class PhaseRestriction:
 
 
 def phase_restriction(hkl: Vector3, operations: Iterable[SymmetryOp]) -> PhaseRestriction:
-    """Derive absence / centricity / restricted phase for ``hkl``."""
+    """Derive absence / centricity / restricted phase for ``hkl``.
+
+    If some (W, w) maps h → −h, then F(h) = exp(2πi h·w) F(h)*, so the
+    restricted phase is (h·w)/2 turns (mod ½). Allowed phases are then
+    ``phase`` and ``phase + 1/2``. The location of an inversion centre enters
+    through w; there is no special centrosymmetric shortcut to phase 0.
+    """
     ops = list(operations)
     neg = Vector3((-hkl.v[0], -hkl.v[1], -hkl.v[2]))
     thr: Fraction | None = None
@@ -133,12 +139,9 @@ def phase_restriction(hkl: Vector3, operations: Iterable[SymmetryOp]) -> PhaseRe
     if absent:
         return PhaseRestriction(True, centric, None)
 
-    if is_centrosymmetric(ops):
-        # Inversion forces phases 0 / 1/2 (turns).
-        return PhaseRestriction(False, True, Fraction(0))
-
     if thr is not None:
-        return PhaseRestriction(False, True, thr)
+        # F(h) = exp(2πi thr) F(h)*  ⇒  φ ≡ thr/2  (mod 1/2).
+        return PhaseRestriction(False, True, frac_mod1(thr / 2))
 
     # 000 is centric with phase 0 even in P1.
     if centric:

@@ -1,16 +1,16 @@
 """
 Phase 2: unit-cell math -- real-valued (floating point).
 
-This subpackage is numeric and, with ONE exception, does not import from
-agentsg's exact symmetry modules. The exception is ``constraints.py`` -- the
-single sanctioned crossing of the exact/numeric boundary (metric <-> point-group
-invariance, W^T G W = G). See docs/DESIGN.md, "The one interface point".
+This subpackage is numeric. Several modules import space-group symbols or
+operators when a workflow needs them (reindexing ambiguity, Selling settings,
+primitive reduction, PDB search). The *metric* bridge remains
+``constraints.py`` (W^T G W = G). See docs/DESIGN.md.
 
   * metric.py       UnitCell: metric tensor, volume, reciprocal cell,
                     orthogonalisation, d-spacings, two-theta.
   * reduction.py    Niggli reduction (stabilised Grosse-Kunstleve/Sauter/Adams
                     2004 algorithm) with the integer change-of-basis matrix.
-  * constraints.py  the exact<->numeric bridge: W^T G W = G, metric
+  * constraints.py  the metric exact<->numeric bridge: W^T G W = G, metric
                     symmetrisation, and derived crystal-system free parameters.
   * sublattice.py   Hermite-normal-form enumeration of index-d sublattices.
   * compare.py      compare_cells: the "exploring metric symmetry" lego/target

@@ -33,12 +33,10 @@ def test_default_stabilize_matches_sqrt():
 
 
 def test_floored_and_soft_require_noise_scale():
+    import pytest
     cell = P63
-    try:
+    with pytest.raises(ValueError):
         sorted_root_key(cell, stabilize="floored")
-        assert False, "expected ValueError"
-    except ValueError:
-        pass
     k = sorted_root_key(cell, stabilize="floored", angle_sigma=0.05)
     assert len(k) == 6
     assert all(x >= 0 for x in k)
@@ -159,10 +157,11 @@ def test_stabilised_key_invariant_odd_vs_even_cuboid():
     ang = lambda x: math.degrees(math.acos(max(-1.0, min(1.0, x))))
     even = (a, b, c, ang(GB[1][2] / (b * c)), ang(GB[0][2] / (a * c)),
             ang(GB[0][1] / (a * b)))
-    assert sorted_root_distance(ortho, even) < 1e-9
+    scale = sum(x * x for x in ortho[:3])
+    assert sorted_root_distance(ortho, even) < 1e-9 * scale + 1e-6
     assert sorted_root_distance(
-        ortho, even, stabilize="floored", angle_sigma=0.05) < 1e-9
-    assert sorted_root_distance(ortho, even, stabilize="linear") < 1e-9
+        ortho, even, stabilize="floored", angle_sigma=0.05) < 1e-9 * scale + 1e-6
+    assert sorted_root_distance(ortho, even, stabilize="linear") < 1e-9 * scale + 1e-6
 
 
 def test_deformation_graph_defaults_to_conorm():

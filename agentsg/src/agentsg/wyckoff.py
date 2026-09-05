@@ -32,11 +32,9 @@ def _vec_mod1(v: Vector3) -> Vector3:
 def site_symmetry_ops(x: Vector3, operations: Iterable[SymmetryOp]) -> frozenset[SymmetryOp]:
     """Operations (W,w) that fix x modulo an integer lattice translation.
 
-    The returned operations are *reduced to the site*: (W, w + Wx - x) so that
-    their translation part is a pure lattice vector at x -- i.e. they form the
-    site-symmetry point group acting about x. We return them in their original
-    (W,w) form here; use :func:`site_symmetry_point_group` for the rotation
-    parts only.
+    Returns the stabiliser operators in their *original* (W, w) form — they are
+    not re-based to act about x. Use :func:`site_symmetry_point_group` for the
+    rotation parts only (the site point group).
     """
     xr = x.mod1()
     out = set()

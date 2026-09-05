@@ -31,11 +31,11 @@ per invocation in the `agentsg` crystallography package.
 
 4. **On green:**
    - Flip that task's checkbox from `[ ]` to `[x]` in `BACKLOG.md`.
-   - Commit from the **git repo root** (`/Users/phzwart/Projects/agentsg`, parent
-     of the package dir). Stage relevant files and commit:
+   - Commit from the **git repo root** (parent of the package dir). Stage
+     relevant files and commit:
 
      ```bash
-     cd /Users/phzwart/Projects/agentsg
+     cd "$(git rev-parse --show-toplevel)"
      git add -A
      git commit -m "ralph: <task-id> <short summary>"
      ```
@@ -56,8 +56,8 @@ per invocation in the `agentsg` crystallography package.
 
 ## Working directories
 
-- Package / tests / `ralph/`: `/Users/phzwart/Projects/agentsg/agentsg`
-- Git root: `/Users/phzwart/Projects/agentsg`
+- Package / tests / `ralph/`: this directory's parent (`agentsg/`)
+- Git root: parent of the package directory (`git rev-parse --show-toplevel`)
 - Prefer the package venv: `.venv/bin/python -m pytest` (verify.sh handles this).
 
 ## Style

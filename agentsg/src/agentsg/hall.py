@@ -112,7 +112,11 @@ def _parse_generator(tok: str, position: int, prev_order: int | None):
     improper = s.startswith("-")
     if improper:
         s = s[1:]
+    if not s or not s[0].isdigit():
+        raise ValueError(f"generator token {tok!r} must start with rotation order 1–6")
     order = int(s[0])
+    if order not in (1, 2, 3, 4, 6):
+        raise ValueError(f"Hall rotation order must be 1,2,3,4, or 6; got {order} in {tok!r}")
     s = s[1:]
     # axis, translation chars, and screw digit may follow, in any order in
     # practice (' " * x y z are axes; a b c n u v w d are translations; a lone
@@ -144,7 +148,10 @@ def _parse_generator(tok: str, position: int, prev_order: int | None):
         key = (order, axis)  # default (referred to z); cubic x/y handled by caller
     else:
         key = (order, axis)
-    W = _REF[key]
+    try:
+        W = _REF[key]
+    except KeyError as exc:
+        raise ValueError(f"no Hall matrix for order={order} axis={axis!r} in {tok!r}") from exc
     if improper:
         W = Matrix3([[-x for x in row] for row in W.rows])
 
@@ -164,16 +171,38 @@ def parse_hall(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
     """Parse a Hall symbol into (generators, centering_vectors).
 
     The returned generators + centering are exactly what `close_group` expects.
+    Malformed symbols raise :class:`ValueError` (never raw IndexError/KeyError).
     """
+    if not isinstance(symbol, str):
+        raise ValueError(f"Hall symbol must be a string, got {type(symbol).__name__}")
     symbol = symbol.strip()
+    if not symbol:
+        raise ValueError("empty Hall symbol")
+
+    try:
+        return _parse_hall_body(symbol)
+    except (IndexError, KeyError, AssertionError) as exc:
+        raise ValueError(f"malformed Hall symbol {symbol!r}: {exc}") from exc
+
+
+def _parse_hall_body(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
     origin = None
     if "(" in symbol:
         body, _, rest = symbol.partition("(")
         shift_str = rest.rstrip(")").split()
-        origin = tuple(Fr(int(v), 12) for v in shift_str)
+        if len(shift_str) != 3:
+            raise ValueError(
+                f"origin shift must have 3 integers in twelfths, got {shift_str!r}"
+            )
+        try:
+            origin = tuple(Fr(int(v), 12) for v in shift_str)
+        except ValueError as exc:
+            raise ValueError(f"origin shift values must be integers, got {shift_str!r}") from exc
         symbol = body.strip()
 
     parts = symbol.split()
+    if not parts:
+        raise ValueError("Hall symbol has no lattice letter")
     lat = parts[0]
     centrosymmetric = lat.startswith("-")
     lat_letter = lat.lstrip("-").upper()
@@ -189,6 +218,8 @@ def parse_hall(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
         # x or y, the in-plane 2-fold is referred to that axis.
         improper = tok.startswith("-")
         core = tok[1:] if improper else tok
+        if not core or not core[0].isdigit():
+            raise ValueError(f"generator token {tok!r} must start with rotation order 1–6")
         axis_hint = None
         for ch in core[1:]:
             if ch in "xyz*'\"":
@@ -197,7 +228,12 @@ def parse_hall(symbol: str) -> tuple[list[SymmetryOp], list[Vector3]]:
         if axis_hint in ("'", '"') and prev_axis in ("x", "y"):
             # rebuild with the referred key
             order = int(core[0])
-            W = _REF[(order, axis_hint + prev_axis)]
+            try:
+                W = _REF[(order, axis_hint + prev_axis)]
+            except KeyError as exc:
+                raise ValueError(
+                    f"no Hall matrix for order={order} axis={axis_hint!r}+{prev_axis!r}"
+                ) from exc
             if improper:
                 W = Matrix3([[-x for x in r] for r in W.rows])
             # translation chars / screw

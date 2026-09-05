@@ -16,6 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction as Fr
 from itertools import product
+from math import lcm
 from typing import Iterable
 
 from .linalg import Matrix3, Vector3, IDENTITY3, ZERO3
@@ -70,6 +71,10 @@ def _origin_shift_to_standard(
     """Return p such that conjugating ops_in by (I, p) yields ops_std.
 
     Solves (W - I) p ≡ δ_W (mod 1) for each rotation W, exactly over Q.
+    Free variables are sampled on the grid of denominator D, where D is the
+    lcm of all translation denominators appearing in the two operator sets
+    (and the δ_W that relate them) — the crystallographic translation lattice,
+    not a hard-coded {0, ½} stencil.
     """
     if ops_in == ops_std:
         return ZERO3
@@ -82,7 +87,8 @@ def _origin_shift_to_standard(
 
     in_by_W = _group_by_W(ops_in)
     std_by_W = _group_by_W(ops_std)
-    Ws = [W for W in in_by_W if W != IDENTITY3]
+    # Deterministic order: frozenset iteration order must not affect results.
+    Ws = sorted((W for W in in_by_W if W != IDENTITY3), key=lambda W: W.rows)
     if not Ws:
         # P1: every origin is floating — ops are always identical; gauge p = 0.
         return ZERO3 if ops_in == ops_std else None
@@ -93,6 +99,27 @@ def _origin_shift_to_standard(
         if delta is None:
             return None
         deltas[W] = delta
+
+    # Centring makes δ unique only modulo the centering lattice: {w}+δ = {w_std}
+    # still holds for δ + c. The equation (W−I)p ≡ δ needs the representative
+    # consistent with a single p, so we try the full coset.
+    cens = list(centering_translations(ops_std))
+    if not cens:
+        cens = [ZERO3]
+
+    # Translation-lattice denominator from the operators themselves.
+    dens = [1]
+    for ops in (ops_in, ops_std):
+        for op in ops:
+            for wi in op.w.v:
+                dens.append(wi.denominator)
+    for delta in deltas.values():
+        for wi in delta.v:
+            dens.append(wi.denominator)
+    D = 1
+    for d in dens:
+        D = lcm(D, d)
+    free_grid = tuple(Fr(k, D) for k in range(D))
 
     def _accept(p: Vector3) -> Vector3 | None:
         """Pin floating components, then verify conjugation."""
@@ -111,82 +138,105 @@ def _origin_shift_to_standard(
     M0 = _WmI(W0)
     d0 = deltas[W0]
     candidates: list[Vector3] = []
-    for n in product(range(-1, 2), repeat=3):
-        rhs = Vector3(d0.v[i] + n[i] for i in range(3))
-        sol = _solve_affine(M0, rhs)
-        if sol is None:
-            continue
-        particular, basis = sol
-        # Sample free vars at {0, 1/2}; floating dirs will be pinned to 0.
-        free_dims = len(basis)
-        if free_dims == 0:
-            trials = [particular]
-        else:
-            trials = []
-            for bits in product((Fr(0), Fr(1, 2)), repeat=free_dims):
-                p = particular
-                for b, coeff in zip(basis, bits):
-                    p = p + Vector3(coeff * x for x in b.v)
-                trials.append(p.mod1())
-        for p in trials:
-            accepted = _accept(p)
-            if accepted is not None:
-                return accepted
-            candidates.append(p.mod1())
+    for cen in cens:
+        delta0 = (d0 + cen).mod1()
+        for n in product(range(-1, 2), repeat=3):
+            rhs = Vector3(delta0.v[i] + n[i] for i in range(3))
+            sol = _solve_affine(M0, rhs)
+            if sol is None:
+                continue
+            particular, basis = sol
+            # Denominators in the affine solution can refine the free-var grid.
+            dens_sol = [D]
+            for vec in (particular, *basis):
+                for x in vec.v:
+                    dens_sol.append(x.denominator)
+            D_sol = 1
+            for d in dens_sol:
+                D_sol = lcm(D_sol, d)
+            grid = tuple(Fr(k, D_sol) for k in range(D_sol))
+            free_dims = len(basis)
+            if free_dims == 0:
+                trials = [particular]
+            else:
+                trials = []
+                for bits in product(grid, repeat=free_dims):
+                    p = particular
+                    for b, coeff in zip(basis, bits):
+                        p = p + Vector3(coeff * x for x in b.v)
+                    trials.append(p.mod1())
+            for p in trials:
+                accepted = _accept(p)
+                if accepted is not None:
+                    return accepted
+                candidates.append(p.mod1())
 
     # If first-W sampling missed (rare), try stacking two Ws when available.
     if len(Ws) >= 2:
         W1 = Ws[1]
         M1 = _WmI(W1)
         d1 = deltas[W1]
-        for p0 in candidates[:32]:
+        for p0 in candidates[:64]:
             got = (M1 @ p0).mod1()
-            if got == d1.mod1():
+            # Accept if got is d1 up to centring.
+            if any(got == (d1 + c).mod1() for c in cens):
                 accepted = _accept(p0)
                 if accepted is not None:
                     return accepted
-        for n0 in product(range(-1, 2), repeat=3):
-            for n1 in product(range(-1, 2), repeat=3):
-                A = (
-                    [[M0.rows[i][j] for j in range(3)] for i in range(3)]
-                    + [[M1.rows[i][j] for j in range(3)] for i in range(3)]
-                )
-                b = [d0.v[i] + n0[i] for i in range(3)] + [
-                    d1.v[i] + n1[i] for i in range(3)
-                ]
-                R, c, pivots = _rref(A, b)
-                inconsistent = False
-                for i in range(len(R)):
-                    if all(R[i][j] == 0 for j in range(3)) and c[i] != 0:
-                        inconsistent = True
-                        break
-                if inconsistent:
-                    continue
-                pivot_set = set(pivots)
-                free = [j for j in range(3) if j not in pivot_set]
-                part = [Fr(0)] * 3
-                for ri, col in enumerate(pivots):
-                    part[col] = c[ri]
-                particular = Vector3(part)
-                basis = []
-                for f in free:
-                    vec = [Fr(0)] * 3
-                    vec[f] = Fr(1)
-                    for ri, col in enumerate(pivots):
-                        vec[col] = -R[ri][f]
-                    basis.append(Vector3(vec))
-                free_dims = len(basis)
-                bit_iters = (
-                    [()] if free_dims == 0
-                    else product((Fr(0), Fr(1, 2)), repeat=free_dims)
-                )
-                for bits in bit_iters:
-                    p = particular
-                    for bv, coeff in zip(basis, bits):
-                        p = p + Vector3(coeff * x for x in bv.v)
-                    accepted = _accept(p)
-                    if accepted is not None:
-                        return accepted
+        for cen0 in cens:
+            for cen1 in cens:
+                delta0 = (d0 + cen0).mod1()
+                delta1 = (d1 + cen1).mod1()
+                for n0 in product(range(-1, 2), repeat=3):
+                    for n1 in product(range(-1, 2), repeat=3):
+                        A = (
+                            [[M0.rows[i][j] for j in range(3)] for i in range(3)]
+                            + [[M1.rows[i][j] for j in range(3)] for i in range(3)]
+                        )
+                        b = [delta0.v[i] + n0[i] for i in range(3)] + [
+                            delta1.v[i] + n1[i] for i in range(3)
+                        ]
+                        R, c, pivots = _rref(A, b)
+                        inconsistent = False
+                        for i in range(len(R)):
+                            if all(R[i][j] == 0 for j in range(3)) and c[i] != 0:
+                                inconsistent = True
+                                break
+                        if inconsistent:
+                            continue
+                        pivot_set = set(pivots)
+                        free = [j for j in range(3) if j not in pivot_set]
+                        part = [Fr(0)] * 3
+                        for ri, col in enumerate(pivots):
+                            part[col] = c[ri]
+                        particular = Vector3(part)
+                        basis = []
+                        for f in free:
+                            vec = [Fr(0)] * 3
+                            vec[f] = Fr(1)
+                            for ri, col in enumerate(pivots):
+                                vec[col] = -R[ri][f]
+                            basis.append(Vector3(vec))
+                        dens_sol = [D]
+                        for vec in (particular, *basis):
+                            for x in vec.v:
+                                dens_sol.append(x.denominator)
+                        D_sol = 1
+                        for d in dens_sol:
+                            D_sol = lcm(D_sol, d)
+                        grid = tuple(Fr(k, D_sol) for k in range(D_sol))
+                        free_dims = len(basis)
+                        bit_iters = (
+                            [()] if free_dims == 0
+                            else product(grid, repeat=free_dims)
+                        )
+                        for bits in bit_iters:
+                            p = particular
+                            for bv, coeff in zip(basis, bits):
+                                p = p + Vector3(coeff * x for x in bv.v)
+                            accepted = _accept(p)
+                            if accepted is not None:
+                                return accepted
     return None
 
 

@@ -13,23 +13,29 @@ Classes reported:
   * zonal      (hk0, h0l, 0kl, and the hexagonal hh0l etc.): glide planes
   * serial     (h00, 0k0, 00l): screw axes
 
-For each class we scan a bounded reflection block, find the sublattice of
-*allowed* reflections, and express it as the condition string that is satisfied
-by exactly the non-absent reflections in that class.
+For each class we take operators that fix every generic member of the class
+(hW = h for all such h). Each such operator contributes the modular condition
+h·w ∈ ℤ, rewritten on the free indices of the class. The reported string is a
+minimal subset of those constraints that reproduces the absence pattern —
+derived only from the operator list, with no form tables or group-specific
+branches.
 
 Also provides symmetry-equivalent reflection orbits (SgInfo ``BuildEq_hkl``).
 """
 from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
+from functools import reduce
+from math import gcd, lcm
 from typing import Sequence
 from .linalg import Vector3, frac_mod1
 from .symmetry_op import SymmetryOp
 from .group import is_systematically_absent, transform_hkl, phase_shift
 
 
-# reflection classes: name -> function(h,k,l)->bool selecting membership,
-# and the free indices that vary within the class.
+# reflection classes: name -> function(h,k,l)->bool selecting membership.
+# Classes nest (hkl contains 0kl contains 0k0, …); conditions are reported only
+# for absences *intrinsic* to a class, not those inherited from a subclass.
 _CLASSES = [
     ("hkl", lambda h, k, l: True),
     ("0kl", lambda h, k, l: h == 0),
@@ -41,79 +47,249 @@ _CLASSES = [
     ("hhl", lambda h, k, l: h == k),
     ("hh0", lambda h, k, l: h == k and l == 0),
 ]
+_CLASS_SEL = dict(_CLASSES)
+# Proper subclasses used to strip inherited absences from parent reporting.
+_SUBCLASSES: dict[str, tuple[str, ...]] = {
+    "hkl": ("0kl", "h0l", "hk0", "hhl"),
+    "0kl": ("0k0", "00l"),
+    "h0l": ("h00", "00l"),
+    "hk0": ("h00", "0k0", "hh0"),
+    "hhl": ("hh0", "00l"),
+    "hh0": (),
+    "h00": (),
+    "0k0": (),
+    "00l": (),
+}
+# Substitute class equalities into a linear form (a,b,c)·(h,k,l).
+# hhl/hh0: k=h is folded into the h coefficient so the printed form uses h,l only.
+_CLASS_SUBST = {
+    "hkl": lambda a, b, c: (a, b, c),
+    "0kl": lambda a, b, c: (0, b, c),
+    "h0l": lambda a, b, c: (a, 0, c),
+    "hk0": lambda a, b, c: (a, b, 0),
+    "h00": lambda a, b, c: (a, 0, 0),
+    "0k0": lambda a, b, c: (0, b, 0),
+    "00l": lambda a, b, c: (0, 0, c),
+    "hhl": lambda a, b, c: (a, b, c),  # samples already satisfy h=k
+    "hh0": lambda a, b, c: (a, b, 0),
+}
 
 
-def _condition_for_class(members: list[tuple[int, int, int]],
-                         operations: Sequence[SymmetryOp]) -> str | None:
-    """Given all reflections in a class (excluding 000), return a human-readable
-    condition on the *allowed* ones, or None if there is no restriction."""
-    allowed = [hkl for hkl in members
-               if not is_systematically_absent(Vector3(hkl), operations)]
-    if len(allowed) == len(members):
-        return None  # no condition: every reflection in the class is allowed
+def _point_group_orbit(
+    hkl: tuple[int, int, int], operations: Sequence[SymmetryOp],
+) -> set[tuple[int, int, int]]:
+    v = Vector3(hkl)
+    return {
+        (int(hp.v[0]), int(hp.v[1]), int(hp.v[2]))
+        for op in operations
+        for hp in (transform_hkl(v, op.W),)
+    }
+
+
+def _generic_members(
+    members: list[tuple[int, int, int]],
+    subclass_sels: list,
+    operations: Sequence[SymmetryOp],
+) -> list[tuple[int, int, int]]:
+    """Members whose point-group orbit avoids every proper subclass.
+
+    A zonal screw/glide absence on e.g. hhl contaminates its orbit mates; those
+    mates are not intrinsic to the parent class and must not drive its report.
+    """
+    if not subclass_sels:
+        return list(members)
+    out = []
+    for hkl in members:
+        orbit = _point_group_orbit(hkl, operations)
+        if any(sel(*mate) for mate in orbit for sel in subclass_sels):
+            continue
+        out.append(hkl)
+    return out
+
+
+def _reduce_constraint(coeffs: tuple[int, int, int], mod: int):
+    """Canonical ((a,b,c), m) with positive leading coeff and content removed."""
+    a, b, c = coeffs
+    g = reduce(gcd, (a, b, c, mod))
+    if g > 1:
+        a, b, c, mod = a // g, b // g, c // g, mod // g
+    if mod <= 1 or (a, b, c) == (0, 0, 0):
+        return None
+    if (a, b, c) < (0, 0, 0):
+        a, b, c = -a, -b, -c
+    return (a, b, c), mod
+
+
+def _project_constraints(
+    constraints: list[tuple[tuple[int, int, int], int]],
+    class_name: str,
+) -> list[tuple[tuple[int, int, int], int]]:
+    """Restrict each constraint to the class's free indices, then merge.
+
+    Same linear form with moduli m1, m2 becomes modulus lcm(m1, m2) — e.g.
+    l=2n and l=3n → l=6n — from the definition of simultaneous congruences.
+    """
+    subst = _CLASS_SUBST[class_name]
+    projected: list[tuple[tuple[int, int, int], int]] = []
+    for (a, b, c), m in constraints:
+        red = _reduce_constraint(subst(a, b, c), m)
+        if red is not None:
+            projected.append(red)
+    # Merge identical forms by lcm of moduli.
+    by_form: dict[tuple[int, int, int], int] = {}
+    for coeffs, m in projected:
+        by_form[coeffs] = lcm(by_form.get(coeffs, 1), m)
+    out = []
+    for coeffs, m in by_form.items():
+        red = _reduce_constraint(coeffs, m)
+        if red is not None:
+            out.append(red)
+    return sorted(out)
+
+
+def _form_name(a: int, b: int, c: int) -> str:
+    """Pretty-print ah+bk+cl from its integer coefficients."""
+    parts: list[str] = []
+    for coeff, sym in ((a, "h"), (b, "k"), (c, "l")):
+        if coeff == 0:
+            continue
+        if not parts:
+            if coeff == 1:
+                parts.append(sym)
+            elif coeff == -1:
+                parts.append(f"-{sym}")
+            else:
+                parts.append(f"{coeff}{sym}")
+        else:
+            if coeff == 1:
+                parts.append(f"+{sym}")
+            elif coeff == -1:
+                parts.append(f"-{sym}")
+            elif coeff > 0:
+                parts.append(f"+{coeff}{sym}")
+            else:
+                parts.append(f"{coeff}{sym}")
+    return "".join(parts) or "0"
+
+
+def _constraints_from_ops(
+    operations: Sequence[SymmetryOp],
+    generic: list[tuple[int, int, int]],
+) -> list[tuple[tuple[int, int, int], int]]:
+    """Modular constraints h·w ∈ ℤ from operators that fix every generic hkl.
+
+    Returns unique ``((a,b,c), m)`` meaning ``a h + b k + c l ≡ 0 (mod m)``.
+    """
+    out: set[tuple[tuple[int, int, int], int]] = set()
+    for op in operations:
+        if not all(transform_hkl(Vector3(hkl), op.W) == Vector3(hkl) for hkl in generic):
+            continue
+        w = op.w.v
+        dens = [wi.denominator for wi in w]
+        L = reduce(lcm, dens, 1)
+        coeffs = tuple(int(wi * L) for wi in w)
+        g = reduce(gcd, coeffs + (L,))
+        coeffs = tuple(c // g for c in coeffs)
+        mod = L // g
+        if mod <= 1:
+            continue
+        # Drop identically-zero conditions (always true).
+        if all(c % mod == 0 for c in coeffs):
+            continue
+        # Canonicalise sign: leading nonzero coeff > 0.
+        a, b, c = coeffs
+        if (a, b, c) < (0, 0, 0):
+            a, b, c = -a, -b, -c
+        out.add(((a, b, c), mod))
+    return sorted(out)
+
+
+def _points_satisfying(
+    work: list[tuple[int, int, int]],
+    constraints: Sequence[tuple[tuple[int, int, int], int]],
+) -> set[tuple[int, int, int]]:
+    out = set()
+    for hkl in work:
+        h, k, l = hkl
+        if all((a * h + b * k + c * l) % m == 0 for (a, b, c), m in constraints):
+            out.add(hkl)
+    return out
+
+
+def _minimise_constraints(
+    work: list[tuple[int, int, int]],
+    constraints: list[tuple[tuple[int, int, int], int]],
+) -> list[tuple[tuple[int, int, int], int]]:
+    """Drop redundant constraints (same satisfying set on ``work``)."""
+    if not constraints:
+        return []
+    target = _points_satisfying(work, constraints)
+    minimal = list(constraints)
+    for c in sorted(
+        constraints,
+        key=lambda t: (-abs(t[0][0]) - abs(t[0][1]) - abs(t[0][2]), -t[1]),
+    ):
+        trial = [g for g in minimal if g is not c]
+        if trial and _points_satisfying(work, trial) == target:
+            minimal = trial
+    return minimal
+
+
+def _format_constraints(constraints: list[tuple[tuple[int, int, int], int]]) -> str:
+    if not constraints:
+        return ""
+    by_mod: dict[int, list[tuple[int, int, int]]] = {}
+    for coeffs, m in constraints:
+        by_mod.setdefault(m, []).append(coeffs)
+    parts = []
+    for m in sorted(by_mod):
+        names = [_form_name(*coeffs) for coeffs in by_mod[m]]
+        parts.append(", ".join(names) + f" = {m}n")
+    return "; ".join(parts)
+
+
+def _condition_for_class(
+    operations: Sequence[SymmetryOp],
+    generic: list[tuple[int, int, int]],
+    class_name: str,
+) -> str | None:
+    """Return the class-wide (necessary) condition, or None.
+
+    Operators that fix every generic member contribute h·w ∈ ℤ. That condition
+    is necessary for presence but need not be sufficient: individual reflections
+    in the class may still be absent under operators that fix only them (those
+    absences belong to more special classes / positions). We therefore report
+    the operator-derived necessary constraints, not a partition of all absences.
+    """
+    if not generic:
+        return None
+
+    absent_flag = {
+        hkl: is_systematically_absent(Vector3(hkl), operations) for hkl in generic
+    }
+    allowed = [hkl for hkl in generic if not absent_flag[hkl]]
     if not allowed:
         return "all absent"
-    # Find the common divisor pattern of the allowed reflections. For the usual
-    # crystallographic conditions the allowed set is exactly those hkl with some
-    # integer linear form == 0 (mod n). We detect the simplest such form by
-    # testing candidate linear combinations of h,k,l against a modulus.
-    forms = {
-        "h": (1, 0, 0), "k": (0, 1, 0), "l": (0, 0, 1),
-        "h+k": (1, 1, 0), "h+l": (1, 0, 1), "k+l": (0, 1, 1),
-        "h+k+l": (1, 1, 1), "-h+k+l": (-1, 1, 1), "h-k+l": (1, -1, 1),
-        "h+k-l": (1, 1, -1), "2h+k": (2, 1, 0), "h+2k": (1, 2, 0),
-    }
-    absent_flag = {hkl: is_systematically_absent(Vector3(hkl), operations)
-                   for hkl in members}
 
-    # (1) single form  ==  0 (mod n)
-    best = None
-    for name, (a, b, c) in forms.items():
-        vals = {a * h + b * k + c * l for (h, k, l) in allowed}
-        for n in (2, 3, 4):
-            if all(v % n == 0 for v in vals):
-                ok = all(((a * h + b * k + c * l) % n == 0) == (not absent_flag[(h, k, l)])
-                         for (h, k, l) in members)
-                if ok:
-                    cond = f"{name} = {n}n"
-                    if best is None or len(cond) < len(best):
-                        best = cond
-        if best:
-            break
-    if best:
-        return best
+    raw = _constraints_from_ops(operations, generic)
+    constraints = _project_constraints(raw, class_name)
+    if not constraints:
+        return None
 
-    # (2) conjunction of forms all == 0 (mod n) -- centring-type conditions,
-    #     e.g. F-lattice hkl: h+k, h+l, k+l = 2n.
-    conj_forms = {
-        "h+k": (1, 1, 0), "h+l": (1, 0, 1), "k+l": (0, 1, 1),
-        "h+k+l": (1, 1, 1),
-    }
-    for n in (2, 3, 4):
-        active = []
-        for nm, (a, b, c) in conj_forms.items():
-            if all((a * h + b * k + c * l) % n == 0 for (h, k, l) in allowed):
-                active.append((nm, (a, b, c)))
-        if not active:
-            continue
+    # Necessary: every allowed reflection satisfies the constraints.
+    if any(
+        any((a * h + b * k + c * l) % m != 0 for (a, b, c), m in constraints)
+        for (h, k, l) in allowed
+    ):
+        constraints = raw  # projection lost content; use unprojected
+        if any(
+            any((a * h + b * k + c * l) % m != 0 for (a, b, c), m in constraints)
+            for (h, k, l) in allowed
+        ):
+            return "restricted"
 
-        def _partition(forms_subset):
-            return {hkl: all((a * hkl[0] + b * hkl[1] + c * hkl[2]) % n == 0
-                             for _, (a, b, c) in forms_subset)
-                    for hkl in members}
-
-        target = {hkl: not absent_flag[hkl] for hkl in members}
-        if _partition(active) != target:
-            continue
-        # greedy minimal cover: drop forms whose removal doesn't change the partition
-        minimal = list(active)
-        for f in list(minimal):
-            trial = [g for g in minimal if g is not f]
-            if trial and _partition(trial) == target:
-                minimal = trial
-        return ", ".join(nm for nm, _ in minimal) + f" = {n}n"
-
-    return "restricted"
+    minimal = _minimise_constraints(generic, constraints)
+    return _format_constraints(minimal) if minimal else None
 
 
 def reflection_conditions(operations: Sequence[SymmetryOp], rng: int = 6) -> dict[str, str]:
@@ -134,7 +310,9 @@ def reflection_conditions(operations: Sequence[SymmetryOp], rng: int = 6) -> dic
         members = [hkl for hkl in block if sel(*hkl)]
         if not members:
             continue
-        cond = _condition_for_class(members, operations)
+        sub_sels = [_CLASS_SEL[s] for s in _SUBCLASSES[name]]
+        generic = _generic_members(members, sub_sels, operations)
+        cond = _condition_for_class(operations, generic, name)
         if cond is not None:
             conditions[name] = cond
     return conditions

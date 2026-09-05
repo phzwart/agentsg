@@ -149,8 +149,27 @@ def niggli_gk(cell, eps_rel: float = 1e-9, max_iter: int = 1000):
         ``M`` is a 3x3 integer list whose columns are the reduced basis vectors
         expressed in the original basis. ``det(M)`` is in ``{+1, -1}``.
     """
-    a, b, c, alpha, beta, gamma = cell
-    G_orig = _gram_from_params(a, b, c, alpha, beta, gamma)
+    if len(cell) != 6:
+        raise ValueError("cell must be (a, b, c, alpha, beta, gamma)")
+    a, b, c, alpha, beta, gamma = (float(x) for x in cell)
+    if min(a, b, c) <= 0:
+        raise ValueError(f"cell edge lengths must be positive, got a,b,c={a,b,c}")
+    for name, ang in (("alpha", alpha), ("beta", beta), ("gamma", gamma)):
+        if not (0.0 < ang < 180.0):
+            raise ValueError(f"cell angle {name} must be in (0, 180) degrees, got {ang}")
+    # Degenerate parallelepiped: volume ∝ sqrt(1-cos²…) → non-positive.
+    try:
+        G_orig = _gram_from_params(a, b, c, alpha, beta, gamma)
+        vol2 = (
+            G_orig[0][0] * (G_orig[1][1] * G_orig[2][2] - G_orig[1][2] ** 2)
+            - G_orig[0][1] * (G_orig[0][1] * G_orig[2][2] - G_orig[0][2] * G_orig[1][2])
+            + G_orig[0][2] * (G_orig[0][1] * G_orig[1][2] - G_orig[0][2] * G_orig[1][1])
+        )
+    except (ValueError, ZeroDivisionError) as exc:
+        raise ValueError(f"degenerate cell {cell!r}") from exc
+    if vol2 <= 0:
+        raise ValueError(f"degenerate cell (non-positive volume) {cell!r}")
+
     A, B, C, xi, eta, zeta = _params_to_scalars(a, b, c, alpha, beta, gamma)
     eps = eps_rel * (A * B * C) ** (1.0 / 3.0)
 
