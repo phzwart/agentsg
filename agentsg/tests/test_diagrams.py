@@ -55,8 +55,10 @@ def test_pnma_full_element_set():
 
 def test_p43212_screw_axes():
     s = _symbols(96)
-    # a 4_3 axis contains the 4_1 power; three 2_1 screws; two 2-folds
-    assert s["4_3"] == 1 and s["4_1"] == 1
+    # the 4+ (t=3/4) and 4- (t=1/4) operations are the SAME 4_3 element seen
+    # from either end -- the screw sense is measured against the rotation
+    # sense, so neither is mislabelled 4_1; three 2_1 screws; two 2-folds
+    assert s["4_3"] == 2 and s["4_1"] == 0
     assert s["2_1"] == 3 and s["2"] == 2
 
 
@@ -438,7 +440,8 @@ def _screen_arrows(ax):
 
 def test_glide_arrow_diagram_legend_consistent():
     """The parallel-plane glide arrows must point the same way ON SCREEN in the
-    element diagram and in the legend (Cc, down-b): c straight up, n up-right."""
+    element diagram and in the legend (Cc, down-b): c along the drawn c edge
+    (up, tilted with the oblique monoclinic frame), n up-right."""
     import numpy as np
     figd, axd = plt.subplots()
     D.symmetry_element_diagram(9, ax=axd, show_title=False, projection="b")

@@ -154,6 +154,9 @@ _LAZY = {
     "element_legend": ("diagrams", "element_legend"),
     "general_position_multiplicity": ("diagrams", "general_position_multiplicity"),
     "best_general_point": ("diagrams", "best_general_point"),
+    "cell_frame": ("diagrams", "cell_frame"),
+    "general_position_images": ("diagrams", "general_position_images"),
+    "height_label": ("diagrams", "height_label"),
 }
 
 

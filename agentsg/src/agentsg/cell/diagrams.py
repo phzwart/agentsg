@@ -6,8 +6,8 @@ Two diagram kinds:
 
 * :func:`general_position_diagram` -- the equivalent-points diagram: a general
   point projected through every space-group operation, drawn with the ITA glyph
-  convention (open circle; ``+``/``-`` for height above/below the projection
-  plane; a comma for points related by an operation of the opposite handedness).
+  convention (open circle; exact heights ``+``, ``-``, ``1/2+``, ``1/3-`` ...;
+  a comma for points related by an operation of the opposite handedness).
 * :func:`symmetry_element_diagram` -- the symmetry-element diagram (built in a
   later step): axes, planes and inversion centres drawn with ITA graphical
   symbols, classified from each operation's (W, w).
@@ -17,9 +17,25 @@ package runtime stays dependency-free.
 
 ITA drawing convention used here: projection down **c** by default, origin at
 the upper-left, **a** pointing down the page, **b** pointing right.
+
+Everything on the plate is derived from the operator set:
+
+* the **cell frame** (rectangle, square, 120-degree rhombus, or oblique
+  parallelogram) comes from the metric constraints ``W^T g W = g`` that the
+  in-plane parts of the operations impose on the projected 2-D metric
+  (:func:`cell_frame`);
+* **heights** of the general-position points are the exact rational
+  translations ``t`` in ``z' = +/-z + t`` read off each operation, printed the
+  ITA way (``+``, ``-``, ``1/2+``, ``1/3-``, ...) -- never a sign guessed from
+  a floating-point ``z`` (:func:`height_label`);
+* **screw senses** (3_1 vs 3_2, 4_1 vs 4_3, 6_1..6_5) are measured against an
+  axis oriented by the right-hand rule from ``W`` itself, so an operation and
+  its inverse name the same element (:func:`classify_element`).
 """
 
 from __future__ import annotations
+
+from fractions import Fraction
 
 import numpy as np
 
@@ -91,6 +107,203 @@ def _perm_vec(v, perm):
         return None
     v = np.asarray(v, dtype=float)
     return v[list(perm)]
+
+
+def _perm_mat(W, perm):
+    """Conjugate a 3x3 matrix into the permuted (down, right, depth) frame."""
+    idx = list(perm)
+    return np.asarray(W, dtype=float)[np.ix_(idx, idx)]
+
+
+def _sg_ops_exact(sg):
+    """List of (W_rows, w) with integer rows and ``Fraction`` translations."""
+    out = []
+    for op in sg.operations():
+        W = tuple(tuple(int(x) for x in row) for row in op.W.rows)
+        w = tuple(Fraction(x) for x in op.w.v)
+        out.append((W, w))
+    return out
+
+
+# --- cell frame from the metric constraints -----------------------------------
+
+_OBLIQUE_DEG = 100.0   # drawing angle for a cell whose in-plane angle is free
+
+
+def cell_frame(sg, projection="c"):
+    """Shape of the projected unit cell, derived from the operations.
+
+    The in-plane parts ``W2`` of every operation that maps the projection axis
+    onto itself constrain the projected 2-D metric ``g`` through
+    ``W2^T g W2 = g``. Counting the free parameters of that linear system gives
+    the frame:
+
+    ======  ===========================  =========================
+    free    forced                       frame
+    ======  ===========================  =========================
+    3       nothing                      oblique parallelogram
+    2       ``g12 = 0``                  rectangle
+    1       ``g11 = g22``, ``g12 = 0``   square (4-fold present)
+    1       ``g11 = g22 = -2 g12``       120-degree rhombus (3/6-fold)
+    ======  ===========================  =========================
+
+    Returns a dict with ``angle`` (degrees between the down- and right-going
+    cell edges), ``kind`` (``'oblique'``, ``'rect'``, ``'square'``,
+    ``'hex'``), ``n_free`` and ``matrix`` -- the 2x2 map from fractional
+    ``(right, down)`` to plot ``(x, y)`` coordinates (``y`` grows downward).
+    """
+    sg = _resolve_sg(sg)
+    perm = _PROJ[projection][0]
+    # Solve the full 3-D metric constraint W^T G W = G (so a cubic 3-fold,
+    # oblique to the page, still ties the in-plane lengths together), then
+    # read the projected 2x2 block off the solution space.
+    pairs = [(0, 0), (1, 1), (2, 2), (0, 1), (0, 2), (1, 2)]   # G unknowns
+    col = {p: i for i, p in enumerate(pairs)}
+
+    def gidx(i, j):
+        return col[(i, j) if i <= j else (j, i)]
+
+    rows = []
+    for W, _, _ in _sg_ops(sg):
+        # (W^T G W)_{ij} = sum_ab W_ai W_bj G_ab  ; minus G_ij = 0
+        for i, j in pairs:
+            row = np.zeros(6)
+            for a in range(3):
+                for b in range(3):
+                    if W[a, i] and W[b, j]:
+                        row[gidx(a, b)] += W[a, i] * W[b, j]
+            row[gidx(i, j)] -= 1.0
+            rows.append(row)
+    A = np.array(rows) if rows else np.zeros((1, 6))
+    _, s, vt = np.linalg.svd(A)
+    rank = int(np.sum(s > 1e-9))
+    N = vt[rank:].T                       # null-space basis, 6 x n_free
+    n_free = N.shape[1]
+
+    def forced(f):
+        """Is the linear functional f (on G) zero on every admissible G?"""
+        return np.allclose(f @ N, 0, atol=1e-9)
+
+    d, r = perm[0], perm[1]               # down- and right-going axes
+    e = np.eye(6)
+    equal = forced(e[gidx(d, d)] - e[gidx(r, r)])
+    right = forced(e[gidx(d, r)])
+    hexag = equal and forced(e[gidx(d, r)] + 0.5 * e[gidx(d, d)])
+    if hexag:
+        angle, kind = 120.0, "hex"
+    elif right and equal:
+        angle, kind = 90.0, "square"
+    elif right:
+        angle, kind = 90.0, "rect"
+    else:
+        angle, kind = _OBLIQUE_DEG, "oblique"
+    th = np.radians(angle)
+    # columns: right-edge (b) -> (1, 0); down-edge (a) -> (cos th, sin th)
+    M = np.array([[1.0, np.cos(th)], [0.0, np.sin(th)]])
+    return {"angle": angle, "kind": kind, "n_free": n_free, "matrix": M}
+
+
+class _Frame:
+    """Fractional (right, down) <-> plot (x, y) mapping for one cell frame."""
+
+    def __init__(self, info):
+        self.M = info["matrix"]
+        self.angle = info["angle"]
+        self.kind = info["kind"]
+        self.corners = [self.pt((v, u)) for v, u in
+                        ((0, 0), (1, 0), (1, 1), (0, 1))]
+
+    def pt(self, rd):
+        """fractional (right, down) -> plot (x, y)."""
+        v = self.M @ np.asarray(rd, float)
+        return (float(v[0]), float(v[1]))
+
+    def vec(self, rd):
+        """fractional direction (right, down) -> plot direction (unit)."""
+        v = self.M @ np.asarray(rd, float)
+        n = np.linalg.norm(v)
+        return v / n if n > 1e-12 else v
+
+    def limits(self, pad=0.15):
+        xs = [c[0] for c in self.corners]
+        ys = [c[1] for c in self.corners]
+        return (min(xs) - pad, max(xs) + pad), (max(ys) + pad, min(ys) - pad)
+
+    def draw_cell(self, ax, lw=1.2):
+        from matplotlib.patches import Polygon
+        ax.add_patch(Polygon(self.corners, closed=True, fill=False, ec="k",
+                             lw=lw, zorder=2))
+
+    def label_axes(self, ax, dlab, rlab, off=0.07):
+        """Axis letters just past the b (right) and a (down) corners."""
+        bx, by = self.corners[1]
+        ax_, ay_ = self.corners[3]
+        ax.annotate(rlab, xy=(bx + off, by - off), fontsize=7,
+                    ha="center", va="center")
+        ax.annotate(dlab, xy=(ax_ - off, ay_ + off), fontsize=7,
+                    ha="center", va="center")
+
+
+# --- exact heights -------------------------------------------------------------
+
+_UNICODE_FRAC = {
+    Fraction(1, 2): "½", Fraction(1, 3): "⅓", Fraction(2, 3): "⅔",
+    Fraction(1, 4): "¼", Fraction(3, 4): "¾", Fraction(1, 6): "⅙",
+    Fraction(5, 6): "⅚", Fraction(1, 8): "⅛", Fraction(3, 8): "⅜",
+    Fraction(5, 8): "⅝", Fraction(7, 8): "⅞",
+}
+
+
+def frac_label(t):
+    """``Fraction`` in [0, 1) -> ITA-style string ('' for 0, '½', '1/12', ...)."""
+    t = Fraction(t) % 1
+    if t == 0:
+        return ""
+    return _UNICODE_FRAC.get(t, f"{t.numerator}/{t.denominator}")
+
+
+def height_label(coef, t, coord="z"):
+    """ITA height string for an image whose depth is ``coef * coord + t``.
+
+    ``coef = +1`` gives ``'+'``, ``'½+'``, ...; ``coef = -1`` gives ``'−'``,
+    ``'½−'`` (i.e. 1/2 - z). When the depth is another coordinate (e.g. after
+    a cubic 3-fold) that coordinate is spelled out: ``'½+x'``, ``'−y'``.
+    """
+    s = frac_label(t) + ("+" if coef > 0 else "−")
+    return s if coord == "z" else s + coord
+
+
+def general_position_images(sg, projection="c"):
+    """Exact ITA description of every general-position image.
+
+    For each operation returns ``(coef, t, coord, W, w)``: the projected depth
+    of the image of ``(x, y, z)`` is ``coef * coord + t`` with ``coef`` +1/-1,
+    ``coord`` the letter ``'z'`` when the operation keeps the projection axis
+    (the usual case) or the letter of the coordinate it maps onto the depth
+    (cubic 3-folds), and ``t`` an exact ``Fraction`` in [0, 1).
+    """
+    sg = _resolve_sg(sg)
+    perm = _PROJ[projection][0]
+    depth = perm[2]
+    out = []
+    for W, w in _sg_ops_exact(sg):
+        row = W[depth]
+        t = w[depth] % 1
+        nz = [j for j in range(3) if row[j] != 0]
+        if len(nz) == 1:
+            j = nz[0]
+            coord = "z" if j == depth else "xyz"[j]
+            out.append((row[j], t, coord, W, w))
+        else:
+            # depth is a combination of coordinates (e.g. a hexagonal group
+            # projected along a or b -- not an ITA plate, but drawable):
+            # spell the expression out with coef +1.
+            expr = ""
+            for j in nz:
+                sgn = "+" if row[j] > 0 else "−"
+                expr += (sgn if expr or sgn == "−" else "") + "xyz"[j]
+            out.append((1, t, expr, W, w))
+    return out
 
 
 # --- ITA graphical symbols -------------------------------------------------
@@ -377,7 +590,7 @@ _PLANE_STYLE = {
     "c": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
     "n": dict(ls=(0, (6, 2, 1, 2)), lw=1.3, color="k"),
     "d": dict(ls=(0, (1, 2)), lw=1.4, color="k"),
-    "g": dict(ls=(0, (3, 3)), lw=1.0, color="0.5"),
+    "g": dict(ls=(0, (6, 3)), lw=1.3, color="k"),   # ITA: dashed, like a/b/c
 }
 
 
@@ -543,63 +756,61 @@ def general_position_diagram(sg, ax=None, point=None,
         point = best_general_point(sg)
 
     perm, dlab, rlab, _ = _PROJ[projection]
-    ops = _sg_ops(sg)
+    frame = _Frame(cell_frame(sg, projection))
     x0 = np.array(point, dtype=float)
 
-    # unit-cell box
-    ax.add_patch(plt.Rectangle((0, 0), 1, 1, fill=False, ec="k", lw=1.2,
-                               zorder=2))
+    frame.draw_cell(ax)
 
     # collect distinct points first, then group by (x,y) so coincident
-    # projections (different heights) can be drawn as ITA split circles
+    # projections (different heights) can be drawn as ITA split circles.
+    # The height label is exact: coef * z + t read off the operation.
     seen = set()
-    pts = []   # (px, py, z, det)
-    for W, w, _ in ops:
-        det = np.linalg.det(W)
+    pts = []   # (right, down, label, sortkey, det)
+    for coef, t, coord, Wi, wi in general_position_images(sg, projection):
+        W = np.array(Wi, float)
+        w = np.array([float(x) for x in wi])
+        det = round(np.linalg.det(W))
         base = _perm_vec(W @ x0 + w, perm)  # [0]=down, [1]=right, [2]=depth
+        label = height_label(coef, t, coord)
         for tx in (-1, 0, 1):
             for ty in (-1, 0, 1):
                 p = base + np.array([tx, ty, 0.0])
                 if not (-0.03 <= p[0] <= 1.03 and -0.03 <= p[1] <= 1.03):
                     continue
-                z = p[2] % 1.0
-                key = (round(p[0], 3), round(p[1], 3), round(z, 3),
-                       1 if det > 0 else -1)
+                key = (round(p[0], 3), round(p[1], 3), label, det)
                 if key in seen:
                     continue
                 seen.add(key)
-                pts.append((p[1], p[0], z, det))   # (x=right, y=down)
+                pts.append((p[1], p[0], label, (float(t), coef, coord), det))
 
-    # group by shared (x,y)
+    # group by shared projected position
     groups = {}
-    for px, py, z, det in pts:
+    for px, py, label, sk, det in pts:
         gk = (round(px, 3), round(py, 3))
-        groups.setdefault(gk, []).append((z, det))
+        groups.setdefault(gk, []).append((sk, label, det))
 
     for (px, py), members in groups.items():
         m = len(members)
-        # spread coincident circles horizontally so each is legible
+        # spread coincident circles along the b direction so each is legible
         span = 0.05 * (m - 1)
-        for j, (z, det) in enumerate(sorted(members)):
-            dx = -span / 2 + j * 0.05 if m > 1 else 0.0
-            cx, cy = px + dx, py
-            up = z < 0.5
+        for j, (_, label, det) in enumerate(sorted(members)):
+            dv = -span / 2 + j * 0.05 if m > 1 else 0.0
+            cx, cy = frame.pt((px + dv, py))
             ax.plot(cx, cy, "o", ms=9, mfc="white", mec="k", mew=1.0,
                     zorder=3)
-            ax.text(cx + 0.03, cy - 0.03, "+" if up else "\u2212",
+            ax.text(cx + 0.03, cy - 0.03, label,
                     fontsize=6, zorder=4, ha="left", va="center")
             if det < 0:
                 ax.text(cx, cy, ",", fontsize=8, zorder=4,
                         ha="center", va="center")
 
     # a down, b right, origin top-left
-    ax.set_xlim(-0.12, 1.12)
-    ax.set_ylim(1.12, -0.12)
+    xl, yl = frame.limits(0.12)
+    ax.set_xlim(*xl)
+    ax.set_ylim(*yl)
     ax.set_aspect("equal")
     ax.axis("off")
-    # axis labels
-    ax.annotate("b", xy=(1.06, -0.06), fontsize=7, ha="center", va="center")
-    ax.annotate("a", xy=(-0.06, 1.06), fontsize=7, ha="center", va="center")
+    frame.label_axes(ax, dlab, rlab)
     if show_title:
         num, name = _sg_label(sg)
         pfx = f"#{num}  " if num is not None else ""
@@ -609,10 +820,11 @@ def general_position_diagram(sg, ax=None, point=None,
 
 def _matrix_order(W, max_n=6):
     """Smallest n>=1 with W**n == I."""
-    P = np.eye(3)
+    W = np.asarray(W, float)
+    P = np.eye(W.shape[0])
     for n in range(1, max_n + 1):
         P = P @ W
-        if np.allclose(P, np.eye(3), atol=1e-6):
+        if np.allclose(P, np.eye(W.shape[0]), atol=1e-6):
             return n
     return 0
 
@@ -633,6 +845,25 @@ def _axis_direction(W, proper):
             vi = np.round(v * 12) / 12
             return vi
     return None
+
+
+def _orient_axis(W, axis):
+    """Flip ``axis`` if needed so that ``W`` is a right-handed rotation about it.
+
+    ``np.linalg.eig`` returns the +1 eigenvector with an arbitrary sign; the
+    screw index only makes sense against the sense of rotation. For a rotation
+    by 0 < theta < pi about the unit vector ``n`` the triple
+    ``(n, p, W p)`` is right-handed for any ``p`` not parallel to ``n`` --
+    ``det[n, p, W p] > 0`` -- and a crystallographic basis is right-handed, so
+    the sign of that determinant in fractional coordinates is the sign in
+    Cartesian ones. (theta = pi, the 2-fold, leaves the sign undefined; 2_1 has
+    k = n/2 so it does not matter.)
+    """
+    a = np.asarray(axis, float)
+    # a transverse probe: whichever unit vector is least parallel to the axis
+    p = np.eye(3)[int(np.argmin(np.abs(a)))]
+    d = np.linalg.det(np.column_stack([a, p, W @ p]))
+    return -a if d < -1e-9 else a
 
 
 def _intrinsic_translation(W, w, n):
@@ -657,22 +888,47 @@ _ROT_BY_TRACE = {3: 1, 2: 6, 1: 4, 0: 3, -1: 2}       # det +1
 _INV_BY_TRACE = {-3: -1, -2: -6, -1: -4, 0: -3, 1: -2}  # det -1 (-2 == m)
 
 
-def _glide_name(t):
-    """Name a glide plane from its in-plane intrinsic translation vector."""
-    tf = t - np.round(t)  # fractional part around 0
-    comps = np.abs(tf)
-    half = np.isclose(comps, 0.5, atol=0.08)
-    quarter = np.isclose(comps, 0.25, atol=0.08)
-    nz = np.sum(half)
-    if quarter.any() and half.any():
-        return "d"
-    if nz >= 2:
-        return "n"
-    if nz == 1:
-        return "abc"[int(np.argmax(half))]
-    if np.allclose(tf, 0, atol=0.08):
-        return "m"
-    if quarter.sum() >= 2:
+def _glide_name(t, W=None):
+    """Name a glide plane from its intrinsic translation ``t`` (fractional).
+
+    The glide vector is half a lattice vector lying in the plane, defined
+    modulo lattice vectors in the plane. ``v = 2 t`` is that lattice vector.
+
+    * ``v = 0`` -> ``m``;
+    * ``v`` along a single cell axis that lies in the plane -> ``a``/``b``/``c``;
+    * ``v`` with two or three components, plane a coordinate plane (``W`` is
+      diagonal) -> ``n`` (diagonal glide);
+    * ``v`` with two or three components in a plane that is NOT a coordinate
+      plane (hexagonal groups: planes perpendicular to <100> / <210> contain
+      a+2b, 2a+b, a-b) -> ``g``, the generic ITA glide;
+    * quarter translations -> ``d``.
+
+    Reduction is only applied along cell axes that lie in the plane
+    (``W e_i = e_i``); reducing every component mod 1 -- the old behaviour --
+    turned the hexagonal glide ``1/2 (a + 2b)`` into a spurious ``a``.
+    """
+    t = np.asarray(t, float)
+    v = 2.0 * t
+    if W is not None:
+        W = np.asarray(W, float)
+        diag = np.allclose(W, np.diag(np.diag(W)), atol=1e-6)
+        inplane_axes = [i for i in range(3)
+                        if np.allclose(W[:, i], np.eye(3)[i], atol=1e-6)]
+    else:
+        diag = True
+        inplane_axes = [0, 1, 2]
+    if np.allclose(v, np.round(v), atol=0.08):
+        v = np.round(v).astype(int)
+        for i in inplane_axes:
+            v[i] %= 2
+        nz = [i for i in range(3) if v[i] != 0]
+        if not nz:
+            return "m"
+        if len(nz) == 1 and nz[0] in inplane_axes:
+            return "abc"[nz[0]]
+        return "n" if diag else "g"
+    v4 = 4.0 * t
+    if np.allclose(v4, np.round(v4), atol=0.16):
         return "d"
     return "g"  # unclassified glide
 
@@ -716,19 +972,23 @@ def classify_element(W, w):
         # screw if intrinsic translation is nonzero along the axis
         screw = not np.allclose(intr - np.round(intr), 0, atol=0.05)
         axis = _axis_direction(W, proper=True)
+        if n > 2:
+            axis = _orient_axis(W, axis)
         if screw:
-            # screw component magnitude as k/n of the axis repeat
-            proj = intr  # already along axis
-            # k = round(n * |proj along axis unit|)
-            au = axis / (np.linalg.norm(axis) or 1.0)
-            k = int(round(n * float(np.dot(proj, au)) /
-                          (np.linalg.norm(axis) or 1.0))) % n
+            # screw index k: intrinsic translation as a fraction k/n of the
+            # lattice repeat along the ORIENTED axis (axis has max |comp| = 1,
+            # i.e. it is the shortest lattice vector along the axis for a
+            # primitive lattice), measured with the rotation sense so that an
+            # operation and its inverse give the same k.
+            k = int(round(n * float(np.dot(intr, axis)) /
+                          float(np.dot(axis, axis)))) % n
             sym = f"{n}_{k}" if k else str(n)
             return {"type": "screw" if k else "rotation", "order": n,
                     "symbol": sym, "axis": axis, "location": loc,
-                    "intrinsic": intr}
+                    "intrinsic": intr, "W": W}
         return {"type": "rotation", "order": n, "symbol": str(n),
-                "axis": axis, "location": loc, "intrinsic": np.zeros(3)}
+                "axis": axis, "location": loc, "intrinsic": np.zeros(3),
+                "W": W}
 
     # det == -1 : improper
     kind = _INV_BY_TRACE.get(tr)
@@ -741,12 +1001,13 @@ def classify_element(W, w):
         w_loc = w - intr
         loc = _location_point(W, w_loc)
         normal = _axis_direction(W, proper=False)
-        gname = _glide_name(intr)
+        gname = _glide_name(intr, W)
         if gname == "m":
             return {"type": "mirror", "order": 2, "symbol": "m",
-                    "axis": normal, "location": loc, "intrinsic": np.zeros(3)}
+                    "axis": normal, "location": loc, "intrinsic": np.zeros(3),
+                    "W": W}
         return {"type": "glide", "order": 2, "symbol": gname,
-                "axis": normal, "location": loc, "intrinsic": intr}
+                "axis": normal, "location": loc, "intrinsic": intr, "W": W}
     # rotoinversion -3, -4, -6
     n = {-3: 3, -4: 4, -6: 6}.get(kind, _matrix_order(W))
     axis = _axis_direction(W, proper=False)
@@ -843,7 +1104,7 @@ def _centring_translations(sg):
     return cvs
 
 
-def _draw_centring_markers(ax, sg, perm):
+def _draw_centring_markers(ax, sg, perm, frame=None):
     """Explicitly indicate pure lattice (centring) translations.
 
     Standard ITA does not give a pure lattice translation its own glyph -- the
@@ -860,6 +1121,8 @@ def _draw_centring_markers(ax, sg, perm):
             continue
         vp = _perm_vec(v, perm)             # [0]=down(a'), [1]=right(b')
         x, y = vp[1] % 1.0, vp[0] % 1.0
+        if frame is not None:
+            x, y = frame.pt((x, y))
         # red dot at the centring node, on top of whatever glyph sits there
         ax.plot(x, y, "o", ms=6, mfc="red", mec="red", zorder=7)
         # label the fractional vector
@@ -921,12 +1184,12 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     if ax is None:
         _, ax = plt.subplots(figsize=(3.2, 3.2))
     perm, dlab, rlab, _ = _PROJ[projection]
-    ax.add_patch(plt.Rectangle((0, 0), 1, 1, fill=False, ec="k", lw=1.2,
-                               zorder=2))
+    frame = _Frame(cell_frame(sg, projection))
+    frame.draw_cell(ax)
 
     n_centring = 0
     if show_centring:
-        n_centring = _draw_centring_markers(ax, sg, perm)
+        n_centring = _draw_centring_markers(ax, sg, perm, frame)
 
     if show_general_positions:
         general_position_diagram(sg, ax=ax, show_title=False,
@@ -941,19 +1204,31 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     # Establish the inverted y-axis (a' down the page, ITA convention) BEFORE
     # drawing, so orientation-aware glyphs (the parallel-plane corner bracket)
     # detect the correct screen sense at draw time.
-    ax.set_xlim(-0.18, 1.18)
-    ax.set_ylim(1.18, -0.18)
+    xl, yl = frame.limits(0.18)
+    ax.set_xlim(*xl)
+    ax.set_ylim(*yl)
 
     def P(fr):
+        """fractional 3-vector -> fractional (right, down) in the cell."""
         v = _perm_vec(fr, perm)  # [0]=down(a'), [1]=right(b')
         return (v[1] % 1.0, v[0] % 1.0)
 
     def dcls(axis):
         return _dir_class(_perm_vec(axis, perm)) if axis is not None else None
 
-    def plot_dir(axis):
-        """axis vector -> plot-plane direction (right, down)."""
+    def frac_dir(axis):
+        """fractional 3-vector -> fractional in-plane direction (right, down)."""
         v = _perm_vec(axis, perm)
+        return np.array([v[1], v[0]])
+
+    def inplane_fixed_dir(W):
+        """Direction (right, down), in fractional coordinates, of the line in
+        which a plane perpendicular to the page cuts the page: the in-plane
+        +1 eigenvector of W. Taking the perpendicular of the plotted normal
+        is only right for an orthogonal frame; this is right for all."""
+        A = _perm_mat(W, perm)[:2, :2] - np.eye(2)   # acts on (down, right)
+        _, s, vt = np.linalg.svd(A)
+        v = vt[-1]                                     # null vector (down,right)
         return np.array([v[1], v[0]])
 
     def edge_copies(xy, tol=1e-3):
@@ -965,7 +1240,19 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     ([0.0] if abs(x - 1.0) < tol else []))
         ys = [y] + ([1.0] if abs(y) < tol else
                     ([0.0] if abs(y - 1.0) < tol else []))
-        return [(cx, cy) for cx in xs for cy in ys]
+        return [frame.pt((cx, cy)) for cx in xs for cy in ys]
+
+    def draw_line_family(c, d, draw):
+        """Clip the family of lines through fractional point ``c`` along
+        fractional direction ``d`` (both (right, down)) to the cell, add the
+        opposite-edge copy, and hand plot-space endpoints to ``draw``."""
+        nn = np.array([-d[1], d[0]])
+        for cc in _line_edge_copies(np.asarray(c, float), nn):
+            p0, p1 = _clip_line_to_box(cc, d)
+            if p0 is None or np.linalg.norm(p1 - p0) < 1e-6:
+                continue
+            draw(np.array(frame.pt(p0)), np.array(frame.pt(p1)),
+                 frame.vec(d))
 
     # Pre-pass: collect c-axis rotation/rotoinversion elements by projected
     # site so coincident axes (e.g. 4, -4 and 2 all at the origin in 4/mmm)
@@ -1004,46 +1291,40 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
             if dc == "c":
                 continue   # handled by the combined-glyph pre-pass above
             elif dc == "ab" and el["order"] == 2:
-                d = plot_dir(el["axis"])
+                d = frac_dir(el["axis"])
                 d = d / (np.linalg.norm(d) or 1.0)
-                nn = np.array([-d[1], d[0]])   # in-plane normal to the line
-                c = np.array(P(loc))
-                for cc in _line_edge_copies(c, nn):
-                    p0, p1 = _clip_line_to_box(cc, d)
-                    if p0 is None:
-                        continue
-                    # ITA convention for an axis lying in the plane of the page:
-                    # both drawn as a SOLID line; a pure 2-fold carries a FULL
+
+                def draw_axis_line(p0, p1, dp, _full=(t == "rotation")):
+                    # ITA convention for an axis lying in the plane of the
+                    # page: a SOLID line; a pure 2-fold carries a FULL
                     # (two-barbed) arrowhead, a 2_1 screw a HALF (one-barbed)
-                    # arrowhead. The head shape -- not the line style -- is what
-                    # distinguishes them (dashed lines are reserved for planes).
-                    # extend the axis line a touch past the cell and put the
-                    # arrowhead JUST OUTSIDE the boundary on the exit side, as
-                    # the ITA does (keeps the head clear of the frame/glyphs)
-                    exit_pt = p1 if np.dot(p1 - p0, d) > 0 else p0
+                    # arrowhead. The head shape -- not the line style -- is
+                    # what distinguishes them (dashes are reserved for planes).
+                    # The arrowhead sits JUST OUTSIDE the boundary on the exit
+                    # side, as the ITA does.
+                    exit_pt = p1 if np.dot(p1 - p0, dp) > 0 else p0
+                    start = p0 if exit_pt is p1 else p1
                     head_size = 0.07
-                    base = exit_pt + d * 0.06          # just outside the cell
-                    tip = base + d * head_size          # apex beyond the base
-                    # shaft ends exactly at the head BASE so no line shows past
-                    # or through the (possibly one-sided) arrowhead
-                    ax.plot([p0[0], base[0]], [p0[1], base[1]], color="k",
-                            lw=1.3, zorder=4)
-                    _draw_inplane_arrowhead(ax, tip, d, full=(t == "rotation"),
+                    base = exit_pt + dp * 0.06         # just outside the cell
+                    tip = base + dp * head_size         # apex beyond the base
+                    ax.plot([start[0], base[0]], [start[1], base[1]],
+                            color="k", lw=1.3, zorder=4)
+                    _draw_inplane_arrowhead(ax, tip, dp, full=_full,
                                             size=head_size)
+
+                draw_line_family(P(loc), d, draw_axis_line)
             else:
                 omitted += 1
             continue
         if t in ("mirror", "glide"):
             dc = dcls(el["axis"])
             if dc == "ab":
-                nrm = plot_dir(el["axis"])
-                nrm = nrm / (np.linalg.norm(nrm) or 1.0)
-                d = np.array([-nrm[1], nrm[0]])
-                c = np.array(P(loc))
-                for cc in _line_edge_copies(c, nrm):
-                    p0, p1 = _clip_line_to_box(cc, d)
-                    if p0 is not None:
-                        draw_plane_symbol(ax, p0, p1, el["symbol"])
+                d = inplane_fixed_dir(el["W"])
+                d = d / (np.linalg.norm(d) or 1.0)
+                sym = el["symbol"]
+                draw_line_family(
+                    P(loc), d,
+                    lambda p0, p1, _dp, _s=sym: draw_plane_symbol(ax, p0, p1, _s))
             elif dc == "c":
                 # plane PARALLEL to the page (normal along the projection axis):
                 # ITA draws a right-angle bracket in a cell corner, once per
@@ -1054,10 +1335,10 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     gdir = None
                     intr = el.get("intrinsic")
                     if intr is not None:
-                        # plot_dir returns (right, down) in the SAME data frame
+                        # frame.vec returns a plot-space direction in the SAME data frame
                         # the symbol draws in (y increases downward), so pass it
                         # straight through -- no sign flip.
-                        gdir = plot_dir(np.asarray(intr, float))
+                        gdir = frame.vec(frac_dir(np.asarray(intr, float)))
                     draw_parallel_plane_symbol(
                         ax, el["symbol"],
                         corner=(0.08 + 0.34 * slot, 0.08),
@@ -1067,10 +1348,9 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 omitted += 1
             continue
 
-    ax.set_xlim(-0.18, 1.18); ax.set_ylim(1.18, -0.18)
+    ax.set_xlim(*xl); ax.set_ylim(*yl)
     ax.set_aspect("equal"); ax.axis("off")
-    ax.annotate(rlab, xy=(1.12, -0.09), fontsize=7, ha="center", va="center")
-    ax.annotate(dlab, xy=(-0.09, 1.12), fontsize=7, ha="center", va="center")
+    frame.label_axes(ax, dlab, rlab, off=0.1)
     if show_title:
         extra = f"  (+{omitted} oblique)" if omitted else ""
         num, name = _sg_label(sg)
@@ -1101,6 +1381,7 @@ def element_legend(sg, ax=None, projection="c"):
     # tetragonal group) are listed rather than only the base coset set.
     els = _element_copies(sg)
     perm = _PROJ[projection][0]
+    frame = _Frame(cell_frame(sg, projection))
     perp = {}      # order -> set of screw_k for axes ⊥ page
     inplane = {"rot": False, "screw": False}
     planes = set()          # planes ⊥ page (drawn as lines)
@@ -1130,7 +1411,9 @@ def element_legend(sg, ax=None, projection="c"):
                 intr = el.get("intrinsic")
                 if intr is not None:
                     pv = _perm_vec(np.asarray(intr, float), perm)
-                    gdir = np.array([pv[1], pv[0]])   # (right, down) data frame
+                    # same cell frame as the element diagram, so the arrow
+                    # is tilted identically in an oblique projection
+                    gdir = frame.vec(np.array([pv[1], pv[0]]))
                 par_planes.setdefault(sym, gdir)
 
     y = 9.3
@@ -1194,7 +1477,8 @@ def element_legend(sg, ax=None, projection="c"):
     y -= 0.9
     ax.plot(0.45, y, "o", ms=8, mfc="white", mec="k", mew=1.0)
     ax.text(0.6, y + 0.12, "+", fontsize=7)
-    ax.text(1.0, y, "+ / \u2212 : height", fontsize=8, va="center")
+    ax.text(1.0, y, "+ / \u2212 : z / \u2212z;  \u00bd+ : z+\u00bd  \u2026",
+            fontsize=8, va="center")
     # Fit the y-range to the content so element-rich groups (many rows) do not
     # push later entries below the axis and off the canvas.
     ax.set_ylim(y - 0.6, 10)
