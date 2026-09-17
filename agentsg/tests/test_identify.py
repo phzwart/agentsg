@@ -139,3 +139,54 @@ def test_pure_floating_shift_is_identity_cob():
         hit = identify_space_group(conj)
         assert hit is not None
         assert hit.change_of_basis.p == ZERO3
+
+
+def test_axis_permutation_setting_identified():
+    """Non-reference axis order is recovered as Hall reference + CoB."""
+    from agentsg.setting import SpaceGroupSetting
+
+    ops = SpaceGroupSetting.parse("P 1 21 1 (c,a,b)").operations()
+    hit = identify_space_group(ops)
+    assert hit is not None
+    assert hit.number == 4
+    assert hit.hermann_mauguin == "P 1 21 1"
+    assert hit.change_of_basis.P != IDENTITY3
+    from agentsg.setting import _lattice_coset_ops
+    from agentsg.group import close_group
+
+    recovered = close_group(
+        [hit.change_of_basis.apply_to_op(op) for op in ops]
+        + _lattice_coset_ops(hit.change_of_basis),
+        max_order=192,
+    )
+    assert recovered == space_group(4).operations()
+
+
+def test_p41212_diagonal_subgroups_identify_as_centred():
+    """Diagonal t-subgroups of P4₁2₁2 need |det P|=2 + centring expansion → C222₁ / C2."""
+    from agentsg.group import close_group
+    from agentsg.setting import _lattice_coset_ops
+
+    parent = {o.as_xyz(): o for o in space_group(92).operations()}
+    cases = [
+        (
+            ["x,y,z", "-x,-y,z+1/2", "-y,-x,-z+1/2", "y,x,-z"],
+            20,
+            "C 2 2 21",
+        ),
+        (["x,y,z", "-y,-x,-z+1/2"], 5, "C 1 2 1"),
+        (["x,y,z", "y,x,-z"], 5, "C 1 2 1"),
+    ]
+    for keys, number, hm in cases:
+        ops = frozenset(parent[k] for k in keys)
+        hit = identify_space_group(ops)
+        assert hit is not None, keys
+        assert hit.number == number, (keys, hit)
+        assert hit.hermann_mauguin == hm
+        assert abs(hit.change_of_basis.P.det()) == 2
+        recovered = close_group(
+            [hit.change_of_basis.apply_to_op(op) for op in ops]
+            + _lattice_coset_ops(hit.change_of_basis),
+            max_order=192,
+        )
+        assert recovered == space_group(number).operations()

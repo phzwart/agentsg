@@ -220,10 +220,12 @@ symbol + change of basis via `setting.py`).
 - **Dual origin choices** (e.g. Fd-3m origins 1 vs 2): modelled as an
   origin-shift `ChangeOfBasis` between generator sets; the table currently
   carries the standard setting per group. `identify_space_group` recovers
-  origin shifts; non-origin setting changes still need an explicit CoB or a
-  future ``FixAxes`` pass.
+  origin shifts and integer changes of basis to the Hall reference
+  (`|det P|≤4`, entries in `{-1,0,1}`), expanding by centring cosets when
+  `|det P|≠1`. Fractional CoBs (e.g. some H↔R paths) still need an explicit
+  `SpaceGroupSetting`.
 - **Hall symbol generation** (`BuildHSym`): identification returns the
-  tabulated Hall for the matched standard setting; encoding an arbitrary
+  tabulated Hall for the matched reference setting; encoding an arbitrary
   operator list as a fresh Hall string is not implemented.
 - **Twin-law search**: the numeric machinery (metric symmetry, tolerance
   checks) and the exact `W`s are now both present — `lattice_symmetry` gives the
