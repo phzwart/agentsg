@@ -1,0 +1,495 @@
+"""Request handlers: wrap the public agentsg API as JSON dicts."""
+from __future__ import annotations
+
+from typing import Any
+from urllib.parse import urlencode
+
+from .. import (
+    ReciprocalAsu,
+    equivalent_reflections,
+    harker_sections,
+    identify_space_group,
+    is_systematically_absent,
+    lattice_symmetry,
+    laue_class,
+    multiplicity,
+    phase_restriction,
+    point_group,
+    reflection_conditions,
+    site_symmetry_order,
+    orbit,
+)
+from ..cell import (
+    UnitCell,
+    compare_cells,
+    niggli_reduce,
+    primitive_cell,
+    root_distance,
+    root_invariant,
+    root_volume_decomposition,
+    similarity_distance,
+    similarity_invariant,
+    surface_geometric_operators,
+)
+from ..cell.pdb_server import search_compatible
+from ..cell.primitive import lattice_letter
+from ..group import centering_translations
+from ..setting import SpaceGroupSetting, format_cob
+from .http import HttpError
+from .serialize import (
+    frac_to_json,
+    matrix_to_json,
+    numpy_vec_to_json,
+    op_to_xyz,
+    parse_cell,
+    parse_hkl,
+    parse_xyz_point,
+    resolve_sg,
+    vec_to_json,
+    xyz_to_op,
+)
+
+
+def _sg_payload(rec) -> dict[str, Any]:
+    ops = list(rec.operations())
+    pg = point_group(ops)
+    return {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "hall": rec.hall,
+        "crystal_system": rec.crystal_system,
+        "centering": lattice_letter(rec.hermann_mauguin),
+        "order": rec.order(),
+        "point_group_order": len(pg),
+        "laue_class": laue_class(rec.number),
+        "ops": [op_to_xyz(op) for op in sorted(ops, key=lambda o: o.as_xyz())],
+        "reflection_conditions": reflection_conditions(ops),
+    }
+
+
+def space_group_info(data: dict[str, Any]) -> dict[str, Any]:
+    rec = resolve_sg(data.get("sg"))
+    return _sg_payload(rec)
+
+
+def setting_info(data: dict[str, Any]) -> dict[str, Any]:
+    text = data.get("setting")
+    if not text:
+        raise ValueError("setting is required (e.g. 'P 21 21 2 (2a,b-a,c)')")
+    st = SpaceGroupSetting.parse(str(text))
+    P = st.change_of_basis_matrix()
+    det = P.det()
+    ops = list(st.operations())
+    return {
+        "setting": str(st),
+        "base_sg_number": st.base.number,
+        "base_sg_hm": st.base.hermann_mauguin,
+        "cob": format_cob(st.cob),
+        "P": matrix_to_json(P),
+        "det": frac_to_json(det),
+        "added_centering": abs(int(det)) != 1 if det.denominator == 1 else True,
+        "order": st.order(),
+        "ops": [op_to_xyz(op) for op in sorted(ops, key=lambda o: o.as_xyz())],
+    }
+
+
+def identify_ops(data: dict[str, Any]) -> dict[str, Any]:
+    raw = data.get("ops")
+    if not isinstance(raw, list) or not raw:
+        raise ValueError("ops must be a non-empty list of xyz triplets")
+    ops = [xyz_to_op(s) for s in raw]
+    hit = identify_space_group(ops)
+    if hit is None:
+        raise HttpError(404, "could not identify a standard space group from these operators")
+    return {
+        "sg_number": hit.number,
+        "sg_hm": hit.hermann_mauguin,
+        "hall": hit.hall,
+        "cob": format_cob(hit.change_of_basis),
+        "P": matrix_to_json(hit.change_of_basis.P),
+        "origin": vec_to_json(hit.change_of_basis.p),
+        "floating_origin": [vec_to_json(v) for v in hit.floating_origin],
+    }
+
+
+def site_info(data: dict[str, Any]) -> dict[str, Any]:
+    rec = resolve_sg(data.get("sg"))
+    xyz = parse_xyz_point(data.get("xyz"))
+    ops = list(rec.operations())
+    pts = orbit(xyz, ops)
+    return {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "xyz": vec_to_json(xyz),
+        "multiplicity": multiplicity(xyz, ops),
+        "site_symmetry_order": site_symmetry_order(xyz, ops),
+        "orbit": sorted(vec_to_json(p) for p in pts),
+        "wyckoff_letter": None,
+        "note": "ITA Wyckoff letters are not assigned; numeric orbit content only.",
+    }
+
+
+def reflections_info(data: dict[str, Any]) -> dict[str, Any]:
+    rec = resolve_sg(data.get("sg"))
+    ops = list(rec.operations())
+    out: dict[str, Any] = {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "conditions": reflection_conditions(ops),
+    }
+    if data.get("hkl") is not None:
+        hkl = parse_hkl(data["hkl"])
+        from ..linalg import Vector3
+        hv = Vector3(hkl)
+        pr = phase_restriction(hv, ops)
+        eq = equivalent_reflections(hv, ops)
+        rasu = ReciprocalAsu.from_space_group(rec.number)
+        out["hkl"] = list(hkl)
+        out["absent"] = bool(pr.absent) or is_systematically_absent(hv, ops)
+        out["centric"] = bool(pr.centric)
+        out["phase"] = None if pr.phase is None else frac_to_json(pr.phase)
+        out["multiplicity"] = eq.multiplicity
+        out["epsilon"] = eq.epsilon
+        out["laue_multiplicity"] = eq.laue_multiplicity
+        out["equivalent_hkls"] = [list(t) for t in eq.hkls]
+        out["in_reciprocal_asu"] = rasu.is_in(hkl)
+        out["asu_condition"] = rasu.condition_str
+    return out
+
+
+def harker_info(data: dict[str, Any]) -> dict[str, Any]:
+    rec = resolve_sg(data.get("sg"))
+    loci = harker_sections(rec.operations())
+    return {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "loci": [
+            {
+                "kind": loc.kind,
+                "rank": loc.rank,
+                "constraints": [str(c) for c in loc.constraints],
+            }
+            for loc in loci
+        ],
+    }
+
+
+def default_projection(crystal_system: str | None) -> str:
+    """ITA unique-axis-b for monoclinic, else c."""
+    if crystal_system and str(crystal_system).lower().startswith("monoclinic"):
+        return "b"
+    return "c"
+
+
+def resolve_plate_sg(data: dict[str, Any]):
+    """SpaceGroup or SpaceGroupSetting for plate / classify."""
+    if data.get("setting"):
+        return SpaceGroupSetting.parse(str(data["setting"]))
+    return resolve_sg(data.get("sg"))
+
+
+def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
+    sg = resolve_plate_sg(data)
+    system = getattr(sg, "crystal_system", None)
+    if system is None and hasattr(sg, "base"):
+        system = getattr(sg.base, "crystal_system", None)
+    projection = str(data.get("projection") or default_projection(system))
+    if projection not in ("a", "b", "c"):
+        raise ValueError("projection must be a, b, or c")
+    legend = _as_bool(data.get("legend", False))
+    show_centring = _as_bool(data.get("show_centring", False))
+    try:
+        from ..cell.diagrams import classify_space_group
+        raw = classify_space_group(sg)
+    except ImportError as exc:
+        raise HttpError(503, "ITA plates require matplotlib+numpy (pip install agentsg[plot])") from exc
+    elements = []
+    for el in raw:
+        elements.append({
+            "type": el.get("type"),
+            "symbol": el.get("symbol"),
+            "order": el.get("order"),
+            "xyz": el.get("xyz"),
+            "axis": numpy_vec_to_json(el.get("axis")),
+            "location": numpy_vec_to_json(el.get("location")),
+        })
+    num = getattr(sg, "number", None)
+    if num is None and hasattr(sg, "base"):
+        num = getattr(sg.base, "number", None)
+    name = getattr(sg, "hermann_mauguin", None) or str(sg)
+    return {
+        "sg_number": num,
+        "sg_hm": name,
+        "crystal_system": system,
+        "projection": projection,
+        "legend": legend,
+        "show_centring": show_centring,
+        "elements": elements,
+        "png_url": f"/v1/ita-plate.png?{png_query}",
+        "note": "Fetch png_url (same bearer token) to display the ITA plate.",
+    }
+
+
+def _as_bool(raw) -> bool:
+    if isinstance(raw, bool):
+        return raw
+    return str(raw).lower() in ("1", "true", "yes")
+
+
+def plate_png_args(data: dict[str, Any]) -> tuple[Any, str, bool, bool]:
+    sg = resolve_plate_sg(data)
+    system = getattr(sg, "crystal_system", None)
+    if system is None and hasattr(sg, "base"):
+        system = getattr(sg.base, "crystal_system", None)
+    projection = str(data.get("projection") or default_projection(system))
+    if projection not in ("a", "b", "c"):
+        raise ValueError("projection must be a, b, or c")
+    return sg, projection, _as_bool(data.get("legend", False)), _as_bool(data.get("show_centring", False))
+
+
+def cell_info(data: dict[str, Any]) -> dict[str, Any]:
+    cell = parse_cell(data.get("cell"))
+    uc = UnitCell(*cell)
+    rec = uc.reciprocal()
+    reduced, cob = niggli_reduce(*cell)
+    out: dict[str, Any] = {
+        "cell": list(cell),
+        "volume": uc.volume(),
+        "reciprocal": [rec.a, rec.b, rec.c, rec.alpha, rec.beta, rec.gamma],
+        "niggli": list(reduced),
+        "niggli_cob": [[int(x) for x in row] for row in cob],
+        "root_invariant": list(root_invariant(cell)),
+        "similarity_invariant": list(similarity_invariant(cell)),
+    }
+    if data.get("sg") is not None:
+        rec_sg = resolve_sg(data["sg"])
+        prim = primitive_cell(cell, rec_sg.hermann_mauguin)
+        out["sg_number"] = rec_sg.number
+        out["sg_hm"] = rec_sg.hermann_mauguin
+        out["centering"] = lattice_letter(rec_sg.hermann_mauguin)
+        out["primitive_cell"] = list(prim)
+        out["root_invariant"] = list(root_invariant(prim))
+        out["similarity_invariant"] = list(similarity_invariant(prim))
+    return out
+
+
+def lattice_symmetry_info(data: dict[str, Any]) -> dict[str, Any]:
+    cell = parse_cell(data.get("cell"))
+    max_delta = float(data.get("max_delta", 3.0))
+    ls = lattice_symmetry(cell, max_delta=max_delta)
+    scores = []
+    for s in (ls.two_fold_scores or [])[:12]:
+        scores.append({
+            "le_page_delta": s.le_page_delta,
+            "kurlin_distance": s.kurlin_distance,
+            "direct_axis": list(s.direct_axis) if s.direct_axis is not None else None,
+        })
+    out: dict[str, Any] = {
+        "cell": list(cell),
+        "order": ls.order,
+        "crystal_system": ls.crystal_system,
+        "two_fold_scores": scores,
+        "units": {"le_page_delta": "degrees", "kurlin_distance": "angstrom"},
+    }
+    if _as_bool(data.get("include_g6", False)):
+        from ..cell import distance_to_symmetry
+        from .. import space_group
+        from ..group import point_group as pg
+        # diagnostic only — cubic reference if requested without sg
+        out["g6_note"] = "G6 deficiency is diagnostic (Å²); prefer kurlin_distance."
+        if data.get("sg") is not None:
+            rec = resolve_sg(data["sg"])
+            out["g6_distance_to_symmetry"] = distance_to_symmetry(
+                cell, pg(rec.operations()))
+    return out
+
+
+def compare_info(data: dict[str, Any]) -> dict[str, Any]:
+    a = parse_cell(data.get("cell_a"))
+    b = parse_cell(data.get("cell_b"))
+    sg_a = data.get("sg_a")
+    sg_b = data.get("sg_b")
+    cell_a, cell_b = a, b
+    if sg_a is not None:
+        cell_a = primitive_cell(a, resolve_sg(sg_a).hermann_mauguin)
+    if sg_b is not None:
+        cell_b = primitive_cell(b, resolve_sg(sg_b).hermann_mauguin)
+    dec = root_volume_decomposition(cell_a, cell_b)
+    out: dict[str, Any] = {
+        "cell_a": list(a),
+        "cell_b": list(b),
+        "primitive_a": list(cell_a),
+        "primitive_b": list(cell_b),
+        "root_distance": root_distance(cell_a, cell_b),
+        "similarity_distance": similarity_distance(cell_a, cell_b),
+        "volume_decomposition": {
+            "total": dec["total"],
+            "volume_component": dec["volume_component"],
+            "shape_residual": dec["shape_residual"],
+            "coupling_angle_deg": dec["coupling_angle_deg"],
+        },
+        "units": "angstrom (root); similarity is dimensionless",
+    }
+    if _as_bool(data.get("include_sublattices", False)):
+        res = compare_cells(a, b)
+        out["sublattices"] = {
+            "volume_ratio": res.get("volume_ratio"),
+            "solutions": [
+                {
+                    "index": m.index,
+                    "M": [list(row) for row in m.M],
+                    "resulting_cell": list(m.resulting_cell),
+                    "max_length_dev_pct": m.max_length_dev,
+                    "max_angle_dev_deg": m.max_angle_dev,
+                }
+                for m in res.get("solutions", [])[:20]
+            ],
+        }
+    return out
+
+
+def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
+    rec = resolve_sg(data.get("sg"))
+    cell = parse_cell(data.get("cell"))
+    length_tol = float(data.get("length_tol_pct", 2.0))
+    angle_tol = float(data.get("angle_tol_deg", 2.0))
+    ops = surface_geometric_operators(
+        rec.number, cell, length_tol_pct=length_tol, angle_tol_deg=angle_tol)
+    return {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "cell": list(cell),
+        "note": (
+            "Geometry surfaces branches only. Residual 0 (is_metric_symmetry) "
+            "is true merohedry — intensities are required to decide; v1 cannot."
+        ),
+        "operators": [
+            {
+                "xyz": op_to_xyz(g.op),
+                "residual": g.residual,
+                "is_identity": g.is_identity,
+                "is_metric_symmetry": g.is_metric_symmetry,
+            }
+            for g in ops
+        ],
+    }
+
+
+def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
+    if state is None or state.db is None or state.index is None:
+        raise HttpError(503, "PDB database is not loaded")
+    rec = resolve_sg(data.get("sg") or data.get("sg_hm") or data.get("sg_number"))
+    cell = parse_cell(data.get("cell")) if data.get("cell") is not None else parse_cell([
+        data["a"], data["b"], data["c"],
+        data["alpha"], data["beta"], data["gamma"],
+    ])
+    k = data.get("k")
+    cutoff = data.get("cutoff")
+    same_hm = _as_bool(data.get("same_hm", data.get("same_sg", False)))
+    if k is not None:
+        k = int(k)
+        if k < 1:
+            raise ValueError("k must be a positive integer")
+        hits = state.index.k_nearest(cell, k=k, sg_hm=rec.hermann_mauguin)
+        if same_hm:
+            hits = [(pid, d) for pid, d in hits]
+            meta = state.db.lookup_cells([pid for pid, _ in hits])
+            hits = [(pid, d) for pid, d in hits
+                    if meta.get(pid, {}).get("sg_hm") == rec.hermann_mauguin]
+        if cutoff is not None:
+            cutoff = float(cutoff)
+            hits = [(pid, d) for pid, d in hits if d <= cutoff]
+        meta = state.db.lookup_cells([pid for pid, _ in hits])
+        enriched = []
+        for pid, dist in hits:
+            rec_h = {"pdb_id": pid, "distance": dist}
+            info = meta.get(pid)
+            if info is not None:
+                rec_h.update({"sg_number": info["sg_number"],
+                              "sg_hm": info["sg_hm"], "cell": info["cell"]})
+            enriched.append(rec_h)
+        prim = primitive_cell(cell, rec.hermann_mauguin)
+        return {
+            "cell": list(cell),
+            "sg_number": rec.number,
+            "sg_hm": rec.hermann_mauguin,
+            "centering": lattice_letter(rec.hermann_mauguin),
+            "primitive_cell": list(prim),
+            "k": k,
+            "cutoff": None if cutoff is None else float(cutoff),
+            "same_hm": same_hm,
+            "count": len(enriched),
+            "hits": enriched,
+        }
+    if cutoff is None:
+        raise ValueError("provide cutoff (Å) and/or k")
+    return search_compatible(
+        state.db, state.index,
+        cell=cell,
+        cutoff=float(cutoff),
+        sg_number=rec.number,
+        sg_hm=rec.hermann_mauguin,
+        same_hm=same_hm,
+    )
+
+
+def pdb_lookup(state, pdb_id: str) -> dict[str, Any]:
+    if state is None or state.db is None:
+        raise HttpError(503, "PDB database is not loaded")
+    pid = pdb_id.strip().upper()
+    meta = state.db.lookup_cells([pid])
+    info = meta.get(pid)
+    if info is None:
+        raise HttpError(404, f"unknown pdb_id {pid}")
+    return {"pdb_id": pid, **info}
+
+
+def help_catalog() -> dict[str, Any]:
+    """Short index derived from the same catalog as GET /api."""
+    from .manifest import DEFAULT_SERVER, ENDPOINTS
+    compute = [
+        e for e in ENDPOINTS
+        if e["path"].startswith("/v1/") or e["path"] in ("/search", "/plates", "/api")
+    ]
+    return {
+        "service": "agentsg",
+        "base_url": DEFAULT_SERVER,
+        "auth": "Authorization: Bearer (stored in connector credentials)",
+        "rule": "GET /api for the full catalog, then call an endpoint before answering.",
+        "skill": "/skill.md",
+        "discover": "/api",
+        "calls": [
+            {"when": e["description"], "method": e["methods"][0], "path": e["path"],
+             "example": e["example"]}
+            for e in compute
+        ],
+    }
+
+
+def plates_png(qs: dict[str, Any]) -> bytes:
+    """GET /plates — ITA plate PNG. Default projection is c. Unknown sg → 404."""
+    from .http import HttpError
+    from .plates import render_ita_png
+    raw_sg = qs.get("sg")
+    if raw_sg is None or str(raw_sg).strip() == "":
+        raise HttpError(400, "sg: is required (IT number or Hermann-Mauguin symbol)")
+    projection = str(qs.get("projection") or "c")
+    if projection not in ("a", "b", "c"):
+        raise HttpError(400, "projection: must be a, b, or c")
+    sg = resolve_sg(raw_sg)
+    return render_ita_png(sg, projection=projection, legend=False, show_centring=False)
+
+
+def plate_query_string(data: dict[str, Any]) -> str:
+    q = {}
+    if data.get("sg") is not None:
+        q["sg"] = str(data["sg"])
+    if data.get("setting"):
+        q["setting"] = str(data["setting"])
+    if data.get("projection"):
+        q["projection"] = str(data["projection"])
+    if _as_bool(data.get("legend", False)):
+        q["legend"] = "true"
+    if _as_bool(data.get("show_centring", False)):
+        q["show_centring"] = "true"
+    return urlencode(q)

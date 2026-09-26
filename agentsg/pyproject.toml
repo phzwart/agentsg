@@ -20,6 +20,9 @@ plot = ["matplotlib", "numpy"]
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"agentsg.serve" = ["*.md"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = [

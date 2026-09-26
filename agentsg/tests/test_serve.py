@@ -1,0 +1,307 @@
+"""HTTP serve API (Muse connector) tests."""
+import json
+import threading
+import urllib.error
+import urllib.request
+
+import pytest
+
+from agentsg.serve.app import ServerState, make_handler
+from agentsg.serve.manifest import API_VERSION, build_api_manifest
+from agentsg.serve.openapi import build_openapi, routed_paths
+from agentsg.serve.serialize import parse_cell, parse_frac, parse_xyz_point, vec_to_json
+from http.server import ThreadingHTTPServer
+
+
+@pytest.fixture
+def sample_db(tmp_path):
+    duckdb = pytest.importorskip("duckdb")
+    from agentsg.cell.celldb import CellDatabase
+    path = tmp_path / "test.duckdb"
+    db = CellDatabase(str(path))
+    db.add_cell("LYZ1", (79.1, 79.1, 37.9, 90, 90, 90), 96, "P 43 21 2")
+    db.add_cell("LYZ2", (79.0, 79.0, 38.0, 90, 90, 90), 96, "P 43 21 2")
+    db.close()
+    return str(path)
+
+
+def _fetch(url, data=None, token=None, method=None):
+    headers = {}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    if data is None:
+        req = urllib.request.Request(url, headers=headers, method=method or "GET")
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            body = resp.read()
+            ctype = resp.headers.get("Content-Type", "")
+            if "json" in ctype:
+                return resp.status, json.loads(body.decode())
+            return resp.status, body
+    body = json.dumps(data).encode()
+    headers["Content-Type"] = "application/json"
+    req = urllib.request.Request(url, data=body, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return resp.status, json.loads(resp.read().decode())
+
+
+def _server(db_path=None, token=None):
+    state = ServerState(db_path, token)
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), make_handler(state))
+    thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    thread.start()
+    return state, httpd, f"http://127.0.0.1:{httpd.server_address[1]}"
+
+
+def test_serialize_frac_and_cell():
+    assert str(parse_frac("1/4")) == "1/4"
+    assert parse_cell([79, 79, 38, 90, 90, 90])[0] == 79.0
+    v = parse_xyz_point(["1/4", "1/4", "1/4"])
+    assert vec_to_json(v) == ["1/4", "1/4", "1/4"]
+
+
+def test_openapi_covers_routes():
+    spec = build_openapi()
+    paths = routed_paths()
+    assert "/health" in paths
+    assert "/api" in paths
+    assert "/plates" in paths
+    assert "/v1/space-group" in paths
+    assert "/v1/help" in paths
+    assert "/v1/ita-plate.png" in paths
+    manifest = build_api_manifest()
+    assert manifest["api_version"] == API_VERSION == "0.2.0"
+    assert {e["path"] for e in manifest["endpoints"]} == paths
+    assert spec["openapi"].startswith("3.")
+    assert "bearerAuth" in spec["components"]["securitySchemes"]
+    assert "get" in spec["paths"]["/v1/space-group"]
+    assert spec["paths"]["/v1/space-group"]["post"]["operationId"] == "spaceGroup"
+
+
+def test_http_discovery_and_space_group():
+    state, httpd, base = _server()
+    try:
+        status, health = _fetch(f"{base}/health")
+        assert status == 200
+        assert health["status"] == "ok"
+        assert health["read_only"] is True
+        assert health["api_version"] == "0.2.0"
+        status, root = _fetch(f"{base}/")
+        assert status == 200
+        assert root["docs"] == "/docs/muse.md"
+        status, health_slash = _fetch(f"{base}/health/")
+        assert status == 200
+        assert health_slash["status"] == "ok"
+
+        status, spec = _fetch(f"{base}/openapi.json")
+        assert status == 200
+        assert "/v1/space-group" in spec["paths"]
+
+        status, md = _fetch(f"{base}/skill.md")
+        assert status == 200
+        assert b"Wyckoff" in md
+        assert b"GET /v1/space-group" in md
+
+        status, sg = _fetch(f"{base}/v1/space-group", {"sg": 96})
+        assert status == 200
+        assert sg["sg_number"] == 96
+        assert sg["order"] == 8
+        assert "hkl" in sg["reflection_conditions"] or sg["reflection_conditions"]
+
+        status, sg_get = _fetch(f"{base}/v1/space-group?sg=96")
+        assert status == 200
+        assert sg_get["sg_number"] == 96
+        assert sg_get["sg_hm"] == sg["sg_hm"]
+
+        status, help_ = _fetch(f"{base}/v1/help")
+        assert status == 200
+        assert help_["calls"]
+        assert any("space-group" in c["path"] for c in help_["calls"])
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_bearer_required():
+    state, httpd, base = _server(token="secret")
+    try:
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/v1/space-group", {"sg": 19})
+        assert exc.value.code == 401
+        status, sg = _fetch(f"{base}/v1/space-group", {"sg": 19}, token="secret")
+        assert status == 200
+        assert sg["sg_number"] == 19
+        status, health = _fetch(f"{base}/health")
+        assert status == 200
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_site_reflections_harker_cell():
+    state, httpd, base = _server()
+    try:
+        status, site = _fetch(f"{base}/v1/site", {
+            "sg": 225, "xyz": ["1/4", "1/4", "1/4"],
+        })
+        assert status == 200
+        assert site["multiplicity"] == 8
+        assert site["site_symmetry_order"] == 24
+        assert site["wyckoff_letter"] is None
+
+        status, ref = _fetch(f"{base}/v1/reflections", {"sg": 96, "hkl": [0, 0, 1]})
+        assert status == 200
+        assert "absent" in ref
+
+        status, hk = _fetch(f"{base}/v1/harker", {"sg": 19})
+        assert status == 200
+        assert hk["loci"]
+
+        status, cell = _fetch(f"{base}/v1/cell", {
+            "cell": [79, 79, 38, 90, 90, 90], "sg": 96,
+        })
+        assert status == 200
+        assert cell["volume"] > 0
+        assert len(cell["root_invariant"]) == 6
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_lattice_compare_reindex():
+    state, httpd, base = _server()
+    try:
+        status, ls = _fetch(f"{base}/v1/lattice-symmetry", {
+            "cell": [50, 50, 50, 90, 90, 90],
+        })
+        assert status == 200
+        assert ls["order"] >= 2
+
+        status, cmp_ = _fetch(f"{base}/v1/compare", {
+            "cell_a": [50, 50, 50, 90, 90, 90],
+            "cell_b": [51, 51, 51, 90, 90, 90],
+        })
+        assert status == 200
+        assert cmp_["root_distance"] > 0
+
+        status, rx = _fetch(f"{base}/v1/reindex", {
+            "sg": 75, "cell": [50, 50, 80, 90, 90, 90],
+        })
+        assert status == 200
+        assert rx["operators"]
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_identify_and_setting():
+    state, httpd, base = _server()
+    try:
+        status, sg = _fetch(f"{base}/v1/space-group", {"sg": 19})
+        status, ident = _fetch(f"{base}/v1/identify", {"ops": sg["ops"]})
+        assert ident["sg_number"] == 19
+
+        status, st = _fetch(f"{base}/v1/setting", {
+            "setting": "P 21 21 21 (b,c,a)",
+        })
+        assert status == 200
+        assert "P" in st["P"][0] or st["cob"]
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_pdb_search_and_lookup(sample_db):
+    state, httpd, base = _server(sample_db)
+    try:
+        status, result = _fetch(f"{base}/v1/pdb/search", {
+            "cell": [79, 79, 38, 90, 90, 90], "sg": 96, "cutoff": 0.5,
+        })
+        assert status == 200
+        assert result["count"] == 2
+        status, row = _fetch(f"{base}/v1/pdb/LYZ2")
+        assert row["pdb_id"] == "LYZ2"
+        status, knn = _fetch(f"{base}/v1/pdb/search", {
+            "cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 1,
+        })
+        assert knn["count"] == 1
+    finally:
+        httpd.shutdown()
+        state.db.close()
+
+
+def test_ita_plate_png():
+    pytest.importorskip("matplotlib")
+    state, httpd, base = _server()
+    try:
+        status, meta = _fetch(f"{base}/v1/ita-plate", {"sg": 19, "legend": True})
+        assert status == 200
+        assert meta["elements"]
+        assert meta["png_url"].startswith("/v1/ita-plate.png")
+        status, png = _fetch(f"{base}/v1/ita-plate.png?sg=19&legend=true")
+        assert status == 200
+        assert png[:8] == b"\x89PNG\r\n\x1a\n"
+        status, plate = _fetch(f"{base}/plates?sg=19")
+        assert status == 200
+        assert plate[:8] == b"\x89PNG\r\n\x1a\n"
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
+def test_api_manifest_auth_and_plates_errors():
+    pytest.importorskip("matplotlib")
+    state, httpd, base = _server(token="secret")
+    try:
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/api")
+        assert exc.value.code == 401
+
+        status, manifest = _fetch(f"{base}/api", token="secret")
+        assert status == 200
+        assert manifest["name"] == "sg-muse"
+        assert manifest["api_version"] == "0.2.0"
+        assert manifest["auth"] == {"scheme": "bearer", "header": "Authorization"}
+        by_path = {e["path"]: e for e in manifest["endpoints"]}
+        assert "/search" in by_path
+        assert "/plates" in by_path
+        assert "/v1/space-group" in by_path
+        assert "/v1/reflections" in by_path
+        assert "/v1/site" in by_path
+        assert "/v1/identify" in by_path
+        assert "/v1/setting" in by_path
+        assert "/v1/harker" in by_path
+        assert "/v1/compare" in by_path
+        assert "/v1/reindex" in by_path
+        search = by_path["/search"]
+        assert "79" in search["example"] and "P212121" in search["example"]
+        assert search["side_effects"] == "reads database"
+        assert by_path["/plates"]["example"]
+        assert by_path["/v1/space-group"]["side_effects"] == "none"
+
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/plates?sg=999", token="secret")
+        assert exc.value.code == 404
+        err = json.loads(exc.value.read().decode())
+        assert "error" in err
+
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/plates", token="secret")
+        assert exc.value.code == 400
+        err = json.loads(exc.value.read().decode())
+        assert "sg" in err["error"]
+
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/plates?sg=19&projection=z", token="secret")
+        assert exc.value.code == 400
+        err = json.loads(exc.value.read().decode())
+        assert "projection" in err["error"]
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()

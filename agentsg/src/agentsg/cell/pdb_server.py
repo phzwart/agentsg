@@ -22,6 +22,9 @@ Command-line usage::
 
     python -m agentsg.cell.pdb_server --db data/pdb_cells.duckdb --port 8765
 
+The Muse-facing API (space groups, ITA plates, PDB search) is
+``python -m agentsg.serve``; this module remains the PDB-only server.
+
 Endpoints
 ---------
 GET /health
