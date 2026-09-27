@@ -31,9 +31,6 @@ symcell-update.zip
 data/*.duckdb
 *.duckdb
 
-# Ralph loop logs (regenerable)
-agentsg/ralph/logs/
-
 # Local Muse / tunnel secrets and host-specific launchd
 agentsg/serve.local.env
 agentsg/deploy/
