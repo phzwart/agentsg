@@ -20,7 +20,13 @@ from .http import (
     send_json,
     send_text,
 )
-from .manifest import API_VERSION, build_api_manifest, open_paths, routed_paths
+from .manifest import (
+    API_VERSION,
+    apply_site,
+    build_api_manifest,
+    open_paths,
+    routed_paths,
+)
 from .openapi import build_openapi
 from .plates import plates_available, render_ita_png
 
@@ -46,7 +52,7 @@ class ServerState:
 
 
 def _pkg_text(name: str) -> str:
-    return (_HERE / name).read_text(encoding="utf-8")
+    return apply_site((_HERE / name).read_text(encoding="utf-8"))
 
 
 def make_handler(state: ServerState):
@@ -133,6 +139,8 @@ def make_handler(state: ServerState):
                 return handlers.site_info(query_to_body(qs))
             if path == "/v1/harker":
                 return handlers.harker_info(query_to_body(qs))
+            if path == "/v1/subgroups":
+                return handlers.subgroups_info(query_to_body(qs))
             if path == "/v1/ita-plate":
                 body = query_to_body(qs)
                 q = handlers.plate_query_string(body)
@@ -166,6 +174,8 @@ def make_handler(state: ServerState):
                 return handlers.reflections_info(data)
             if path == "/v1/harker":
                 return handlers.harker_info(data)
+            if path == "/v1/subgroups":
+                return handlers.subgroups_info(data)
             if path == "/v1/ita-plate":
                 q = handlers.plate_query_string(data)
                 return handlers.ita_plate_json(data, png_query=q)
@@ -226,8 +236,13 @@ def make_handler(state: ServerState):
 
 
 def run_server(db_path: str | None = None, host: str = "127.0.0.1",
-               port: int = 8765, token: str | None = None):
+               port: int = 8765, token: str | None = None,
+               public_url: str | None = None, api_name: str | None = None):
     """Load optional PDB index and serve forever."""
+    if public_url:
+        os.environ["AGENTSG_PUBLIC_URL"] = public_url.rstrip("/")
+    if api_name:
+        os.environ["AGENTSG_API_NAME"] = api_name
     state = ServerState(db_path, token)
     httpd = ThreadingHTTPServer((host, port), make_handler(state))
     print(f"agentsg serve on http://{host}:{port}")
@@ -250,12 +265,20 @@ def _cli(argv=None):
     p = argparse.ArgumentParser(description="agentsg HTTP API for Muse")
     p.add_argument("--db", default=os.environ.get("AGENTSG_DB", ""),
                    help="path to pdb_cells.duckdb (optional)")
-    p.add_argument("--host", default="127.0.0.1")
-    p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--host", default=os.environ.get("AGENTSG_HOST", "127.0.0.1"))
+    p.add_argument("--port", type=int,
+                   default=int(os.environ.get("AGENTSG_PORT", "8765")))
     p.add_argument("--token", default=os.environ.get("AGENTSG_TOKEN", ""),
                    help="Bearer token (or AGENTSG_TOKEN)")
+    p.add_argument("--public-url", default=os.environ.get("AGENTSG_PUBLIC_URL", ""),
+                   help="Public base URL for docs, OpenAPI, and curl examples")
+    p.add_argument("--name", default=os.environ.get("AGENTSG_API_NAME", "agentsg"),
+                   help="Connector name in GET /api")
     args = p.parse_args(argv)
     db = args.db or None
     token = args.token or None
-    run_server(db, host=args.host, port=args.port, token=token)
+    run_server(
+        db, host=args.host, port=args.port, token=token,
+        public_url=args.public_url or None, api_name=args.name or None,
+    )
     return 0

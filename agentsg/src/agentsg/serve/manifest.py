@@ -1,13 +1,28 @@
 """Single endpoint catalog. ``GET /api`` and OpenAPI are generated from this."""
 from __future__ import annotations
 
+import os
 from typing import Any
 
-API_NAME = "sg-muse"
-API_VERSION = "0.2.0"
-DEFAULT_SERVER = "https://sg-muse.mxagents.org"
-
+API_VERSION = "0.3.0"
+_BASE_TOKEN = "{{BASE_URL}}"
+_NAME_TOKEN = "{{API_NAME}}"
 _AUTH = '-H "Authorization: Bearer $AGENTSG_TOKEN"'
+
+
+def api_name() -> str:
+    """Connector name from ``AGENTSG_API_NAME`` (default ``agentsg``)."""
+    return os.environ.get("AGENTSG_API_NAME", "agentsg") or "agentsg"
+
+
+def public_url() -> str:
+    """Public base URL from ``AGENTSG_PUBLIC_URL`` (default localhost)."""
+    return (os.environ.get("AGENTSG_PUBLIC_URL") or "http://127.0.0.1:8765").rstrip("/")
+
+
+def apply_site(text: str) -> str:
+    """Fill ``{{BASE_URL}}`` and ``{{API_NAME}}`` from the process environment."""
+    return text.replace(_BASE_TOKEN, public_url()).replace(_NAME_TOKEN, api_name())
 
 
 def _p(name: str, typ: str, required: bool, description: str) -> dict[str, Any]:
@@ -19,10 +34,10 @@ def _curl(path: str, *, data: str | None = None, auth: bool = True) -> str:
         hdr = f"{_AUTH} " if auth else ""
         return (
             f"curl -s {hdr}-H \"Content-Type: application/json\" "
-            f"-d '{data}' {DEFAULT_SERVER}{path}"
+            f"-d '{data}' {_BASE_TOKEN}{path}"
         )
     hdr = f"{_AUTH} " if auth else ""
-    return f"curl -s {hdr}{DEFAULT_SERVER}{path}"
+    return f"curl -s {hdr}{_BASE_TOKEN}{path}"
 
 
 # Public fields: path, methods, description, params, example, side_effects.
@@ -170,6 +185,23 @@ ENDPOINTS: list[dict[str, Any]] = [
         "example": _curl("/v1/harker?sg=19"),
         "side_effects": "none",
         "_op_ids": {"GET": "harkerGet", "POST": "harker"},
+    },
+    {
+        "path": "/v1/subgroups",
+        "methods": ["GET", "POST"],
+        "description": (
+            "Derived maximal translationengleiche (t) and klassengleiche (k) "
+            "subgroups from operators — not the ITA A1 table"
+        ),
+        "params": [
+            _p("sg", "string", True, "IT number, Hermann–Mauguin, or Hall"),
+            _p("kind", "string", False, "t, k, or both (default both)"),
+            _p("maximal", "bool", False,
+               "If true (default), only maximal t-subgroups among those derived"),
+        ],
+        "example": _curl("/v1/subgroups?sg=96"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "subgroupsGet", "POST": "subgroups"},
     },
     {
         "path": "/v1/ita-plate",
@@ -342,7 +374,7 @@ def _public_endpoint(entry: dict[str, Any]) -> dict[str, Any]:
         "methods": list(entry["methods"]),
         "description": entry["description"],
         "params": [dict(p) for p in entry["params"]],
-        "example": entry["example"],
+        "example": apply_site(entry["example"]),
         "side_effects": entry["side_effects"],
     }
 
@@ -350,7 +382,7 @@ def _public_endpoint(entry: dict[str, Any]) -> dict[str, Any]:
 def build_api_manifest() -> dict[str, Any]:
     """Machine-readable catalog served at GET /api."""
     return {
-        "name": API_NAME,
+        "name": api_name(),
         "api_version": API_VERSION,
         "auth": {"scheme": "bearer", "header": "Authorization"},
         "endpoints": [_public_endpoint(e) for e in ENDPOINTS],

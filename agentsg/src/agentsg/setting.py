@@ -13,9 +13,10 @@ The parenthesised part lists, comma-separated, the THREE new basis vectors as
 linear combinations of the old ones -- i.e. the *columns* of the change-of-basis
 matrix P (see agentsg.change_of_basis for the full convention). The letters may
 be spelled x,y,z or a,b,c interchangeably; coefficients may be written 2a, 2*x,
--x, 2*x-y, or with fractions (a/2). An optional constant term in a field is
-taken as that component of the origin shift p (in OLD fractional coordinates);
-the paper's examples carry no shift.
+-x, 2*x-y, or with fractions: ``a/2``, the grouped half-sum ``(y+z)/2``, or
+``1/2*(y+z)``. An optional constant term in a field is taken as that component
+of the origin shift p (in OLD fractional coordinates); the paper's examples
+carry no shift.
 
 Crucially, when det(P) != 1 the transform rescales the lattice, and lattice
 translations that were integral in the base setting become fractional
@@ -47,44 +48,91 @@ def _is_crystallographic_W(W: Matrix3) -> bool:
 
 # --- parse one linear-combination field into (coeff_a, coeff_b, coeff_c, const) ---
 _LETTER = {"a": 0, "b": 1, "c": 2, "x": 0, "y": 1, "z": 2}
-_TERM_RE = re.compile(
-    r"([+-]?)\s*"                       # sign
-    r"(?:(\d+)(?:/(\d+))?\s*\*?\s*)?"   # optional numeric coeff n or n/m, opt '*'
-    r"([abcxyz])?"                       # optional letter
-    r"(?:/(\d+))?"                       # optional post-letter denominator (a/2)
-)
+_NUM_RE = re.compile(r"(\d+)(?:/(\d+))?")
+_LETTER_RE = re.compile(r"[abcxyz]")
 
 
 def _parse_field(field: str) -> tuple[Fr, Fr, Fr, Fr]:
-    """Parse one linear combination field (e.g. ``'a+b-c;1/2'``) into (c_a, c_b, c_c, const)."""
+    """Parse one linear combination field into (c_a, c_b, c_c, const).
+
+    Accepts ``2a``, ``2*x``, ``a/2``, ``z+1/2``, grouped ``(y+z)/2``,
+    and prefixed ``1/2*(y+z)`` / ``1/2(y+z)``.
+    """
     s = field.replace(" ", "")
     if not s:
         raise ValueError("empty change-of-basis field")
+    coeffs, const, pos = _parse_sum(s, 0)
+    if pos != len(s):
+        raise ValueError(f"cannot parse change-of-basis field {field!r} at {s[pos:]!r}")
+    return coeffs[0], coeffs[1], coeffs[2], const
+
+
+def _parse_sum(s: str, pos: int) -> tuple[list[Fr], Fr, int]:
+    """Parse a signed sum of atoms until end-of-string or ``)``."""
     coeffs = [Fr(0), Fr(0), Fr(0)]
     const = Fr(0)
-    pos = 0
-    while pos < len(s):
-        m = _TERM_RE.match(s, pos)
-        if m is None or m.end() == pos or not (m.group(2) or m.group(4)):
-            raise ValueError(f"cannot parse change-of-basis field {field!r} at {s[pos:]!r}")
+    if pos >= len(s) or s[pos] == ")":
+        raise ValueError("empty change-of-basis field")
+    first = True
+    while pos < len(s) and s[pos] != ")":
+        sign = 1
+        if s[pos] == "+":
+            pos += 1
+            first = False
+        elif s[pos] == "-":
+            sign = -1
+            pos += 1
+            first = False
+        elif not first:
+            raise ValueError(f"cannot parse change-of-basis field at {s[pos:]!r}")
+        else:
+            first = False
+        if pos >= len(s) or s[pos] == ")":
+            raise ValueError("dangling sign in change-of-basis field")
+        term_c, term_k, pos = _parse_atom(s, pos)
+        for i in range(3):
+            coeffs[i] += sign * term_c[i]
+        const += sign * term_k
+    return coeffs, const, pos
+
+
+def _parse_atom(s: str, pos: int) -> tuple[list[Fr], Fr, int]:
+    """Unsigned atom: number, letter[/n], (sum)[/n], or number[*](sum)[/n]."""
+    scale = Fr(1)
+    m = _NUM_RE.match(s, pos)
+    if m:
+        scale = Fr(int(m.group(1)), int(m.group(2)) if m.group(2) else 1)
         pos = m.end()
-        sign = -1 if m.group(1) == "-" else 1
-        num = m.group(2)
-        den = m.group(3)
-        letter = m.group(4)
-        post_den = m.group(5)
-        if num is not None:
-            val = Fr(int(num), int(den) if den else 1)
-        else:
-            val = Fr(1)
-        if post_den is not None:
-            val /= int(post_den)
-        val *= sign
-        if letter is not None:
-            coeffs[_LETTER[letter]] += val
-        else:
-            const += val
-    return coeffs[0], coeffs[1], coeffs[2], const
+        if pos < len(s) and s[pos] == "*":
+            pos += 1
+
+    if pos < len(s) and s[pos] == "(":
+        inner_c, inner_k, pos = _parse_sum(s, pos + 1)
+        if pos >= len(s) or s[pos] != ")":
+            raise ValueError("unbalanced '(' in change-of-basis field")
+        pos += 1
+        mden = re.match(r"/(\d+)", s[pos:])
+        if mden:
+            scale /= int(mden.group(1))
+            pos += mden.end()
+        return [scale * x for x in inner_c], scale * inner_k, pos
+
+    letter = _LETTER_RE.match(s, pos)
+    if letter:
+        idx = _LETTER[letter.group(0)]
+        pos = letter.end()
+        mden = re.match(r"/(\d+)", s[pos:])
+        if mden:
+            scale /= int(mden.group(1))
+            pos += mden.end()
+        c = [Fr(0), Fr(0), Fr(0)]
+        c[idx] = scale
+        return c, Fr(0), pos
+
+    if m:
+        return [Fr(0), Fr(0), Fr(0)], scale, pos
+
+    raise ValueError(f"cannot parse change-of-basis field at {s[pos:]!r}")
 
 
 def parse_cob(cob: str) -> ChangeOfBasis:
@@ -110,7 +158,29 @@ def parse_cob(cob: str) -> ChangeOfBasis:
     return ChangeOfBasis(P, Vector3(tuple(p)))
 
 
-_SETTING_RE = re.compile(r"^\s*(?:Hall:\s*)?(.*?)\s*(\([^()]*\))\s*$")
+def _strip_hall(text: str) -> str:
+    return re.sub(r"^\s*Hall:\s*", "", text, flags=re.IGNORECASE).strip()
+
+
+def _split_setting(text: str) -> tuple[str, str | None]:
+    """Split ``'F 4 3 2 ((y+z)/2,...)'`` into (base, cob) allowing nested parens."""
+    text = _strip_hall(text)
+    if not text.endswith(")"):
+        return text, None
+    depth = 0
+    for i in range(len(text) - 1, -1, -1):
+        if text[i] == ")":
+            depth += 1
+        elif text[i] == "(":
+            depth -= 1
+            if depth == 0:
+                base = text[:i].strip()
+                if not base:
+                    raise ValueError(
+                        "setting is missing a space-group symbol before the change of basis"
+                    )
+                return base, text[i:]
+    raise ValueError(f"unbalanced parentheses in setting {text!r}")
 
 
 def parse_setting(text: str):
@@ -118,15 +188,13 @@ def parse_setting(text: str):
 
     ``base_key`` is the leading Hall or Hermann-Mauguin string (an optional
     'Hall:' prefix is stripped). If there is no parenthesised part, the whole
-    string is the base and the change of basis is the identity.
+    string is the base and the change of basis is the identity. Nested
+    parentheses in the CoB (``(y+z)/2``) are allowed.
     """
-    m = _SETTING_RE.match(text)
-    if not m:
-        base = re.sub(r"^\s*Hall:\s*", "", text).strip()
+    base, cob_txt = _split_setting(text)
+    if cob_txt is None:
         return base, ChangeOfBasis(IDENTITY3, Vector3((0, 0, 0)))
-    base = m.group(1).strip()
-    cob = parse_cob(m.group(2))
-    return base, cob
+    return base, parse_cob(cob_txt)
 
 
 def _lattice_coset_ops(cob: ChangeOfBasis) -> list[SymmetryOp]:

@@ -29,6 +29,27 @@ def test_parse_field_forms():
     assert parse_cob("(a/2,b,c)").P.rows == ((Fr(1, 2), 0, 0), (0, 1, 0), (0, 0, 1))
 
 
+def test_grouped_half_sum_equals_distributed():
+    """(y+z)/2 is the usual writing of the F→primitive columns; y/2+z/2 already worked."""
+    grouped = parse_cob("((y+z)/2,(x+z)/2,(x+y)/2)")
+    distributed = parse_cob("(y/2+z/2,x/2+z/2,x/2+y/2)")
+    prefixed = parse_cob("(1/2*(y+z),1/2*(x+z),1/2*(x+y))")
+    implicit = parse_cob("(1/2(y+z),1/2(x+z),1/2(x+y))")
+    assert grouped.P.rows == distributed.P.rows == prefixed.P.rows == implicit.P.rows
+    assert grouped.P.det() == Fr(1, 4)
+
+
+def test_negated_group():
+    assert parse_cob("(-(y+z)/2,b,c)").P.rows == parse_cob("(-y/2-z/2,b,c)").P.rows
+
+
+def test_setting_grouped_half_f432_primitive():
+    s = SpaceGroupSetting.parse("F 4 2 3 ((y+z)/2,(x+z)/2,(x+y)/2)")
+    assert s.base.number == 209
+    assert s.change_of_basis_matrix().det() == Fr(1, 4)
+    assert s.order() == 24
+
+
 def test_origin_shift_captured():
     _, cob = parse_setting("P 1 (x,y,z+1/2)")
     assert cob.p.v == (0, 0, Fr(1, 2))

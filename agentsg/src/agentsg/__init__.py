@@ -9,6 +9,7 @@ Features:
 * Wyckoff positions, site-symmetry stabilisers, and orbits derived from first principles.
 * Reflection conditions derived as sublattices in projection.
 * Harker sections and self-Patterson vectors.
+* Translationengleiche (t) and klassengleiche (k) subgroups derived from operators.
 * Direct and reciprocal asymmetric units (bricks and Dirichlet Voronoi domains).
 * Semi-invariants and continuous / discrete origin degrees of freedom.
 * Metric lattice symmetry, Le Page delta, and tolerance metric automorphisms.
@@ -55,6 +56,7 @@ from .wyckoff import (
     site_symmetry_ops, site_symmetry_point_group, site_symmetry_order,
     orbit, multiplicity, general_position_multiplicity, fixed_locus,
 )
+from .subgroups import SubgroupEdge, subgroup_edges, subgroup_graph
 
 __all__ = [
     "Matrix3", "Vector3", "IDENTITY3", "ZERO3", "frac_mod1",
@@ -82,4 +84,5 @@ __all__ = [
     "harker_sections", "harker_vector", "site_from_harker",
     "site_symmetry_ops", "site_symmetry_point_group", "site_symmetry_order",
     "orbit", "multiplicity", "general_position_multiplicity", "fixed_locus",
+    "SubgroupEdge", "subgroup_edges", "subgroup_graph",
 ]

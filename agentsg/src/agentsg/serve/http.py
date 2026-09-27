@@ -62,7 +62,7 @@ _LIST_INT = {"hkl"}
 _LIST_FLOAT = {"cell", "cell_a", "cell_b"}
 _BOOL_KEYS = {
     "legend", "show_centring", "include_sublattices", "include_g6",
-    "same_hm", "same_sg",
+    "same_hm", "same_sg", "maximal",
 }
 _INT_KEYS = {"k"}
 _FLOAT_KEYS = {"cutoff", "max_delta", "length_tol_pct", "angle_tol_deg"}

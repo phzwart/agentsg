@@ -6,6 +6,9 @@ on insert (see :mod:`agentsg.cell.celldb`). The build is resumable: rerunning
 against an existing database skips ids already stored, so an interrupted crawl
 resumes where it left off, losing at most one batch.
 
+A prebuilt snapshot is https://doi.org/10.5281/zenodo.22986222.
+Use that unless you need to rebuild.
+
 Command-line usage
 ------------------
 Build (or resume) the whole PDB into ``pdb_cells.duckdb``::

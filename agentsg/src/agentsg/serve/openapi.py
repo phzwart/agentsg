@@ -5,13 +5,13 @@ from typing import Any
 
 from .manifest import (
     API_VERSION,
-    DEFAULT_SERVER,
     ENDPOINTS,
     build_api_manifest,
+    public_url,
     routed_paths,
 )
 
-__all__ = ["API_VERSION", "DEFAULT_SERVER", "build_openapi", "routed_paths",
+__all__ = ["API_VERSION", "public_url", "build_openapi", "routed_paths",
            "build_api_manifest"]
 
 _TYPE = {
@@ -93,7 +93,7 @@ def build_openapi() -> dict[str, Any]:
                 "before guessing endpoints. Same catalog generates this spec."
             ),
         },
-        "servers": [{"url": DEFAULT_SERVER}],
+        "servers": [{"url": public_url()}],
         "security": [{"bearerAuth": []}],
         "components": {
             "securitySchemes": {

@@ -174,6 +174,18 @@ def harker_info(data: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def subgroups_info(data: dict[str, Any]) -> dict[str, Any]:
+    from ..subgroups import subgroup_graph
+    rec = resolve_sg(data.get("sg"))
+    kind = str(data.get("kind") or "both").lower()
+    if kind not in ("t", "k", "both"):
+        raise ValueError("kind: must be t, k, or both")
+    maximal = data.get("maximal", True)
+    if isinstance(maximal, str):
+        maximal = maximal.lower() in ("1", "true", "yes")
+    return subgroup_graph(rec, kind=kind, maximal=bool(maximal))
+
+
 def default_projection(crystal_system: str | None) -> str:
     """ITA unique-axis-b for monoclinic, else c."""
     if crystal_system and str(crystal_system).lower().startswith("monoclinic"):
@@ -446,21 +458,21 @@ def pdb_lookup(state, pdb_id: str) -> dict[str, Any]:
 
 def help_catalog() -> dict[str, Any]:
     """Short index derived from the same catalog as GET /api."""
-    from .manifest import DEFAULT_SERVER, ENDPOINTS
+    from .manifest import ENDPOINTS, apply_site, public_url
     compute = [
         e for e in ENDPOINTS
         if e["path"].startswith("/v1/") or e["path"] in ("/search", "/plates", "/api")
     ]
     return {
         "service": "agentsg",
-        "base_url": DEFAULT_SERVER,
+        "base_url": public_url(),
         "auth": "Authorization: Bearer (stored in connector credentials)",
         "rule": "GET /api for the full catalog, then call an endpoint before answering.",
         "skill": "/skill.md",
         "discover": "/api",
         "calls": [
             {"when": e["description"], "method": e["methods"][0], "path": e["path"],
-             "example": e["example"]}
+             "example": apply_site(e["example"])}
             for e in compute
         ],
     }

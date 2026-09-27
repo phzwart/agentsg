@@ -349,8 +349,24 @@ def _identify_by_origin(
     return None
 
 
+def _is_signed_permutation(P: Matrix3) -> bool:
+    """True if P is a monomial matrix with nonzero entries ±1."""
+    cols = []
+    for row in P.rows:
+        nz = [j for j, x in enumerate(row) if x != 0]
+        if len(nz) != 1:
+            return False
+        j = nz[0]
+        if row[j] not in (1, -1, Fr(1), Fr(-1)):
+            return False
+        cols.append(j)
+    return len(set(cols)) == 3
+
+
 def _identify_by_cob(
     ops: frozenset[SymmetryOp],
+    max_det: int = 4,
+    signed_perm: bool = False,
 ) -> IdentifyResult | None:
     """Match via integer CoB + centring expansion + origin shift.
 
@@ -364,12 +380,27 @@ def _identify_by_cob(
     best: IdentifyResult | None = None
     best_key: tuple | None = None
     for P in _COB_MATRICES:
+        det_p = abs(P.det())
+        if det_p.denominator != 1:
+            continue
+        det = int(det_p)
+        if det < 1 or det > max_det:
+            continue
+        if signed_perm and not _is_signed_permutation(P):
+            continue
         try:
             Pinv = P.inverse()
         except Exception:
             continue
         mapped_pg = frozenset(Pinv @ (W @ P) for W in pg)
         cands = _BY_PG.get(mapped_pg)
+        if not cands:
+            continue
+        n_in = len(ops)
+        if det == 1:
+            cands = [c for c in cands if len(_OPS_CACHE[c.number]) == n_in]
+        else:
+            cands = [c for c in cands if len(_OPS_CACHE[c.number]) <= n_in * det]
         if not cands:
             continue
         cob0 = ChangeOfBasis(P, ZERO3)
@@ -383,7 +414,6 @@ def _identify_by_cob(
             transformed.append(top)
         if not ok:
             continue
-        det = int(abs(P.det()))
         seeds = transformed + _lattice_coset_ops(cob0)
         try:
             expanded = close_group(seeds, max_order=max(192, 192 * det))
@@ -410,13 +440,19 @@ def _identify_by_cob(
 
 def identify_space_group(
     operations: Iterable[SymmetryOp],
+    *,
+    allow_cob: bool = True,
+    max_det: int = 4,
+    signed_perm: bool = False,
 ) -> IdentifyResult | None:
     """Identify a closed (or generatable) operation set as one of the 230.
 
     Returns ``IdentifyResult`` with the matched ``SpaceGroup`` (Hall reference)
     and a ``ChangeOfBasis`` taking the *input* setting to that reference.
     Recovers origin shifts and integer axis/centring redescriptions
-    (``|det P| ≤ 4``, entries in ``{-1,0,1}``). Returns ``None`` if no match.
+    (``|det P| ≤ max_det``, entries in ``{-1,0,1}``). Returns ``None`` if no match.
+    Set ``allow_cob=False`` to try origin shift only. ``signed_perm=True``
+    restricts the linear part to axis permutations and sign flips.
     """
     ops_list = list(operations)
     if not ops_list:
@@ -433,7 +469,9 @@ def identify_space_group(
     hit = _identify_by_origin(ops)
     if hit is not None:
         return hit
-    return _identify_by_cob(ops)
+    if not allow_cob:
+        return None
+    return _identify_by_cob(ops, max_det=max_det, signed_perm=signed_perm)
 
 
 def hall_from_ops(operations: Iterable[SymmetryOp]) -> str:

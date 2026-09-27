@@ -19,11 +19,14 @@ Two layers:
     the root invariants, giving exact k-NN / radius queries in root-product
     (Angstrom) units.
 
-  * PDB ingestion -- :func:`fetch_pdb_cells` pulls unit cell + space group for a
+    * PDB ingestion -- :func:`fetch_pdb_cells` pulls unit cell + space group for a
     list of PDB ids (or the entire current holdings) from the RCSB data API
     (holdings REST endpoint for the id list; GraphQL for batched cell/symmetry),
     computes the root invariant, and inserts. Only cell + symmetry + id are
     fetched -- nothing else.
+
+A published snapshot of the built table (206,214 cells) is
+https://doi.org/10.5281/zenodo.22986222.
 
 The core agentsg package stays dependency-free; DuckDB is imported lazily and
 only :class:`CellDatabase` needs it. The PDB fetch uses only the standard library

@@ -353,9 +353,13 @@ on the manifold, prefer the root invariant (`rootform`) over raw G6/S6. See
 
 ## Full-PDB unit-cell database (root-invariant search)
 
-Download every crystallographic unit cell in the PDB and precompute its Kurlin
-root invariant for fast lattice-similarity search. Needs the optional DuckDB
-extra (`pip install -e ".[db]"`); the core package stays dependency-free.
+A prebuilt snapshot (206,214 cells) is on Zenodo:
+[10.5281/zenodo.22986222](https://doi.org/10.5281/zenodo.22986222).
+Save it as `pdb_cells.duckdb`.
+
+To rebuild from RCSB instead, download every crystallographic unit cell and
+precompute its Kurlin root invariant. Needs the optional DuckDB extra
+(`pip install -e ".[db]"`); the core package stays dependency-free.
 
 ```bash
 # build (or resume) the whole PDB into a single DuckDB file (~206k cells)

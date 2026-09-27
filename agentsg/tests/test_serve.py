@@ -31,7 +31,7 @@ def _fetch(url, data=None, token=None, method=None):
         headers["Authorization"] = f"Bearer {token}"
     if data is None:
         req = urllib.request.Request(url, headers=headers, method=method or "GET")
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=30) as resp:
             body = resp.read()
             ctype = resp.headers.get("Content-Type", "")
             if "json" in ctype:
@@ -69,12 +69,26 @@ def test_openapi_covers_routes():
     assert "/v1/help" in paths
     assert "/v1/ita-plate.png" in paths
     manifest = build_api_manifest()
-    assert manifest["api_version"] == API_VERSION == "0.2.0"
+    assert manifest["api_version"] == API_VERSION == "0.3.0"
+    assert "/v1/subgroups" in paths
     assert {e["path"] for e in manifest["endpoints"]} == paths
     assert spec["openapi"].startswith("3.")
     assert "bearerAuth" in spec["components"]["securitySchemes"]
     assert "get" in spec["paths"]["/v1/space-group"]
     assert spec["paths"]["/v1/space-group"]["post"]["operationId"] == "spaceGroup"
+
+
+def test_site_from_env(monkeypatch):
+    monkeypatch.setenv("AGENTSG_PUBLIC_URL", "https://example.test")
+    monkeypatch.setenv("AGENTSG_API_NAME", "demo")
+    from agentsg.serve.manifest import apply_site, build_api_manifest
+    from agentsg.serve.openapi import build_openapi
+    man = build_api_manifest()
+    assert man["name"] == "demo"
+    assert any("https://example.test/v1/space-group" in e["example"]
+               for e in man["endpoints"])
+    assert build_openapi()["servers"] == [{"url": "https://example.test"}]
+    assert apply_site("{{BASE_URL}}/skill.md") == "https://example.test/skill.md"
 
 
 def test_http_discovery_and_space_group():
@@ -84,7 +98,7 @@ def test_http_discovery_and_space_group():
         assert status == 200
         assert health["status"] == "ok"
         assert health["read_only"] is True
-        assert health["api_version"] == "0.2.0"
+        assert health["api_version"] == "0.3.0"
         status, root = _fetch(f"{base}/")
         assert status == 200
         assert root["docs"] == "/docs/muse.md"
@@ -99,7 +113,11 @@ def test_http_discovery_and_space_group():
         status, md = _fetch(f"{base}/skill.md")
         assert status == 200
         assert b"Wyckoff" in md
+        assert b"LIMITATIONS" in md
+        assert b"Translationengleiche" in md
+        assert b"Klassengleiche" in md
         assert b"GET /v1/space-group" in md
+        assert b"/v1/subgroups" in md
 
         status, sg = _fetch(f"{base}/v1/space-group", {"sg": 96})
         assert status == 200
@@ -157,6 +175,16 @@ def test_site_reflections_harker_cell():
         status, hk = _fetch(f"{base}/v1/harker", {"sg": 19})
         assert status == 200
         assert hk["loci"]
+        status, graph = _fetch(f"{base}/v1/subgroups?sg=96")
+        assert status == 200
+        assert graph["sg_number"] == 96
+        types = {e["type"] for e in graph["edges"]}
+        kids = {e["to"] for e in graph["edges"]}
+        assert "t" in types
+        assert 78 in kids or 18 in kids
+        status, graph_post = _fetch(f"{base}/v1/subgroups", {"sg": 96, "kind": "t"})
+        assert status == 200
+        assert all(e["type"] == "t" for e in graph_post["edges"])
 
         status, cell = _fetch(f"{base}/v1/cell", {
             "cell": [79, 79, 38, 90, 90, 90], "sg": 96,
@@ -209,6 +237,14 @@ def test_identify_and_setting():
         })
         assert status == 200
         assert "P" in st["P"][0] or st["cob"]
+
+        status, f432 = _fetch(f"{base}/v1/setting", {
+            "setting": "F 4 2 3 ((y+z)/2,(x+z)/2,(x+y)/2)",
+        })
+        assert status == 200
+        assert f432["base_sg_number"] == 209
+        assert f432["det"] == "1/4"
+        assert f432["order"] == 24
     finally:
         httpd.shutdown()
         if state.db:
@@ -264,8 +300,8 @@ def test_api_manifest_auth_and_plates_errors():
 
         status, manifest = _fetch(f"{base}/api", token="secret")
         assert status == 200
-        assert manifest["name"] == "sg-muse"
-        assert manifest["api_version"] == "0.2.0"
+        assert manifest["name"] == "agentsg"
+        assert manifest["api_version"] == "0.3.0"
         assert manifest["auth"] == {"scheme": "bearer", "header": "Authorization"}
         by_path = {e["path"]: e for e in manifest["endpoints"]}
         assert "/search" in by_path
@@ -276,6 +312,7 @@ def test_api_manifest_auth_and_plates_errors():
         assert "/v1/identify" in by_path
         assert "/v1/setting" in by_path
         assert "/v1/harker" in by_path
+        assert "/v1/subgroups" in by_path
         assert "/v1/compare" in by_path
         assert "/v1/reindex" in by_path
         search = by_path["/search"]

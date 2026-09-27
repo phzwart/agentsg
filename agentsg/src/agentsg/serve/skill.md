@@ -7,7 +7,7 @@ description: Call the agentsg REST API for every space-group, reflection, site, 
 
 You have an HTTP connector named **agentsg**.
 
-- Base URL: `https://sg-muse.mxagents.org`
+- Base URL: `{{BASE_URL}}`
 - Auth: `Authorization: Bearer` (token already in credentials — never print it, never put it in chat)
 - `Content-Type: application/json` on every POST
 - Read-only. Rate limit 60/min (`429` + `Retry-After`)
@@ -15,6 +15,42 @@ You have an HTTP connector named **agentsg**.
 **Call the API before you answer.** Start a session with `GET /api` (Bearer) and use that catalog — do not guess paths. Do not recite International Tables from memory. Do not invent systematic absences or Wyckoff letters. If you are unsure which compute endpoint, `GET /v1/space-group?sg=…`.
 
 After any `4xx`/`5xx`, read the JSON `error` and retry with a corrected body. Do not invent a result.
+
+# LIMITATIONS
+
+agentsg is an **engine**, not International Tables Volume A. It derives operators, orbits, absences, plates, and cells. It does **not** reproduce ITA’s editorial catalog. Act as follows.
+
+| ITA gives you | agentsg gives you | What you do |
+|---|---|---|
+| Wyckoff letters *a, b, c…* | `wyckoff_letter: null`; multiplicity, site-symmetry **order**, orbit | **Never invent letters.** Say they are not assigned. If the user wants ITA letters, say so and do not guess. |
+| The special-position **table** (every inequivalent locus, official representatives, all centering images) | `/v1/site` for a **given** `xyz` only | Probe representative points. Write centering images from the orbit. For R-centering, *(⅔,⅓,z)* is **not** the image of *(0,0,z)* — it is *(⅔,⅓,z+⅓)*. |
+| Site-symmetry **HM symbols** (`3m`, `2/m`) | Stabilizer order and ops | Quote the order. Name the site group in words only if the ops justify it; do not print `3m` unless you derived it. |
+| Numbered generators and general-position lines *(1) (2)…* | Unsorted closed `ops` | Count them (`order`). Do not pretend ITA numbering. |
+| Schoenflies, Patterson symmetry, origin-choice essays | Number, HM, Hall, system, Laue class | Do not invent Schoenflies or Patterson. |
+| Maximal subgroups / ITA A1 graphs (t and k), normalizers, Wyckoff **sets** | `GET /v1/subgroups` derives finite-index **t** and **k** (IIa / index-2·3 IIb) from operators. Not the A1 table: no normalizers, no infinite isomorphic series, no editorial maximality proof. | Call the endpoint. Label every edge **t** or **k**. Do not recite A1 from memory. |
+| ITA 2016 e-glide shorts (`Aem2`, `Cmce`, `Cmme`, `Ccce`, `Aea2`) | Classic names only (`Abm2`, `Cmca`, …) | If lookup 404s, retry the pre-2016 symbol. |
+| Plane groups, rod/layer groups, magnetic groups | 230 3-D space groups | Out of scope. |
+| Intensity-based enantiomorph / reindex choice | Geometric branches only | You cannot decide P3₁ vs P3₂ or which twin from the cell. |
+| Full ITA polyhedral ASU inequalities | Brick / Dirichlet ASU, not the Volume A half-space gallery | Do not quote ITA ASU inequalities from memory. |
+
+**Also not theorems:** a small root distance is “same lattice for search,” not a proof of identity. G6 is diagnostic (Å²). Centred conventional cells need `sg` before any root, PDB, or compare call.
+
+If the user asks for something in the left column, call the nearest endpoint, state the gap in one sentence, and answer with what the JSON actually contains.
+
+# Translationengleiche vs klassengleiche
+
+These are **different** subgroup relations. Never collapse them into “the subgroup of X” without saying which.
+
+**Translationengleiche (t, type I).** Same translation lattice (same conventional cell and the same centring). You drop rotations / screws / glides / inversion. The point-group order falls; the Bravais lattice does not. Index = |G| / |H| = |P_G| / |P_H|. Example: P4₃2₁2 (96) → P4₃ (78) keeps the P lattice and loses the 2-folds.
+
+**Klassengleiche (k, type II).** Same crystal class (same point group). You lose translations — extra centring is dropped, or the cell is enlarged. Index comes from the lost lattice. Two flavours ITA distinguishes:
+
+- **IIa** — same conventional cell, fewer centring vectors (F → I → P, R → P, …).
+- **IIb** — enlarged cell (a superlattice); infinitely many *isomorphic* k-subgroups exist as parameterized series (P2₁2₁2₁ → P2₁2₁2₁ on 2a, etc.).
+
+Example: Fm-3m (225) → Pm-3m (221) is **k**, not t: m-3m is unchanged; F-centring is lost (index 4).
+
+**How to talk.** If the user says “subgroup graph,” call `GET /v1/subgroups?sg=…` (optional `kind=t|k|both`, `maximal=true` by default). Each edge has `type` (`t` or `k`) and `kind` (`I`, `IIa`, `IIb`). Quote those fields. This is derived from operators, not ITA Volume A1: isomorphic k-series are only the index-2 and index-3 ones we can write from Z³, and a t-edge that needs a different conventional cell (F4/mmm as I4/mmm) appears only when identification succeeds. Do not recite A1 from memory. Never present a k-edge as a t-edge or the reverse.
 
 # How to run a call
 
@@ -27,6 +63,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | All reflection conditions | `GET /v1/reflections?sg=96` |
 | Multiplicity / site symmetry at (x,y,z) | `GET /v1/site?sg=225&xyz=1/4,1/4,1/4` |
 | Harker sections | `GET /v1/harker?sg=19` |
+| t / k subgroup graph | `GET /v1/subgroups?sg=96` or `?kind=t` / `?kind=k` |
 | Draw / show the ITA plate | `GET /plates?sg=19` (PNG) or `POST /v1/ita-plate` `{"sg":96,"legend":true}` then **GET the returned `png_url`** |
 | Discover every endpoint | `GET /api` |
 | Non-standard setting | `POST /v1/setting` `{"setting":"P 21 21 2 (2a,b-a,c)"}` |
@@ -106,6 +143,14 @@ User: “Site symmetry of (1/4,1/4,1/4) in Fm-3m”
 ```
 GET /v1/site?sg=225&xyz=1/4,1/4,1/4
 ```
+
+User: “What are the maximal t- and k-subgroups of 96?” / “subgroup graph of P4₃2₁2”
+
+```
+GET /v1/subgroups?sg=96
+```
+
+List each edge as t (type I) or k (IIa / IIb). Quote `to`, `to_hm`, `index`. Do not invent A1 numbers that are not in the JSON.
 
 User: “Find PDB entries like HEWL tetragonal” (cell ≈ 79, 79, 38)
 

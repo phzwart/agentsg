@@ -162,7 +162,8 @@ compare cells and find metric (pseudo-)symmetry.
   matrix `P` — the new basis vectors expressed in the old basis — matching the
   convention already fixed in `change_of_basis.py`
   (`(a',b',c') = (a,b,c)·P`, `x' = P⁻¹(x−p)`). Letters `x,y,z` and `a,b,c` are
-  interchangeable; coefficients accept `2a`, `2*x`, `x-y`, `a/2`, and an optional
+  interchangeable; coefficients accept `2a`, `2*x`, `x-y`, `a/2`, `(y+z)/2`,
+  `1/2*(y+z)`, and an optional
   constant term becomes the origin shift `p`. When `det(P) ≠ 1` the transform
   rescales the lattice: integer lattice translations of the base map to
   fractional vectors under `P⁻¹`, and closing the group surfaces them as

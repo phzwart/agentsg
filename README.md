@@ -16,9 +16,16 @@ reindexing layer, and the manuscript describing the method.
 │   ├── figures/
 │   └── data/           CSV summaries + .npz calibration arrays
 └── data/
-    └── pdb_cells.duckdb  the built database (206,214 crystallographic PDB cells,
-                          roots precomputed on primitive lattices)
+    └── pdb_cells.duckdb  optional download (not in git): 206,214 PDB cells,
+                          roots precomputed on primitive lattices
+                          https://doi.org/10.5281/zenodo.22986222
 ```
+
+## Muse / local agent
+
+Facebook Muse (or any agent in a VM) should **not** need a public URL. Follow
+[`AGENTS.md`](AGENTS.md): install, download the Zenodo cell database, start
+`python -m agentsg.serve` on `http://127.0.0.1:8765`, then use `GET /skill.md`.
 
 ## Quick start
 
@@ -74,9 +81,14 @@ tests only).
 Compile with `pdflatex` (figures `figure1.png` … `figure4.png` ship alongside).
 See `manuscript/SUBMISSION_NOTES.txt`.
 
-## Provenance note
+## PDB cell database
 
-The `pdb_cells.duckdb` database was built from RCSB holdings (cell + space group +
-PDB ID only). Roots are computed on the **primitive** lattice of each deposited
-(conventional) cell; stored cell parameters and volumes remain the deposited
-conventional values.
+Download the prebuilt DuckDB snapshot (206,214 crystallographic PDB cells) from
+Zenodo: [10.5281/zenodo.22986222](https://doi.org/10.5281/zenodo.22986222).
+Place it at
+`data/pdb_cells.duckdb` (or set `AGENTSG_DB`).
+
+The table was built from RCSB holdings (cell + space group + PDB ID only). Roots
+are computed on the **primitive** lattice of each deposited conventional cell;
+stored cell parameters and volumes remain the deposited conventional values.
+You can also rebuild it with `python -m agentsg.cell.pdb_app build`.

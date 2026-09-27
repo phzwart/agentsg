@@ -179,6 +179,8 @@ SPACE_GROUPS: tuple[tuple[int, str, str, str], ...] = (
     (159, 'P 3 1 c', 'P 3 -2c', 'trigonal'),
     (160, 'R 3 m', 'R 3 -2"', 'trigonal'),
     (161, 'R 3 c', 'R 3 -2"c', 'trigonal'),
+    # ITA −3m P-types are 31m/31c then m1/c1 (162–165), not the polar 3m
+    # order m1/1m/c1/1c (156–159). Hall 2 vs 2" tracks that. ITVB A1.4.2.7.
     (162, 'P -3 1 m', '-P 3 2', 'trigonal'),
     (163, 'P -3 1 c', '-P 3 2c', 'trigonal'),
     (164, 'P -3 m 1', '-P 3 2"', 'trigonal'),
