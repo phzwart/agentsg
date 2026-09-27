@@ -231,6 +231,22 @@ def test_identify_and_setting():
         status, sg = _fetch(f"{base}/v1/space-group", {"sg": 19})
         status, ident = _fetch(f"{base}/v1/identify", {"ops": sg["ops"]})
         assert ident["sg_number"] == 19
+        assert ident["input_order"] == 4
+        assert ident["matched_order"] == 4
+        assert ident["det"] in (1, -1, "1", "-1")
+        assert "note" not in ident
+
+        status, prim = _fetch(f"{base}/v1/setting", {
+            "setting": "F 2 2 2 ((y+z)/2,(x+z)/2,(x+y)/2)",
+        })
+        assert status == 200
+        assert prim["order"] == 4
+        status, ident22 = _fetch(f"{base}/v1/identify", {"ops": prim["ops"]})
+        assert ident22["sg_number"] == 22
+        assert ident22["input_order"] == 4
+        assert ident22["matched_order"] == 16
+        assert abs(int(ident22["det"])) == 4
+        assert "note" in ident22
 
         status, st = _fetch(f"{base}/v1/setting", {
             "setting": "P 21 21 21 (b,c,a)",

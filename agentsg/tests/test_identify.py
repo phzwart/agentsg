@@ -162,6 +162,32 @@ def test_axis_permutation_setting_identified():
     assert recovered == space_group(4).operations()
 
 
+def test_f222_primitive_identifies_as_22_not_16():
+    """F222 in the ITA primitive cell is still type 22.
+
+    The 4-op set has body-diagonal 2-folds. No P in GL(3,Z) sends those
+    axes to a,b,c, so this is not P222 (#16). identify recovers the
+    conventional F cell by a det-4 CoB + centring expansion.
+    """
+    from agentsg.group import close_group
+    from agentsg.setting import SpaceGroupSetting, _lattice_coset_ops
+
+    st = SpaceGroupSetting.parse("F 2 2 2 ((y+z)/2,(x+z)/2,(x+y)/2)")
+    ops = st.operations()
+    assert len(ops) == 4
+    hit = identify_space_group(ops)
+    assert hit is not None
+    assert hit.number == 22
+    assert hit.hermann_mauguin == "F 2 2 2"
+    assert abs(hit.change_of_basis.P.det()) == 4
+    recovered = close_group(
+        [hit.change_of_basis.apply_to_op(op) for op in ops]
+        + _lattice_coset_ops(hit.change_of_basis),
+        max_order=192,
+    )
+    assert recovered == space_group(22).operations()
+
+
 def test_p41212_diagonal_subgroups_identify_as_centred():
     """Diagonal t-subgroups of P4₁2₁2 need |det P|=2 + centring expansion → C222₁ / C2."""
     from agentsg.group import close_group

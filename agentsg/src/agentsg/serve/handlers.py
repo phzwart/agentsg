@@ -33,7 +33,8 @@ from ..cell import (
 )
 from ..cell.pdb_server import search_compatible
 from ..cell.primitive import lattice_letter
-from ..group import centering_translations
+from ..group import centering_translations, close_group
+from ..linalg import ZERO3
 from ..setting import SpaceGroupSetting, format_cob
 from .http import HttpError
 from .serialize import (
@@ -101,7 +102,10 @@ def identify_ops(data: dict[str, Any]) -> dict[str, Any]:
     hit = identify_space_group(ops)
     if hit is None:
         raise HttpError(404, "could not identify a standard space group from these operators")
-    return {
+    ops_set = frozenset(ops)
+    closed = close_group(list(ops_set), list(centering_translations(ops_set)) or [ZERO3])
+    det = hit.change_of_basis.P.det()
+    out = {
         "sg_number": hit.number,
         "sg_hm": hit.hermann_mauguin,
         "hall": hit.hall,
@@ -109,7 +113,19 @@ def identify_ops(data: dict[str, Any]) -> dict[str, Any]:
         "P": matrix_to_json(hit.change_of_basis.P),
         "origin": vec_to_json(hit.change_of_basis.p),
         "floating_origin": [vec_to_json(v) for v in hit.floating_origin],
+        "input_order": len(closed),
+        "matched_order": hit.space_group.order(),
+        "det": frac_to_json(det),
     }
+    if det.denominator == 1 and abs(int(det)) > 1:
+        out["note"] = (
+            f"Input closes to {len(closed)} operators; matched "
+            f"{hit.hermann_mauguin} (#{hit.number}, order "
+            f"{hit.space_group.order()}) after a det-{abs(int(det))} change of "
+            "basis to the conventional cell. That is the space-group type, "
+            "not the primitive IT number with the same operator count."
+        )
+    return out
 
 
 def site_info(data: dict[str, Any]) -> dict[str, Any]:

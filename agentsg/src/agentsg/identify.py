@@ -8,12 +8,20 @@ When the input differs from a standard setting by an origin shift only,
 recovers that shift by solving ``(W - I) p = Δw`` exactly over the rationals.
 
 When the input is a non-reference crystallographic setting (axis permutation,
-diagonal 2-folds written in a tetragonal P cell, etc.), recovers an integer
-change of basis ``P`` (entries in ``{-1,0,1}``, ``|det P| ≤ 4``) that conjugates
-the point group onto a Hall reference, expands by the centring cosets implied
-by ``P`` when ``|det P| ≠ 1``, then solves for the residual origin shift.
+diagonal 2-folds written in a tetragonal P cell, a primitive cell of an F/I
+group, etc.), recovers an integer change of basis ``P`` (entries in
+``{-1,0,1}``, ``|det P| ≤ 4``) that conjugates the point group onto a Hall
+reference, expands by the centring cosets implied by ``P`` when
+``|det P| ≠ 1``, then solves for the residual origin shift.
 The returned ``ChangeOfBasis`` maps the *input* setting to that Hall/ITA
 reference (so its inverse is the parenthetical of an extended HM/Hall symbol).
+
+``|det P| > 1`` is the ITA type in the *conventional centred cell*, not a
+relabel of the input as the primitive group with the same operator count.
+A 4-op primitive 222 whose 2-folds are body-diagonal is F222 (#22), not
+P222 (#16): no unimodular integer ``P`` conjugates those axes onto the
+coordinate axes, so the types are distinct. Matches are ordered by
+``(|det P|, number)``.
 """
 from __future__ import annotations
 from dataclasses import dataclass

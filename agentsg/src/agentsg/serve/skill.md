@@ -31,6 +31,7 @@ agentsg is an **engine**, not International Tables Volume A. It derives operator
 | ITA 2016 e-glide shorts (`Aem2`, `Cmce`, `Cmme`, `Ccce`, `Aea2`) | Classic names only (`Abm2`, `Cmca`, …) | If lookup 404s, retry the pre-2016 symbol. |
 | Plane groups, rod/layer groups, magnetic groups | 230 3-D space groups | Out of scope. |
 | Intensity-based enantiomorph / reindex choice | Geometric branches only | You cannot decide P3₁ vs P3₂ or which twin from the cell. |
+| “This primitive 4-op 222 is P222” | `/v1/identify` returns the **type** (`sg_number`) plus `det`, `input_order`, `matched_order` | If `|det| > 1`, quote the type and the CoB. A primitive cell of F222 is still **#22**, not #16 — body-diagonal 2-folds are not unimodular-equivalent to P222. |
 | Full ITA polyhedral ASU inequalities | Brick / Dirichlet ASU, not the Volume A half-space gallery | Do not quote ITA ASU inequalities from memory. |
 
 **Also not theorems:** a small root distance is “same lattice for search,” not a proof of identity. G6 is diagnostic (Å²). Centred conventional cells need `sg` before any root, PDB, or compare call.
@@ -87,7 +88,9 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **Site**: quote `multiplicity`, `site_symmetry_order`, and a few `orbit` points. `wyckoff_letter` is always `null` — say that letters are not assigned; you computed the orbit content.
 
-**ITA plate**: name glyphs from `elements` (`type`, `symbol`, `axis`). Then GET `png_url` (same bearer) and display the PNG. Monoclinic defaults to `projection=b`.
+**Identify** (`/v1/identify`): lead with `sg_number` / `sg_hm` (the ITA **type**). Then quote `det`, `input_order`, and `matched_order`. If `det` is not `±1`, the input is a non-standard (often primitive) setting of a centred group — say that, and quote `note` when present. Do **not** relabel it as the primitive group with the same operator count (F222 written primitively is #22, not P222 / #16).
+
+**ITA plate**: name glyphs from `elements` (`type`, `symbol`, `axis`). Then GET `png_url` (same bearer) and display the PNG. Monoclinic defaults to `projection=b`. After an F/I/R→primitive CoB, 2-folds that become body-diagonal are still drawn as projected traces; do not say the plate is empty because the axes are “oblique.”
 
 **Cell**: quote `volume`, `niggli`, and `root_invariant`. If the cell is C/I/F/R, you **must** send `sg` so the server reduces to primitive first.
 

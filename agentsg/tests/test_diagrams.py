@@ -481,3 +481,20 @@ def test_parallel_plane_glide_has_arrow():
     n_mirror = _n_arrow_annotations(ax)
     plt.close(fig)
     assert n_glide > n_mirror
+
+
+def test_f222_primitive_draws_body_diagonal_twofolds():
+    """F222 → primitive: 2-folds become body diagonals; the plate must still
+    draw their projected traces, not an empty cell titled '(+N oblique)'."""
+    from agentsg.setting import SpaceGroupSetting
+    st = SpaceGroupSetting.parse("F 2 2 2 ((y+z)/2,(x+z)/2,(x+y)/2)")
+    twos = [e for e in D.classify_space_group(st) if e["order"] == 2]
+    assert twos
+    assert all(D._dir_class(e["axis"]) == "gen" for e in twos)
+    fig, ax = plt.subplots()
+    D.symmetry_element_diagram(st, ax=ax, show_title=True)
+    title = ax.get_title()
+    n_lines = len(ax.lines)
+    plt.close(fig)
+    assert "oblique" not in title
+    assert n_lines > 4  # cell edges plus projected 2-fold traces

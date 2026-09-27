@@ -354,9 +354,10 @@ centring vectors; the diagram picks these up because `_centring_translations`
 reads pure lattice translations straight off the operation set (identity
 rotation, non-integer `w`) rather than off the Hermann-Mauguin lattice letter.
 
-Two honest scope limits, stated rather than hidden: elements *oblique* to the
-projection axis (the cubic body-diagonal axes in a c-projection) are counted and
-reported, not drawn at a wrong orientation; and the ITA height-fraction
+Two honest scope limits, stated rather than hidden: higher-order axes *oblique*
+to the projection (cubic 3-folds in a c-projection) are counted and reported,
+not drawn at a wrong orientation; order-2 axes that become body-diagonal after
+an F/I/R primitive CoB are drawn as their projected traces. ITA height-fraction
 annotations are not yet rendered. Drawing imports matplotlib lazily inside the
 drawing functions; the diagram module is lazy-exported from `agentsg.cell` so
 the package runtime stays dependency-free (`pip install -e ".[plot]"` for

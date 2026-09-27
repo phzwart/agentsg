@@ -1177,12 +1177,13 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         for non-standard settings where a det!=1 change of basis surfaces
         centring the symbol does not name.
 
-    Axes ⊥ page are point glyphs; in-plane two-folds are arrowed lines; planes
-    ⊥ page are styled lines; inversion centres are small open circles. Screw
-    and glide elements already encode their translation (screw tails / dashed
-    glide lines); pure lattice translations are shown only with show_centring.
-    Elements oblique to the projection (e.g. cubic body-diagonal axes) are
-    counted and reported in the title, not drawn.
+    Axes ⊥ page are point glyphs; two-folds are arrowed lines along their
+    *projected* trace (in-plane axes and body-diagonal axes after an F/I/R
+    primitive CoB). Planes ⊥ page are styled lines; inversion centres are
+    small open circles. Screw and glide elements already encode their
+    translation (screw tails / dashed glide lines); pure lattice translations
+    are shown only with show_centring. Higher-order axes oblique to the
+    projection (e.g. cubic 3-folds) are counted in the title, not drawn.
     """
     import matplotlib.pyplot as plt
 
@@ -1296,8 +1297,13 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
             dc = dcls(el["axis"])
             if dc == "c":
                 continue   # handled by the combined-glyph pre-pass above
-            elif dc == "ab" and el["order"] == 2:
+            elif el["order"] == 2 and dc in ("ab", "gen"):
+                # In-plane 2-folds, and body-diagonal 2-folds written in a
+                # primitive F/I cell: the page shows the projected trace.
                 d = frac_dir(el["axis"])
+                if np.linalg.norm(d) < 1e-9:
+                    omitted += 1
+                    continue
                 d = d / (np.linalg.norm(d) or 1.0)
 
                 def draw_axis_line(p0, p1, dp, _full=(t == "rotation")):
@@ -1408,7 +1414,7 @@ def element_legend(sg, ax=None, projection="c"):
                     k = int(sym.split("_")[1])
                 perp.setdefault(el["order"], set()).add(
                     (k, t == "rotoinversion"))
-            elif dc == "ab" and el["order"] == 2:
+            elif el["order"] == 2 and dc in ("ab", "gen"):
                 inplane["rot" if t == "rotation" else "screw"] = True
         elif t in ("mirror", "glide"):
             if dc == "ab":

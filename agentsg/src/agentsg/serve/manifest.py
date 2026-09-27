@@ -140,7 +140,11 @@ ENDPOINTS: list[dict[str, Any]] = [
     {
         "path": "/v1/identify",
         "methods": ["POST"],
-        "description": "Identify the IT space group from a list of xyz operators",
+        "description": (
+            "Identify the ITA space-group type from xyz operators. "
+            "|det P|>1 is a conventional centred cell (F222 primitive → #22, "
+            "not P222 / #16), not a mis-count of the input operators"
+        ),
         "params": [
             _p("ops", "array", True,
                "Non-empty list of xyz triplets such as x,y,z or -x,-y,z+1/2"),

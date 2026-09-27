@@ -47,7 +47,7 @@ Compute (bearer required except `/v1/help`):
 
 - Space group — `GET /v1/space-group?sg=96` or `POST /v1/space-group` `{"sg":96}` or `"P 43 21 2"`
 - Setting — `POST /v1/setting` `{"setting":"P 21 21 2 (2a,b-a,c)"}`
-- Identify — `POST /v1/identify` `{"ops":["x,y,z",...]}`
+- Identify — `POST /v1/identify` `{"ops":["x,y,z",...]}`. Returns the ITA **type**. `|det P|>1` means a conventional centred cell (primitive F222 → #22, not #16).
 - Site — `GET /v1/site?sg=225&xyz=1/4,1/4,1/4`
 - Reflections — `GET /v1/reflections?sg=96` or `...?hkl=1,0,0`
 - Harker — `GET /v1/harker?sg=19`
