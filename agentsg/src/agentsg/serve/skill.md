@@ -74,7 +74,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Are these two lattices the same? | `POST /v1/compare` with `cell_a` and `cell_b` |
 | Native vs SeMet integer transform | `POST /v1/compare` with `include_sublattices: true` |
 | Serial XFEL reindex / ambiguity | `POST /v1/reindex` |
-| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k` |
+| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits |
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
 | Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |
 
@@ -100,7 +100,56 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **Reindex**: list branches. `is_metric_symmetry: true` (residual 0) is true merohedry. You cannot pick the intensity branch. Say that you cannot decide P3₁ vs P3₂ from the cell alone.
 
-**PDB search**: list `pdb_id`, `distance` (Å on the root invariant), `sg_hm`, `cell`.
+**PDB search**: list `pdb_id`, `distance` (Å on the root invariant), `sg_hm`, `cell`. Omit `plot` unless the user asked for a figure. With `"plot": true` the same response grows the structure below. Display the PNG. Do not invent coordinates that are not in `xy` or `query_xy`.
+
+`plot` false, or omitted: hits have no `xy`. There is no `svd`, `query_xy`, or `plot_png_base64`.
+
+`plot` true and fewer than 2 hits that have stored roots:
+
+```
+"plot": { "n": 0, "note": "need at least 2 hits with Kurlin roots" }
+```
+
+`plot` true and at least 2 hits. The server mean-centres the stored Kurlin roots `r0`..`r5` of those hits, takes the SVD, and projects onto the first two right singular vectors. The query cell is placed in that basis afterwards; it is not part of the fit. Point colour is `distance` (Å).
+
+```
+"hits": [
+  {
+    "pdb_id": "3LYZ",
+    "distance": 0.0,
+    "sg_number": 96,
+    "sg_hm": "P 43 21 2",
+    "cell": [79.1, 79.1, 37.9, 90.0, 90.0, 90.0],
+    "xy": [0.12, -0.04]
+  }
+],
+"query_xy": [0.01, 0.00],
+"svd": {
+  "n": 8,
+  "centered": true,
+  "feature": "root_invariant r0..r5",
+  "singular_values": [1.2, 0.3],
+  "variance_frac": [0.73, 0.17],
+  "variance_cum": [0.73, 0.90],
+  "effective_rank": 1.6
+},
+"plot_png_base64": "<base64 PNG>"
+```
+
+| Field | Meaning |
+|---|---|
+| `hits[].xy` | `[PC1, PC2]` of that hit. Same order as `hits`. |
+| `query_xy` | `[PC1, PC2]` of the query cell. Red star on the figure. |
+| `svd.n` | How many hits entered the SVD. |
+| `svd.feature` | Always `root_invariant r0..r5`. |
+| `svd.singular_values` | Economy SVD, longest first. |
+| `svd.variance_frac` | `σ² / Σσ²` for each component. Quote the first two as the axis percentages. |
+| `svd.variance_cum` | Running sum of `variance_frac`. |
+| `svd.effective_rank` | Roy–Vetterli effective rank, `exp(H)` on the positive singular values. |
+| `plot_png_base64` | PNG bytes, base64. Decode and display. Axes are labelled PC1 and PC2 with those variance percentages. |
+| `plot_error` | Present only when the PNG could not be drawn (`matplotlib` missing). `xy` and `svd` are still valid. |
+
+A cloud with `variance_frac[0]` near 1 and every `xy` at the origin means the hit roots are identical, not that the plot failed.
 
 # Worked calls
 
@@ -161,6 +210,15 @@ User: “Find PDB entries like HEWL tetragonal” (cell ≈ 79, 79, 38)
 POST /v1/pdb/search
 {"cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 10}
 ```
+
+User: “Plot those cells” / “SVD of the Kurlin roots”
+
+```
+POST /v1/pdb/search
+{"cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 10, "plot": true}
+```
+
+Display `plot_png_base64`. Quote `svd.variance_frac` for PC1 and PC2. Name a few `pdb_id`s with their `xy`. The red star is `query_xy`.
 
 # Hard rules
 

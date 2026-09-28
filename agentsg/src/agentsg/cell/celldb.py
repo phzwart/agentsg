@@ -156,15 +156,18 @@ class CellDatabase:
     not need it.
     """
 
-    def __init__(self, path=":memory:"):
+    def __init__(self, path=":memory:", *, read_only: bool = False):
         try:
             import duckdb
         except ImportError as exc:                       # pragma: no cover
             raise ImportError(
                 "CellDatabase needs DuckDB: pip install agentsg[db]") from exc
-        self._db = duckdb.connect(path)
-        self._db.execute(_SCHEMA)
-        self._migrate_schema()
+        if path == ":memory:":
+            read_only = False
+        self._db = duckdb.connect(path, read_only=read_only)
+        if not read_only:
+            self._db.execute(_SCHEMA)
+            self._migrate_schema()
 
     def _migrate_schema(self):
         """Add similarity-invariant columns to existing databases."""
@@ -447,6 +450,26 @@ class CellDatabase:
             return []
         idx = build_root_index(((tuple(r[1:7]), r[0]) for r in rows))
         return idx.within(cell, radius, sg_hm=sg_hm)
+
+    def lookup_roots(self, pdb_ids):
+        """Return {pdb_id: [r0..r5]} for stored Kurlin roots.
+
+        Rows with a missing component are omitted.
+        """
+        if not pdb_ids:
+            return {}
+        placeholders = ",".join("?" * len(pdb_ids))
+        rows = self._db.execute(
+            f"SELECT pdb_id, r0,r1,r2,r3,r4,r5 FROM cells "
+            f"WHERE pdb_id IN ({placeholders})",
+            list(pdb_ids)).fetchall()
+        out = {}
+        for row in rows:
+            coords = row[1:]
+            if any(v is None for v in coords):
+                continue
+            out[row[0]] = [float(v) for v in coords]
+        return out
 
     def lookup_cells(self, pdb_ids):
         """Return {pdb_id: {sg_number, sg_hm, cell, volume}} for the given ids."""

@@ -156,11 +156,12 @@ def test_setting_operations_and_order():
     """A det=2 change of basis doubles the cell and surfaces centring."""
     st = _setting("P 21 21 2 (2a,b-a,c)")
     assert st.order() == 8              # base order 4 x det 2
-    # both in-plane axes remain 2_1 screws; c-axis 2 becomes doubled
+    # In the doubled cell the shortest lattice repeat along a' is a'/2, so a
+    # translation of a'/4 is a 2_1. The c axis stays a pure 2, in two copies.
     from collections import Counter
     s = Counter(e["symbol"] for e in D.classify_space_group(st)
                 if e["type"] != "translation")
-    assert s["2_1"] == 2 and s["2"] == 4
+    assert s["2_1"] == 4 and s["2"] == 2
 
 
 def test_setting_centring_derived():
@@ -224,6 +225,58 @@ def test_ita_plate_legend_and_centring():
     plt.close(fig)
 
 
+def test_twofold_glyph_is_a_single_lens():
+    """A horizontal chord crosses one lens twice; two discs cross four times."""
+    from matplotlib.patches import Polygon
+
+    fig, ax = plt.subplots()
+    D._draw_lens(ax, (0.0, 0.0), size=1.0, fc="k", ec="k")
+    poly = [p for p in ax.patches if isinstance(p, Polygon)][0]
+    verts = np.asarray(poly.get_xy(), float)
+
+    def crossings(y):
+        n = 0
+        for i in range(len(verts) - 1):
+            y1, y2 = verts[i, 1], verts[i + 1, 1]
+            if (y1 - y) * (y2 - y) < 0:
+                n += 1
+        return n
+
+    assert crossings(0.2) == 2
+    assert poly.get_path().contains_point((0.0, 0.0))
+    assert poly.get_path().contains_point((0.0, 0.35))
+    assert not poly.get_path().contains_point((0.0, 0.8))
+    plt.close(fig)
+
+
+def test_general_position_sits_off_the_diagonal():
+    x, y, _z = D.best_general_point(96)
+    assert abs(x - y) > 0.12
+
+
+def test_legend_points_row_fits_in_the_figure():
+    from matplotlib.patches import Circle
+
+    fig = D.ita_plate(96, legend=True)
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    legend = fig.axes[2]
+    circles = [p for p in legend.patches if isinstance(p, Circle)]
+    assert circles
+    _cx, cy = circles[-1].center
+    radius = circles[-1].radius
+    y0, y1 = legend.get_ylim()
+    assert cy - radius >= y0
+    assert cy + radius <= y1
+    bounds = fig.bbox
+    for text in legend.texts:
+        box = text.get_window_extent(renderer)
+        assert box.y0 >= bounds.y0 - 1
+        assert box.y1 <= bounds.y1 + 1
+        assert box.x1 <= bounds.x1 + 1
+    plt.close(fig)
+
+
 # --- combined c-axis glyph (coincident rotation + rotoinversion) -------------
 def test_combined_c_axis_glyph_draws_both():
     """P4/mmm has 4, -4 and 2 all on the c-axis at one site. The combined
@@ -277,9 +330,9 @@ def test_no_out_of_box_plane_segments():
     seen = []
     orig = D.draw_plane_symbol
 
-    def spy(ax, p0, p1, name, _o=orig, _s=seen):
+    def spy(ax, p0, p1, name, _o=orig, _s=seen, **kwargs):
         _s.append((np.asarray(p0), np.asarray(p1)))
-        return _o(ax, p0, p1, name)
+        return _o(ax, p0, p1, name, **kwargs)
 
     D.draw_plane_symbol = spy
     try:
@@ -302,9 +355,9 @@ def test_no_zero_length_plane_segments():
     n_drawn = [0]
     orig = D.draw_plane_symbol
 
-    def spy(ax, p0, p1, name, _o=orig):
+    def spy(ax, p0, p1, name, _o=orig, **kwargs):
         before = len(ax.lines)
-        _o(ax, p0, p1, name)
+        _o(ax, p0, p1, name, **kwargs)
         if len(ax.lines) > before:
             L = np.hypot(p1[0] - p0[0], p1[1] - p0[1])
             assert L > 1e-6, (p0, p1)
@@ -460,13 +513,11 @@ def test_glide_arrow_diagram_legend_consistent():
             u.append((round(x / n, 2), round(y / n, 2)))
         return sorted(u)
     dd_u, ll_u = dirs(dd), dirs(ll)
+    assert len(dd_u) == len(ll_u)
     for (dx, dy), (lx, ly) in zip(dd_u, ll_u):
-        # same screen sense: both up (y>0), horizontal sign agrees
-        assert dy > 0 and ly > 0
-        assert np.sign(dx) == np.sign(lx) or abs(dx) < 0.05
-    # every arrow points to screen-up in BOTH panels (no downward arrow)
-    assert all(y > 0 for _, y in dd)
-    assert all(y > 0 for _, y in ll)
+        assert abs(dx - lx) < 0.05 and abs(dy - ly) < 0.05
+    # Cc down b: the c glide is the arrow closest to the c edge.
+    assert max(abs(dy) for _, dy in dd_u) > 0.9
 
 
 def test_parallel_plane_glide_has_arrow():

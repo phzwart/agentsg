@@ -35,6 +35,7 @@ Everything on the plate is derived from the operator set:
 
 from __future__ import annotations
 
+import math
 from fractions import Fraction
 
 import numpy as np
@@ -100,6 +101,19 @@ _PROJ = {
     "a": ((1, 2, 0), "b", "c", "a"),
     "b": ((2, 0, 1), "c", "a", "b"),
 }
+
+
+def _cell_edge_sense(rd):
+    """Flip a projected glide onto the positive cell edges.
+
+    ``rd`` is fractional (right, down). Reversing the whole vector when its
+    components sum to less than zero points an axial glide along +a or +c
+    and a diagonal glide along a+c. An a−c glide stays on that diagonal.
+    """
+    v = np.asarray(rd, float).copy()
+    if float(v[0] + v[1]) < 0.0:
+        v = -v
+    return v
 
 
 def _perm_vec(v, perm):
@@ -250,6 +264,8 @@ class _Frame:
 
 # --- exact heights -------------------------------------------------------------
 
+_SUBDIGIT = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+
 _UNICODE_FRAC = {
     Fraction(1, 2): "½", Fraction(1, 3): "⅓", Fraction(2, 3): "⅔",
     Fraction(1, 4): "¼", Fraction(3, 4): "¾", Fraction(1, 6): "⅙",
@@ -264,6 +280,29 @@ def frac_label(t):
     if t == 0:
         return ""
     return _UNICODE_FRAC.get(t, f"{t.numerator}/{t.denominator}")
+
+
+def _height_caption(heights):
+    """ITA height note for one trace.
+
+    Height 0 is left blank. A lattice copy that only repeats its partner is
+    left implicit: 1/2 with 0, and 3/4 with 1/4. A trace that carries 1/4
+    and 3/4 is therefore labelled just ``¼``.
+    """
+    vals = []
+    for h in heights:
+        f = Fraction(float(h)).limit_denominator(24) % 1
+        if f not in vals:
+            vals.append(f)
+    vals.sort()
+    if 0 in vals and Fraction(1, 2) in vals:
+        vals = [v for v in vals if v != Fraction(1, 2)]
+    if Fraction(1, 4) in vals and Fraction(3, 4) in vals:
+        vals = [v for v in vals if v != Fraction(3, 4)]
+    nonzero = [v for v in vals if v != 0]
+    if not nonzero:
+        return ""
+    return " ".join(frac_label(v) for v in nonzero)
 
 
 def height_label(coef, t, coord="z"):
@@ -371,47 +410,150 @@ def _draw_inplane_arrowhead(ax, tip, d, full=True, size=0.07):
                              edgecolor="k", lw=0.5, zorder=5))
 
 
-def _line_edge_copies(c, nrm, tol=1e-3):
-    """A line whose location lies on a cell edge (its normal-offset ~0 or ~1)
-    is duplicated onto the opposite edge, matching the ITA boundary drawing.
-    ``nrm`` is the in-plane normal to the line direction. Returns the list of
-    line-location points (the original plus any +/-1 shift along nrm that lands
-    the line on the opposite boundary of the unit square)."""
-    # Only axis-aligned lines get the opposite-edge copy: a unit normal along
-    # x or y steps exactly one cell, mapping an edge line onto the opposite
-    # edge. For a DIAGONAL normal the unit-normal step is not a lattice vector
-    # (it would land the copy at x+y=sqrt(2), off the lattice); the diagonal
-    # family is already positioned by the (W, w+L) lattice reconstruction, so
-    # no extra edge copy is added here.
-    axis_aligned = abs(nrm[0]) < tol or abs(nrm[1]) < tol
-    off = float(np.dot(c, nrm))       # signed offset of the line along nrm
-    shifts = [0.0]
-    if axis_aligned:
-        if abs(off) < tol:
-            shifts.append(1.0)
-        elif abs(off - 1.0) < tol:
-            shifts.append(-1.0)
-    return [c + s * nrm for s in shifts]
+def _line_lattice_segments(c, d):
+    """Clipped pieces of the line through ``c`` and its translates by -1, 0, +1.
+
+    ``c`` and ``d`` are fractional (right, down). Each translate is clipped to
+    the unit cell. A diagonal through the origin only meets the anti-diagonal
+    after a shift by one cell edge; axis-aligned edge lines pick up the
+    opposite edge the same way. Degenerate corner touches are dropped, and
+    identical clips are returned once.
+    """
+    c = np.asarray(c, float)
+    d = np.asarray(d, float)
+    seen = set()
+    out = []
+    for i in (-1.0, 0.0, 1.0):
+        for j in (-1.0, 0.0, 1.0):
+            p0, p1 = _clip_line_to_box(c + np.array([i, j]), d)
+            if p0 is None or np.linalg.norm(p1 - p0) < 1e-3:
+                continue
+            key = tuple(sorted((
+                tuple(np.round(p0, 4)), tuple(np.round(p1, 4)))))
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append((p0, p1))
+    return out
+
+
+def _segment_on_edge(p0, p1, tol=1e-3):
+    """True when a fractional segment lies on x=0, x=1, y=0 or y=1."""
+    p0 = np.asarray(p0, float)
+    p1 = np.asarray(p1, float)
+    for axis in (0, 1):
+        if abs(p0[axis] - p1[axis]) < tol and min(abs(p0[axis]), abs(p0[axis] - 1.0)) < tol:
+            return True
+    return False
+
+
+def _axis_page_points(el, perm):
+    """Projected (right, down) points where an inclined axis meets the cell.
+
+    The stored location is one point of the line. Stepping by 1/order along
+    the axis visits the other heights in the same cell, so a 3-fold drawn at
+    (1/3, 1/3) also appears at the image (2/3, 2/3).
+    """
+    loc_e = el.get("location_exact")
+    ax_e = el.get("axis_exact")
+    if loc_e is None or ax_e is None:
+        loc = np.asarray(el["location"], float)
+        v = _perm_vec(loc, perm)
+        return [((float(v[1] % 1.0), float(v[0] % 1.0)),
+                 float(v[2] % 1.0))]
+    loc = [Fraction(c) for c in loc_e]
+    axis = [int(a) for a in ax_e]
+    n = max(int(el.get("order") or 1), 1)
+    out = []
+    seen = set()
+    for j in range(n):
+        p = [(loc[i] + Fraction(j, n) * axis[i]) % 1 for i in range(3)]
+        v = _perm_vec([float(c) for c in p], perm)
+        rd = (float(v[1] % 1.0), float(v[0] % 1.0))
+        key = (round(rd[0], 3), round(rd[1], 3))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append((rd, float(v[2] % 1.0)))
+    return out
+
+
+def _glyph_halo():
+    """White stroke behind a glyph so a grid line does not eat the ink."""
+    import matplotlib.patheffects as pe
+    return [pe.withStroke(linewidth=3.2, foreground="white")]
+
+
+def _y_increases_down(ax) -> bool:
+    y0, y1 = ax.get_ylim()
+    return y0 > y1
+
+
+def _as_on_plate(ax, xy, pt):
+    """Mirror a glyph point so an upright axis matches the plate (y down)."""
+    pt = np.asarray(pt, float)
+    if _y_increases_down(ax):
+        return pt
+    out = pt.copy()
+    out[1] = 2.0 * float(np.asarray(xy, float)[1]) - float(pt[1])
+    return out
+
+
+def _ink(ax, xs, ys, **kw):
+    line, = ax.plot(xs, ys, **kw)
+    line.set_path_effects(_glyph_halo())
+    return line
 
 
 def _draw_lens(ax, xy, size, angle=0.0, **kw):
-    """Filled pointed-oval (2-fold) glyph."""
+    """ITA 2-fold glyph: one filled lens, long axis along x before rotation.
+
+    The outline is the pair of circular arcs that bound the intersection of
+    two circles stacked on the y axis. That is a single pointed oval. A polar
+    radius ``a + b|cos t|`` instead draws two discs touching at the origin.
+    """
+    import math
     from matplotlib.patches import Polygon
-    t = np.linspace(0, 2 * np.pi, 60)
-    r = size * (0.35 + 0.65 * np.abs(np.cos(t)))  # pointed oval
-    pts = np.column_stack([r * np.cos(t), r * np.sin(t)])
-    ca, sa = np.cos(angle), np.sin(angle)
-    R = np.array([[ca, -sa], [sa, ca]])
-    pts = pts @ R.T + np.array(xy)
-    ax.add_patch(Polygon(pts, closed=True, **kw))
+    half_w = float(size)
+    half_h = float(size) * 0.46
+    cy = (half_w ** 2 / half_h - half_h) / 2.0
+    radius = half_h + cy
+    a = math.atan2(cy, half_w)
+    upper = np.linspace(a, math.pi - a, 36)
+    lower = np.linspace(-a, -(math.pi - a), 36)
+    arc_hi = np.column_stack([
+        radius * np.cos(upper), -cy + radius * np.sin(upper),
+    ])
+    arc_lo = np.column_stack([
+        radius * np.cos(lower), cy + radius * np.sin(lower),
+    ])
+    # Top arc right-to-left, then the bottom arc reversed so the outline is
+    # one simple loop. Concatenating both arcs in the same direction leaves
+    # a diameter chord and a bowtie, which fills as two lobes.
+    pts = np.vstack([arc_hi, arc_lo[::-1]])
+    ca, sa = math.cos(angle), math.sin(angle)
+    rot = np.array([[ca, -sa], [sa, ca]])
+    pts = pts @ rot.T + np.asarray(xy, float)
+    if not _y_increases_down(ax):
+        pts = np.column_stack([
+            pts[:, 0],
+            2.0 * float(xy[1]) - pts[:, 1],
+        ])
+    patch = Polygon(pts, closed=True, **kw)
+    patch.set_path_effects(_glyph_halo())
+    ax.add_patch(patch)
 
 
 def _draw_regular_polygon(ax, xy, n, size, filled=True, **kw):
     """Draw a regular polygon with n vertices centered at xy."""
     from matplotlib.patches import RegularPolygon
-    ax.add_patch(RegularPolygon(xy, numVertices=n, radius=size,
-                                orientation=np.pi / n,
-                                fill=filled, **kw))
+    orient = np.pi / n
+    if not _y_increases_down(ax):
+        orient = -orient
+    patch = RegularPolygon(xy, numVertices=n, radius=size,
+                           orientation=orient, fill=filled, **kw)
+    patch.set_path_effects(_glyph_halo())
+    ax.add_patch(patch)
 
 
 def _draw_screw_tails(ax, xy, order, k, size):
@@ -435,16 +577,25 @@ def _draw_screw_tails(ax, xy, order, k, size):
     for i in range(n):
         a = 2 * np.pi * i / n
         rad = np.array([np.cos(a), np.sin(a)])
-        base = np.array(xy) + rad * size
-        tip = base + rad * L
-        ax.plot([base[0], tip[0]], [base[1], tip[1]], "-", color="k",
-                lw=1.0, zorder=4)
+        base = _as_on_plate(ax, xy, np.array(xy) + rad * size)
+        tip = _as_on_plate(ax, xy, np.array(xy) + rad * (size + L))
+        _ink(ax, [base[0], tip[0]], [base[1], tip[1]], color="k",
+             lw=1.0, zorder=7.5, solid_capstyle="round")
         if abs(handed) > 1e-6:
             hook_len = L * (0.35 + 0.32 * abs(handed))
             tang = np.array([-rad[1], rad[0]]) * np.sign(handed)
-            flag = tip + tang * hook_len - rad * (L * 0.22)
-            ax.plot([tip[0], flag[0]], [tip[1], flag[1]], "-", color="k",
-                    lw=1.0, zorder=4)
+            flag = _as_on_plate(
+                ax, xy,
+                np.array(xy) + rad * (size + L * 0.78) + tang * hook_len)
+        else:
+            # 4_2 and 6_3: a short flag, alternating, so the glyph is not a
+            # plain polygon and not a chiral screw.
+            sign = 1.0 if i % 2 == 0 else -1.0
+            tang = np.array([-rad[1], rad[0]]) * sign
+            flag = _as_on_plate(
+                ax, xy, np.array(xy) + rad * (size + L) + tang * (L * 0.55))
+        _ink(ax, [tip[0], flag[0]], [tip[1], flag[1]], color="k",
+             lw=1.0, zorder=7.5, solid_capstyle="round")
 
 
 def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
@@ -462,25 +613,43 @@ def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
     if screw_k and order != 2:
         _draw_screw_tails(ax, xy, order, screw_k, size)
     if order == 2 and not rotoinv:
-        _draw_lens(ax, xy, size * 1.3, fc=fc, ec=ec, lw=1.0, zorder=5)
+        _draw_lens(ax, xy, size * 1.3, fc=fc, ec=ec, lw=1.0, zorder=7.5)
         if screw_k:
-            # two tails at +/-90 deg to the lens axis (which lies along x)
-            for s in (1, -1):
-                ax.plot([xy[0], xy[0]],
-                        [xy[1] + s * size * 1.3, xy[1] + s * size * 2.6],
-                        "-", color="k", lw=1.2, zorder=4)
+            # Hooked tails, not straight ticks. The hook bends back toward
+            # the lens so a 2_1 reads as a screw even on a cell edge.
+            # Above the plane traces (zorder 6.5) so a vertical glide cannot
+            # paint the hook out.
+            for s in (1.0, -1.0):
+                stem = np.array([xy[0], xy[1] + s * size * 2.15])
+                hook = np.array([xy[0] + size * 0.9, xy[1] + s * size * 1.55])
+                stem = _as_on_plate(ax, xy, stem)
+                hook = _as_on_plate(ax, xy, hook)
+                _ink(ax, [xy[0], stem[0], hook[0]],
+                     [xy[1], stem[1], hook[1]],
+                     color="k", lw=1.2, zorder=7.5, solid_capstyle="round")
     elif order in (3, 4, 6):
         _draw_regular_polygon(ax, xy, order, size, filled=not rotoinv,
-                              fc=fc, ec=ec, lw=1.0, zorder=5)
+                              fc=fc, ec=ec, lw=1.0, zorder=7.5)
     elif rotoinv:
         _draw_regular_polygon(ax, xy, abs(order), size, filled=False,
-                              ec=ec, lw=1.0, zorder=5)
-    if rotoinv:
-        ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k", mew=0.8,
-                zorder=6)
+                              ec=ec, lw=1.0, zorder=7.5)
+    # -6 is an open hexagon. The inversion dot belongs on -3 and -4 only.
+    if rotoinv and order != 6:
+        dot, = ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k",
+                       mew=0.8, zorder=8)
+        dot.set_path_effects(_glyph_halo())
 
 
-def _draw_combined_axis(ax, xy, max_rot, rot_k, roto, size=0.035):
+def _draw_axis_inversion(ax, xy, radius):
+    """Open circle in the middle of a lens: the −1 of a 2/m or 2₁/m symbol."""
+    from matplotlib.patches import Circle
+    dot = Circle(tuple(xy), radius, facecolor="white", edgecolor="k",
+                 lw=0.8, zorder=9)
+    ax.add_patch(dot)
+
+
+def _draw_combined_axis(ax, xy, max_rot, rot_k, roto, size=0.035,
+                        inversion=False):
     """Draw ONE ITA glyph for all c-axis axes coincident at ``xy``.
 
     ``max_rot`` is the highest pure-rotation order present (0 if none),
@@ -489,21 +658,27 @@ def _draw_combined_axis(ax, xy, max_rot, rot_k, roto, size=0.035):
     4/mmm), the filled rotation glyph is drawn first and the rotoinversion is
     marked by an open square outline + centre dot on top, so both are legible
     rather than one white glyph erasing the other.
+
+    ``inversion`` draws the open centre of 2/m or 2₁/m: a filled lens (hooked
+    when the axis is a screw) with a small open circle in the middle.
     """
     if max_rot >= 2:
         draw_axis_symbol(ax, xy, max_rot, screw_k=rot_k, rotoinv=False,
                          size=size)
     elif roto:
-        # rotoinversion only (no pure rotation of that order): draw it directly
         draw_axis_symbol(ax, xy, roto, rotoinv=True, size=size)
-        return
     if roto and max_rot >= 2:
         # overlay the rotoinversion marker: open polygon outline + centre dot,
         # slightly larger so it frames the filled rotation glyph
         _draw_regular_polygon(ax, xy, abs(roto), size * 1.35, filled=False,
-                              ec="k", lw=1.0, zorder=6)
-        ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k", mew=0.8,
-                zorder=7)
+                              ec="k", lw=1.0, zorder=8)
+        if roto != 6:
+            dot, = ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k",
+                           mew=0.8, zorder=8.5)
+            dot.set_path_effects(_glyph_halo())
+    # A −1 on this axis. The rotoinversion glyph already has a centre dot.
+    if inversion and not (roto and roto != 6):
+        _draw_axis_inversion(ax, xy, size * 0.36)
 
 
 def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
@@ -543,30 +718,17 @@ def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
     ax.plot([x0, x0], [y0, y0 + ys * size], color="k", lw=1.6, zorder=6)
     if name == "m":
         return
-    # Arrow along the in-plane glide direction. Interpret glide_dir in SCREEN
-    # terms (x=right, y=up-on-screen) so the arrow is consistent across axes;
-    # map its screen-up component to data via -ys.
+    # glide_dir is in the caller's data frame (x=right, y in the axis' own
+    # sense). On an upright axis the data-y component is flipped so the arrow
+    # points the same way on screen as it does on the plate, where y runs down.
+    # The sign of the reduced glide is kept.
     if glide_dir is None:
-        su = _np.array([1.0, 1.0])            # up-and-right fallback (screen)
+        du = _np.array([1.0, -ys])
     else:
         gd = _np.asarray(glide_dir, float)
-        # incoming gd is in data coords of the caller; convert its y to screen-up
-        su = _np.array([gd[0], -ys * gd[1]])
-    nrm = _np.hypot(*su)
-    su = su / nrm if nrm > 1e-9 else _np.array([1.0, 1.0]) / _np.sqrt(2)
-    # A glide direction is an undirected axis (the operation equals its
-    # reverse), so canonicalise to one screen sense for a consistent glyph:
-    # always point to screen-up; if it is purely horizontal, point right; the
-    # sign of the two components is chosen independently so the diagonal glide
-    # reads the same way regardless of axis orientation.
-    if abs(su[1]) < 1e-9:
-        su[0] = abs(su[0])            # purely horizontal -> point right
-    else:
-        if su[1] < 0:
-            su[1] = -su[1]            # force screen-up
-        su[0] = abs(su[0])            # diagonal -> up-and-right, consistently
-    # convert screen direction back to data coords for plotting
-    du = _np.array([su[0], -ys * su[1]])
+        du = _np.array([gd[0], ys * gd[1]])
+    nrm = _np.hypot(*du)
+    du = du / nrm if nrm > 1e-9 else _np.array([1.0, -ys])
     base = _np.array([x0 + size * 0.25, y0 + ys * size * 0.25])
     tip = base + du * size * 0.85
     astyle = "-|>" if name in ("a", "b", "c", "d") else "->"
@@ -590,34 +752,39 @@ def draw_inversion(ax, xy, size=0.012):
 
 # glide-plane line styles (plane perpendicular to page -> a line in the page)
 _PLANE_STYLE = {
-    "m": dict(ls="-", lw=2.0, color="k"),
-    "a": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
+    "m": dict(ls="-", lw=2.2, color="k"),
+    "a": dict(ls=(0, (6, 3)), lw=1.3, color="k"),          # dashed
     "b": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
-    "c": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
-    "n": dict(ls=(0, (6, 2, 1, 2)), lw=1.3, color="k"),
-    "d": dict(ls=(0, (1, 2)), lw=1.4, color="k"),
-    "g": dict(ls=(0, (6, 3)), lw=1.3, color="k"),   # ITA: dashed, like a/b/c
+    "c": dict(ls=(0, (1, 1.6)), lw=1.4, color="k"),        # dotted
+    "n": dict(ls=(0, (6, 2, 1, 2)), lw=1.3, color="k"),    # dash-dot
+    "d": dict(ls=(0, (6, 2, 1, 2, 1, 2)), lw=1.3, color="k"),  # dash-dot-dot
+    "e": dict(ls=(0, (4, 1.5, 1, 1.5, 1, 1.5)), lw=1.3, color="k"),
+    "g": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
 }
 
 
-def draw_plane_symbol(ax, p0, p1, name):
+def draw_plane_symbol(ax, p0, p1, name, glide_dir=None):
     """Draw a plane (perpendicular to the page) as a styled line from p0 to p1."""
     if abs(p1[0] - p0[0]) < 1e-6 and abs(p1[1] - p0[1]) < 1e-6:
         return                        # degenerate (line only touches a corner)
     style = _PLANE_STYLE.get(name, _PLANE_STYLE["g"])
-    # solid mirrors sit at the base layer; patterned glide planes draw a touch
-    # higher so their dash/dot signature is not chopped where bold lines cross.
-    z = 4 if name == "m" else 4.5
+    # Planes are drawn after in-plane axes and above them, so a glide that
+    # shares a trace with an axis keeps its own dash pattern.
+    z = 6 if name == "m" else 6.5
     ax.plot([p0[0], p1[0]], [p0[1], p1[1]], zorder=z, **style)
     if name == "d":
-        # ITA marks a d-glide (diamond glide) line with an arrow showing the
-        # 1/4 glide direction along the line, plus a small perpendicular tick.
+        # The arrow follows the reduced glide's component along the trace,
+        # including its sign, so neighbouring diamond glides point opposite ways.
         import numpy as _np
         p0a, p1a = _np.asarray(p0, float), _np.asarray(p1, float)
-        d = p1a - p0a
-        L = _np.hypot(*d)
+        along = p1a - p0a
+        L = _np.hypot(*along)
         if L > 1e-6:
-            u = d / L
+            u = along / L
+            if glide_dir is not None:
+                comp = float(_np.dot(_np.asarray(glide_dir, float), u))
+                if abs(comp) > 1e-8:
+                    u = u if comp > 0 else -u
             mid = 0.5 * (p0a + p1a)
             ax.annotate("", xy=mid + u * 0.12, xytext=mid - u * 0.12,
                         arrowprops=dict(arrowstyle="->", color="k", lw=1.0),
@@ -667,67 +834,188 @@ def symbol_legend(ax=None):
 _BGP_CACHE = {}
 
 
-def best_general_point(sg, n_grid=12, refine=3, interior_wt=0.03):
-    """Center of the largest sphere inscribed in the asymmetric unit.
+def _projection_maps(sg, projection):
+    """In-plane affine maps of every operation: image (right, down) = A x + t."""
+    perm = _PROJ[projection][0]
+    As, ts = [], []
+    for W, w, _ in _sg_ops(sg):
+        W = np.asarray(W, float)
+        w = np.asarray(w, float)
+        As.append(np.stack([W[perm[1]], W[perm[0]]]))
+        ts.append(np.array([w[perm[1]], w[perm[0]]]))
+    return np.stack(As), np.stack(ts)
 
-    Returns the fractional point whose minimum distance to its own symmetry
-    images (modulo the lattice) is maximal, with a light preference for cell
-    interior over the walls. Using this as the general position maximises the
-    separation of the equivalent points in the diagram, so points overlap only
-    where the symmetry *requires* a projection coincidence (handled by ITA
-    split circles) rather than by accident of a hand-picked point.
 
-    Results are cached per space-group number for the default parameters.
+def _map_signature(A, t):
+    return (tuple(np.round(A.ravel(), 6)), tuple(np.round(np.asarray(t) % 1.0, 6)))
+
+
+def _projected_images(x, As, ts):
+    imgs = np.einsum("nij,j->ni", As, np.asarray(x, float)) + ts
+    return imgs - np.floor(imgs)
+
+
+def _min_projected_separation(imgs, same):
+    """Smallest torus distance between images that are not forced to coincide."""
+    d = imgs[:, None, :] - imgs[None, :, :]
+    d = d - np.round(d)
+    dist = np.linalg.norm(d, axis=-1)
+    dist = np.where(same, np.inf, dist)
+    np.fill_diagonal(dist, np.inf)
+    if not np.isfinite(dist).any():
+        return 1.0  # P1, or every image is a projection duplicate
+    return float(dist.min())
+
+
+def _trace_clearance(imgs, traces):
+    """Smallest distance from any projected image to a symmetry-element trace."""
+    if not traces or len(imgs) == 0:
+        return 1.0
+    best = np.full(len(imgs), 1.0)
+    for kind, c, n in traces:
+        if kind == "point":
+            d = imgs - c
+            d -= np.round(d)
+            best = np.minimum(best, np.linalg.norm(d, axis=1))
+        else:
+            target = (imgs - c) @ n
+            offs = [i * n[0] + j * n[1]
+                    for i in range(-2, 3) for j in range(-2, 3)]
+            delta = np.abs(target[:, None] - np.asarray(offs)[None, :])
+            best = np.minimum(best, delta.min(axis=1))
+    return float(best.min())
+
+
+def _element_traces(sg, projection):
+    """Projected traces: points for axes perpendicular to the page, lines otherwise.
+
+    A plane parallel to the page fills the whole drawing, so it is not a trace
+    the representative has to avoid.
+    """
+    perm = _PROJ[projection][0]
+    traces = []
+    for el in _element_copies(sg):
+        loc = np.asarray(el["location"], float)
+        axis = el.get("axis")
+        p = _perm_vec(loc, perm)
+        xy = np.array([p[1] % 1.0, p[0] % 1.0])
+        if axis is None:
+            traces.append(("point", xy, None))
+            continue
+        d = _perm_vec(np.asarray(axis, float), perm)
+        d2 = np.array([d[1], d[0]], float)
+        along = abs(d[2]) > 0.85 * (np.linalg.norm(d) or 1.0)
+        if along or np.linalg.norm(d2) < 1e-8:
+            # Axis straight out of the page, or a plane parallel to it.
+            if el["type"] in ("mirror", "glide") and not along:
+                continue
+            traces.append(("point", xy, None))
+            continue
+        n = np.array([-d2[1], d2[0]], float)
+        n = n / (np.linalg.norm(n) or 1.0)
+        traces.append(("line", xy, n))
+    return traces
+
+
+def _edge_distance(imgs):
+    return float(np.minimum(imgs, 1.0 - imgs).min())
+
+
+def best_general_point(sg, n_grid=5, projection="c"):
+    """A general position whose projected orbit stays readable.
+
+    The seed is chosen so that images which are not forced to share a
+    projected point stay apart, and so that no image sits on a projected
+    symmetry element or on the cell boundary. Pairs that a mirror parallel
+    to the page superposes are left coincident: the diagram draws them as
+    one split circle.
+
+    Results are cached per space group and projection.
     """
     sg = _resolve_sg(sg)
-    ck = (str(_sg_label(sg)), n_grid, refine, interior_wt)
+    ck = (str(_sg_label(sg)), projection, n_grid)
     if ck in _BGP_CACHE:
         return _BGP_CACHE[ck]
-    ops = [(W, w) for W, w, _ in _sg_ops(sg)]
+    As, ts = _projection_maps(sg, projection)
+    sigs = [_map_signature(A, t) for A, t in zip(As, ts)]
+    same = np.array([[a == b for b in sigs] for a in sigs], dtype=bool)
+    traces = _element_traces(sg, projection)
 
-    def score(x):
-        """Evaluate point x: minimum distance to its symmetry images plus interior bonus."""
-        x = np.asarray(x, float)
-        dmin = np.inf
-        for W, w in ops:
-            if np.allclose(W, np.eye(3)) and np.allclose(w % 1, 0):
-                continue
-            d = (W @ x + w) - x
-            dd = d - np.round(d)
-            dmin = min(dmin, np.linalg.norm(dd))
-        if not np.isfinite(dmin):
-            dmin = 0.87   # P1: no non-trivial images
-        interior = min(np.min(x % 1.0), np.min(1 - x % 1.0))
-        return dmin + interior_wt * interior
+    def quality(x):
+        imgs = _projected_images(x, As, ts)
+        sep = _min_projected_separation(imgs, same)
+        edge = _edge_distance(imgs)
+        elem = _trace_clearance(imgs, traces)
+        # Distance to the nearest quarter-cell line (1/4, 1/2, 3/4). A seed
+        # on that grid (P222 at 1/4, 1/4) is legal but not generic.
+        quarters = np.array([0.25, 0.5, 0.75])
+        off_q = float(np.abs(imgs[..., None] - quarters).min())
+        # A seed with equal in-plane coordinates (P222 at x = y) draws a
+        # square. Prefer a rectangular orbit, the way P2_12_12 already does.
+        u, v = imgs[:, 0], imgs[:, 1]
+        d_eq = np.minimum(np.abs(u - v), 1.0 - np.abs(u - v))
+        d_neg = np.minimum(np.abs(u + v), np.abs(u + v - 1.0))
+        off_sq = float(np.minimum(d_eq, d_neg).min())
+        return (sep >= 0.02, min(elem, 0.04), min(edge, 0.04),
+                off_q >= 0.04, min(off_sq, 0.08), min(edge, 0.12), sep)
 
-    best = None
-    bestd = -1.0
-    grid = np.linspace(0.05, 0.95, n_grid)
+    candidates = [(0.11, 0.19, 0.07), (0.13, 0.17, 0.23),
+                  (0.07, 0.31, 0.13), (0.19, 0.11, 0.29),
+                  (0.23, 0.37, 0.11)]
+    grid = np.linspace(0.08, 0.42, n_grid)
     for xi in grid:
         for yi in grid:
             for zi in grid:
-                s = score((xi, yi, zi))
-                if s > bestd:
-                    bestd = s
-                    best = np.array([xi, yi, zi])
-    step = 1.0 / n_grid
-    for _ in range(refine):
-        step *= 0.4
-        improved = True
-        while improved:
-            improved = False
-            for dx in (-step, 0, step):
-                for dy in (-step, 0, step):
-                    for dz in (-step, 0, step):
-                        cand = best + [dx, dy, dz]
-                        s = score(cand)
-                        if s > bestd + 1e-9:
-                            bestd = s
-                            best = cand
-                            improved = True
-    result = tuple(np.round(best % 1.0, 4))
+                candidates.append((float(xi), float(yi), float(zi)))
+    best = np.array(candidates[0], float)
+    best_q = (-1.0, -1.0, -1.0, False, -1.0, -1.0, -1.0)
+    for c in candidates:
+        q = quality(c)
+        if q > best_q:
+            best_q = q
+            best = np.array(c, float)
+    # A short walk off the current point, in case it still clips a trace.
+    step = 0.02
+    for _ in range(24):
+        improved = False
+        for delta in ((step, 0, 0), (-step, 0, 0), (0, step, 0), (0, -step, 0),
+                      (0, 0, step), (0, 0, -step)):
+            cand = (best + delta) % 1.0
+            if np.any(cand < 0.04) or np.any(cand > 0.96):
+                continue
+            q = quality(cand)
+            if q > best_q:
+                best_q = q
+                best = cand
+                improved = True
+        if not improved:
+            break
+    result = tuple(np.round(np.asarray(best, float) % 1.0, 4))
     _BGP_CACHE[ck] = result
     return result
+
+
+def _draw_split_circle(ax, center, members, radius=0.042):
+    """One circle split by a vertical diameter, for two heights at one spot.
+
+    The positive-sense label sits to the left of the circle and the other to
+    the right. A comma, marking the opposite hand, leads the right-hand label.
+    """
+    from matplotlib.patches import Circle
+    cx, cy = center
+    ax.add_patch(Circle((cx, cy), radius, facecolor="white", edgecolor="k",
+                        lw=1.0, zorder=3))
+    ax.plot([cx, cx], [cy - radius, cy + radius], color="k", lw=0.7, zorder=4)
+    left, right = members
+    if right[0][1] > left[0][1]:
+        left, right = right, left
+    right_txt = right[1]
+    if left[2] < 0 or right[2] < 0:
+        right_txt = "," + right_txt
+    ax.text(cx - radius - 0.012, cy, left[1], fontsize=6, ha="right",
+            va="center", zorder=5)
+    ax.text(cx + radius + 0.012, cy, right_txt, fontsize=6, ha="left",
+            va="center", zorder=5)
 
 
 def general_position_diagram(sg, ax=None, point=None,
@@ -760,7 +1048,7 @@ def general_position_diagram(sg, ax=None, point=None,
     if ax is None:
         _, ax = plt.subplots(figsize=(3.2, 3.2))
     if point is None:
-        point = best_general_point(sg)
+        point = best_general_point(sg, projection=projection)
 
     perm, dlab, rlab, _ = _PROJ[projection]
     frame = _Frame(cell_frame(sg, projection))
@@ -797,18 +1085,24 @@ def general_position_diagram(sg, ax=None, point=None,
         groups.setdefault(gk, []).append((sk, label, det))
 
     for (px, py), members in groups.items():
+        members = sorted(members)
+        cx, cy = frame.pt((px, py))
+        if len(members) == 2:
+            # ITA split circle: one disk, vertical diameter, the two heights
+            # in the two halves, comma in the right half.
+            _draw_split_circle(ax, (cx, cy), members)
+            continue
         m = len(members)
-        # spread coincident circles along the b direction so each is legible
         span = 0.05 * (m - 1)
-        for j, (_, label, det) in enumerate(sorted(members)):
+        for j, (_, label, det) in enumerate(members):
             dv = -span / 2 + j * 0.05 if m > 1 else 0.0
-            cx, cy = frame.pt((px + dv, py))
-            ax.plot(cx, cy, "o", ms=9, mfc="white", mec="k", mew=1.0,
+            ox, oy = frame.pt((px + dv, py))
+            ax.plot(ox, oy, "o", ms=9, mfc="white", mec="k", mew=1.0,
                     zorder=3)
-            ax.text(cx + 0.03, cy - 0.03, label,
+            ax.text(ox + 0.03, oy - 0.03, label,
                     fontsize=6, zorder=4, ha="left", va="center")
             if det < 0:
-                ax.text(cx, cy, ",", fontsize=8, zorder=4,
+                ax.text(ox, oy, ",", fontsize=8, zorder=4,
                         ha="center", va="center")
 
     # a down, b right, origin top-left
@@ -825,210 +1119,40 @@ def general_position_diagram(sg, ax=None, point=None,
     return ax
 
 
-def _matrix_order(W, max_n=6):
-    """Smallest n>=1 with W**n == I."""
-    W = np.asarray(W, float)
-    P = np.eye(W.shape[0])
-    for n in range(1, max_n + 1):
-        P = P @ W
-        if np.allclose(P, np.eye(W.shape[0]), atol=1e-6):
-            return n
-    return 0
+def _hexagonal_family(sg):
+    """Trigonal and hexagonal groups use the glide letter g, not n."""
+    system = getattr(sg, "crystal_system", None)
+    if system is None and hasattr(sg, "base"):
+        system = getattr(sg.base, "crystal_system", None)
+    return str(system or "").lower() in ("trigonal", "hexagonal")
 
 
-def _axis_direction(W, proper):
-    """Rotation axis (proper) or mirror-plane normal (improper) as an integer-ish
-    direction. For proper rotation it is the +1 eigenvector of W; for a mirror it
-    is the -1 eigenvector of W."""
-    # for rotoinversions the "axis" is the +1 eigenvector of -W (proper part)
-    M = W if proper else -W
-    vals, vecs = np.linalg.eig(M)
-    for i, lam in enumerate(vals):
-        if abs(lam.real - 1.0) < 1e-6 and abs(lam.imag) < 1e-6:
-            v = vecs[:, i].real
-            v = v / (np.max(np.abs(v)) or 1.0)
-            # snap to small integers
-            vi = np.round(v * 12) / 12
-            return vi
-    return None
+def _element_lattice(sg):
+    from .symmetry_elements import Lattice, translation_lattice
+    return Lattice(translation_lattice(_centring_translations(sg)))
 
 
-def _orient_axis(W, axis):
-    """Flip ``axis`` if needed so that ``W`` is a right-handed rotation about it.
-
-    ``np.linalg.eig`` returns the +1 eigenvector with an arbitrary sign; the
-    screw index only makes sense against the sense of rotation. For a rotation
-    by 0 < theta < pi about the unit vector ``n`` the triple
-    ``(n, p, W p)`` is right-handed for any ``p`` not parallel to ``n`` --
-    ``det[n, p, W p] > 0`` -- and a crystallographic basis is right-handed, so
-    the sign of that determinant in fractional coordinates is the sign in
-    Cartesian ones. (theta = pi, the 2-fold, leaves the sign undefined; 2_1 has
-    k = n/2 so it does not matter.)
-    """
-    a = np.asarray(axis, float)
-    # a transverse probe: whichever unit vector is least parallel to the axis
-    p = np.eye(3)[int(np.argmin(np.abs(a)))]
-    d = np.linalg.det(np.column_stack([a, p, W @ p]))
-    return -a if d < -1e-9 else a
-
-
-def _intrinsic_translation(W, w, n):
-    """Screw/glide (intrinsic) part = (1/n) sum_{k=0}^{n-1} W^k w."""
-    acc = np.zeros(3)
-    P = np.eye(3)
-    for _ in range(n):
-        acc += P @ w
-        P = P @ W
-    return acc / n
-
-
-def _location_point(W, w_loc):
-    """A representative point on the element: solve (W - I) x = -w_loc
-    (least squares; the element is the fixed locus of x -> W x + w_loc)."""
-    A = W - np.eye(3)
-    x, *_ = np.linalg.lstsq(A, -w_loc, rcond=None)
-    return x % 1.0
-
-
-_ROT_BY_TRACE = {3: 1, 2: 6, 1: 4, 0: 3, -1: 2}       # det +1
-_INV_BY_TRACE = {-3: -1, -2: -6, -1: -4, 0: -3, 1: -2}  # det -1 (-2 == m)
-
-
-def _glide_name(t, W=None):
-    """Name a glide plane from its intrinsic translation ``t`` (fractional).
-
-    The glide vector is half a lattice vector lying in the plane, defined
-    modulo lattice vectors in the plane. ``v = 2 t`` is that lattice vector.
-
-    * ``v = 0`` -> ``m``;
-    * ``v`` along a single cell axis that lies in the plane -> ``a``/``b``/``c``;
-    * ``v`` with two or three components, plane a coordinate plane (``W`` is
-      diagonal) -> ``n`` (diagonal glide);
-    * ``v`` with two or three components in a plane that is NOT a coordinate
-      plane (hexagonal groups: planes perpendicular to <100> / <210> contain
-      a+2b, 2a+b, a-b) -> ``g``, the generic ITA glide;
-    * quarter translations -> ``d``.
-
-    Reduction is only applied along cell axes that lie in the plane
-    (``W e_i = e_i``); reducing every component mod 1 -- the old behaviour --
-    turned the hexagonal glide ``1/2 (a + 2b)`` into a spurious ``a``.
-    """
-    t = np.asarray(t, float)
-    v = 2.0 * t
-    if W is not None:
-        W = np.asarray(W, float)
-        diag = np.allclose(W, np.diag(np.diag(W)), atol=1e-6)
-        inplane_axes = [i for i in range(3)
-                        if np.allclose(W[:, i], np.eye(3)[i], atol=1e-6)]
-    else:
-        diag = True
-        inplane_axes = [0, 1, 2]
-    if np.allclose(v, np.round(v), atol=0.08):
-        v = np.round(v).astype(int)
-        for i in inplane_axes:
-            v[i] %= 2
-        nz = [i for i in range(3) if v[i] != 0]
-        if not nz:
-            return "m"
-        if len(nz) == 1 and nz[0] in inplane_axes:
-            return "abc"[nz[0]]
-        return "n" if diag else "g"
-    v4 = 4.0 * t
-    if np.allclose(v4, np.round(v4), atol=0.16):
-        return "d"
-    return "g"  # unclassified glide
-
-
-def classify_element(W, w):
+def classify_element(W, w, lattice=None, hexagonal=False):
     """Classify a symmetry operation (W, w) as an ITA symmetry element.
 
-    Returns a dict with:
-      ``type``      -- 'rotation' | 'screw' | 'mirror' | 'glide' |
-                        'inversion' | 'rotoinversion' | 'identity' |
-                        'translation'
-      ``order``     -- rotation order n (2,3,4,6); the |n| of a rotoinversion;
-                        1 for identity/translation
-      ``symbol``    -- ITA-ish label ('2', '2_1', '3', '4_2', 'm', 'c', 'n',
-                        'd', '-1', '-3', '-4', '-6')
-      ``axis``      -- rotation axis (rotations/screws/rotoinversions) or
-                        plane normal (mirror/glide) as a direction vector, or None
-      ``location``  -- a fractional point lying on the element (or the inversion
-                        centre), or None
-      ``intrinsic`` -- the screw/glide translation vector (0 for symmorphic)
+    See :func:`agentsg.cell.symmetry_elements.classify_element`. ``lattice``
+    defaults to the primitive translations; pass the centring lattice when the
+    operation came from a centred group.
     """
-    W = np.asarray(W, dtype=float)
-    w = np.asarray(w, dtype=float)
-    det = round(np.linalg.det(W))
-    tr = round(np.trace(W))
-
-    # pure lattice translation / identity
-    if np.allclose(W, np.eye(3), atol=1e-6):
-        if np.allclose(w % 1.0, 0, atol=1e-6):
-            return {"type": "identity", "order": 1, "symbol": "1",
-                    "axis": None, "location": None,
-                    "intrinsic": np.zeros(3)}
-        return {"type": "translation", "order": 1, "symbol": "t",
-                "axis": None, "location": None, "intrinsic": w % 1.0}
-
-    if det == 1:
-        n = _ROT_BY_TRACE.get(tr, _matrix_order(W))
-        intr = _intrinsic_translation(W, w, n)
-        w_loc = w - intr
-        loc = _location_point(W, w_loc)
-        # screw if intrinsic translation is nonzero along the axis
-        screw = not np.allclose(intr - np.round(intr), 0, atol=0.05)
-        axis = _axis_direction(W, proper=True)
-        if n > 2:
-            axis = _orient_axis(W, axis)
-        if screw:
-            # screw index k: intrinsic translation as a fraction k/n of the
-            # lattice repeat along the ORIENTED axis (axis has max |comp| = 1,
-            # i.e. it is the shortest lattice vector along the axis for a
-            # primitive lattice), measured with the rotation sense so that an
-            # operation and its inverse give the same k.
-            k = int(round(n * float(np.dot(intr, axis)) /
-                          float(np.dot(axis, axis)))) % n
-            sym = f"{n}_{k}" if k else str(n)
-            return {"type": "screw" if k else "rotation", "order": n,
-                    "symbol": sym, "axis": axis, "location": loc,
-                    "intrinsic": intr, "W": W}
-        return {"type": "rotation", "order": n, "symbol": str(n),
-                "axis": axis, "location": loc, "intrinsic": np.zeros(3),
-                "W": W}
-
-    # det == -1 : improper
-    kind = _INV_BY_TRACE.get(tr)
-    if kind == -1:  # inversion centre
-        loc = (w / 2.0) % 1.0
-        return {"type": "inversion", "order": 2, "symbol": "-1",
-                "axis": None, "location": loc, "intrinsic": np.zeros(3)}
-    if kind == -2:  # mirror or glide (n=2 for W)
-        intr = _intrinsic_translation(W, w, 2)  # in-plane glide part
-        w_loc = w - intr
-        loc = _location_point(W, w_loc)
-        normal = _axis_direction(W, proper=False)
-        gname = _glide_name(intr, W)
-        if gname == "m":
-            return {"type": "mirror", "order": 2, "symbol": "m",
-                    "axis": normal, "location": loc, "intrinsic": np.zeros(3),
-                    "W": W}
-        return {"type": "glide", "order": 2, "symbol": gname,
-                "axis": normal, "location": loc, "intrinsic": intr, "W": W}
-    # rotoinversion -3, -4, -6
-    n = {-3: 3, -4: 4, -6: 6}.get(kind, _matrix_order(W))
-    axis = _axis_direction(W, proper=False)
-    loc = _location_point(W, w)
-    return {"type": "rotoinversion", "order": n, "symbol": str(kind),
-            "axis": axis, "location": loc, "intrinsic": np.zeros(3)}
+    from .symmetry_elements import classify_element as _classify
+    return _classify(W, w, lattice=lattice, hexagonal=hexagonal)
 
 
 def classify_space_group(sg):
     """Classify every operation of a space group. Returns a list of element
     dicts (see :func:`classify_element`), skipping the identity."""
+    from .symmetry_elements import classify_element as _classify
     sg = _resolve_sg(sg)
+    lattice = _element_lattice(sg)
+    hexagonal = _hexagonal_family(sg)
     out = []
     for W, w, xyz in _sg_ops(sg):
-        el = classify_element(W, w)
+        el = _classify(W, w, lattice=lattice, hexagonal=hexagonal)
         el["xyz"] = xyz
         if el["type"] != "identity":
             out.append(el)
@@ -1036,7 +1160,8 @@ def classify_space_group(sg):
 
 
 def _dir_class(vec, tol=0.2):
-    """Classify a direction as 'c' (⊥ page, along c), 'ab' (in page), or 'gen'."""
+    """Classify a direction as 'c' (perpendicular to the page), 'ab' (in the
+    page), or 'gen' (inclined)."""
     if vec is None:
         return None
     v = np.asarray(vec, dtype=float)
@@ -1051,43 +1176,110 @@ def _dir_class(vec, tol=0.2):
     return "gen"
 
 
+def _distinct_glide_axes(raws):
+    """True when one plane carries two axial half-glides along different axes.
+
+    That pair is an e glide. A hexagonal g, whose translation has two
+    nonzero components, is not one of those halves, so it stays g.
+    """
+    axes = set()
+    half = Fraction(1, 2)
+    for raw in raws:
+        if not raw:
+            continue
+        nonzero = [i for i, comp in enumerate(raw) if comp != 0]
+        if len(nonzero) == 1 and abs(raw[nonzero[0]]) == half:
+            axes.add(nonzero[0])
+    return len(axes) >= 2
+
+
+def _axis_sign_key(axis):
+    if axis is None:
+        return None
+    signed = list(axis)
+    for comp in signed:
+        if comp:
+            if comp < 0:
+                signed = [-c for c in signed]
+            break
+    return tuple(signed)
+
+
+def _mark_contained_axes(elements):
+    """Mark the 3-fold and 2-fold that sit inside a 6-fold at the same locus.
+
+    They stay in the element list (the 3_1 inside 6_1 distinguishes the
+    enantiomorph) and are tagged ``contained_in`` so the plate draws the
+    6-fold glyph once.
+    """
+    groups = {}
+    for el in elements:
+        if el["type"] not in ("rotation", "screw"):
+            continue
+        key = (_axis_sign_key(el.get("axis_exact")), el.get("location_exact"))
+        groups.setdefault(key, []).append(el)
+    for group in groups.values():
+        host = next((el for el in group if el["order"] == 6), None)
+        if host is None:
+            continue
+        for el in group:
+            if el["order"] in (2, 3):
+                el["contained_in"] = host["symbol"]
+    return elements
+
+
 def _element_copies(sg):
     """Enumerate every symmetry element across the full cell.
 
-    A single coset operation (W, w) generates a family of parallel elements
-    inside one cell: combining it with a lattice (or centring) translation L
-    relocates the element (the classic result that parallel 2-folds sit at
-    x=0 and x=1/2). We therefore reclassify (W, w+L) for L over the integer
-    lattice and centring translations, and collect the distinct in-cell
-    locations for each element.
+    Combining an operation with a lattice translation relocates it. The
+    intrinsic part is reduced modulo the full lattice, including centring, and
+    each line or plane is kept once, at the point of the locus nearest the
+    origin.
     """
+    from .symmetry_elements import classify_element as _classify
+    sg = _resolve_sg(sg)
+    lattice = _element_lattice(sg)
+    hexagonal = _hexagonal_family(sg)
     ops = _sg_ops(sg)
-    cvs = _centring_translations(sg)
+    # operations() already includes one copy of each centring translate, so the
+    # integer window below is enough to reach every parallel element.
     seen = set()
     out = []
-    Ls = [np.array([i, j, k], float)
+    planes = {}
+    Ls = [(i, j, k)
           for i in (-1, 0, 1) for j in (-1, 0, 1) for k in (-1, 0, 1)]
     for W, w, _ in ops:
-        for cv in cvs:
-            for L in Ls:
-                el = classify_element(W, w + L + cv)
-                if el["type"] in ("identity", "translation"):
+        w0 = tuple(Fraction(x).limit_denominator(10_000) for x in w)
+        for L in Ls:
+            shift = (w0[0] + L[0], w0[1] + L[1], w0[2] + L[2])
+            el = _classify(W, shift, lattice=lattice, hexagonal=hexagonal)
+            if el["type"] in ("identity", "translation"):
+                continue
+            loc = el.get("location_exact")
+            if loc is None:
+                continue
+            axis = el.get("axis_exact")
+            if el["type"] == "glide":
+                raw = el.get("intrinsic_raw_exact")
+                prev = planes.get((axis, loc))
+                if prev is not None:
+                    raws = prev["_glide_raws"]
+                    if raw is not None and raw not in raws:
+                        raws.append(raw)
+                        if _distinct_glide_axes(raws):
+                            prev["symbol"] = "e"
+                            prev["type"] = "glide"
                     continue
-                loc = el["location"]
-                if loc is None:
-                    continue
-                # canonical key: type/symbol/axis-dir + location mod 1,
-                # rounded so translated duplicates collapse
-                axis = el["axis"]
-                ak = tuple(np.round(np.asarray(axis), 2)) if axis is not None \
-                    else None
-                lk = tuple(np.round(np.asarray(loc) % 1.0, 3))
-                key = (el["type"], el["symbol"], ak, lk)
-                if key in seen:
-                    continue
-                seen.add(key)
-                out.append(el)
-    return out
+                el["_glide_raws"] = [] if raw is None else [raw]
+                planes[(axis, loc)] = el
+            key = (el["type"], el["symbol"], axis, loc)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(el)
+    return _mark_contained_axes(out)
+
+
 
 
 def _centring_translations(sg):
@@ -1182,8 +1374,9 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     primitive CoB). Planes ⊥ page are styled lines; inversion centres are
     small open circles. Screw and glide elements already encode their
     translation (screw tails / dashed glide lines); pure lattice translations
-    are shown only with show_centring. Higher-order axes oblique to the
-    projection (e.g. cubic 3-folds) are counted in the title, not drawn.
+    are shown only with show_centring. Cubic 3-folds are drawn as inclined
+    triangles where they meet the page. In-plane 4-folds use the 4-fold
+    glyph. Inclined 2-folds use a small lens along the projected axis.
     """
     import matplotlib.pyplot as plt
 
@@ -1205,12 +1398,13 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
             ln.set_alpha(0.25)
 
     els = _element_copies(sg) if full_cell else classify_space_group(sg)
+    els = [el for el in els if "contained_in" not in el]
     omitted = 0
 
     # Establish the inverted y-axis (a' down the page, ITA convention) BEFORE
     # drawing, so orientation-aware glyphs (the parallel-plane corner bracket)
     # detect the correct screen sense at draw time.
-    xl, yl = frame.limits(0.18)
+    xl, yl = frame.limits(0.24)
     ax.set_xlim(*xl)
     ax.set_ylim(*yl)
 
@@ -1238,6 +1432,40 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         v = vt[-1]                                     # null vector (down,right)
         return np.array([v[1], v[0]])
 
+    def _trace_id(el):
+        loc = np.asarray(el["location"], float)
+        xy = np.array(P(loc), float)
+        axis = el.get("axis")
+        if axis is None:
+            return ("point", tuple(np.round(xy, 3)))
+        d = np.asarray(frac_dir(axis), float)
+        nrm = np.linalg.norm(d)
+        if el.get("type") in ("mirror", "glide") and nrm < 1e-9:
+            # Normal along the projection axis: the plane is parallel to the
+            # page. Its height belongs on the corner bracket, not on whatever
+            # point symbol happens to share the plane's canonical location.
+            depth = round(float(loc[perm[2]]) % 1.0, 3)
+            return ("parallel", el.get("symbol"), depth)
+        if nrm < 1e-9:
+            return ("point", tuple(np.round(xy, 3)))
+        d = d / nrm
+        if d[0] < -1e-9 or (abs(d[0]) < 1e-9 and d[1] < 0):
+            d = -d
+        if el.get("type") in ("mirror", "glide"):
+            # ``axis`` is the plane normal, so the offset is along it.
+            off = round(float(np.dot(xy, d)), 3)
+            return ("plane", tuple(np.round(d, 3)), off)
+        normal = np.array([-d[1], d[0]])
+        off = round(float(np.dot(xy, normal)), 3)
+        return ("line", tuple(np.round(d, 3)), off)
+
+    heights = {}
+    for el in els:
+        depth = float(np.asarray(el["location"], float)[perm[2]]) % 1.0
+        heights.setdefault(_trace_id(el), []).append(depth)
+    captions = {key: _height_caption(vals) for key, vals in heights.items()}
+    labelled = set()
+
     def edge_copies(xy, tol=1e-3):
         """Replicate a point glyph onto the opposite edge/corner: a glyph on
         x=0 also belongs at x=1, on y=0 also at y=1, and the origin at all
@@ -1250,14 +1478,12 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         return [frame.pt((cx, cy)) for cx in xs for cy in ys]
 
     def draw_line_family(c, d, draw):
-        """Clip the family of lines through fractional point ``c`` along
-        fractional direction ``d`` (both (right, down)) to the cell, add the
-        opposite-edge copy, and hand plot-space endpoints to ``draw``."""
-        nn = np.array([-d[1], d[0]])
-        for cc in _line_edge_copies(np.asarray(c, float), nn):
-            p0, p1 = _clip_line_to_box(cc, d)
-            if p0 is None or np.linalg.norm(p1 - p0) < 1e-6:
-                continue
+        """Draw the line through ``c`` and its translates by one cell along a and b.
+
+        Each piece is clipped to the unit cell. ``draw`` receives plot-space
+        endpoints and the plot-space direction.
+        """
+        for p0, p1 in _line_lattice_segments(c, d):
             draw(np.array(frame.pt(p0)), np.array(frame.pt(p1)),
                  frame.vec(d))
 
@@ -1271,7 +1497,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 and el["axis"] is not None and dcls(el["axis"]) == "c":
             key = tuple(np.round(P(el["location"]), 3))
             s = c_sites.setdefault(key, {"max_rot": 0, "rot_k": 0,
-                                         "roto": 0})
+                                         "roto": 0, "inv": False})
             if el["type"] == "rotoinversion":
                 s["roto"] = max(s["roto"], el["order"])
             else:
@@ -1281,51 +1507,60 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 if el["order"] > s["max_rot"]:
                     s["max_rot"] = el["order"]
                     s["rot_k"] = k
-    for key, s in c_sites.items():
-        for xy in edge_copies(key):
-            _draw_combined_axis(ax, xy, s["max_rot"], s["rot_k"], s["roto"])
+    for el in els:
+        if el["type"] == "inversion":
+            key = tuple(np.round(P(el["location"]), 3))
+            if key in c_sites:
+                c_sites[key]["inv"] = True
+    inplane_axes = {}
+    inclined2 = []
+    inclined3 = []
+    inplane_higher = []
 
     parallel_planes_drawn = set()   # planes parallel to the page (corner glyph)
     for el in els:
         t = el["type"]
         loc = el["location"]
         if t == "inversion":
+            key = tuple(np.round(P(loc), 3))
+            # A −1 on a perpendicular axis is the open circle of 2/m or 2₁/m.
+            if key in c_sites and c_sites[key].get("inv"):
+                continue
+            cap = captions.get(_trace_id(el), "")
             for xy in edge_copies(P(loc)):
                 draw_inversion(ax, xy)
+                if cap and _trace_id(el) not in labelled:
+                    labelled.add(_trace_id(el))
+                    ax.text(xy[0] + 0.04, xy[1] - 0.03, cap, fontsize=6,
+                            zorder=8, ha="left", va="top")
             continue
         if t in ("rotation", "screw", "rotoinversion"):
             dc = dcls(el["axis"])
             if dc == "c":
-                continue   # handled by the combined-glyph pre-pass above
-            elif el["order"] == 2 and dc in ("ab", "gen"):
-                # In-plane 2-folds, and body-diagonal 2-folds written in a
-                # primitive F/I cell: the page shows the projected trace.
-                d = frac_dir(el["axis"])
-                if np.linalg.norm(d) < 1e-9:
-                    omitted += 1
-                    continue
-                d = d / (np.linalg.norm(d) or 1.0)
-
-                def draw_axis_line(p0, p1, dp, _full=(t == "rotation")):
-                    """Draw an in-plane 2-fold or 2_1 screw axis line with exit arrowhead."""
-                    # ITA convention for an axis lying in the plane of the
-                    # page: a SOLID line; a pure 2-fold carries a FULL
-                    # (two-barbed) arrowhead, a 2_1 screw a HALF (one-barbed)
-                    # arrowhead. The head shape -- not the line style -- is
-                    # what distinguishes them (dashes are reserved for planes).
-                    # The arrowhead sits JUST OUTSIDE the boundary on the exit
-                    # side, as the ITA does.
-                    exit_pt = p1 if np.dot(p1 - p0, dp) > 0 else p0
-                    start = p0 if exit_pt is p1 else p1
-                    head_size = 0.07
-                    base = exit_pt + dp * 0.06         # just outside the cell
-                    tip = base + dp * head_size         # apex beyond the base
-                    ax.plot([start[0], base[0]], [start[1], base[1]],
-                            color="k", lw=1.3, zorder=4)
-                    _draw_inplane_arrowhead(ax, tip, dp, full=_full,
-                                            size=head_size)
-
-                draw_line_family(P(loc), d, draw_axis_line)
+                continue   # handled by the combined-glyph pass after the lines
+            d = frac_dir(el["axis"])
+            nrm = float(np.linalg.norm(d))
+            if nrm < 1e-9:
+                omitted += 1
+                continue
+            d = d / nrm
+            if el["order"] == 2 and dc == "ab":
+                slot = inplane_axes.setdefault(_trace_id(el), {
+                    "full": False, "half": False, "loc": P(loc), "d": d,
+                    "el": el,
+                })
+                if t == "rotation":
+                    slot["full"] = True
+                else:
+                    slot["half"] = True
+            elif el["order"] == 2 and dc == "gen":
+                inclined2.append(el)
+            elif el["order"] == 3 and dc == "gen":
+                inclined3.append(el)
+            elif el["order"] in (4, 6) and dc == "ab":
+                inplane_higher.append(el)
+            elif t == "rotoinversion" and el["order"] == 3 and dc == "gen":
+                inclined3.append(el)
             else:
                 omitted += 1
             continue
@@ -1335,9 +1570,26 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 d = inplane_fixed_dir(el["W"])
                 d = d / (np.linalg.norm(d) or 1.0)
                 sym = el["symbol"]
+                intr = el.get("intrinsic_exact")
+                if sym == "g" and intr is not None:
+                    depth = abs(float(intr[perm[2]])) % 1.0
+                    if 0.05 < depth < 0.95:
+                        sym = "n"
+                gdir = None
+                if sym == "d":
+                    raw = el.get("intrinsic")
+                    if raw is not None:
+                        gdir = frame.vec(frac_dir(np.asarray(raw, float)))
                 draw_line_family(
                     P(loc), d,
-                    lambda p0, p1, _dp, _s=sym: draw_plane_symbol(ax, p0, p1, _s))
+                    lambda p0, p1, _dp, _s=sym, _g=gdir:
+                        draw_plane_symbol(ax, p0, p1, _s, glide_dir=_g))
+                cap = captions.get(_trace_id(el), "")
+                if cap and _trace_id(el) not in labelled:
+                    labelled.add(_trace_id(el))
+                    xy = frame.pt(P(loc))
+                    ax.text(xy[0] + 0.04, xy[1] - 0.04, cap, fontsize=6,
+                            zorder=8, ha="left", va="top")
             elif dc == "c":
                 # plane PARALLEL to the page (normal along the projection axis):
                 # ITA draws a right-angle bracket in a cell corner, once per
@@ -1351,15 +1603,177 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                         # frame.vec returns a plot-space direction in the SAME data frame
                         # the symbol draws in (y increases downward), so pass it
                         # straight through -- no sign flip.
-                        gdir = frame.vec(frac_dir(np.asarray(intr, float)))
+                        gdir = frame.vec(_cell_edge_sense(
+                            frac_dir(np.asarray(intr, float))))
+                    # Low in the cell, clear of the origin, the 2₁ on y=0,
+                    # and the lens near (1/2, 1/4).
+                    corner = (0.10 + 0.36 * slot, 0.68)
                     draw_parallel_plane_symbol(
                         ax, el["symbol"],
-                        corner=(0.08 + 0.34 * slot, 0.08),
+                        corner=corner,
                         size=0.16, glide_dir=gdir)
                     parallel_planes_drawn.add(el["symbol"])
+                    cap = _height_caption(
+                        float(np.asarray(other["location"], float)[perm[2]]) % 1.0
+                        for other in els
+                        if other["type"] in ("mirror", "glide")
+                        and other["symbol"] == el["symbol"]
+                        and dcls(other["axis"]) == "c")
+                    if cap:
+                        ax.text(corner[0] + 0.18, corner[1], cap, fontsize=6,
+                                zorder=8, ha="left", va="center")
             else:
                 omitted += 1
             continue
+
+    def draw_axis_line(p0, p1, full, half, key, on_edge):
+        """Arrowheads at both ends of an in-plane axis.
+
+        An axis that lies on the cell edge is a short stub just outside the
+        frame, so it clears the corner 2-fold. A diagonal or hexagonal axis
+        is the whole clipped trace, so its direction stays visible, with the
+        heads just past the boundary.
+        """
+        p0 = np.asarray(p0, float)
+        p1 = np.asarray(p1, float)
+        if on_edge:
+            head_size = 0.055
+            shaft_len = 0.03
+            clear = 0.06
+            mid = 0.5 * (p0 + p1)
+            for end in (p0, p1):
+                outward = end - mid
+                nrm = np.linalg.norm(outward) or 1.0
+                outward = outward / nrm
+                tip = end + outward * (clear + shaft_len + head_size)
+                if full and half:
+                    _draw_inplane_arrowhead(
+                        ax, tip, outward, full=True, size=head_size)
+                    _draw_inplane_arrowhead(
+                        ax, tip + outward * (head_size * 0.55), outward,
+                        full=False, size=head_size)
+                else:
+                    _draw_inplane_arrowhead(
+                        ax, tip, outward, full=bool(full), size=head_size)
+                shaft_end = tip - outward * head_size
+                shaft_in = shaft_end - outward * shaft_len
+                ax.plot([shaft_in[0], shaft_end[0]],
+                        [shaft_in[1], shaft_end[1]],
+                        color="k", lw=1.2, zorder=3)
+        else:
+            ax.plot([p0[0], p1[0]], [p0[1], p1[1]],
+                    color="k", lw=1.2, zorder=3)
+            head_size = 0.045
+            for end, other in ((p0, p1), (p1, p0)):
+                outward = end - other
+                nrm = np.linalg.norm(outward) or 1.0
+                outward = outward / nrm
+                tip = end + outward * 0.012
+                if full and half:
+                    perp = np.array([-outward[1], outward[0]])
+                    _draw_inplane_arrowhead(
+                        ax, tip + perp * 0.02, outward, full=True, size=head_size)
+                    _draw_inplane_arrowhead(
+                        ax, tip - perp * 0.02, outward, full=False, size=head_size)
+                else:
+                    _draw_inplane_arrowhead(
+                        ax, tip, outward, full=bool(full), size=head_size)
+        cap = captions.get(key, "")
+        if cap and key not in labelled:
+            labelled.add(key)
+            midpt = 0.5 * (p0 + p1)
+            ax.text(midpt[0] + 0.04, midpt[1] + 0.03, cap,
+                    fontsize=7, color="k", zorder=8, ha="left", va="center")
+
+    for key, slot in inplane_axes.items():
+        direction = np.asarray(slot["d"], float)
+        for fp0, fp1 in _line_lattice_segments(slot["loc"], direction):
+            # A trace on the cell edge stays a stub outside the frame. Any
+            # trace that crosses the interior is the clipped line itself.
+            draw_axis_line(
+                frame.pt(fp0), frame.pt(fp1),
+                slot["full"], slot["half"], key,
+                _segment_on_edge(fp0, fp1))
+
+    def _screw_k(el):
+        if el["type"] == "screw" and "_" in el["symbol"]:
+            return int(el["symbol"].split("_")[1])
+        return 0
+
+    def _draw_inclined_family(elements, kind):
+        """One glyph at every in-cell projection of each inclined axis.
+
+        The stored location is a single reference point. The other heights
+        of the same axis land on the 2-fold images of that point, so a symbol
+        at (1/3, 1/3) is repeated at (2/3, 2/3). Distinct symbols that share a
+        projected point are stepped apart, and the heights are printed once.
+        """
+        sites = {}
+        for el in elements:
+            k = _screw_k(el)
+            roto = el["type"] == "rotoinversion"
+            dvec = frac_dir(el["axis"])
+            dvec = dvec / (np.linalg.norm(dvec) or 1.0)
+            direction = tuple(np.round(frame.vec(dvec), 3))
+            for rd, depth in _axis_page_points(el, perm):
+                key = (round(rd[0], 3), round(rd[1], 3))
+                slot = sites.setdefault(
+                    key, {"depths": [], "glyphs": [], "rd": rd})
+                slot["depths"].append(depth)
+                # A triangle does not show the axis direction, so the eight
+                # <111> axes that share a projected point are one glyph.
+                # A lens is rotated onto its axis, so the direction stays.
+                mark = (k, roto) if kind != "lens" else (k, roto, direction)
+                if mark not in slot["glyphs"]:
+                    slot["glyphs"].append(mark)
+        for key, slot in sites.items():
+            cap = _height_caption(slot["depths"])
+            glyphs = slot["glyphs"]
+            n = len(glyphs)
+            for xy in edge_copies(slot["rd"]):
+                for i, mark in enumerate(glyphs):
+                    shift = (i - (n - 1) / 2.0) * 0.05
+                    pos = (xy[0] + shift, xy[1])
+                    if kind == "lens":
+                        k, roto, direction = mark
+                        direction = np.asarray(direction, float)
+                        ang = math.atan2(float(direction[1]), float(direction[0]))
+                        _draw_lens(ax, pos, 0.028, angle=ang, fc="k", ec="k",
+                                   lw=0.8, zorder=5)
+                        if k:
+                            tang = np.array([-math.sin(ang), math.cos(ang)])
+                            tip = np.asarray(pos, float) + direction * 0.05
+                            hook = tip + tang * 0.03
+                            _ink(ax, [pos[0], tip[0], hook[0]],
+                                 [pos[1], tip[1], hook[1]],
+                                 color="k", lw=1.0, zorder=5)
+                    else:
+                        k, roto = mark
+                        draw_axis_symbol(
+                            ax, pos, 3, screw_k=k, rotoinv=roto, size=0.028)
+                if cap and ("inclined", key) not in labelled:
+                    labelled.add(("inclined", key))
+                    ax.text(xy[0] + 0.05, xy[1] + 0.03, cap, fontsize=7,
+                            zorder=8, ha="left", va="center")
+
+    _draw_inclined_family(inclined2, "lens")
+    _draw_inclined_family(inclined3, "tri")
+
+    for el in inplane_higher:
+        for xy in edge_copies(P(el["location"])):
+            draw_axis_symbol(
+                ax, xy, el["order"], screw_k=_screw_k(el),
+                rotoinv=(el["type"] == "rotoinversion"), size=0.03)
+
+    for key, s in c_sites.items():
+        cap = captions.get(("point", tuple(np.round(key, 3))), "")
+        for xy in edge_copies(key):
+            _draw_combined_axis(ax, xy, s["max_rot"], s["rot_k"], s["roto"],
+                                inversion=s.get("inv", False))
+            if cap and ("point", tuple(np.round(key, 3))) not in labelled:
+                labelled.add(("point", tuple(np.round(key, 3))))
+                ax.text(xy[0] + 0.05, xy[1] + 0.02, cap, fontsize=7,
+                        zorder=8, ha="left", va="center")
 
     ax.set_xlim(*xl); ax.set_ylim(*yl)
     ax.set_aspect("equal"); ax.axis("off")
@@ -1392,14 +1806,27 @@ def element_legend(sg, ax=None, projection="c"):
     # Inventory from the SAME full-cell reconstruction the element diagram
     # draws, so lattice-generated screws (e.g. the diagonal 2_1 in a symmorphic
     # tetragonal group) are listed rather than only the base coset set.
-    els = _element_copies(sg)
+    els = [el for el in _element_copies(sg) if "contained_in" not in el]
     perm = _PROJ[projection][0]
     frame = _Frame(cell_frame(sg, projection))
     perp = {}      # order -> set of screw_k for axes ⊥ page
-    inplane = {"rot": False, "screw": False}
+    inplane = {"rot": False, "screw": False, "both": False}
+    inclined_2 = {"rot": False, "screw": False}
+    inclined_3 = set()
+    inplane_n = set()
     planes = set()          # planes ⊥ page (drawn as lines)
     par_planes = {}         # planes ∥ page -> projected glide dir (bracket)
     has_inv = False
+    two_xy = set()
+    inv_xy = set()
+
+    def _proj_xy(el):
+        loc = el.get("location")
+        if loc is None:
+            return None
+        v = _perm_vec(np.asarray(loc, float), perm)
+        return (round(float(v[1]) % 1.0, 3), round(float(v[0]) % 1.0, 3))
+
     for el in els:
         t, sym, axis = el["type"], el["symbol"], el["axis"]
         # classify relative to the projection axis (permute first), so the
@@ -1407,15 +1834,34 @@ def element_legend(sg, ax=None, projection="c"):
         dc = _dir_class(_perm_vec(axis, perm)) if axis is not None else None
         if t == "inversion":
             has_inv = True
+            xy = _proj_xy(el)
+            if xy is not None:
+                inv_xy.add(xy)
         elif t in ("rotation", "screw", "rotoinversion"):
+            k = 0
+            if t == "screw" and "_" in sym:
+                k = int(sym.split("_")[1])
             if dc == "c":
-                k = 0
-                if t == "screw" and "_" in sym:
-                    k = int(sym.split("_")[1])
                 perp.setdefault(el["order"], set()).add(
                     (k, t == "rotoinversion"))
-            elif el["order"] == 2 and dc in ("ab", "gen"):
-                inplane["rot" if t == "rotation" else "screw"] = True
+                if t == "rotation" and el["order"] == 2:
+                    xy = _proj_xy(el)
+                    if xy is not None:
+                        two_xy.add(xy)
+            elif el["order"] == 2 and dc == "ab":
+                if t == "rotation":
+                    inplane["rot"] = True
+                else:
+                    inplane["screw"] = True
+            elif el["order"] == 2 and dc == "gen":
+                if t == "rotation":
+                    inclined_2["rot"] = True
+                else:
+                    inclined_2["screw"] = True
+            elif el["order"] == 3 and dc == "gen":
+                inclined_3.add((k, t == "rotoinversion"))
+            elif el["order"] in (4, 6) and dc == "ab":
+                inplane_n.add((el["order"], k, t == "rotoinversion"))
         elif t in ("mirror", "glide"):
             if dc == "ab":
                 planes.add(sym)
@@ -1426,22 +1872,30 @@ def element_legend(sg, ax=None, projection="c"):
                     pv = _perm_vec(np.asarray(intr, float), perm)
                     # same cell frame as the element diagram, so the arrow
                     # is tilted identically in an oblique projection
-                    gdir = frame.vec(np.array([pv[1], pv[0]]))
+                    gdir = frame.vec(_cell_edge_sense(np.array([pv[1], pv[0]])))
                 par_planes.setdefault(sym, gdir)
+    # A trace that carries both a 2 and a 2_1 is drawn with both heads.
+    inplane["both"] = inplane["rot"] and inplane["screw"]
 
-    y = 9.3
-    ax.set_title("elements present", fontsize=9)
+    def _axis_lbl(order, k, ro):
+        if ro:
+            return "\u2212" + str(order)
+        if k:
+            return str(order) + str(k).translate(_SUBDIGIT)
+        return str(order)
+
+    y_top = 9.0
+    y = y_top - 0.4
+    ax.set_title("elements present", fontsize=9, pad=2)
     if perp:
-        ax.text(0.05, y, "Axes ⊥ page:", fontsize=8, style="italic")
+        ax.text(0.15, y, "Axes ⊥ page:", fontsize=8, style="italic")
         y -= 1.05
         for order in sorted(perp):
             for k, ro in sorted(perp[order]):
-                draw_axis_symbol(ax, (0.45, y), order, screw_k=k,
+                draw_axis_symbol(ax, (0.55, y), order, screw_k=k,
                                  rotoinv=ro, size=0.15)
-                lbl = ("-" if ro else "") + str(order)
-                if k:
-                    lbl = f"{order}_{k}"
-                ax.text(1.0, y, f"{lbl}", fontsize=8, va="center")
+                ax.text(1.15, y, _axis_lbl(order, k, ro), fontsize=8,
+                        va="center")
                 y -= 0.95
         y -= 0.2
     if inplane["rot"] or inplane["screw"]:
@@ -1458,6 +1912,30 @@ def element_legend(sg, ax=None, projection="c"):
             ax.text(1.3, y, "2\u2081  (half head)", fontsize=8, va="center")
             y -= 0.9
         y -= 0.3
+    if inplane_n:
+        ax.text(0.15, y, "Axes in the page, order > 2:", fontsize=8,
+                style="italic")
+        y -= 1.0
+        for order, k, ro in sorted(inplane_n):
+            draw_axis_symbol(ax, (0.55, y), order, screw_k=k, rotoinv=ro,
+                             size=0.15)
+            ax.text(1.15, y, _axis_lbl(order, k, ro), fontsize=8, va="center")
+            y -= 0.95
+        y -= 0.2
+    if inclined_3:
+        ax.text(0.15, y, "Inclined 3-fold:", fontsize=8, style="italic")
+        y -= 1.0
+        for k, ro in sorted(inclined_3):
+            draw_axis_symbol(ax, (0.55, y), 3, screw_k=k, rotoinv=ro, size=0.15)
+            ax.text(1.15, y, _axis_lbl(3, k, ro), fontsize=8, va="center")
+            y -= 0.95
+        y -= 0.2
+    if inclined_2["rot"] or inclined_2["screw"]:
+        ax.text(0.15, y, "Inclined 2-fold:", fontsize=8, style="italic")
+        y -= 0.9
+        _draw_lens(ax, (0.55, y), 0.12, fc="k", ec="k", lw=0.8, zorder=5)
+        ax.text(1.15, y, "2", fontsize=8, va="center")
+        y -= 0.9
     if planes:
         ax.text(0.05, y, "Planes ⊥ page:", fontsize=8, style="italic")
         y -= 0.9
@@ -1482,24 +1960,35 @@ def element_legend(sg, ax=None, projection="c"):
     if has_inv:
         ax.text(0.05, y, "Inversion:", fontsize=8, style="italic")
         y -= 0.9
-        draw_inversion(ax, (0.45, y), size=0.05)
-        ax.text(1.0, y, "\u22121", fontsize=8, va="center")
+        draw_inversion(ax, (0.55, y), size=0.05)
+        ax.text(1.15, y, "\u22121", fontsize=8, va="center")
         y -= 1.0
-    # points convention
-    ax.text(0.05, y, "Points:", fontsize=8, style="italic")
-    y -= 0.9
-    ax.plot(0.45, y, "o", ms=8, mfc="white", mec="k", mew=1.0)
-    ax.text(0.6, y + 0.12, "+", fontsize=7)
-    ax.text(1.0, y, "+ / \u2212 : z / \u2212z;  \u00bd+ : z+\u00bd  \u2026",
-            fontsize=8, va="center")
-    # Fit the y-range to the content so element-rich groups (many rows) do not
-    # push later entries below the axis and off the canvas.
-    ax.set_ylim(y - 0.6, 10)
-    # Equal aspect so the round/polygon glyphs (2-fold lens, 4-fold square,
-    # -4 outline) are not horizontally stretched by the tall, narrow panel.
-    # adjustable="datalim" keeps the panel box (set by the caller / gridspec)
-    # and widens the x-range instead of shrinking the drawing.
-    ax.set_aspect("equal", adjustable="datalim")
+    if two_xy & inv_xy:
+        # A 2-fold and an inversion at one projected site (2/m). The plate
+        # draws the lens and the dot together; the legend shows that glyph.
+        ax.text(0.2, y, "2/m:", fontsize=8, style="italic")
+        y -= 0.95
+        _draw_lens(ax, (0.7, y), 0.14, fc="k", ec="k", lw=1.0, zorder=5)
+        ax.plot(0.7, y, "o", ms=4, mfc="white", mec="k", mew=0.8, zorder=6)
+        ax.text(1.15, y, "2/m", fontsize=8, va="center")
+        y -= 1.0
+    # points convention. The circle is a data-sized patch so it stays inside
+    # the axes; a marker of fixed point size drawn on the last row was clipped
+    # by the axes boundary.
+    depth = {"a": "x", "b": "y", "c": "z"}[projection]
+    ax.text(0.2, y, "Points:", fontsize=8, style="italic")
+    y -= 1.15
+    from matplotlib.patches import Circle
+    ax.add_patch(Circle((0.7, y), 0.16, facecolor="white", edgecolor="k",
+                        lw=1.0, zorder=3))
+    ax.text(0.7, y, "+", fontsize=7, ha="center", va="center", zorder=4)
+    ax.text(1.2, y, f"+ / \u2212 : {depth} / \u2212{depth};  \u00bd+ : {depth}+\u00bd  \u2026",
+            fontsize=7.5, va="center")
+    # Fixed limits with a pad, and aspect adjustable="box", so equal aspect
+    # does not pull the circle or the first row onto the axes spine.
+    ax.set_xlim(-0.45, 5.0)
+    ax.set_ylim(y - 0.6, y_top)
+    ax.set_aspect("equal", adjustable="box")
     return ax
 
 
@@ -1512,7 +2001,8 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False,
     ----------
     sg : SpaceGroup | SpaceGroupSetting | int | str
     figsize : (w, h), optional
-        Defaults to (6.6, 3.4), or (9.4, 3.6) when ``legend=True``.
+        Defaults to (6.6, 3.8), or (10.2, 5.6) when ``legend=True`` so the
+        legend's last row is not clipped.
     legend : bool
         Append a third panel listing only the elements present in this group
         (see :func:`element_legend`).
@@ -1527,7 +2017,7 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False,
     import matplotlib.pyplot as plt
     sg = _resolve_sg(sg)
     if figsize is None:
-        figsize = (9.4, 3.6) if legend else (6.6, 3.4)
+        figsize = (10.2, 5.6) if legend else (6.6, 3.8)
     ncol = 3 if legend else 2
     ratios = [1, 1, 1.05] if legend else [1, 1]
     fig = plt.figure(figsize=figsize)
@@ -1550,8 +2040,10 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False,
         system = getattr(sg.base, "crystal_system", None)
     pfx = f"#{num}   " if num is not None else ""
     extra = f"({system}, order {order})" if system else f"(order {order})"
-    fig.suptitle(f"{pfx}{name}   {extra}", fontsize=9, y=1.02)
-    fig.tight_layout()
+    fig.suptitle(f"{pfx}{name}   {extra}", fontsize=9)
+    # tight_layout fights the legend's equal aspect and crops its last row.
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.90, bottom=0.04,
+                        wspace=0.28)
     return fig
 
 

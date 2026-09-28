@@ -57,7 +57,7 @@ Compute (bearer required except `/v1/help`):
 - Lattice symmetry — `POST /v1/lattice-symmetry` `{"cell":[50,50,51,90,90,90]}`
 - Compare — two cells; set `include_sublattices: true` for integer `M`
 - Reindex — geometric ambiguity only
-- PDB search — `POST /v1/pdb/search` `{"cell":[...],"sg":96,"cutoff":1.0}` or `"k":10`
+- PDB search — `POST /v1/pdb/search` `{"cell":[...],"sg":96,"cutoff":1.0}` or `"k":10`. `"plot":true` adds a mean-centred SVD scatter of the hit Kurlin roots (`plot_png_base64`, `xy`)
 - PDB lookup — `GET /v1/pdb/1ABC`
 - Plate image — `GET /v1/ita-plate.png?sg=96&legend=true`
 

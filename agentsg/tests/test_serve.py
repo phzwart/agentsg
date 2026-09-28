@@ -157,6 +157,25 @@ def test_bearer_required():
             state.db.close()
 
 
+def test_multiple_bearer_tokens():
+    state, httpd, base = _server(token="secret, testtoken73")
+    try:
+        assert state.token == frozenset({"secret", "testtoken73"})
+        for presented in ("secret", "testtoken73"):
+            status, sg = _fetch(
+                f"{base}/v1/space-group", {"sg": 19}, token=presented,
+            )
+            assert status == 200
+            assert sg["sg_number"] == 19
+        with pytest.raises(urllib.error.HTTPError) as exc:
+            _fetch(f"{base}/v1/space-group", {"sg": 19}, token="other")
+        assert exc.value.code == 401
+    finally:
+        httpd.shutdown()
+        if state.db:
+            state.db.close()
+
+
 def test_site_reflections_harker_cell():
     state, httpd, base = _server()
     try:
@@ -281,6 +300,23 @@ def test_pdb_search_and_lookup(sample_db):
             "cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 1,
         })
         assert knn["count"] == 1
+        assert "plot_png_base64" not in knn
+        status, plotted = _fetch(f"{base}/v1/pdb/search", {
+            "cell": [79, 79, 38, 90, 90, 90], "sg": 96, "cutoff": 0.5,
+            "plot": True,
+        })
+        assert status == 200
+        assert plotted["count"] == 2
+        assert plotted["svd"]["n"] == 2
+        assert plotted["svd"]["feature"] == "root_invariant r0..r5"
+        assert len(plotted["svd"]["variance_frac"]) >= 1
+        for hit in plotted["hits"]:
+            assert len(hit["xy"]) == 2
+        assert len(plotted["query_xy"]) == 2
+        if plotted.get("plot_png_base64"):
+            import base64
+            raw = base64.b64decode(plotted["plot_png_base64"])
+            assert raw[:8] == b"\x89PNG\r\n\x1a\n"
     finally:
         httpd.shutdown()
         state.db.close()
@@ -294,6 +330,23 @@ def test_ita_plate_png():
         assert status == 200
         assert meta["elements"]
         assert meta["png_url"].startswith("/v1/ita-plate.png")
+        status, p43212 = _fetch(f"{base}/v1/ita-plate", {"sg": 96})
+        assert status == 200
+        screws = [
+            el["location"][0]
+            for el in p43212["elements"]
+            if el["symbol"] == "2_1" and abs(el["axis"][1] - 1.0) < 1e-6
+        ]
+        assert any(abs(x - 0.25) < 1e-6 for x in screws)
+        assert any(abs(x - 0.75) < 1e-6 for x in screws)
+        assert any(
+            el["symbol"] == "2"
+            and abs(el["axis"][0]) == 1
+            and abs(el["axis"][1]) == 1
+            and abs(el["location"][0]) < 1e-6
+            and abs(el["location"][1]) < 1e-6
+            for el in p43212["elements"]
+        )
         status, png = _fetch(f"{base}/v1/ita-plate.png?sg=19&legend=true")
         assert status == 200
         assert png[:8] == b"\x89PNG\r\n\x1a\n"

@@ -209,11 +209,53 @@ def default_projection(crystal_system: str | None) -> str:
     return "c"
 
 
+# Pre-2016 Hermann–Mauguin symbols that the 2016 edition writes with an e glide.
+_HM_2016 = {
+    39: "A e m 2",
+    41: "A e a 2",
+    64: "C m c e",
+    67: "C m m e",
+    68: "C c c e",
+}
+
+# Hexagonal-to-rhombohedral change of basis (obverse). Columns are the
+# rhombohedral axes in the hexagonal basis.
+_RHOMBO_GROUPS = {146, 148, 155, 160, 161, 166, 167}
+_RHOMBO_COB = "((2a+b+c)/3,(-a+b+c)/3,(-a-2b+c)/3)"
+
+
 def resolve_plate_sg(data: dict[str, Any]):
     """SpaceGroup or SpaceGroupSetting for plate / classify."""
-    if data.get("setting"):
-        return SpaceGroupSetting.parse(str(data["setting"]))
+    setting = data.get("setting")
+    if isinstance(setting, str) and setting.strip().lower() in ("r", "rhombohedral"):
+        from ..setting import parse_cob
+        sg = resolve_sg(data.get("sg"))
+        if getattr(sg, "number", None) not in _RHOMBO_GROUPS:
+            raise ValueError(
+                "setting R applies to the rhombohedral groups "
+                "146, 148, 155, 160, 161, 166 and 167"
+            )
+        return SpaceGroupSetting(sg, parse_cob(_RHOMBO_COB))
+    if setting:
+        return SpaceGroupSetting.parse(str(setting))
     return resolve_sg(data.get("sg"))
+
+
+def _sg_number(sg):
+    num = getattr(sg, "number", None)
+    if num is None and hasattr(sg, "base"):
+        num = getattr(sg.base, "number", None)
+    return num
+
+
+def _plate_note(n_elements, symbols, projection: str) -> str:
+    shown = ", ".join(symbols) if symbols else "none"
+    return (
+        f"Projection along {projection}. {n_elements} symmetry elements "
+        f"are drawn ({shown}). A height is printed when it is not 0. "
+        f"The partners 1/2 with 0, and 3/4 with 1/4, are left implicit. "
+        f"Wyckoff letters are not assigned."
+    )
 
 
 def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
@@ -226,36 +268,100 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
         raise ValueError("projection must be a, b, or c")
     legend = _as_bool(data.get("legend", False))
     show_centring = _as_bool(data.get("show_centring", False))
+    compact = _as_bool(data.get("compact", False))
     try:
-        from ..cell.diagrams import classify_space_group
-        raw = classify_space_group(sg)
+        from ..cell.diagrams import _element_copies
+        raw = _element_copies(sg)
     except ImportError as exc:
         raise HttpError(503, "ITA plates require matplotlib+numpy (pip install agentsg[plot])") from exc
-    elements = []
-    for el in raw:
-        elements.append({
-            "type": el.get("type"),
-            "symbol": el.get("symbol"),
-            "order": el.get("order"),
-            "xyz": el.get("xyz"),
-            "axis": numpy_vec_to_json(el.get("axis")),
-            "location": numpy_vec_to_json(el.get("location")),
-        })
-    num = getattr(sg, "number", None)
-    if num is None and hasattr(sg, "base"):
-        num = getattr(sg.base, "number", None)
+    elements = _plate_copies(raw)
+    n_total = len(elements)
+    counts = {}
+    for el in elements:
+        counts[el["symbol"]] = counts.get(el["symbol"], 0) + 1
+    if compact:
+        seen = set()
+        reps = []
+        for el in elements:
+            if el["symbol"] in seen:
+                continue
+            seen.add(el["symbol"])
+            reps.append(el)
+        elements = reps
+    num = _sg_number(sg)
     name = getattr(sg, "hermann_mauguin", None) or str(sg)
-    return {
+    symbols = sorted(counts)
+    out = {
         "sg_number": num,
         "sg_hm": name,
+        "sg_hm_2016": _HM_2016.get(num, name),
         "crystal_system": system,
         "projection": projection,
         "legend": legend,
         "show_centring": show_centring,
+        "n_total": n_total,
+        "counts": counts,
         "elements": elements,
         "png_url": f"/v1/ita-plate.png?{png_query}",
-        "note": "Fetch png_url (same bearer token) to display the ITA plate.",
+        "note": _plate_note(n_total, symbols, projection),
     }
+    if compact:
+        out["compact"] = True
+    return out
+
+
+def _plate_copies(raw) -> list[dict[str, Any]]:
+    """Distinct in-cell copies, folding an edge at 1 back onto 0.
+
+    ``_element_copies`` can emit the same axis twice with opposite direction
+    and can leave a boundary location at 1 rather than 0. The plate draws
+    that symbol once per cell face, repeated on the opposite edge.
+    """
+    import numpy as np
+    seen = set()
+    elements = []
+    for el in raw:
+        loc = el.get("location")
+        if loc is None:
+            continue
+        exact_loc = el.get("location_exact")
+        exact_axis = el.get("axis_exact")
+        if exact_loc is not None:
+            loc_a = [float(c) % 1.0 for c in exact_loc]
+            loc_a = [0.0 if c > 1.0 - 1e-9 else c for c in loc_a]
+            lk = tuple(exact_loc)
+        else:
+            loc_a = np.mod(np.asarray(loc, float), 1.0)
+            loc_a = np.where(loc_a > 1.0 - 1e-6, 0.0, loc_a)
+            lk = tuple(round(float(c), 3) for c in loc_a)
+        axis = exact_axis if exact_axis is not None else el.get("axis")
+        if axis is None:
+            ak = None
+        else:
+            axv = [float(c) for c in axis]
+            for component in axv:
+                if abs(component) > 1e-9:
+                    if component < 0:
+                        axv = [-c for c in axv]
+                    break
+            ak = tuple(axv)
+        key = (el.get("type"), el.get("symbol"), ak, lk)
+        if key in seen:
+            continue
+        seen.add(key)
+        item = {
+            "type": el.get("type"),
+            "symbol": el.get("symbol"),
+            "order": el.get("order"),
+            "axis": None if ak is None else list(ak),
+            "location": [float(c) for c in loc_a],
+        }
+        if el.get("contained_in"):
+            item["contained_in"] = el["contained_in"]
+        if el.get("type") == "glide" and el.get("intrinsic_exact") is not None:
+            item["glide"] = [float(c) for c in el["intrinsic_exact"]]
+        elements.append(item)
+    return elements
 
 
 def _as_bool(raw) -> bool:
@@ -437,7 +543,7 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
                               "sg_hm": info["sg_hm"], "cell": info["cell"]})
             enriched.append(rec_h)
         prim = primitive_cell(cell, rec.hermann_mauguin)
-        return {
+        result = {
             "cell": list(cell),
             "sg_number": rec.number,
             "sg_hm": rec.hermann_mauguin,
@@ -449,16 +555,57 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             "count": len(enriched),
             "hits": enriched,
         }
-    if cutoff is None:
-        raise ValueError("provide cutoff (Å) and/or k")
-    return search_compatible(
-        state.db, state.index,
-        cell=cell,
-        cutoff=float(cutoff),
-        sg_number=rec.number,
-        sg_hm=rec.hermann_mauguin,
-        same_hm=same_hm,
+    else:
+        if cutoff is None:
+            raise ValueError("provide cutoff (Å) and/or k")
+        result = search_compatible(
+            state.db, state.index,
+            cell=cell,
+            cutoff=float(cutoff),
+            sg_number=rec.number,
+            sg_hm=rec.hermann_mauguin,
+            same_hm=same_hm,
+        )
+    if _as_bool(data.get("plot", False)):
+        _attach_root_plot(state, result)
+    return result
+
+
+def _attach_root_plot(state, result: dict[str, Any]) -> None:
+    """SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter."""
+    from .scatter import scatter_payload
+
+    hits = result.get("hits") or []
+    roots_by_id = state.db.lookup_roots([h["pdb_id"] for h in hits])
+    kept = []
+    rows = []
+    distances = []
+    for hit in hits:
+        root = roots_by_id.get(hit["pdb_id"])
+        if root is None:
+            continue
+        kept.append(hit)
+        rows.append(root)
+        distances.append(float(hit.get("distance") or 0.0))
+    if len(rows) < 2:
+        result["plot"] = {
+            "n": len(rows),
+            "note": "need at least 2 hits with Kurlin roots",
+        }
+        return
+    payload = scatter_payload(
+        rows,
+        [h["pdb_id"] for h in kept],
+        distances,
+        root_invariant(result["primitive_cell"]),
     )
+    for hit, xy in zip(kept, payload["xy"]):
+        hit["xy"] = xy
+    result["svd"] = payload["svd"]
+    result["query_xy"] = payload["query_xy"]
+    result["plot_png_base64"] = payload["png_base64"]
+    if payload.get("png_error"):
+        result["plot_error"] = payload["png_error"]
 
 
 def pdb_lookup(state, pdb_id: str) -> dict[str, Any]:

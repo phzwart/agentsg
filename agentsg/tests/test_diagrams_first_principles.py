@@ -179,9 +179,9 @@ def test_hexagonal_plane_lines_follow_lattice_directions():
     seen = []
     orig = D.draw_plane_symbol
 
-    def spy(ax, p0, p1, name, _o=orig):
+    def spy(ax, p0, p1, name, _o=orig, **kwargs):
         seen.append((np.asarray(p0, float), np.asarray(p1, float)))
-        return _o(ax, p0, p1, name)
+        return _o(ax, p0, p1, name, **kwargs)
 
     D.draw_plane_symbol = spy
     try:

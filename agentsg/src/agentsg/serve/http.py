@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import json
+import secrets
 import time
 from collections import defaultdict, deque
+from collections.abc import Iterable
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
@@ -62,7 +64,7 @@ _LIST_INT = {"hkl"}
 _LIST_FLOAT = {"cell", "cell_a", "cell_b"}
 _BOOL_KEYS = {
     "legend", "show_centring", "include_sublattices", "include_g6",
-    "same_hm", "same_sg", "maximal",
+    "same_hm", "same_sg", "maximal", "plot",
 }
 _INT_KEYS = {"k"}
 _FLOAT_KEYS = {"cutoff", "max_delta", "length_tol_pct", "angle_tol_deg"}
@@ -120,10 +122,22 @@ def send_text(handler, status: int, text: str, content_type: str = "text/markdow
     send_bytes(handler, status, text.encode(), content_type)
 
 
-def check_bearer(handler, token: str | None) -> str:
-    """Require ``Authorization: Bearer`` when a server token is configured.
+def parse_tokens(raw: str | Iterable[str] | None) -> frozenset[str]:
+    """Split a comma-separated token string into bearer tokens.
 
-    Returns the presented token (or ``anonymous`` if auth is off).
+    Whitespace around each entry is ignored. Empty entries are dropped.
+    """
+    if raw is None:
+        return frozenset()
+    parts = raw.split(",") if isinstance(raw, str) else raw
+    return frozenset(part.strip() for part in parts if str(part).strip())
+
+
+def check_bearer(handler, token: str | Iterable[str] | None) -> str:
+    """Require ``Authorization: Bearer`` when server tokens are configured.
+
+    ``token`` may be one string or several comma-separated values. Any match
+    is accepted. Returns the presented token (or ``anonymous`` if auth is off).
     """
     header = handler.headers.get("Authorization", "")
     presented = ""
@@ -131,8 +145,11 @@ def check_bearer(handler, token: str | None) -> str:
         presented = header[7:].strip()
     elif header.lower().startswith("token "):
         presented = header[6:].strip()
-    if token:
-        if presented != token:
+    allowed = parse_tokens(token)
+    if allowed:
+        if not presented or not any(
+            secrets.compare_digest(presented, item) for item in allowed
+        ):
             raise HttpError(401, "invalid or missing bearer token")
         return presented
     return presented or "anonymous"

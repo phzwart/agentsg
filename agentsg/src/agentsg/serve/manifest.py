@@ -333,6 +333,8 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("cutoff", "float", False, "Radius in Å on the root invariant. Provide cutoff and/or k"),
             _p("k", "int", False, "If set, return this many nearest neighbours"),
             _p("same_hm", "bool", False, "If true, restrict hits to the same Hermann–Mauguin setting"),
+            _p("plot", "bool", False,
+               "If true, SVD the hit Kurlin roots and return a PC1–PC2 scatter PNG"),
         ],
         "example": _curl(
             "/search?a=79&b=79&c=38&alpha=90&beta=90&gamma=90&sg=P212121&cutoff=1.0"
@@ -350,6 +352,8 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("cutoff", "float", False, "Radius in Å. Provide cutoff and/or k"),
             _p("k", "int", False, "Nearest-neighbour count"),
             _p("same_hm", "bool", False, "If true, keep only the same Hermann–Mauguin setting"),
+            _p("plot", "bool", False,
+               "If true, mean-centred SVD of the hit Kurlin roots; response adds xy, svd, and plot_png_base64"),
         ],
         "example": _curl(
             "/v1/pdb/search",

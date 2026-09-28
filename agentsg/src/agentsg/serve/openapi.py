@@ -100,7 +100,7 @@ def build_openapi() -> dict[str, Any]:
                 "bearerAuth": {
                     "type": "http",
                     "scheme": "bearer",
-                    "description": "AGENTSG_TOKEN. Discovery GET routes listed with security: [] are open.",
+                    "description": "Comma-separated AGENTSG_TOKEN values. Discovery GET routes listed with security: [] are open.",
                 }
             },
             "schemas": {

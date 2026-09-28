@@ -13,6 +13,7 @@ from .http import (
     HttpError,
     RateLimiter,
     check_bearer,
+    parse_tokens,
     query_params,
     query_to_body,
     read_json_body,
@@ -38,7 +39,7 @@ class ServerState:
     """Shared process state (optional PDB index)."""
 
     def __init__(self, db_path: str | None, token: str | None):
-        self.token = token or None
+        self.token = parse_tokens(token)
         self.db_path = db_path
         self.db = None
         self.index = None
@@ -46,7 +47,7 @@ class ServerState:
         self.limiter = RateLimiter()
         if db_path and Path(db_path).exists():
             from ..cell.celldb import CellDatabase
-            self.db = CellDatabase(db_path)
+            self.db = CellDatabase(db_path, read_only=True)
             self.index = self.db.build_index()
             self.n_cells = len(self.db)
 
@@ -269,7 +270,7 @@ def _cli(argv=None):
     p.add_argument("--port", type=int,
                    default=int(os.environ.get("AGENTSG_PORT", "8765")))
     p.add_argument("--token", default=os.environ.get("AGENTSG_TOKEN", ""),
-                   help="Bearer token (or AGENTSG_TOKEN)")
+                   help="Comma-separated bearer tokens (or AGENTSG_TOKEN)")
     p.add_argument("--public-url", default=os.environ.get("AGENTSG_PUBLIC_URL", ""),
                    help="Public base URL for docs, OpenAPI, and curl examples")
     p.add_argument("--name", default=os.environ.get("AGENTSG_API_NAME", "agentsg"),
