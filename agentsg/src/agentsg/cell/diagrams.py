@@ -74,17 +74,79 @@ def _resolve_sg(sg):
     return space_group(sg)
 
 
+# Pre-2016 Hermann–Mauguin symbols that the 2016 edition writes with an e glide.
+_HM_2016 = {
+    39: "A e m 2",
+    41: "A e a 2",
+    64: "C m c e",
+    67: "C m m e",
+    68: "C c c e",
+}
+
+
 def _sg_label(sg):
     """(number, name) for the title, robust to SpaceGroup vs SpaceGroupSetting.
 
     A setting has no space-group number of its own (it may not even be one of
     the 230 standard settings); we show its base number and the full
-    'HM (cob)' string it prints as."""
+    'HM (cob)' string it prints as. A standard setting uses the 2016 symbol.
+    """
     num = getattr(sg, "number", None)
     if num is None and hasattr(sg, "base"):
         num = getattr(sg.base, "number", None)
-    name = getattr(sg, "hermann_mauguin", None) or str(sg)
+    raw = getattr(sg, "hermann_mauguin", None)
+    if raw is None:
+        name = str(sg)
+    else:
+        name = _HM_2016.get(num, raw)
     return num, name
+
+
+def _display_hm(name):
+    """Compact a spaced HM symbol and print screw indices as subscripts."""
+    out = []
+    for token in str(name).split():
+        chars = []
+        for i, ch in enumerate(token):
+            prev = token[i - 1] if i else ""
+            if ch.isdigit() and prev.isdigit():
+                chars.append(ch.translate(_SUBDIGIT))
+            else:
+                chars.append(ch)
+        out.append("".join(chars))
+    return "".join(out)
+
+
+# Orthorhombic view -> which old axes become (new a, new b, new c).
+# Projection c keeps the standard symbol. Projection a swaps a with b
+# (Pmc2₁ → Pcm2₁). Projection b swaps b with c (Pmc2₁ → Pm2₁b).
+_ORTHO_SRC = {
+    "c": (0, 1, 2),
+    "a": (1, 0, 2),
+    "b": (0, 2, 1),
+}
+_AXIS_LETTER = {"a": 0, "b": 1, "c": 2}
+_AXIS_NAME = "abc"
+
+
+def _orthorhombic_setting_symbol(symbol, projection):
+    """HM symbol of an orthorhombic group as drawn in ``projection``."""
+    parts = str(symbol).split()
+    if len(parts) != 4 or projection not in _ORTHO_SRC:
+        return symbol
+    lat, fields = parts[0], parts[1:]
+    src = _ORTHO_SRC[projection]
+    dest = [0, 0, 0]
+    for new, old in enumerate(src):
+        dest[old] = new
+    renamed = []
+    for old in src:
+        token = "".join(
+            _AXIS_NAME[dest[_AXIS_LETTER[ch]]] if ch in _AXIS_LETTER else ch
+            for ch in fields[old]
+        )
+        renamed.append(token)
+    return " ".join([lat, *renamed])
 
 
 def _sg_order(sg):
@@ -358,7 +420,7 @@ def general_position_images(sg, projection="c"):
 #   or half arrows lying in the page.
 #
 # Planes perpendicular to the page are drawn as lines:
-#   m -> bold solid, glide a/b/c -> dashed, n -> dot-dash, d -> dotted with arrow.
+#   m -> bold solid, glide a/b/c -> dashed, n and d -> dash-dot, e -> dash-dot-dot.
 # Inversion centre -> small open circle.
 
 _POLY_SIDES = {2: None, 3: 3, 4: 4, 6: 6}  # 2 handled as lens
@@ -448,11 +510,12 @@ def _segment_on_edge(p0, p1, tol=1e-3):
 
 
 def _axis_page_points(el, perm):
-    """Projected (right, down) points where an inclined axis meets the cell.
+    """Where an inclined axis meets the drawing plane, as (right, down) and depth.
 
-    The stored location is one point of the line. Stepping by 1/order along
-    the axis visits the other heights in the same cell, so a 3-fold drawn at
-    (1/3, 1/3) also appears at the image (2/3, 2/3).
+    ITA marks an inclined axis by the dot where it cuts the plane of the
+    diagram at height 0 (Volume A, §1.4.7). One axis therefore contributes one
+    point. The stored location is some other point of the same line; stepping
+    along it would pile a symbol at every z = 1/3 and z = 2/3 crossing.
     """
     loc_e = el.get("location_exact")
     ax_e = el.get("axis_exact")
@@ -463,19 +526,29 @@ def _axis_page_points(el, perm):
                  float(v[2] % 1.0))]
     loc = [Fraction(c) for c in loc_e]
     axis = [int(a) for a in ax_e]
-    n = max(int(el.get("order") or 1), 1)
-    out = []
-    seen = set()
-    for j in range(n):
-        p = [(loc[i] + Fraction(j, n) * axis[i]) % 1 for i in range(3)]
-        v = _perm_vec([float(c) for c in p], perm)
-        rd = (float(v[1] % 1.0), float(v[0] % 1.0))
-        key = (round(rd[0], 3), round(rd[1], 3))
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append((rd, float(v[2] % 1.0)))
-    return out
+    depth_i = perm[2]
+    ad = axis[depth_i]
+    if ad == 0:
+        p = loc
+    else:
+        t = -loc[depth_i] / ad
+        p = [(loc[i] + t * axis[i]) % 1 for i in range(3)]
+    v = _perm_vec([float(c) for c in p], perm)
+    rd = (float(v[1] % 1.0), float(v[0] % 1.0))
+    return [(rd, float(v[2] % 1.0))]
+
+
+def _same_trace(origin, direction, other_origin, other_direction, tol=0.02):
+    """True when two fractional lines are the same trace in the page."""
+    d = np.asarray(direction, float)
+    e = np.asarray(other_direction, float)
+    dn = np.linalg.norm(d) or 1.0
+    en = np.linalg.norm(e) or 1.0
+    d, e = d / dn, e / en
+    if abs(d[0] * e[1] - d[1] * e[0]) > 1e-3:
+        return False
+    delta = np.asarray(origin, float) - np.asarray(other_origin, float)
+    return abs(delta[0] * e[1] - delta[1] * e[0]) < tol
 
 
 def _glyph_halo():
@@ -567,7 +640,9 @@ def _draw_screw_tails(ax, xy, order, k, size):
     """
     n = order
     handed = (n / 2.0) - k           # >0 right, <0 left, 0 neutral
-    L = size * 1.7
+    # Proportional to the polygon, so a dense cubic plate keeps each hook on
+    # its own glyph and the legend copies still stop short of the caption.
+    L = size * 1.65
     # The hook DIRECTION (sign of `handed`) encodes handedness and its LENGTH
     # encodes the screw magnitude |handed|. A solid base length keeps even the
     # smallest chiral hook (|handed|=1, e.g. 6_2) clearly visible, while the
@@ -580,7 +655,7 @@ def _draw_screw_tails(ax, xy, order, k, size):
         base = _as_on_plate(ax, xy, np.array(xy) + rad * size)
         tip = _as_on_plate(ax, xy, np.array(xy) + rad * (size + L))
         _ink(ax, [base[0], tip[0]], [base[1], tip[1]], color="k",
-             lw=1.0, zorder=7.5, solid_capstyle="round")
+             lw=1.0, zorder=8.5, solid_capstyle="round")
         if abs(handed) > 1e-6:
             hook_len = L * (0.35 + 0.32 * abs(handed))
             tang = np.array([-rad[1], rad[0]]) * np.sign(handed)
@@ -595,7 +670,7 @@ def _draw_screw_tails(ax, xy, order, k, size):
             flag = _as_on_plate(
                 ax, xy, np.array(xy) + rad * (size + L) + tang * (L * 0.55))
         _ink(ax, [tip[0], flag[0]], [tip[1], flag[1]], color="k",
-             lw=1.0, zorder=7.5, solid_capstyle="round")
+             lw=1.0, zorder=8.5, solid_capstyle="round")
 
 
 def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
@@ -609,9 +684,8 @@ def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
     fc = "white" if rotoinv else "k"
     ec = "k"
     # order-2 screw (2_1) gets tails PERPENDICULAR to the lens long axis so
-    # they are visible past the pointed oval; other screws use the pinwheel.
-    if screw_k and order != 2:
-        _draw_screw_tails(ax, xy, order, screw_k, size)
+    # they are visible past the pointed oval; other screws use the pinwheel,
+    # drawn after the polygon so the glyph does not cover the hooks.
     if order == 2 and not rotoinv:
         _draw_lens(ax, xy, size * 1.3, fc=fc, ec=ec, lw=1.0, zorder=7.5)
         if screw_k:
@@ -633,6 +707,8 @@ def draw_axis_symbol(ax, xy, order, screw_k=0, rotoinv=False, size=0.035):
     elif rotoinv:
         _draw_regular_polygon(ax, xy, abs(order), size, filled=False,
                               ec=ec, lw=1.0, zorder=7.5)
+    if screw_k and order != 2:
+        _draw_screw_tails(ax, xy, order, screw_k, size)
     # -6 is an open hexagon. The inversion dot belongs on -3 and -4 only.
     if rotoinv and order != 6:
         dot, = ax.plot(xy[0], xy[1], "o", ms=3, mfc="white", mec="k",
@@ -682,7 +758,7 @@ def _draw_combined_axis(ax, xy, max_rot, rot_k, roto, size=0.035,
 
 
 def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
-                               glide_dir=None):
+                               glide_dir=None, glide_dirs=None):
     """ITA symbol for a plane PARALLEL to the page (normal perpendicular to the
     projection): a right-angle bracket in a cell corner, drawn with SOLID legs.
 
@@ -718,31 +794,70 @@ def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
     ax.plot([x0, x0], [y0, y0 + ys * size], color="k", lw=1.6, zorder=6)
     if name == "m":
         return
-    # glide_dir is in the caller's data frame (x=right, y in the axis' own
-    # sense). On an upright axis the data-y component is flipped so the arrow
-    # points the same way on screen as it does on the plate, where y runs down.
-    # The sign of the reduced glide is kept.
-    if glide_dir is None:
-        du = _np.array([1.0, -ys])
+    # One arrow, or both axial halves of an e glide.
+    if glide_dirs:
+        directions = list(glide_dirs)
+    elif glide_dir is not None:
+        directions = [glide_dir]
     else:
-        gd = _np.asarray(glide_dir, float)
-        du = _np.array([gd[0], ys * gd[1]])
-    nrm = _np.hypot(*du)
-    du = du / nrm if nrm > 1e-9 else _np.array([1.0, -ys])
-    base = _np.array([x0 + size * 0.25, y0 + ys * size * 0.25])
-    tip = base + du * size * 0.85
-    astyle = "-|>" if name in ("a", "b", "c", "d") else "->"
-    shaft_lw = 1.0 if name != "d" else 0.8
-    ax.annotate("", xy=tuple(tip), xytext=tuple(base),
-                arrowprops=dict(arrowstyle=astyle, color="k", lw=shaft_lw),
-                zorder=6)
-    if name == "d":
-        # d-glide: quarter-glide tick across the shaft midpoint
-        mid = 0.5 * (base + tip)
-        perp = _np.array([-du[1], du[0]]) * size * 0.12
-        ax.plot([mid[0] - perp[0], mid[0] + perp[0]],
-                [mid[1] - perp[1], mid[1] + perp[1]],
-                color="k", lw=1.0, zorder=6)
+        directions = [None]
+    for gd in directions:
+        # glide_dir is in the caller's data frame (x=right, y in the axis' own
+        # sense). On an upright axis the data-y component is flipped so the
+        # arrow points the same way on screen as it does on the plate.
+        if gd is None:
+            du = _np.array([1.0, -ys])
+        else:
+            gd = _np.asarray(gd, float)
+            du = _np.array([gd[0], ys * gd[1]])
+        nrm = _np.hypot(*du)
+        du = du / nrm if nrm > 1e-9 else _np.array([1.0, -ys])
+        base = _np.array([x0 + size * 0.25, y0 + ys * size * 0.25])
+        tip = base + du * size * 0.85
+        astyle = "-|>" if name in ("a", "b", "c", "d", "e") else "->"
+        shaft_lw = 1.0 if name != "d" else 0.8
+        ax.annotate("", xy=tuple(tip), xytext=tuple(base),
+                    arrowprops=dict(arrowstyle=astyle, color="k", lw=shaft_lw),
+                    zorder=6)
+        if name == "d":
+            # d-glide: quarter-glide tick across the shaft midpoint
+            mid = 0.5 * (base + tip)
+            perp = _np.array([-du[1], du[0]]) * size * 0.12
+            ax.plot([mid[0] - perp[0], mid[0] + perp[0]],
+                    [mid[1] - perp[1], mid[1] + perp[1]],
+                    color="k", lw=1.0, zorder=6)
+
+
+def _separate_overlapping_labels(ax, rounds=6):
+    """Nudge text labels whose boxes overlap. Used on the dense cubic plates."""
+    fig = ax.figure
+    if fig is None or not ax.texts:
+        return
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    texts = [t for t in ax.texts if t.get_text().strip()]
+    for _ in range(rounds):
+        fig.canvas.draw()
+        boxes = []
+        for t in texts:
+            try:
+                boxes.append(t.get_window_extent(renderer).expanded(1.05, 1.15))
+            except Exception:
+                boxes.append(None)
+        moved = False
+        for i, bi in enumerate(boxes):
+            if bi is None:
+                continue
+            for j in range(i + 1, len(boxes)):
+                bj = boxes[j]
+                if bj is None or not bi.overlaps(bj):
+                    continue
+                x, y = texts[j].get_position()
+                texts[j].set_position((x + 0.045, y + 0.03))
+                moved = True
+                break
+        if not moved:
+            break
 
 
 def draw_inversion(ax, xy, size=0.012):
@@ -757,8 +872,8 @@ _PLANE_STYLE = {
     "b": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
     "c": dict(ls=(0, (1, 1.6)), lw=1.4, color="k"),        # dotted
     "n": dict(ls=(0, (6, 2, 1, 2)), lw=1.3, color="k"),    # dash-dot
-    "d": dict(ls=(0, (6, 2, 1, 2, 1, 2)), lw=1.3, color="k"),  # dash-dot-dot
-    "e": dict(ls=(0, (4, 1.5, 1, 1.5, 1, 1.5)), lw=1.3, color="k"),
+    "d": dict(ls=(0, (6, 2, 1, 2)), lw=1.3, color="k"),    # dash-dot, plus arrow
+    "e": dict(ls=(0, (6, 2, 1, 2, 1, 2)), lw=1.3, color="k"),  # dash-dot-dot
     "g": dict(ls=(0, (6, 3)), lw=1.3, color="k"),
 }
 
@@ -995,7 +1110,8 @@ def best_general_point(sg, n_grid=5, projection="c"):
     return result
 
 
-def _draw_split_circle(ax, center, members, radius=0.042):
+def _draw_split_circle(ax, center, members, radius=0.042, fontsize=6,
+                       draw_labels=True):
     """One circle split by a vertical diameter, for two heights at one spot.
 
     The positive-sense label sits to the left of the circle and the other to
@@ -1006,15 +1122,17 @@ def _draw_split_circle(ax, center, members, radius=0.042):
     ax.add_patch(Circle((cx, cy), radius, facecolor="white", edgecolor="k",
                         lw=1.0, zorder=3))
     ax.plot([cx, cx], [cy - radius, cy + radius], color="k", lw=0.7, zorder=4)
+    if not draw_labels:
+        return
     left, right = members
     if right[0][1] > left[0][1]:
         left, right = right, left
     right_txt = right[1]
     if left[2] < 0 or right[2] < 0:
         right_txt = "," + right_txt
-    ax.text(cx - radius - 0.012, cy, left[1], fontsize=6, ha="right",
+    ax.text(cx - radius - 0.012, cy, left[1], fontsize=fontsize, ha="right",
             va="center", zorder=5)
-    ax.text(cx + radius + 0.012, cy, right_txt, fontsize=6, ha="left",
+    ax.text(cx + radius + 0.012, cy, right_txt, fontsize=fontsize, ha="left",
             va="center", zorder=5)
 
 
@@ -1056,6 +1174,31 @@ def general_position_diagram(sg, ax=None, point=None,
 
     frame.draw_cell(ax)
 
+    if _crystal_system(sg) == "cubic":
+        drawn = _draw_cubic_polyhedra(ax, sg, frame, perm)
+        xs = [c[0] for c in frame.corners] + [p[0] for p in drawn]
+        ys = [c[1] for c in frame.corners] + [p[1] for p in drawn]
+        pad = 0.08
+        xl = (min(xs) - pad, max(xs) + pad)
+        yl = (max(ys) + pad, min(ys) - pad)
+        ax.set_xlim(*xl)
+        ax.set_ylim(*yl)
+        ax.set_aspect("equal")
+        ax.axis("off")
+        frame.label_axes(ax, dlab, rlab)
+        if show_title:
+            num2, name = _sg_label(sg)
+            pfx = f"#{num2}  " if num2 is not None else ""
+            ax.set_title(f"{pfx}{_display_hm(name)}", fontsize=8)
+        return ax
+
+    # Half-cell lines. The cubic polyhedra above are not given this grid.
+    for u in (0.5,):
+        for a, b in (((u, 0.0), (u, 1.0)), ((0.0, u), (1.0, u))):
+            p0, p1 = frame.pt(a), frame.pt(b)
+            ax.plot([p0[0], p1[0]], [p0[1], p1[1]], color="0.75", lw=0.4,
+                    zorder=0)
+
     # collect distinct points first, then group by (x,y) so coincident
     # projections (different heights) can be drawn as ITA split circles.
     # The height label is exact: coef * z + t read off the operation.
@@ -1070,7 +1213,8 @@ def general_position_diagram(sg, ax=None, point=None,
         for tx in (-1, 0, 1):
             for ty in (-1, 0, 1):
                 p = base + np.array([tx, ty, 0.0])
-                if not (-0.03 <= p[0] <= 1.03 and -0.03 <= p[1] <= 1.03):
+                # Images ITA draws just outside the cell, not a full extra cell.
+                if not (-0.16 <= p[0] <= 1.16 and -0.16 <= p[1] <= 1.16):
                     continue
                 key = (round(p[0], 3), round(p[1], 3), label, det)
                 if key in seen:
@@ -1105,8 +1249,9 @@ def general_position_diagram(sg, ax=None, point=None,
                 ax.text(ox, oy, ",", fontsize=8, zorder=4,
                         ha="center", va="center")
 
-    # a down, b right, origin top-left
-    xl, yl = frame.limits(0.12)
+    # a down, b right, origin top-left. The pad keeps the images that sit
+    # just outside the cell inside the axes.
+    xl, yl = frame.limits(0.22)
     ax.set_xlim(*xl)
     ax.set_ylim(*yl)
     ax.set_aspect("equal")
@@ -1115,16 +1260,363 @@ def general_position_diagram(sg, ax=None, point=None,
     if show_title:
         num, name = _sg_label(sg)
         pfx = f"#{num}  " if num is not None else ""
-        ax.set_title(f"{pfx}{name}", fontsize=8)
+        ax.set_title(f"{pfx}{_display_hm(name)}", fontsize=8)
     return ax
+
+
+def _crystal_system(sg):
+    system = getattr(sg, "crystal_system", None)
+    if system is None and hasattr(sg, "base"):
+        system = getattr(sg.base, "crystal_system", None)
+    return str(system or "").lower()
+
+
+def _sg_number(sg):
+    n = getattr(sg, "number", None)
+    if n is None and hasattr(sg, "base"):
+        n = getattr(sg.base, "number", None)
+    return n
 
 
 def _hexagonal_family(sg):
     """Trigonal and hexagonal groups use the glide letter g, not n."""
-    system = getattr(sg, "crystal_system", None)
-    if system is None and hasattr(sg, "base"):
-        system = getattr(sg.base, "crystal_system", None)
-    return str(system or "").lower() in ("trigonal", "hexagonal")
+    return _crystal_system(sg) in ("trigonal", "hexagonal")
+
+
+def _stabilizer(ops, centre, tol=1e-5):
+    """Operations that fix ``centre`` (torus distance)."""
+    H = []
+    c = np.asarray(centre, float)
+    for W, w, det in ops:
+        img = np.asarray(W, float) @ c + np.asarray(w, float) - c
+        img = img - np.round(img)
+        if float(np.linalg.norm(img)) < tol:
+            H.append((np.asarray(W, float), np.asarray(w, float), det))
+    return H
+
+
+def _highest_site(ops):
+    """The point fixed by the largest subgroup, nearest the origin on a tie."""
+    coords = (0.0, 0.125, 0.25, 1.0 / 3.0, 0.375, 0.5, 0.625, 2.0 / 3.0,
+              0.75, 0.875)
+    best, best_key = np.zeros(3), (-1, 0.0)
+    for x in coords:
+        for y in coords:
+            for z in coords:
+                c = np.array([x, y, z])
+                n = len(_stabilizer(ops, c))
+                d = float(np.linalg.norm(np.minimum(c, 1.0 - c)))
+                key = (n, -d)
+                if key > best_key:
+                    best_key, best = key, c
+    return best
+
+
+def _polyhedron_seed(sg):
+    """A general point about 0.09 from the highest-symmetry site.
+
+    The site-group orbit of a point this close is a compact polyhedron, about
+    a quarter of the gap between neighbouring centres, instead of a hull that
+    reaches across the cell and buries the corner labels.
+    """
+    c = _highest_site(_sg_ops(sg))
+    offset = np.array([0.072, 0.048, 0.034])
+    return (np.asarray(c, float) + offset) % 1.0
+
+
+def _polyhedron_sets(sg, point, projection="c"):
+    """One polyhedron per image of the highest-symmetry site.
+
+    Each vertex is a general-position image, kept with its centre (within half
+    a cell) so the hull is not torn by folding coordinates one at a time.
+    Vertices carry the ITA height label and the sign of the operation.
+    """
+    ops = _sg_ops(sg)
+    c = _highest_site(ops)
+    centres, seen_c = [], set()
+    for W, w, _det in ops:
+        img = (np.asarray(W, float) @ c + np.asarray(w, float)) % 1.0
+        key = tuple(np.round(img, 5))
+        if key not in seen_c:
+            seen_c.add(key)
+            centres.append(img)
+    groups = [[] for _ in centres]
+    x = np.asarray(point, float)
+    for coef, t, coord, Wi, wi in general_position_images(sg, projection):
+        W = np.asarray(Wi, float)
+        w = np.array([float(v) for v in wi])
+        xyz = W @ x + w
+        best_i, best_r, best_d = 0, xyz - centres[0], 1e9
+        for i, centre in enumerate(centres):
+            r = xyz - centre
+            r = r - np.round(r)
+            dist = float(np.dot(r, r))
+            if dist < best_d:
+                best_i, best_r, best_d = i, r, dist
+        det = int(round(np.linalg.det(W)))
+        groups[best_i].append((
+            centres[best_i] + best_r,
+            height_label(coef, t, coord),
+            det,
+        ))
+    return list(zip(centres, groups))
+
+
+def _edge_translates(centre, perm):
+    """Lattice shifts that repeat a boundary centre onto the far cell edge.
+
+    A centre at x = 0 is also drawn at x = 1, and the same for y. The depth
+    axis is not repeated: that coordinate is the height, not a page edge.
+    """
+    options = [[0.0], [0.0], [0.0]]
+    for axis in (perm[0], perm[1]):
+        folded = float(centre[axis]) % 1.0
+        if min(folded, 1.0 - folded) < 1e-3:
+            options[axis] = [0.0, 1.0]
+    shifts = []
+    for a in options[0]:
+        for b in options[1]:
+            for c in options[2]:
+                shifts.append(np.array([a, b, c], float))
+    return shifts
+
+
+def _hull_polygon(pts2):
+    """2D convex hull as an (n, 2) array, or None when the points are flat."""
+    from scipy.spatial import ConvexHull
+    arr = np.unique(np.round(np.asarray(pts2, float), 5), axis=0)
+    if len(arr) < 3:
+        return None
+    try:
+        hull = ConvexHull(arr)
+    except Exception:
+        return None
+    return arr[hull.vertices]
+
+
+def _draw_polyhedron_faces(ax, pts2, fc, zorder=2):
+    from matplotlib.patches import Polygon
+    hull = _hull_polygon(pts2)
+    if hull is None:
+        if len(pts2) >= 2:
+            ax.plot([p[0] for p in pts2], [p[1] for p in pts2],
+                    color="k", lw=0.6, zorder=zorder + 1)
+        return
+    ax.add_patch(Polygon(hull, closed=True, facecolor=fc, edgecolor="k",
+                         lw=0.6, zorder=zorder))
+
+
+def _draw_position_mark(ax, xy, det):
+    """Open circle at a general position, with a comma for the opposite hand."""
+    ax.plot(xy[0], xy[1], "o", ms=4.5, mfc="white", mec="k", mew=0.6, zorder=4)
+    if det < 0:
+        ax.text(xy[0], xy[1], ",", fontsize=6, zorder=5, ha="center", va="center")
+
+
+def _corner_buckets(marks, tol=0.008):
+    """Group corners that project on top of each other.
+
+    A cubic orbit often puts two vertices a hundredth of the cell apart.
+    One circle and a radial stack of labels reads; two labels side by side
+    print as ``½+½,½−``.
+    """
+    buckets = []
+    centres = []
+    for xy, label, det in marks:
+        xy = np.asarray(xy, float)
+        placed = False
+        for i, centre in enumerate(centres):
+            if float(np.linalg.norm(xy - centre)) <= tol:
+                buckets[i].append((label, det, xy))
+                placed = True
+                break
+        if not placed:
+            centres.append(xy)
+            buckets.append([(label, det, xy)])
+    return buckets
+
+
+def _layout_outward_labels(centre_xy, spots, gap=0.055, min_sep=0.040):
+    """Place each corner's labels outside the hull, then ease overlaps apart.
+
+    ``spots`` is a list of ``(spot, [labels])``. Labels of one corner stay on
+    the ray from the polyhedron centre; a neighbour that lands on the same
+    point is pushed sideways until the captions no longer touch.
+    """
+    centre_xy = np.asarray(centre_xy, float)
+    items = []
+    for spot, labels in spots:
+        away = np.asarray(spot, float) - centre_xy
+        nrm = float(np.linalg.norm(away))
+        away = away / nrm if nrm > 1e-6 else np.array([0.0, -1.0])
+        for i, label in enumerate(labels):
+            items.append({
+                "pos": np.asarray(spot, float) + away * (gap + 0.022 * i),
+                "away": away,
+                "text": label,
+            })
+    for _ in range(14):
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                delta = items[j]["pos"] - items[i]["pos"]
+                dist = float(np.linalg.norm(delta))
+                if dist >= min_sep:
+                    continue
+                if dist < 1e-6:
+                    delta = np.array([min_sep, 0.0])
+                    dist = min_sep
+                push = (min_sep - dist) / 2.0 * delta / dist
+                items[i]["pos"] = items[i]["pos"] - push
+                items[j]["pos"] = items[j]["pos"] + push
+    return items
+
+
+def _outward_align(away):
+    """Anchor the caption on its inner edge, so the letters grow away from the hull.
+
+    These axes run y down the page, so a positive data-y step is toward the
+    bottom of the figure and the text has to hang that way.
+    """
+    ax_, ay = float(away[0]), float(away[1])
+    if abs(ax_) >= abs(ay):
+        return ("left" if ax_ > 0 else "right"), "center"
+    return "center", ("top" if ay > 0 else "bottom")
+
+
+def _draw_outward_labels(ax, centre_xy, spots, gap=0.045, fontsize=4.5, min_sep=0.032):
+    anchors = []
+    for item in _layout_outward_labels(centre_xy, spots, gap=gap, min_sep=min_sep):
+        pos = item["pos"]
+        ha, va = _outward_align(item["away"])
+        ax.text(float(pos[0]), float(pos[1]), item["text"], fontsize=fontsize,
+                zorder=5, ha=ha, va=va)
+        anchors.append((float(pos[0]), float(pos[1])))
+    return anchors
+
+
+def _draw_cubic_polyhedra(ax, sg, frame, perm):
+    """Orthogonal polyhedra over the closed cell, with a circle at each corner.
+
+    Centres on the boundary are repeated at the opposite edge, so an F lattice
+    projected down c shows the whole half-grid, including x = 1 and y = 1.
+    The representative point is the compact seed near the highest site, so
+    neighbouring hulls stay apart. Returns the plot-space points the axes
+    must keep inside the frame.
+    """
+    proj_name = next(name for name, (p, *_) in _PROJ.items() if tuple(p) == tuple(perm))
+    sets = _polyhedron_sets(sg, _polyhedron_seed(sg), projection=proj_name)
+    # Two centres that differ only in the depth (a 3-fold and the same axis
+    # half a cell along c) project to one polyhedron. Drawing both stacks
+    # the captions. The heights stay, as the corner labels.
+    merged = {}
+    order = []
+    for centre, items in sets:
+        c = np.asarray(centre, float)
+        key = (round(float(c[perm[1]]) % 1.0, 3), round(float(c[perm[0]]) % 1.0, 3))
+        slot = merged.get(key)
+        if slot is None:
+            merged[key] = [c, list(items)]
+            order.append(key)
+        else:
+            slot[1].extend(items)
+    sets = [(merged[k][0], merged[k][1]) for k in order]
+    fc = (0.25, 0.45, 0.75, 0.18)
+    drawn = []
+
+    for centre, items in sets:
+        if not items:
+            continue
+        for shift in _edge_translates(centre, perm):
+            marks = []
+            for xyz, label, det in items:
+                q = _perm_vec(np.asarray(xyz, float) + shift, perm)
+                xy = frame.pt((q[1], q[0]))
+                marks.append((xy, label, det))
+            _draw_polyhedron_faces(ax, [m[0] for m in marks], fc)
+            centre_xy = frame.pt((
+                float((centre + shift)[perm[1]]),
+                float((centre + shift)[perm[0]]),
+            ))
+            spots = []
+            for members in _corner_buckets(marks):
+                xy = members[0][2]
+                spot = (float(xy[0]), float(xy[1]))
+                uniq = []
+                for lab, det, _xy in members:
+                    if not any(lab == u[0] for u in uniq):
+                        uniq.append((lab, det))
+                if len(uniq) == 2:
+                    _draw_split_circle(
+                        ax, spot,
+                        [((0, 0), uniq[0][0], uniq[0][1]),
+                         ((0, 1), uniq[1][0], uniq[1][1])],
+                        radius=0.010, fontsize=5, draw_labels=False)
+                else:
+                    det = -1 if any(d < 0 for _lab, d in uniq) else 1
+                    _draw_position_mark(ax, spot, det)
+                drawn.append(spot)
+                spots.append((spot, [lab for lab, _d in uniq]))
+            drawn.extend(_draw_outward_labels(ax, centre_xy, spots))
+    return drawn
+
+
+def _draw_cubic_perspective(ax, sg, point=None):
+    """Cabinet view of the same polyhedra, with a circle and height at each corner."""
+    if point is None:
+        point = _polyhedron_seed(sg)
+    sets = _polyhedron_sets(sg, point, projection="c")
+    fc = (0.25, 0.45, 0.75, 0.22)
+
+    def cabinet(p):
+        p = np.asarray(p, float)
+        return np.array([p[0] + 0.35 * p[2], p[1] + 0.22 * p[2]])
+
+    pts = []
+    # In-cell centres only. The orthogonal plate repeats the boundary ones at
+    # x = 1 and y = 1; repeating them here drops a second copy outside the cube.
+    for centre, items in sets:
+        if not items:
+            continue
+        face = []
+        labelled = []
+        for xyz, label, det in items:
+            xy = cabinet(np.asarray(xyz, float))
+            face.append(xy)
+            labelled.append((xy, label, det))
+        _draw_polyhedron_faces(ax, face, fc)
+        pts.extend(face)
+        centre_xy = cabinet(np.asarray(centre, float))
+        spots = []
+        for members in _corner_buckets(labelled):
+            spot = (float(members[0][2][0]), float(members[0][2][1]))
+            uniq = []
+            for lab, det, _xy in members:
+                if not any(lab == u[0] for u in uniq):
+                    uniq.append((lab, det))
+            det = -1 if any(d < 0 for _lab, d in uniq) else 1
+            _draw_position_mark(ax, spot, det)
+            pts.append(spot)
+            spots.append((spot, [lab for lab, _d in uniq]))
+        pts.extend(_draw_outward_labels(
+            ax, centre_xy, spots, gap=0.04, fontsize=4))
+    corners = {(i, j, k): cabinet([i, j, k])
+               for i in (0, 1) for j in (0, 1) for k in (0, 1)}
+    for i, j, k in corners:
+        for step in ((1, 0, 0), (0, 1, 0), (0, 0, 1)):
+            nb = (i + step[0], j + step[1], k + step[2])
+            if nb in corners:
+                a, b = corners[(i, j, k)], corners[nb]
+                ax.plot([a[0], b[0]], [a[1], b[1]], color="0.25", lw=0.8,
+                        zorder=3)
+                pts.extend((a, b))
+    if pts:
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        pad = 0.08
+        ax.set_xlim(min(xs) - pad, max(xs) + pad)
+        ax.set_ylim(max(ys) + pad, min(ys) - pad)
+    ax.set_aspect("equal")
+    ax.axis("off")
 
 
 def _element_lattice(sg):
@@ -1214,17 +1706,26 @@ def _mark_contained_axes(elements):
     """
     groups = {}
     for el in elements:
-        if el["type"] not in ("rotation", "screw"):
+        if el["type"] not in ("rotation", "screw", "rotoinversion"):
             continue
         key = (_axis_sign_key(el.get("axis_exact")), el.get("location_exact"))
         groups.setdefault(key, []).append(el)
     for group in groups.values():
-        host = next((el for el in group if el["order"] == 6), None)
-        if host is None:
+        host = next((el for el in group
+                     if el["type"] in ("rotation", "screw") and el["order"] == 6),
+                    None)
+        if host is not None:
+            for el in group:
+                if el["type"] in ("rotation", "screw") and el["order"] in (2, 3):
+                    el["contained_in"] = host["symbol"]
             continue
-        for el in group:
-            if el["order"] in (2, 3):
-                el["contained_in"] = host["symbol"]
+        # A 3 or 3_n on the same axis as a -3 is the proper part of that
+        # rotoinversion. Keep it in the list; the plate draws the -3 only.
+        if any(el["type"] == "rotoinversion" and el["symbol"] == "-3"
+               for el in group):
+            for el in group:
+                if el["type"] in ("rotation", "screw") and el["order"] == 3:
+                    el["contained_in"] = "-3"
     return elements
 
 
@@ -1344,7 +1845,7 @@ def _frac_str(x, tol=1e-3):
 
 def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                              full_cell=True, show_general_positions=False,
-                             show_centring=False):
+                             show_centring=False, mark_origin=False):
     """Draw the ITA symmetry-element diagram.
 
     Parameters
@@ -1404,7 +1905,21 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     # Establish the inverted y-axis (a' down the page, ITA convention) BEFORE
     # drawing, so orientation-aware glyphs (the parallel-plane corner bracket)
     # detect the correct screen sense at draw time.
+    parallel_syms = []
+    for el in els:
+        axis = el.get("axis")
+        if el["type"] in ("mirror", "glide") and axis is not None \
+                and _dir_class(_perm_vec(axis, perm)) == "c" \
+                and el["symbol"] not in parallel_syms:
+            parallel_syms.append(el["symbol"])
     xl, yl = frame.limits(0.24)
+    if parallel_syms:
+        # Room above and left of the cell for the nested corner brackets.
+        left = min(c[0] for c in frame.corners)
+        top = min(c[1] for c in frame.corners)
+        reach = 0.46 + 0.10 * (len(parallel_syms) - 1)
+        xl = (min(xl[0], left - reach), xl[1])
+        yl = (yl[0], min(yl[1], top - 0.28))
     ax.set_xlim(*xl)
     ax.set_ylim(*yl)
 
@@ -1518,6 +2033,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     inplane_higher = []
 
     parallel_planes_drawn = set()   # planes parallel to the page (corner glyph)
+    plane_traces = []               # (origin, direction) of planes ⊥ page
     for el in els:
         t = el["type"]
         loc = el["location"]
@@ -1580,6 +2096,7 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     raw = el.get("intrinsic")
                     if raw is not None:
                         gdir = frame.vec(frac_dir(np.asarray(raw, float)))
+                plane_traces.append((np.asarray(P(loc), float), np.asarray(d, float)))
                 draw_line_family(
                     P(loc), d,
                     lambda p0, p1, _dp, _s=sym, _g=gdir:
@@ -1596,22 +2113,30 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 # distinct plane symbol. The glide type is read off the arrow
                 # (the in-plane projection of the glide vector), not the legs.
                 if el["symbol"] not in parallel_planes_drawn:
-                    slot = len(parallel_planes_drawn)
-                    gdir = None
-                    intr = el.get("intrinsic")
-                    if intr is not None:
-                        # frame.vec returns a plot-space direction in the SAME data frame
-                        # the symbol draws in (y increases downward), so pass it
-                        # straight through -- no sign flip.
-                        gdir = frame.vec(_cell_edge_sense(
-                            frac_dir(np.asarray(intr, float))))
-                    # Low in the cell, clear of the origin, the 2₁ on y=0,
-                    # and the lens near (1/2, 1/4).
-                    corner = (0.10 + 0.36 * slot, 0.68)
+                    slot = parallel_syms.index(el["symbol"])
+                    raws = el.get("_glide_raws") if el["symbol"] == "e" else None
+                    sources = list(raws) if raws else []
+                    if not sources and el.get("intrinsic") is not None:
+                        sources = [el["intrinsic"]]
+                    gdirs = [
+                        frame.vec(_cell_edge_sense(
+                            frac_dir(np.asarray(raw, float))))
+                        for raw in sources
+                    ]
+                    # Nested at one point outside the cell, above and left of
+                    # the origin. Every bracket shares that corner; the first
+                    # symbol is the inner one.
+                    left = min(c[0] for c in frame.corners)
+                    top = min(c[1] for c in frame.corners)
+                    # Small enough that the glide arrow stops short of the
+                    # corner symbol, and far enough left to stay outside it.
+                    outer = 0.10 + 0.045 * (len(parallel_syms) - 1)
+                    size = 0.10 + 0.045 * slot
+                    corner = (left - 0.28 - outer, top - 0.10)
                     draw_parallel_plane_symbol(
                         ax, el["symbol"],
                         corner=corner,
-                        size=0.16, glide_dir=gdir)
+                        size=size, glide_dirs=gdirs or None)
                     parallel_planes_drawn.add(el["symbol"])
                     cap = _height_caption(
                         float(np.asarray(other["location"], float)[perm[2]]) % 1.0
@@ -1620,23 +2145,46 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                         and other["symbol"] == el["symbol"]
                         and dcls(other["axis"]) == "c")
                     if cap:
-                        ax.text(corner[0] + 0.18, corner[1], cap, fontsize=6,
-                                zorder=8, ha="left", va="center")
+                        ax.text(corner[0] - 0.03, corner[1] + size * 0.45, cap,
+                                fontsize=6, zorder=8, ha="right", va="center")
             else:
                 omitted += 1
             continue
 
-    def draw_axis_line(p0, p1, full, half, key, on_edge):
+    drawn_heads = set()
+
+    def _one_head(tip, outward, full, size):
+        """One arrowhead. A second head at the same point and sense is dropped."""
+        tip = np.asarray(tip, float)
+        outward = np.asarray(outward, float)
+        key = (round(float(tip[0]), 2), round(float(tip[1]), 2),
+               round(float(outward[0]), 1), round(float(outward[1]), 1),
+               bool(full))
+        if key in drawn_heads:
+            return
+        # A second head of the same kind whose tip lands on this one is the
+        # same edge drawn twice (a lattice copy, or two segments that meet).
+        for prev in drawn_heads:
+            if prev[4] != bool(full):
+                continue
+            if abs(prev[0] - key[0]) <= 0.04 and abs(prev[1] - key[1]) <= 0.04:
+                if prev[2] == key[2] and prev[3] == key[3]:
+                    return
+        drawn_heads.add(key)
+        _draw_inplane_arrowhead(ax, tip, outward, full=full, size=size)
+
+    def draw_axis_line(p0, p1, full, half, key, stub):
         """Arrowheads at both ends of an in-plane axis.
 
-        An axis that lies on the cell edge is a short stub just outside the
-        frame, so it clears the corner 2-fold. A diagonal or hexagonal axis
-        is the whole clipped trace, so its direction stays visible, with the
-        heads just past the boundary.
+        A stub is only the head and a short shaft just outside the cell, used
+        on the cell edge and wherever a plane already occupies the trace.
+        A trace with no plane is the clipped line, and the head sits outside
+        the cell edge rather than partway along that line. A 2 and a 2₁ on
+        the same trace sit side by side, not stacked on one point.
         """
         p0 = np.asarray(p0, float)
         p1 = np.asarray(p1, float)
-        if on_edge:
+        if stub:
             head_size = 0.055
             shaft_len = 0.03
             clear = 0.06
@@ -1646,15 +2194,14 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 nrm = np.linalg.norm(outward) or 1.0
                 outward = outward / nrm
                 tip = end + outward * (clear + shaft_len + head_size)
+                perp = np.array([-outward[1], outward[0]])
                 if full and half:
-                    _draw_inplane_arrowhead(
-                        ax, tip, outward, full=True, size=head_size)
-                    _draw_inplane_arrowhead(
-                        ax, tip + outward * (head_size * 0.55), outward,
-                        full=False, size=head_size)
+                    # A full head and a half head, separated by a head-width
+                    # so they do not read as one doubled arrowhead.
+                    _one_head(tip + perp * 0.09, outward, True, head_size)
+                    _one_head(tip - perp * 0.09, outward, False, head_size)
                 else:
-                    _draw_inplane_arrowhead(
-                        ax, tip, outward, full=bool(full), size=head_size)
+                    _one_head(tip, outward, bool(full), head_size)
                 shaft_end = tip - outward * head_size
                 shaft_in = shaft_end - outward * shaft_len
                 ax.plot([shaft_in[0], shaft_end[0]],
@@ -1668,32 +2215,47 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 outward = end - other
                 nrm = np.linalg.norm(outward) or 1.0
                 outward = outward / nrm
-                tip = end + outward * 0.012
+                # The head extends back from its tip by head_size, so the tip
+                # has to clear the boundary by that much.
+                tip = end + outward * (head_size + 0.012)
+                perp = np.array([-outward[1], outward[0]])
                 if full and half:
-                    perp = np.array([-outward[1], outward[0]])
-                    _draw_inplane_arrowhead(
-                        ax, tip + perp * 0.02, outward, full=True, size=head_size)
-                    _draw_inplane_arrowhead(
-                        ax, tip - perp * 0.02, outward, full=False, size=head_size)
+                    _one_head(tip + perp * 0.08, outward, True, head_size)
+                    _one_head(tip - perp * 0.08, outward, False, head_size)
                 else:
-                    _draw_inplane_arrowhead(
-                        ax, tip, outward, full=bool(full), size=head_size)
+                    _one_head(tip, outward, bool(full), head_size)
         cap = captions.get(key, "")
         if cap and key not in labelled:
             labelled.add(key)
-            midpt = 0.5 * (p0 + p1)
-            ax.text(midpt[0] + 0.04, midpt[1] + 0.03, cap,
+            end = p0 if p0[1] <= p1[1] else p1
+            other = p1 if p0[1] <= p1[1] else p0
+            along = other - end
+            span = np.linalg.norm(along) or 1.0
+            # Beside the trace, clear of a glyph at the centre or the corner.
+            pos = end + along * (0.22 if span > 0.4 else 0.5)
+            perp = np.array([-along[1], along[0]]) / span * 0.06
+            ax.text(pos[0] + perp[0], pos[1] + perp[1], cap,
                     fontsize=7, color="k", zorder=8, ha="left", va="center")
+
+    plane_pieces = []
+    for origin, pdir in plane_traces:
+        for p0, _p1 in _line_lattice_segments(origin, pdir):
+            plane_pieces.append((p0, pdir))
 
     for key, slot in inplane_axes.items():
         direction = np.asarray(slot["d"], float)
         for fp0, fp1 in _line_lattice_segments(slot["loc"], direction):
-            # A trace on the cell edge stays a stub outside the frame. Any
-            # trace that crosses the interior is the clipped line itself.
+            # A plane on this same trace keeps its dash pattern. The axis is
+            # then only the arrowheads where that piece meets the cell edge.
+            # Compare against the plane's lattice copies: the in-cell
+            # anti-diagonal is a translate of the plane through the origin.
+            shared = any(
+                _same_trace(fp0, direction, piece, pdir)
+                for piece, pdir in plane_pieces)
             draw_axis_line(
                 frame.pt(fp0), frame.pt(fp1),
                 slot["full"], slot["half"], key,
-                _segment_on_edge(fp0, fp1))
+                _segment_on_edge(fp0, fp1) or shared)
 
     def _screw_k(el):
         if el["type"] == "screw" and "_" in el["symbol"]:
@@ -1701,12 +2263,12 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         return 0
 
     def _draw_inclined_family(elements, kind):
-        """One glyph at every in-cell projection of each inclined axis.
+        """One glyph where each inclined axis cuts the drawing plane at height 0.
 
-        The stored location is a single reference point. The other heights
-        of the same axis land on the 2-fold images of that point, so a symbol
-        at (1/3, 1/3) is repeated at (2/3, 2/3). Distinct symbols that share a
-        projected point are stepped apart, and the heights are printed once.
+        Several axes can cut the page at the same point. Each keeps its own
+        symbol, shifted a short step along its own projected direction so the
+        glyphs stay separate. A lone symbol, such as the origin 3-fold, stays
+        on the point and is copied to the cell corners.
         """
         sites = {}
         for el in elements:
@@ -1714,43 +2276,54 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
             roto = el["type"] == "rotoinversion"
             dvec = frac_dir(el["axis"])
             dvec = dvec / (np.linalg.norm(dvec) or 1.0)
-            direction = tuple(np.round(frame.vec(dvec), 3))
+            plotted = np.asarray(frame.vec(dvec), float)
+            for comp in plotted:
+                if abs(comp) > 1e-9:
+                    if comp < 0:
+                        plotted = -plotted
+                    break
+            direction = tuple(np.round(plotted, 3))
             for rd, depth in _axis_page_points(el, perm):
                 key = (round(rd[0], 3), round(rd[1], 3))
                 slot = sites.setdefault(
-                    key, {"depths": [], "glyphs": [], "rd": rd})
+                    key, {"depths": [], "glyphs": {}, "rd": rd})
                 slot["depths"].append(depth)
-                # A triangle does not show the axis direction, so the eight
-                # <111> axes that share a projected point are one glyph.
-                # A lens is rotated onto its axis, so the direction stays.
-                mark = (k, roto) if kind != "lens" else (k, roto, direction)
-                if mark not in slot["glyphs"]:
-                    slot["glyphs"].append(mark)
+                # One glyph per symbol. Opposite orientations of one axis,
+                # and the several <111> lines through the origin, share it.
+                mark = (k, roto)
+                slot["glyphs"].setdefault(mark, direction)
         for key, slot in sites.items():
             cap = _height_caption(slot["depths"])
-            glyphs = slot["glyphs"]
+            # Rotoinversions last, so an open −3 is not painted over by a 3₁.
+            glyphs = sorted(slot["glyphs"].items(), key=lambda item: (item[0][1], item[0][0]))
             n = len(glyphs)
             for xy in edge_copies(slot["rd"]):
-                for i, mark in enumerate(glyphs):
-                    shift = (i - (n - 1) / 2.0) * 0.05
-                    pos = (xy[0] + shift, xy[1])
+                for i, ((k, roto), direction) in enumerate(glyphs):
+                    direction = np.asarray(direction, float)
+                    dn = np.linalg.norm(direction) or 1.0
+                    direction = direction / dn
+                    pos = np.asarray(xy, float)
+                    # Short of the next intersection (about 1/6 of the cell on
+                    # a cubic plate) so a 3₁ does not land on the neighbouring −3.
+                    step = 0.032 if kind == "tri" else 0.028
+                    if n > 1:
+                        # Spread distinct symbols (3, 3₁, 3₂, −3) so the hooks
+                        # of one are not hidden inside the triangle of another.
+                        pos = pos + direction * step * (i - 0.5 * (n - 1))
                     if kind == "lens":
-                        k, roto, direction = mark
-                        direction = np.asarray(direction, float)
                         ang = math.atan2(float(direction[1]), float(direction[0]))
-                        _draw_lens(ax, pos, 0.028, angle=ang, fc="k", ec="k",
-                                   lw=0.8, zorder=5)
+                        _draw_lens(ax, pos, 0.032, angle=ang, fc="k", ec="k",
+                                   lw=0.9, zorder=5)
                         if k:
                             tang = np.array([-math.sin(ang), math.cos(ang)])
-                            tip = np.asarray(pos, float) + direction * 0.05
-                            hook = tip + tang * 0.03
+                            tip = pos + direction * 0.055
+                            hook = tip + tang * 0.032
                             _ink(ax, [pos[0], tip[0], hook[0]],
                                  [pos[1], tip[1], hook[1]],
-                                 color="k", lw=1.0, zorder=5)
+                                 color="k", lw=1.2, zorder=8)
                     else:
-                        k, roto = mark
                         draw_axis_symbol(
-                            ax, pos, 3, screw_k=k, rotoinv=roto, size=0.028)
+                            ax, pos, 3, screw_k=k, rotoinv=roto, size=0.018)
                 if cap and ("inclined", key) not in labelled:
                     labelled.add(("inclined", key))
                     ax.text(xy[0] + 0.05, xy[1] + 0.03, cap, fontsize=7,
@@ -1778,11 +2351,19 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     ax.set_xlim(*xl); ax.set_ylim(*yl)
     ax.set_aspect("equal"); ax.axis("off")
     frame.label_axes(ax, dlab, rlab, off=0.1)
+    system = getattr(sg, "crystal_system", None)
+    if system is None and hasattr(sg, "base"):
+        system = getattr(sg.base, "crystal_system", None)
+    if system == "cubic":
+        _separate_overlapping_labels(ax)
+    if mark_origin:
+        ax.text(-0.07, -0.05, "0", fontsize=8, ha="right", va="center",
+                zorder=9, color="k")
     if show_title:
         extra = f"  (+{omitted} oblique)" if omitted else ""
         num, name = _sg_label(sg)
         pfx = f"#{num}  " if num is not None else ""
-        ax.set_title(f"{pfx}{name}{extra}", fontsize=8)
+        ax.set_title(f"{pfx}{_display_hm(name)}{extra}", fontsize=8)
     return ax
 
 
@@ -1866,14 +2447,16 @@ def element_legend(sg, ax=None, projection="c"):
             if dc == "ab":
                 planes.add(sym)
             elif dc == "c":
-                gdir = None
-                intr = el.get("intrinsic")
-                if intr is not None:
+                raws = el.get("_glide_raws") if sym == "e" else None
+                sources = list(raws) if raws else []
+                if not sources and el.get("intrinsic") is not None:
+                    sources = [el["intrinsic"]]
+                gdirs = []
+                for intr in sources:
                     pv = _perm_vec(np.asarray(intr, float), perm)
-                    # same cell frame as the element diagram, so the arrow
-                    # is tilted identically in an oblique projection
-                    gdir = frame.vec(_cell_edge_sense(np.array([pv[1], pv[0]])))
-                par_planes.setdefault(sym, gdir)
+                    gdirs.append(frame.vec(_cell_edge_sense(
+                        np.array([pv[1], pv[0]]))))
+                par_planes.setdefault(sym, gdirs)
     # A trace that carries both a 2 and a 2_1 is drawn with both heads.
     inplane["both"] = inplane["rot"] and inplane["screw"]
 
@@ -1885,30 +2468,31 @@ def element_legend(sg, ax=None, projection="c"):
         return str(order)
 
     y_top = 9.0
-    y = y_top - 0.4
-    ax.set_title("elements present", fontsize=9, pad=2)
+    # Room under the title so "elements present" does not run into the first row.
+    y = y_top - 1.45
+    ax.set_title("elements present", fontsize=10, pad=12)
     if perp:
         ax.text(0.15, y, "Axes ⊥ page:", fontsize=8, style="italic")
         y -= 1.05
         for order in sorted(perp):
             for k, ro in sorted(perp[order]):
                 draw_axis_symbol(ax, (0.55, y), order, screw_k=k,
-                                 rotoinv=ro, size=0.15)
-                ax.text(1.15, y, _axis_lbl(order, k, ro), fontsize=8,
+                                 rotoinv=ro, size=0.34)
+                ax.text(1.65, y, _axis_lbl(order, k, ro), fontsize=8,
                         va="center")
-                y -= 0.95
+                y -= 1.15
         y -= 0.2
     if inplane["rot"] or inplane["screw"]:
         ax.text(0.05, y, "Axes in ab-plane:", fontsize=8, style="italic")
         y -= 1.0
         if inplane["rot"]:
             ax.plot([0.15, 0.95], [y, y], "k-", lw=1.3)
-            _draw_inplane_arrowhead(ax, (1.0, y), (1, 0), full=True, size=0.16)
+            _draw_inplane_arrowhead(ax, (1.0, y), (1, 0), full=True, size=0.28)
             ax.text(1.3, y, "2  (full head)", fontsize=8, va="center")
             y -= 0.9
         if inplane["screw"]:
             ax.plot([0.15, 0.95], [y, y], "k-", lw=1.3)
-            _draw_inplane_arrowhead(ax, (1.0, y), (1, 0), full=False, size=0.16)
+            _draw_inplane_arrowhead(ax, (1.0, y), (1, 0), full=False, size=0.28)
             ax.text(1.3, y, "2\u2081  (half head)", fontsize=8, va="center")
             y -= 0.9
         y -= 0.3
@@ -1918,24 +2502,32 @@ def element_legend(sg, ax=None, projection="c"):
         y -= 1.0
         for order, k, ro in sorted(inplane_n):
             draw_axis_symbol(ax, (0.55, y), order, screw_k=k, rotoinv=ro,
-                             size=0.15)
-            ax.text(1.15, y, _axis_lbl(order, k, ro), fontsize=8, va="center")
-            y -= 0.95
+                             size=0.34)
+            ax.text(1.65, y, _axis_lbl(order, k, ro), fontsize=8, va="center")
+            y -= 1.05
         y -= 0.2
     if inclined_3:
         ax.text(0.15, y, "Inclined 3-fold:", fontsize=8, style="italic")
         y -= 1.0
         for k, ro in sorted(inclined_3):
-            draw_axis_symbol(ax, (0.55, y), 3, screw_k=k, rotoinv=ro, size=0.15)
-            ax.text(1.15, y, _axis_lbl(3, k, ro), fontsize=8, va="center")
+            draw_axis_symbol(ax, (0.55, y), 3, screw_k=k, rotoinv=ro, size=0.34)
+            ax.text(1.65, y, _axis_lbl(3, k, ro), fontsize=8, va="center")
             y -= 0.95
         y -= 0.2
     if inclined_2["rot"] or inclined_2["screw"]:
         ax.text(0.15, y, "Inclined 2-fold:", fontsize=8, style="italic")
         y -= 0.9
-        _draw_lens(ax, (0.55, y), 0.12, fc="k", ec="k", lw=0.8, zorder=5)
-        ax.text(1.15, y, "2", fontsize=8, va="center")
-        y -= 0.9
+        if inclined_2["rot"]:
+            _draw_lens(ax, (0.55, y), 0.12, fc="k", ec="k", lw=0.8, zorder=5)
+            ax.text(1.65, y, "2", fontsize=8, va="center")
+            y -= 0.9
+        if inclined_2["screw"]:
+            _draw_lens(ax, (0.55, y), 0.12, angle=0.0, fc="k", ec="k",
+                       lw=0.8, zorder=5)
+            _ink(ax, [0.55, 0.78, 0.70], [y, y, y + 0.10],
+                 color="k", lw=1.0, zorder=6)
+            ax.text(1.65, y, "2\u2081", fontsize=8, va="center")
+            y -= 0.9
     if planes:
         ax.text(0.05, y, "Planes ⊥ page:", fontsize=8, style="italic")
         y -= 0.9
@@ -1952,7 +2544,7 @@ def element_legend(sg, ax=None, projection="c"):
             # glyph looks identical to the element diagram; pass the stored
             # (right, down) direction straight through.
             draw_parallel_plane_symbol(ax, name, corner=(0.25, y - 0.18),
-                                       size=0.5, glide_dir=par_planes[name])
+                                       size=0.5, glide_dirs=par_planes[name])
             ax.text(1.3, y, f"{name}  (corner bracket)", fontsize=8,
                     va="center")
             y -= 1.0
@@ -1961,7 +2553,7 @@ def element_legend(sg, ax=None, projection="c"):
         ax.text(0.05, y, "Inversion:", fontsize=8, style="italic")
         y -= 0.9
         draw_inversion(ax, (0.55, y), size=0.05)
-        ax.text(1.15, y, "\u22121", fontsize=8, va="center")
+        ax.text(1.65, y, "\u22121", fontsize=8, va="center")
         y -= 1.0
     if two_xy & inv_xy:
         # A 2-fold and an inversion at one projected site (2/m). The plate
@@ -1970,7 +2562,7 @@ def element_legend(sg, ax=None, projection="c"):
         y -= 0.95
         _draw_lens(ax, (0.7, y), 0.14, fc="k", ec="k", lw=1.0, zorder=5)
         ax.plot(0.7, y, "o", ms=4, mfc="white", mec="k", mew=0.8, zorder=6)
-        ax.text(1.15, y, "2/m", fontsize=8, va="center")
+        ax.text(1.65, y, "2/m", fontsize=8, va="center")
         y -= 1.0
     # points convention. The circle is a data-sized patch so it stays inside
     # the axes; a marker of fixed point size drawn on the last row was clipped
@@ -1992,6 +2584,28 @@ def element_legend(sg, ax=None, projection="c"):
     return ax
 
 
+def _column_layout(system, m3m, legend):
+    """Figure size and column widths. The symmetry-element panel is the widest.
+
+    ITA prints that panel at full page width. The perspective and the general
+    positions sit beside it, and the legend is only as wide as its own glyphs
+    so it does not leave an empty band.
+    """
+    if system != "cubic":
+        figsize = (10.2, 5.6) if legend else (6.6, 3.8)
+        return figsize, None
+    # The element panel is the widest. The perspective column is still wide
+    # enough that a polyhedron of radius ~0.09 shows its corners.
+    ratios = ([1.45] if m3m else []) + [1.35, 2.55]
+    if legend:
+        # Just wide enough for the legend glyphs. A wider column leaves an
+        # empty band, because equal aspect keeps that panel tall and narrow.
+        ratios.append(0.58)
+    # 2.7 * 4.15 in is the element panel: the largest share of the canvas.
+    figsize = (sum(ratios) * 4.15, 9.2)
+    return figsize, ratios
+
+
 def ita_plate(sg, figsize=None, legend=False, show_centring=False,
               projection="c"):
     """Render the classic ITA pairing: general-position diagram (left) and
@@ -2009,21 +2623,43 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False,
     show_centring : bool
         Mark pure lattice (centring) translations on the element diagram (a red
         node + labelled vector); useful for non-standard settings.
-    projection : {'c', 'a', 'b'}
+    projection : {'c', 'a', 'b', 'all'}
         Projection axis. For monoclinic groups the ITA standard plate is the
         unique-axis-b projection (``projection='b'``), where a c-glide plane
         lies parallel to the page and shows its glide-direction arrow.
+        ``'all'`` draws the three element projections (or, for a cubic group,
+        one element panel) beside the general-position panel.
     """
     import matplotlib.pyplot as plt
     sg = _resolve_sg(sg)
+    system = _crystal_system(sg)
+    if projection == "all":
+        return _ita_plate_all(sg, figsize=figsize, legend=legend,
+                              show_centring=show_centring, system=system)
+    num = _sg_number(sg)
+    m3m = system == "cubic" and num is not None and 221 <= int(num) <= 230
     if figsize is None:
-        figsize = (10.2, 5.6) if legend else (6.6, 3.8)
-    ncol = 3 if legend else 2
-    ratios = [1, 1, 1.05] if legend else [1, 1]
+        figsize, ratios = _column_layout(system, m3m, legend)
+    else:
+        _ignored, ratios = _column_layout(system, m3m, legend)
+    ncol = ((3 if m3m else 2) + (1 if legend else 0)
+            if system == "cubic" else (3 if legend else 2))
     fig = plt.figure(figsize=figsize)
-    gs = fig.add_gridspec(1, ncol, width_ratios=ratios, wspace=0.22)
-    axL = fig.add_subplot(gs[0])
-    axR = fig.add_subplot(gs[1])
+    gs_kw = {"wspace": 0.12}
+    if ratios:
+        gs_kw["width_ratios"] = ratios
+    gs = fig.add_gridspec(1, ncol, **gs_kw)
+    col = 0
+    if m3m:
+        axp = fig.add_subplot(gs[col])
+        _draw_cubic_perspective(axp, sg)
+        axp.set_title("perspective", fontsize=8)
+        axp.set_anchor("N")
+        col += 1
+    axL = fig.add_subplot(gs[col])
+    col += 1
+    axR = fig.add_subplot(gs[col])
+    col += 1
     general_position_diagram(sg, ax=axL, show_title=False,
                              projection=projection)
     symmetry_element_diagram(sg, ax=axR, show_title=False,
@@ -2031,19 +2667,92 @@ def ita_plate(sg, figsize=None, legend=False, show_centring=False,
                              projection=projection)
     axL.set_title("general positions", fontsize=8)
     axR.set_title("symmetry elements", fontsize=8)
+    axL.set_anchor("N")
+    axR.set_anchor("N")
     if legend:
-        element_legend(sg, ax=fig.add_subplot(gs[2]), projection=projection)
-    order = _sg_order(sg)
-    num, name = _sg_label(sg)
-    system = getattr(sg, "crystal_system", None)
-    if system is None and hasattr(sg, "base"):
-        system = getattr(sg.base, "crystal_system", None)
-    pfx = f"#{num}   " if num is not None else ""
-    extra = f"({system}, order {order})" if system else f"(order {order})"
-    fig.suptitle(f"{pfx}{name}   {extra}", fontsize=9)
+        lax = fig.add_subplot(gs[col])
+        element_legend(sg, ax=lax, projection=projection)
+        lax.set_anchor("W")
+    _stamp_plate_title(fig, sg, system)
     # tight_layout fights the legend's equal aspect and crops its last row.
     fig.subplots_adjust(left=0.02, right=0.98, top=0.90, bottom=0.04,
                         wspace=0.28)
+    return fig
+
+
+def _stamp_plate_title(fig, sg, system):
+    num, name = _sg_label(sg)
+    pfx = f"#{num}   " if num is not None else ""
+    extra = f"({system}, order {_sg_order(sg)})" if system else f"(order {_sg_order(sg)})"
+    fig.suptitle(f"{pfx}{_display_hm(name)}   {extra}", fontsize=9)
+
+
+def _element_panel_title(sg, projection, system):
+    """Title of one symmetry-element panel in the three-projection figure."""
+    _num, name = _sg_label(sg)
+    if system == "orthorhombic":
+        name = _orthorhombic_setting_symbol(name, projection)
+    return _display_hm(name)
+
+
+def _ita_plate_all(sg, figsize, legend, show_centring, system):
+    """Three element projections, or one cubic element panel, plus positions."""
+    import matplotlib.pyplot as plt
+    default = "b" if system == "monoclinic" else "c"
+    num = _sg_number(sg)
+    m3m = system == "cubic" and num is not None and 221 <= int(num) <= 230
+    if system == "cubic":
+        if figsize is None:
+            figsize, ratios = _column_layout(system, m3m, legend)
+        else:
+            _ignored, ratios = _column_layout(system, m3m, legend)
+        ncol = (3 if m3m else 2) + (1 if legend else 0)
+        fig = plt.figure(figsize=figsize)
+        gs = fig.add_gridspec(1, ncol, width_ratios=ratios, wspace=0.12)
+        col = 0
+        if m3m:
+            axp = fig.add_subplot(gs[col])
+            _draw_cubic_perspective(axp, sg)
+            axp.set_title("perspective", fontsize=8)
+            axp.set_anchor("N")
+            col += 1
+        axL = fig.add_subplot(gs[col])
+        col += 1
+        general_position_diagram(sg, ax=axL, show_title=False, projection="c")
+        axL.set_title("general positions", fontsize=8)
+        axL.set_anchor("N")
+        axR = fig.add_subplot(gs[col])
+        col += 1
+        symmetry_element_diagram(sg, ax=axR, show_title=False,
+                                 show_centring=show_centring, projection="c",
+                                 mark_origin=True)
+        axR.set_title(_element_panel_title(sg, "c", system), fontsize=8)
+        axR.set_anchor("N")
+        if legend:
+            lax = fig.add_subplot(gs[col])
+            element_legend(sg, ax=lax, projection="c")
+            lax.set_anchor("W")
+    else:
+        if figsize is None:
+            figsize = (20.0, 5.4) if legend else (16.5, 4.6)
+        ncol = 5 if legend else 4
+        fig = plt.figure(figsize=figsize)
+        gs = fig.add_gridspec(1, ncol, wspace=0.28)
+        ax0 = fig.add_subplot(gs[0])
+        general_position_diagram(sg, ax=ax0, show_title=False,
+                                 projection=default)
+        ax0.set_title("general positions", fontsize=8)
+        for i, proj in enumerate(("c", "a", "b")):
+            ax = fig.add_subplot(gs[i + 1])
+            symmetry_element_diagram(sg, ax=ax, show_title=False,
+                                     show_centring=show_centring,
+                                     projection=proj, mark_origin=True)
+            ax.set_title(_element_panel_title(sg, proj, system), fontsize=8)
+        if legend:
+            element_legend(sg, ax=fig.add_subplot(gs[4]), projection=default)
+    _stamp_plate_title(fig, sg, system)
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.86, bottom=0.04,
+                        wspace=0.30)
     return fig
 
 

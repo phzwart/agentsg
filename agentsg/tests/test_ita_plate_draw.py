@@ -257,9 +257,54 @@ def test_every_plane_family_is_drawn_in_its_style(num):
         return
     _fig, ax = _render(num)
     found = _long_patterns(ax)
-    plt.close(_fig)
     missing = expected - found
     assert not missing, (num, missing)
+    covered = _axis_lines_covering_glides(ax)
+    plt.close(_fig)
+    assert not covered, (num, covered)
+
+
+def _axis_lines_covering_glides(ax, tol=0.03):
+    """Solid in-plane axis strokes that run along a dashed or dotted glide.
+
+    A glide keeps its dash only when the axis on that trace is an edge stub.
+    A solid stroke under the dashes reads as a solid line.
+    """
+    solids = []
+    glides = []
+    for ln in ax.lines:
+        x, y = ln.get_xdata(), ln.get_ydata()
+        if len(x) < 2:
+            continue
+        p0 = np.array([float(x[0]), float(y[0])])
+        p1 = np.array([float(x[-1]), float(y[-1])])
+        length = float(np.hypot(*(p1 - p0)))
+        if length < 0.35:
+            continue
+        pattern = getattr(ln, "_unscaled_dash_pattern", (0, None))
+        if pattern[1] is not None:
+            glides.append((p0, p1))
+        elif ln.get_linewidth() < 1.5:
+            solids.append((p0, p1))
+    hits = []
+    for s0, s1 in solids:
+        su = s1 - s0
+        sn = float(np.linalg.norm(su)) or 1.0
+        su = su / sn
+        for g0, g1 in glides:
+            gu = g1 - g0
+            gn = float(np.linalg.norm(gu)) or 1.0
+            gu = gu / gn
+            if abs(su[0] * gu[1] - su[1] * gu[0]) > 0.08:
+                continue
+            mid = 0.5 * (g0 + g1)
+            delta = mid - s0
+            dist = abs(float(delta[0] * su[1] - delta[1] * su[0]))
+            along = float(np.dot(delta, su))
+            if dist < tol and -0.05 < along < sn + 0.05:
+                hits.append((np.round(s0, 2), np.round(s1, 2)))
+                break
+    return hits
 
 
 def _ita(num):
@@ -564,35 +609,36 @@ def test_diagonal_copies_restore_the_fourfold():
         assert _seg_key(a, b) in keys
 
 
-def test_p4mcc_diagonal_axis_has_arrowheads():
+def test_p4mcc_glides_keep_their_style_and_axes_stay_stubs():
+    """c-glides stay dotted and n-glides stay dash-dot; axes do not cover them."""
     import matplotlib.pyplot as plt
     fig, ax = _render(124)
+    found = _long_patterns(ax)
+    assert _style_pattern("c") in found
+    assert _style_pattern("n") in found
+    assert not _axis_lines_covering_glides(ax)
+    leg, lax = plt.subplots()
+    element_legend(124, ax=lax)
+    legend = " ".join(_texts(lax))
+    plt.close(leg)
+    assert "c" in legend.split()
+    assert "n" in legend.split()
     M = np.linalg.inv(np.asarray(cell_frame(124, "c")["matrix"], float))
-    diag = None
-    for ln in ax.lines:
-        x, y = ln.get_xdata(), ln.get_ydata()
-        if len(x) < 2 or ln.get_linewidth() >= 1.5:
-            continue
-        p0 = M @ np.array([x[0], y[0]], float)
-        p1 = M @ np.array([x[-1], y[-1]], float)
-        if abs(p0[0] - p0[1]) < 0.05 and abs(p1[0] + p1[1] - 1) < 0.05:
-            diag = (p0, p1)
-            break
-        if abs(p0[0] + p0[1] - 1) < 0.05 and abs(p1[0] - p1[1]) < 0.05:
-            diag = (p0, p1)
-            break
-    assert diag is not None
     heads = []
     for p in ax.patches:
         if not isinstance(p, Polygon) or p.get_xy().shape[0] > 5:
             continue
         heads.append(M @ np.mean(p.get_xy(), axis=0))
-    for end in diag:
-        assert any(np.linalg.norm(h - end) < 0.2 for h in heads)
-    keys = {_seg_key(p0, p1) for p0, p1, _L in _frac_segments(124)}
-    for p0, p1, _L in _frac_segments(124):
-        a, b = _rot90_segment(p0, p1)
-        assert _seg_key(a, b) in keys
+    # The [1-10] 2-fold meets the cell at the corners. Its heads sit there.
+    for corner in ((0.0, 1.0), (1.0, 0.0)):
+        assert any(np.linalg.norm(h - corner) < 0.25 for h in heads), corner
+    # The height note sits off the 4/m glyph at the centre.
+    for text in ax.texts:
+        if text.get_text() != "¼":
+            continue
+        x, y = text.get_position()
+        frac = M @ np.array([x, y], float)
+        assert np.linalg.norm(frac - np.array([0.5, 0.5])) > 0.15
     plt.close(fig)
 
 
@@ -613,18 +659,212 @@ def test_p23_threefold_sites_match_the_twofold():
     for p in ax.patches:
         if isinstance(p, RegularPolygon) and p.numvertices == 3:
             centers.append(M @ np.asarray(p.xy, float))
-    snapped = {tuple(np.round(c * 3) / 3 % 1) for c in centers}
-    assert (0.0, 0.0) in snapped
-    assert (round(2 / 3, 10), round(2 / 3, 10)) in snapped or any(
-        abs(a - 2 / 3) < 0.02 and abs(b - 2 / 3) < 0.02 for a, b in snapped)
+    snapped = {tuple(np.round(np.asarray(c, float) * 3) / 3 % 1) for c in centers}
+    assert any(abs(a) < 0.02 and abs(b) < 0.02 for a, b in snapped)
+    assert any(abs(a - 2 / 3) < 0.05 and abs(b - 2 / 3) < 0.05 for a, b in snapped)
     for x, y in snapped:
         image = ((1 - x) % 1, (1 - y) % 1)
-        image = (round(image[0] * 3) / 3, round(image[1] * 3) / 3)
-        assert image in snapped or any(
-            abs(image[0] - a) < 0.02 and abs(image[1] - b) < 0.02
+        assert any(
+            abs(image[0] - a) < 0.05 and abs(image[1] - b) < 0.05
             for a, b in snapped)
+    # One 3-fold at each corner, on the corner, not a row of offset copies.
     corners = [(0.0, 0.0), (1.0, 0.0), (0.0, 1.0), (1.0, 1.0)]
     for corner in corners:
-        assert any(np.linalg.norm(c - corner) < 0.08 for c in centers)
-    assert any("⅓" in t.get_text() for t in ax.texts)
+        near = [c for c in centers if np.linalg.norm(c - corner) < 0.08]
+        assert len(near) == 1, (corner, near)
+    # Height 0 is left blank. The screw kind is the glyph, not a ⅓ ⅔ pile.
+    assert not any("⅓" in t.get_text() for t in ax.texts)
     plt.close(fig)
+
+
+def _cell_corner_bounds(num, projection):
+    M = np.asarray(cell_frame(num, projection)["matrix"], float)
+    corners = [M @ np.array([r, d], float)
+               for r, d in ((0, 0), (1, 0), (1, 1), (0, 1))]
+    return min(c[0] for c in corners), min(c[1] for c in corners)
+
+
+def test_parallel_brackets_sit_outside_the_upper_left():
+    """Groups 14 and 55 put the page-parallel bracket above and left of the origin."""
+    import matplotlib.pyplot as plt
+    for num, proj in ((14, "b"), (55, "c")):
+        fig, ax = _render(num, proj)
+        left, top = _cell_corner_bounds(num, proj)
+        pts = []
+        for ln in ax.lines:
+            x, y = np.asarray(ln.get_xdata(), float), np.asarray(ln.get_ydata(), float)
+            if len(x) != 2 or ln.get_linewidth() < 1.5:
+                continue
+            if float(np.max(x)) < left - 0.02 and float(np.min(y)) < top - 0.01:
+                pts.extend([(float(x[0]), float(y[0])), (float(x[1]), float(y[1]))])
+        plt.close(fig)
+        assert pts, num
+        corner = min(pts, key=lambda p: p[0] + p[1])
+        assert corner[0] < left - 0.05
+        assert corner[1] < top - 0.02
+
+
+def test_e_glide_lists_two_vectors_and_the_2016_title():
+    import matplotlib.pyplot as plt
+    meta = ita_plate_json({"sg": 64}, png_query="sg=64")
+    es = [el for el in meta["elements"] if el["symbol"] == "e"]
+    assert es
+    assert all(len(el["glide"]) == 2 and len(el["glide"][0]) == 3 for el in es)
+    fig = ita_plate(64)
+    title = fig._suptitle.get_text()
+    assert "Cmce" in title
+    assert "Cmca" not in title
+    arrows = [
+        c for c in fig.axes[1].get_children()
+        if type(c).__name__ == "Annotation" and c.arrow_patch is not None
+    ]
+    assert len(arrows) >= 2
+    plt.close(fig)
+
+
+def test_d_lines_are_dash_dot_and_e_lines_are_dash_dot_dot():
+    assert _PLANE_STYLE["d"]["ls"] == (0, (6, 2, 1, 2))
+    assert _PLANE_STYLE["e"]["ls"] == (0, (6, 2, 1, 2, 1, 2))
+    import matplotlib.pyplot as plt
+    fig, ax = _render(43)
+    patterns = set()
+    for ln in ax.lines:
+        pat = getattr(ln, "_unscaled_dash_pattern", None)
+        if pat and pat[1] and ln.get_linewidth() > 1.0:
+            patterns.add(tuple(pat[1]))
+    plt.close(fig)
+    assert (6, 2, 1, 2) in patterns
+
+
+def test_ia3d_origin_threefold_is_inside_bar3():
+    origin = [
+        el for el in _element_copies(230)
+        if el["symbol"] == "3"
+        and el.get("location_exact") is not None
+        and all(float(c) == 0.0 for c in el["location_exact"])
+    ]
+    assert origin
+    assert all(el.get("contained_in") == "-3" for el in origin)
+
+
+def test_ia3d_general_positions_are_polyhedra():
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle
+    fig, ax = plt.subplots()
+    general_position_diagram(230, ax=ax, show_title=False)
+    faces = [p for p in ax.patches if isinstance(p, Polygon)]
+    circles = [ln for ln in ax.lines if ln.get_marker() == "o"]
+    circles += [p for p in ax.patches if isinstance(p, Circle)]
+    xlim, ylim = ax.get_xlim(), ax.get_ylim()
+    plt.close(fig)
+    # One face per projected centre, including the copies on x = 1 and y = 1.
+    # Centres that differ only along the projection axis share that face.
+    assert len(faces) >= 12
+    assert circles
+    # The cell, including the x = 1 and y = 1 edges, sits inside the axes.
+    assert xlim[0] < 0 < 1 < xlim[1]
+    assert ylim[0] > 1 and ylim[1] < 0
+
+
+def test_f_lattice_polyhedra_cover_the_half_grid():
+    """Fm-3m down c: a polyhedron at every point of the closed 1/2-grid."""
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    general_position_diagram(225, ax=ax, show_title=False)
+    M = np.linalg.inv(np.asarray(cell_frame(225, "c")["matrix"], float))
+    found = set()
+    for p in ax.patches:
+        if isinstance(p, Polygon) and len(p.get_xy()) > 3:
+            xy = np.asarray(p.get_xy(), float)
+            centre = M @ xy[:-1].mean(axis=0)
+            found.add((round(centre[0] * 2) / 2, round(centre[1] * 2) / 2))
+    plt.close(fig)
+    expect = {(x, y) for x in (0.0, 0.5, 1.0) for y in (0.0, 0.5, 1.0)}
+    assert expect <= found
+
+
+def test_cubic_polyhedra_are_compact_and_labelled_outward():
+    """A seed near the highest site keeps neighbouring hulls apart."""
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    general_position_diagram(225, ax=ax, show_title=False)
+    M = np.linalg.inv(np.asarray(cell_frame(225, "c")["matrix"], float))
+    radii = []
+    for p in ax.patches:
+        if isinstance(p, Polygon) and len(p.get_xy()) > 3:
+            xy = np.asarray(p.get_xy(), float)[:-1]
+            centre = xy.mean(axis=0)
+            r = float(np.linalg.norm(xy - centre, axis=1).max())
+            # The cell frame is the unit square (radius ~0.7). The polyhedra
+            # are the compact hulls inside it.
+            if r < 0.4:
+                radii.append(r)
+    texts = [t.get_text() for t in ax.texts]
+    plt.close(fig)
+    assert len(radii) >= 9
+    assert max(radii) < 0.16
+    assert any(t for t in texts if t and t != "0")
+
+
+def test_perspective_marks_polyhedron_corners():
+    import matplotlib.pyplot as plt
+    fig = ita_plate(225, legend=False)
+    persp = fig.axes[0]
+    circles = [ln for ln in persp.lines if ln.get_marker() == "o"]
+    labels = [t.get_text() for t in persp.texts if t.get_text()]
+    plt.close(fig)
+    assert circles
+    assert labels
+
+
+def test_inclined_threefolds_use_open_and_filled_triangles():
+    """3₁ / 3₂ stay filled; −3 is the open triangle, and both are on the plate."""
+    from matplotlib.patches import RegularPolygon
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    symmetry_element_diagram(225, ax=ax, show_title=False)
+    tris = [p for p in ax.patches if isinstance(p, RegularPolygon) and p.numvertices == 3]
+    plt.close(fig)
+    assert any(p.get_fill() for p in tris)
+    assert any(not p.get_fill() for p in tris)
+
+
+def test_cubic_element_panel_is_the_wide_one():
+    import matplotlib.pyplot as plt
+    fig = ita_plate(225, legend=True)
+    widths = [ax.get_position().width for ax in fig.axes]
+    plt.close(fig)
+    # perspective, general positions, symmetry elements, legend
+    assert len(widths) == 4
+    assert widths[2] > widths[0]
+    assert widths[2] > widths[1]
+    assert widths[2] > widths[3]
+
+
+def test_projection_all_uses_the_three_setting_symbols():
+    import matplotlib.pyplot as plt
+    fig = ita_plate(26, projection="all")
+    titles = [ax.get_title() for ax in fig.axes]
+    assert "Pmc2\u2081" in titles
+    assert "Pcm2\u2081" in titles
+    assert "Pm2\u2081b" in titles
+    marked = sum(any(t.get_text() == "0" for t in ax.texts) for ax in fig.axes)
+    assert marked >= 3
+    plt.close(fig)
+    cubic = ita_plate(230, projection="all")
+    titles = [ax.get_title() for ax in cubic.axes]
+    assert titles[0] == "perspective"
+    assert titles[1] == "general positions"
+    assert len(cubic.axes) == 3
+    plt.close(cubic)
+
+
+def test_projection_all_json_keeps_the_default_elements():
+    from agentsg.serve.handlers import plate_png_args
+    meta = ita_plate_json(
+        {"sg": 26, "projection": "all"}, png_query="sg=26&projection=all")
+    assert meta["projection"] == "c"
+    assert meta["elements"]
+    assert "projection=all" in meta["png_url"]
+    _sg, proj, _legend, _cent = plate_png_args({"sg": 26, "projection": "all"})
+    assert proj == "all"
