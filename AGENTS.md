@@ -29,7 +29,8 @@ pip install -U pip
 pip install -e ".[db,plot]"        # DuckDB index + ITA plate PNGs
 
 mkdir -p data
-# 206,214 PDB cells + Kurlin roots (~41 MB). Cite 10.5281/zenodo.22986222
+# 206,214 PDB cells, Kurlin roots, one Selling-reduced cell, and the
+# deposited-to-reduced change of basis. Cite 10.5281/zenodo.22986222
 curl -L --fail -o data/pdb_cells.duckdb \
   "https://zenodo.org/records/22986222/files/pdb_cells.duckdb?download=1"
 ```

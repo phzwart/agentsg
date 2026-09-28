@@ -74,6 +74,21 @@ def _dot(a, b):
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
 
+def selling_reduced_cell(cell):
+    """One Selling-reduced cell: ``(a, b, c, alpha, beta, gamma)`` of ``v1,v2,v3``.
+
+    Built from the obtuse superbase returned by :func:`delaunay_superbase`.
+    This is a single representative, not the Selling orbit. Its labeling
+    follows the input basis; other obtuse bases are recovered by running the
+    orbit on a reference cell. Pass the primitive cell when the deposited
+    cell is centred.
+    """
+    from .metric import params_from_metric
+    S = delaunay_superbase(cell)
+    G = [[_dot(S[i], S[j]) for j in (1, 2, 3)] for i in (1, 2, 3)]
+    return params_from_metric(G)
+
+
 def delaunay_superbase(cell, max_iter=1000):
     """Reduce to an obtuse superbase; return the 4 superbase vectors.
 

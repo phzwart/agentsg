@@ -322,6 +322,62 @@ def test_pdb_search_and_lookup(sample_db):
         state.db.close()
 
 
+def test_pdb_search_returns_cob_for_same_lattice(tmp_path):
+    """A true reindexing gets a COB; a nearby impostor gets cob null."""
+    from agentsg.cell.celldb import CellDatabase
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.selling_cob import _metric_of, parse_cob_columns
+    from agentsg.cell.sublattice import apply_to_cell
+
+    base = (40.0, 50.0, 60.0, 90.0, 90.0, 90.0)
+    swapped = apply_to_cell(base, [[0, 1, 0], [1, 0, 0], [0, 0, 1]])
+    near = (40.4, 50.3, 60.2, 90.0, 90.0, 90.0)
+    path = tmp_path / "cob.duckdb"
+    db = CellDatabase(str(path))
+    db.add_cell("SWAP", swapped, 19, "P 21 21 21")
+    db.add_cell("NEAR", near, 19, "P 21 21 21")
+    db.close()
+
+    state, httpd, base_url = _server(str(path))
+    try:
+        status, plain = _fetch(f"{base_url}/v1/pdb/search", {
+            "cell": list(base), "sg": "P 21 21 21", "k": 2,
+        })
+        assert status == 200
+        assert all("cob" not in hit for hit in plain["hits"])
+        status, result = _fetch(f"{base_url}/v1/pdb/search", {
+            "cell": list(base), "sg": "P 21 21 21", "k": 2, "return_cob": True,
+        })
+        assert status == 200
+        by_id = {hit["pdb_id"]: hit for hit in result["hits"]}
+        assert by_id["NEAR"]["cob"] is None
+        swap = by_id["SWAP"]
+        assert swap["cob"] is not None
+        assert swap["cob_xyz"]
+        P = parse_cob_columns(
+            f"{n}/{d}" for row in swap["cob"] for n, d in row
+        )
+        Gp = _metric_of(UnitCell(*base).metric_tensor(), P)
+        G_swap = UnitCell(*swapped).metric_tensor()
+        for a in range(3):
+            for b in range(3):
+                assert Gp[a][b] == pytest.approx(G_swap[a][b], rel=1e-8, abs=1e-6)
+        if "cob_coset" in swap:
+            assert len(swap["cob_coset"]) > 1
+            assert swap["cob_coset"][0]["cob"] == swap["cob"]
+        status, radius = _fetch(f"{base_url}/v1/pdb/search", {
+            "cell": list(base), "sg": "P 21 21 21", "cutoff": 1.0,
+            "return_cob": True,
+        })
+        assert status == 200
+        by_id = {hit["pdb_id"]: hit for hit in radius["hits"]}
+        assert by_id["SWAP"]["cob"] == swap["cob"]
+        assert by_id["NEAR"]["cob"] is None
+    finally:
+        httpd.shutdown()
+        state.db.close()
+
+
 def test_ita_plate_png():
     pytest.importorskip("matplotlib")
     state, httpd, base = _server()

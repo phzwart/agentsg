@@ -11,8 +11,10 @@ Two layers:
 
   * Storage / SQL prefilter -- DuckDB (optional; ``pip install agentsg[db]``).
     An embedded, single-file, columnar SQL engine. Each row stores the PDB id,
-    the unit cell, the space group, the cell volume, and the six root-invariant
-    components r0..r5. SQL handles coarse prefiltering (by space group, by
+    the unit cell, the space group, the cell volume, the six root-invariant
+    components r0..r5, one Selling-reduced cell (red_a..red_gamma), and the
+    deposited-to-reduced change of basis (cob00..cob22, exact ``num/den``).
+    SQL handles coarse prefiltering (by space group, by
     volume band); the exact ranking is done in memory.
 
   * Exact ranking -- an in-memory cKDTree (:mod:`agentsg.cell.rootindex`) over
@@ -36,6 +38,7 @@ from __future__ import annotations
 import json
 import urllib.request
 from .rootform import root_invariant, similarity_invariant
+from .selling_cob import COB_COLUMNS, cob_column_values, deposited_to_reduced, parse_cob_columns
 from .metric import UnitCell
 from .primitive import primitive_cell
 
@@ -139,7 +142,12 @@ CREATE TABLE IF NOT EXISTS cells (
     volume DOUBLE,
     sg_number INTEGER, sg_hm VARCHAR,
     r0 DOUBLE, r1 DOUBLE, r2 DOUBLE, r3 DOUBLE, r4 DOUBLE, r5 DOUBLE,
-    s0 DOUBLE, s1 DOUBLE, s2 DOUBLE, s3 DOUBLE, s4 DOUBLE, s5 DOUBLE
+    s0 DOUBLE, s1 DOUBLE, s2 DOUBLE, s3 DOUBLE, s4 DOUBLE, s5 DOUBLE,
+    red_a DOUBLE, red_b DOUBLE, red_c DOUBLE,
+    red_alpha DOUBLE, red_beta DOUBLE, red_gamma DOUBLE,
+    cob00 VARCHAR, cob01 VARCHAR, cob02 VARCHAR,
+    cob10 VARCHAR, cob11 VARCHAR, cob12 VARCHAR,
+    cob20 VARCHAR, cob21 VARCHAR, cob22 VARCHAR
 );
 """
 
@@ -176,6 +184,12 @@ class CellDatabase:
             name = f"s{i}"
             if name not in cols:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
+        for name in ("red_a", "red_b", "red_c", "red_alpha", "red_beta", "red_gamma"):
+            if name not in cols:
+                self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
+        for name in COB_COLUMNS:
+            if name not in cols:
+                self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} VARCHAR")
 
     # -- ingestion --
     def add_cell(self, pdb_id, cell, sg_number=None, sg_hm=None):
@@ -186,24 +200,33 @@ class CellDatabase:
         first): Kurlin's invariant is a lattice invariant, and the deposited
         conventional cell of a centred group describes only a sublattice. The
         stored cell parameters and volume remain the deposited conventional
-        values; only the roots use the primitive lattice.
+        values. The roots, ``red_a`` … ``red_gamma``, and ``cob00`` … ``cob22``
+        are computed on the primitive lattice. ``red_*`` is one obtuse-basis
+        cell and ``cob*`` is ``P`` with ``P^T G P`` equal to that cell. The
+        Selling orbit is not stored.
         """
         try:
             vol = UnitCell(*cell).volume()
             prim = _primitive_for_roots(cell, sg_hm)
             ri = root_invariant(prim)
             si = similarity_invariant(prim)
+            red, cob = deposited_to_reduced(cell, sg_hm)
+            cob_vals = cob_column_values(cob)
         except Exception:
             return False
         self._db.execute(
             "INSERT OR REPLACE INTO cells "
             "(pdb_id, a, b, c, alpha, beta, gamma, volume, sg_number, sg_hm, "
-            "r0, r1, r2, r3, r4, r5, s0, s1, s2, s3, s4, s5) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "r0, r1, r2, r3, r4, r5, s0, s1, s2, s3, s4, s5, "
+            "red_a, red_b, red_c, red_alpha, red_beta, red_gamma, "
+            + ", ".join(COB_COLUMNS) + ") "
+            "VALUES (" + ",".join("?" * (28 + len(COB_COLUMNS))) + ")",
             [pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
              vol, sg_number, sg_hm,
              ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
-             si[0], si[1], si[2], si[3], si[4], si[5]])
+             si[0], si[1], si[2], si[3], si[4], si[5],
+             red[0], red[1], red[2], red[3], red[4], red[5],
+             *cob_vals])
         return True
 
     def backfill_similarity_invariants(self, *, progress=False, batch=10_000):
@@ -232,6 +255,59 @@ class CellDatabase:
                 print(f"  backfilled {n:,}/{len(rows):,} similarity invariants")
         if progress and rows:
             print(f"  backfilled {n:,}/{len(rows):,} similarity invariants")
+        return n
+
+    def backfill_selling_cells(self, *, progress=False, batch=5_000):
+        """Store one Selling-reduced cell and its deposited-to-reduced COB.
+
+        ``red_*`` is recomputed from ``P^T G P`` so it matches ``cob00`` …
+        ``cob22``. Rows missing either the reduced cell or the matrix are filled.
+        The orbit is not stored.
+        """
+        rows = self._db.execute(
+            "SELECT pdb_id, a, b, c, alpha, beta, gamma, sg_hm "
+            "FROM cells WHERE red_a IS NULL OR cob00 IS NULL"
+        ).fetchall()
+        n = 0
+        buf = []
+        cob_set = ", ".join(f"{name}=?" for name in COB_COLUMNS)
+        sql = (
+            "UPDATE cells SET red_a=?, red_b=?, red_c=?, "
+            "red_alpha=?, red_beta=?, red_gamma=?, "
+            f"{cob_set} WHERE pdb_id=?"
+        )
+        self._db.execute("BEGIN")
+
+        def _flush():
+            nonlocal n
+            if not buf:
+                return
+            self._db.executemany(sql, buf)
+            n += len(buf)
+            buf.clear()
+            if progress:
+                print(f"  backfilled {n:,}/{len(rows):,} Selling-reduced cells", flush=True)
+
+        try:
+            for row in rows:
+                pdb_id = row[0]
+                cell = tuple(row[1:7])
+                sg_hm = row[7]
+                try:
+                    red, cob = deposited_to_reduced(cell, sg_hm)
+                except Exception:
+                    continue
+                buf.append([
+                    red[0], red[1], red[2], red[3], red[4], red[5],
+                    *cob_column_values(cob), pdb_id,
+                ])
+                if len(buf) >= batch:
+                    _flush()
+            _flush()
+            self._db.execute("COMMIT")
+        except Exception:
+            self._db.execute("ROLLBACK")
+            raise
         return n
 
     def add_pdb(self, ids, batch_size=250, progress=False):
@@ -469,6 +545,41 @@ class CellDatabase:
             if any(v is None for v in coords):
                 continue
             out[row[0]] = [float(v) for v in coords]
+        return out
+
+    def has_selling_cob(self) -> bool:
+        """True when this database has the deposited-to-reduced COB columns."""
+        cached = getattr(self, "_has_cob", None)
+        if cached is not None:
+            return cached
+        cols = {row[0] for row in self._db.execute("DESCRIBE cells").fetchall()}
+        self._has_cob = "cob00" in cols
+        return self._has_cob
+
+    def lookup_reductions(self, pdb_ids):
+        """Return ``{pdb_id: {red, cob}}`` for stored Selling reductions.
+
+        ``red`` is the six reduced parameters. ``cob`` is the exact matrix
+        from the deposited cell to that basis, or None when a component is
+        missing. Empty when this database has no COB columns.
+        """
+        if not pdb_ids or not self.has_selling_cob():
+            return {}
+        placeholders = ",".join("?" * len(pdb_ids))
+        cob_sql = ", ".join(COB_COLUMNS)
+        rows = self._db.execute(
+            "SELECT pdb_id, red_a, red_b, red_c, red_alpha, red_beta, red_gamma, "
+            f"{cob_sql} FROM cells WHERE pdb_id IN ({placeholders})",
+            list(pdb_ids)).fetchall()
+        out = {}
+        for row in rows:
+            red_vals = row[1:7]
+            cob_vals = row[7:16]
+            red = None if any(v is None for v in red_vals) else tuple(float(v) for v in red_vals)
+            cob = None
+            if all(v is not None for v in cob_vals):
+                cob = parse_cob_columns(cob_vals)
+            out[row[0]] = {"red": red, "cob": cob}
         return out
 
     def lookup_cells(self, pdb_ids):

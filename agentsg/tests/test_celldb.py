@@ -81,3 +81,81 @@ def test_nearest_with_supercells_finds_sublattice_direction():
     assert res["SMALL"]["index"] == 2
     assert res["SMALL"]["relation"] == "db_is_sublattice"
     db.close()
+
+
+def test_add_cell_stores_one_selling_reduced_cell():
+    """red_* is the obtuse basis of the primitive lattice, not the deposited cell."""
+    from fractions import Fraction
+
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.selling_cob import COB_COLUMNS, _metric_of, parse_cob_columns
+
+    conv = (79.723, 90.46, 69.404, 90.0, 98.19, 90.0)
+    hm = "C 1 2 1"
+    db = CellDatabase(":memory:")
+    assert db.add_cell("10GS", conv, 5, hm)
+    row = db.sql(
+        "SELECT red_a, red_b, red_c, red_alpha, red_beta, red_gamma "
+        "FROM cells WHERE pdb_id='10GS'"
+    )[0]
+    cob_row = db.sql(
+        "SELECT " + ", ".join(COB_COLUMNS) + " FROM cells WHERE pdb_id='10GS'"
+    )[0]
+    P = parse_cob_columns(cob_row)
+    assert P.det() in (Fraction(1, 2), Fraction(-1, 2))
+    G_red = _metric_of(UnitCell(*conv).metric_tensor(), P)
+    G_stored = UnitCell(*row).metric_tensor()
+    for a in range(3):
+        for b in range(3):
+            assert G_red[a][b] == pytest.approx(G_stored[a][b], rel=1e-8, abs=1e-6)
+    assert abs(row[0] - conv[0]) > 1.0
+    db.close()
+
+
+def test_selling_reduced_cell_is_obtuse():
+    from agentsg.cell.rootform import selling_reduced_cell
+
+    red = selling_reduced_cell((10.0, 12.0, 14.0, 70.0, 80.0, 60.0))
+    assert min(red[3], red[4], red[5]) >= 90.0 - 1e-6
+
+
+def test_reference_orbit_cob_maps_settings():
+    """Composed COB carries the reference metric onto another setting of it."""
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.selling_cob import _metric_of, cob_xyz, match_operators, reference_orbit
+    from agentsg.cell.sublattice import apply_to_cell
+
+    base = (40.0, 50.0, 60.0, 90.0, 90.0, 90.0)
+    swapped = apply_to_cell(base, [[0, 1, 0], [1, 0, 0], [0, 0, 1]])
+    hm = "P 21 21 21"
+    db = CellDatabase(":memory:")
+    assert db.add_cell("BASE", base, 19, hm)
+    assert db.add_cell("SWAP", swapped, 19, hm)
+    orbit = reference_orbit(base, hm)
+    rec = db.lookup_reductions(["SWAP"])["SWAP"]
+    ops = match_operators(orbit, rec["red"], rec["cob"])
+    assert ops
+    assert cob_xyz(ops[0]).count("-") == min(cob_xyz(P).count("-") for P in ops)
+    base_rec = db.lookup_reductions(["BASE"])["BASE"]
+    self_ops = match_operators(orbit, base_rec["red"], base_rec["cob"])
+    assert cob_xyz(self_ops[0]) == "(a,b,c)"
+    G_swap = UnitCell(*swapped).metric_tensor()
+    for P in ops:
+        Gp = _metric_of(UnitCell(*base).metric_tensor(), P)
+        for a in range(3):
+            for b in range(3):
+                assert Gp[a][b] == pytest.approx(G_swap[a][b], rel=1e-8, abs=1e-6)
+    db.close()
+
+
+def test_backfill_selling_cells():
+    db = CellDatabase(":memory:")
+    db.add_cell("LYZ1", (79.1, 79.1, 37.9, 90, 90, 90), 96, "P 43 21 2")
+    db.sql("UPDATE cells SET red_a=NULL WHERE pdb_id='LYZ1'")
+    assert db.backfill_selling_cells() == 1
+    row = db.sql("SELECT red_a, red_b, red_c FROM cells WHERE pdb_id='LYZ1'")[0]
+    assert row[0] == pytest.approx(79.1)
+    assert row[1] == pytest.approx(79.1)
+    assert row[2] == pytest.approx(37.9)
+    assert db.backfill_selling_cells() == 0
+    db.close()

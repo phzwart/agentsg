@@ -209,15 +209,6 @@ def default_projection(crystal_system: str | None) -> str:
     return "c"
 
 
-# Pre-2016 Hermann–Mauguin symbols that the 2016 edition writes with an e glide.
-_HM_2016 = {
-    39: "A e m 2",
-    41: "A e a 2",
-    64: "C m c e",
-    67: "C m m e",
-    68: "C c c e",
-}
-
 # Hexagonal-to-rhombohedral change of basis (obverse). Columns are the
 # rhombohedral axes in the hexagonal basis.
 _RHOMBO_GROUPS = {146, 148, 155, 160, 161, 166, 167}
@@ -263,9 +254,15 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
     system = getattr(sg, "crystal_system", None)
     if system is None and hasattr(sg, "base"):
         system = getattr(sg.base, "crystal_system", None)
-    projection = str(data.get("projection") or default_projection(system))
-    if projection not in ("a", "b", "c"):
-        raise ValueError("projection must be a, b, or c")
+    requested = str(data.get("projection") or default_projection(system))
+    if requested == "all":
+        # The element list stays the default single projection. The PNG is
+        # the multi-panel figure.
+        projection = default_projection(system)
+    elif requested not in ("a", "b", "c"):
+        raise ValueError("projection must be a, b, c, or all")
+    else:
+        projection = requested
     legend = _as_bool(data.get("legend", False))
     show_centring = _as_bool(data.get("show_centring", False))
     compact = _as_bool(data.get("compact", False))
@@ -288,6 +285,7 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
             seen.add(el["symbol"])
             reps.append(el)
         elements = reps
+    from ..cell.diagrams import _HM_2016
     num = _sg_number(sg)
     name = getattr(sg, "hermann_mauguin", None) or str(sg)
     symbols = sorted(counts)
@@ -358,8 +356,13 @@ def _plate_copies(raw) -> list[dict[str, Any]]:
         }
         if el.get("contained_in"):
             item["contained_in"] = el["contained_in"]
-        if el.get("type") == "glide" and el.get("intrinsic_exact") is not None:
-            item["glide"] = [float(c) for c in el["intrinsic_exact"]]
+        if el.get("type") == "glide":
+            raws = el.get("_glide_raws")
+            if el.get("symbol") == "e" and raws and len(raws) >= 2:
+                item["glide"] = [
+                    [float(c) for c in raw] for raw in raws[:2]]
+            elif el.get("intrinsic_exact") is not None:
+                item["glide"] = [float(c) for c in el["intrinsic_exact"]]
         elements.append(item)
     return elements
 
@@ -376,8 +379,8 @@ def plate_png_args(data: dict[str, Any]) -> tuple[Any, str, bool, bool]:
     if system is None and hasattr(sg, "base"):
         system = getattr(sg.base, "crystal_system", None)
     projection = str(data.get("projection") or default_projection(system))
-    if projection not in ("a", "b", "c"):
-        raise ValueError("projection must be a, b, or c")
+    if projection not in ("a", "b", "c", "all"):
+        raise ValueError("projection must be a, b, c, or all")
     return sg, projection, _as_bool(data.get("legend", False)), _as_bool(data.get("show_centring", False))
 
 
@@ -520,6 +523,7 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
     k = data.get("k")
     cutoff = data.get("cutoff")
     same_hm = _as_bool(data.get("same_hm", data.get("same_sg", False)))
+    return_cob = _as_bool(data.get("return_cob", False))
     if k is not None:
         k = int(k)
         if k < 1:
@@ -555,6 +559,9 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             "count": len(enriched),
             "hits": enriched,
         }
+        if return_cob:
+            from ..cell.selling_cob import annotate_search_hits
+            annotate_search_hits(state.db, cell, rec.hermann_mauguin, enriched)
     else:
         if cutoff is None:
             raise ValueError("provide cutoff (Å) and/or k")
@@ -565,6 +572,7 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             sg_number=rec.number,
             sg_hm=rec.hermann_mauguin,
             same_hm=same_hm,
+            return_cob=return_cob,
         )
     if _as_bool(data.get("plot", False)):
         _attach_root_plot(state, result)
@@ -649,8 +657,8 @@ def plates_png(qs: dict[str, Any]) -> bytes:
     if raw_sg is None or str(raw_sg).strip() == "":
         raise HttpError(400, "sg: is required (IT number or Hermann-Mauguin symbol)")
     projection = str(qs.get("projection") or "c")
-    if projection not in ("a", "b", "c"):
-        raise HttpError(400, "projection: must be a, b, or c")
+    if projection not in ("a", "b", "c", "all"):
+        raise HttpError(400, "projection: must be a, b, c, or all")
     sg = resolve_sg(raw_sg)
     return render_ita_png(sg, projection=projection, legend=False, show_centring=False)
 

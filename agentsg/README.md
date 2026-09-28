@@ -387,7 +387,8 @@ group's deposited conventional cell (C, I, F, R, …) describes only a sublattic
 so the conventional cell is reduced to primitive before the root is taken. Two
 crystals with the same lattice in different centred settings therefore land on the
 same point (root distance 0), which a conventional-cell root would miss by tens of
-Ångström.
+Ångström. Each row also stores one Selling-reduced cell and the exact rational
+change of basis from the deposited conventional cell to that reduced cell.
 
 ## Volume vs shape: decomposing root distance
 

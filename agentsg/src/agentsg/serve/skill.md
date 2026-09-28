@@ -34,7 +34,7 @@ agentsg is an **engine**, not International Tables Volume A. It derives operator
 | “This primitive 4-op 222 is P222” | `/v1/identify` returns the **type** (`sg_number`) plus `det`, `input_order`, `matched_order` | If `|det| > 1`, quote the type and the CoB. A primitive cell of F222 is still **#22**, not #16 — body-diagonal 2-folds are not unimodular-equivalent to P222. |
 | Full ITA polyhedral ASU inequalities | Brick / Dirichlet ASU, not the Volume A half-space gallery | Do not quote ITA ASU inequalities from memory. |
 
-**Also not theorems:** a small root distance is “same lattice for search,” not a proof of identity. G6 is diagnostic (Å²). Centred conventional cells need `sg` before any root, PDB, or compare call.
+**Also not theorems:** a small root distance is “same lattice for search,” not a proof of identity. The operator is `cob`, and only when `return_cob` was set and `cob` is not null. G6 is diagnostic (Å²). Centred conventional cells need `sg` before any root, PDB, or compare call.
 
 If the user asks for something in the left column, call the nearest endpoint, state the gap in one sentence, and answer with what the JSON actually contains.
 
@@ -74,7 +74,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Are these two lattices the same? | `POST /v1/compare` with `cell_a` and `cell_b` |
 | Native vs SeMet integer transform | `POST /v1/compare` with `include_sublattices: true` |
 | Serial XFEL reindex / ambiguity | `POST /v1/reindex` |
-| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits |
+| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
 | Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |
 
@@ -100,7 +100,13 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **Reindex**: list branches. `is_metric_symmetry: true` (residual 0) is true merohedry. You cannot pick the intensity branch. Say that you cannot decide P3₁ vs P3₂ from the cell alone.
 
-**PDB search**: list `pdb_id`, `distance` (Å on the root invariant), `sg_hm`, `cell`. Omit `plot` unless the user asked for a figure. With `"plot": true` the same response grows the structure below. Display the PNG. Do not invent coordinates that are not in `xy` or `query_xy`.
+**PDB search**: list `pdb_id`, `distance` (Å on the sorted root invariant), `sg_hm`, `cell`. The index key is the six sorted roots of one obtuse superbase of the primitive lattice. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
+
+`cob` is absent unless the request set `return_cob` true. When it is set, the server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator only when a closure member matches the stored reduced cell. `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob: null` means the sorted-key hit is not the same lattice. Do not invent an operator from the distance. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
+
+If several operators match, `cob` is the one with the fewest minus signs in `cob_xyz`, then the spelling closest to `a,b,c`. `cob_coset` is that full list in the same order, with `cob` first. Quote `cob_xyz` as the representative and list every other `cob_xyz` in the coset. Metric symmetry does not choose a single setting; the spelling rule only chooses which one to lead with.
+
+Omit `plot` unless the user asked for a figure. With `"plot": true` the same response grows the structure below. Display the PNG. Do not invent coordinates that are not in `xy` or `query_xy`.
 
 `plot` false, or omitted: hits have no `xy`. There is no `svd`, `query_xy`, or `plot_png_base64`.
 
@@ -220,13 +226,22 @@ POST /v1/pdb/search
 
 Display `plot_png_base64`. Quote `svd.variance_frac` for PC1 and PC2. Name a few `pdb_id`s with their `xy`. The red star is `query_xy`.
 
+User: “Which change of basis takes this cell onto the deposited PDB cell?”
+
+```
+POST /v1/pdb/search
+{"cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 10, "return_cob": true}
+```
+
+Lead with hits whose `cob` is not null. Quote `cob_xyz`. If `cob_coset` has more than one entry, list every `cob_xyz` in it. Hits with `cob: null` are neighbours, not the same lattice.
+
 # Hard rules
 
 1. **Derive, do not tabulate.** Absences and site content come from operators. Never invent ITA Wyckoff letters (`a`, `b`, `c`, …).
 2. **Centred cells need `sg`.** C/I/F/R conventional cells must be reduced to primitive before any root, PDB search, or lattice comparison. Always send `sg`.
 3. **Kurlin over G6.** Distances are Å on the root invariant. G6 (Å²) is diagnostic only; do not lead with it.
 4. **Geometry surfaces; intensities decide.** `/v1/reindex` lists branches. This API cannot pick the intensity branch.
-5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem.
+5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem. The operator is `cob` from a `return_cob` search, or nothing.
 6. **Monoclinic ITA plates use `projection: "b"`.** The server already defaults monoclinic to `b`; other systems default to `c`.
 7. **Explain, do not dump.** Translate JSON into ITA language. Quote numbers from the response.
 

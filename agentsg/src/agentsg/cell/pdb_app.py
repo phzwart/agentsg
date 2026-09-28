@@ -159,6 +159,15 @@ def _cli(argv=None):
         print(f"backfilled {n:,} rows in {argv[1]}")
         db.close()
         return 0
+    if cmd == "backfill-selling":
+        if len(argv) < 2:
+            print("usage: pdb_app backfill-selling <db_path>")
+            return 2
+        db = CellDatabase(argv[1])
+        n = db.backfill_selling_cells(progress=True)
+        print(f"backfilled {n:,} Selling-reduced cells in {argv[1]}")
+        db.close()
+        return 0
     if cmd == "query":
         # query <db> --cell a b c al be ga [-k K] [--sg N]
         db_path = argv[1]
@@ -184,7 +193,7 @@ def _cli(argv=None):
             print(f"{pdb_id}\t{dist:.4f}")
         db.close()
         return 0
-    print(f"unknown command: {cmd!r} (use build | backfill-similarity | query)")
+    print(f"unknown command: {cmd!r} (use build | backfill-similarity | backfill-selling | query)")
     return 2
 
 

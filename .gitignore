@@ -29,7 +29,9 @@ symcell-update.zip
 
 # Large / regenerable data (build with agentsg.cell.celldb / analysis scripts)
 data/*.duckdb
+data/*.duckdb_old
 *.duckdb
+*.duckdb_old
 
 # Local Muse / tunnel secrets and host-specific launchd
 agentsg/serve.local.env

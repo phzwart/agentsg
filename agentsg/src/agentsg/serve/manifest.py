@@ -214,7 +214,7 @@ ENDPOINTS: list[dict[str, Any]] = [
         "params": [
             _p("sg", "string", False, "IT number, Hermann–Mauguin, or Hall (or use setting)"),
             _p("setting", "string", False, "Non-standard setting string instead of sg"),
-            _p("projection", "string", False, "a, b, or c. Monoclinic defaults to b; else c"),
+            _p("projection", "string", False, "a, b, c, or all. Monoclinic defaults to b; else c"),
             _p("legend", "bool", False, "If true, include the element legend panel"),
             _p("show_centring", "bool", False, "If true, draw centring translations"),
         ],
@@ -229,7 +229,7 @@ ENDPOINTS: list[dict[str, Any]] = [
         "params": [
             _p("sg", "string", False, "IT number or Hermann–Mauguin"),
             _p("setting", "string", False, "Non-standard setting string"),
-            _p("projection", "string", False, "a, b, or c"),
+            _p("projection", "string", False, "a, b, c, or all"),
             _p("legend", "string", False, "true to draw the legend"),
             _p("show_centring", "string", False, "true to draw centring"),
         ],
@@ -246,7 +246,7 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("sg", "string", True,
                "IT number or Hermann–Mauguin. Unknown group → 404."),
             _p("projection", "string", False,
-               "View axis a, b, or c. Default c (unlike monoclinic ITA default b)."),
+               "View axis a, b, c, or all. Default c (unlike monoclinic ITA default b)."),
         ],
         "example": _curl("/plates?sg=19"),
         "side_effects": "none",
@@ -335,6 +335,8 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("same_hm", "bool", False, "If true, restrict hits to the same Hermann–Mauguin setting"),
             _p("plot", "bool", False,
                "If true, SVD the hit Kurlin roots and return a PC1–PC2 scatter PNG"),
+            _p("return_cob", "bool", False,
+               "If true, certify each hit on the Selling closure and include cob from the query cell onto that deposited cell (null if not the same lattice)"),
         ],
         "example": _curl(
             "/search?a=79&b=79&c=38&alpha=90&beta=90&gamma=90&sg=P212121&cutoff=1.0"
@@ -354,6 +356,8 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("same_hm", "bool", False, "If true, keep only the same Hermann–Mauguin setting"),
             _p("plot", "bool", False,
                "If true, mean-centred SVD of the hit Kurlin roots; response adds xy, svd, and plot_png_base64"),
+            _p("return_cob", "bool", False,
+               "If true, certify each hit on the Selling closure and include cob from the query cell onto that deposited cell (null if not the same lattice)"),
         ],
         "example": _curl(
             "/v1/pdb/search",

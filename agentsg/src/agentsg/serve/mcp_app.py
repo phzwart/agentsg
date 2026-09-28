@@ -93,8 +93,8 @@ def _mcp_playbook(base: str) -> str:
         "| Draw / show the ITA plate | `ita_plate` with `sg`. The result includes the PNG and every in-cell copy. |",
     )
     body = body.replace(
-        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits |',
-        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. |",
+        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |',
+        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis onto each deposited cell. |",
     )
     body = body.replace(
         "| Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |",
@@ -252,7 +252,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     ) -> dict[str, Any]:
         """ITA plate element inventory. The tool result includes the plate PNG.
 
-        projection: 'a', 'b', or 'c'. Monoclinic defaults to b; otherwise c.
+        projection: 'a', 'b', 'c', or 'all'. Monoclinic defaults to b; otherwise c.
+        'all' draws the three element projections (one panel for a cubic group).
         compact: counts by symbol plus one representative, for the large cubic groups.
         setting: a change-of-basis string, or 'R' for rhombohedral axes of an R group.
         """
@@ -343,12 +344,18 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         k: int | None = None,
         same_hm: bool = False,
         plot: bool = False,
+        return_cob: bool = False,
     ) -> dict[str, Any]:
-        """PDB lattices near a cell on the Kurlin root invariant.
+        """PDB lattices near a cell on the sorted Kurlin root invariant.
 
         Provide cutoff (Å) and/or k nearest neighbours. sg is required so centred
         cells are reduced to primitive before the search.
         plot: when true, the tool result includes a PC1–PC2 scatter PNG of the hits.
+        return_cob: when true, Selling-reduce the query, match the stored reduced
+        cell, and attach cob from the query cell onto that deposited cell.
+        cob is null when the hit is not the same lattice. cob is the representative
+        with the fewest minus signs, then the spelling closest to a,b,c;
+        cob_coset lists every match in that order.
         """
         import base64
         out = _result(lambda data: handlers.pdb_search(state, data), _clean({
@@ -358,6 +365,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
             "k": k,
             "same_hm": same_hm,
             "plot": plot,
+            "return_cob": return_cob,
         }))
         encoded = out.get("plot_png_base64") if isinstance(out, dict) else None
         if not encoded:

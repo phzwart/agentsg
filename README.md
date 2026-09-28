@@ -1,9 +1,11 @@
-# agentsg — lattice symmetry, root-form cell comparison, and the crystallographic manifold
+# agentsg — lattice symmetry, conservative lattice search, and exact reindexing
 
-A dependency-free Python package for unit-cell and space-group operations, built
-around Kurlin's (2022) complete **root invariant** for fast, orbit-free lattice
-comparison. Includes a full-PDB unit-cell database, a serial-crystallography
-reindexing layer, and the manuscript describing the method.
+A dependency-free Python package for unit-cell and space-group operations.
+Each lattice is given a sorted six-vector Selling key: continuous, Euclidean,
+and a lower bound on the true distance, so a radius search cannot miss a match.
+Identity and the reindexing operator come from the finite Selling closure, not
+from equality of the key. The same calls are a local REST API for the Muse
+connector and MCP tools for clients such as Claude.
 
 ```
 .
@@ -11,13 +13,14 @@ reindexing layer, and the manuscript describing the method.
 │   ├── src/agentsg/    zero-dependency runtime
 │   ├── tests/          ~3600 tests (pytest)
 │   └── docs/           DESIGN.md, reduction-flip literature note, etc.
-├── manuscript/         IUCrJ communication (LaTeX + figures; see main_v11.tex)
+├── manuscript/         IUCrJ manuscript (see main_v9.tex)
 ├── analysis/           database-build & calibration figures + data
 │   ├── figures/
 │   └── data/           CSV summaries + .npz calibration arrays
 └── data/
     └── pdb_cells.duckdb  optional download (not in git): 206,214 PDB cells,
-                          roots precomputed on primitive lattices
+                          primitive-lattice roots, one Selling-reduced cell,
+                          and the deposited-to-reduced change of basis
                           https://doi.org/10.5281/zenodo.22986222
 ```
 
@@ -40,7 +43,7 @@ pytest -q                        # ~3600 tests
 from agentsg.cell import root_invariant, root_distance, root_cutoff_for_edge_tolerance
 from agentsg.cell import CellDatabase
 
-# compare two cells by their root invariant (orbit-free, continuous)
+# compare two cells by the sorted search key (continuous lower bound)
 d = root_distance((78,78,37,90,90,90), (79,79,38,90,90,90))
 
 # open the prebuilt PDB database and do a fast nearest-neighbour search
@@ -55,10 +58,10 @@ near = idx.within((100,100,100,90,90,90), r)
 
 ## What's here
 
-- **Root-form cell comparison** (`agentsg.cell.rootform`) — Kurlin's complete
-  root invariant, `root_distance`, the volume/shape decomposition
-  (`root_volume_decomposition`, `similarity_invariant`/`similarity_distance`), and
-  the edge-tolerance → cutoff calibration (`root_cutoff_for_edge_tolerance`).
+- **Lattice search key** (`agentsg.cell.rootform`) — the sorted six-vector
+  key and its lower-bound distance. Kurlin's structured root form remains the
+  complete classification; the sorted key is the lossy filter used for search.
+  Also the volume/shape decomposition and the edge-tolerance cutoff.
 - **Full-PDB database** (`agentsg.cell.celldb`, `pdb_app.py`) — resumable
   downloader/builder + DuckDB store with precomputed primitive-lattice roots,
   and a persistent NearTree metric index.
@@ -77,9 +80,8 @@ tests only).
 
 ## Manuscript
 
-`manuscript/main_v11.tex` — the IUCrJ communication (latest versioned source).
-Compile with `pdflatex` (figures `figure1.png` … `figure4.png` ship alongside).
-See `manuscript/SUBMISSION_NOTES.txt`.
+`manuscript/main_v9.tex` — the IUCrJ manuscript (latest versioned source).
+Compile with `pdflatex` twice. See `manuscript/SUBMISSION_NOTES.txt`.
 
 ## PDB cell database
 
@@ -91,4 +93,7 @@ Place it at
 The table was built from RCSB holdings (cell + space group + PDB ID only). Roots
 are computed on the **primitive** lattice of each deposited conventional cell;
 stored cell parameters and volumes remain the deposited conventional values.
-You can also rebuild it with `python -m agentsg.cell.pdb_app build`.
+Each row also stores one Selling-reduced cell (`red_a` … `red_gamma`) and the
+rational change of basis from the deposited cell to that reduced cell
+(`cob00` … `cob22`, exact `numerator/denominator`). You can also rebuild it
+with `python -m agentsg.cell.pdb_app build`.
