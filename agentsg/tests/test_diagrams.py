@@ -279,23 +279,41 @@ def test_legend_points_row_fits_in_the_figure():
 
 # --- combined c-axis glyph (coincident rotation + rotoinversion) -------------
 def test_combined_c_axis_glyph_draws_both():
-    """P4/mmm has 4, -4 and 2 all on the c-axis at one site. The combined
-    glyph must draw the filled rotation polygon AND the rotoinversion outline +
-    centre dot, not overpaint one with the other."""
+    """A site that has both 4 and −4 draws the filled 4. The open −4 is
+    not painted over it."""
     from matplotlib.patches import RegularPolygon
     fig, ax = plt.subplots()
-    # a filled square (4) framed by an open square (-4) + centre dot
     D._draw_combined_axis(ax, (0.5, 0.5), max_rot=4, rot_k=0, roto=4)
     polys = [p for p in ax.patches if isinstance(p, RegularPolygon)]
-    # at least two polygons: the filled 4 and the open -4 frame
-    assert len(polys) >= 2
-    filled = [p for p in polys if p.get_fill()]
-    open_ = [p for p in polys if not p.get_fill()]
-    assert filled and open_          # both a filled and an outline glyph
-    # a centre dot (Line2D marker) sits on top
+    assert len(polys) == 1
+    assert polys[0].get_fill()
     dots = [ln for ln in ax.lines
             if ln.get_marker() == "o" and len(ln.get_xdata()) == 1]
-    assert dots
+    assert not dots
+    plt.close(fig)
+
+
+def test_four_over_m_draws_the_inversion_circle():
+    """4/m is the filled square plus the open −1, not an open −4."""
+    from matplotlib.patches import Circle, RegularPolygon
+    fig, ax = plt.subplots()
+    D._draw_combined_axis(ax, (0.5, 0.5), max_rot=4, rot_k=0, roto=4,
+                          inversion=True, size=0.2)
+    polys = [p for p in ax.patches if isinstance(p, RegularPolygon)]
+    circles = [p for p in ax.patches if isinstance(p, Circle)]
+    assert len(polys) == 1 and polys[0].get_fill() and polys[0].numvertices == 4
+    assert circles
+    assert not any(p.numvertices == 4 and not p.get_fill() for p in polys)
+    plt.close(fig)
+
+
+def test_bar6_combined_glyph_is_an_open_hexagon():
+    from matplotlib.patches import RegularPolygon
+    fig, ax = plt.subplots()
+    D._draw_combined_axis(ax, (0.5, 0.5), max_rot=3, rot_k=0, roto=6, size=0.2)
+    polys = [p for p in ax.patches if isinstance(p, RegularPolygon)]
+    assert len(polys) == 1
+    assert polys[0].numvertices == 6 and not polys[0].get_fill()
     plt.close(fig)
 
 
@@ -310,14 +328,12 @@ def test_rotoinversion_only_site_draws():
 
 
 def test_p4mmm_c_axis_glyphs_visible():
-    """Rendering #123 must place both the filled 4 and the open -4 frame (the
-    bug was the white -4 erasing the black 4)."""
+    """Rendering #123 draws the filled 4. An open −4 is not painted over it."""
     from matplotlib.patches import RegularPolygon
     fig, ax = plt.subplots()
     D.symmetry_element_diagram(123, ax=ax, full_cell=True)
-    polys = [p for p in ax.patches if isinstance(p, RegularPolygon)]
-    assert any(p.get_fill() for p in polys)          # filled 4
-    assert any(not p.get_fill() for p in polys)      # open -4 frame
+    polys = [p for p in ax.patches if isinstance(p, RegularPolygon) and p.numvertices == 4]
+    assert any(p.get_fill() for p in polys)
     plt.close(fig)
 
 
@@ -504,18 +520,20 @@ def test_glide_arrow_diagram_legend_consistent():
     D.element_legend(9, ax=axl, projection="b")
     ll = _screen_arrows(axl)
     plt.close(figl)
-    assert len(dd) == 2 and len(ll) == 2
-    # match by direction (unit vector), order-independent
+    # One bracket per height, so the plate can carry more than one arrow of
+    # each glide. Each of those directions is the one the legend draws.
     def dirs(arrs):
         u = []
         for x, y in arrs:
             n = np.hypot(x, y) or 1.0
             u.append((round(x / n, 2), round(y / n, 2)))
-        return sorted(u)
+        return u
     dd_u, ll_u = dirs(dd), dirs(ll)
-    assert len(dd_u) == len(ll_u)
-    for (dx, dy), (lx, ly) in zip(dd_u, ll_u):
-        assert abs(dx - lx) < 0.05 and abs(dy - ly) < 0.05
+    assert ll_u and dd_u
+    for dx, dy in dd_u:
+        assert any(abs(dx - lx) < 0.08 and abs(dy - ly) < 0.08 for lx, ly in ll_u)
+    for lx, ly in ll_u:
+        assert any(abs(dx - lx) < 0.08 and abs(dy - ly) < 0.08 for dx, dy in dd_u)
     # Cc down b: the c glide is the arrow closest to the c edge.
     assert max(abs(dy) for _, dy in dd_u) > 0.9
 

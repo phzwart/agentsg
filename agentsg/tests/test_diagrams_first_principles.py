@@ -59,7 +59,7 @@ def test_height_labels_are_ita_strings():
     assert D.height_label(-1, Fraction(1, 2), "z") == "½−"
     assert D.height_label(1, Fraction(1, 3), "z") == "⅓+"
     assert D.height_label(1, Fraction(2, 3), "z") == "⅔+"
-    assert D.height_label(1, Fraction(1, 12), "z") == "1/12+"
+    assert D.height_label(1, Fraction(1, 12), "z") == "¹⁄₁₂+"
     assert D.height_label(1, Fraction(1, 2), "x") == "½+x"
 
 

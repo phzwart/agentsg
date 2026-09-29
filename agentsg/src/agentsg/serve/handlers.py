@@ -202,11 +202,35 @@ def subgroups_info(data: dict[str, Any]) -> dict[str, Any]:
     return subgroup_graph(rec, kind=kind, maximal=bool(maximal))
 
 
-def default_projection(crystal_system: str | None) -> str:
-    """ITA unique-axis-b for monoclinic, else c."""
+def default_projection(crystal_system: str | None, sg=None) -> str:
+    """Project a monoclinic group along its unique axis, else along c.
+
+    An explicit ``projection`` argument still wins. A monoclinic setting whose
+    2-fold has moved off b is drawn down that axis.
+    """
     if crystal_system and str(crystal_system).lower().startswith("monoclinic"):
-        return "b"
+        axis = _unique_axis(sg) if sg is not None else None
+        return axis or "b"
     return "c"
+
+
+def _unique_axis(sg) -> str | None:
+    """Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c."""
+    try:
+        from ..cell.diagrams import _element_copies
+        els = _element_copies(sg)
+    except Exception:
+        return None
+    for el in els:
+        if el.get("type") not in ("rotation", "screw") or el.get("order") != 2:
+            continue
+        ax = el.get("axis_exact")
+        if not ax:
+            continue
+        nz = [i for i, c in enumerate(ax) if c]
+        if len(nz) == 1 and abs(ax[nz[0]]) == 1:
+            return "abc"[nz[0]]
+    return None
 
 
 # Hexagonal-to-rhombohedral change of basis (obverse). Columns are the
@@ -254,13 +278,13 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
     system = getattr(sg, "crystal_system", None)
     if system is None and hasattr(sg, "base"):
         system = getattr(sg.base, "crystal_system", None)
-    requested = str(data.get("projection") or default_projection(system))
+    requested = str(data.get("projection") or default_projection(system, sg))
     if requested == "all":
         # The element list stays the default single projection. The PNG is
         # the multi-panel figure.
-        projection = default_projection(system)
-    elif requested not in ("a", "b", "c"):
-        raise ValueError("projection must be a, b, c, or all")
+        projection = default_projection(system, sg)
+    elif requested not in ("a", "b", "c", "111"):
+        raise ValueError("projection must be a, b, c, 111, or all")
     else:
         projection = requested
     legend = _as_bool(data.get("legend", False))
@@ -285,14 +309,15 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
             seen.add(el["symbol"])
             reps.append(el)
         elements = reps
-    from ..cell.diagrams import _HM_2016
+    from ..cell.diagrams import _ita_names
+    from ..setting import format_cob
     num = _sg_number(sg)
-    name = getattr(sg, "hermann_mauguin", None) or str(sg)
+    classic, modern = _ita_names(sg)
     symbols = sorted(counts)
     out = {
         "sg_number": num,
-        "sg_hm": name,
-        "sg_hm_2016": _HM_2016.get(num, name),
+        "sg_hm": classic,
+        "sg_hm_2016": modern,
         "crystal_system": system,
         "projection": projection,
         "legend": legend,
@@ -305,6 +330,10 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
     }
     if compact:
         out["compact"] = True
+    cob = getattr(sg, "cob", None)
+    if cob is not None:
+        out["setting"] = format_cob(cob)
+        out["cob"] = out["setting"]
     return out
 
 

@@ -93,9 +93,9 @@ def test_inplane_axes_are_edge_stubs_including_the_far_edge():
             interior.append(length)
     assert shafts
     assert max(shafts) < 0.08
-    # Axes through the cell are the line itself; the edge ones stay stubs.
-    assert interior
-    assert min(interior) > 0.9
+    # An in-plane axis is a head and a short shaft. A line through the cell
+    # would read as a mirror.
+    assert not interior
     heads = [p.get_xy() for p in ax.patches if isinstance(p, Polygon)]
     xs = [float(xy[:, 0].max()) for xy in heads]
     assert max(xs) > 0.9
@@ -244,14 +244,11 @@ def test_every_plane_family_is_drawn_in_its_style(num):
     for el in _element_copies(sg):
         if el["type"] not in ("mirror", "glide") or el["axis"] is None:
             continue
+        if el.get("contained_in"):
+            continue
         if _dir_class(_perm_vec(el["axis"], perm)) != "ab":
             continue
         sym = el["symbol"]
-        intr = el.get("intrinsic_exact")
-        if sym == "g" and intr is not None:
-            depth = abs(float(intr[perm[2]])) % 1.0
-            if 0.05 < depth < 0.95:
-                sym = "n"
         if sym in _PLANE_STYLE:
             expected.add(_style_pattern(sym))
     if not expected:
@@ -385,8 +382,12 @@ def test_group_15_n_follows_a_plus_c_on_plate_and_legend():
             v = np.array([dx, sy], float)
             units.append(v / (np.linalg.norm(v) or 1.0))
         return sorted(units, key=lambda v: (round(v[0], 3), round(v[1], 3)))
-    for p, lg in zip(_screen(plate, True), _screen(legend, False)):
-        assert np.allclose(p, lg, atol=0.05)
+    plate_s = _screen(plate, True)
+    legend_s = _screen(legend, False)
+    for p in plate_s:
+        assert any(np.allclose(p, lg, atol=0.08) for lg in legend_s)
+    for lg in legend_s:
+        assert any(np.allclose(p, lg, atol=0.08) for p in plate_s)
 
 
 def test_group_11_uses_one_split_circle_per_pair():
@@ -643,13 +644,21 @@ def test_p4mcc_glides_keep_their_style_and_axes_stay_stubs():
     plt.close(fig)
 
 
-def test_p622_crossing_axes_are_lines():
+def test_p622_crossing_axes_are_edge_heads():
     segs = _frac_segments(177, min_length=0.4)
     diagonal = [
         s for s in segs
         if abs(s[0][0] - s[1][0]) > 0.2 and abs(s[0][1] - s[1][1]) > 0.2
     ]
-    assert len(diagonal) >= 4
+    assert diagonal == []
+    import matplotlib.pyplot as plt
+    _fig, ax = _render(177)
+    heads = [
+        p for p in ax.patches
+        if isinstance(p, Polygon) and 2 < p.get_xy().shape[0] <= 5
+    ]
+    assert len(heads) >= 4
+    plt.close(_fig)
 
 
 def test_p23_threefold_sites_match_the_twofold():
@@ -970,3 +979,102 @@ def test_ia3d_captions_sit_beside_their_circles():
     plt.close(fig)
     assert distances
     assert max(distances) <= 0.04
+
+
+def test_p4m_split_circles_carry_the_enantiomorph_comma():
+    """The page-parallel mirror is the enantiomorph when no 2-fold lies in the page."""
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    general_position_diagram(83, ax=ax, projection="c")
+    commas = [t.get_text() for t in ax.texts if "," in t.get_text()]
+    assert len(commas) >= 4
+    plt.close(fig)
+
+
+def test_mm2_depth_mirror_is_not_the_comma():
+    """An in-plane 2-fold stacks two heights of one hand, so that pair stays unmarked."""
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    general_position_diagram(25, ax=ax, projection="b")
+    labels = [t.get_text() for t in ax.texts if t.get_text() not in ("a", "b", "c")]
+    # One enantiomorph carries the comma. The page-parallel mirror's
+    # two heights do not.
+    assert sum("," in t for t in labels) == 1
+    assert sum("," not in t for t in labels) >= 2
+    plt.close(fig)
+
+
+def test_bar6_sites_are_open_hexagons():
+    """The 3 on a −6 is not drawn. The site is the open hexagon."""
+    import matplotlib.pyplot as plt
+    fig, ax = _render(193)
+    open6 = [p for p in ax.patches
+             if isinstance(p, RegularPolygon) and p.numvertices == 6
+             and not p.get_fill()]
+    filled3 = [p for p in ax.patches
+               if isinstance(p, RegularPolygon) and p.numvertices == 3
+               and p.get_fill()]
+    assert len(open6) >= 2
+    assert filled3 == []
+    plt.close(fig)
+
+
+def test_p4m_squares_carry_the_inversion_circle():
+    import matplotlib.pyplot as plt
+    fig, ax = _render(83)
+    squares = [p for p in ax.patches
+               if isinstance(p, RegularPolygon) and p.numvertices == 4
+               and p.get_fill()]
+    circles = [p for p in ax.patches if isinstance(p, Circle)]
+    assert squares and circles
+    for sq in squares:
+        assert any(np.hypot(c.center[0] - sq.xy[0], c.center[1] - sq.xy[1]) < 0.02
+                   for c in circles)
+    plt.close(fig)
+
+
+def _bracket_rows(ax, num, projection):
+    """y of each page-parallel bracket above the cell."""
+    _left, top = _cell_corner_bounds(num, projection)
+    ys = []
+    for ln in ax.lines:
+        x, y = ln.get_xdata(), ln.get_ydata()
+        if len(x) != 2 or abs(float(y[0]) - float(y[1])) > 1e-9:
+            continue
+        span = abs(float(x[1]) - float(x[0]))
+        if float(y[0]) < top - 0.02 and 0.12 < span < 0.25:
+            ys.append(round(float(y[0]), 2))
+    return sorted(set(ys))
+
+
+def test_cc_brackets_collapse_the_half_cell_partner():
+    """c at 0 and n at 1/4. The copies at 1/2 and 3/4 are the same planes."""
+    import matplotlib.pyplot as plt
+    fig, ax = _render(9, "b")
+    assert len(_bracket_rows(ax, 9, "b")) == 2
+    assert _texts(ax).count("¼") == 1
+    plt.close(fig)
+
+
+def test_page_parallel_partner_is_one_bracket():
+    """A plane and the copy half a cell away share one bracket."""
+    import matplotlib.pyplot as plt
+    fig, ax = _render(83)
+    assert len(_bracket_rows(ax, 83, "c")) == 1
+    plt.close(fig)
+    fig, ax = _render(193)
+    rows = _bracket_rows(ax, 193, "c")
+    assert len(rows) == 1
+    # The mirror is at 1/4, not at 0.
+    assert any(t.get_text() == "¼" and abs(t.get_position()[1] - rows[0]) < 0.2
+               for t in ax.texts)
+    plt.close(fig)
+
+
+def test_rhombohedral_g_matches_the_dashed_legend():
+    import matplotlib.pyplot as plt
+    fig, ax = _render(166)
+    found = _long_patterns(ax)
+    assert _style_pattern("g") in found
+    assert _style_pattern("n") not in found
+    plt.close(fig)

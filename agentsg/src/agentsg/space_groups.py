@@ -349,6 +349,14 @@ def _sg_cache_key(key):
         ndk = _norm_hm_nodash(key)
         if ndk in _BY_HM_NODASH:
             return ('hmnd', ndk)
+        from .ita_settings import lookup_setting, hall_for_ops
+        hit = lookup_setting(key)
+        if hit is not None:
+            return ('ita', hit[2])
+        # A Hall symbol that is not written exactly as in the table still parses.
+        hall = hall_for_ops(key)
+        if hall is not None:
+            return ('ita', hall)
         raise KeyError(f'unknown space-group symbol {key!r}')
     raise TypeError(f'space_group key must be int or str, got {type(key).__name__}')
 
@@ -363,5 +371,11 @@ def _space_group_cached(cache_key) -> SpaceGroup:
         return SpaceGroup(_BY_HALL[val])
     if kind == 'hm':
         return SpaceGroup(_BY_HM[val])
-    return SpaceGroup(_BY_HM_NODASH[val])
+    if kind == 'hmnd':
+        return SpaceGroup(_BY_HM_NODASH[val])
+    from .ita_settings import _BY_HALL as _ITA_HALL, display_hm
+    number, hm, hall, tag, hm_2016 = _ITA_HALL[val]
+    name = display_hm(hm, tag, hm_2016)
+    system = _BY_NUMBER[number][3]
+    return SpaceGroup((number, name, hall, system))
 

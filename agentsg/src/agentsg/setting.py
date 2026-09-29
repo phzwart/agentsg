@@ -11,12 +11,12 @@ symbol followed by a parenthesised change-of-basis, e.g.
 
 The parenthesised part lists, comma-separated, the THREE new basis vectors as
 linear combinations of the old ones -- i.e. the *columns* of the change-of-basis
-matrix P (see agentsg.change_of_basis for the full convention). The letters may
-be spelled x,y,z or a,b,c interchangeably; coefficients may be written 2a, 2*x,
+matrix P (see agentsg.change_of_basis for the full convention). The linear
+part may be spelled with x,y,z or a,b,c; coefficients may be written 2a, 2*x,
 -x, 2*x-y, or with fractions: ``a/2``, the grouped half-sum ``(y+z)/2``, or
-``1/2*(y+z)``. An optional constant term in a field is taken as that component
-of the origin shift p (in OLD fractional coordinates); the paper's examples
-carry no shift.
+``1/2*(y+z)``. A constant term is an origin shift and is written in x,y,z
+(``x+1/4``) or after a semicolon as in the ITA ``(P, p)`` form
+``(a,b,c;1/4,0,0)``. A constant written on a, b, or c is rejected.
 
 Crucially, when det(P) != 1 the transform rescales the lattice, and lattice
 translations that were integral in the base setting become fractional
@@ -135,15 +135,38 @@ def _parse_atom(s: str, pos: int) -> tuple[list[Fr], Fr, int]:
     raise ValueError(f"cannot parse change-of-basis field at {s[pos:]!r}")
 
 
+def _reject_abc_constant(field: str, const: Fr) -> None:
+    """Origin shifts stay in x,y,z. a,b,c name the basis, not the origin."""
+    if const == 0:
+        return
+    if re.search(r"[abc]", field.replace(" ", "")):
+        raise ValueError(
+            f"origin shift in {field!r} must be written in x, y, z "
+            f"(or after ';' as in (a,b,c;p1,p2,p3)), not with a, b, c"
+        )
+
+
 def parse_cob(cob: str) -> ChangeOfBasis:
     """Parse a parenthesised change-of-basis string into a ChangeOfBasis(P, p).
 
-    Columns of P are the new basis vectors in old coordinates. Any constant
-    terms are collected into the origin shift p (old fractional coords).
+    Columns of P are the new basis vectors in old coordinates. Constant terms
+    written in x,y,z, or the three numbers after a semicolon, are the origin
+    shift p in old fractional coordinates. ``(a,b,c;p1,p2,p3)`` is the ITA
+    ``(P, p)`` form.
     """
     inner = cob.strip()
     if inner.startswith("(") and inner.endswith(")"):
         inner = inner[1:-1]
+    origin_fields = None
+    if ";" in inner:
+        basis, origin = inner.split(";", 1)
+        origin_fields = [f for f in origin.split(",")]
+        if len(origin_fields) != 3:
+            raise ValueError(
+                f"origin shift after ';' needs 3 comma-separated fields, "
+                f"got {len(origin_fields)}: {cob!r}"
+            )
+        inner = basis
     fields = [f for f in inner.split(",")]
     if len(fields) != 3:
         raise ValueError(f"change-of-basis needs 3 comma-separated fields, got {len(fields)}: {cob!r}")
@@ -151,8 +174,22 @@ def parse_cob(cob: str) -> ChangeOfBasis:
     p = [Fr(0), Fr(0), Fr(0)]
     for j, field in enumerate(fields):
         ca, cb, cc, const = _parse_field(field)
+        _reject_abc_constant(field, const)
         P_cols.append((ca, cb, cc))     # column j = (coef of old-a, old-b, old-c)
         p[j] = const
+    if origin_fields is not None:
+        if any(p):
+            raise ValueError(
+                "write the origin shift either in the basis fields or after ';', not both"
+            )
+        for j, field in enumerate(origin_fields):
+            ca, cb, cc, const = _parse_field(field)
+            _reject_abc_constant(field, const)
+            if (ca, cb, cc) != (0, 0, 0):
+                raise ValueError(
+                    f"origin component {field!r} must be a number, not a basis vector"
+                )
+            p[j] = const
     # P[i][j] = coefficient of old vector i in new vector j = column j, row i
     P = Matrix3([[P_cols[j][i] for j in range(3)] for i in range(3)])
     return ChangeOfBasis(P, Vector3(tuple(p)))

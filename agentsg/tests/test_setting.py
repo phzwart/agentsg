@@ -55,6 +55,17 @@ def test_origin_shift_captured():
     assert cob.p.v == (0, 0, Fr(1, 2))
 
 
+def test_semicolon_origin_is_the_ita_form():
+    cob = parse_cob("(c,a,b;1/4,0,0)")
+    assert cob.P.rows == parse_cob("(c,a,b)").P.rows
+    assert cob.p.v == (Fr(1, 4), 0, 0)
+
+
+def test_abc_constant_is_rejected():
+    with pytest.raises(ValueError):
+        parse_cob("(a+1/4,b,c)")
+
+
 def test_parse_setting_strips_hall_prefix():
     base, cob = parse_setting("Hall: I 4 2 3 (y+z,x+z,x+y)")
     assert base == "I 4 2 3"
@@ -83,6 +94,30 @@ def test_format_round_trip():
         cob = parse_cob(txt)
         # re-parse the formatted string; P must be identical
         assert parse_cob(format_cob(cob)).P.rows == cob.P.rows
+
+
+def test_extended_symbols_resolve():
+    assert space_group("P 1 1 21/a").number == 14
+    assert space_group("P 1 1 21/a").hall == "-P 2ac"
+    assert space_group("Pmcb").number == 55
+    assert space_group("P n -3:2").number == 201
+    assert "origin choice 2" in space_group("P n -3:2").hermann_mauguin
+    assert space_group("-P 2ab 2bc").number == 48
+    rh = space_group("R 3:R")
+    assert rh.number == 146
+    assert "rhombohedral axes" in rh.hermann_mauguin
+    assert space_group("Aema").number == 64
+    assert space_group("C m c e").number == 64
+
+
+def test_transformed_setting_uses_the_ita_symbol():
+    from agentsg.cell.diagrams import _ita_names
+    s = SpaceGroupSetting.parse("P 1 21/c 1 (c,a,b)")
+    classic, modern = _ita_names(s)
+    assert classic.replace(" ", "") == "P1121/a"
+    s64 = SpaceGroupSetting.parse("C m c a (c,a,b)")
+    classic, modern = _ita_names(s64)
+    assert modern.replace(" ", "") == "Aema"
 
 
 def test_inverse_cob_round_trips_op():

@@ -366,7 +366,7 @@ def _canonical_plane(loc, normal):
     return _mod1(closest)
 
 
-def _glide_symbol(t, W, hexagonal=False) -> str:
+def _glide_symbol(t, W, hexagonal=False, normal=None) -> str:
     """ITA glide letter for a reduced intrinsic translation lying in the plane.
 
     ``m`` when the translation is a lattice vector. ``a``/``b``/``c`` for half
@@ -392,8 +392,21 @@ def _glide_symbol(t, W, hexagonal=False) -> str:
     diagonal_w = all(W[i][j] == 0 for i in range(3) for j in range(3) if i != j)
     if diagonal_w:
         return "n"
+    # Half a face diagonal of a coordinate plane is n in every family,
+    # whether or not one leg is c. A diagonal mirror (normal not along one
+    # cell axis) keeps g: that is the g of P4mm, not the n of Pm-3m.
+    if (not hexagonal and len(nz) == 2
+            and all(abs(iv[i]) == 1 for i in nz) and normal is not None):
+        nnz = [i for i, comp in enumerate(normal) if comp]
+        if len(nnz) == 1 and nnz[0] not in nz:
+            return "n"
     if iv[2] != 0 and not hexagonal:
         return "n"
+    # Hexagonal c-glides carry c/2 plus an in-plane half. The skewed basis
+    # makes that look like a diagonal g; the ITA letter is still c.
+    # A glide with no c component (the in-plane g of P3m1) stays g.
+    if iv[2] != 0 and hexagonal:
+        return "c"
     return "g"
 
 
@@ -497,10 +510,15 @@ def classify_element(W, w, lattice=None, hexagonal=False):
         intr_raw = _intrinsic(Wi, wf, 2)
         intr = _reduce_intrinsic(intr_raw, Wi, lattice)
         w_loc = _sub(wf, intr_raw)
-        ker = _integer_kernel([[Wi[i][j] + (1 if i == j else 0) for j in range(3)]
+        # The plane normal is a left eigenvector of W (kernel of Wᵀ+I).
+        # The right kernel of W+I is the direction the matrix reverses. In a
+        # skewed hexagonal basis those two vectors differ, and the right one
+        # drops the half-offset plane onto the mirror through the origin.
+        WT = tuple(tuple(Wi[j][i] for j in range(3)) for i in range(3))
+        ker = _integer_kernel([[WT[i][j] + (1 if i == j else 0) for j in range(3)]
                                for i in range(3)])
         normal = ker[0] if ker else (0, 0, 1)
-        gname = _glide_symbol(intr, Wi, hexagonal=hexagonal)
+        gname = _glide_symbol(intr, Wi, hexagonal=hexagonal, normal=normal)
         loc = _particular(
             [[Wi[i][j] - (1 if i == j else 0) for j in range(3)] for i in range(3)],
             tuple(-x for x in w_loc),
@@ -510,6 +528,13 @@ def classify_element(W, w, lattice=None, hexagonal=False):
         loc = _canonical_plane(loc, normal)
         if gname == "m":
             el = pack("mirror", 2, "m", normal, loc, (Fraction(0),) * 3)
+            # Centring can make an n the same plane as an m. Keep the letter
+            # so the JSON is complete; the plate does not draw it twice.
+            raw_name = _glide_symbol(
+                _mod1(intr_raw), Wi, hexagonal=hexagonal, normal=normal)
+            if raw_name == "n":
+                el["_coincident_symbol"] = "n"
+                el["_coincident_intrinsic"] = _mod1(intr_raw)
         else:
             el = pack("glide", 2, gname, normal, loc, intr)
         # Unreduced in-plane part, folded into the primitive cell. Two of
