@@ -57,7 +57,7 @@ Compute (bearer required except `/v1/help`):
 - Lattice symmetry — `POST /v1/lattice-symmetry` `{"cell":[50,50,51,90,90,90]}`
 - Compare — two cells; set `include_sublattices: true` for integer `M`
 - Reindex — geometric ambiguity only
-- PDB search — `POST /v1/pdb/search` `{"cell":[...],"sg":96,"cutoff":1.0}` or `"k":10`. The index is the sorted root key. `"plot":true` adds a mean-centred SVD scatter of the hit Kurlin roots (`plot_png_base64`, `xy`). `"return_cob":true` adds the change of basis from the query cell onto each deposited hit (`cob`, `cob_xyz`, and `cob_coset` when several operators match); `cob: null` is a sorted-key neighbour, not the same lattice. See `GET /skill.md`.
+- PDB search — `POST /v1/pdb/search` `{"cell":[...],"sg":96,"cutoff":1.0}` or `"k":10`. The index is the sorted root key. `"plot":true` adds a mean-centred SVD scatter of the hit Kurlin roots (`plot_png_base64`, `xy`). `"return_cob":true` adds the change of basis from the query cell onto each deposited hit (`cob`, `cob_xyz`, `cob_residual`, and `cob_coset` when several proper operators match). Only determinant +1 settings are listed. `cob: null` means no proper operator matched the reduced cell within tolerance. See `GET /skill.md`.
 - PDB lookup — `GET /v1/pdb/1ABC`
 - Plate image — `GET /v1/ita-plate.png?sg=96&legend=true`
 

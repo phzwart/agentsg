@@ -17,6 +17,7 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 export AGENTSG_DB="${AGENTSG_DB:-$ROOT/data/pdb_cells.duckdb}"
+export AGENTSG_ACCESS_LOG="${AGENTSG_ACCESS_LOG:-$ROOT/data/access.jsonl}"
 export AGENTSG_MCP_HOST="${AGENTSG_MCP_HOST:-127.0.0.1}"
 export AGENTSG_MCP_PORT="${AGENTSG_MCP_PORT:-9877}"
 export AGENTSG_MCP_PUBLIC_URL="${AGENTSG_MCP_PUBLIC_URL:-https://sg-mcp.mxagents.org}"

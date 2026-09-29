@@ -135,16 +135,74 @@ def test_reference_orbit_cob_maps_settings():
     rec = db.lookup_reductions(["SWAP"])["SWAP"]
     ops = match_operators(orbit, rec["red"], rec["cob"])
     assert ops
-    assert cob_xyz(ops[0]).count("-") == min(cob_xyz(P).count("-") for P in ops)
+    matrices = [P for P, _res in ops]
+    assert all(P.det() > 0 for P in matrices)
+    assert cob_xyz(matrices[0]).count("-") == min(cob_xyz(P).count("-") for P in matrices)
     base_rec = db.lookup_reductions(["BASE"])["BASE"]
     self_ops = match_operators(orbit, base_rec["red"], base_rec["cob"])
-    assert cob_xyz(self_ops[0]) == "(a,b,c)"
+    assert cob_xyz(self_ops[0][0]) == "(a,b,c)"
+    assert self_ops[0][1] == pytest.approx(0.0, abs=1e-6)
     G_swap = UnitCell(*swapped).metric_tensor()
-    for P in ops:
+    for P, _res in ops:
         Gp = _metric_of(UnitCell(*base).metric_tensor(), P)
         for a in range(3):
             for b in range(3):
                 assert Gp[a][b] == pytest.approx(G_swap[a][b], rel=1e-8, abs=1e-6)
+    db.close()
+
+
+def test_cob_coset_keeps_only_proper_rotations():
+    """A chiral reindexing must not lead with a determinant −1 setting."""
+    from agentsg.cell.selling_cob import cob_xyz, match_operators, reference_orbit
+    from agentsg.cell.sublattice import apply_to_cell
+
+    base = (40.96, 18.65, 22.52, 90.0, 90.77, 90.0)
+    swapped = apply_to_cell(base, [[0, 0, 1], [0, 1, 0], [1, 0, 0]])
+    hm = "P 1 21 1"
+    db = CellDatabase(":memory:")
+    assert db.add_cell("SELF", base, 4, hm)
+    assert db.add_cell("SWAP", swapped, 4, hm)
+    orbit = reference_orbit(base, hm)
+    for pid in ("SELF", "SWAP"):
+        rec = db.lookup_reductions([pid])[pid]
+        ops = match_operators(orbit, rec["red"], rec["cob"])
+        assert ops
+        assert all(P.det() > 0 for P, _res in ops)
+        spellings = [cob_xyz(P) for P, _res in ops]
+        assert "(c,b,a)" not in spellings
+        assert "(-c,b,-a)" not in spellings
+    swap = match_operators(
+        orbit,
+        db.lookup_reductions(["SWAP"])["SWAP"]["red"],
+        db.lookup_reductions(["SWAP"])["SWAP"]["cob"],
+    )
+    assert cob_xyz(swap[0][0]) in ("(c,-b,a)", "(-c,-b,-a)")
+    db.close()
+
+
+def test_cob_matches_a_close_reduced_cell_and_reports_residual():
+    """1JXU-sized noise still gets an operator; a 1% cell does not."""
+    from agentsg.cell.selling_cob import annotate_search_hits, reference_orbit
+
+    base = (40.96, 18.65, 22.52, 90.0, 90.77, 90.0)
+    near = (40.90, 18.59, 22.40, 90.0, 90.80, 90.0)
+    far = (42.0, 19.5, 24.0, 90.0, 92.0, 90.0)
+    hm = "P 1 21 1"
+    db = CellDatabase(":memory:")
+    assert db.add_cell("NEAR", near, 4, hm)
+    assert db.add_cell("FAR", far, 4, hm)
+    hits = [
+        {"pdb_id": "NEAR", "distance": 0.2},
+        {"pdb_id": "FAR", "distance": 2.0},
+    ]
+    annotate_search_hits(db, base, hm, hits)
+    by_id = {hit["pdb_id"]: hit for hit in hits}
+    assert by_id["NEAR"]["cob"] is not None
+    assert by_id["NEAR"]["cob_residual"] < 0.75
+    assert by_id["NEAR"]["cob_xyz"]
+    assert by_id["FAR"]["cob"] is None
+    assert by_id["FAR"]["cob_residual"] is None
+    assert reference_orbit(base, hm).labeled
     db.close()
 
 

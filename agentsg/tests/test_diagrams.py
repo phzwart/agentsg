@@ -544,8 +544,17 @@ def test_f222_primitive_draws_body_diagonal_twofolds():
     assert all(D._dir_class(e["axis"]) == "gen" for e in twos)
     fig, ax = plt.subplots()
     D.symmetry_element_diagram(st, ax=ax, show_title=True)
+    from matplotlib.patches import Polygon
     title = ax.get_title()
-    n_lines = len(ax.lines)
+    glyphs = []
+    for p in ax.patches:
+        if not isinstance(p, Polygon):
+            continue
+        n = len(np.asarray(p.get_xy())) - 1
+        # An arrowhead is a triangle; an interior inclined 2-fold is a lens.
+        # The cell outline is the four-corner frame and does not count.
+        if n == 3 or n > 10:
+            glyphs.append(p)
     plt.close(fig)
     assert "oblique" not in title
-    assert n_lines > 4  # cell edges plus projected 2-fold traces
+    assert len(glyphs) > 4

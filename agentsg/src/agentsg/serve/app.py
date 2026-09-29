@@ -9,14 +9,15 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from . import handlers
+from .accesslog import LOGGED_HEADER, log_exchange, log_path
 from .http import (
     HttpError,
     RateLimiter,
     check_bearer,
     parse_tokens,
+    parse_json_body,
     query_params,
     query_to_body,
-    read_json_body,
     send_bytes,
     send_json,
     send_text,
@@ -192,38 +193,71 @@ def make_handler(state: ServerState):
                 return handlers.pdb_search(state, data)
             raise HttpError(404, "not found", {"paths": sorted(routed_paths())})
 
+        def _record(self, status: int, body: bytes | None = None) -> None:
+            if self.headers.get(LOGGED_HEADER) == "1":
+                return
+            parsed = urlparse(self.path)
+            log_exchange(
+                service="http",
+                method=self.command,
+                path=self._norm(parsed.path),
+                status=status,
+                headers=self.headers,
+                peer=self.client_address[0],
+                host=self.headers.get("Host", ""),
+                body=body,
+                query=query_params(self.path),
+            )
+
         def do_GET(self):
             parsed = urlparse(self.path)
             path = self._norm(parsed.path)
+            status = 500
             try:
                 self._auth(path)
                 qs = query_params(self.path)
                 result = self._dispatch_get(path, qs)
                 self._write_result(result)
+                status = 200
             except HttpError as exc:
+                status = exc.status
                 send_json(self, exc.status, exc.payload)
             except (ValueError, KeyError, TypeError) as exc:
+                status = 400
                 send_json(self, 400, {"error": str(exc)})
             except ImportError as exc:
+                status = 503
                 send_json(self, 503, {"error": str(exc)})
             except Exception as exc:  # pragma: no cover
                 send_json(self, 500, {"error": str(exc)})
+            finally:
+                self._record(status)
 
         def do_POST(self):
             path = self._norm(urlparse(self.path).path)
+            status = 500
+            raw = b""
             try:
                 self._auth(path)
-                data = read_json_body(self)
+                length = int(self.headers.get("Content-Length", "0") or "0")
+                raw = self.rfile.read(length) if length else b""
+                data = parse_json_body(raw)
                 result = self._dispatch_post(path, data)
                 self._write_result(result)
+                status = 200
             except HttpError as exc:
+                status = exc.status
                 send_json(self, exc.status, exc.payload)
             except (ValueError, KeyError, TypeError) as exc:
+                status = 400
                 send_json(self, 400, {"error": str(exc)})
             except ImportError as exc:
+                status = 503
                 send_json(self, 503, {"error": str(exc)})
             except Exception as exc:  # pragma: no cover
                 send_json(self, 500, {"error": str(exc)})
+            finally:
+                self._record(status, raw)
 
         def _write_result(self, result):
             if isinstance(result, tuple) and result[0] == "text":
@@ -251,6 +285,8 @@ def run_server(db_path: str | None = None, host: str = "127.0.0.1",
         print(f"  database: {state.db_path} ({state.n_cells} cells)")
     print(f"  plates: {plates_available()}")
     print(f"  auth: {'bearer required' if state.token else 'open (no AGENTSG_TOKEN)'}")
+    if log_path():
+        print(f"  access log: {log_path()}")
     print("  GET /health  /api  /plates  /openapi.json  /skill.md")
     try:
         httpd.serve_forever()

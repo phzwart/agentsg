@@ -351,11 +351,13 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         Provide cutoff (Å) and/or k nearest neighbours. sg is required so centred
         cells are reduced to primitive before the search.
         plot: when true, the tool result includes a PC1–PC2 scatter PNG of the hits.
-        return_cob: when true, Selling-reduce the query, match the stored reduced
-        cell, and attach cob from the query cell onto that deposited cell.
-        cob is null when the hit is not the same lattice. cob is the representative
-        with the fewest minus signs, then the spelling closest to a,b,c;
-        cob_coset lists every match in that order.
+        return_cob: when true, Selling-reduce the query and attach cob from the
+        query cell onto each deposited hit whose reduced cell matches within
+        0.75% in length and 0.5° in angle. cob_residual is that leftover
+        mismatch. cob is null when no proper operator is within tolerance.
+        Only determinant +1 settings are listed. cob is the one with the fewest
+        minus signs, then the spelling closest to a,b,c; cob_coset lists every
+        proper match in that order.
         """
         import base64
         out = _result(lambda data: handlers.pdb_search(state, data), _clean({

@@ -38,12 +38,10 @@ class RateLimiter:
         q.append(now)
 
 
-def read_json_body(handler) -> dict[str, Any]:
-    """Read and parse a JSON POST body."""
-    length = int(handler.headers.get("Content-Length", "0"))
-    if length <= 0:
+def parse_json_body(raw: bytes) -> dict[str, Any]:
+    """Parse a JSON object body."""
+    if not raw:
         raise HttpError(400, "POST body required")
-    raw = handler.rfile.read(length)
     try:
         data = json.loads(raw.decode())
     except json.JSONDecodeError as exc:
@@ -51,6 +49,14 @@ def read_json_body(handler) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise HttpError(400, "JSON body must be an object")
     return data
+
+
+def read_json_body(handler) -> dict[str, Any]:
+    """Read and parse a JSON POST body."""
+    length = int(handler.headers.get("Content-Length", "0"))
+    if length <= 0:
+        raise HttpError(400, "POST body required")
+    return parse_json_body(handler.rfile.read(length))
 
 
 def query_params(path: str) -> dict[str, str]:
@@ -64,7 +70,7 @@ _LIST_INT = {"hkl"}
 _LIST_FLOAT = {"cell", "cell_a", "cell_b"}
 _BOOL_KEYS = {
     "legend", "show_centring", "include_sublattices", "include_g6",
-    "same_hm", "same_sg", "maximal", "plot",
+    "same_hm", "same_sg", "maximal", "plot", "return_cob",
 }
 _INT_KEYS = {"k"}
 _FLOAT_KEYS = {"cutoff", "max_delta", "length_tol_pct", "angle_tol_deg"}

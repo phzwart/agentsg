@@ -1413,12 +1413,12 @@ def _draw_position_mark(ax, xy, det):
         ax.text(xy[0], xy[1], ",", fontsize=6, zorder=5, ha="center", va="center")
 
 
-def _corner_buckets(marks, tol=0.008):
+def _corner_buckets(marks, tol=0.016):
     """Group corners that project on top of each other.
 
-    A cubic orbit often puts two vertices a hundredth of the cell apart.
-    One circle and a radial stack of labels reads; two labels side by side
-    print as ``½+½,½−``.
+    Only a true overlap is merged. A wider tolerance glued a whole corner
+    into one circle carrying every label. Two heights at one point still
+    share a circle; their captions stack along the outward ray.
     """
     buckets = []
     centres = []
@@ -1436,12 +1436,12 @@ def _corner_buckets(marks, tol=0.008):
     return buckets
 
 
-def _layout_outward_labels(centre_xy, spots, gap=0.055, min_sep=0.040):
-    """Place each corner's labels outside the hull, then ease overlaps apart.
+def _layout_outward_labels(centre_xy, spots, gap=0.016):
+    """Place each caption on the ray from the polyhedron centre through its circle.
 
-    ``spots`` is a list of ``(spot, [labels])``. Labels of one corner stay on
-    the ray from the polyhedron centre; a neighbour that lands on the same
-    point is pushed sideways until the captions no longer touch.
+    ``spots`` is a list of ``(spot, [labels])``. The anchor sits just outside
+    the marker. Two heights at one circle stack along that same ray, so the
+    text stays attached to its point.
     """
     centre_xy = np.asarray(centre_xy, float)
     items = []
@@ -1451,23 +1451,10 @@ def _layout_outward_labels(centre_xy, spots, gap=0.055, min_sep=0.040):
         away = away / nrm if nrm > 1e-6 else np.array([0.0, -1.0])
         for i, label in enumerate(labels):
             items.append({
-                "pos": np.asarray(spot, float) + away * (gap + 0.022 * i),
+                "pos": np.asarray(spot, float) + away * (gap + 0.020 * i),
                 "away": away,
                 "text": label,
             })
-    for _ in range(14):
-        for i in range(len(items)):
-            for j in range(i + 1, len(items)):
-                delta = items[j]["pos"] - items[i]["pos"]
-                dist = float(np.linalg.norm(delta))
-                if dist >= min_sep:
-                    continue
-                if dist < 1e-6:
-                    delta = np.array([min_sep, 0.0])
-                    dist = min_sep
-                push = (min_sep - dist) / 2.0 * delta / dist
-                items[i]["pos"] = items[i]["pos"] - push
-                items[j]["pos"] = items[j]["pos"] + push
     return items
 
 
@@ -1483,9 +1470,9 @@ def _outward_align(away):
     return "center", ("top" if ay > 0 else "bottom")
 
 
-def _draw_outward_labels(ax, centre_xy, spots, gap=0.045, fontsize=4.5, min_sep=0.032):
+def _draw_outward_labels(ax, centre_xy, spots, gap=0.016, fontsize=4.5):
     anchors = []
-    for item in _layout_outward_labels(centre_xy, spots, gap=gap, min_sep=min_sep):
+    for item in _layout_outward_labels(centre_xy, spots, gap=gap):
         pos = item["pos"]
         ha, va = _outward_align(item["away"])
         ax.text(float(pos[0]), float(pos[1]), item["text"], fontsize=fontsize,
@@ -1598,7 +1585,7 @@ def _draw_cubic_perspective(ax, sg, point=None):
             pts.append(spot)
             spots.append((spot, [lab for lab, _d in uniq]))
         pts.extend(_draw_outward_labels(
-            ax, centre_xy, spots, gap=0.04, fontsize=4))
+            ax, centre_xy, spots, fontsize=4))
     corners = {(i, j, k): cabinet([i, j, k])
                for i in (0, 1) for j in (0, 1) for k in (0, 1)}
     for i, j, k in corners:
@@ -2030,7 +2017,6 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     inplane_axes = {}
     inclined2 = []
     inclined3 = []
-    inplane_higher = []
 
     parallel_planes_drawn = set()   # planes parallel to the page (corner glyph)
     plane_traces = []               # (origin, direction) of planes ⊥ page
@@ -2074,7 +2060,17 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
             elif el["order"] == 3 and dc == "gen":
                 inclined3.append(el)
             elif el["order"] in (4, 6) and dc == "ab":
-                inplane_higher.append(el)
+                # An axis lying in the page is an arrowhead at the cell edge,
+                # the same size as a 2-fold. A square here would be the symbol
+                # for an axis perpendicular to the page and would cover the edge.
+                slot = inplane_axes.setdefault(_trace_id(el), {
+                    "full": False, "half": False, "loc": P(loc), "d": d,
+                    "el": el,
+                })
+                if t == "screw":
+                    slot["half"] = True
+                else:
+                    slot["full"] = True
             elif t == "rotoinversion" and el["order"] == 3 and dc == "gen":
                 inclined3.append(el)
             else:
@@ -2154,24 +2150,36 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
     drawn_heads = set()
 
     def _one_head(tip, outward, full, size):
-        """One arrowhead. A second head at the same point and sense is dropped."""
+        """One arrowhead. A second head at the same point and sense is dropped.
+
+        Returns False when this tip repeats a head already drawn, so the caller
+        does not add a second shaft.
+        """
         tip = np.asarray(tip, float)
         outward = np.asarray(outward, float)
+        outward = outward / (np.linalg.norm(outward) or 1.0)
         key = (round(float(tip[0]), 2), round(float(tip[1]), 2),
                round(float(outward[0]), 1), round(float(outward[1]), 1),
                bool(full))
         if key in drawn_heads:
-            return
-        # A second head of the same kind whose tip lands on this one is the
-        # same edge drawn twice (a lattice copy, or two segments that meet).
+            return False
+        # Lattice copies and segments that meet on one edge share a tip.
+        # Heads a quarter-cell apart are different axes and are kept.
         for prev in drawn_heads:
             if prev[4] != bool(full):
                 continue
-            if abs(prev[0] - key[0]) <= 0.04 and abs(prev[1] - key[1]) <= 0.04:
+            if abs(prev[0] - key[0]) <= 0.05 and abs(prev[1] - key[1]) <= 0.05:
                 if prev[2] == key[2] and prev[3] == key[3]:
-                    return
+                    return False
         drawn_heads.add(key)
         _draw_inplane_arrowhead(ax, tip, outward, full=full, size=size)
+        return True
+
+    def _shaft_to(tip, outward, head_size, shaft_len):
+        shaft_end = np.asarray(tip, float) - outward * head_size
+        shaft_in = shaft_end - outward * shaft_len
+        ax.plot([shaft_in[0], shaft_end[0]], [shaft_in[1], shaft_end[1]],
+                color="k", lw=1.0, zorder=3)
 
     def draw_axis_line(p0, p1, full, half, key, stub):
         """Arrowheads at both ends of an in-plane axis.
@@ -2180,50 +2188,40 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
         on the cell edge and wherever a plane already occupies the trace.
         A trace with no plane is the clipped line, and the head sits outside
         the cell edge rather than partway along that line. A 2 and a 2₁ on
-        the same trace sit side by side, not stacked on one point.
+        the same trace sit a head-width apart, each on its own short shaft.
         """
         p0 = np.asarray(p0, float)
         p1 = np.asarray(p1, float)
+        head_size = 0.026
+        shaft_len = 0.018
+        if not stub:
+            ax.plot([p0[0], p1[0]], [p0[1], p1[1]],
+                    color="k", lw=1.2, zorder=3)
+        ends = []
         if stub:
-            head_size = 0.055
-            shaft_len = 0.03
-            clear = 0.06
             mid = 0.5 * (p0 + p1)
             for end in (p0, p1):
                 outward = end - mid
                 nrm = np.linalg.norm(outward) or 1.0
-                outward = outward / nrm
-                tip = end + outward * (clear + shaft_len + head_size)
-                perp = np.array([-outward[1], outward[0]])
-                if full and half:
-                    # A full head and a half head, separated by a head-width
-                    # so they do not read as one doubled arrowhead.
-                    _one_head(tip + perp * 0.09, outward, True, head_size)
-                    _one_head(tip - perp * 0.09, outward, False, head_size)
-                else:
-                    _one_head(tip, outward, bool(full), head_size)
-                shaft_end = tip - outward * head_size
-                shaft_in = shaft_end - outward * shaft_len
-                ax.plot([shaft_in[0], shaft_end[0]],
-                        [shaft_in[1], shaft_end[1]],
-                        color="k", lw=1.2, zorder=3)
+                ends.append((end, outward / nrm, True))
         else:
-            ax.plot([p0[0], p1[0]], [p0[1], p1[1]],
-                    color="k", lw=1.2, zorder=3)
-            head_size = 0.045
             for end, other in ((p0, p1), (p1, p0)):
                 outward = end - other
                 nrm = np.linalg.norm(outward) or 1.0
-                outward = outward / nrm
-                # The head extends back from its tip by head_size, so the tip
-                # has to clear the boundary by that much.
-                tip = end + outward * (head_size + 0.012)
-                perp = np.array([-outward[1], outward[0]])
-                if full and half:
-                    _one_head(tip + perp * 0.08, outward, True, head_size)
-                    _one_head(tip - perp * 0.08, outward, False, head_size)
-                else:
-                    _one_head(tip, outward, bool(full), head_size)
+                ends.append((end, outward / nrm, False))
+        for end, outward, is_stub in ends:
+            # Just clear of the boundary. The head itself is head_size long.
+            extra = (0.012 + head_size) if is_stub else (head_size + 0.008)
+            perp = np.array([-outward[1], outward[0]])
+            if full and half:
+                for sign, is_full in ((1.0, True), (-1.0, False)):
+                    tip = end + outward * extra + perp * 0.032 * sign
+                    if _one_head(tip, outward, is_full, head_size):
+                        _shaft_to(tip, outward, head_size, shaft_len)
+            else:
+                tip = end + outward * extra
+                if _one_head(tip, outward, bool(full), head_size) and is_stub:
+                    _shaft_to(tip, outward, head_size, shaft_len)
         cap = captions.get(key, "")
         if cap and key not in labelled:
             labelled.add(key)
@@ -2292,6 +2290,19 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                 # and the several <111> lines through the origin, share it.
                 mark = (k, roto)
                 slot["glyphs"].setdefault(mark, direction)
+        def _near_edge(xy, tol=0.03):
+            x, y = float(xy[0]), float(xy[1])
+            return min(abs(x), abs(1.0 - x), abs(y), abs(1.0 - y)) < tol
+
+        def _near_c_axis(xy, tol=0.04):
+            x, y = float(xy[0]), float(xy[1])
+            for ckey in c_sites:
+                for other in edge_copies(ckey):
+                    if (abs(float(other[0]) - x) <= tol
+                            and abs(float(other[1]) - y) <= tol):
+                        return True
+            return False
+
         for key, slot in sites.items():
             cap = _height_caption(slot["depths"])
             # Rotoinversions last, so an open −3 is not painted over by a 3₁.
@@ -2303,14 +2314,22 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
                     dn = np.linalg.norm(direction) or 1.0
                     direction = direction / dn
                     pos = np.asarray(xy, float)
-                    # Short of the next intersection (about 1/6 of the cell on
-                    # a cubic plate) so a 3₁ does not land on the neighbouring −3.
-                    step = 0.032 if kind == "tri" else 0.028
-                    if n > 1:
-                        # Spread distinct symbols (3, 3₁, 3₂, −3) so the hooks
-                        # of one are not hidden inside the triangle of another.
-                        pos = pos + direction * step * (i - 0.5 * (n - 1))
-                    if kind == "lens":
+                    # A 4/m square is drawn later on this same point. Step the
+                    # inclined symbol out along its axis so the −3 stays visible.
+                    if _near_c_axis(pos):
+                        pos = pos + direction * 0.07
+                    if n > 1 and kind == "tri":
+                        # Side by side, across the axis, so 3₁ and 3₂ do not
+                        # sit on top of each other or walk into the next site.
+                        perp = np.array([-direction[1], direction[0]])
+                        pos = pos + perp * 0.07 * (i - 0.5 * (n - 1))
+                    elif n > 1:
+                        pos = pos + direction * 0.028 * (i - 0.5 * (n - 1))
+                    if kind == "lens" and _near_edge(xy):
+                        # The cut is on the cell border. A filled lens there
+                        # covers the edge; use the same small head as a 2-fold.
+                        _one_head(pos, direction, k == 0, 0.026)
+                    elif kind == "lens":
                         ang = math.atan2(float(direction[1]), float(direction[0]))
                         _draw_lens(ax, pos, 0.032, angle=ang, fc="k", ec="k",
                                    lw=0.9, zorder=5)
@@ -2331,12 +2350,6 @@ def symmetry_element_diagram(sg, ax=None, show_title=True, projection="c",
 
     _draw_inclined_family(inclined2, "lens")
     _draw_inclined_family(inclined3, "tri")
-
-    for el in inplane_higher:
-        for xy in edge_copies(P(el["location"])):
-            draw_axis_symbol(
-                ax, xy, el["order"], screw_k=_screw_k(el),
-                rotoinv=(el["type"] == "rotoinversion"), size=0.03)
 
     for key, s in c_sites.items():
         cap = captions.get(("point", tuple(np.round(key, 3))), "")

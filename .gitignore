@@ -30,6 +30,7 @@ symcell-update.zip
 # Large / regenerable data (build with agentsg.cell.celldb / analysis scripts)
 data/*.duckdb
 data/*.duckdb_old
+data/access.jsonl
 *.duckdb
 *.duckdb_old
 

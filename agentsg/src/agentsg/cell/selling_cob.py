@@ -170,12 +170,26 @@ def reference_orbit(cell, sg_hm) -> ReferenceOrbit:
     return ReferenceOrbit(P_ref, labeled)
 
 
-def _metrics_close(G, H, verify_rel=1e-6) -> bool:
-    scale = abs(H[0][0]) + abs(H[1][1]) + abs(H[2][2])
-    tol = verify_rel * max(scale, 1e-12)
-    return all(
-        abs(G[a][b] - H[a][b]) <= tol for a in range(3) for b in range(3)
+# A neighbour such as 1JXU vs 1CRN differs by ~0.5% in an edge and ~0.03° in
+# an angle. A 1% edge change is a different cell, not a noisy copy.
+_COB_LENGTH_TOL_PCT = 0.75
+_COB_ANGLE_TOL_DEG = 0.5
+
+
+def _param_residual(G_pred, red_cell):
+    """Length error in percent, angle error in degrees, and their maximum.
+
+    ``G_pred`` is the metric of one query orbit member. ``red_cell`` is the
+    stored Selling-reduced cell. The maximum is the same blend reindexing uses.
+    """
+    predicted = params_from_metric(G_pred)
+    target = tuple(float(x) for x in red_cell)
+    length = max(
+        abs(predicted[i] - target[i]) / max(abs(target[i]), 1e-9) * 100.0
+        for i in range(3)
     )
+    angle = max(abs(predicted[3 + i] - target[3 + i]) for i in range(3))
+    return length, angle, max(length, angle)
 
 
 _COB_TARGET = "a,b,c"
@@ -204,22 +218,41 @@ def _cob_rank(P: Matrix3):
     return (body.count("-"), -n, mismatch, body)
 
 
-def match_operators(orbit: ReferenceOrbit, red_cell, P_pdb: Matrix3, verify_rel=1e-6):
+def match_operators(
+    orbit: ReferenceOrbit,
+    red_cell,
+    P_pdb: Matrix3,
+    verify_rel=1e-6,
+    length_tol_pct=_COB_LENGTH_TOL_PCT,
+    angle_tol_deg=_COB_ANGLE_TOL_DEG,
+):
     """Operators from the reference deposited cell to the PDB deposited cell.
 
-    The first operator is the preferred representative: fewest minus signs,
-    then the change-of-basis text closest to ``a,b,c``. Empty when the stored
-    reduced cell is not an orbit member (sorted-key impostor).
+    Each item is ``(P, residual)``. ``residual`` is the max of the percent
+    length error and the degree angle error between that orbit member and the
+    stored reduced cell. An operator is kept only when both stay inside the
+    tolerances. Determinant −1 is dropped: the lattice inversion puts those
+    in the closure, and they reverse handedness.
+
+    The first operator is the preferred representative among the proper ones:
+    fewest minus signs, then the change-of-basis text closest to ``a,b,c``.
+    Empty when no proper operator matches within tolerance.
     """
-    G_pdb = UnitCell(*red_cell).metric_tensor()
     P_inv = P_pdb.inverse()
     found = {}
     for S, G_s in orbit.labeled:
-        if not _metrics_close(G_s, G_pdb, verify_rel=verify_rel):
-            continue
         P = orbit.P_ref @ S @ P_inv
-        found[P.rows] = P
-    return sorted(found.values(), key=_cob_rank)
+        # Inversion of the lattice is in the closure. Those operators have
+        # negative determinant and reverse a chiral axis system.
+        if P.det() <= 0:
+            continue
+        length, angle, residual = _param_residual(G_s, red_cell)
+        if length > length_tol_pct or angle > angle_tol_deg:
+            continue
+        prev = found.get(P.rows)
+        if prev is None or residual < prev[1]:
+            found[P.rows] = (P, residual)
+    return sorted(found.values(), key=lambda item: _cob_rank(item[0]))
 
 
 def annotate_search_hits(db, cell, sg_hm, hits, verify_rel=1e-6):
@@ -233,6 +266,7 @@ def annotate_search_hits(db, cell, sg_hm, hits, verify_rel=1e-6):
         for hit in hits:
             hit["cob"] = None
             hit["cob_xyz"] = None
+            hit["cob_residual"] = None
         return hits
     reductions = db.lookup_reductions([hit["pdb_id"] for hit in hits])
     orbit = None
@@ -247,11 +281,15 @@ def annotate_search_hits(db, cell, sg_hm, hits, verify_rel=1e-6):
         if not ops:
             hit["cob"] = None
             hit["cob_xyz"] = None
+            hit["cob_residual"] = None
             continue
-        hit["cob"] = cob_to_json(ops[0])
-        hit["cob_xyz"] = cob_xyz(ops[0])
+        lead, lead_res = ops[0]
+        hit["cob"] = cob_to_json(lead)
+        hit["cob_xyz"] = cob_xyz(lead)
+        hit["cob_residual"] = lead_res
         if len(ops) > 1:
             hit["cob_coset"] = [
-                {"cob": cob_to_json(P), "cob_xyz": cob_xyz(P)} for P in ops
+                {"cob": cob_to_json(P), "cob_xyz": cob_xyz(P), "residual": res}
+                for P, res in ops
             ]
     return hits

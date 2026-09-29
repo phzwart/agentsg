@@ -16,8 +16,10 @@ import os
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, urlparse
 from urllib.request import ProxyHandler, Request, build_opener
 
+from .accesslog import LOGGED_HEADER, log_exchange, log_path
 from .http import RateLimiter
 
 _HOP = {
@@ -87,6 +89,20 @@ def make_front_handler(
             if self.command != "HEAD":
                 self.wfile.write(body)
 
+        def _record(self, status: int, body: bytes, host_header: str) -> None:
+            parsed = urlparse(self.path)
+            log_exchange(
+                service="front",
+                method=self.command,
+                path=parsed.path or "/",
+                status=status,
+                headers=self.headers,
+                peer=self.client_address[0],
+                host=host_header,
+                body=body,
+                query={k: v[0] for k, v in parse_qs(parsed.query).items()},
+            )
+
         def _forward(self) -> None:
             host_header = self.headers.get("Host", "")
             dest_host, dest_port, is_mcp = upstream_for_host(
@@ -101,21 +117,25 @@ def make_front_handler(
                     status = getattr(exc, "status", 429)
                     payload = getattr(exc, "payload", {"error": str(exc)})
                     self._send_json(status, payload, {"Retry-After": "60"})
+                    self._record(status, body, host_header)
                     return
             url = f"http://{dest_host}:{dest_port}{self.path}"
             data = body if body else None
             req = Request(url, data=data, method=self.command)
             for key, value in self.headers.items():
-                if key.lower() in _HOP or key.lower() == "host":
+                if key.lower() in _HOP or key.lower() in ("host", LOGGED_HEADER.lower()):
                     continue
                 req.add_header(key, value)
             req.add_header("Host", host_header or f"{dest_host}:{dest_port}")
+            req.add_header(LOGGED_HEADER, "1")
+            status = 502
             try:
                 resp = opener.open(req, timeout=180)
             except HTTPError as exc:
                 resp = exc
             except URLError as exc:
                 self._send_json(502, {"error": f"upstream unavailable: {exc.reason}"})
+                self._record(502, body, host_header)
                 return
             try:
                 payload = resp.read()
@@ -131,6 +151,7 @@ def make_front_handler(
                     self.wfile.write(payload)
             finally:
                 resp.close()
+                self._record(status, body, host_header)
 
     return Handler
 
@@ -154,6 +175,8 @@ def run_front(
     print(f"agentsg front on http://{host}:{port}")
     print(f"  sg-mcp.* → 127.0.0.1:{mcp_port} (no API key)")
     print(f"  other hosts → 127.0.0.1:{muse_port}")
+    if log_path():
+        print(f"  access log: {log_path()}")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

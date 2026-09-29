@@ -36,11 +36,15 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
             book = await client.call_tool("playbook", {})
             with pytest.raises(ToolError):
                 await client.call_tool("pdb_lookup", {"pdb_id": "1LYZ"})
-            return names, space.data, book.data
+            return names, tools, space.data, book.data
 
-    names, space, book = asyncio.run(_run())
+    names, tools, space, book = asyncio.run(_run())
     assert "space_group" in names
     assert "pdb_search" in names
+    pdb = next(tool for tool in tools if tool.name == "pdb_search")
+    schema = getattr(pdb, "input_schema", None) or pdb.inputSchema
+    assert "plot" in schema["properties"]
+    assert "return_cob" in schema["properties"]
     assert "ita_plate" in names
     assert "ita_plate_image" not in names
     assert space["sg_number"] == 96

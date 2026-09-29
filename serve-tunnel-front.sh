@@ -15,6 +15,7 @@ if [[ -f "$ENV_FILE" ]]; then
   set +a
 fi
 
+export AGENTSG_ACCESS_LOG="${AGENTSG_ACCESS_LOG:-$ROOT/data/access.jsonl}"
 export AGENTSG_FRONT_HOST="${AGENTSG_FRONT_HOST:-127.0.0.1}"
 export AGENTSG_FRONT_PORT="${AGENTSG_FRONT_PORT:-9880}"
 export AGENTSG_MCP_PORT="${AGENTSG_MCP_PORT:-9877}"

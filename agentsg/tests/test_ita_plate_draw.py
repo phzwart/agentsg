@@ -100,7 +100,8 @@ def test_inplane_axes_are_edge_stubs_including_the_far_edge():
     xs = [float(xy[:, 0].max()) for xy in heads]
     assert max(xs) > 0.9
     assert min(float(xy[:, 0].min()) for xy in heads) < 0.1
-    # Corner heads sit outside the frame, clear of the 2-fold at the corner.
+    # Corner heads sit just outside the frame. The head is the small 2-fold
+    # size, so the tip clears the edge by about one head-length.
     outside = []
     for xy in heads:
         if xy.shape[0] > 5:
@@ -108,7 +109,7 @@ def test_inplane_axes_are_edge_stubs_including_the_far_edge():
         if xy[:, 0].min() < 0.0 or xy[:, 1].min() < 0.0:
             outside.append(xy)
     assert outside
-    assert min(float(xy[:, 0].min()) for xy in outside) < -0.04
+    assert min(float(xy[:, 0].min()) for xy in outside) < -0.03
     plt.close(_fig)
 
 
@@ -868,3 +869,104 @@ def test_projection_all_json_keeps_the_default_elements():
     assert "projection=all" in meta["png_url"]
     _sg, proj, _legend, _cent = plate_png_args({"sg": 26, "projection": "all"})
     assert proj == "all"
+
+
+def _poly_span(xy):
+    xy = np.asarray(xy, float)
+    if len(xy) > 1 and np.allclose(xy[0], xy[-1]):
+        xy = xy[:-1]
+    span = 0.0
+    for i in range(len(xy)):
+        for j in range(i + 1, len(xy)):
+            span = max(span, float(np.linalg.norm(xy[i] - xy[j])))
+    return span
+
+
+def test_fm3m_border_heads_are_small():
+    """In-plane heads match a 2-fold, and the cell edge is not a row of squares."""
+    import matplotlib.pyplot as plt
+    fig, ax = _render(225)
+    spans = []
+    edge_small_squares = []
+    filled_on_edge = []
+    for p in ax.patches:
+        if isinstance(p, RegularPolygon) and p.numvertices == 4:
+            c = np.asarray(p.xy, float)
+            on_edge = min(abs(c[0]), abs(1.0 - c[0]), abs(c[1]), abs(1.0 - c[1])) <= 0.02
+            if on_edge and float(p.radius) <= 0.032:
+                edge_small_squares.append(p)
+            if on_edge and p.get_fill():
+                filled_on_edge.append(p)
+            continue
+        if not isinstance(p, Polygon):
+            continue
+        xy = np.asarray(p.get_xy(), float)
+        if len(xy) < 2 or len(xy) - 1 != 3:
+            continue
+        body = xy[:-1]
+        centre = body.mean(axis=0)
+        if min(abs(centre[0]), abs(1.0 - centre[0]),
+               abs(centre[1]), abs(1.0 - centre[1])) > 0.08:
+            continue
+        spans.append(_poly_span(body))
+    plt.close(fig)
+    assert spans
+    assert max(spans) < 0.035
+    assert edge_small_squares == []
+    # One 4/m square at each corner and edge midpoint. A second square there
+    # would be an in-plane 4 drawn with the perpendicular-page glyph.
+    assert len(filled_on_edge) == 8
+
+
+def test_inclined_threefold_pairs_are_separated():
+    import matplotlib.pyplot as plt
+    fig, ax = _render(225)
+    tris = [
+        p for p in ax.patches
+        if isinstance(p, RegularPolygon) and p.numvertices == 3
+    ]
+    pts = np.array([np.asarray(p.xy, float) for p in tris])
+    nearest = []
+    for i in range(len(pts)):
+        dist = np.linalg.norm(pts - pts[i], axis=1)
+        dist[i] = 99.0
+        nearest.append(float(dist.min()))
+    open_near = [
+        p for p in tris
+        if not p.get_fill()
+        and abs(float(p.xy[0])) < 0.15
+        and abs(float(p.xy[1])) < 0.15
+    ]
+    plt.close(fig)
+    assert nearest
+    assert min(nearest) >= 0.05
+    assert open_near
+    assert min(float(np.hypot(p.xy[0], p.xy[1])) for p in open_near) > 0.02
+
+
+def test_ia3d_captions_sit_beside_their_circles():
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle
+    fig, ax = plt.subplots()
+    general_position_diagram(230, ax=ax, show_title=False)
+    centres = []
+    for p in ax.patches:
+        if isinstance(p, Circle):
+            centres.append(np.asarray(p.center, float))
+    for ln in ax.lines:
+        if ln.get_marker() != "o":
+            continue
+        for x, y in zip(ln.get_xdata(), ln.get_ydata()):
+            centres.append(np.array([float(x), float(y)]))
+    centres = np.asarray(centres, float)
+    distances = []
+    for t in ax.texts:
+        text = t.get_text()
+        if not text or text in ("0", ","):
+            continue
+        pos = t.get_position()
+        distances.append(float(np.linalg.norm(
+            centres - np.array([pos[0], pos[1]], float), axis=1).min()))
+    plt.close(fig)
+    assert distances
+    assert max(distances) <= 0.04

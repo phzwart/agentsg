@@ -102,9 +102,9 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **PDB search**: list `pdb_id`, `distance` (Å on the sorted root invariant), `sg_hm`, `cell`. The index key is the six sorted roots of one obtuse superbase of the primitive lattice. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
 
-`cob` is absent unless the request set `return_cob` true. When it is set, the server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator only when a closure member matches the stored reduced cell. `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob: null` means the sorted-key hit is not the same lattice. Do not invent an operator from the distance. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
+`cob` is absent unless the request set `return_cob` true. When it is set, the server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator when a closure member matches the stored reduced cell within 0.75% in each edge and 0.5° in each angle. `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob_residual` is the remaining mismatch after that operator: the larger of the percent length error and the degree angle error. `cob: null` means no proper operator matched within that tolerance. Do not invent an operator from the distance, and do not read a small distance with `cob: null` as a proof that the crystal forms differ. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
 
-If several operators match, `cob` is the one with the fewest minus signs in `cob_xyz`, then the spelling closest to `a,b,c`. `cob_coset` is that full list in the same order, with `cob` first. Quote `cob_xyz` as the representative and list every other `cob_xyz` in the coset. Metric symmetry does not choose a single setting; the spelling rule only chooses which one to lead with.
+Settings with determinant −1 are omitted. They reverse handedness, and the lattice inversion is what puts them in the closure. If several proper operators match, `cob` is the one with the fewest minus signs in `cob_xyz`, then the spelling closest to `a,b,c`, chosen only among determinant +1. `cob_coset` is that full list in the same order, with `cob` first. Each entry has its own `residual`. Quote `cob_xyz` as the representative and list every other `cob_xyz` in the coset. Metric symmetry does not choose a single setting; the spelling rule only chooses which proper setting to lead with.
 
 Omit `plot` unless the user asked for a figure. With `"plot": true` the same response grows the structure below. Display the PNG. Do not invent coordinates that are not in `xy` or `query_xy`.
 
@@ -233,7 +233,7 @@ POST /v1/pdb/search
 {"cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 10, "return_cob": true}
 ```
 
-Lead with hits whose `cob` is not null. Quote `cob_xyz`. If `cob_coset` has more than one entry, list every `cob_xyz` in it. Hits with `cob: null` are neighbours, not the same lattice.
+Lead with hits whose `cob` is not null. Quote `cob_xyz` and `cob_residual`. If `cob_coset` has more than one entry, list every `cob_xyz` in it. Hits with `cob: null` have no proper operator within the reduced-cell tolerance.
 
 # Hard rules
 
