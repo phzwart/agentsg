@@ -19,6 +19,7 @@ OUT = HERE.parent
 sys.path.insert(0, str(HERE))
 from concepts import CONCEPTS  # noqa: E402
 from quotes import is_anaphoric, needles_for, page_matches, pick_sentence  # noqa: E402
+import pygrits  # noqa: E402
 
 
 def git_snapshot(allow_dirty: bool) -> dict:
@@ -228,7 +229,6 @@ for pc in payload["concepts"]:
                   "started_at": f"{FETCH_DATE}T00:00:00Z", "ended_at": f"{FETCH_DATE}T23:59:59Z"})
 
 ledger = {"@context": "https://phzwart.github.io/pygrits/context.jsonld", "@graph": graph}
-import pygrits
 bundle = pygrits.load(ledger)
 pygrits.validate(bundle)
 pygrits.dump(bundle, OUT / "agentsg_kg.grits.jsonld")
