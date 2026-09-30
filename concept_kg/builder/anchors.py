@@ -63,9 +63,10 @@ def main():
             if not collapsed.startswith(body):
                 problems.append(f"{c['id']}: quote is not the docstring prefix in {module}")
                 continue
-            lineno = node.lineno
             if node.body and isinstance(node.body[0], ast.Expr):
-                lineno = getattr(node.body[0], "lineno", lineno)
+                lineno = getattr(node.body[0], "lineno", 1)
+            else:
+                lineno = getattr(node, "lineno", 1)
             out.append({"concept": c["id"], "module": module, "symbol": symbol,
                         "kind": "module" if symbol == "" else type(node).__name__,
                         "line": lineno, "exact": quote,
