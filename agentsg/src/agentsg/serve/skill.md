@@ -76,6 +76,10 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Serial XFEL reindex / ambiguity | `POST /v1/reindex` |
 | Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
+| What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |
+| What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |
+| Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |
+| Show the receipt for a claim | `GET /v1/concept/receipt?id=` the `receipt` field from the card |
 | Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |
 
 `sg` accepts an IT number (`96`), Hermann–Mauguin (`P 43 21 2` / `P43212`), or a Hall symbol.
@@ -99,6 +103,26 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 **Compare**: lead with `root_distance` in Å. G6 / similarity only if asked.
 
 **Reindex**: list branches. `is_metric_symmetry: true` (residual 0) is true merohedry. You cannot pick the intensity branch. Say that you cannot decide P3₁ vs P3₂ from the cell alone.
+
+**Concept** (`/v1/concept`): this is the vocabulary of the code, with receipts. It does not compute a space group. For operators, absences, sites, or cells, use those endpoints and use the graph when the user asks what a word means or where a routine lives.
+
+Search with `q` first when you are not sure of the id. The top hit of “Smith normal form” is `smith_normal_form`; “allowed origin” is `allowed_origins`. Then call `id` for the card.
+
+On the card, lead with `definition` and say it is a builder paraphrase (`definition_receipt`). Then quote each `references` entry that has a `quote`: the source (`iucr` or `wikipedia`), the sentence, the `url`, and `status`.
+
+- `quoted` — transcribed sentence. Give the URL.
+- `quoted-unverified-markup` — same, and say inline math may have been stripped.
+- `unreachable` — no sentence was retrieved. Give the URL anyway. `hall_symbol` has no reachable external definition; say so.
+
+For “where is this implemented?”, quote `code_evidence`: `module`, `symbol`, `line`, `quote`, and give `uri` as the link. `sha256` belongs to `snapshot`. A mismatch with the file on disk is a stale anchor. Say that if you compare them.
+
+`relations` are typed: `USES`, `IS_A`, `PART_OF`, `SPECIALIZES`, `DUAL_OF`, `EQUIVALENT_TO`, `RELATED_TO`, `DEFINED_BY`, `CONTRASTS_WITH`. Quote `type`, `target`, and `target_label`. A contrast or a dual that is absent from `relations` is absent. Do not add one.
+
+`/v1/concept/uses` lists only `USES` neighbours, nearest first (`depth` 1, then 2, then 3), each with its `definition`. `/v1/concept/module` lists every concept anchored in that file. A bare filename (`semi_invariants.py`) matches.
+
+Fetch `/v1/concept/receipt` when the user asks for the receipt, the source, or why a sentence is in the answer. Pass the id already on the card (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). Quote `node.how` and `node.summary` or `node.rationale`. `how=quote` is a verbatim substring. `how=derived` is a paraphrase or a transcription without a page hash. `how=inferred` is a relation the builder asserted.
+
+When the user asks what you can explain about the code, offer the questions in **Concept questions** and wait. Do not answer that list as if you had already called the graph.
 
 **PDB search**: list `pdb_id`, `distance` (Å on the sorted root invariant), `sg_hm`, `cell`. The index key is the six sorted roots of one obtuse superbase of the primitive lattice. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
 
@@ -235,6 +259,87 @@ POST /v1/pdb/search
 
 Lead with hits whose `cob` is not null. Quote `cob_xyz` and `cob_residual`. If `cob_coset` has more than one entry, list every `cob_xyz` in it. Hits with `cob: null` have no proper operator within the reduced-cell tolerance.
 
+# Concept questions
+
+Offer this list when the user asks what you can explain about the code, or what the graph knows. Run a call only after they pick one, or when their own question matches one. Then surface the fields named below. Quote the JSON. Keep the link.
+
+- Where is the Smith normal form implemented?
+- What does “allowed origin” mean here, and what does the IUCr dictionary say?
+- What do the reflection conditions rest on?
+- Which concepts does `semi_invariants.py` implement?
+- How does a t-subgroup contrast with a k-subgroup in this graph?
+- What is dual to the reciprocal lattice?
+- Show the receipt for the allowed-origins definition.
+
+User: “Where is the Smith normal form implemented?”
+
+```
+GET /v1/concept?q=Smith+normal+form
+```
+
+The top hit is `smith_normal_form`. Then
+
+```
+GET /v1/concept?id=smith_normal_form
+```
+
+Tell the user the module, the symbol, and the line. Quote `code_evidence[].quote`. Give `uri` as the link. Mention `snapshot`: the hash is that build.
+
+User: “What does allowed origin mean here?”
+
+```
+GET /v1/concept?q=allowed+origin
+```
+
+Then
+
+```
+GET /v1/concept?id=allowed_origins
+```
+
+Lead with `definition` (builder paraphrase). Then the IUCr sentence, its `url`, and `status`. If Wikipedia is `quoted` or `quoted-unverified-markup`, quote that sentence too and name the status.
+
+User: “What do reflection conditions rest on?”
+
+```
+GET /v1/concept/uses?id=reflection_conditions&depth=3
+```
+
+Group `uses` by `depth`. For depth 1, quote `label` and `definition`. Name the depth 2 and 3 concepts. These are `USES` edges only.
+
+User: “What does semi_invariants.py implement?”
+
+```
+GET /v1/concept/module?module=agentsg/semi_invariants.py
+```
+
+`module=semi_invariants.py` matches the same file. List each `id` and `label`, and the anchor `symbol` and `line`.
+
+User: “How is a t-subgroup different from a k-subgroup?”
+
+```
+GET /v1/concept?id=t_subgroup
+```
+
+Read `relations` for `CONTRASTS_WITH` with target `k_subgroup`. Quote both definitions (`GET /v1/concept?id=k_subgroup` for the second). For the edges of a particular space group, still call `GET /v1/subgroups`. The graph explains the words. The subgroup endpoint computes the edges.
+
+User: “What is dual to the reciprocal lattice?”
+
+```
+GET /v1/concept?id=reciprocal_lattice
+```
+
+Quote the `DUAL_OF` row: `target` and `target_label`. Fetch that target when you will quote its definition.
+
+User: “Show the receipt for the allowed-origins definition.”
+
+```
+GET /v1/concept?id=allowed_origins
+GET /v1/concept/receipt?id=ent:concept:allowed_origins
+```
+
+`definition_receipt` is `ent:concept:allowed_origins`. Tell the user `node.how` (`derived` for this definition) and quote `node.rationale`. For a code anchor the id is `evi:code:{concept}:{index}` and the verbatim text is `node.target.selector.exact`, with `node.source.sha256`. For a dictionary sentence the id is `evi:ref:{concept}:iucr` or `evi:ref:{concept}:wikipedia`. For a relation it is `ent:rel:{concept}:{TYPE}:{target}`.
+
 # Hard rules
 
 1. **Derive, do not tabulate.** Absences and site content come from operators. Never invent ITA Wyckoff letters (`a`, `b`, `c`, …).
@@ -244,6 +349,7 @@ Lead with hits whose `cob` is not null. Quote `cob_xyz` and `cob_residual`. If `
 5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem. The operator is `cob` from a `return_cob` search, or nothing.
 6. **Monoclinic ITA plates use `projection: "b"`.** The server already defaults monoclinic to `b`; other systems default to `c`.
 7. **Explain, do not dump.** Translate JSON into ITA language. Quote numbers from the response.
+8. **Concept answers come from `/v1/concept`.** Quote `definition`, the reference `quote` with its `url` and `status`, and the code anchor (`module`, `symbol`, `line`, `uri`). Offer the Concept questions when the user asks what the graph can explain. Fetch a receipt only when they ask for the source.
 
 # Units
 

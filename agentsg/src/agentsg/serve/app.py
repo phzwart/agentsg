@@ -10,6 +10,13 @@ from urllib.parse import urlparse
 
 from . import handlers
 from .accesslog import LOGGED_HEADER, log_exchange, log_path
+from .concepts import (
+    concept_count,
+    concept_info,
+    concept_module,
+    concept_receipt,
+    concept_uses,
+)
 from .http import (
     HttpError,
     RateLimiter,
@@ -119,6 +126,7 @@ def make_handler(state: ServerState):
                     "cells": state.n_cells,
                     "index_size": 0 if state.index is None else len(state.index),
                     "plates": plates_available(),
+                    "concepts": concept_count(),
                     "auth_required": bool(state.token),
                 }
             if path == "/openapi.json":
@@ -151,6 +159,14 @@ def make_handler(state: ServerState):
                 return handlers.cell_info(query_to_body(qs))
             if path == "/v1/lattice-symmetry":
                 return handlers.lattice_symmetry_info(query_to_body(qs))
+            if path == "/v1/concept":
+                return concept_info(query_to_body(qs))
+            if path == "/v1/concept/uses":
+                return concept_uses(query_to_body(qs))
+            if path == "/v1/concept/module":
+                return concept_module(query_to_body(qs))
+            if path == "/v1/concept/receipt":
+                return concept_receipt(query_to_body(qs))
             if path == "/v1/ita-plate.png":
                 sg, proj, legend, cent = handlers.plate_png_args(qs)
                 png = render_ita_png(sg, projection=proj, legend=legend, show_centring=cent)
@@ -189,6 +205,14 @@ def make_handler(state: ServerState):
                 return handlers.compare_info(data)
             if path == "/v1/reindex":
                 return handlers.reindex_info(data)
+            if path == "/v1/concept":
+                return concept_info(data)
+            if path == "/v1/concept/uses":
+                return concept_uses(data)
+            if path == "/v1/concept/module":
+                return concept_module(data)
+            if path == "/v1/concept/receipt":
+                return concept_receipt(data)
             if path in ("/search", "/v1/pdb/search"):
                 return handlers.pdb_search(state, data)
             raise HttpError(404, "not found", {"paths": sorted(routed_paths())})
@@ -284,6 +308,7 @@ def run_server(db_path: str | None = None, host: str = "127.0.0.1",
     if state.db_path:
         print(f"  database: {state.db_path} ({state.n_cells} cells)")
     print(f"  plates: {plates_available()}")
+    print(f"  concepts: {concept_count()}")
     print(f"  auth: {'bearer required' if state.token else 'open (no AGENTSG_TOKEN)'}")
     if log_path():
         print(f"  access log: {log_path()}")

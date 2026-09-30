@@ -318,6 +318,65 @@ ENDPOINTS: list[dict[str, Any]] = [
         "_op_ids": {"POST": "reindex"},
     },
     {
+        "path": "/v1/concept",
+        "methods": ["GET", "POST"],
+        "description": (
+            "Concept graph. q searches labels and aliases "
+            "(Smith normal form, allowed origin). id returns the card: "
+            "builder definition, IUCr/Wikipedia quote with url and status, "
+            "code anchors, and typed relations. Hashes are the graph snapshot"
+        ),
+        "params": [
+            _p("q", "string", False,
+               "Words to search. Example: Smith normal form"),
+            _p("id", "string", False,
+               "Concept id from a search hit, e.g. smith_normal_form. If set, q is ignored"),
+            _p("limit", "int", False, "Search hit cap, 1–20, default 8"),
+        ],
+        "example": _curl("/v1/concept?q=Smith+normal+form"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptGet", "POST": "concept"},
+    },
+    {
+        "path": "/v1/concept/uses",
+        "methods": ["GET", "POST"],
+        "description": "Concepts reached by USES in 1–3 steps, with each definition",
+        "params": [
+            _p("id", "string", True, "Start concept id, e.g. reflection_conditions"),
+            _p("depth", "int", False, "1, 2, or 3 (default 3)"),
+        ],
+        "example": _curl("/v1/concept/uses?id=reflection_conditions&depth=3"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptUsesGet", "POST": "conceptUses"},
+    },
+    {
+        "path": "/v1/concept/module",
+        "methods": ["GET", "POST"],
+        "description": "Concepts anchored in one source file",
+        "params": [
+            _p("module", "string", True,
+               "agentsg/semi_invariants.py or a bare filename such as semi_invariants.py"),
+        ],
+        "example": _curl("/v1/concept/module?module=agentsg/semi_invariants.py"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptModuleGet", "POST": "conceptModule"},
+    },
+    {
+        "path": "/v1/concept/receipt",
+        "methods": ["GET", "POST"],
+        "description": (
+            "One ledger node for a receipt id from a concept card "
+            "(definition_receipt, code_evidence[].receipt, references[].receipt, relations[].receipt)"
+        ),
+        "params": [
+            _p("id", "string", True,
+               "Receipt id, e.g. ent:concept:allowed_origins"),
+        ],
+        "example": _curl("/v1/concept/receipt?id=ent:concept:allowed_origins"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptReceiptGet", "POST": "conceptReceipt"},
+    },
+    {
         "path": "/search",
         "methods": ["GET", "POST"],
         "description": "PDB lattices near a cell in Kurlin root space (legacy alias of /v1/pdb/search)",

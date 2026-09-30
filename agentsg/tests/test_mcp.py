@@ -41,6 +41,10 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     names, tools, space, book = asyncio.run(_run())
     assert "space_group" in names
     assert "pdb_search" in names
+    assert "concept" in names
+    assert "concept_uses" in names
+    assert "concept_module" in names
+    assert "concept_receipt" in names
     pdb = next(tool for tool in tools if tool.name == "pdb_search")
     schema = getattr(pdb, "input_schema", None) or pdb.inputSchema
     assert "plot" in schema["properties"]
@@ -55,6 +59,8 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     assert "LIMITATIONS" in book
     assert "scatter PNG" in book
     assert "plate PNG" in book
+    assert "Where is the Smith normal form implemented?" in book
+    assert "Concept questions" in book
     assert "ita_plate_image" not in book
 
 

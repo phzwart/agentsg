@@ -13,6 +13,13 @@ from typing import Any
 
 from . import handlers
 from .app import ServerState
+from .concepts import (
+    concept_count,
+    concept_info,
+    concept_module,
+    concept_receipt,
+    concept_uses,
+)
 from .http import HttpError
 from .manifest import API_VERSION
 
@@ -100,9 +107,55 @@ def _mcp_playbook(base: str) -> str:
         "| Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |",
         "| Remind yourself of this playbook | call the `playbook` tool |",
     )
+    body = body.replace(
+        "| What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |",
+        "| What does this word mean here, and where is it in the code? | `concept` with `q`, then `concept` with `id` of the top hit |",
+    )
+    body = body.replace(
+        "| What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |",
+        "| What does a concept rest on? | `concept_uses` with `id` and `depth` (1–3) |",
+    )
+    body = body.replace(
+        "| Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |",
+        "| Which concepts does this file implement? | `concept_module` with `module` |",
+    )
+    body = body.replace(
+        "| Show the receipt for a claim | `GET /v1/concept/receipt?id=` the `receipt` field from the card |",
+        "| Show the receipt for a claim | `concept_receipt` with the `receipt` id from the card |",
+    )
+    for http_call, tool_call in (
+        ("GET /v1/concept?q=Smith+normal+form", 'concept with q="Smith normal form"'),
+        ("GET /v1/concept?id=smith_normal_form", 'concept with id="smith_normal_form"'),
+        ("GET /v1/concept?q=allowed+origin", 'concept with q="allowed origin"'),
+        ("GET /v1/concept?id=allowed_origins", 'concept with id="allowed_origins"'),
+        (
+            "GET /v1/concept/uses?id=reflection_conditions&depth=3",
+            'concept_uses with id="reflection_conditions" and depth=3',
+        ),
+        (
+            "GET /v1/concept/module?module=agentsg/semi_invariants.py",
+            'concept_module with module="agentsg/semi_invariants.py"',
+        ),
+        ("GET /v1/concept?id=t_subgroup", 'concept with id="t_subgroup"'),
+        ("GET /v1/concept?id=k_subgroup", 'concept with id="k_subgroup"'),
+        ("GET /v1/concept?id=reciprocal_lattice", 'concept with id="reciprocal_lattice"'),
+        (
+            "GET /v1/concept/receipt?id=ent:concept:allowed_origins",
+            'concept_receipt with receipt="ent:concept:allowed_origins"',
+        ),
+        ("`/v1/concept/uses`", "`concept_uses`"),
+        ("`/v1/concept/module`", "`concept_module`"),
+        ("`/v1/concept/receipt`", "`concept_receipt`"),
+        ("Fetch `/v1/concept/receipt`", "Call `concept_receipt`"),
+        ("`GET /v1/concept?id=`", "`concept` with `id`="),
+        ("use those endpoints", "use those tools"),
+        ("still call `GET /v1/subgroups`", "still call `subgroups`"),
+        ("**Concept answers come from `/v1/concept`.**", "**Concept answers come from `concept`.**"),
+    ):
+        body = body.replace(http_call, tool_call)
     header = f"""---
 name: agentsg
-description: Call the agentsg MCP tools for every space-group, reflection, site, ITA plate, unit-cell, or PDB-lattice question. Never answer crystallography from memory.
+description: Call the agentsg MCP tools for every space-group, reflection, site, ITA plate, unit-cell, PDB-lattice, or concept question. Never answer crystallography from memory.
 ---
 
 # Standing rule
@@ -117,7 +170,9 @@ You have MCP tools for the agentsg crystallography engine.
 
 After a tool error, read the message and retry with corrected arguments. Do not invent a result.
 
-HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `playbook`.
+HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_module`, `concept_receipt`, `playbook`.
+
+**Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what does this file implement?”, or “show the receipt”, call `concept`, `concept_uses`, `concept_module`, or `concept_receipt`. Surface the definition, the quoted sentence with its URL and status, and the code anchor (`module`, `symbol`, `line`, `uri`) to the user. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
 
 **Pictures.** `ita_plate` returns the ITA plate PNG in the tool result, together with every in-cell copy of each element. `pdb_search` with `plot` true returns the PC1–PC2 scatter of those cells the same way. There is no image URL to fetch.
 
@@ -142,9 +197,14 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         instructions=(
             "agentsg crystallography engine, exposed as MCP tools. "
             "No API key. Call a tool before answering a space-group, reflection, "
-            "site, plate, unit-cell, or PDB-lattice question. Never invent "
+            "site, plate, unit-cell, PDB-lattice, or concept question. Never invent "
             "systematic absences or ITA Wyckoff letters (wyckoff_letter is null). "
             "Subgroup edges are t or k derived from operators, not the ITA A1 table. "
+            "concept searches the knowledge graph (q) or returns one card (id): "
+            "definition, dictionary quote, code anchor. concept_uses, concept_module, "
+            "and concept_receipt are the dependency walk, the file lookup, and one "
+            "ledger node. Offer the Concept questions from playbook when the user "
+            "asks what you can explain about the code. "
             f"Call playbook for the full LIMITATIONS. Endpoint: {base}/mcp"
         ),
         version=API_VERSION,
@@ -162,6 +222,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
             "endpoint": "/mcp",
             "public_url": base,
             "cells": state.n_cells,
+            "concepts": concept_count(),
             "db": state.db_path,
         })
 
@@ -375,6 +436,46 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         return _image_result(base64.b64decode(encoded), out)
 
     @mcp.tool(annotations=_READONLY)
+    def concept(q: str = "", id: str = "", limit: int = 8) -> dict[str, Any]:
+        """Search the concept graph or return one concept card.
+
+        q: words such as "Smith normal form" or "allowed origin". Returns hits
+        with id, label, and definition. id: concept id such as smith_normal_form.
+        The card has the builder definition, IUCr/Wikipedia quote with url and
+        status, code anchors (module, symbol, line, quote, uri), and relations.
+        Code hashes are the graph snapshot, not the live tree.
+        Sample: where is the Smith normal form implemented?
+        """
+        return _result(concept_info, _clean({"q": q or None, "id": id or None, "limit": limit}))
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_uses(id: str, depth: int = 3) -> dict[str, Any]:
+        """Concepts this one USES, out to depth 1–3, each with its definition.
+
+        Sample: what do the reflection conditions rest on? id=reflection_conditions.
+        """
+        return _result(concept_uses, {"id": id, "depth": depth})
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_module(module: str) -> dict[str, Any]:
+        """Concepts anchored in one source file.
+
+        module: agentsg/semi_invariants.py or a bare filename.
+        Sample: which concepts does semi_invariants.py implement?
+        """
+        return _result(concept_module, {"module": module})
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_receipt(receipt: str) -> dict[str, Any]:
+        """One ledger node for a receipt id copied from a concept card.
+
+        receipt: definition_receipt, code_evidence[].receipt, references[].receipt,
+        or relations[].receipt. Example: ent:concept:allowed_origins.
+        Sample: show the receipt for the allowed-origins definition.
+        """
+        return _result(concept_receipt, {"receipt": receipt})
+
+    @mcp.tool(annotations=_READONLY)
     def pdb_lookup(pdb_id: str) -> dict[str, Any]:
         """Look up one stored PDB conventional cell and space group."""
         try:
@@ -399,6 +500,7 @@ def run_mcp(
     state = ServerState(db_path, token=None)
     mcp = build_mcp(state, public_url=public)
     print(f"agentsg mcp on http://{host}:{port}/mcp")
+    print(f"  concepts: {concept_count()}")
     print(f"  public: {public}/mcp")
     print("  auth: open (no API key)")
     if state.db_path:
