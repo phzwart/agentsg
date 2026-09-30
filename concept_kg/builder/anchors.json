@@ -5,8 +5,8 @@
    "module": "agentsg/space_groups.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol,",
+   "line": 1,
+   "exact": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol, Hall symbol, and crystal system.",
    "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py"
   },
@@ -25,7 +25,7 @@
    "module": "agentsg/__init__.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "agentsg: exact-rational space-group algebra for all 230 groups.",
    "sha256": "7a82b703f26aa7e0a1545931ed8fa9676735460f4257b79da17e812bcf9e8f7b",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/__init__.py"
@@ -35,7 +35,7 @@
    "module": "agentsg/symmetry_op.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "A crystallographic symmetry operation (W, w): x' = W x + w (mod 1).",
    "sha256": "4bff3d68b1e86ab0451668d0e64d289c45f5b5bdde2281548d3b34cec4964ed9",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/symmetry_op.py"
@@ -56,7 +56,7 @@
    "symbol": "point_group",
    "kind": "FunctionDef",
    "line": 51,
-   "exact": "The set of distinct rotation parts W, ignoring translations -- this",
+   "exact": "The set of distinct rotation parts W, ignoring translations -- this *is* the crystallographic point group, no separate table needed.",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -66,7 +66,7 @@
    "symbol": "laue_class",
    "kind": "FunctionDef",
    "line": 45,
-   "exact": "Laue-class symbol for a space group (e.g. ``'2/m'``, ``'m-3m'``).",
+   "exact": "Laue-class symbol for a space group (e.g.",
    "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py"
   },
@@ -115,8 +115,8 @@
    "module": "agentsg/lattice_symmetry.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al. (2006).",
+   "line": 1,
+   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
    "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py"
   },
@@ -145,9 +145,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "draw_inversion",
    "kind": "FunctionDef",
-   "line": 1017,
+   "line": 1022,
    "exact": "Draw an ITA inversion centre symbol (small open circle) at xy.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -166,7 +166,7 @@
    "symbol": "inversion_cob",
    "kind": "FunctionDef",
    "line": 88,
-   "exact": "The inversion -I (global negation of the superbase), as a change of",
+   "exact": "The inversion -I (global negation of the superbase), as a change of basis.",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -177,7 +177,7 @@
    "kind": "FunctionDef",
    "line": 866,
    "exact": "Open circle in the middle of a lens: the \u22121 of a 2/m or 2\u2081/m symbol.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -185,8 +185,8 @@
    "module": "agentsg/group.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Build a full space-group operation list from a small generator set, by",
+   "line": 1,
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -206,7 +206,7 @@
    "symbol": "expand_group",
    "kind": "FunctionDef",
    "line": 109,
-   "exact": "Expand a set of change-of-basis generators to the group they generate,",
+   "exact": "Expand a set of change-of-basis generators to the group they generate, by breadth-first closure under matrix multiplication (linear part only; all operators here have zero origin shift).",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -215,7 +215,7 @@
    "module": "agentsg/generators.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Seed generator table.",
    "sha256": "8bf8a5659fde668cb27d0fa7700ef8aef18590efb374ee825298d1d34cd2cb9f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/generators.py"
@@ -225,8 +225,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -235,8 +235,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -297,7 +297,7 @@
    "kind": "FunctionDef",
    "line": 134,
    "exact": "Compact a spaced HM symbol and print screw indices as subscripts.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -325,7 +325,7 @@
    "module": "agentsg/setting.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Extended setting notation: a base space group with an *attached change of basis*.",
    "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py"
@@ -366,7 +366,7 @@
    "symbol": "_lattice_coset_ops",
    "kind": "FunctionDef",
    "line": 238,
-   "exact": "Images of the integer lattice under P^-1, reduced mod 1 -- the centring",
+   "exact": "Images of the integer lattice under P^-1, reduced mod 1 -- the centring translations introduced (or removed) by a det != 1 change of basis.",
    "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py"
   },
@@ -385,7 +385,7 @@
    "module": "agentsg/change_of_basis.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Change-of-basis / reindexing operator (P, p).",
    "sha256": "be1c03a26c68feadc7c1a03c46e94aed81113893badec8f75574e95ad7601291",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/change_of_basis.py"
@@ -405,7 +405,7 @@
    "module": "agentsg/change_of_basis.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Change-of-basis / reindexing operator (P, p).",
    "sha256": "be1c03a26c68feadc7c1a03c46e94aed81113893badec8f75574e95ad7601291",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/change_of_basis.py"
@@ -425,8 +425,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -465,8 +465,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -485,8 +485,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -506,8 +506,8 @@
    "symbol": "_centring_translations",
    "kind": "FunctionDef",
    "line": 2103,
-   "exact": "Centring translations (incl. origin), derived from the operation set.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "exact": "Centring translations (incl.",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -517,7 +517,7 @@
    "kind": "FunctionDef",
    "line": 2123,
    "exact": "Explicitly indicate pure lattice (centring) translations.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -535,7 +535,7 @@
    "module": "agentsg/cell/g6.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "G6 / S6 lattice embeddings and boundary-aware distances.",
    "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py"
@@ -566,7 +566,7 @@
    "symbol": "_int_kernel",
    "kind": "FunctionDef",
    "line": 56,
-   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column",
+   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column reduction: find U with ``A U = [H | 0]``; the kernel is the trailing columns of U.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -585,7 +585,7 @@
    "module": "agentsg/cell/sublattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Sublattice generation via the Hermite normal form (HNF).",
    "sha256": "872987fe109d93e870696807207fc15fd59c57c3cfac61d1f219f15d9d68d409",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/sublattice.py"
@@ -595,8 +595,8 @@
    "module": "agentsg/space_groups.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol,",
+   "line": 1,
+   "exact": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol, Hall symbol, and crystal system.",
    "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py"
   },
@@ -605,7 +605,7 @@
    "module": "agentsg/cell/constraints.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
@@ -616,7 +616,7 @@
    "symbol": "free_metric_parameters",
    "kind": "FunctionDef",
    "line": 78,
-   "exact": "Number of independent free parameters in a metric tensor invariant under",
+   "exact": "Number of independent free parameters in a metric tensor invariant under the given point group -- i.e.",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
   },
@@ -705,9 +705,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "classify_element",
    "kind": "FunctionDef",
-   "line": 1796,
+   "line": 1792,
    "exact": "Classify a symmetry operation (W, w) as an ITA symmetry element.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -715,9 +715,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "classify_space_group",
    "kind": "FunctionDef",
-   "line": 1807,
-   "exact": "Classify every operation of a space group. Returns a list of element",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "line": 1803,
+   "exact": "Classify every operation of a space group.",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -725,8 +725,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -745,7 +745,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -765,7 +765,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -775,8 +775,8 @@
    "module": "agentsg/hall.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol. B",
+   "line": 1,
+   "exact": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
    "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py"
   },
@@ -787,7 +787,7 @@
    "kind": "FunctionDef",
    "line": 874,
    "exact": "ITA \u22124: an open square with a lens inscribed in it.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -805,7 +805,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -845,8 +845,8 @@
    "module": "agentsg/wyckoff.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact",
+   "line": 1,
+   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact operation list, no lookup table.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -866,7 +866,7 @@
    "symbol": "_particular",
    "kind": "FunctionDef",
    "line": 165,
-   "exact": "One solution of A x = b. Free variables are 0. None if inconsistent.",
+   "exact": "One solution of A x = b.",
    "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py"
   },
@@ -895,7 +895,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -907,7 +907,7 @@
    "kind": "module",
    "line": 1,
    "exact": "ITA-style space-group diagrams (general-position and symmetry-element).",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -915,9 +915,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "general_position_diagram",
    "kind": "FunctionDef",
-   "line": 1310,
+   "line": 1315,
    "exact": "Draw the ITA general-position (equivalent-points) diagram.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -927,7 +927,7 @@
    "kind": "FunctionDef",
    "line": 2165,
    "exact": "Draw the ITA symmetry-element diagram.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -935,8 +935,8 @@
    "module": "agentsg/wyckoff.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact",
+   "line": 1,
+   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact operation list, no lookup table.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -1026,7 +1026,7 @@
    "symbol": "general_position_multiplicity",
    "kind": "FunctionDef",
    "line": 71,
-   "exact": "Multiplicity of a general position = order of the space group (in the",
+   "exact": "Multiplicity of a general position = order of the space group (in the conventional cell, i.e.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -1035,9 +1035,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "best_general_point",
    "kind": "FunctionDef",
-   "line": 1208,
+   "line": 1213,
    "exact": "A general position whose projected orbit stays readable.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -1046,8 +1046,8 @@
    "symbol": "general_position_multiplicity",
    "kind": "FunctionDef",
    "line": 3155,
-   "exact": "Number of distinct general-position points in one cell (== group order",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "exact": "Number of distinct general-position points in one cell (== group order including centring).",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -1057,7 +1057,7 @@
    "kind": "FunctionDef",
    "line": 528,
    "exact": "Exact ITA description of every general-position image.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -1065,8 +1065,8 @@
    "module": "agentsg/wyckoff.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact",
+   "line": 1,
+   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact operation list, no lookup table.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -1085,9 +1085,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "_stabilizer",
    "kind": "FunctionDef",
-   "line": 1468,
+   "line": 1464,
    "exact": "Operations that fix ``centre`` (torus distance).",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -1115,8 +1115,8 @@
    "module": "agentsg/wyckoff.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact",
+   "line": 1,
+   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact operation list, no lookup table.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -1145,7 +1145,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1173,22 +1173,22 @@
   {
    "concept": "reciprocal_lattice",
    "module": "agentsg/cell/metric.py",
-   "symbol": "UnitCell",
-   "kind": "ClassDef",
-   "line": 110,
-   "exact": "A crystallographic unit cell defined by its six parameters.",
+   "symbol": "reciprocal_metric_tensor",
+   "kind": "FunctionDef",
+   "line": 134,
+   "exact": "Reciprocal metric tensor G* = G^-1.",
    "sha256": "43c7edd2b2da3b6de2ef0722715b315b3cc42abbe156b500c44e9e69f9ba4254",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/metric.py"
   },
   {
    "concept": "reciprocal_lattice",
-   "module": "agentsg/reflection_lattice.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 2,
-   "exact": "Reflection conditions as sublattices in projection.",
-   "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
+   "module": "agentsg/cell/metric.py",
+   "symbol": "reciprocal",
+   "kind": "FunctionDef",
+   "line": 138,
+   "exact": "The reciprocal unit cell (its parameters).",
+   "sha256": "43c7edd2b2da3b6de2ef0722715b315b3cc42abbe156b500c44e9e69f9ba4254",
+   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/metric.py"
   },
   {
    "concept": "structure_factor_phase",
@@ -1215,7 +1215,7 @@
    "module": "agentsg/change_of_basis.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Change-of-basis / reindexing operator (P, p).",
    "sha256": "be1c03a26c68feadc7c1a03c46e94aed81113893badec8f75574e95ad7601291",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/change_of_basis.py"
@@ -1235,7 +1235,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1246,7 +1246,7 @@
    "symbol": "is_systematically_absent",
    "kind": "FunctionDef",
    "line": 74,
-   "exact": "A reflection h is absent iff some operation (W,w) fixes h in",
+   "exact": "A reflection h is absent iff some operation (W,w) fixes h in reciprocal space (h W = h) but h.w is not integral -- derived directly from the operator list, no reflection-condition table needed.",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -1255,7 +1255,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -1265,7 +1265,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1296,7 +1296,7 @@
    "symbol": "present_lattices",
    "kind": "FunctionDef",
    "line": 671,
-   "exact": "Every stratum with its sublattice of present reflections -- the exact",
+   "exact": "Every stratum with its sublattice of present reflections -- the exact object behind :func:`reflection_conditions`, for checking against the per-reflection rule.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -1306,7 +1306,7 @@
    "symbol": "is_absent_by_lattice",
    "kind": "FunctionDef",
    "line": 689,
-   "exact": "Absence of an integer ``hkl`` decided purely from the strata lattices:",
+   "exact": "Absence of an integer ``hkl`` decided purely from the strata lattices: find the stratum whose stabiliser is exactly the stabiliser of ``hkl`` (the smallest stratum containing it), express ``hkl`` i...",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -1335,7 +1335,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -1345,7 +1345,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1355,7 +1355,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -1365,7 +1365,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1375,7 +1375,7 @@
    "module": "agentsg/reflections.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions (systematic absences) derived from the operation list.",
    "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py"
@@ -1385,7 +1385,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1395,7 +1395,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1446,7 +1446,7 @@
    "symbol": "_std_classes",
    "kind": "FunctionDef",
    "line": 569,
-   "exact": "The class bases ITA tabulates for a lattice family (in the standard",
+   "exact": "The class bases ITA tabulates for a lattice family (in the standard orientation with the principal axis along ``axis``).",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -1465,7 +1465,7 @@
    "module": "agentsg/reflection_lattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reflection conditions as sublattices in projection.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
@@ -1476,7 +1476,7 @@
    "symbol": "stratum_lattice",
    "kind": "FunctionDef",
    "line": 418,
-   "exact": "The sublattice of present reflections on one stratum, from one Smith",
+   "exact": "The sublattice of present reflections on one stratum, from one Smith normal form of the translation generators of ``Lambda_S`` projected onto the class coefficients (see :func:`dual_lattice`).",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -1485,7 +1485,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1515,7 +1515,7 @@
    "module": "agentsg/cell/ambiguity.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
    "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py"
@@ -1625,7 +1625,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1686,7 +1686,7 @@
    "symbol": "_nicest_generator",
    "kind": "FunctionDef",
    "line": 227,
-   "exact": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and",
+   "exact": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries, non-ne...",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -1715,7 +1715,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1725,7 +1725,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1766,7 +1766,7 @@
    "symbol": "_congruence",
    "kind": "FunctionDef",
    "line": 314,
-   "exact": "``h \u00b7 o \u2208 Z``  as  ``(D o) \u00b7 h \u2261 0 (mod D)`` with entries in (\u2212D/2, D/2].",
+   "exact": "``h \u00b7 o \u2208 Z`` as ``(D o) \u00b7 h \u2261 0 (mod D)`` with entries in (\u2212D/2, D/2].",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -1775,7 +1775,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -1785,7 +1785,7 @@
    "module": "agentsg/harker.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Harker sections / lines from space-group operators (exact rational algebra).",
    "sha256": "aa48c5174e652adb887df077f459174a1b429b05deb599076f83ebe2bda40d81",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/harker.py"
@@ -1805,7 +1805,7 @@
    "module": "agentsg/harker.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Harker sections / lines from space-group operators (exact rational algebra).",
    "sha256": "aa48c5174e652adb887df077f459174a1b429b05deb599076f83ebe2bda40d81",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/harker.py"
@@ -1856,7 +1856,7 @@
    "symbol": "_normalize_constraint",
    "kind": "FunctionDef",
    "line": 38,
-   "exact": "Primitive integer direction + constant in [0, 1). Flip sign for canonical.",
+   "exact": "Primitive integer direction + constant in [0, 1).",
    "sha256": "aa48c5174e652adb887df077f459174a1b429b05deb599076f83ebe2bda40d81",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/harker.py"
   },
@@ -1865,7 +1865,7 @@
    "module": "agentsg/asu.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Asymmetric units in real and reciprocal space.",
    "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py"
@@ -2105,7 +2105,7 @@
    "module": "agentsg/cell/ambiguity.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
    "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py"
@@ -2125,7 +2125,7 @@
    "module": "agentsg/cell/reindex.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reindexing between two settings of the same lattice, and twin-law cosets.",
    "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py"
@@ -2165,7 +2165,7 @@
    "module": "agentsg/__init__.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "agentsg: exact-rational space-group algebra for all 230 groups.",
    "sha256": "7a82b703f26aa7e0a1545931ed8fa9676735460f4257b79da17e812bcf9e8f7b",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/__init__.py"
@@ -2175,8 +2175,8 @@
    "module": "agentsg/group.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Build a full space-group operation list from a small generator set, by",
+   "line": 1,
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -2196,7 +2196,7 @@
    "symbol": "selling_group",
    "kind": "FunctionDef",
    "line": 153,
-   "exact": "The full Selling reduction group: all 48 change-of-basis operators",
+   "exact": "The full Selling reduction group: all 48 change-of-basis operators (identity first) covering every obtuse superbase of a generic lattice.",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2206,7 +2206,7 @@
    "symbol": "permutation_cob",
    "kind": "FunctionDef",
    "line": 80,
-   "exact": "The :class:`ChangeOfBasis` for one permutation ``sigma`` of the four",
+   "exact": "The :class:`ChangeOfBasis` for one permutation ``sigma`` of the four superbase labels (a 4-tuple that is a permutation of ``(0, 1, 2, 3)``).",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2216,7 +2216,7 @@
    "symbol": "selling_generators",
    "kind": "FunctionDef",
    "line": 95,
-   "exact": "Generators of the *full* Selling reduction group (order 48): the",
+   "exact": "Generators of the *full* Selling reduction group (order 48): the transposition (0 1), the 4-cycle (0 1 2 3), and the inversion -I.",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2226,7 +2226,7 @@
    "symbol": "selling_generators_S4",
    "kind": "FunctionDef",
    "line": 102,
-   "exact": "Generators of the order-24 permutation subgroup only (no inversion): the",
+   "exact": "Generators of the order-24 permutation subgroup only (no inversion): the transposition (0 1) and the 4-cycle (0 1 2 3).",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2236,7 +2236,7 @@
    "symbol": "selling_group_S4",
    "kind": "FunctionDef",
    "line": 138,
-   "exact": "The order-24 permutation subgroup: the 24 superbase relabellings as",
+   "exact": "The order-24 permutation subgroup: the 24 superbase relabellings as change-of-basis operators (identity first), *without* the inversion.",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2246,7 +2246,7 @@
    "symbol": "_perm_matrix",
    "kind": "FunctionDef",
    "line": 69,
-   "exact": "Change-of-basis matrix for a permutation ``sigma`` of the four superbase",
+   "exact": "Change-of-basis matrix for a permutation ``sigma`` of the four superbase labels.",
    "sha256": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_group.py"
   },
@@ -2255,7 +2255,7 @@
    "module": "agentsg/cell/metric.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Unit-cell metric math (phase 2) -- real-valued, floating point.",
    "sha256": "43c7edd2b2da3b6de2ef0722715b315b3cc42abbe156b500c44e9e69f9ba4254",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/metric.py"
@@ -2295,7 +2295,7 @@
    "module": "agentsg/cell/constraints.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
@@ -2427,7 +2427,7 @@
    "kind": "FunctionDef",
    "line": 63,
    "exact": "Cartesian lattice basis vectors (v1,v2,v3) as rows, from a unit cell.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2455,9 +2455,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "_cell_volume",
    "kind": "FunctionDef",
-   "line": 402,
+   "line": 423,
    "exact": "Unit-cell volume from parameters (local, dependency-free).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2465,7 +2465,7 @@
    "module": "agentsg/cell/constraints.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
@@ -2486,7 +2486,7 @@
    "symbol": "free_metric_parameters",
    "kind": "FunctionDef",
    "line": 78,
-   "exact": "Number of independent free parameters in a metric tensor invariant under",
+   "exact": "Number of independent free parameters in a metric tensor invariant under the given point group -- i.e.",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
   },
@@ -2495,7 +2495,7 @@
    "module": "agentsg/cell/constraints.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
@@ -2506,7 +2506,7 @@
    "symbol": "symmetrize_metric",
    "kind": "FunctionDef",
    "line": 56,
-   "exact": "Project a numeric metric tensor onto the point-group-invariant subspace by",
+   "exact": "Project a numeric metric tensor onto the point-group-invariant subspace by Reynolds averaging: G_sym = (1/|PG|) sum_W W^T G W.",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
   },
@@ -2536,7 +2536,7 @@
    "symbol": "symmetrize_metric",
    "kind": "FunctionDef",
    "line": 56,
-   "exact": "Project a numeric metric tensor onto the point-group-invariant subspace by",
+   "exact": "Project a numeric metric tensor onto the point-group-invariant subspace by Reynolds averaging: G_sym = (1/|PG|) sum_W W^T G W.",
    "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py"
   },
@@ -2566,7 +2566,7 @@
    "symbol": "primitive_matrix",
    "kind": "FunctionDef",
    "line": 47,
-   "exact": "Centering matrix as exact rationals. Columns are the primitive basis.",
+   "exact": "Centering matrix as exact rationals.",
    "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py"
   },
@@ -2625,7 +2625,7 @@
    "module": "agentsg/identify.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Space-group identification: closed operations -> IT number / Hall / HM.",
    "sha256": "8281a15347d0ada0efdc15045243ca80843cfc9e578ce12306f5c2c90cfe664f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/identify.py"
@@ -2645,8 +2645,8 @@
    "module": "agentsg/cell/reduction.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter &",
+   "line": 1,
+   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
    "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py"
   },
@@ -2657,7 +2657,7 @@
    "kind": "FunctionDef",
    "line": 78,
    "exact": "One Selling-reduced cell: ``(a, b, c, alpha, beta, gamma)`` of ``v1,v2,v3``.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2665,8 +2665,8 @@
    "module": "agentsg/cell/reduction.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter &",
+   "line": 1,
+   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
    "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py"
   },
@@ -2696,7 +2696,7 @@
    "symbol": "_check_cob_invariant",
    "kind": "FunctionDef",
    "line": 78,
-   "exact": "Assert M^T G_orig M == gram(reduced). Raises AssertionError on failure.",
+   "exact": "Assert M^T G_orig M == gram(reduced).",
    "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py"
   },
@@ -2717,7 +2717,7 @@
    "kind": "FunctionDef",
    "line": 93,
    "exact": "Reduce to an obtuse superbase; return the 4 superbase vectors.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2735,7 +2735,7 @@
    "module": "agentsg/cell/g6.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "G6 / S6 lattice embeddings and boundary-aware distances.",
    "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py"
@@ -2767,7 +2767,7 @@
    "kind": "FunctionDef",
    "line": 152,
    "exact": "The six conorms p_ij = -v_i.v_j (>= 0) of the obtuse superbase.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2777,7 +2777,7 @@
    "kind": "FunctionDef",
    "line": 312,
    "exact": "Seven vonorms (squared lengths) of the obtuse superbase of ``cell``.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2786,8 +2786,8 @@
    "symbol": "vonorms_from_conorms",
    "kind": "FunctionDef",
    "line": 289,
-   "exact": "Seven vonorms from six conorms (Kurlin Def. 2.6 / ABS D7).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "exact": "Seven vonorms from six conorms (Kurlin Def.",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2797,7 +2797,7 @@
    "kind": "FunctionDef",
    "line": 159,
    "exact": "Invariant T = \u03a3_{i<j} p_ij (same on every Selling-closure member).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2807,7 +2807,7 @@
    "kind": "FunctionDef",
    "line": 146,
    "exact": "Lengths |v_i| of the obtuse superbase vectors.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2875,7 +2875,7 @@
    "module": "agentsg/cell/canonical.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Bet-free reindexing via the typed Selling-superbase closure (main_v5 / Kurlin).",
    "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py"
@@ -2955,9 +2955,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Sorted root-product search key from Kurlin's root products.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2965,9 +2965,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "sorted_root_key",
    "kind": "FunctionDef",
-   "line": 344,
+   "line": 365,
    "exact": "Return the sorted six-slot search key (default: \u221a conorms, Angstrom).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2977,7 +2977,7 @@
    "kind": "FunctionDef",
    "line": 227,
    "exact": "Slot-wise root (or stabilised) products, keyed by index pair.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2985,9 +2985,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "root_invariant",
    "kind": "FunctionDef",
-   "line": 358,
+   "line": 379,
    "exact": "Back-compat alias for :func:`sorted_root_key`.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -2995,9 +2995,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "root_distance",
    "kind": "FunctionDef",
-   "line": 375,
+   "line": 396,
    "exact": "Back-compat alias for :func:`sorted_root_distance`.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3007,7 +3007,7 @@
    "kind": "FunctionDef",
    "line": 270,
    "exact": "Sorted six conorms ``sort(p)`` in Angstrom\u00b2 (Lipschitz / S\u2076-like key).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3017,7 +3017,7 @@
    "kind": "FunctionDef",
    "line": 317,
    "exact": "Sorted square roots of the seven vonorms (Angstrom; ABS D7 / Kurlin voform).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3027,7 +3027,7 @@
    "kind": "FunctionDef",
    "line": 322,
    "exact": "Concatenated sorted 6-root \u2016 sorted \u221avonorm key in R^13.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3035,9 +3035,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "sorted_root_distance",
    "kind": "FunctionDef",
-   "line": 368,
+   "line": 389,
    "exact": "Euclidean distance between sorted root keys (conservative search metric).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3046,7 +3046,7 @@
    "symbol": "_rootmat",
    "kind": "FunctionDef",
    "line": 209,
-   "exact": "Root-product matrix r_ij = sqrt(max(p_ij, 0)) -- linear in Angstrom, so a",
+   "exact": "Root-product matrix r_ij = sqrt(max(p_ij, 0)) -- linear in Angstrom, so a length-scaled tolerance is meaningful (conorms are quadratic in length).",
    "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py"
   },
@@ -3056,7 +3056,7 @@
    "symbol": "_roots_close",
    "kind": "FunctionDef",
    "line": 217,
-   "exact": "Do A's root products match B's under label permutation ``perm`` within",
+   "exact": "Do A's root products match B's under label permutation ``perm`` within ``tol`` (Angstrom)?",
    "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py"
   },
@@ -3065,9 +3065,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "sorted_key_lower_bound",
    "kind": "FunctionDef",
-   "line": 380,
+   "line": 401,
    "exact": "Rearrangement lower bound: ``||sort(x)-sort(y)|| <= min_\u03c3\u2208G ||x-\u03c3y||``.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3075,9 +3075,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Sorted root-product search key from Kurlin's root products.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3085,9 +3085,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "similarity_invariant",
    "kind": "FunctionDef",
-   "line": 477,
+   "line": 498,
    "exact": "Volume-normalised sorted key ``key / V**(1/3)`` (a *similarity* key).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3095,9 +3095,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "root_volume_decomposition",
    "kind": "FunctionDef",
-   "line": 563,
+   "line": 584,
    "exact": "Split the sorted-key distance between two lattices into volume and shape.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3105,9 +3105,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "root_distance_to_volume_ratio",
    "kind": "FunctionDef",
-   "line": 411,
+   "line": 432,
    "exact": "Convert a sorted-key distance to the equivalent isotropic volume ratio.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3115,9 +3115,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "volume_ratio_to_root_distance",
    "kind": "FunctionDef",
-   "line": 431,
+   "line": 452,
    "exact": "Sorted-key distance produced by a pure isotropic volume change.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3125,9 +3125,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "root_cutoff_for_edge_tolerance",
    "kind": "FunctionDef",
-   "line": 501,
+   "line": 522,
    "exact": "Sorted-key distance cutoff corresponding to an accepted cell-edge change.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3135,9 +3135,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "symmetry_cutoff",
    "kind": "FunctionDef",
-   "line": 445,
+   "line": 466,
    "exact": "Scale-correct sorted-key cutoff for accepting a symmetrised cell.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3145,9 +3145,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "similarity_distance",
    "kind": "FunctionDef",
-   "line": 490,
+   "line": 511,
    "exact": "Euclidean distance between volume-normalised sorted keys.",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -3155,7 +3155,7 @@
    "module": "agentsg/cell/g6.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "G6 / S6 lattice embeddings and boundary-aware distances.",
    "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py"
@@ -3165,8 +3165,8 @@
    "module": "agentsg/cell/manifold.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent",
+   "line": 1,
+   "exact": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent reindexing across continuous lattice deformation.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -3175,7 +3175,7 @@
    "module": "agentsg/cell/neartree.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "NearTree: a metric-space nearest-neighbour index for the lattice manifold.",
    "sha256": "ab0d0cc27737055cc3c3d8e8044c89094aebfcc8b691d6d31e7de79a3d086d92",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/neartree.py"
@@ -3185,7 +3185,7 @@
    "module": "agentsg/cell/g6.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "G6 / S6 lattice embeddings and boundary-aware distances.",
    "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py"
@@ -3265,8 +3265,8 @@
    "module": "agentsg/lattice_symmetry.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al. (2006).",
+   "line": 1,
+   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
    "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py"
   },
@@ -3275,7 +3275,7 @@
    "module": "agentsg/cell/ambiguity.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
    "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py"
@@ -3285,8 +3285,8 @@
    "module": "agentsg/lattice_symmetry.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al. (2006).",
+   "line": 1,
+   "exact": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
    "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py"
   },
@@ -3355,7 +3355,7 @@
    "module": "agentsg/cell/compare.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Unit-cell comparison (\"exploring metric symmetry\").",
    "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py"
@@ -3385,7 +3385,7 @@
    "module": "agentsg/cell/sublattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Sublattice generation via the Hermite normal form (HNF).",
    "sha256": "872987fe109d93e870696807207fc15fd59c57c3cfac61d1f219f15d9d68d409",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/sublattice.py"
@@ -3436,7 +3436,7 @@
    "symbol": "_int_kernel",
    "kind": "FunctionDef",
    "line": 56,
-   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column",
+   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column reduction: find U with ``A U = [H | 0]``; the kernel is the trailing columns of U.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -3456,7 +3456,7 @@
    "symbol": "dual_lattice",
    "kind": "FunctionDef",
    "line": 376,
-   "exact": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
+   "exact": "The sublattice ``{c in Z^d : c .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -3465,7 +3465,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -3475,7 +3475,7 @@
    "module": "agentsg/change_of_basis.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Change-of-basis / reindexing operator (P, p).",
    "sha256": "be1c03a26c68feadc7c1a03c46e94aed81113893badec8f75574e95ad7601291",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/change_of_basis.py"
@@ -3485,7 +3485,7 @@
    "module": "agentsg/cell/reindex.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reindexing between two settings of the same lattice, and twin-law cosets.",
    "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py"
@@ -3556,7 +3556,7 @@
    "symbol": "canonical_superbase",
    "kind": "FunctionDef",
    "line": 52,
-   "exact": "Delaunay/Selling-reduce ``cell`` to an obtuse superbase, tracked in",
+   "exact": "Delaunay/Selling-reduce ``cell`` to an obtuse superbase, tracked in INTEGER lattice coordinates.",
    "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py"
   },
@@ -3586,7 +3586,7 @@
    "symbol": "_reindex_coset",
    "kind": "FunctionDef",
    "line": 461,
-   "exact": "All integer operators tied (within a relative band) with the minimum",
+   "exact": "All integer operators tied (within a relative band) with the minimum metric residual -- the reindexing coset P.H (H = lattice holohedry).",
    "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py"
   },
@@ -3645,7 +3645,7 @@
    "module": "agentsg/cell/ambiguity.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
    "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py"
@@ -3735,7 +3735,7 @@
    "module": "agentsg/cell/reindex.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Reindexing between two settings of the same lattice, and twin-law cosets.",
    "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py"
@@ -3755,8 +3755,8 @@
    "module": "agentsg/cell/manifold.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent",
+   "line": 1,
+   "exact": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent reindexing across continuous lattice deformation.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -3766,7 +3766,7 @@
    "symbol": "DeformationManifold",
    "kind": "ClassDef",
    "line": 235,
-   "exact": "A landmark scaffold over a set of lattice states for path-consistent",
+   "exact": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -3786,7 +3786,7 @@
    "symbol": "symmetry_junctions",
    "kind": "FunctionDef",
    "line": 148,
-   "exact": "Indices of states that are STRICT local minima of a metric-degeneracy",
+   "exact": "Indices of states that are STRICT local minima of a metric-degeneracy signal AND within ``rel_tol`` (fraction of mean edge) of an actual degeneracy.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -3796,7 +3796,7 @@
    "symbol": "select_landmarks",
    "kind": "FunctionDef",
    "line": 207,
-   "exact": "Physically-motivated landmark set: endpoints (extrema of the deformation",
+   "exact": "Physically-motivated landmark set: endpoints (extrema of the deformation coordinate) + symmetry junctions + optional farthest-point fill.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -3805,7 +3805,7 @@
    "module": "agentsg/identify.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Space-group identification: closed operations -> IT number / Hall / HM.",
    "sha256": "8281a15347d0ada0efdc15045243ca80843cfc9e578ce12306f5c2c90cfe664f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/identify.py"
@@ -3886,7 +3886,7 @@
    "symbol": "_reduction_cob",
    "kind": "FunctionDef",
    "line": 66,
-   "exact": "The integer change of basis taking ``cell`` to its Delaunay/Selling-",
+   "exact": "The integer change of basis taking ``cell`` to its Delaunay/Selling- reduced (obtuse-superbase) basis, plus that reduced metric as a list.",
    "sha256": "941b044f2ec1c706df40be146cddb63dede32385f2f4cd68a1f04b8a0affc3f6",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_settings.py"
   },
@@ -3905,7 +3905,7 @@
    "module": "agentsg/cell/celldb.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "celldb: a persistent unit-cell / symmetry database keyed on the root invariant.",
    "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py"
@@ -3925,7 +3925,7 @@
    "module": "agentsg/cell/neartree.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "NearTree: a metric-space nearest-neighbour index for the lattice manifold.",
    "sha256": "ab0d0cc27737055cc3c3d8e8044c89094aebfcc8b691d6d31e7de79a3d086d92",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/neartree.py"
@@ -3975,7 +3975,7 @@
    "module": "agentsg/cell/neartree.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "NearTree: a metric-space nearest-neighbour index for the lattice manifold.",
    "sha256": "ab0d0cc27737055cc3c3d8e8044c89094aebfcc8b691d6d31e7de79a3d086d92",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/neartree.py"
@@ -4005,7 +4005,7 @@
    "module": "agentsg/cell/neartree.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "NearTree: a metric-space nearest-neighbour index for the lattice manifold.",
    "sha256": "ab0d0cc27737055cc3c3d8e8044c89094aebfcc8b691d6d31e7de79a3d086d92",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/neartree.py"
@@ -4015,9 +4015,9 @@
    "module": "agentsg/cell/rootform.py",
    "symbol": "sorted_root_distance",
    "kind": "FunctionDef",
-   "line": 368,
+   "line": 389,
    "exact": "Euclidean distance between sorted root keys (conservative search metric).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -4057,7 +4057,7 @@
    "kind": "FunctionDef",
    "line": 282,
    "exact": "Euclidean distance between sorted conorm keys (Angstrom\u00b2).",
-   "sha256": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+   "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py"
   },
   {
@@ -4086,7 +4086,7 @@
    "symbol": "DeformationManifold",
    "kind": "ClassDef",
    "line": 235,
-   "exact": "A landmark scaffold over a set of lattice states for path-consistent",
+   "exact": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -4096,7 +4096,7 @@
    "symbol": "farthest_point_landmarks",
    "kind": "FunctionDef",
    "line": 186,
-   "exact": "Farthest-point (k-center) sampling on the distance matrix: greedily pick",
+   "exact": "Farthest-point (k-center) sampling on the distance matrix: greedily pick the state farthest from all current landmarks.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -4166,7 +4166,7 @@
    "symbol": "scatter_payload",
    "kind": "FunctionDef",
    "line": 116,
-   "exact": "SVD plus a base64 PNG. ``png_base64`` is null if matplotlib is missing.",
+   "exact": "SVD plus a base64 PNG.",
    "sha256": "b7282b556fa04cf42a9e029aba0366da8ae59b2863e8371eef3d25da161ebd41",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/scatter.py"
   },
@@ -4175,9 +4175,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "_hull_polygon",
    "kind": "FunctionDef",
-   "line": 1566,
+   "line": 1562,
    "exact": "2D convex hull as an (n, 2) array, or None when the points are flat.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -4185,8 +4185,8 @@
    "module": "agentsg/cell/reduction.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter &",
+   "line": 1,
+   "exact": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
    "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py"
   },
@@ -4225,9 +4225,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "_stabilizer",
    "kind": "FunctionDef",
-   "line": 1468,
+   "line": 1464,
    "exact": "Operations that fix ``centre`` (torus distance).",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -4235,7 +4235,7 @@
    "module": "agentsg/linalg.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Exact-rational linear algebra primitives.",
    "sha256": "86129ea3ce54f7b4656dd9e335dc636f5a0dff6ecc453c6316eb8c0e95e9b957",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/linalg.py"
@@ -4245,7 +4245,7 @@
    "module": "agentsg/rational_solve.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Exact rational linear solvers used across the symmetry algebra.",
    "sha256": "36f53665198b4f63c17342673e8750ea1c8fb3692ed45465208bd3041ce9812a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/rational_solve.py"
@@ -4355,7 +4355,7 @@
    "module": "agentsg/rational_solve.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Exact rational linear solvers used across the symmetry algebra.",
    "sha256": "36f53665198b4f63c17342673e8750ea1c8fb3692ed45465208bd3041ce9812a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/rational_solve.py"
@@ -4375,7 +4375,7 @@
    "module": "agentsg/identify.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Space-group identification: closed operations -> IT number / Hall / HM.",
    "sha256": "8281a15347d0ada0efdc15045243ca80843cfc9e578ce12306f5c2c90cfe664f",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/identify.py"
@@ -4396,7 +4396,7 @@
    "symbol": "_int_kernel",
    "kind": "FunctionDef",
    "line": 56,
-   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column",
+   "exact": "Basis of ``{x in Z^n : A x = 0}`` (saturated) by unimodular column reduction: find U with ``A U = [H | 0]``; the kernel is the trailing columns of U.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4455,8 +4455,8 @@
    "module": "agentsg/wyckoff.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
-   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact",
+   "line": 1,
+   "exact": "Wyckoff positions, site symmetry, and orbits -- all *computed* from the exact operation list, no lookup table.",
    "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py"
   },
@@ -4465,7 +4465,7 @@
    "module": "agentsg/harker.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Harker sections / lines from space-group operators (exact rational algebra).",
    "sha256": "aa48c5174e652adb887df077f459174a1b429b05deb599076f83ebe2bda40d81",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/harker.py"
@@ -4475,7 +4475,7 @@
    "module": "agentsg/symmetry_op.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "A crystallographic symmetry operation (W, w): x' = W x + w (mod 1).",
    "sha256": "4bff3d68b1e86ab0451668d0e64d289c45f5b5bdde2281548d3b34cec4964ed9",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/symmetry_op.py"
@@ -4485,9 +4485,9 @@
    "module": "agentsg/cell/diagrams.py",
    "symbol": "_projection_maps",
    "kind": "FunctionDef",
-   "line": 1121,
+   "line": 1126,
    "exact": "In-plane affine maps of every operation: image (right, down) = A x + t.",
-   "sha256": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+   "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py"
   },
   {
@@ -4516,7 +4516,7 @@
    "symbol": "DeformationManifold",
    "kind": "ClassDef",
    "line": 235,
-   "exact": "A landmark scaffold over a set of lattice states for path-consistent",
+   "exact": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
    "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py"
   },
@@ -4596,7 +4596,7 @@
    "symbol": "_row_hnf",
    "kind": "FunctionDef",
    "line": 91,
-   "exact": "Row Hermite normal form (pivots positive, entries above pivots reduced",
+   "exact": "Row Hermite normal form (pivots positive, entries above pivots reduced into ``[0, pivot)``); zero rows dropped.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4605,7 +4605,7 @@
    "module": "agentsg/cell/sublattice.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Sublattice generation via the Hermite normal form (HNF).",
    "sha256": "872987fe109d93e870696807207fc15fd59c57c3cfac61d1f219f15d9d68d409",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/sublattice.py"
@@ -4616,7 +4616,7 @@
    "symbol": "is_hermite_normal_form",
    "kind": "FunctionDef",
    "line": 74,
-   "exact": "True iff M is a valid upper-triangular HNF (positive diagonal, off-diagonal",
+   "exact": "True iff M is a valid upper-triangular HNF (positive diagonal, off-diagonal entries reduced modulo their column's diagonal).",
    "sha256": "872987fe109d93e870696807207fc15fd59c57c3cfac61d1f219f15d9d68d409",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/sublattice.py"
   },
@@ -4636,7 +4636,7 @@
    "symbol": "dual_lattice",
    "kind": "FunctionDef",
    "line": 376,
-   "exact": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
+   "exact": "The sublattice ``{c in Z^d : c .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4645,7 +4645,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -4655,7 +4655,7 @@
    "module": "agentsg/semi_invariants.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
@@ -4676,7 +4676,7 @@
    "symbol": "_canon_congruence",
    "kind": "FunctionDef",
    "line": 339,
-   "exact": "Canonical ``(f, m)`` for ``f . c \u2261 0 (mod m)``: content removed,",
+   "exact": "Canonical ``(f, m)`` for ``f .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4706,7 +4706,7 @@
    "symbol": "_congruence_index",
    "kind": "FunctionDef",
    "line": 412,
-   "exact": "Index of ``{c : f . c \u2261 0 (mod m) for all (f, m)}`` -- each congruence is",
+   "exact": "Index of ``{c : f .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4735,7 +4735,7 @@
    "module": "agentsg/symmetry_op.py",
    "symbol": "",
    "kind": "module",
-   "line": 2,
+   "line": 1,
    "exact": "A crystallographic symmetry operation (W, w): x' = W x + w (mod 1).",
    "sha256": "4bff3d68b1e86ab0451668d0e64d289c45f5b5bdde2281548d3b34cec4964ed9",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/symmetry_op.py"
@@ -4786,7 +4786,7 @@
    "symbol": "_canon_congruence",
    "kind": "FunctionDef",
    "line": 339,
-   "exact": "Canonical ``(f, m)`` for ``f . c \u2261 0 (mod m)``: content removed,",
+   "exact": "Canonical ``(f, m)`` for ``f .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4806,7 +4806,7 @@
    "symbol": "_mat_pow_in_set",
    "kind": "FunctionDef",
    "line": 38,
-   "exact": "True iff M, M^2, ... stay within {-1,0,1} and reach the identity.",
+   "exact": "True iff M, M^2, ...",
    "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py"
   }
@@ -4820,7 +4820,7 @@
   "agentsg/reflections.py": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1",
   "agentsg/cell/ambiguity.py": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35",
   "agentsg/lattice_symmetry.py": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
-  "agentsg/cell/diagrams.py": "233c165dd9284833ba41ced3b87f5ac7a651247b30af938a7a1e78689ce2ee04",
+  "agentsg/cell/diagrams.py": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5",
   "agentsg/cell/selling_group.py": "68d7e948d1cbc66385b15cc46fa7288e59f21bf42e75146c1121d5e69f3a98b8",
   "agentsg/generators.py": "8bf8a5659fde668cb27d0fa7700ef8aef18590efb374ee825298d1d34cd2cb9f",
   "agentsg/hall.py": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd",
@@ -4843,7 +4843,7 @@
   "agentsg/cell/reindex.py": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70",
   "agentsg/cell/reduction.py": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7",
   "agentsg/cell/canonical.py": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb",
-  "agentsg/cell/rootform.py": "87ddf3c3283e3d0c944748b27d4e45a5d787c02fb4793fa004a1dddb9fd563ce",
+  "agentsg/cell/rootform.py": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908",
   "agentsg/cell/selling_cob.py": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3",
   "agentsg/cell/rootindex.py": "cb4175115c2ed662fdb5bc6f88d1fa7610de05b91c88ae971853221961b74edd",
   "agentsg/cell/celldb.py": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b",
