@@ -1,0 +1,15 @@
+[
+ {
+  "source": "wiki",
+  "title": "Lattice reduction",
+  "url": "https://en.wikipedia.org/wiki/Lattice_reduction",
+  "final_url": "https://en.wikipedia.org/wiki/Lattice_reduction",
+  "exists": true,
+  "page_title": "Lattice reduction",
+  "exact": "In mathematics, the goal of lattice basis reduction is to find a basis with short, nearly orthogonal vectors when given an integer lattice basis as input.",
+  "prefix": "",
+  "suffix": "This is realized using",
+  "truncated": false,
+  "note": ""
+ }
+]
