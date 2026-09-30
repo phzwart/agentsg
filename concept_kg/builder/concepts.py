@@ -181,7 +181,7 @@ c("fixed_point_locus", "Fixed-point locus of an operation", "mathematics",
   wiki="Fixed point (mathematics)")
 c("fixed_subspace", "Fixed subspace / +1 eigenspace of W", "mathematics",
   "The kernel of (W − I): directions left invariant by a rotation; in reciprocal space (row action) it defines reflection strata, in direct space floating origins and axis directions.",
-  [("agentsg/reflection_lattice.py", "_fixed_lattice"), ("agentsg/lattice_symmetry.py", "_two_fold_axis_direct"), ("agentsg/semi_invariants.py", "")],
+  [("agentsg/reflection_lattice.py", "_fixed_lattice"), ("agentsg/lattice_symmetry.py", "_two_fold_axis_direct"), ("agentsg/semi_invariants.py", "floating_origin_basis")],
   [("USES", "kernel_nullspace"), ("USES", "eigenvector"), ("RELATED_TO", "fixed_point_locus")],
   wiki="Eigenvalues and eigenvectors")
 c("ita_diagrams", "ITA space-group diagrams (general position, symmetry elements)", "crystallography",
@@ -250,7 +250,7 @@ c("structure_factor_phase", "Structure-factor phase shift under symmetry", "crys
   iucr="Structure factor", wiki="Structure factor")
 c("structure_factor", "Structure factor", "crystallography",
   "F(h) = Σ f_j exp(2πi h·x_j); its symmetry properties (absences, centric phases, semi-invariants) are what agentsg derives from the operators.",
-  [("agentsg/group.py", "phase_shift"), ("agentsg/semi_invariants.py", "")],
+  [("agentsg/group.py", "phase_shift")],
   [("RELATED_TO", "miller_indices")],
   iucr="Structure factor", wiki="Structure factor")
 c("systematic_absences", "Systematic absences (extinctions)", "crystallography",
@@ -285,7 +285,7 @@ c("reflection_stratum", "Reflection stratum (class with a given stabilizer)", "c
   iucr="Zone", wiki="Zone axis")
 c("augmented_translation_lattice", "Augmented translation lattice Λ_S and its dual", "mathematics",
   "On a stratum the operations with W in the stabilizer act like pure translations, so present reflections are the dual of Λ_S = Z³ + ⟨w⟩; the same construction with allowed origins gives the semi-invariants.",
-  [("agentsg/reflection_lattice.py", ""), ("agentsg/reflection_lattice.py", "stratum_lattice"), ("agentsg/semi_invariants.py", "")],
+  [("agentsg/reflection_lattice.py", "stratum_lattice"), ("agentsg/semi_invariants.py", "origin_lattice")],
   [("USES", "dual_lattice"), ("USES", "smith_normal_form"), ("RELATED_TO", "reflection_conditions"), ("RELATED_TO", "structure_seminvariant")],
   wiki="Dual lattice")
 c("centric_reflection", "Centric reflection / phase restriction", "crystallography",
@@ -317,7 +317,7 @@ c("reciprocal_asu", "Reciprocal-space asymmetric unit", "crystallography",
 # -------------------------------------------------- origins and semi-invariants
 c("allowed_origins", "Allowed (permissible) origins", "crystallography",
   "Origin shifts o with (W − I)o ∈ L for all W, which leave the operator set unchanged; they form a group T' ⊇ L whose discrete part is the set of alternative origins.",
-  [("agentsg/semi_invariants.py", ""), ("agentsg/semi_invariants.py", "OriginLattice"), ("agentsg/semi_invariants.py", "discrete_allowed_origins")],
+  [("agentsg/semi_invariants.py", "OriginLattice"), ("agentsg/semi_invariants.py", "discrete_allowed_origins")],
   [("USES", "smith_normal_form"), ("USES", "primitive_basis"), ("RELATED_TO", "euclidean_normalizer"), ("RELATED_TO", "origin_shift")],
   iucr="Normalizer", wiki="Euclidean normalizer", aliases=["alternative origins", "permissible origins", "Cheshire origins"])
 c("floating_origin", "Floating origin (polar direction)", "crystallography",
@@ -327,12 +327,12 @@ c("floating_origin", "Floating origin (polar direction)", "crystallography",
   wiki="Polar point group", aliases=["polar axis"])
 c("euclidean_normalizer", "Euclidean normalizer (Cheshire group)", "crystallography",
   "The normalizer of a space group in the Euclidean group; its translation part is exactly the group of allowed origin shifts.",
-  [("agentsg/semi_invariants.py", "")],
+  [("agentsg/semi_invariants.py", "origin_lattice"), ("agentsg/semi_invariants.py", "OriginLattice")],
   [("USES", "normalizer"), ("RELATED_TO", "allowed_origins")],
   iucr="Normalizer", wiki="Euclidean normalizer", refs=["ITA Vol. A Chapter 3.5 (Euclidean and affine normalizers)"])
 c("normalizer", "Normalizer of a subgroup", "mathematics",
   "N_G(H) = {g : gHg⁻¹ = H}; the largest subgroup in which H is normal.",
-  [("agentsg/semi_invariants.py", "")],
+  [("agentsg/semi_invariants.py", "origin_lattice")],
   [("PART_OF", "group_theory"), ("USES", "conjugation")],
   iucr="Normalizer", wiki="Centralizer and normalizer")
 c("structure_seminvariant", "Structure seminvariant", "crystallography",
@@ -342,7 +342,7 @@ c("structure_seminvariant", "Structure seminvariant", "crystallography",
   iucr="Direct methods", wiki="Direct methods (crystallography)", refs=["SgInfo (Grosse-Kunstleve) TabTrial_si", "Giacovazzo, Direct Phasing in Crystallography"])
 c("direct_methods", "Direct methods (context)", "crystallography",
   "Phase determination from structure-factor statistics; seminvariants and origin definition are its group-theoretical foundation.",
-  [("agentsg/semi_invariants.py", "")],
+  [("agentsg/semi_invariants.py", "semi_invariants")],
   [("USES", "structure_seminvariant")],
   iucr="Direct methods", wiki="Direct methods (crystallography)")
 
@@ -593,7 +593,7 @@ c("saturated_sublattice", "Saturated sublattice (V ∩ Z³)", "mathematics",
   wiki="Lattice (group)")
 c("dual_lattice", "Dual lattice", "mathematics",
   "L* = {h : h·t ∈ Z for all t ∈ L}; for augmented lattices the dual is computed from one Smith normal form as invariant factors, index, basis and congruences.",
-  [("agentsg/reflection_lattice.py", "dual_lattice"), ("agentsg/semi_invariants.py", "")],
+  [("agentsg/reflection_lattice.py", "dual_lattice")],
   [("USES", "smith_normal_form"), ("RELATED_TO", "reciprocal_lattice"), ("RELATED_TO", "linear_congruence")],
   iucr="Dual basis", wiki="Dual lattice")
 c("dual_basis", "Dual basis", "mathematics",
@@ -752,12 +752,12 @@ c("hermite_normal_form", "Hermite normal form", "mathematics",
   [("USES", "unimodular_matrix"), ("RELATED_TO", "smith_normal_form")], wiki="Hermite normal form")
 c("smith_normal_form", "Smith normal form and invariant factors", "mathematics",
   "U A V = diag(s₁, s₂, s₃) with U, V unimodular and s_i | s_{i+1}; the invariant factors classify the quotient of a lattice by a sublattice (zero → free, 1 → trivial, s > 1 → cyclic torsion).",
-  [("agentsg/reflection_lattice.py", "smith_normal_form"), ("agentsg/reflection_lattice.py", "dual_lattice"), ("agentsg/semi_invariants.py", "")],
+  [("agentsg/reflection_lattice.py", "smith_normal_form"), ("agentsg/reflection_lattice.py", "dual_lattice")],
   [("USES", "unimodular_matrix"), ("RELATED_TO", "finitely_generated_abelian_group"), ("RELATED_TO", "hermite_normal_form")],
   wiki="Smith normal form")
 c("finitely_generated_abelian_group", "Finitely generated abelian groups (torsion and free parts)", "mathematics",
   "Every such group is ⊕Z/s_i ⊕ Z^r; the allowed-origin group modulo the lattice is Z^{floating} ⊕ torsion, read off the Smith form.",
-  [("agentsg/semi_invariants.py", ""), ("agentsg/semi_invariants.py", "OriginLattice")],
+  [("agentsg/semi_invariants.py", "OriginLattice")],
   [("USES", "smith_normal_form")], wiki="Finitely generated abelian group")
 c("linear_congruence", "Linear congruence f·c ≡ 0 (mod m)", "mathematics",
   "Integer conditions on index coefficients; the form in which reflection conditions (k+l = 4n), semi-invariants and Harker constraints are stated.",

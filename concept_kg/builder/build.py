@@ -138,6 +138,14 @@ for c in CONCEPTS:
         if r.get("exact"):
             candidates.append(r["exact"])
         quote = pick_sentence(candidates, needles_for(c["label"], c["aliases"]))
+        prefix = r.get("prefix") or ""
+        suffix = r.get("suffix") or ""
+        if quote != (r.get("exact") or ""):
+            # prefix/suffix were taken around `exact`, not around another sentence
+            prefix, suffix = "", ""
+        if is_anaphoric(quote):
+            quote, prefix, suffix = "", "", ""
+            note = (note + " " if note else "") + "anaphoric sentence withheld; it does not define the concept on its own"
         matched = page_matches(page_title, c["label"], c["aliases"])
         if src == "wikipedia" and not matched:
             status, quote = "off-topic", ""
@@ -145,11 +153,13 @@ for c in CONCEPTS:
         elif src == "iucr" and not matched:
             status = "related"
             note = (note + " " if note else "") + "dictionary page is adjacent to this concept, not its definition"
+        elif not quote:
+            status = "related" if src == "iucr" else "off-topic"
         else:
             status = "quoted-unverified-markup" if "unverified" in note else "quoted"
         refs.append({"source": src, "title": key, "url": r.get("final_url") or r["url"],
                      "page_title": page_title, "status": status,
-                     "quote": quote, "prefix": r.get("prefix") or "", "suffix": r.get("suffix") or "",
+                     "quote": quote, "prefix": prefix, "suffix": suffix,
                      "truncated": bool(r.get("truncated")), "note": note.strip(), "fetched": FETCH_DATE})
     payload["concepts"].append({
         "id": c["id"], "label": c["label"], "kind": c["kind"], "aliases": c["aliases"],

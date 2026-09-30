@@ -49,8 +49,13 @@ def is_anaphoric(sentence: str) -> bool:
 
 
 def pick_sentence(candidates: list[str], needles: list[str]) -> str:
-    """Prefer a sentence that names the concept, and skip an anaphoric opener
-    when any other candidate exists."""
+    """Prefer a sentence that names the concept.
+
+    An anaphoric opener ("In the second case", "This", …) is never the
+    definition. On a joint dictionary page the sentence that names the
+    concept wins over a later sentence that only makes sense with the one
+    before it.
+    """
     rows = [row.strip() for row in candidates if row and row.strip()]
     if not rows:
         return ""
@@ -61,7 +66,7 @@ def pick_sentence(candidates: list[str], needles: list[str]) -> str:
             named.append(row)
     pool = named or rows
     plain = [row for row in pool if not is_anaphoric(row)]
-    return (plain or pool)[0]
+    return plain[0] if plain else ""
 
 
 def first_sentence(doc: str, limit: int = 200) -> str:
@@ -83,4 +88,11 @@ def first_sentence(doc: str, limit: int = 200) -> str:
 
 
 def needles_for(label: str, aliases: list[str] | None = None) -> list[str]:
-    return [label, *(aliases or [])]
+    """Label, aliases, and any long token (so a joint page can still match)."""
+    names = [label, *(aliases or [])]
+    extra: list[str] = []
+    for name in names:
+        for token in re.findall(r"[a-z0-9]+", (name or "").lower()):
+            if len(token) >= 12 and token not in extra:
+                extra.append(token)
+    return names + extra

@@ -893,10 +893,10 @@
   {
    "concept": "fixed_subspace",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
+   "symbol": "floating_origin_basis",
+   "kind": "FunctionDef",
+   "line": 258,
+   "exact": "Integer basis of the continuous (floating) origin freedom.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -1231,16 +1231,6 @@
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
   {
-   "concept": "structure_factor",
-   "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
-   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
-  },
-  {
    "concept": "systematic_absences",
    "module": "agentsg/group.py",
    "symbol": "is_systematically_absent",
@@ -1463,16 +1453,6 @@
   {
    "concept": "augmented_translation_lattice",
    "module": "agentsg/reflection_lattice.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Reflection conditions as sublattices in projection.",
-   "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
-  },
-  {
-   "concept": "augmented_translation_lattice",
-   "module": "agentsg/reflection_lattice.py",
    "symbol": "stratum_lattice",
    "kind": "FunctionDef",
    "line": 418,
@@ -1483,10 +1463,10 @@
   {
    "concept": "augmented_translation_lattice",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
+   "symbol": "origin_lattice",
+   "kind": "FunctionDef",
+   "line": 172,
+   "exact": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -1623,16 +1603,6 @@
   {
    "concept": "allowed_origins",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
-   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
-  },
-  {
-   "concept": "allowed_origins",
-   "module": "agentsg/semi_invariants.py",
    "symbol": "OriginLattice",
    "kind": "ClassDef",
    "line": 71,
@@ -1713,20 +1683,30 @@
   {
    "concept": "euclidean_normalizer",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
+   "symbol": "origin_lattice",
+   "kind": "FunctionDef",
+   "line": 172,
+   "exact": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
+   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
+   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
+  },
+  {
+   "concept": "euclidean_normalizer",
+   "module": "agentsg/semi_invariants.py",
+   "symbol": "OriginLattice",
+   "kind": "ClassDef",
+   "line": 71,
+   "exact": "Allowed-origin group ``T'`` of a space group, from one Smith normal form.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
   {
    "concept": "normalizer",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
+   "symbol": "origin_lattice",
+   "kind": "FunctionDef",
+   "line": 172,
+   "exact": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -1773,10 +1753,10 @@
   {
    "concept": "direct_methods",
    "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
+   "symbol": "semi_invariants",
+   "kind": "FunctionDef",
+   "line": 331,
+   "exact": "Structure semi-invariant congruences, derived from the origin lattice.",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -3461,16 +3441,6 @@
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
   {
-   "concept": "dual_lattice",
-   "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
-   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
-  },
-  {
    "concept": "dual_basis",
    "module": "agentsg/change_of_basis.py",
    "symbol": "",
@@ -4639,26 +4609,6 @@
    "exact": "The sublattice ``{c in Z^d : c .",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
-  },
-  {
-   "concept": "smith_normal_form",
-   "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
-   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
-  },
-  {
-   "concept": "finitely_generated_abelian_group",
-   "module": "agentsg/semi_invariants.py",
-   "symbol": "",
-   "kind": "module",
-   "line": 1,
-   "exact": "Allowed origins and structure semi-invariants, as one lattice computation.",
-   "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
-   "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
   {
    "concept": "finitely_generated_abelian_group",
