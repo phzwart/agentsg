@@ -164,6 +164,7 @@
                 "enum": [
                   "quoted",
                   "quoted-unverified-markup",
+                  "unreadable-markup",
                   "unreachable",
                   "off-topic",
                   "related"

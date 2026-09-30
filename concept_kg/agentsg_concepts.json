@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "7a2de69a2baa70667aa3b74249bcbb60f56a4339",
+  "commit": "d0297508e0849a89a300ed630e6e2f54aa211e82",
   "dirty": false
  },
  "concepts": [
@@ -540,7 +540,7 @@
      "symbol": "",
      "kind": "module",
      "line": 1,
-     "quote": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
+     "quote": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group...",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
      "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
     },
@@ -3233,7 +3233,7 @@
      "symbol": "is_absent_by_lattice",
      "kind": "FunctionDef",
      "line": 689,
-     "quote": "Absence of an integer ``hkl`` decided purely from the strata lattices: find the stratum whose stabiliser is exactly the stabiliser of ``hkl`` (the smallest stratum containing it), express ``hkl`` i...",
+     "quote": "Absence of an integer ``hkl`` decided purely from the strata lattices: find the stratum whose stabiliser is exactly the stabiliser of ``hkl`` (the smallest stratum containing it), express ``hkl``...",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     },
@@ -4083,7 +4083,7 @@
      "symbol": "_nicest_generator",
      "kind": "FunctionDef",
      "line": 227,
-     "quote": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries, non-ne...",
+     "quote": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries,...",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -5447,12 +5447,12 @@
      "title": "Group homomorphism",
      "url": "https://en.wikipedia.org/wiki/Group_homomorphism",
      "page_title": "Group homomorphism",
-     "status": "quoted-unverified-markup",
-     "quote": "In mathematics, given two groups, (G,∗) and (H, ·), a group homomorphism from (G,∗) to (H, ·) is a function h : G → H such that for all u and v in G it holds that",
+     "status": "unreadable-markup",
+     "quote": "",
      "prefix": "",
-     "suffix": "where the group operation on the left side",
+     "suffix": "",
      "truncated": true,
-     "note": "unverified: sentence ends in a displayed equation that was stripped",
+     "note": "unverified: sentence ends in a displayed equation that was stripped stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     },
     {
@@ -5493,7 +5493,7 @@
      "symbol": "",
      "kind": "module",
      "line": 1,
-     "quote": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
+     "quote": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group...",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
      "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
     }
@@ -8152,7 +8152,7 @@
      "symbol": "dual_lattice",
      "kind": "FunctionDef",
      "line": 376,
-     "quote": "The sublattice ``{c in Z^d : c .",
+     "quote": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     }
@@ -8216,12 +8216,12 @@
      "title": "Dual basis",
      "url": "https://en.wikipedia.org/wiki/Dual_basis",
      "page_title": "Dual basis",
-     "status": "quoted-unverified-markup",
-     "quote": "In linear algebra, given a vector space with a basis of vectors indexed by an index set (the cardinality of is the dimension of ), the dual set of is a set of vectors in the dual space with the same index set such that and form a biorthogonal system.",
+     "status": "unreadable-markup",
+     "quote": "",
      "prefix": "",
-     "suffix": "The dual set is always linearly independent",
+     "suffix": "",
      "truncated": false,
-     "note": "unverified: inline math symbols (V, B, I, B*, V*) were stripped from the fetched text",
+     "note": "unverified: inline math symbols (V, B, I, B*, V*) were stripped from the fetched text stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     },
     {
@@ -10497,7 +10497,7 @@
      "symbol": "dual_lattice",
      "kind": "FunctionDef",
      "line": 376,
-     "quote": "The sublattice ``{c in Z^d : c .",
+     "quote": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     }
@@ -10548,12 +10548,12 @@
      "title": "Finitely generated abelian group",
      "url": "https://en.wikipedia.org/wiki/Finitely_generated_abelian_group",
      "page_title": "Finitely generated abelian group",
-     "status": "quoted-unverified-markup",
-     "quote": "In abstract algebra, an abelian group is called finitely generated if there exist finitely many elements in such that every in can be written in the form for some integers.",
+     "status": "unreadable-markup",
+     "quote": "",
      "prefix": "",
-     "suffix": "In this case, we say that",
+     "suffix": "",
      "truncated": false,
-     "note": "unverified: inline math (group symbol, x_1..x_s, n_i) was stripped from the extracted text; quote is not verbatim",
+     "note": "unverified: inline math (group symbol, x_1..x_s, n_i) was stripped from the extracted text; quote is not verbatim stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     }
    ]
@@ -10577,7 +10577,7 @@
      "symbol": "_canon_congruence",
      "kind": "FunctionDef",
      "line": 339,
-     "quote": "Canonical ``(f, m)`` for ``f .",
+     "quote": "Canonical ``(f, m)`` for ``f . c ≡ 0 (mod m)``: content removed, coefficients reduced into ``(-m/2, m/2]``, sign chosen ITA-style (prefer more positive coefficients, then first nonzero positive).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     },
@@ -10604,7 +10604,7 @@
      "symbol": "_congruence_index",
      "kind": "FunctionDef",
      "line": 412,
-     "quote": "Index of ``{c : f .",
+     "quote": "Index of ``{c : f . c ≡ 0 (mod m) for all (f, m)}`` -- each congruence is the rational vector ``f / m`` in :func:`dual_lattice`.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     },
@@ -10733,7 +10733,7 @@
      "symbol": "_canon_congruence",
      "kind": "FunctionDef",
      "line": 339,
-     "quote": "Canonical ``(f, m)`` for ``f .",
+     "quote": "Canonical ``(f, m)`` for ``f . c ≡ 0 (mod m)``: content removed, coefficients reduced into ``(-m/2, m/2]``, sign chosen ITA-style (prefer more positive coefficients, then first nonzero positive).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
     }
@@ -10782,7 +10782,7 @@
      "symbol": "_mat_pow_in_set",
      "kind": "FunctionDef",
      "line": 38,
-     "quote": "True iff M, M^2, ...",
+     "quote": "True iff M, M^2, ... stay within {-1,0,1} and reach the identity.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
      "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
     }
