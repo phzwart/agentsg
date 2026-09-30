@@ -28,6 +28,17 @@ def test_card_uses_module_and_receipt():
     assert uses["uses"]
     assert all(1 <= row["depth"] <= 3 for row in uses["uses"])
     assert uses["uses"] == sorted(uses["uses"], key=lambda row: (row["depth"], row["id"]))
+    used = graph.used_by("smith_normal_form", 2)
+    depth1 = {row["id"] for row in used["used_by"] if row["depth"] == 1}
+    assert depth1 == {
+        "allowed_origins",
+        "augmented_translation_lattice",
+        "dual_lattice",
+        "finitely_generated_abelian_group",
+        "floating_origin",
+        "reflection_conditions",
+    }
+    assert all(row["definition"] for row in used["used_by"])
     mods = graph.module("semi_invariants.py")
     assert any(row["id"] for row in mods["concepts"])
     assert all("semi_invariants.py" in a["module"] for row in mods["concepts"] for a in row["anchors"])
@@ -75,12 +86,28 @@ def test_http_concept_routes_and_skill_questions():
             state.db.close()
 
 
+def test_uses_and_used_by_are_mutual():
+    graph = get_graph()
+    for concept in graph.concepts:
+        source = concept["id"]
+        for rel in concept.get("relations") or []:
+            if rel.get("type") != "USES":
+                continue
+            target = rel["target"]
+            outward = {row["id"] for row in graph.uses(source, 1)["uses"]}
+            inward = {row["id"] for row in graph.used_by(target, 1)["used_by"]}
+            assert target in outward
+            assert source in inward
+
+
 def test_playbook_names_tools_and_sample_questions():
     book = _mcp_playbook("https://sg-mcp.mxagents.org")
     assert "Where is the Smith normal form implemented?" in book
     assert "What does “allowed origin” mean here" in book
     assert 'concept with q="Smith normal form"' in book
     assert "concept_uses" in book
+    assert "concept_used_by" in book
+    assert "What uses the Smith normal form?" in book
     assert "concept_module" in book
     assert "concept_receipt" in book
     assert "GET /v1/concept" not in book

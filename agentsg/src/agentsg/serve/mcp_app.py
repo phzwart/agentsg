@@ -18,6 +18,7 @@ from .concepts import (
     concept_info,
     concept_module as concept_module_query,
     concept_receipt as concept_receipt_query,
+    concept_used_by as concept_used_by_query,
     concept_uses as concept_uses_query,
 )
 from .http import HttpError
@@ -116,6 +117,10 @@ def _mcp_playbook(base: str) -> str:
         "| What does a concept rest on? | `concept_uses` with `id` and `depth` (1–3) |",
     )
     body = body.replace(
+        "| What uses this concept? | `GET /v1/concept/used-by?id=smith_normal_form&depth=2` |",
+        "| What uses this concept? | `concept_used_by` with `id` and `depth` (1–3) |",
+    )
+    body = body.replace(
         "| Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |",
         "| Which concepts does this file implement? | `concept_module` with `module` |",
     )
@@ -133,6 +138,10 @@ def _mcp_playbook(base: str) -> str:
             'concept_uses with id="reflection_conditions" and depth=3',
         ),
         (
+            "GET /v1/concept/used-by?id=smith_normal_form&depth=2",
+            'concept_used_by with id="smith_normal_form" and depth=2',
+        ),
+        (
             "GET /v1/concept/module?module=agentsg/semi_invariants.py",
             'concept_module with module="agentsg/semi_invariants.py"',
         ),
@@ -144,6 +153,9 @@ def _mcp_playbook(base: str) -> str:
             'concept_receipt with receipt="ent:concept:allowed_origins"',
         ),
         ("`/v1/concept/uses`", "`concept_uses`"),
+        ("`/v1/concept/used-by`", "`concept_used_by`"),
+        ("/v1/concept/used-by", "`concept_used_by`"),
+        ("/v1/concept/uses", "`concept_uses`"),
         ("`/v1/concept/module`", "`concept_module`"),
         ("`/v1/concept/receipt`", "`concept_receipt`"),
         ("Fetch `/v1/concept/receipt`", "Call `concept_receipt`"),
@@ -170,9 +182,9 @@ You have MCP tools for the agentsg crystallography engine.
 
 After a tool error, read the message and retry with corrected arguments. Do not invent a result.
 
-HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_module`, `concept_receipt`, `playbook`.
+HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_used_by`, `concept_module`, `concept_receipt`, `playbook`.
 
-**Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what does this file implement?”, or “show the receipt”, call `concept`, `concept_uses`, `concept_module`, or `concept_receipt`. Surface the definition, the quoted sentence with its URL and status, and the code anchor (`module`, `symbol`, `line`, `uri`) to the user. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
+**Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what uses this?”, “what does this file implement?”, or “show the receipt”, call `concept`, `concept_uses`, `concept_used_by`, `concept_module`, or `concept_receipt`. Surface the definition, the quoted sentence with its URL and status, and the code anchor (`module`, `symbol`, `line`, `uri`) to the user. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
 
 **Pictures.** `ita_plate` returns the ITA plate PNG in the tool result, together with every in-cell copy of each element. `pdb_search` with `plot` true returns the PC1–PC2 scatter of those cells the same way. There is no image URL to fetch.
 
@@ -201,9 +213,9 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
             "systematic absences or ITA Wyckoff letters (wyckoff_letter is null). "
             "Subgroup edges are t or k derived from operators, not the ITA A1 table. "
             "concept searches the knowledge graph (q) or returns one card (id): "
-            "definition, dictionary quote, code anchor. concept_uses, concept_module, "
-            "and concept_receipt are the dependency walk, the file lookup, and one "
-            "ledger node. Offer the Concept questions from playbook when the user "
+            "definition, dictionary quote, code anchor. concept_uses, concept_used_by, "
+            "concept_module, and concept_receipt are the dependency walk, the reverse "
+            "walk, the file lookup, and one ledger node. Offer the Concept questions from playbook when the user "
             "asks what you can explain about the code. "
             f"Call playbook for the full LIMITATIONS. Endpoint: {base}/mcp"
         ),
@@ -455,6 +467,15 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         Sample: what do the reflection conditions rest on? id=reflection_conditions.
         """
         return _result(concept_uses_query, {"id": id, "depth": depth})
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_used_by(id: str, depth: int = 3) -> dict[str, Any]:
+        """Concepts whose USES edges point at this one, nearest first, depth 1–3.
+
+        Depth 2 is things that use things that use id. USES edges only.
+        Sample: what uses the Smith normal form? id=smith_normal_form, depth=2.
+        """
+        return _result(concept_used_by_query, {"id": id, "depth": depth})
 
     @mcp.tool(annotations=_READONLY)
     def concept_module(module: str) -> dict[str, Any]:

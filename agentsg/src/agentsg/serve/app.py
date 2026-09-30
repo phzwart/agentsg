@@ -15,6 +15,7 @@ from .concepts import (
     concept_info,
     concept_module,
     concept_receipt,
+    concept_used_by,
     concept_uses,
 )
 from .http import (
@@ -163,6 +164,8 @@ def make_handler(state: ServerState):
                 return concept_info(query_to_body(qs))
             if path == "/v1/concept/uses":
                 return concept_uses(query_to_body(qs))
+            if path == "/v1/concept/used-by":
+                return concept_used_by(query_to_body(qs))
             if path == "/v1/concept/module":
                 return concept_module(query_to_body(qs))
             if path == "/v1/concept/receipt":
@@ -209,6 +212,8 @@ def make_handler(state: ServerState):
                 return concept_info(data)
             if path == "/v1/concept/uses":
                 return concept_uses(data)
+            if path == "/v1/concept/used-by":
+                return concept_used_by(data)
             if path == "/v1/concept/module":
                 return concept_module(data)
             if path == "/v1/concept/receipt":

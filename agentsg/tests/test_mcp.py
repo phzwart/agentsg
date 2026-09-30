@@ -43,6 +43,7 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     assert "pdb_search" in names
     assert "concept" in names
     assert "concept_uses" in names
+    assert "concept_used_by" in names
     assert "concept_module" in names
     assert "concept_receipt" in names
     pdb = next(tool for tool in tools if tool.name == "pdb_search")
@@ -75,6 +76,7 @@ def test_concept_tools_return_results():
             search = await client.call_tool("concept", {"q": "Smith normal form"})
             card = await client.call_tool("concept", {"id": "allowed_origins"})
             uses = await client.call_tool("concept_uses", {"id": "reflection_conditions", "depth": 3})
+            used = await client.call_tool("concept_used_by", {"id": "smith_normal_form", "depth": 2})
             bare = await client.call_tool("concept_module", {"module": "semi_invariants.py"})
             full = await client.call_tool("concept_module", {"module": "agentsg/semi_invariants.py"})
             code_id = next(
@@ -85,13 +87,14 @@ def test_concept_tools_return_results():
                 "concept_receipt", {"receipt": "ent:concept:allowed_origins"},
             )
             code = await client.call_tool("concept_receipt", {"receipt": code_id})
-            return search.data, card.data, uses.data, bare.data, full.data, definition.data, code.data
+            return search.data, card.data, uses.data, used.data, bare.data, full.data, definition.data, code.data
 
-    search, card, uses, bare, full, definition, code = asyncio.run(_run())
+    search, card, uses, used, bare, full, definition, code = asyncio.run(_run())
     assert search["hits"][0]["id"] == "smith_normal_form"
     assert card["id"] == "allowed_origins"
     assert card["definition_receipt"] == "ent:concept:allowed_origins"
     assert uses["uses"]
+    assert "dual_lattice" in {row["id"] for row in used["used_by"] if row["depth"] == 1}
     assert all(row["depth"] in (1, 2, 3) for row in uses["uses"])
     assert {row["id"] for row in bare["concepts"]} == {row["id"] for row in full["concepts"]}
     assert definition["node"]["how"] == "derived"

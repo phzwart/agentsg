@@ -4,7 +4,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "concept_kg" / "builder"))
 
-from quotes import first_sentence, is_anaphoric, needles_for, page_matches, pick_sentence  # noqa: E402
+from quotes import (  # noqa: E402
+    first_sentence,
+    is_anaphoric,
+    is_unreadable_markup,
+    needles_for,
+    page_matches,
+    pick_sentence,
+)
 
 
 def test_first_sentence_joins_wrapped_lines_and_caps():
@@ -22,6 +29,34 @@ def test_first_sentence_joins_wrapped_lines_and_caps():
     capped = first_sentence(long)
     assert len(capped) <= 200
     assert capped.endswith("...")
+
+
+def test_first_sentence_keeps_a_spaced_dot_inside_backticks():
+    doc = (
+        "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.\n"
+        "\n"
+        "One Smith normal form does everything."
+    )
+    sentence = first_sentence(doc)
+    assert sentence.startswith("The sublattice")
+    assert "c . v" in sentence
+    assert sentence.endswith("vectors.")
+    assert "Smith" not in sentence
+
+
+def test_unreadable_markup_drops_a_sentence_with_deleted_symbols():
+    broken = (
+        "In abstract algebra, an abelian group is called finitely generated if there "
+        "exist finitely many elements in such that every in can be written in the "
+        "form for some integers."
+    )
+    assert is_unreadable_markup(broken)
+    assert not is_unreadable_markup(
+        "In mathematics, the kernel of a linear map is the part of the domain mapped to zero."
+    )
+    raw = "every element x in G can be written a plus b"
+    stripped = "every element in can be written"
+    assert is_unreadable_markup(stripped, raw)
 
 
 def test_anaphoric_sentence_loses_to_one_that_names_the_concept():

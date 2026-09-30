@@ -78,6 +78,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
 | What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |
 | What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |
+| What uses this concept? | `GET /v1/concept/used-by?id=smith_normal_form&depth=2` |
 | Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |
 | Show the receipt for a claim | `GET /v1/concept/receipt?id=` the `receipt` field from the card |
 | Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |
@@ -108,10 +109,11 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 Search with `q` first when you are not sure of the id. The top hit of “Smith normal form” is `smith_normal_form`; “allowed origin” is `allowed_origins`. Then call `id` for the card.
 
-On the card, lead with `definition` and say it is a builder paraphrase (`definition_receipt`). The external definition is the Wikipedia reference when its `status` is `quoted` or `quoted-unverified-markup`: quote that sentence, give `url`, and name `status`. Quote an `iucr` sentence only when Wikipedia is `unreachable` or `off-topic`.
+On the card, lead with `definition` and say it is a builder paraphrase (`definition_receipt`). The external definition is the Wikipedia reference when its `status` is `quoted` or `quoted-unverified-markup`: quote that sentence, give `url`, and name `status`. Quote an `iucr` sentence only when Wikipedia is `unreachable`, `off-topic`, or `unreadable-markup`.
 
 - `quoted` — transcribed sentence. Give the URL.
 - `quoted-unverified-markup` — same, and say inline math may have been stripped.
+- `unreadable-markup` — markup was stripped until the sentence no longer reads. `quote` is empty. Give the URL, and use the IUCr sentence as the external definition when that row has one.
 - `related` — an IUCr page about a neighbouring entry. Quote it as adjacent evidence, and say it is not the definition of this concept.
 - `off-topic` — the Wikipedia page title does not match the label or aliases, so `quote` is empty. Name the page and do not treat it as the definition.
 - `unreachable` — no sentence was retrieved. Give the URL anyway.
@@ -120,9 +122,9 @@ For “where is this implemented?”, quote `code_evidence`: `module`, `symbol`,
 
 `relations` are typed: `USES`, `IS_A`, `PART_OF`, `SPECIALIZES`, `DUAL_OF`, `EQUIVALENT_TO`, `RELATED_TO`, `DEFINED_BY`, `CONTRASTS_WITH`. Quote `type`, `target`, and `target_label`. A contrast or a dual that is absent from `relations` is absent. Do not add one.
 
-`/v1/concept/uses` lists only `USES` neighbours, nearest first (`depth` 1, then 2, then 3), each with its `definition`. `/v1/concept/module` lists every concept anchored in that file. A bare filename (`semi_invariants.py`) matches.
+`/v1/concept/uses` lists only `USES` neighbours, nearest first (`depth` 1, then 2, then 3), each with its `definition`. `/v1/concept/used-by` walks those same edges backward: concepts that `USES` this one, then concepts that use those, out to `depth` 3. Both are `USES` edges only. `/v1/concept/module` lists every concept anchored in that file. A bare filename (`semi_invariants.py`) matches.
 
-Fetch `/v1/concept/receipt` when the user asks for the receipt, the source, or why a sentence is in the answer. Pass the id already on the card (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). Quote `node.how` and `node.summary` or `node.rationale`. `how=quote` is a verbatim substring of a docstring (wrapped lines joined with spaces). `how=derived` is a paraphrase or a transcription without a page hash. `how=inferred` is a relation the builder asserted. A reference that is `off-topic` or `unreachable` has no `how`; its receipt has `result` `inconclusive` and a `summary`.
+Fetch `/v1/concept/receipt` when the user asks for the receipt, the source, or why a sentence is in the answer. Pass the id already on the card (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). Quote `node.how` and `node.summary` or `node.rationale`. `how=quote` is a verbatim substring of a docstring (wrapped lines joined with spaces). `how=derived` is a paraphrase or a transcription without a page hash. `how=inferred` is a relation the builder asserted. A reference that is `off-topic`, `unreachable`, or `unreadable-markup` has no `how`; its receipt has `result` `inconclusive` and a `summary`.
 
 When the user asks what you can explain about the code, offer the questions in **Concept questions** and wait. Do not answer that list as if you had already called the graph.
 
@@ -266,6 +268,7 @@ Lead with hits whose `cob` is not null. Quote `cob_xyz` and `cob_residual`. If `
 Offer this list when the user asks what you can explain about the code, or what the graph knows. Run a call only after they pick one, or when their own question matches one. Then surface the fields named below. Quote the JSON. Keep the link.
 
 - Where is the Smith normal form implemented?
+- What uses the Smith normal form?
 - What does “allowed origin” mean here, and what does Wikipedia say?
 - What do the reflection conditions rest on?
 - Which concepts does `semi_invariants.py` implement?
@@ -286,6 +289,14 @@ GET /v1/concept?id=smith_normal_form
 ```
 
 Tell the user the module, the symbol, and the line. Quote `code_evidence[].quote`. Give `uri` as the link. Mention `snapshot.commit`. If `snapshot.dirty` is true, say the anchors were taken from an uncommitted tree.
+
+User: “What uses the Smith normal form?”
+
+```
+GET /v1/concept/used-by?id=smith_normal_form&depth=2
+```
+
+Group `used_by` by `depth`. At depth 1 the current graph has `allowed_origins`, `augmented_translation_lattice`, `dual_lattice`, `finitely_generated_abelian_group`, `floating_origin`, and `reflection_conditions`. Quote each `label` and `definition`. Name the depth 2 concepts. These are `USES` edges only. Depth 2 means things that use things that use the Smith normal form.
 
 User: “What does allowed origin mean here?”
 
@@ -351,7 +362,7 @@ GET /v1/concept/receipt?id=ent:concept:allowed_origins
 5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem. The operator is `cob` from a `return_cob` search, or nothing.
 6. **Monoclinic ITA plates use `projection: "b"`.** The server already defaults monoclinic to `b`; other systems default to `c`.
 7. **Explain, do not dump.** Translate JSON into ITA language. Quote numbers from the response.
-8. **Concept answers come from `/v1/concept`.** Quote `definition`, the reference `quote` with its `url` and `status`, and the code anchor (`module`, `symbol`, `line`, `uri`). Offer the Concept questions when the user asks what the graph can explain. Fetch a receipt only when they ask for the source.
+8. **Concept answers come from `/v1/concept`.** Quote `definition`, the reference `quote` with its `url` and `status`, and the code anchor (`module`, `symbol`, `line`, `uri`). Offer the Concept questions when the user asks what the graph can explain. Fetch a receipt only when they ask for the source. `USES` walks are `/v1/concept/uses` outward and `/v1/concept/used-by` inward.
 
 # Units
 

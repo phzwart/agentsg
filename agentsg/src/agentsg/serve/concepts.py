@@ -94,6 +94,16 @@ class ConceptGraph:
                 ident = node.get("@id")
                 if ident:
                     self.nodes[ident] = node
+        # Inverse of USES, built once. The payload stores each edge on its source.
+        used_by: dict[str, list[str]] = {}
+        for concept in concepts:
+            for rel in concept.get("relations") or []:
+                if rel.get("type") != "USES":
+                    continue
+                target = rel.get("target") or ""
+                if target:
+                    used_by.setdefault(target, []).append(concept["id"])
+        self._used_by = used_by
 
     @classmethod
     def load(cls, directory: Path | None = None) -> ConceptGraph:
@@ -234,12 +244,13 @@ class ConceptGraph:
                 "definition is a builder paraphrase (definition_receipt). "
                 "references[].status quoted is a transcribed sentence; "
                 "quoted-unverified-markup may have lost inline math; "
+                "unreadable-markup means the stripped sentence was withheld; "
                 "unreachable means no sentence was retrieved. "
                 "code_evidence sha256 values are the snapshot, not the live tree."
             ),
         }
 
-    def uses(self, ident: str, depth: int) -> dict[str, Any]:
+    def _walk(self, ident: str, depth: int, *, reverse: bool) -> tuple[dict[str, Any], str, list[dict[str, Any]]]:
         concept = self.by_id.get(ident.strip()) or self.by_id.get(_norm_id(ident))
         if concept is None:
             raise HttpError(404, f"unknown concept id {ident!r}")
@@ -249,10 +260,15 @@ class ConceptGraph:
         for step in range(1, depth + 1):
             nxt: list[str] = []
             for node in frontier:
-                for rel in self.by_id[node].get("relations") or []:
-                    if rel.get("type") != "USES":
-                        continue
-                    target = rel.get("target") or ""
+                if reverse:
+                    neighbours = self._used_by.get(node) or []
+                else:
+                    neighbours = [
+                        rel.get("target") or ""
+                        for rel in self.by_id[node].get("relations") or []
+                        if rel.get("type") == "USES"
+                    ]
+                for target in neighbours:
                     if target == cid or target in seen or target not in self.by_id:
                         continue
                     seen[target] = step
@@ -268,12 +284,26 @@ class ConceptGraph:
             for target in seen
         ]
         rows.sort(key=lambda row: (row["depth"], row["id"]))
+        return concept, cid, rows
+
+    def uses(self, ident: str, depth: int) -> dict[str, Any]:
+        concept, cid, rows = self._walk(ident, depth, reverse=False)
         return {
             **self._meta(),
             "id": cid,
             "label": concept.get("label") or cid,
             "depth": depth,
             "uses": rows,
+        }
+
+    def used_by(self, ident: str, depth: int) -> dict[str, Any]:
+        concept, cid, rows = self._walk(ident, depth, reverse=True)
+        return {
+            **self._meta(),
+            "id": cid,
+            "label": concept.get("label") or cid,
+            "depth": depth,
+            "used_by": rows,
         }
 
     def module(self, name: str) -> dict[str, Any]:
@@ -380,6 +410,15 @@ def concept_uses(data: dict[str, Any]) -> dict[str, Any]:
         raise HttpError(400, "id is required")
     depth = _as_int(data.get("depth"), 3, "depth", 1, 3)
     return graph.uses(ident, depth)
+
+
+def concept_used_by(data: dict[str, Any]) -> dict[str, Any]:
+    graph = _graph_or_503()
+    ident = str(data.get("id") or "").strip()
+    if not ident:
+        raise HttpError(400, "id is required")
+    depth = _as_int(data.get("depth"), 3, "depth", 1, 3)
+    return graph.used_by(ident, depth)
 
 
 def concept_module(data: dict[str, Any]) -> dict[str, Any]:

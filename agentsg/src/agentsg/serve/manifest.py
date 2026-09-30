@@ -350,6 +350,18 @@ ENDPOINTS: list[dict[str, Any]] = [
         "_op_ids": {"GET": "conceptUsesGet", "POST": "conceptUses"},
     },
     {
+        "path": "/v1/concept/used-by",
+        "methods": ["GET", "POST"],
+        "description": "Concepts whose USES edges reach this id, in 1–3 steps, nearest first",
+        "params": [
+            _p("id", "string", True, "Target concept id, e.g. smith_normal_form"),
+            _p("depth", "int", False, "1, 2, or 3 (default 3). 2 means things that use things that use id"),
+        ],
+        "example": _curl("/v1/concept/used-by?id=smith_normal_form&depth=2"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptUsedByGet", "POST": "conceptUsedBy"},
+    },
+    {
         "path": "/v1/concept/module",
         "methods": ["GET", "POST"],
         "description": "Concepts anchored in one source file",

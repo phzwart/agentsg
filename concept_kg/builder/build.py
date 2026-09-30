@@ -18,7 +18,7 @@ REPO = HERE.parent.parent
 OUT = HERE.parent
 sys.path.insert(0, str(HERE))
 from concepts import CONCEPTS  # noqa: E402
-from quotes import is_anaphoric, needles_for, page_matches, pick_sentence  # noqa: E402
+from quotes import is_anaphoric, is_unreadable_markup, needles_for, page_matches, pick_sentence  # noqa: E402
 import pygrits  # noqa: E402
 
 
@@ -98,7 +98,7 @@ schema = {
                     "type": "object", "required": ["source", "title", "url", "status"],
                     "properties": {"source": {"enum": ["iucr", "wikipedia"]}, "title": {"type": "string"},
                                    "url": {"type": "string"}, "page_title": {"type": "string"},
-                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreachable", "off-topic", "related"]},
+                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreadable-markup", "unreachable", "off-topic", "related"]},
                                    "quote": {"type": "string"}, "prefix": {"type": "string"},
                                    "suffix": {"type": "string"}, "truncated": {"type": "boolean"},
                                    "note": {"type": "string"}, "fetched": {"type": "string"}}}},
@@ -155,6 +155,10 @@ for c in CONCEPTS:
             note = (note + " " if note else "") + "dictionary page is adjacent to this concept, not its definition"
         elif not quote:
             status = "related" if src == "iucr" else "off-topic"
+        elif is_unreadable_markup(quote, r.get("raw") or None):
+            status = "unreadable-markup"
+            quote, prefix, suffix = "", "", ""
+            note = (note + " " if note else "") + "stripped markup left the sentence unreadable; quote withheld"
         else:
             status = "quoted-unverified-markup" if "unverified" in note else "quoted"
         refs.append({"source": src, "title": key, "url": r.get("final_url") or r["url"],
@@ -197,10 +201,13 @@ for pc in payload["concepts"]:
         used.append(eid); n_quote += 1
     for r in pc["references"]:
         eid = f"evi:ref:{cid}:{r['source']}"
-        if r["status"] in ("unreachable", "off-topic") or not r.get("quote"):
-            why = ("page title does not match this concept, so the lede was not quoted"
-                   if r["status"] == "off-topic"
-                   else "the page could not be retrieved, so existence and wording are undetermined")
+        if r["status"] in ("unreachable", "off-topic", "unreadable-markup") or not r.get("quote"):
+            if r["status"] == "off-topic":
+                why = "page title does not match this concept, so the lede was not quoted"
+            elif r["status"] == "unreadable-markup":
+                why = "markup stripping left the sentence unreadable, so it was not quoted"
+            else:
+                why = "the page could not be retrieved, so existence and wording are undetermined"
             graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "agent": AGENT,
                           "result": "inconclusive",
                           "summary": f"Looked for a {r['source']} page titled '{r['title']}' at {r['url']} on {FETCH_DATE}; {why}. {r.get('note','')}".strip()})

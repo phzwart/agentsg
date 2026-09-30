@@ -186,7 +186,7 @@
    "symbol": "",
    "kind": "module",
    "line": 1,
-   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group order...",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -2156,7 +2156,7 @@
    "symbol": "",
    "kind": "module",
    "line": 1,
-   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\".",
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group order...",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -3436,7 +3436,7 @@
    "symbol": "dual_lattice",
    "kind": "FunctionDef",
    "line": 376,
-   "exact": "The sublattice ``{c in Z^d : c .",
+   "exact": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4606,7 +4606,7 @@
    "symbol": "dual_lattice",
    "kind": "FunctionDef",
    "line": 376,
-   "exact": "The sublattice ``{c in Z^d : c .",
+   "exact": "The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4626,7 +4626,7 @@
    "symbol": "_canon_congruence",
    "kind": "FunctionDef",
    "line": 339,
-   "exact": "Canonical ``(f, m)`` for ``f .",
+   "exact": "Canonical ``(f, m)`` for ``f . c \u2261 0 (mod m)``: content removed, coefficients reduced into ``(-m/2, m/2]``, sign chosen ITA-style (prefer more positive coefficients, then first nonzero positive).",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4656,7 +4656,7 @@
    "symbol": "_congruence_index",
    "kind": "FunctionDef",
    "line": 412,
-   "exact": "Index of ``{c : f .",
+   "exact": "Index of ``{c : f . c \u2261 0 (mod m) for all (f, m)}`` -- each congruence is the rational vector ``f / m`` in :func:`dual_lattice`.",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4736,7 +4736,7 @@
    "symbol": "_canon_congruence",
    "kind": "FunctionDef",
    "line": 339,
-   "exact": "Canonical ``(f, m)`` for ``f .",
+   "exact": "Canonical ``(f, m)`` for ``f . c \u2261 0 (mod m)``: content removed, coefficients reduced into ``(-m/2, m/2]``, sign chosen ITA-style (prefer more positive coefficients, then first nonzero positive).",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -4756,7 +4756,7 @@
    "symbol": "_mat_pow_in_set",
    "kind": "FunctionDef",
    "line": 38,
-   "exact": "True iff M, M^2, ...",
+   "exact": "True iff M, M^2, ... stay within {-1,0,1} and reach the identity.",
    "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py"
   }
