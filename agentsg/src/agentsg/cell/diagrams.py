@@ -981,8 +981,8 @@ def draw_parallel_plane_symbol(ax, name, corner=(0.06, 0.06), size=0.11,
                     color="k", lw=1.0, zorder=6)
 
 
-def _separate_overlapping_labels(ax, rounds=6):
-    """Nudge text labels whose boxes overlap. Used on the dense cubic plates."""
+def _separate_overlapping_labels(ax, rounds=8):
+    """Nudge text labels whose boxes overlap."""
     fig = ax.figure
     if fig is None or not ax.texts:
         return
@@ -1005,8 +1005,13 @@ def _separate_overlapping_labels(ax, rounds=6):
                 bj = boxes[j]
                 if bj is None or not bi.overlaps(bj):
                     continue
+                xi, yi = texts[i].get_position()
                 x, y = texts[j].get_position()
-                texts[j].set_position((x + 0.045, y + 0.03))
+                # Step away from the label it sits on, so a crossing does not
+                # march every note in the same direction.
+                sx = 0.06 if x >= xi else -0.06
+                sy = 0.04 if y >= yi else -0.04
+                texts[j].set_position((x + sx, y + sy))
                 moved = True
                 break
         if not moved:
@@ -1340,12 +1345,6 @@ def general_position_diagram(sg, ax=None, point=None,
     perm, dlab, rlab, _ = _PROJ[projection]
     frame = _Frame(cell_frame(sg, projection))
     x0 = np.array(point, dtype=float)
-    page_twofold = any(
-        el["type"] in ("rotation", "screw") and el.get("order") == 2
-        and el.get("axis") is not None
-        and _dir_class(_perm_vec(el["axis"], perm)) == "ab"
-        for el in _element_copies(sg)
-        if "contained_in" not in el)
 
     frame.draw_cell(ax)
 
@@ -1383,12 +1382,9 @@ def general_position_diagram(sg, ax=None, point=None,
         W = np.array(Wi, float)
         w = np.array([float(x) for x in wi])
         det = round(np.linalg.det(W))
-        # A mirror parallel to the page is the enantiomorph, so it takes
-        # the comma, unless an in-plane 2-fold makes the two heights one
-        # hand (the mm2 plates). In that case the comma stays on the
-        # other improper image.
-        comma = det < 0 and not (
-            _mirror_normal_is_depth(W, perm) and page_twofold)
+        # The comma marks the opposite hand, including the mirror that
+        # lies parallel to the page.
+        comma = det < 0
         base = _perm_vec(W @ x0 + w, perm)  # [0]=down, [1]=right, [2]=depth
         label = height_label(coef, t, coord)
         for tx in (-1, 0, 1):
@@ -1819,29 +1815,13 @@ def classify_space_group(sg):
     return out
 
 
-def _mirror_normal_is_depth(W, perm, tol=0.2):
-    """True when ``W`` is a reflection whose normal is the projection axis.
-
-    That mirror lies parallel to the page. The two heights it stacks are one
-    hand; the diagram's comma is the enantiomorph, not this pair.
-    """
-    W = np.asarray(W, float)
-    if abs(np.linalg.det(W) + 1.0) > 1e-6:
-        return False
-    _, _, vt = np.linalg.svd(W + np.eye(3))
-    normal = vt[-1]
-    nrm = float(np.linalg.norm(normal)) or 1.0
-    depth = np.zeros(3)
-    depth[perm[2]] = 1.0
-    return abs(abs(float(np.dot(normal, depth))) / nrm - 1.0) < tol
-
-
 def _orient_d_glides(elements, perm):
     """Give successive d planes opposite in-plane arrows.
 
     The stored glide representative keeps one component's sign and lets the
     alternating component fall along the projection axis, so a setting draws
-    every arrow the same way. The first plane of each family keeps its sense.
+    every arrow the same way. The first plane of each family takes the sense
+    of the symmetry operation, and the next plane points the other way.
     """
     families = {}
     for el in elements:
@@ -1855,23 +1835,43 @@ def _orient_d_glides(elements, perm):
                 break
         families.setdefault(tuple(axis), []).append(el)
 
-    def _page_sign(el):
-        g = el["intrinsic_exact"]
+    def _sign_of(comps):
         for i in range(3):
             if i == perm[2]:
                 continue
-            if g[i] != 0:
-                return 1 if g[i] > 0 else -1
+            if comps[i] != 0:
+                return 1 if comps[i] > 0 else -1
         return 1
+
+    def _stored_sign(el):
+        return _sign_of(el["intrinsic_exact"])
+
+    def _operation_sign(el):
+        # The glide in the symmetry operation, not a centring translate that
+        # arrived first and flipped both components. (0,1/4,1/4) is that
+        # operation; (0,3/4,3/4) is the same glide plus a centring vector.
+        raws = list(el.get("_glide_raws") or [])
+        if not raws:
+            raws = [el["intrinsic_exact"]]
+        raw = min(raws, key=lambda g: (
+            sum(Fraction(c) % 1 for c in g),
+            tuple(Fraction(c) % 1 for c in g)))
+        comps = []
+        for c in raw:
+            c = Fraction(c) % 1
+            if c > Fraction(1, 2):
+                c -= 1
+            comps.append(c)
+        return _sign_of(comps)
 
     for group in families.values():
         group.sort(key=lambda e: sum(
             e["axis_exact"][i] * e["location_exact"][i] for i in range(3)))
-        base = _page_sign(group[0])
+        base = _operation_sign(group[0])
         for i, el in enumerate(group):
             want = base if i % 2 == 0 else -base
             g = el["intrinsic_exact"]
-            if _page_sign(el) != want:
+            if _stored_sign(el) != want:
                 g = tuple(-c for c in g)
             el["_d_arrow"] = g
 

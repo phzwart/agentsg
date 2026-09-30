@@ -141,3 +141,34 @@ def test_no_modulus_bound():
            SymmetryOp(Matrix3(((1, 0, 0), (0, 1, 0), (0, 0, 1))), Vector3((0, 0, Fr(1, 12))))]
     # the pure translation by c/12 is a lattice statement: all hkl need l = 12n
     assert RL.reflection_conditions(ops)["hkl"] == "l = 12n"
+
+
+# --- the Smith-normal-form lattice behind the printed conditions ---------------------
+
+def test_dual_lattice_fddd_zone():
+    """Fddd 0kl: generators (0, 1/4, 1/4)-type d-glides and F centring give the
+    invariant factors (2, 4), index 8 -- 'l = 2n; k+l = 4n'."""
+    ops = list(space_group(70).operations())
+    zone = next(s for s in RL.strata(ops) if RL.class_name(s["basis"]) == "0kl")
+    lat = RL.stratum_lattice(zone, ops)
+    assert lat["invariant_factors"] == [2, 4]
+    assert lat["index"] == 8
+    congs, index = RL.stratum_conditions(zone, ops)
+    assert index == 8
+    assert RL._congruence_index(congs, 2) == RL._congruence_index(lat["congruences"], 2) == 8
+
+
+@pytest.mark.parametrize("n", range(1, 231))
+def test_printed_conditions_generate_smith_lattice(n):
+    """The ITA-style congruences and the Smith-form congruences describe the same
+    sublattice on every stratum (same index, and each implies the other on a box)."""
+    ops = list(space_group(n).operations())
+    for st in RL.present_lattices(ops):
+        d = len(st["basis"])
+        assert RL._congruence_index(st["congruences"], d) == st["index"]
+        assert RL._congruence_index(st["smith_congruences"], d) == st["index"]
+        import itertools
+        for c in itertools.product(range(-4, 5), repeat=d):
+            a = all(sum(x * f for x, f in zip(c, fm[0])) % fm[1] == 0 for fm in st["congruences"])
+            b = all(sum(x * f for x, f in zip(c, fm[0])) % fm[1] == 0 for fm in st["smith_congruences"])
+            assert a == b, (n, st["name"], c)

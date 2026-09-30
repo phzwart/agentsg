@@ -31,11 +31,17 @@ congruence ``(m g) . h ≡ 0 (mod m)``; a minimal independent set of those is
 the printed condition. The index of the sublattice is the product of the
 moduli.
 
+The sublattice on a stratum is computed by one Smith normal form of the
+projected generators (:func:`dual_lattice`) -- the same routine that
+:mod:`agentsg.semi_invariants` applies to the allowed-origin group -- which
+gives its invariant factors, index and a minimal congruence system directly.
+
 Exact rational arithmetic throughout; no sampling, no bound on the modulus.
 """
 from __future__ import annotations
 
 from fractions import Fraction
+from fractions import Fraction as Fr
 from functools import reduce
 from math import gcd, lcm
 from typing import Iterable, Sequence
@@ -135,6 +141,107 @@ def _det(M: Sequence[Sequence[int]]) -> int:
             if f:
                 A[i] = [a - f * b for a, b in zip(A[i], A[c])]
     return int(d)
+
+
+# --- exact integer Smith normal form ------------------------------------------------
+
+
+def smith_normal_form(
+    A: Sequence[Sequence[int]],
+) -> tuple[list[list[int]], list[int], list[list[int]]]:
+    """Smith normal form ``U A V = S`` of an integer matrix.
+
+    Returns ``(U, s, V)`` with ``U`` (n×n) and ``V`` (m×m) unimodular and
+    ``s`` the diagonal of ``S`` (non-negative, each dividing the next, zeros
+    last). Elementary row operations are accumulated in ``U`` and column
+    operations in ``V``; the divisibility chain is enforced so the ``s_i``
+    are the invariant factors.
+    """
+    S = [list(map(int, r)) for r in A]
+    n = len(S)
+    m = len(S[0]) if n else 0
+    U = [[int(i == j) for j in range(n)] for i in range(n)]
+    V = [[int(i == j) for j in range(m)] for i in range(m)]
+
+    def swap_rows(i: int, j: int) -> None:
+        S[i], S[j] = S[j], S[i]
+        U[i], U[j] = U[j], U[i]
+
+    def sub_row(i: int, j: int, q: int) -> None:  # row_i -= q row_j
+        S[i] = [a - q * b for a, b in zip(S[i], S[j])]
+        U[i] = [a - q * b for a, b in zip(U[i], U[j])]
+
+    def swap_cols(i: int, j: int) -> None:
+        for r in S:
+            r[i], r[j] = r[j], r[i]
+        for r in V:
+            r[i], r[j] = r[j], r[i]
+
+    def sub_col(i: int, j: int, q: int) -> None:  # col_i -= q col_j
+        for r in S:
+            r[i] -= q * r[j]
+        for r in V:
+            r[i] -= q * r[j]
+
+    t = 0
+    while t < min(n, m):
+        cand = [(abs(S[i][j]), i, j) for i in range(t, n) for j in range(t, m) if S[i][j]]
+        if not cand:
+            break
+        _, i, j = min(cand)
+        swap_rows(t, i)
+        swap_cols(t, j)
+        while True:
+            # Clear column t below the pivot and row t right of it; if a
+            # remainder is smaller than the pivot it becomes the new pivot.
+            moved = False
+            for i in range(t + 1, n):
+                if S[i][t]:
+                    sub_row(i, t, S[i][t] // S[t][t])
+                    if S[i][t]:
+                        swap_rows(t, i)
+                        moved = True
+            for j in range(t + 1, m):
+                if S[t][j]:
+                    sub_col(j, t, S[t][j] // S[t][t])
+                    if S[t][j]:
+                        swap_cols(t, j)
+                        moved = True
+            if moved:
+                continue
+            bad = next(
+                ((i, j) for i in range(t + 1, n) for j in range(t + 1, m)
+                 if S[i][j] % S[t][t]),
+                None,
+            )
+            if bad is None:
+                break
+            sub_row(t, bad[0], -1)  # pull the offending row into the pivot row
+        if S[t][t] < 0:
+            S[t] = [-a for a in S[t]]
+            U[t] = [-a for a in U[t]]
+        t += 1
+    s = [S[i][i] if i < m else 0 for i in range(min(n, m))]
+    return U, s, V
+
+
+def _unimodular_inverse(M: Sequence[Sequence[int]]) -> list[list[int]]:
+    """Exact integer inverse of a unimodular matrix (via Fraction elimination)."""
+    n = len(M)
+    A = [[Fr(x) for x in row] + [Fr(int(i == j)) for j in range(n)] for i, row in enumerate(M)]
+    for c in range(n):
+        p = next(i for i in range(c, n) if A[i][c] != 0)
+        A[c], A[p] = A[p], A[c]
+        piv = A[c][c]
+        A[c] = [x / piv for x in A[c]]
+        for i in range(n):
+            if i != c and A[i][c] != 0:
+                f = A[i][c]
+                A[i] = [x - f * y for x, y in zip(A[i], A[c])]
+    inv = [[A[i][n + j] for j in range(n)] for i in range(n)]
+    assert all(x.denominator == 1 for row in inv for x in row)
+    return [[int(x) for x in row] for row in inv]
+
 
 
 def _dot(a: Sequence, b: Sequence) -> Fraction:
@@ -265,22 +372,57 @@ def _canon_congruence(f: Sequence[int], m: int):
     return tuple(f), m
 
 
-def _congruence_lattice(congs: Sequence[tuple[tuple[int, ...], int]], d: int):
-    """HNF basis of ``{c in Z^d : f . c ≡ 0 (mod m) for all (f, m)}``."""
-    if not congs:
-        return [[int(i == j) for j in range(d)] for i in range(d)]
-    k = len(congs)
-    A = [list(f) + [-(m if i == j else 0) for j in range(k)]
-         for i, (f, m) in enumerate(congs)]
-    ker = _int_kernel(A, d + k)
-    return _row_hnf([v[:d] for v in ker])
+def dual_lattice(vectors: Sequence[Sequence[Fraction]], d: int) -> dict:
+    """The sublattice ``{c in Z^d : c . v in Z for every v}`` of rational vectors.
+
+    One Smith normal form does everything: with ``D`` the common denominator
+    and ``G`` the integer ``d x k`` matrix of columns ``D v``, ``c . v ∈ Z``
+    for all ``v`` reads ``cᵀ G ≡ 0 (mod D)``. Writing ``U G V = S`` and
+    ``z = U⁻ᵀ c`` this is ``z_i ≡ 0 (mod m_i)`` with ``m_i = D / gcd(D, s_i)``.
+
+    Returns ``congruences`` (canonical ``(f, m)`` with ``f`` = column ``i`` of
+    ``U⁻¹``, one per non-trivial invariant factor -- a minimal system),
+    ``invariant_factors`` (the ``m_i > 1``, ascending), ``index`` (their product) and
+    ``basis`` (row-HNF basis of the sublattice, rows ``m_i U[i]``).
+    """
+    vecs = [[Fraction(x) for x in v] for v in vectors]
+    D = reduce(lcm, (x.denominator for v in vecs for x in v), 1)
+    if not vecs or D == 1:
+        return {"congruences": [], "invariant_factors": [], "index": 1,
+                "basis": [[int(i == j) for j in range(d)] for i in range(d)]}
+    G = [[int(v[i] * D) for v in vecs] for i in range(d)]
+    U, s, V = smith_normal_form(G)
+    s = list(s) + [0] * (d - len(s))
+    Uinv = _unimodular_inverse(U)
+    congs, factors, rows = [], [], []
+    for i in range(d):
+        m = D // gcd(D, s[i])
+        rows.append([m * x for x in U[i]])
+        if m > 1:
+            factors.append(m)
+            c = _canon_congruence([Uinv[j][i] for j in range(d)], m)
+            if c is not None:
+                congs.append(c)
+    index = reduce(lambda a, b: a * b, factors, 1)
+    return {"congruences": congs, "invariant_factors": sorted(factors),
+            "index": index, "basis": _row_hnf(rows)}
 
 
-def _index(basis, d) -> int:
-    """Sublattice index (determinant magnitude) for a full-rank basis."""
-    if len(basis) < d:
-        return 0
-    return abs(_det(basis))
+def _congruence_index(congs: Sequence[tuple[tuple[int, ...], int]], d: int) -> int:
+    """Index of ``{c : f . c ≡ 0 (mod m) for all (f, m)}`` -- each congruence is
+    the rational vector ``f / m`` in :func:`dual_lattice`."""
+    return dual_lattice([[Fraction(x, m) for x in f] for f, m in congs], d)["index"]
+
+
+def stratum_lattice(stratum: dict, operations: Sequence[SymmetryOp]) -> dict:
+    """The sublattice of present reflections on one stratum, from one Smith
+    normal form of the translation generators of ``Lambda_S`` projected onto
+    the class coefficients (see :func:`dual_lattice`)."""
+    basis = stratum["basis"]
+    stab = set(stratum["stabiliser"])
+    gens = [tuple(Fraction(x) for x in op.w.v) for op in operations
+            if _W_rows(op) in stab]
+    return dual_lattice([[_dot(b, g) for b in basis] for g in gens], len(basis))
 
 
 def stratum_conditions(stratum: dict, operations: Sequence[SymmetryOp]):
@@ -289,9 +431,17 @@ def stratum_conditions(stratum: dict, operations: Sequence[SymmetryOp]):
     Returns ``(congruences, index)``: a list of canonical ``(f, m)`` meaning
     ``f . c ≡ 0 (mod m)`` for ``h = c . basis``, and the index of the
     sublattice of present reflections in ``L_V``.
+
+    The lattice itself (and its index) comes from :func:`stratum_lattice`.
+    The congruences reported are the ITA-style ones read off the individual
+    screw/glide/centring generators, pruned to a minimal subset that still
+    generates exactly that lattice -- so ``0kl: l = 2n; k+l = 4n`` rather than
+    whatever basis the Smith form happens to pick.
     """
     basis = stratum["basis"]
     d = len(basis)
+    lat = stratum_lattice(stratum, operations)
+    target = lat["index"]
     stab = set(stratum["stabiliser"])
     gens = [tuple(Fraction(x) for x in op.w.v) for op in operations
             if _W_rows(op) in stab]
@@ -311,8 +461,7 @@ def stratum_conditions(stratum: dict, operations: Sequence[SymmetryOp]):
         by_form[f] = lcm(by_form.get(f, 1), m)
     congs = [_canon_congruence(f, m) for f, m in by_form.items()]
     congs = [c for c in congs if c is not None]
-    # drop redundant congruences (same sublattice without them)
-    target = _index(_congruence_lattice(congs, d), d)
+    assert _congruence_index(congs, d) == target
     minimal = list(congs)
     # try to remove the most complex forms first (largest coefficients, highest
     # modulus, then forms with negative terms), so what survives is the
@@ -320,7 +469,7 @@ def stratum_conditions(stratum: dict, operations: Sequence[SymmetryOp]):
     for c in sorted(congs, key=lambda t: (-sum(abs(x) for x in t[0]), -t[1],
                                           sum(t[0]))):
         trial = [g for g in minimal if g != c]
-        if _index(_congruence_lattice(trial, d), d) == target:
+        if _congruence_index(trial, d) == target:
             minimal = trial
     return sorted(minimal, key=lambda t: (t[1], t[0])), target
 
@@ -526,8 +675,12 @@ def present_lattices(operations: Iterable[SymmetryOp]) -> list[dict]:
     out = []
     for st in strata(ops):
         congs, index = stratum_conditions(st, ops)
+        lat = stratum_lattice(st, ops)
         out.append({"basis": st["basis"], "stabiliser": st["stabiliser"],
                     "congruences": congs, "index": index,
+                    "invariant_factors": lat["invariant_factors"],
+                    "smith_congruences": lat["congruences"],
+                    "sublattice": lat["basis"],
                     "name": class_name(st["basis"])})
     return out
 
@@ -557,5 +710,6 @@ def is_absent_by_lattice(hkl, lattices: Sequence[dict]) -> bool:
         c[a] = rem[piv[a]] / basis[a][piv[a]]
         rem = [r - c[a] * bb for r, bb in zip(rem, basis[a])]
     assert all(r == 0 for r in rem) and all(x.denominator == 1 for x in c)
+    congs = best.get("smith_congruences", best["congruences"])
     return any(sum(int(x) * fi for x, fi in zip(c, f)) % m != 0
-               for f, m in best["congruences"])
+               for f, m in congs)

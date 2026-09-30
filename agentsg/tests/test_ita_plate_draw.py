@@ -128,6 +128,34 @@ def test_monoclinic_glide_arrow_follows_c():
     plt.close(_fig)
 
 
+def test_fdd2_arrow_follows_the_operation_glide():
+    """x=1/8 glides along +b and y=1/8 glides along +a.
+
+    Those are the translations in -x+1/4,y+1/4,z+1/4 and
+    x+1/4,-y+1/4,z+1/4. The neighbour half a quarter away points the other way.
+    """
+    import matplotlib.pyplot as plt
+    fig, ax = _render(43)
+    M = np.linalg.inv(np.asarray(cell_frame(43, "c")["matrix"], float))
+    found = {}
+    for child in ax.get_children():
+        if type(child).__name__ != "Annotation" or child.arrow_patch is None:
+            continue
+        x1, y1 = map(float, child.xy)
+        x0, y0 = map(float, child.xyann)
+        right, down = M @ np.array([(x0 + x1) / 2, (y0 + y1) / 2])
+        dr, dd = M @ np.array([x1 - x0, y1 - y0])
+        found[(round(float(right), 1), round(float(down), 1))] = (
+            float(dr), float(dd))
+    # Plane x=1/8 is the horizontal trace at down=1/8. Arrow along +b (right).
+    dr, dd = found[(0.5, 0.1)]
+    assert dr > 0 and abs(dr) > abs(dd)
+    # Plane y=1/8 is the vertical trace at right=1/8. Arrow along +a (down).
+    dr, dd = found[(0.1, 0.5)]
+    assert dd > 0 and abs(dd) > abs(dr)
+    plt.close(fig)
+
+
 def test_d_glide_arrows_alternate():
     import matplotlib.pyplot as plt
     _fig, ax = _render(43)
@@ -991,16 +1019,16 @@ def test_p4m_split_circles_carry_the_enantiomorph_comma():
     plt.close(fig)
 
 
-def test_mm2_depth_mirror_is_not_the_comma():
-    """An in-plane 2-fold stacks two heights of one hand, so that pair stays unmarked."""
+def test_mm2_page_mirror_carries_the_comma():
+    """Both improper images of Pmm2 are enantiomorphs, including z to -z."""
     import matplotlib.pyplot as plt
+    from agentsg.setting import SpaceGroupSetting
     fig, ax = plt.subplots()
-    general_position_diagram(25, ax=ax, projection="b")
+    general_position_diagram(SpaceGroupSetting.parse("P m m 2 (c,a,b)"),
+                             ax=ax, projection="c")
     labels = [t.get_text() for t in ax.texts if t.get_text() not in ("a", "b", "c")]
-    # One enantiomorph carries the comma. The page-parallel mirror's
-    # two heights do not.
-    assert sum("," in t for t in labels) == 1
-    assert sum("," not in t for t in labels) >= 2
+    assert ",−" in labels
+    assert ",+" in labels
     plt.close(fig)
 
 
