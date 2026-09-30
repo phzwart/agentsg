@@ -164,7 +164,9 @@
                 "enum": [
                   "quoted",
                   "quoted-unverified-markup",
-                  "unreachable"
+                  "unreachable",
+                  "off-topic",
+                  "related"
                 ]
               },
               "quote": {

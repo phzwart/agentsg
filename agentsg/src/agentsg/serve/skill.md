@@ -122,7 +122,7 @@ For “where is this implemented?”, quote `code_evidence`: `module`, `symbol`,
 
 `/v1/concept/uses` lists only `USES` neighbours, nearest first (`depth` 1, then 2, then 3), each with its `definition`. `/v1/concept/module` lists every concept anchored in that file. A bare filename (`semi_invariants.py`) matches.
 
-Fetch `/v1/concept/receipt` when the user asks for the receipt, the source, or why a sentence is in the answer. Pass the id already on the card (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). Quote `node.how` and `node.summary` or `node.rationale`. `how=quote` is a verbatim substring. `how=derived` is a paraphrase or a transcription without a page hash. `how=inferred` is a relation the builder asserted.
+Fetch `/v1/concept/receipt` when the user asks for the receipt, the source, or why a sentence is in the answer. Pass the id already on the card (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). Quote `node.how` and `node.summary` or `node.rationale`. `how=quote` is a verbatim substring of a docstring (wrapped lines joined with spaces). `how=derived` is a paraphrase or a transcription without a page hash. `how=inferred` is a relation the builder asserted. A reference that is `off-topic` or `unreachable` has no `how`; its receipt has `result` `inconclusive` and a `summary`.
 
 When the user asks what you can explain about the code, offer the questions in **Concept questions** and wait. Do not answer that list as if you had already called the graph.
 
