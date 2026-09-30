@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "eccdab53583235ecd37bb719bb11c6417004c049",
+  "commit": "7a2de69a2baa70667aa3b74249bcbb60f56a4339",
   "dirty": false
  },
  "concepts": [
@@ -2205,10 +2205,10 @@
     },
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
+     "symbol": "floating_origin_basis",
+     "kind": "FunctionDef",
+     "line": 258,
+     "quote": "Integer basis of the continuous (floating) origin freedom.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -3063,15 +3063,6 @@
      "quote": "Phase shift h·w in turns (multiply by 360 for degrees), reduced to [0, 1).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
      "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
-    },
-    {
-     "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
    ],
    "references": [
@@ -3639,15 +3630,6 @@
    "code_evidence": [
     {
      "module": "agentsg/reflection_lattice.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Reflection conditions as sublattices in projection.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
-     "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
-    },
-    {
-     "module": "agentsg/reflection_lattice.py",
      "symbol": "stratum_lattice",
      "kind": "FunctionDef",
      "line": 418,
@@ -3657,10 +3639,10 @@
     },
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
+     "symbol": "origin_lattice",
+     "kind": "FunctionDef",
+     "line": 172,
+     "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -4053,15 +4035,6 @@
    "code_evidence": [
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
-    },
-    {
-     "module": "agentsg/semi_invariants.py",
      "symbol": "OriginLattice",
      "kind": "ClassDef",
      "line": 71,
@@ -4221,10 +4194,19 @@
    "code_evidence": [
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
+     "symbol": "origin_lattice",
+     "kind": "FunctionDef",
+     "line": 172,
+     "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
+     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+    },
+    {
+     "module": "agentsg/semi_invariants.py",
+     "symbol": "OriginLattice",
+     "kind": "ClassDef",
+     "line": 71,
+     "quote": "Allowed-origin group ``T'`` of a space group, from one Smith normal form.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -4274,10 +4256,10 @@
    "code_evidence": [
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
+     "symbol": "origin_lattice",
+     "kind": "FunctionDef",
+     "line": 172,
+     "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -4422,10 +4404,10 @@
    "code_evidence": [
     {
      "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
+     "symbol": "semi_invariants",
+     "kind": "FunctionDef",
+     "line": 331,
+     "quote": "Structure semi-invariant congruences, derived from the origin lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
      "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
@@ -5135,11 +5117,11 @@
      "url": "https://dictionary.iucr.org/Klassengleiche_and_translationengleiche_subgroups",
      "page_title": "Klassengleiche and translationengleiche subgroups",
      "status": "quoted",
-     "quote": "In the second case, the lattice translations are maintained during the transition.",
-     "prefix": "klassengleiche subgroups or",
-     "suffix": "Usually only maximal subgroups of the",
+     "quote": "Subgroups of space groups occur in two categories namely klassengleiche subgroups or translationengleiche subgroups.",
+     "prefix": "Definition",
+     "suffix": "(The terms originate from the german language.)",
      "truncated": false,
-     "note": "original URL is a stub redirect ('please refer to klassengleiche and translationengleiche subgroups'); quote taken from the combined entry; sentence defines translationengleiche only in context of the preceding sentence",
+     "note": "joint entry 'Klassengleiche and translationengleiche subgroups'; quote is the Definition section's opening sentence, which names both terms; the later 'In the second case' sentence is anaphoric and is not used",
      "fetched": "2026-09-30"
     }
    ]
@@ -5223,11 +5205,11 @@
      "url": "https://dictionary.iucr.org/Klassengleiche_subgroups",
      "page_title": "Klassengleiche subgroups",
      "status": "quoted",
-     "quote": "Subgroups of space groups are often used to describe the structures of a family of compounds which are closely related.",
-     "prefix": "",
-     "suffix": "They can also describe a sequence of different phases",
+     "quote": "Subgroups of space groups occur in two categories namely klassengleiche subgroups or translationengleiche subgroups.",
+     "prefix": "pressure changes.",
+     "suffix": "(The terms originate from the german language.)",
      "truncated": false,
-     "note": "first sentence of the page is context, not a formal definition; the page is the shared 'Klassengleiche and translationengleiche subgroups' entry",
+     "note": "page body matches the joint entry; quote is the sentence that names both klassengleiche and translationengleiche subgroups; the later 'In the second case' sentence is anaphoric and is not used",
      "fetched": "2026-09-30"
     }
    ]
@@ -8173,15 +8155,6 @@
      "quote": "The sublattice ``{c in Z^d : c .",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
-    },
-    {
-     "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
    ],
    "references": [
@@ -10527,15 +10500,6 @@
      "quote": "The sublattice ``{c in Z^d : c .",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
-    },
-    {
-     "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
     }
    ],
    "references": [
@@ -10568,15 +10532,6 @@
     }
    ],
    "code_evidence": [
-    {
-     "module": "agentsg/semi_invariants.py",
-     "symbol": "",
-     "kind": "module",
-     "line": 1,
-     "quote": "Allowed origins and structure semi-invariants, as one lattice computation.",
-     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
-    },
     {
      "module": "agentsg/semi_invariants.py",
      "symbol": "OriginLattice",
