@@ -108,13 +108,15 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 Search with `q` first when you are not sure of the id. The top hit of “Smith normal form” is `smith_normal_form`; “allowed origin” is `allowed_origins`. Then call `id` for the card.
 
-On the card, lead with `definition` and say it is a builder paraphrase (`definition_receipt`). Then quote each `references` entry that has a `quote`: the source (`iucr` or `wikipedia`), the sentence, the `url`, and `status`.
+On the card, lead with `definition` and say it is a builder paraphrase (`definition_receipt`). The external definition is the Wikipedia reference when its `status` is `quoted` or `quoted-unverified-markup`: quote that sentence, give `url`, and name `status`. Quote an `iucr` sentence only when Wikipedia is `unreachable` or `off-topic`.
 
 - `quoted` — transcribed sentence. Give the URL.
 - `quoted-unverified-markup` — same, and say inline math may have been stripped.
-- `unreachable` — no sentence was retrieved. Give the URL anyway. `hall_symbol` has no reachable external definition; say so.
+- `related` — an IUCr page about a neighbouring entry. Quote it as adjacent evidence, and say it is not the definition of this concept.
+- `off-topic` — the Wikipedia page title does not match the label or aliases, so `quote` is empty. Name the page and do not treat it as the definition.
+- `unreachable` — no sentence was retrieved. Give the URL anyway.
 
-For “where is this implemented?”, quote `code_evidence`: `module`, `symbol`, `line`, `quote`, and give `uri` as the link. `sha256` belongs to `snapshot`. A mismatch with the file on disk is a stale anchor. Say that if you compare them.
+For “where is this implemented?”, quote `code_evidence`: `module`, `symbol`, `line`, `quote`, and give `uri` as the link. `sha256` is the file at `snapshot.commit`. `snapshot.dirty` is false when that commit's tree was clean. A mismatch with the file on disk is a stale anchor. Say that if you compare them.
 
 `relations` are typed: `USES`, `IS_A`, `PART_OF`, `SPECIALIZES`, `DUAL_OF`, `EQUIVALENT_TO`, `RELATED_TO`, `DEFINED_BY`, `CONTRASTS_WITH`. Quote `type`, `target`, and `target_label`. A contrast or a dual that is absent from `relations` is absent. Do not add one.
 
@@ -264,7 +266,7 @@ Lead with hits whose `cob` is not null. Quote `cob_xyz` and `cob_residual`. If `
 Offer this list when the user asks what you can explain about the code, or what the graph knows. Run a call only after they pick one, or when their own question matches one. Then surface the fields named below. Quote the JSON. Keep the link.
 
 - Where is the Smith normal form implemented?
-- What does “allowed origin” mean here, and what does the IUCr dictionary say?
+- What does “allowed origin” mean here, and what does Wikipedia say?
 - What do the reflection conditions rest on?
 - Which concepts does `semi_invariants.py` implement?
 - How does a t-subgroup contrast with a k-subgroup in this graph?
@@ -283,7 +285,7 @@ The top hit is `smith_normal_form`. Then
 GET /v1/concept?id=smith_normal_form
 ```
 
-Tell the user the module, the symbol, and the line. Quote `code_evidence[].quote`. Give `uri` as the link. Mention `snapshot`: the hash is that build.
+Tell the user the module, the symbol, and the line. Quote `code_evidence[].quote`. Give `uri` as the link. Mention `snapshot.commit`. If `snapshot.dirty` is true, say the anchors were taken from an uncommitted tree.
 
 User: “What does allowed origin mean here?”
 
@@ -297,7 +299,7 @@ Then
 GET /v1/concept?id=allowed_origins
 ```
 
-Lead with `definition` (builder paraphrase). Then the IUCr sentence, its `url`, and `status`. If Wikipedia is `quoted` or `quoted-unverified-markup`, quote that sentence too and name the status.
+Lead with `definition` (builder paraphrase). Quote the Wikipedia sentence when its `status` is `quoted` or `quoted-unverified-markup`, with `url`. For this concept Wikipedia is `unreachable` (no Euclidean-normalizer page). The IUCr row is the Normalizer entry with `status` `related`: quote it as adjacent evidence and say it does not define allowed origins.
 
 User: “What do reflection conditions rest on?”
 

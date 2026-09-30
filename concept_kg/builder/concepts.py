@@ -240,7 +240,7 @@ c("miller_indices", "Miller indices", "crystallography",
   iucr="Miller indices", wiki="Miller index")
 c("reciprocal_lattice", "Reciprocal lattice / reciprocal space", "crystallography",
   "The dual lattice of the direct lattice; reflections are its nodes and the reciprocal metric tensor is G⁻¹.",
-  [("agentsg/cell/metric.py", "UnitCell"), ("agentsg/reflection_lattice.py", "")],
+  [("agentsg/cell/metric.py", "reciprocal_metric_tensor"), ("agentsg/cell/metric.py", "reciprocal")],
   [("DUAL_OF", "lattice"), ("USES", "dual_lattice")],
   iucr="Reciprocal lattice", wiki="Reciprocal lattice")
 c("structure_factor_phase", "Structure-factor phase shift under symmetry", "crystallography",

@@ -78,7 +78,15 @@ class ConceptGraph:
         self.payload = payload
         self.concepts: list[dict[str, Any]] = concepts
         self.by_id: dict[str, dict[str, Any]] = {c["id"]: c for c in concepts}
-        self.snapshot = payload.get("source_repository") or ""
+        raw_snapshot = payload.get("snapshot")
+        if isinstance(raw_snapshot, dict):
+            self.snapshot = raw_snapshot
+        else:
+            self.snapshot = {
+                "repository": raw_snapshot or payload.get("source_repository") or "",
+                "commit": None,
+                "dirty": None,
+            }
         self.generated = payload.get("generated") or ""
         self.nodes: dict[str, dict[str, Any]] = {}
         if ledger:

@@ -1,23 +1,50 @@
 """Build the agentsg concept knowledge graph.
 
-Outputs (in ./out):
+Outputs (in the concept_kg directory, which the server loads):
   agentsg_concepts.json       payload: concepts, relations, code evidence, references
   concept-schema.json         JSON Schema of the payload
   agentsg_kg.grits.jsonld     pygrits ledger (receipts for every claim)
   neo4j/*.csv, load.cypher    Neo4j import package + competency queries
+
+Refuses to write when ``git status --porcelain`` is non-empty unless
+``--allow-dirty`` is passed. The payload records the commit hash and dirty flag.
 """
 from __future__ import annotations
-import csv, hashlib, json, sys, datetime
+import csv, hashlib, json, subprocess, sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
+REPO = HERE.parent.parent
+OUT = HERE.parent
 sys.path.insert(0, str(HERE))
 from concepts import CONCEPTS  # noqa: E402
+from quotes import is_anaphoric, needles_for, page_matches, pick_sentence  # noqa: E402
+
+
+def git_snapshot(allow_dirty: bool) -> dict:
+    """Commit the graph was built from. Exit when the tree is dirty."""
+    porcelain = subprocess.check_output(
+        ["git", "status", "--porcelain"], cwd=REPO, text=True,
+    )
+    dirty = bool(porcelain.strip())
+    if dirty and not allow_dirty:
+        sys.exit(
+            "refusing to build from a dirty tree "
+            "(git status --porcelain is non-empty). Commit, or pass --allow-dirty."
+        )
+    commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=REPO, text=True,
+    ).strip()
+    return {
+        "repository": "https://github.com/phzwart/agentsg",
+        "commit": commit,
+        "dirty": dirty,
+    }
 
 AGENT = "agentsg-kg-builder/0.1 (Claude Fable 5.1, Cowork session, 2026-09-30)"
 PAYLOAD_SCHEMA_URL = "https://github.com/phzwart/agentsg/kg/concept-schema.json"
 FETCH_DATE = "2026-09-30"
-OUT = HERE / "out"
+SNAPSHOT = git_snapshot("--allow-dirty" in sys.argv)
 (OUT / "neo4j").mkdir(parents=True, exist_ok=True)
 
 
@@ -70,7 +97,7 @@ schema = {
                     "type": "object", "required": ["source", "title", "url", "status"],
                     "properties": {"source": {"enum": ["iucr", "wikipedia"]}, "title": {"type": "string"},
                                    "url": {"type": "string"}, "page_title": {"type": "string"},
-                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreachable"]},
+                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreachable", "off-topic", "related"]},
                                    "quote": {"type": "string"}, "prefix": {"type": "string"},
                                    "suffix": {"type": "string"}, "truncated": {"type": "boolean"},
                                    "note": {"type": "string"}, "fetched": {"type": "string"}}}},
@@ -86,27 +113,43 @@ for a in anchors["anchors"]:
     anch_by_concept.setdefault(a["concept"], []).append(a)
 
 payload = {"version": "0.1.0", "generated": FETCH_DATE,
-           "source_repository": "https://github.com/phzwart/agentsg (HEAD 38eea8c + Smith-normal-form patch to semi_invariants.py / reflection_lattice.py)",
+           "source_repository": SNAPSHOT["repository"],
+           "snapshot": SNAPSHOT,
            "concepts": []}
 ids = {c["id"] for c in CONCEPTS}
 for c in CONCEPTS:
     refs = []
-    for src, key in (("iucr", c["iucr"]), ("wikipedia", c["wiki"])):
+    # Wikipedia is the external definition when the page is about this concept.
+    # IUCr is the fallback, and a mismatched dictionary page is marked related.
+    for src, key in (("wikipedia", c["wiki"]), ("iucr", c["iucr"])):
         if not key:
             continue
-        r = ref_by_key.get(("iucr" if src == "iucr" else "wiki", key))
-        base = "https://dictionary.iucr.org/" if src == "iucr" else "https://en.wikipedia.org/wiki/"
+        r = ref_by_key.get(("wiki" if src == "wikipedia" else "iucr", key))
+        base = "https://en.wikipedia.org/wiki/" if src == "wikipedia" else "https://dictionary.iucr.org/"
         if r is None or not r["exists"]:
             refs.append({"source": src, "title": key, "url": base + key.replace(" ", "_"),
                          "status": "unreachable", "fetched": FETCH_DATE,
-                         "note": (r or {}).get("note", "not fetched")})
+                         "note": (r or {}).get("note", "not fetched"), "quote": ""})
             continue
         note = r.get("note") or ""
-        status = "quoted-unverified-markup" if "unverified" in note else "quoted"
+        page_title = r.get("page_title") or key
+        candidates = list(r.get("candidates") or [])
+        if r.get("exact"):
+            candidates.append(r["exact"])
+        quote = pick_sentence(candidates, needles_for(c["label"], c["aliases"]))
+        matched = page_matches(page_title, c["label"], c["aliases"])
+        if src == "wikipedia" and not matched:
+            status, quote = "off-topic", ""
+            note = (note + " " if note else "") + "page title does not match the concept label or aliases; lede not quoted"
+        elif src == "iucr" and not matched:
+            status = "related"
+            note = (note + " " if note else "") + "dictionary page is adjacent to this concept, not its definition"
+        else:
+            status = "quoted-unverified-markup" if "unverified" in note else "quoted"
         refs.append({"source": src, "title": key, "url": r.get("final_url") or r["url"],
-                     "page_title": r.get("page_title") or key, "status": status,
-                     "quote": r["exact"], "prefix": r.get("prefix") or "", "suffix": r.get("suffix") or "",
-                     "truncated": bool(r.get("truncated")), "note": note, "fetched": FETCH_DATE})
+                     "page_title": page_title, "status": status,
+                     "quote": quote, "prefix": r.get("prefix") or "", "suffix": r.get("suffix") or "",
+                     "truncated": bool(r.get("truncated")), "note": note.strip(), "fetched": FETCH_DATE})
     payload["concepts"].append({
         "id": c["id"], "label": c["label"], "kind": c["kind"], "aliases": c["aliases"],
         "definition": c["definition"], "literature": c["refs"],
@@ -143,16 +186,20 @@ for pc in payload["concepts"]:
         used.append(eid); n_quote += 1
     for r in pc["references"]:
         eid = f"evi:ref:{cid}:{r['source']}"
-        if r["status"] == "unreachable":
+        if r["status"] in ("unreachable", "off-topic") or not r.get("quote"):
+            why = ("page title does not match this concept, so the lede was not quoted"
+                   if r["status"] == "off-topic"
+                   else "the page could not be retrieved, so existence and wording are undetermined")
             graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "agent": AGENT,
                           "result": "inconclusive",
-                          "summary": f"Looked for a {r['source']} page titled '{r['title']}' at {r['url']} on {FETCH_DATE}; the fetch tool could not retrieve it (domain served cache-only), so existence and wording are undetermined. {r.get('note','')}".strip()})
+                          "summary": f"Looked for a {r['source']} page titled '{r['title']}' at {r['url']} on {FETCH_DATE}; {why}. {r.get('note','')}".strip()})
             n_absent += 1
         else:
             sel = {"@type": "oa:TextQuoteSelector", "exact": r["quote"]}
             if r.get("prefix"): sel["prefix"] = r["prefix"]
             if r.get("suffix"): sel["suffix"] = r["suffix"]
-            rationale = (f"Sentence transcribed on {FETCH_DATE} from the page as rendered by the fetch tool (HTML converted to text); the raw page bytes were not retained, so no content hash is available and the entity is 'derived' rather than 'quote'. Verify against the live URL with the selector."
+            adjacent = " Adjacent dictionary page, not a definition of this concept." if r["status"] == "related" else ""
+            rationale = (f"Sentence transcribed on {FETCH_DATE} from the page as rendered by the fetch tool (HTML converted to text); the raw page bytes were not retained, so no content hash is available and the entity is 'derived' rather than 'quote'. Verify against the live URL with the selector.{adjacent}"
                          + (" Inline markup (math, sub/superscripts, bold) may have been stripped in transcription: " + r["note"] if r["status"] == "quoted-unverified-markup" else "")
                          + (" The page's first sentence was truncated at a clause boundary." if r.get("truncated") else ""))
             graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "how": "derived", "agent": AGENT,
@@ -287,3 +334,12 @@ MATCH (a)-[r:DUAL_OF|CONTRASTS_WITH]->(b) RETURN a.label, type(r), b.label;
 MATCH (c:Concept)-[:HAS_CODE_EVIDENCE]->(e {module: 'agentsg/semi_invariants.py'}) RETURN DISTINCT c.id, c.label;
 ''')
 print("neo4j:", len(payload["concepts"]), "concepts,", len(code_rows), "code evidence,", len(ref_rows), "references,", sum(len(c["relations"]) for c in payload["concepts"]), "relations")
+print("snapshot:", SNAPSHOT["commit"], "dirty=" + str(SNAPSHOT["dirty"]).lower())
+lingering = [
+    f"{c['id']} [{ref['source']}] {ref.get('quote','')}"
+    for c in payload["concepts"] for ref in c["references"]
+    if ref.get("quote") and is_anaphoric(ref["quote"])
+]
+print("anaphoric quotes remaining:", len(lingering))
+for row in lingering:
+    print("  -", row)

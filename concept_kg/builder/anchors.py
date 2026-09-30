@@ -6,6 +6,7 @@ from pathlib import Path
 SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("../agentsg/agentsg/src")
 sys.path.insert(0, str(Path(__file__).parent))
 from concepts import CONCEPTS  # noqa: E402
+from quotes import first_sentence  # noqa: E402
 
 REPO_URL = "https://github.com/phzwart/agentsg/blob/main/agentsg/src/"
 
@@ -14,10 +15,8 @@ def first_doc_line(node) -> str | None:
     d = ast.get_docstring(node, clean=False)
     if not d:
         return None
-    for line in d.splitlines():
-        if line.strip():
-            return line.strip()
-    return None
+    sentence = first_sentence(d)
+    return sentence or None
 
 
 def find_symbol(tree, symbol):
@@ -58,11 +57,15 @@ def main():
             if quote is None:
                 problems.append(f"{c['id']}: {module}:{symbol or '<module>'} has no docstring")
                 continue
-            if quote not in f["text"]:
-                problems.append(f"{c['id']}: quote not verbatim in {module}")
+            doc = ast.get_docstring(node, clean=False) or ""
+            collapsed = " ".join(doc.split())
+            body = quote[:-3].rstrip() if quote.endswith("...") else quote
+            if not collapsed.startswith(body):
+                problems.append(f"{c['id']}: quote is not the docstring prefix in {module}")
                 continue
-            start = f["text"].index(quote)
-            lineno = f["text"][:start].count("\n") + 1
+            lineno = node.lineno
+            if node.body and isinstance(node.body[0], ast.Expr):
+                lineno = getattr(node.body[0], "lineno", lineno)
             out.append({"concept": c["id"], "module": module, "symbol": symbol,
                         "kind": "module" if symbol == "" else type(node).__name__,
                         "line": lineno, "exact": quote,

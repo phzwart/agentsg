@@ -16,9 +16,9 @@ from .app import ServerState
 from .concepts import (
     concept_count,
     concept_info,
-    concept_module,
-    concept_receipt,
-    concept_uses,
+    concept_module as concept_module_query,
+    concept_receipt as concept_receipt_query,
+    concept_uses as concept_uses_query,
 )
 from .http import HttpError
 from .manifest import API_VERSION
@@ -454,7 +454,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
 
         Sample: what do the reflection conditions rest on? id=reflection_conditions.
         """
-        return _result(concept_uses, {"id": id, "depth": depth})
+        return _result(concept_uses_query, {"id": id, "depth": depth})
 
     @mcp.tool(annotations=_READONLY)
     def concept_module(module: str) -> dict[str, Any]:
@@ -463,7 +463,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         module: agentsg/semi_invariants.py or a bare filename.
         Sample: which concepts does semi_invariants.py implement?
         """
-        return _result(concept_module, {"module": module})
+        return _result(concept_module_query, {"module": module})
 
     @mcp.tool(annotations=_READONLY)
     def concept_receipt(receipt: str) -> dict[str, Any]:
@@ -473,7 +473,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         or relations[].receipt. Example: ent:concept:allowed_origins.
         Sample: show the receipt for the allowed-origins definition.
         """
-        return _result(concept_receipt, {"receipt": receipt})
+        return _result(concept_receipt_query, {"receipt": receipt})
 
     @mcp.tool(annotations=_READONLY)
     def pdb_lookup(pdb_id: str) -> dict[str, Any]:

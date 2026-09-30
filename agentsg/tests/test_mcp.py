@@ -64,6 +64,41 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     assert "ita_plate_image" not in book
 
 
+def test_concept_tools_return_results():
+    pytest.importorskip("fastmcp")
+    from fastmcp import Client
+
+    mcp = build_mcp(ServerState(None, None), public_url="https://sg-mcp.mxagents.org")
+
+    async def _run():
+        async with Client(mcp) as client:
+            search = await client.call_tool("concept", {"q": "Smith normal form"})
+            card = await client.call_tool("concept", {"id": "allowed_origins"})
+            uses = await client.call_tool("concept_uses", {"id": "reflection_conditions", "depth": 3})
+            bare = await client.call_tool("concept_module", {"module": "semi_invariants.py"})
+            full = await client.call_tool("concept_module", {"module": "agentsg/semi_invariants.py"})
+            code_id = next(
+                row["receipt"] for row in card.data["code_evidence"]
+                if str(row["receipt"]).startswith("evi:code:")
+            )
+            definition = await client.call_tool(
+                "concept_receipt", {"receipt": "ent:concept:allowed_origins"},
+            )
+            code = await client.call_tool("concept_receipt", {"receipt": code_id})
+            return search.data, card.data, uses.data, bare.data, full.data, definition.data, code.data
+
+    search, card, uses, bare, full, definition, code = asyncio.run(_run())
+    assert search["hits"][0]["id"] == "smith_normal_form"
+    assert card["id"] == "allowed_origins"
+    assert card["definition_receipt"] == "ent:concept:allowed_origins"
+    assert uses["uses"]
+    assert all(row["depth"] in (1, 2, 3) for row in uses["uses"])
+    assert {row["id"] for row in bare["concepts"]} == {row["id"] for row in full["concepts"]}
+    assert definition["node"]["how"] == "derived"
+    assert code["node"]["how"] == "quote"
+    assert code["node"]["target"]["selector"]["exact"]
+
+
 def test_mcp_returns_ita_png_and_cell_plot(tmp_path):
     pytest.importorskip("fastmcp")
     pytest.importorskip("matplotlib")

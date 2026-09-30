@@ -16,6 +16,7 @@ from agentsg.cell.rootform import (
     root_products, _PAIRS,
 )
 from agentsg.cell.metric import UnitCell
+from agentsg.cell.primitive import primitive_cell
 from agentsg.cell.reduction import niggli_reduce
 from agentsg.cell.g6 import _transform_metric
 
@@ -130,7 +131,9 @@ def test_rearrangement_lower_bound_on_root_products():
     # All of S6: equality
     sd, s6 = sorted_key_lower_bound(x, y)
     assert abs(sd - s6) < 1e-12
-    assert abs(sd - sorted_root_distance(cA, cB)) < 1e-12
+    # The published key is rounded to 10 decimals, so it can differ from the
+    # raw product tuple by about 1e-10. That is the noise floor, not a new gap.
+    assert abs(sd - sorted_root_distance(cA, cB)) < 1e-9
 
 
 def test_v5_sorted_key_injective_on_distinct_edge_lengths():
@@ -268,3 +271,9 @@ def test_spglib_oracle_same_and_different_lattices():
             if same_spglib:
                 n_same += 1
     assert n_same >= 20
+
+
+def test_fm3m_primitive_root_key_is_exact():
+    """Centred cubic noise snaps to the exact orthogonal key."""
+    prim = primitive_cell((10, 10, 10, 90, 90, 90), "Fm-3m")
+    assert root_invariant(prim) == (0.0, 0.0, 5.0, 5.0, 5.0, 5.0)

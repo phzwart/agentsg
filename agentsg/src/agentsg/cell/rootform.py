@@ -323,6 +323,27 @@ def sorted_concat_key(cell, **kw):
     return sorted_root_key(cell, **kw) + sorted_vonorm_key(cell)
 
 
+def _present_key(values):
+    """Snap noise-floor components to 0 and round the rest to 10 decimals.
+
+    A component whose absolute value is at most ``max(1e-6, 1e-6 * max|r|)``
+    is written as 0.0. That is the float dust on an orthogonal root, not a
+    change to a root that is actually angstroms long. Rounding stops a value
+    such as ``5.000000000000002`` from leaving the key.
+    """
+    vals = [float(v) for v in values]
+    scale = max((abs(v) for v in vals), default=0.0)
+    tol = max(1e-6, 1e-6 * scale)
+    out = []
+    for value in vals:
+        if abs(value) <= tol:
+            out.append(0.0)
+        else:
+            rounded = round(value, 10)
+            out.append(0.0 if rounded == 0 else rounded)
+    return tuple(out)
+
+
 def _canonical_tuple(rp):
     """Sort the six root products into the Euclidean search key.
 
@@ -337,7 +358,7 @@ def _canonical_tuple(rp):
     sorted multiset. Injectivity of the sorted key: V3 and V5 yes; V1, V2, V4
     no (finite pairing collisions). Use the exact operator test for identity.
     """
-    return tuple(sorted(rp[ij] for ij in _PAIRS))
+    return tuple(sorted(_present_key(rp[ij] for ij in _PAIRS)))
 
 
 def sorted_root_key(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None):
@@ -483,7 +504,7 @@ def similarity_invariant(cell):
     """
     s = _cell_volume(cell) ** (1.0 / 3.0)
     ri = sorted_root_key(cell)
-    return tuple(r / s for r in ri)
+    return _present_key(r / s for r in ri)
 
 
 def similarity_distance(cell_A, cell_B):
