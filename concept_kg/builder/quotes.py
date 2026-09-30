@@ -123,7 +123,10 @@ def first_sentence(doc: str, limit: int = 200) -> str:
     sentence = flat[:end].strip() if end else flat
     if len(sentence) <= limit:
         return sentence
-    return sentence[: limit - 3].rstrip() + "..."
+    cut = sentence[: limit - 3].rstrip()
+    if " " in cut:
+        cut = cut.rsplit(" ", 1)[0].rstrip()
+    return cut + "..."
 
 
 def _removed_run(raw: str, stripped: str) -> int:

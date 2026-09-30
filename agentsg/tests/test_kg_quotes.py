@@ -29,6 +29,7 @@ def test_first_sentence_joins_wrapped_lines_and_caps():
     capped = first_sentence(long)
     assert len(capped) <= 200
     assert capped.endswith("...")
+    assert capped[:-3].split()[-1] == "word"
 
 
 def test_first_sentence_keeps_a_spaced_dot_inside_backticks():

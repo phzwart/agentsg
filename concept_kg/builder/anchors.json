@@ -186,7 +186,7 @@
    "symbol": "",
    "kind": "module",
    "line": 1,
-   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group order...",
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group...",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
@@ -1296,7 +1296,7 @@
    "symbol": "is_absent_by_lattice",
    "kind": "FunctionDef",
    "line": 689,
-   "exact": "Absence of an integer ``hkl`` decided purely from the strata lattices: find the stratum whose stabiliser is exactly the stabiliser of ``hkl`` (the smallest stratum containing it), express ``hkl`` i...",
+   "exact": "Absence of an integer ``hkl`` decided purely from the strata lattices: find the stratum whose stabiliser is exactly the stabiliser of ``hkl`` (the smallest stratum containing it), express ``hkl``...",
    "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py"
   },
@@ -1656,7 +1656,7 @@
    "symbol": "_nicest_generator",
    "kind": "FunctionDef",
    "line": 227,
-   "exact": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries, non-ne...",
+   "exact": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries,...",
    "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py"
   },
@@ -2156,7 +2156,7 @@
    "symbol": "",
    "kind": "module",
    "line": 1,
-   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group order...",
+   "exact": "Build a full space-group operation list from a small generator set, by closure under composition -- this is the piece that replaces \"extensive tables\" with \"tabulated generators\". Space-group...",
    "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d",
    "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py"
   },
