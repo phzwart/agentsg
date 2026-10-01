@@ -62,9 +62,13 @@ def test_xfel_stream_stats(xfel_stream_path):
         ratio = sc_par / max(sc_obl, 1e-9)
         print(f"z:xfel scatter parallel={sc_par:.3f} oblique={sc_obl:.3f} "
               f"ratio={ratio:.2f} n_par={len(parallel)} n_obl={len(oblique)}")
-        # manuscript ~1.53 vs ~0.5 → ratio ~3; prior CSV showed different binning —
-        # pin ratio ~3 ± large margin, or at least parallel > oblique
+        # Rerun on the stream: MAD 0.218 (n=141, <10°) vs 0.083 (n=2866, >80°),
+        # ratio 2.62. The earlier 1.53 vs 0.5 figures are not this binning.
         assert sc_par > sc_obl
-        assert_within_pct(ratio, 3.0, pct=50, label="orientation scatter ratio")
+        assert len(parallel) == 141
+        assert len(oblique) == 2866
+        assert_within_pct(sc_par, 0.218, pct=10, label="c MAD parallel")
+        assert_within_pct(sc_obl, 0.083, pct=10, label="c MAD oblique")
+        assert_within_pct(ratio, 2.62, pct=10, label="orientation scatter ratio")
     else:
         pytest.skip("insufficient orientation-binned crystals")

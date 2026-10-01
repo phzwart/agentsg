@@ -1,0 +1,350 @@
+%------------------------------------------------------------------------------
+% Supporting Information for
+%   Zwart, P. H.  Selling reduction and sorted Kurlin roots: a conservative
+%   Euclidean key for lattice search and exact reindexing.  J. Appl. Cryst.
+% Compile with pdflatex.  Entries S1-S28 are referenced from the main text
+% by superscript marks [Sn]; the order here must match the mapping at the top
+% of zwart_selling_closure.tex.
+%------------------------------------------------------------------------------
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\Ang}{\text{\AA}}
+\newcommand{\Gmet}{\mathbf{G}}
+\newcommand{\Pop}{\mathbf{P}}
+\newcommand{\Mop}{\mathbf{M}}
+\newcounter{scheck}
+\renewcommand{\thescheck}{S\arabic{scheck}}
+\newcommand{\sitem}[2]{\medskip\noindent\refstepcounter{scheck}\label{#1}\textbf{\thescheck\ #2.}\ }
+
+\title{Supporting Information\\[4pt]
+\large Selling reduction and sorted Kurlin roots: a conservative Euclidean key for lattice search and exact reindexing}
+\author{Petrus H. Zwart\\ \small Molecular Biophysics and Integrated Bioimaging Division,\\ \small Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA}
+\date{}
+
+\begin{document}\sloppy
+\maketitle
+
+\section*{Computational checks for every checkable statement}
+
+Every statement in the main paper that can be verified by computation or simulation carries a mark $^{[\mathrm{S}n]}$ pointing to an entry below. Each entry states what is claimed, how to check it, and what result counts as confirmation. Function names refer to the accompanying implementation (\texttt{agentsg.cell}); the pseudo-code is enough to re-implement each check independently. Checks are of three kinds: \emph{exhaustive} (finite enumerations that settle the claim), \emph{symbolic} (polynomial identities), and \emph{empirical} (measurements on the data of the paper or on random samples, which confirm reported numbers but do not prove generic statements). Section, table, lemma and appendix numbers refer to the main paper.
+
+\sitem{z:reduction-step}{The Selling move and termination (symbolic + random)}
+Claim (Appendix A): the move $u_i=-v_i,\,u_j=v_j,\,u_k=v_i+v_k,\,u_l=v_i+v_l$ preserves the zero sum, permutes six vonorms, decreases $u_{ij}^2$ by $4\varepsilon$ with $\varepsilon=v_i\cdot v_j$, updates conorms by $q_{ij}=\varepsilon$, $q_{jk}=p_{jk}-\varepsilon$, $q_{jl}=p_{jl}-\varepsilon$, $q_{ik}=p_{il}-\varepsilon$, $q_{il}=p_{ik}-\varepsilon$, $q_{kl}=p_{kl}+\varepsilon$, so $\sum p$ drops by $\varepsilon$; and reduction terminates.
+\begin{footnotesize}\begin{verbatim}
+symbolic: with sympy, declare v0..v3 as symbolic 3-vectors, impose v0=-(v1+v2+v3),
+          form u as above, expand each q_ij - stated_expression -> must be 0.
+random:   for 3000 random bases B: superbase V=[-(sum B), B0, B1, B2]
+             while min conorm < 0: apply move at most negative pair;
+                 assert the update formulas hold to 1e-9; assert sum(p) decreased
+             assert all conorms >= 0 and |det| unchanged
+          report max step count (observed 103).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:closure-count}{Closure sizes and class counts by Voronoi type (exhaustive)}
+Claim (Section 2.1, Table 1, Appendix A): 2/4/6/12/32 obtuse superbases in 1/2/3/3/4 classes for V1--V5; \texttt{selling\_superbase\_closure} reproduces the exhaustive set; the hexagonal lattice has one class.
+\begin{footnotesize}\begin{verbatim}
+for each type: pick conorms p (e.g. V1:(1,2,3,4,5,6); set the type's zeros),
+    G = Gram from p, B = cholesky(G)
+    brute = { {c0,c1,c2,c3} : ci in [-R..R]^3, R=2 and 3 (must agree),
+              det[c1,c2,c3]=+-1, c0=-(c1+c2+c3), all pairwise dots <= 0 }
+    classes = brute / (S4 relabelling of the 4x4 Gram)
+    assert |brute|, |classes| == table values
+    assert set(selling_superbase_closure(cell)) mod +-I == brute mod +-I
+hexagonal (41.8,41.8,233,90,90,120): assert closure_class_count == 1, |closure| == 12.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:type-rule}{Voronoi type from the zero pattern (exhaustive)}
+Claim (Appendix A): 0 zeros $\to$ V1; 1 $\to$ V2; 2 on opposite edges $\to$ V3; 2 sharing a vertex $\to$ V4; 3 $\to$ V5, and other three-zero patterns cannot occur.
+\begin{footnotesize}\begin{verbatim}
+for each type's test lattice: assert voronoi_type(cell) matches S2's class counts.
+impossibility: for the 3-zero patterns not of cuboid form (e.g. p01=p02=p03=0),
+    show algebraically v_i . v_i = 0 follows (v1 perp v0,v2,v3 with v0=-(v1+v2+v3)),
+    or attempt to build a Gram with that pattern and confirm it is singular.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:pdb-types}{Which lattice types are common (empirical, PDB)}
+Claim (Section 2.1): monoclinic P is V4, orthorhombic P is V5, and V2--V5 cells are a large fraction of the PDB.
+\begin{footnotesize}\begin{verbatim}
+construct monoclinic P (a,b,c,90,beta,90) and orthorhombic P cells: assert types 4 and 5.
+for all PDB cells: reduce, count zero conorms with a tolerance at the symmetry-
+    constrained angles (exact 90/120 by convention); tabulate type by crystal system;
+    report fraction with type != 1.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:one-key}{One sorted key per lattice (exhaustive per lattice)}
+Claim (Section 2.2, Appendix B): every obtuse superbase of a lattice has the same sorted key, for all five types.
+\begin{footnotesize}\begin{verbatim}
+for each test lattice of S2: keys = { sort(sqrt(conorms(C))) : C in brute closure }
+    assert len(keys) == 1
+also: cuboid given in odd basis (3,4,5,90,90,90) and even basis {v1,v3,v2-v1}:
+    assert |sorted_root_key(A) - sorted_root_key(B)| < 1e-6   (sqrt float noise ~ 6e-8)
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:trajectory}{Representative jumps, key does not (empirical, synthetic)}
+Claim (Sections 1, 2.2, 3.1; Appendix B): along the monoclinic series $a=120$, $b=189.1$, $\beta=91.2^\circ$, $c:150\to100$, the closure stays at 12 superbases. In the equal-perturbation test about $a=b$, reference $(40,40,60,90,91,90)$ against $\pm0.001$\,\Ang\ in $b$, the raw reduced distances are 0.080 and 118.5 and the sorted-key distances to the reference are both 0.0010. The earlier raw figure 83.7 is not the current result.
+\begin{footnotesize}\begin{verbatim}
+cells = [(120,189.1,c,90,91.2,90) for c in linspace(150,100,N)]
+for consecutive pairs: dS6 = |S6(cell_k) - S6(cell_k+1)|  (raw reduced scalars, fixed order)
+                       dkey = |key(cell_k) - key(cell_k+1)|
+locate the boundary (max jump in dS6); report dS6 and dkey just before and after it;
+assert max(dkey) <= C * step size for a constant C independent of N (refine N to test).
+Note: at c ~ a the Hoelder rate applies; report dkey/step there separately.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:lowerbound}{Lemma 1 (proof + random check)}
+Claim (Section 2.2, Appendix B): $\|\operatorname{sort}x-\operatorname{sort}y\|=\min_{S_6}\|x-\sigma y\|\le\min_{G}\|x-\sigma y\|$ for $G$ the image of $S_4$.
+\begin{footnotesize}\begin{verbatim}
+proof: rearrangement inequality (Appendix B).
+random: for 10^4 pairs x,y in R^6_{>=0}:
+    m6 = min over all 720 permutations of |x - sigma y|;  m4 = min over the 24 S4-induced ones
+    assert |sort x - sort y| == m6 (1e-12) and m6 <= m4
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:euclid}{The key metric is Euclidean; the $S_4$-orbit metric is not (random, Schoenberg)}
+Claim (Section 2.2, Appendix B): the key distance is the restriction of $\ell_2$ to a convex cone; the physically exact orbit metric cannot be isometrically embedded in any Euclidean space.
+\begin{footnotesize}\begin{verbatim}
+Schoenberg criterion: a finite metric (d_ij) embeds isometrically in some R^m iff
+    K = -1/2 J D2 J is positive semidefinite, D2_ij = d_ij^2, J = I - 11^T/n.
+G4 = the 24 permutations of the six slots induced by relabelling the tetrahedron
+     (apply each S4 element to the 2x3 coform and read off the slot permutation);
+     assert no element of G4 is a single transposition (no reflections).
+X = 150 random vectors in R^6_{>0}
+D2_key(i,j) = |sort x_i - sort x_j|^2         -> eigmin(K) ~ 0 (>= -1e-12), rank 6
+D2_orb(i,j) = min_{g in G4} |x_i - g x_j|^2    -> eigmin(K) clearly negative
+observed: -2e-14 and -3.7 (against eigmax 80) respectively.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:fibre}{Collision multiplicities 30/15/1/4/1 and the explicit colliding pair (exhaustive)}
+Claim (Section 2.2, Table 1, Appendix B).
+\begin{footnotesize}\begin{verbatim}
+for 300 random 6-tuples of distinct values (V1):
+    arrangements = all 720 placements into the 2x3 coform
+    classes = arrangements / S4 action   -> assert 30
+V2: 5 distinct nonzero values, S4-action restricted to the zero pattern -> 15; V4 -> 4;
+V3, V5 -> 1.
+explicit pair: coforms [[1,2,3],[4,5,6]] and [[1,2,3],[4,6,5]]:
+    assert both Grams positive definite; assert not S4-related; assert equal sorted keys.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:d7}{Sorted $D_7$ separates the generic fibre (empirical, random)}
+Claim (Appendix B).
+\begin{footnotesize}\begin{verbatim}
+for 300 random V1 coforms: for each of the 30 classes of S9 compute the 7 vonorms
+    (v_i^2 = sum of the three conorms at vertex i; v_ij^2 = sum of the other four),
+    key13 = sort(sqrt conorms) ++ sort(sqrt vonorms)
+    assert all 30 key13 distinct.
+Also reproduce Kurlin Ex. 6.5: coforms (5,3,4,1,1,4) and (6,3,3,2,1,3) share the
+    vonorm multiset but not the conorm multiset.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:noise}{Angular noise is linear in conorms and $\sqrt{\cdot}$-amplified on zero slots (empirical, simulation)}
+Claim (Section 2.3, Appendix C): $\sigma_{p_{ij}}\approx|v_i||v_j|\sigma_\theta$; a $0.01^\circ$ error moves the $P6_3$ key by $\approx1.4$--$1.6$\,\Ang\ versus $\approx0.03$\,\Ang\ for a generic cell.
+\begin{footnotesize}\begin{verbatim}
+cell = (41.8,41.8,233,90,90,120); r0 = sorted_root_key(cell)
+for sigma in (0.01,0.05,0.1) deg, 300 draws: perturb the three angles by N(0,sigma);
+    shift = |sorted_root_key(noisy) - r0|;  report median  (expect ~1.4-1.6, 3.1-3.3, 4.6 A)
+    also record the conorm perturbation and check its sd ~ |v_i||v_j| sigma (radians)
+repeat for triclinic (41.8,55.2,73.1,81,97,112): expect ~0.3 A at 0.1 deg.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:stabilise}{Noise reduction by the three stabilised keys (empirical, simulation)}
+Claim (Section 2.3, Appendix C, Table 4).
+\begin{footnotesize}\begin{verbatim}
+as S11, with key in { sqrt(p), sqrt(p+s)-sqrt(s), sqrt(max(p-2s,0)), p/sqrt(T) },
+    s = sigma_theta(rad) * T,  T = sum of conorms  (noise_floor(cell, sigma))
+report the 3x4 table of median shifts; expect the ordering and magnitudes of Table 4.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:floor-invariance}{$T$ is closure-invariant; per-pair floors are not (exhaustive per lattice)}
+Claim (Appendix C).
+\begin{footnotesize}\begin{verbatim}
+cuboid A=(3,4,5,90,90,90), even basis B={v1,v3,v2-v1}:
+    assert sum(conorms(A)) == sum(conorms(B)) (=50)
+    for each closure member C of S2's lattices: assert sum(conorms(C)) constant
+    per-pair floors |v_i||v_j|sigma: assert keys from A and B differ (~0.02 A for floored,
+        ~0.37 A for linear with L=max|v_i|); with s=sigma T: assert difference < 1e-12.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:coset}{Full-closure matching recovers the automorphism coset (exhaustive per lattice)}
+Claim (Sections 3.5, 3.7): oP vs itself $\to$ 8 operators (2 with class representatives); $P6_3$ cell vs itself $\to$ 24 (4 with representatives); oP odd vs even basis $\to$ 8 (0 with 24 relabellings only); every returned $\Pop$ is integer with $\det\pm1$ and satisfies the metric identity.
+\begin{footnotesize}\begin{verbatim}
+ops = reindexing_via_canonical(cell_A, cell_B, boundary_rel=0)
+assert len(ops) == expected; for P in ops: assert P integer, |det P|=1, P^T G_A P == G_B
+representatives-only variant: match over selling_closure_representatives -> 2 / 4
+independent check: enumerate all integer P with |entries|<=2, keep those with
+    P^T G_A P == G_B exactly; the count must equal len(ops).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:reindex-proc}{End-to-end reindexing to a reference recovers an arbitrary resetting (exhaustive + random)}
+Claim (Section 3.5): for a reference $R$ and $N$ = the same lattice in a random unimodular basis (with and without noise, with and without centering), the procedure of Section 2.4 returns a set of operators equal to $\Mop\cdot\mathrm{Aut}(R)$.
+\begin{footnotesize}\begin{verbatim}
+for R in {triclinic, monoclinic P, C-centred monoclinic, orthorhombic P, I-centred
+          orthorhombic, tetragonal, hexagonal, cubic F} (exact cells):
+    for 50 random unimodular M (entries in [-2,2], det +-1):
+        G_N <- M^T G_R M (+ optional Gaussian noise: angles sigma_theta, lengths sigma_len)
+        ops <- REINDEX_TO_REFERENCE(R, cell(G_N), sigma)
+        aut <- {P : P integer, |det|=1, P^T G_R P == G_R}   (brute force |entries|<=2)
+        assert set(ops) == { M0 * a : a in aut } up to the direction convention
+        assert every P in ops is integer with |det P| = 1
+    with space group given: assert |ops| / |L| equals the branch count and that the
+        cached representatives are one per coset and of minimal order
+    centred cases: additionally assert P_conv = C_R P C_N^{-1} has denominators
+        dividing the centering index (2 or 4) and maps conventional metrics.
+Le Page comparison: repeat the Table 3 check --- for the monoclinic family with
+    |a-c| = 0..10 A, assert the exchange operator is in ops for every |a-c|.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:coset-reps}{Which cosets $H/L$ contain a twofold (exhaustive over crystallographic point groups)}
+Claim (Appendix D): for index-2 pairs the non-trivial coset always contains an order-2 rotation; for higher index some cosets contain none.
+\begin{footnotesize}\begin{verbatim}
+build the proper rotation groups 1,2,222,4,422,3,32,6,622,23,432 as integer matrices
+for each lattice group H in {222,422,622,432} and each subgroup G < H:
+    cosets = H / G;  for each non-identity coset: has2 = any(order(x)==2 for x in coset)
+    record the number of cosets without a twofold
+observed: 0 for every index-2 pair (222/2, 422/4, 422/222, 622/6, 622/32, 432/23, 432/4*),
+          1 for 422/2 ({4,4^3}), 1 for 622/3, 2 for 432/222, 5 for 432/2, 5 for 622/1, 15 for 432/1.
+          (*432/4 has index 6 and still has a twofold in every coset.)
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:pseudo}{Pseudo-symmetry as cosets between closures (exhaustive per lattice + synthetic families)}
+Claim (Sections 2.5, 3.6; Appendix D): projecting $R$ onto a nearby stratum and self-matching over the closure gives $H^*\supseteq H$ exactly; the quotient reproduces the expected pseudo-symmetry with residual linear in the distance.
+\begin{footnotesize}\begin{verbatim}
+monoclinic family (120, 189.1, 120+d, 90, 91.2, 90), d in (0, 0.5, 1, 2, 4, 10):
+    H  <- self-match(R)               -> order 4 (2/m incl. -I) for d > 0
+    pattern: the two near-equal conorms that become equal at a = c
+    R* <- impose;  H* <- self-match(R*) -> order 8;  assert H subset H*, index 2
+    assert the a<->c exchange is in H* \ H for every d
+    assert residual(exchange) / d is constant to 5%   (linear in distance)
+near-tetragonal cuboid (3, 3+e, 5, 90, 90, 90), e in (0.01, 0.1, 0.5):
+    H order 8 (mmm); pattern p01 ~ p02; H* order 16 (4/mmm); assert index 2 and that
+    the 4-fold is in H* \ H with residual ~ e
+The published checks are these two hand-imposed strata. They do not enumerate every degeneration pattern.
+in all cases: assert every P in H* is integer, |det|=1, and P maps the closure of R*
+    onto itself (closure completeness at the stratum).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:verify-tol}{Verification tolerance selects coset members under noise (empirical, simulation)}
+Claim (Section 3.7).
+\begin{footnotesize}\begin{verbatim}
+two P6_3 frames with 0.05 deg angular noise (fixed seed):
+    for verify_rel in (1e-6,1e-4,1e-3,1e-2): n = len(reindexing_via_canonical(A,B,...))
+    expect 0, 12, 24, 24; the 12 is the noise-selected half coset.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:noisy-frames}{Noisy $P6_3$ frames are classified V4 and give the full coset with the angular tolerance (empirical, simulation)}
+Claim (Section 3.7).
+\begin{footnotesize}\begin{verbatim}
+for sigma in (0.01,0.05) deg: A,B = independently perturbed frames
+    assert voronoi_type(A, angle_sigma=sigma) == 4
+    assert len(reindexing_via_canonical(A,B,verify_rel=1e-3,angle_sigma=sigma)) == 24
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:lepage}{Table 3: Le Page gate drops the exchange, closure recovers it (empirical, synthetic)}
+Claim (Sections 2.4, 3.6; Table 3).
+\begin{footnotesize}\begin{verbatim}
+family: monoclinic (a, b, c=a+d, 90, beta, 90) for d in (0,1,2,2.85,4,5,10)
+setting 2 = axes a<->c exchanged (exact integer relation P0 = [[0,0,1],[0,1,0],[1,0,0]] up to sign)
+    delta = Le Page angular residual of P0 on the metric (2-fold axis deviation)
+    gate  = delta <= 3 deg
+    assert P0 (or a coset member) in reindexing_via_canonical(setting1, setting2) for every d
+    report sorted-key distance between the two settings (expect ~1e-14).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:reindex-bench}{6960-matrix brute force vs a cached coset on 200 frames (empirical, benchmark)}
+Claim (Sections 2.4, 3.5): the reference closure is enumerated once. A rerun gives median 15\,ms per frame for the 6960-matrix baseline and median 75\,ms per frame for the cached procedure. The earlier figures 0.07\,ms and 330-fold are not this measurement.
+\begin{footnotesize}\begin{verbatim}
+200 perturbed monoclinic frames straddling the reduction flip (fixed seed, stored):
+    brute: for each frame, test all unimodular 3x3 with entries in {-1,0,1} (6960)
+           against the reference metric with the 2%/2deg gate
+    cached: PREPARE_REFERENCE once; per frame REINDEX_FRAME
+    assert the per-frame stage never re-enumerates the reference closure (call count = 1)
+    assert the cached result is the two-operator coset
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:brute-complete}{When a $\{-1,0,1\}$ unimodular search is complete (exhaustive per lattice + random + implementation check)}
+Claim (Section 3.5, Appendix D): (i) most random resettings need entries of magnitude 2 and are missed on unreduced input; (ii) between Niggli cells of one lattice the relating operator has entries in $\{-1,0,1\}$ (exact and noisy, eight lattice types); (iii) between Selling-reduced settings of a V3 lattice an entry of magnitude 2 occurs; (iv) the Niggli reducer's change-of-basis must satisfy the metric identity.
+\begin{footnotesize}\begin{verbatim}
+(i)  200 random unimodular M with entries in [-2,2]: count max|entry| > 1   (observed 192/200)
+(ii) for R in {oF(3,4,5), oI(3,4,5), cF, cI, hP(3,3,5), mP(120,189.1,120.3,90,91.2,90),
+               oF(3,3.2,5), triclinic(40,50,60,80,95,110)} (centred ones made primitive):
+       150 trials: two copies, noise (0.02 A, 0.05 deg) applied BEFORE a random resetting
+       M1, M2 (entries in [-2,2]); Niggli-reduce both with an independent reducer
+       (e.g. spglib.niggli_reduce), recover N1, N2 from Ln = M^T L exactly (assert integer,
+       |det|=1); P = (M1 N1)^{-1} (M2 N2); record max|entry|      (observed 1 in all cases,
+       also without noise)
+(iii) V3 test lattice (conorms 0,2,3,4,5,0): for all pairs of obtuse superbases in the
+       brute-force closure and all 3-of-4 vector choices, P = A^T B^{-T}; record max|entry|
+       (observed 2, e.g. [[-1,2,0],[0,1,-1],[-1,1,0]]); repeat for V1,V2,V4,V5 (observed 1);
+       confirm the {-1,0,1} search returns no operator for that V3 pair while the closure
+       route returns it.
+(iv)  for random cells: (red, N) = niggli_reduce(cell); assert N^T G N == G(red) to 1e-9,
+       |det N| = 1, and convergence on noisy cells. On the current reducer a 500-cell
+       noisy sample (seed SEED_BRUTE+1) gave 0 non-convergences and maximum metric
+       error 8e-13. The earlier report that an in-house reducer failed the identity,
+       and failed to converge on 1--2 percent of noisy cells, is not reproduced.
+       The Selling route does not use this reducer.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:timing}{KD tree on 206\,214 PDB keys returns planted neighbours (empirical, benchmark)}
+Claim (Section 3.2): on the precomputed keys, cKDTree build is 0.044\,s and the median $k=10$ query is 0.010\,ms (Python 3.12, NumPy 2.5.3, SciPy 1.18.1). Earlier figures of 0.28\,s and 0.04\,ms are not this measurement. A radius query returns a planted neighbour.
+\begin{footnotesize}\begin{verbatim}
+keys = [sorted_root_key(cell) for cell in PDB]   (report which key variant, exactly)
+tree = cKDTree(keys)                             # 206214 six-vectors
+on a 3000-cell subset, plant a neighbour inside the query radius;
+    assert every planted neighbour is returned by the radius query (Lemma 1).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:embedding}{Crystal systems occupy coherent regions of the shape embedding (empirical, PDB)}
+Claim (Section 3.2) is qualitative; the check is that the embedding is reproducible and that the labels, unused in its construction, are locally homogeneous.
+\begin{footnotesize}\begin{verbatim}
+k-NN graph on keys/V^(1/3); 2-D embedding with a fixed seed.
+homogeneity: for each cell, fraction of its k neighbours (in key space, not 2-D)
+    with the same crystal system; report the distribution and compare with the
+    label-shuffled null.  Reproducibility: repeat with 3 seeds; report Procrustes distance.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:audit}{Collision / edge audit of the key-space graph (empirical, PDB)}
+Claim (Section 3.2): the fraction of edges whose key distance is within 10\% of the exact orbit distance has not been reported. The check below is the computation that would report it. Do not read embedding branches as topology until that fraction is in the paper.
+\begin{footnotesize}\begin{verbatim}
+for each k-NN edge (i,j): ops = reindexing_via_canonical(cell_i, cell_j, verify_abs=calibrated)
+    classify: same lattice (ops non-empty), collision (keys within eps but ops empty),
+              ordinary neighbour (otherwise)
+report counts; report the fraction of edges whose key distance is within 10% of the
+    exact orbit distance computed over the closure (edge fidelity).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:effrank}{Local entropy effective rank of key neighbourhoods (empirical, PDB)}
+Claim (Section 3.2): $k=40$ neighbourhoods on a 30\,000-cell subsample of the volume-normalised keys give entropy effective rank from 1.00 to 5.69, median 2.02. The previously printed median 4.12 is not reproduced by this estimator.
+\begin{footnotesize}\begin{verbatim}
+for each of M neighbourhoods (k nearest in key space, k stated): X = centred keys (k x 6)
+    sigma = singular values; p = sigma/sum(sigma); r_eff = exp(-sum p log p)
+report the range over occupied neighbourhoods; state k and M.
+low-rank filaments sit near one; higher-rank neighbourhoods approach six.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:lysozyme}{Lysozyme census numbers and the shrinkage coordinate (empirical, PDB)}
+Claim (Sections 2.6, 3.3): 1372 entries / 1361 with cells; 1152 $P4_32_12$, 100 $P2_12_12_1$, 59 $P2_1$, 41 $P1$; 1113 native-volume tetragonal cells spanning 26\% in volume; leading intrinsic coordinate vs shrinkage $|r|=0.92$; $a\in[76.8,80.0]$; $c$ steps near 37/38.
+\begin{footnotesize}\begin{verbatim}
+entries = PDB search UniProt P00698 (record the date); count cells and space groups.
+tetragonal subset: V = a^2 c; native-volume filter as stated; (max V - min V)/median V.
+graph = k-NN on keys; coordinate 1 = leading eigenvector of the graph Laplacian
+    (or first diffusion coordinate); r = Pearson(coordinate, V^(1/3)).
+scatter a and c against the coordinate; report ranges and the c-value histogram.
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:xfel}{CXIDB 83 stream statistics and the orientation diagnostic (empirical)}
+Claim (Section 3.4): 14\,445 patterns, 12\,474 crystals, $P6_3$; $c$ median $233.3$, MAD $0.13$, maximum $245$\,\Ang. Beam within $10^\circ$ of $c^*$ ($n=141$): $c$ MAD $0.22$\,\Ang. Beam angle above $80^\circ$ ($n=2866$): $c$ MAD $0.083$\,\Ang. Ratio 2.6. The earlier scatters 1.53\,\Ang\ and 0.5\,\Ang\ are not this binning.
+\begin{footnotesize}\begin{verbatim}
+parse stream: count chunks and 'Cell parameters' records; read per-crystal cell and
+    orientation matrix (astar,bstar,cstar).
+c distribution: median, MAD, 99.9th percentile.
+keys = sorted conorms per crystal (linear key); PCA on centred keys; report loadings.
+theta = angle between beam direction and cstar; bins: theta<10 deg vs theta>80 deg;
+    report MAD or sd of c in each bin; bootstrap CI on the ratio (expect ~3).
+\end{verbatim}\end{footnotesize}
+
+\end{document}

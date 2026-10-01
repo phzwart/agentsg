@@ -1,16 +1,58 @@
-IUCrJ submission source
+IUCr submission source
 ========================
-Files:
-  main_v9.tex      - LaTeX source (latest versioned draft; article base;
-                     drops into IUCr class - see header)
 
-Older drafts (main_v5…main_v7, "main _v8.tex") are kept for history only.
+Journal: Journal of Applied Crystallography.
+The working files are manuscript/submission/zwart_selling_closure.tex
+and zwart_selling_closure_SI.tex, prepared with iucr.cls and
+\journalcode{J}. In this class file J is J. Appl. Cryst. (ISSN
+0021-8898). IUCrJ is \journalcode{M}, and Acta Cryst. A is
+\journalcode{A}. An earlier note in this file treated J as IUCrJ;
+that was wrong. main_v9.tex and "main _v8.tex" stay as history.
 
-Build (any TeX Live / MiKTeX / Overleaf):
-  pdflatex main_v9.tex
-  pdflatex main_v9.tex      # second pass for \ref cross-references
+Build, from manuscript/submission/:
+    pdflatex zwart_selling_closure.tex
+    pdflatex zwart_selling_closure_SI.tex
 
-For final IUCr submission, change the header to:
-  \documentclass{iucr}
-  \journalcode{J}              % IUCrJ
-and move author/affiliation into IUCr's \author/\aff macros.
+What a rerun of manuscript/appendix_z put back into the text
+-----------------------------------------------------------
+Only numbers the current code reproduced are printed. Holds:
+
+- Equal-step raw reduced distances are 0.080 and 118.5; sorted-key
+  distance to the reference is 0.0010 on both sides. The old raw
+  figure 83.7 is not used.
+- KD-tree on 206214 precomputed keys: build 0.044 s, median k=10
+  query 0.010 ms (Python 3.12, NumPy 2.5.3, SciPy 1.18.1). The old
+  0.28 s and 0.04 ms are not this measurement.
+- Entropy effective rank, k=40 on a 30000-cell subsample: 1.00 to
+  5.69, median 2.02. The old median 4.12 is not reproduced.
+- Reindexing wall clock on this machine: 6960-matrix median 15 ms
+  per frame, cached procedure median 75 ms per frame, reference
+  closure enumerated once. The old 0.07 ms and 330-fold figures
+  are not used.
+- XFEL orientation (CXIDB 83 stream): c MAD 0.22 A for beam within
+  10 degrees of c* (n=141) versus 0.083 A above 80 degrees
+  (n=2866), ratio 2.6. The old 1.53 A and 0.5 A are not this binning.
+  c median 233.3 A, MAD 0.13 A, maximum 245 A.
+- Niggli change-of-basis identity holds on a 500-cell noisy sample
+  (0 failures, max error 8e-13). The old report of identity failure
+  and 1-2 percent non-convergence is not reproduced.
+- Pseudo-symmetry checks are the two hand-imposed strata only.
+- The edge-fidelity fraction is not reported. Do not read the
+  embedding as topology.
+
+Blanks that were filled, and blanks that were not
+-------------------------------------------------
+Filled:
+- Journal code A (Acta Cryst. A), stated above.
+- CXIDB 83 primary paper: Wiedorn et al. (2018) Nature Commun. 9, 4025.
+  Dataset DOI 10.11577/1464102.
+- Cell snapshot DOI 10.5281/zenodo.22986222.
+- Source URL https://github.com/phzwart/agentsg (git remote origin).
+
+Not filled, because they are not in the project sources and were not
+verified:
+- ORCID. A candidate 0000-0002-1539-0297 is Dylan McReynolds, not
+  this author. The author line leaves ORCID unset.
+- Grant or contract number. The acknowledgement names the laboratory
+  division only.
+- Archival DOI of the code repository. It has not been minted.
