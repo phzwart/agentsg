@@ -73,7 +73,10 @@ _BOOL_KEYS = {
     "same_hm", "same_sg", "maximal", "plot", "return_cob",
 }
 _INT_KEYS = {"k"}
-_FLOAT_KEYS = {"cutoff", "max_delta", "length_tol_pct", "angle_tol_deg"}
+_FLOAT_KEYS = {
+    "cutoff", "max_delta", "length_tol_pct", "angle_tol_deg",
+    "angle_sigma", "boundary_rel",
+}
 
 
 def query_to_body(qs: dict[str, str]) -> dict[str, Any]:

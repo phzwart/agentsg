@@ -33,13 +33,18 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
             tools = await client.list_tools()
             names = {tool.name for tool in tools}
             space = await client.call_tool("space_group", {"sg": "96"})
+            origins = await client.call_tool("allowed_origins", {"sg": "225"})
             book = await client.call_tool("playbook", {})
             with pytest.raises(ToolError):
                 await client.call_tool("pdb_lookup", {"pdb_id": "1LYZ"})
-            return names, tools, space.data, book.data
+            return names, tools, space.data, book.data, origins.data
 
-    names, tools, space, book = asyncio.run(_run())
+    names, tools, space, book, origins = asyncio.run(_run())
     assert "space_group" in names
+    assert "allowed_origins" in names
+    assert origins["n_origins"] == 2
+    assert ["0", "0", "1/2"] in origins["origins"]
+    assert origins["floating_origin"] == []
     assert "pdb_search" in names
     assert "concept" in names
     assert "concept_uses" in names
@@ -50,6 +55,8 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     schema = getattr(pdb, "input_schema", None) or pdb.inputSchema
     assert "plot" in schema["properties"]
     assert "return_cob" in schema["properties"]
+    assert "angle_sigma" in schema["properties"]
+    assert schema["properties"]["angle_sigma"]["default"] == 0.05
     assert "ita_plate" in names
     assert "ita_plate_image" not in names
     assert space["sg_number"] == 96

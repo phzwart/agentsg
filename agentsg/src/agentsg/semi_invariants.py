@@ -277,8 +277,9 @@ def discrete_allowed_origins(operations: Sequence[SymmetryOp]) -> list[Vector3]:
     """The distinct alternative origins ``T'/(L + V_float)``.
 
     Each is reduced modulo the centring translations and has its floating
-    components pinned to zero, so e.g. Fm-3m gives ``[(0,0,0), (1/2,1/2,1/2)]``
-    and Im-3m gives ``[(0,0,0)]`` only.
+    components pinned to zero, so e.g. Fm-3m gives ``[(0,0,0), (0,0,1/2)]``
+    (``(1/2,1/2,1/2)`` is the same origin plus an F translation) and Im-3m
+    gives ``[(0,0,0)]`` only.
     """
     return origin_lattice(operations).discrete_origins()
 

@@ -115,8 +115,12 @@ def _mcp_playbook(base: str) -> str:
         "| What does this word mean here, and where is it in the code? | `concept` with `q`, then `concept` with `id` of the top hit |",
     )
     body = body.replace(
-        "| A result lists `concepts` | Call `GET /v1/concept?id=` on each id before explaining the term, and quote the reference `quote` with its `url` and `status` |",
-        "| A result lists `concepts` | Call `concept` with each id before explaining the term, and quote the reference `quote` with its `url` and `status` |",
+        "| A result lists `concepts` | Call `GET /v1/concept?id=` on each id, then explain the term in ordinary sentences: name the file and the function in the sentence, and put links at the end |",
+        "| A result lists `concepts` | Call `concept` with each id, then explain the term in ordinary sentences: name the file and the function in the sentence, and put links at the end |",
+    )
+    body = body.replace(
+        "| Allowed origins of a space group | `GET /v1/allowed-origins?sg=225` |",
+        "| Allowed origins of a space group | `allowed_origins` with `sg` |",
     )
     body = body.replace(
         "| What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |",
@@ -188,9 +192,9 @@ You have MCP tools for the agentsg crystallography engine.
 
 After a tool error, read the message and retry with corrected arguments. Do not invent a result.
 
-HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_used_by`, `concept_module`, `concept_receipt`, `playbook`.
+HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `allowed_origins`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_used_by`, `concept_module`, `concept_receipt`, `playbook`.
 
-**Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what uses this?”, “what does this file implement?”, or “show the receipt”, call `concept`, `concept_uses`, `concept_used_by`, `concept_module`, or `concept_receipt`. Surface the definition, the quoted sentence with its URL and status, and the code anchor (`module`, `symbol`, `line`, `uri`) to the user. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
+**Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what uses this?”, “what does this file implement?”, or “where did that sentence come from?”, call `concept`, `concept_uses`, `concept_used_by`, `concept_module`, or `concept_receipt`. Answer in ordinary sentences, as at a blackboard: no heading and no list. Name the file and the function in the sentence. Put links at the end. Skip hashes and receipt ids unless they ask. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
 
 **Pictures.** `ita_plate` returns the ITA plate PNG in the tool result, together with every in-cell copy of each element. `pdb_search` with `plot` true returns the PC1–PC2 scatter of those cells the same way. There is no image URL to fetch.
 
@@ -218,8 +222,10 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
             "site, plate, unit-cell, PDB-lattice, or concept question. Never invent "
             "systematic absences or ITA Wyckoff letters (wyckoff_letter is null). "
             "Subgroup edges are t or k derived from operators, not the ITA A1 table. "
-            "concept searches the knowledge graph (q) or returns one card (id): "
-            "definition, dictionary quote, code anchor. concept_uses, concept_used_by, "
+            "concept looks up what a term means in this code (q) or one term (id): "
+            "definition, dictionary quote, code anchor. Answer in ordinary sentences, "
+            "with the file and function in the sentence and links at the end. "
+            "concept_uses, concept_used_by, "
             "concept_module, and concept_receipt are the dependency walk, the reverse "
             "walk, the file lookup, and one ledger node. Offer the Concept questions from playbook when the user "
             "asks what you can explain about the code. "
@@ -308,6 +314,16 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     def harker(sg: str) -> dict[str, Any]:
         """Harker sections and lines for Patterson interpretation."""
         return _result(handlers.harker_info, {"sg": sg})
+
+    @mcp.tool(annotations=_READONLY)
+    def allowed_origins(sg: str) -> dict[str, Any]:
+        """Discrete alternative origins, with floating directions pinned to zero.
+
+        sg: IT number 1–230, Hermann–Mauguin, or Hall symbol.
+        origins are the distinct gauges. floating_origin is the continuous freedom
+        (empty when the origin is unique, one vector for a polar axis, three for P1).
+        """
+        return _result(handlers.allowed_origins_info, {"sg": sg})
 
     @mcp.tool(annotations=_READONLY)
     def subgroups(sg: str, kind: str = "both", maximal: bool = True) -> dict[str, Any]:
@@ -424,6 +440,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         same_hm: bool = False,
         plot: bool = False,
         return_cob: bool = False,
+        angle_sigma: float = 0.05,
+        boundary_rel: float = 1e-3,
     ) -> dict[str, Any]:
         """PDB lattices near a cell on the sorted Kurlin root invariant.
 
@@ -437,6 +455,9 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         Only determinant +1 settings are listed. cob is the one with the fewest
         minus signs, then the spelling closest to a,b,c; cob_coset lists every
         proper match in that order.
+        angle_sigma (degrees, default 0.05) and boundary_rel (default 1e-3)
+        widen zero-conorm detection on the query closure so a reindexed
+        high-symmetry cell is not classified as a generic lattice.
         """
         import base64
         out = _result(lambda data: handlers.pdb_search(state, data), _clean({
@@ -447,6 +468,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
             "same_hm": same_hm,
             "plot": plot,
             "return_cob": return_cob,
+            "angle_sigma": angle_sigma,
+            "boundary_rel": boundary_rel,
         }))
         encoded = out.get("plot_png_base64") if isinstance(out, dict) else None
         if not encoded:
@@ -455,13 +478,13 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
 
     @mcp.tool(annotations=_READONLY)
     def concept(q: str = "", id: str = "", limit: int = 8) -> dict[str, Any]:
-        """Search the concept graph or return one concept card.
+        """Look up what a term means in this code, or which function implements it.
 
         q: words such as "Smith normal form" or "allowed origin". Returns hits
         with id, label, and definition. id: concept id such as smith_normal_form.
-        The card has the builder definition, IUCr/Wikipedia quote with url and
-        status, code anchors (module, symbol, line, quote, uri), and relations.
-        Code hashes are the graph snapshot, not the live tree.
+        The result has a definition, a dictionary or Wikipedia sentence with a
+        url, the file and function, and relations. Answer in ordinary sentences.
+        Do not mention hashes unless asked.
         Sample: where is the Smith normal form implemented?
         """
         return _result(concept_info, _clean({"q": q or None, "id": id or None, "limit": limit}))

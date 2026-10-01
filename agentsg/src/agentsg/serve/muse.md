@@ -51,6 +51,7 @@ Compute (bearer required except `/v1/help`):
 - Site — `GET /v1/site?sg=225&xyz=1/4,1/4,1/4`
 - Reflections — `GET /v1/reflections?sg=96` or `...?hkl=1,0,0`
 - Harker — `GET /v1/harker?sg=19`
+- Allowed origins — `GET /v1/allowed-origins?sg=225` (`origins` plus `floating_origin`)
 - Subgroups — `GET /v1/subgroups?sg=96` (`kind=t|k|both`, `maximal=true`)
 - ITA plate — `POST /v1/ita-plate` `{"sg":96,"legend":true}` then `GET` the returned `png_url`
 - Cell — `GET /v1/cell?cell=79,79,38,90,90,90&sg=96`

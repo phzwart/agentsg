@@ -66,6 +66,14 @@ def test_v5_orthorhombic_closure_32_in_4_classes():
     assert len(selling_closure_representatives(ORTHO)) == 4
 
 
+def test_tetragonal_v5_merges_two_classes_and_keeps_32():
+    """a = b makes two orthorhombic V5 coforms identical. No seed is missing."""
+    tet = (79.1, 79.1, 37.9, 90.0, 90.0, 90.0)
+    assert voronoi_type(tet) == 5
+    assert len(selling_superbase_closure(tet)) == 32
+    assert closure_class_count(tet) == 3
+
+
 def test_v4_hexagonal_closure_nontrivial():
     cl = selling_superbase_closure(HEX)
     assert voronoi_type(HEX) == 4

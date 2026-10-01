@@ -163,8 +163,11 @@ def selling_superbase_closure(cell, tol_rel=1e-9, angle_sigma=None):
     Returns distinct obtuse superbases as ordered 4-tuples of integer coordinate
     triples in the input cell basis. Uniqueness is up to unordered set of the
     four vectors. A primitive orthorhombic V5 lattice has 32 superbases in 4
-    isometry classes; generic V1 has a single reduced representative (the match
-    loop in :mod:`canonical` still applies S4 x {+/-I}).
+    isometry classes. A tetragonal cell (two equal edges) is the same Voronoi
+    type, still with 32 superbases, but two of those classes share one
+    S4-canonical coform, so the class count is 3. Generic V1 has a single
+    reduced representative (the match loop in :mod:`canonical` still applies
+    S4 x {+/-I}).
 
     Pass ``angle_sigma`` (degrees) to widen zero detection for noisy cells.
 

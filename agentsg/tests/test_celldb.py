@@ -180,6 +180,82 @@ def test_cob_coset_keeps_only_proper_rotations():
     db.close()
 
 
+def _random_sl3(rng, steps=4):
+    """A det +1 integer matrix with small entries.
+
+    Each step adds one column into another. Entries stay small so a 1e-6
+    parameter perturbation is not amplified into a large metric error.
+    """
+    M = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    for _ in range(steps):
+        i, j = rng.sample((0, 1, 2), 2)
+        k = rng.choice((-1, 1))
+        for row in M:
+            row[i] += k * row[j]
+    return M
+
+
+def _perturb_rel(cell, rng, eps=1e-6):
+    return tuple(x * (1.0 + eps * rng.uniform(-1.0, 1.0)) for x in cell)
+
+
+def test_reindexed_v4_v5_query_keeps_cob():
+    """A noisy unimodular reindexing of a V4 or V5 cell still gets an operator.
+
+    The closure is computed on the query. Without a widened zero tolerance the
+    reindexed cell looks like V1 and cob is null.
+    """
+    from fractions import Fraction
+
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.selling_cob import _metric_of, annotate_search_hits
+    from agentsg.cell.sublattice import apply_to_cell
+    from agentsg.lattice_symmetry import lattice_symmetry
+    from agentsg.linalg import Matrix3
+
+    rng = __import__("random").Random(422)
+    # (deposited cell, stored HM, IT number). P centring, so the primitive
+    # cell is the cell itself.
+    stored = (
+        ((79.1, 79.1, 37.9, 90.0, 90.0, 90.0), "P 43 21 2", 96),
+        ((40.0, 50.0, 60.0, 90.0, 90.0, 90.0), "P 21 21 21", 19),
+        ((80.0, 80.0, 40.0, 90.0, 90.0, 120.0), "P 6 2 2", 177),
+    )
+    # The reported lysozyme reindexing, plus random det +1 matrices.
+    seeds = [
+        [[1, 1, 0], [0, 1, 1], [1, 2, 2]],
+        _random_sl3(rng),
+        _random_sl3(rng),
+    ]
+    db = CellDatabase(":memory:")
+    for n, (cell, hm, number) in enumerate(stored):
+        assert db.add_cell(f"C{n}", cell, number, hm)
+        M = seeds[n]
+        query = _perturb_rel(apply_to_cell(cell, M), rng)
+        hits = [{"pdb_id": f"C{n}", "distance": 0.0}]
+        annotate_search_hits(db, query, "P 1", hits)
+        hit = hits[0]
+        assert hit["cob"] is not None, hm
+        proper = sum(
+            1 for op in lattice_symmetry(cell).operations if op.W.det() > 0
+        )
+        assert len(hit["cob_coset"]) == proper
+        if cell[0] == cell[1] and cell[5] == 90.0:
+            assert proper == 8
+            assert hit["cob_xyz"] == "(2*a-2*b+c,b-c,a-b+c)"
+        P = Matrix3([[Fraction(num, den) for num, den in row] for row in hit["cob"]])
+        Gp = _metric_of(UnitCell(*query).metric_tensor(), P)
+        Gdep = UnitCell(*cell).metric_tensor()
+        # Compare against the largest metric entry. A near-zero component of an
+        # orthogonal cell has no relative scale of its own, and the query is
+        # already perturbed at 1e-6.
+        scale = max(abs(Gdep[i][j]) for i in range(3) for j in range(3))
+        for a in range(3):
+            for b in range(3):
+                assert abs(Gp[a][b] - Gdep[a][b]) <= 1e-5 * scale
+    db.close()
+
+
 def test_cob_matches_a_close_reduced_cell_and_reports_residual():
     """1JXU-sized noise still gets an operator; a 1% cell does not."""
     from agentsg.cell.selling_cob import annotate_search_hits, reference_orbit

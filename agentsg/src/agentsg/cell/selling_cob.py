@@ -18,10 +18,9 @@ from itertools import permutations
 from ..change_of_basis import ChangeOfBasis
 from ..linalg import Matrix3, Vector3
 from ..setting import format_cob
-from .canonical import canonical_superbase
+from .canonical import _closure_for_match, canonical_superbase
 from .metric import UnitCell, params_from_metric
 from .primitive import lattice_letter, primitive_cell
-from .selling_closure import selling_superbase_closure
 
 _H = Fraction(1, 2)
 _T = Fraction(1, 3)
@@ -141,10 +140,29 @@ class ReferenceOrbit:
         self.labeled = labeled
 
 
-def reference_orbit(cell, sg_hm) -> ReferenceOrbit:
+# A neighbour such as 1JXU vs 1CRN differs by ~0.5% in an edge and ~0.03° in
+# an angle. A 1% edge change is a different cell, not a noisy copy.
+_COB_LENGTH_TOL_PCT = 0.75
+_COB_ANGLE_TOL_DEG = 0.5
+# Zero-conorm width for the query closure. A unimodular reindexing at ordinary
+# float precision leaves "zero" conorms of ~1e-4 Å², which the 1e-9 classifier
+# calls V1. 0.05° is inside the 0.5° match tolerance and restores V2–V5.
+DEFAULT_COB_ANGLE_SIGMA_DEG = 0.05
+DEFAULT_COB_BOUNDARY_REL = 1e-3
+
+
+def reference_orbit(
+    cell,
+    sg_hm,
+    angle_sigma=DEFAULT_COB_ANGLE_SIGMA_DEG,
+    boundary_rel=DEFAULT_COB_BOUNDARY_REL,
+) -> ReferenceOrbit:
     """Selling-reduce ``cell`` and enumerate the typed closure once.
 
     Each labeled superbase is an integer ``S`` in the reduced basis.
+    ``angle_sigma`` (degrees) widens zero detection so a reindexed
+    high-symmetry cell is not classified as V1. ``boundary_rel`` merges
+    near-zero conorm flips from :func:`superbase_variants`.
     """
     prim = _primitive_or_self(cell, sg_hm)
     M = selling_matrix(prim)
@@ -153,7 +171,9 @@ def reference_orbit(cell, sg_hm) -> ReferenceOrbit:
     Minv = M.inverse()
     labeled = []
     seen = set()
-    for C in selling_superbase_closure(prim):
+    for C in _closure_for_match(
+        prim, boundary_rel=boundary_rel, angle_sigma=angle_sigma,
+    ):
         for perm in _PERMS:
             for sign in (1, -1):
                 Q = Matrix3(
@@ -168,12 +188,6 @@ def reference_orbit(cell, sg_hm) -> ReferenceOrbit:
                 seen.add(S.rows)
                 labeled.append((S, _metric_of(G_red, S)))
     return ReferenceOrbit(P_ref, labeled)
-
-
-# A neighbour such as 1JXU vs 1CRN differs by ~0.5% in an edge and ~0.03° in
-# an angle. A 1% edge change is a different cell, not a noisy copy.
-_COB_LENGTH_TOL_PCT = 0.75
-_COB_ANGLE_TOL_DEG = 0.5
 
 
 def _param_residual(G_pred, red_cell):
@@ -255,10 +269,20 @@ def match_operators(
     return sorted(found.values(), key=lambda item: _cob_rank(item[0]))
 
 
-def annotate_search_hits(db, cell, sg_hm, hits, verify_rel=1e-6):
+def annotate_search_hits(
+    db,
+    cell,
+    sg_hm,
+    hits,
+    verify_rel=1e-6,
+    angle_sigma=DEFAULT_COB_ANGLE_SIGMA_DEG,
+    boundary_rel=DEFAULT_COB_BOUNDARY_REL,
+):
     """Attach ``cob`` / ``cob_xyz`` / ``cob_coset`` to search hit dicts.
 
     Databases without ``cob00`` still return hits; ``cob`` is null.
+    ``angle_sigma`` and ``boundary_rel`` are the query-closure widths; see
+    :func:`reference_orbit`.
     """
     if not hits:
         return hits
@@ -272,7 +296,9 @@ def annotate_search_hits(db, cell, sg_hm, hits, verify_rel=1e-6):
     orbit = None
     if any(rec.get("cob") is not None and rec.get("red") is not None
            for rec in reductions.values()):
-        orbit = reference_orbit(cell, sg_hm)
+        orbit = reference_orbit(
+            cell, sg_hm, angle_sigma=angle_sigma, boundary_rel=boundary_rel,
+        )
     for hit in hits:
         rec = reductions.get(hit["pdb_id"])
         ops = []

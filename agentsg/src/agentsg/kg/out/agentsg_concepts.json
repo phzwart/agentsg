@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "211d536fa29de990eeed7c2aaa6b964fb2cbef3f",
+  "commit": "8ab4f24c0bafc02a81453b8d6865f75b4acfe3f4",
   "dirty": true
  },
  "concepts": [
@@ -1091,37 +1091,37 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "cob_column_values",
      "kind": "FunctionDef",
-     "line": 104,
+     "line": 103,
      "quote": "Nine ``num/den`` strings, row-major.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "parse_cob_columns",
      "kind": "FunctionDef",
-     "line": 109,
+     "line": 108,
      "quote": "Inverse of :func:`cob_column_values`.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "cob_xyz",
      "kind": "FunctionDef",
-     "line": 129,
+     "line": 128,
      "quote": "Column notation for ``P`` (no origin shift).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "annotate_search_hits",
      "kind": "FunctionDef",
-     "line": 259,
+     "line": 281,
      "quote": "Attach ``cob`` / ``cob_xyz`` / ``cob_coset`` to search hit dicts.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     }
    ],
    "references": [
@@ -1552,7 +1552,7 @@
      "line": 58,
      "quote": "Rows are a basis of ``L = Z³ + <centring>`` (row Hermite normal form).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -2382,7 +2382,7 @@
      "line": 258,
      "quote": "Integer basis of the continuous (floating) origin freedom.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -3834,7 +3834,7 @@
      "line": 172,
      "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4247,7 +4247,7 @@
      "line": 71,
      "quote": "Allowed-origin group ``T'`` of a space group, from one Smith normal form.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4256,7 +4256,7 @@
      "line": 277,
      "quote": "The distinct alternative origins ``T'/(L + V_float)``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4265,16 +4265,16 @@
      "line": 272,
      "quote": "True if conjugating the group by origin ``o`` leaves the operator set unchanged.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
      "symbol": "n_alternative_origins",
      "kind": "FunctionDef",
-     "line": 290,
+     "line": 291,
      "quote": "Number of discrete alternative origins (∏ of the invariant factors).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4283,7 +4283,7 @@
      "line": 172,
      "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4292,7 +4292,7 @@
      "line": 227,
      "quote": "Among the generators ``k g`` (gcd(k, order) = 1) of one cyclic factor and their coset representatives modulo ``L``, pick the one whose congruence vector is smallest (fewest/smallest entries,...",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4351,7 +4351,7 @@
      "line": 258,
      "quote": "Integer basis of the continuous (floating) origin freedom.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4360,7 +4360,7 @@
      "line": 267,
      "quote": "Canonical gauge: remove the floating-origin components of ``p`` exactly.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4406,7 +4406,7 @@
      "line": 172,
      "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -4415,7 +4415,7 @@
      "line": 71,
      "quote": "Allowed-origin group ``T'`` of a space group, from one Smith normal form.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4482,7 +4482,7 @@
      "line": 172,
      "quote": "Compute the allowed-origin group ``T'`` of ``operations`` (see module doc).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4547,37 +4547,37 @@
      "module": "agentsg/semi_invariants.py",
      "symbol": "semi_invariants",
      "kind": "FunctionDef",
-     "line": 331,
+     "line": 332,
      "quote": "Structure semi-invariant congruences, derived from the origin lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
      "symbol": "SemiInvariant",
      "kind": "ClassDef",
-     "line": 296,
+     "line": 297,
      "quote": "One structure-semi-invariant congruence ``vector · h ≡ 0 (mod modulus)``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
      "symbol": "is_semi_invariant",
      "kind": "FunctionDef",
-     "line": 345,
+     "line": 346,
      "quote": "True if ``hkl`` is a structure semi-invariant: ``h · t ∈ Z`` for all ``t ∈ T'``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/semi_invariants.py",
      "symbol": "_congruence",
      "kind": "FunctionDef",
-     "line": 314,
+     "line": 315,
      "quote": "``h · o ∈ Z`` as ``(D o) · h ≡ 0 (mod D)`` with entries in (−D/2, D/2].",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -4655,10 +4655,10 @@
      "module": "agentsg/semi_invariants.py",
      "symbol": "semi_invariants",
      "kind": "FunctionDef",
-     "line": 331,
+     "line": 332,
      "quote": "Structure semi-invariant congruences, derived from the origin lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -6733,10 +6733,10 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "primitive_matrix",
      "kind": "FunctionDef",
-     "line": 47,
+     "line": 46,
      "quote": "Centering matrix as exact rationals.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/primitive.py",
@@ -6838,7 +6838,7 @@
      "line": 58,
      "quote": "Rows are a basis of ``L = Z³ + <centring>`` (row Hermite normal form).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -7168,7 +7168,7 @@
      "line": 119,
      "quote": "Selling move on pair (i,j): negate v_i, add to the two others except j.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -7289,7 +7289,7 @@
      "line": 38,
      "quote": "True if all scalar products v_i · v_j <= tol (obtuse superbase).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/rootform.py",
@@ -7343,7 +7343,7 @@
      "line": 57,
      "quote": "T = Σ_{i<j} p_ij with p_ij = -v_i·v_j (invariant on the closure).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     }
    ],
    "references": [
@@ -7393,7 +7393,7 @@
      "line": 1,
      "quote": "Typed Selling-superbase closure (Kurlin Lemmas 4.1--4.5 / main_v5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7402,7 +7402,7 @@
      "line": 82,
      "quote": "Classify Voronoi type V1--V5 from an obtuse superbase's zero conorms.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7411,7 +7411,7 @@
      "line": 106,
      "quote": "Voronoi type (1..5) of ``cell`` from its Selling-reduced superbase.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7420,7 +7420,7 @@
      "line": 28,
      "quote": "Index pairs (i,j) with |v_i · v_j| <= tol (orthogonal / boundary).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     }
    ],
    "references": [
@@ -7488,7 +7488,7 @@
      "line": 161,
      "quote": "Finite Selling-superbase closure of ``cell`` (typed, Kurlin 4.1--4.5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -7506,7 +7506,7 @@
      "line": 1,
      "quote": "Deposited-cell to Selling-reduced change of basis, and reference-orbit match.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -7530,19 +7530,19 @@
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "selling_closure_representatives",
      "kind": "FunctionDef",
-     "line": 217,
+     "line": 220,
      "quote": "One obtuse superbase per isometry class (diagnostic / class count).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "closure_class_count",
      "kind": "FunctionDef",
-     "line": 237,
+     "line": 240,
      "quote": "Number of isometry classes in the closure (1 for V1; up to 4 for V5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7551,7 +7551,7 @@
      "line": 141,
      "quote": "Seed superbases: reduced one plus Kurlin alternate-class maps.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7560,7 +7560,7 @@
      "line": 130,
      "quote": "Three even-class representatives for a cuboid odd superbase (Lemma 4.5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     }
    ],
    "references": [
@@ -8883,37 +8883,37 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "match_operators",
      "kind": "FunctionDef",
-     "line": 229,
+     "line": 243,
      "quote": "Operators from the reference deposited cell to the PDB deposited cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "deposited_to_reduced",
      "kind": "FunctionDef",
-     "line": 93,
+     "line": 92,
      "quote": "Return ``(red_params, P)`` from the deposited cell to one Selling-reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "selling_matrix",
      "kind": "FunctionDef",
-     "line": 73,
+     "line": 72,
      "quote": "Integer unimodular matrix, primitive (or already-P) cell to one obtuse basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "reference_orbit",
      "kind": "FunctionDef",
-     "line": 145,
+     "line": 160,
      "quote": "Selling-reduce ``cell`` and enumerate the typed closure once.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -10116,10 +10116,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 647,
+     "line": 687,
      "quote": "SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
+     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -10221,7 +10221,7 @@
      "line": 22,
      "quote": "Relative numerical tolerance scaled by the maximum superbase vector length.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "d210d0ee8f9a540a5d7f7ffe68933d8dd4946a3095b82f203309d61fd15ed23f"
+     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
     },
     {
      "module": "agentsg/cell/constraints.py",
@@ -11192,7 +11192,7 @@
      "line": 71,
      "quote": "Allowed-origin group ``T'`` of a space group, from one Smith normal form.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     }
    ],
    "references": [
@@ -11238,10 +11238,10 @@
      "module": "agentsg/semi_invariants.py",
      "symbol": "SemiInvariant",
      "kind": "ClassDef",
-     "line": 296,
+     "line": 297,
      "quote": "One structure-semi-invariant congruence ``vector · h ≡ 0 (mod modulus)``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/semi_invariants.py",
-     "sha256": "d935951a7a4d9a3de8362d924daea809c15b0495b0149a1079fc6daea6ddb18a"
+     "sha256": "51491f6536fec4e1fe7370fcfebd9c2248099c8ea7c3a3a4d450db8b4f053b23"
     },
     {
      "module": "agentsg/harker.py",
@@ -11714,19 +11714,19 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "default_projection",
      "kind": "FunctionDef",
-     "line": 241,
+     "line": 259,
      "quote": "Project a monoclinic group along its unique axis, else along c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
+     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
     },
     {
      "module": "agentsg/serve/handlers.py",
      "symbol": "_unique_axis",
      "kind": "FunctionDef",
-     "line": 253,
+     "line": 271,
      "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
+     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
     }
    ],
    "references": [
@@ -12841,10 +12841,10 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "_param_residual",
      "kind": "FunctionDef",
-     "line": 180,
+     "line": 194,
      "quote": "Length error in percent, angle error in degrees, and their maximum.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -13361,19 +13361,19 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "reference_orbit",
      "kind": "FunctionDef",
-     "line": 145,
+     "line": 160,
      "quote": "Selling-reduce ``cell`` and enumerate the typed closure once.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "ReferenceOrbit",
      "kind": "ClassDef",
-     "line": 134,
+     "line": 133,
      "quote": "One query: deposited-to-reduced ``P_ref`` and the labeled closure metrics.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
     }
    ],
    "references": [
@@ -13431,7 +13431,7 @@
      "line": 1,
      "quote": "HTTP API for PDB lattice-similarity search.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
-     "sha256": "c2246c44981fe66f2ecaa0667289588324c2a72790b34d883476363685c95daf"
+     "sha256": "3a3661ac3de339b08bdbc6ed3a14bc366e59b240e67a4f3c305b34eb8acb277a"
     },
     {
      "module": "agentsg/cell/celldb.py",
@@ -13455,10 +13455,10 @@
      "module": "agentsg/cell/pdb_server.py",
      "symbol": "search_compatible",
      "kind": "FunctionDef",
-     "line": 117,
+     "line": 119,
      "quote": "Return PDB ids within ``cutoff`` Å (root distance) of ``cell``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
-     "sha256": "c2246c44981fe66f2ecaa0667289588324c2a72790b34d883476363685c95daf"
+     "sha256": "3a3661ac3de339b08bdbc6ed3a14bc366e59b240e67a4f3c305b34eb8acb277a"
     }
    ],
    "references": [

@@ -152,6 +152,8 @@ def make_handler(state: ServerState):
                 return handlers.site_info(query_to_body(qs))
             if path == "/v1/harker":
                 return handlers.harker_info(query_to_body(qs))
+            if path == "/v1/allowed-origins":
+                return handlers.allowed_origins_info(query_to_body(qs))
             if path == "/v1/subgroups":
                 return handlers.subgroups_info(query_to_body(qs))
             if path == "/v1/ita-plate":
@@ -201,6 +203,8 @@ def make_handler(state: ServerState):
                 return handlers.reflections_info(data)
             if path == "/v1/harker":
                 return handlers.harker_info(data)
+            if path == "/v1/allowed-origins":
+                return handlers.allowed_origins_info(data)
             if path == "/v1/subgroups":
                 return handlers.subgroups_info(data)
             if path == "/v1/ita-plate":

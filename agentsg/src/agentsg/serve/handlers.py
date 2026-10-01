@@ -7,6 +7,8 @@ from urllib.parse import urlencode
 from .. import (
     ReciprocalAsu,
     equivalent_reflections,
+    discrete_allowed_origins,
+    floating_origin_basis,
     harker_sections,
     identify_space_group,
     is_systematically_absent,
@@ -62,6 +64,7 @@ TOOL_CONCEPTS: dict[str, list[str]] = {
         "epsilon_factor", "equivalent_reflections",
     ],
     "harker_info": ["harker_section", "symmetry_operation"],
+    "allowed_origins_info": ["allowed_origins", "floating_origin"],
     "site_info": ["site_symmetry", "wyckoff_position", "crystallographic_orbit"],
     "subgroups_info": ["subgroup", "t_subgroup", "k_subgroup"],
     "lattice_symmetry_info": [
@@ -222,6 +225,21 @@ def harker_info(data: dict[str, Any]) -> dict[str, Any]:
             }
             for loc in loci
         ],
+    })
+
+
+def allowed_origins_info(data: dict[str, Any]) -> dict[str, Any]:
+    """Discrete alternative origins, with floating directions pinned to zero."""
+    rec = resolve_sg(data.get("sg"))
+    ops = list(rec.operations())
+    origins = discrete_allowed_origins(ops)
+    floating = floating_origin_basis(ops)
+    return _with_concepts("allowed_origins_info", {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "n_origins": len(origins),
+        "origins": [vec_to_json(o) for o in origins],
+        "floating_origin": [vec_to_json(v) for v in floating],
     })
 
 
@@ -437,6 +455,22 @@ def _as_bool(raw) -> bool:
     return str(raw).lower() in ("1", "true", "yes")
 
 
+def _cob_angle_sigma(data: dict[str, Any]) -> float:
+    from ..cell.selling_cob import DEFAULT_COB_ANGLE_SIGMA_DEG
+    raw = data.get("angle_sigma")
+    if raw is None or raw == "":
+        return DEFAULT_COB_ANGLE_SIGMA_DEG
+    return float(raw)
+
+
+def _cob_boundary_rel(data: dict[str, Any]) -> float:
+    from ..cell.selling_cob import DEFAULT_COB_BOUNDARY_REL
+    raw = data.get("boundary_rel")
+    if raw is None or raw == "":
+        return DEFAULT_COB_BOUNDARY_REL
+    return float(raw)
+
+
 def plate_png_args(data: dict[str, Any]) -> tuple[Any, str, bool, bool]:
     sg = resolve_plate_sg(data)
     system = getattr(sg, "crystal_system", None)
@@ -625,7 +659,11 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
         }
         if return_cob:
             from ..cell.selling_cob import annotate_search_hits
-            annotate_search_hits(state.db, cell, rec.hermann_mauguin, enriched)
+            annotate_search_hits(
+                state.db, cell, rec.hermann_mauguin, enriched,
+                angle_sigma=_cob_angle_sigma(data),
+                boundary_rel=_cob_boundary_rel(data),
+            )
     else:
         if cutoff is None:
             raise ValueError("provide cutoff (Å) and/or k")
@@ -637,6 +675,8 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             sg_hm=rec.hermann_mauguin,
             same_hm=same_hm,
             return_cob=return_cob,
+            angle_sigma=_cob_angle_sigma(data),
+            boundary_rel=_cob_boundary_rel(data),
         )
     if _as_bool(data.get("plot", False)):
         _attach_root_plot(state, result)

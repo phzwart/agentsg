@@ -194,6 +194,13 @@ def test_site_reflections_harker_cell():
         status, hk = _fetch(f"{base}/v1/harker", {"sg": 19})
         assert status == 200
         assert hk["loci"]
+        status, origins = _fetch(f"{base}/v1/allowed-origins?sg=225")
+        assert status == 200
+        assert origins["n_origins"] == 2
+        assert ["0", "0", "0"] in origins["origins"]
+        assert ["0", "0", "1/2"] in origins["origins"]
+        assert origins["floating_origin"] == []
+        assert "allowed_origins" in origins["concepts"]
         status, graph = _fetch(f"{base}/v1/subgroups?sg=96")
         assert status == 200
         assert graph["sg_number"] == 96

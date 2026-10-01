@@ -191,6 +191,20 @@ ENDPOINTS: list[dict[str, Any]] = [
         "_op_ids": {"GET": "harkerGet", "POST": "harker"},
     },
     {
+        "path": "/v1/allowed-origins",
+        "methods": ["GET", "POST"],
+        "description": (
+            "Discrete alternative origins of a space group, with floating-origin "
+            "directions pinned to zero"
+        ),
+        "params": [
+            _p("sg", "string", True, "IT number, Hermann–Mauguin, or Hall"),
+        ],
+        "example": _curl("/v1/allowed-origins?sg=225"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "allowedOriginsGet", "POST": "allowedOrigins"},
+    },
+    {
         "path": "/v1/subgroups",
         "methods": ["GET", "POST"],
         "description": (
@@ -433,6 +447,10 @@ ENDPOINTS: list[dict[str, Any]] = [
                "If true, SVD the hit Kurlin roots and return a PC1–PC2 scatter PNG"),
             _p("return_cob", "bool", False,
                "If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within 0.75% and 0.5°, plus cob_residual (null if none)"),
+            _p("angle_sigma", "float", False,
+               "Degrees. Zero-conorm width for the query Selling closure (default 0.05)"),
+            _p("boundary_rel", "float", False,
+               "Relative width for near-zero conorm flips in the query closure (default 1e-3)"),
         ],
         "example": _curl(
             "/search?a=79&b=79&c=38&alpha=90&beta=90&gamma=90&sg=P212121&cutoff=1.0"
@@ -454,6 +472,10 @@ ENDPOINTS: list[dict[str, Any]] = [
                "If true, mean-centred SVD of the hit Kurlin roots; response adds xy, svd, and plot_png_base64"),
             _p("return_cob", "bool", False,
                "If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within 0.75% and 0.5°, plus cob_residual (null if none)"),
+            _p("angle_sigma", "float", False,
+               "Degrees. Zero-conorm width for the query Selling closure (default 0.05)"),
+            _p("boundary_rel", "float", False,
+               "Relative width for near-zero conorm flips in the query closure (default 1e-3)"),
         ],
         "example": _curl(
             "/v1/pdb/search",

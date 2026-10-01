@@ -113,6 +113,8 @@ def search_compatible(
     same_hm: bool = False,
     same_sg: bool | None = None,
     return_cob: bool = False,
+    angle_sigma: float | None = None,
+    boundary_rel: float | None = None,
 ) -> dict[str, Any]:
     """Return PDB ids within ``cutoff`` Å (root distance) of ``cell``.
 
@@ -146,8 +148,20 @@ def search_compatible(
             rec["cell"] = info["cell"]
         enriched.append(rec)
     if return_cob:
-        from .selling_cob import annotate_search_hits
-        annotate_search_hits(db, cell, sg_hm, enriched)
+        from .selling_cob import (
+            DEFAULT_COB_ANGLE_SIGMA_DEG,
+            DEFAULT_COB_BOUNDARY_REL,
+            annotate_search_hits,
+        )
+        annotate_search_hits(
+            db, cell, sg_hm, enriched,
+            angle_sigma=(
+                DEFAULT_COB_ANGLE_SIGMA_DEG if angle_sigma is None else angle_sigma
+            ),
+            boundary_rel=(
+                DEFAULT_COB_BOUNDARY_REL if boundary_rel is None else boundary_rel
+            ),
+        )
     return {
         "cell": list(cell),
         "sg_number": sg_number,
