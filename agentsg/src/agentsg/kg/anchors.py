@@ -3,7 +3,9 @@ from __future__ import annotations
 import ast, hashlib, json, sys
 from pathlib import Path
 
-SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("../agentsg/agentsg/src")
+_HERE = Path(__file__).resolve().parent
+SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else _HERE.parents[2]
+OUT_PATH = Path(sys.argv[2]) if len(sys.argv) > 2 else _HERE / "anchors.json"
 sys.path.insert(0, str(Path(__file__).parent))
 from concepts import CONCEPTS  # noqa: E402
 from quotes import first_sentence  # noqa: E402
@@ -71,9 +73,10 @@ def main():
                         "kind": "module" if symbol == "" else type(node).__name__,
                         "line": lineno, "exact": quote,
                         "sha256": f["sha256"], "uri": REPO_URL + module})
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     json.dump({"anchors": out,
                "files": {m: f["sha256"] for m, f in files.items()}},
-              open(Path(__file__).parent / "anchors.json", "w"), indent=1)
+              open(OUT_PATH, "w"), indent=1)
     print(len(CONCEPTS), "concepts;", len(out), "anchors;", len(files), "files;", len(problems), "problems")
     for p in problems:
         print("  -", p)

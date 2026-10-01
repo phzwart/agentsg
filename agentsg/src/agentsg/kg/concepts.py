@@ -71,7 +71,8 @@ c("hall_symbol", "Hall space-group symbol", "crystallography",
   "Compact notation (Hall 1981) encoding the lattice centring and generator operations of a space group, including an optional origin shift in twelfths; parsed into generators.",
   [("agentsg/hall.py", ""), ("agentsg/hall.py", "parse_hall")],
   [("RELATED_TO", "hermann_mauguin_symbol"), ("USES", "lattice_centring"), ("USES", "origin_shift")],
-  wiki="Hall notation", refs=["Hall, S. R. (1981). Acta Cryst. A37, 517", "ITA Vol. B 1.4"])
+  wiki="Hall notation", refs=["Hall, S. R. (1981). Acta Cryst. A37, 517", "ITA Vol. B 1.4"],
+  aliases=["Hall notation"])
 c("hermann_mauguin_symbol", "Hermann–Mauguin symbol", "crystallography",
   "The international (ITA) symbol of a space group or point group; agentsg resolves HM, Hall and number, and prints extended HM symbols with a parenthesised change of basis.",
   [("agentsg/space_groups.py", "space_group"), ("agentsg/ita_settings.py", "display_hm"), ("agentsg/cell/diagrams.py", "_display_hm")],
@@ -86,6 +87,7 @@ c("extended_setting_notation", "Extended setting notation (symbol + change of ba
   "A base space-group symbol followed by a parenthesised change of basis, e.g. 'C 2y (x+y,z,x-y)'; when det P ≠ 1 the transform introduces centring translations.",
   [("agentsg/setting.py", ""), ("agentsg/setting.py", "parse_cob"), ("agentsg/setting.py", "SpaceGroupSetting")],
   [("USES", "change_of_basis"), ("USES", "lattice_centring"), ("USES", "group_closure")],
+  iucr="Hermann-Mauguin symbols",
   refs=["Zwart, Grosse-Kunstleve & Adams, Exploring Metric Symmetry, IUCr Comp. Comm. Newsletter 7 (2006)"])
 c("change_of_basis", "Change of basis / coordinate transformation (P, p)", "crystallography",
   "A transformation of the crystallographic basis and origin: (a',b',c') = (a,b,c)P, x' = P⁻¹(x − p), W' = P⁻¹WP, and Miller indices transform covariantly h' = hP.",
@@ -259,7 +261,7 @@ c("systematic_absences", "Systematic absences (extinctions)", "crystallography",
   [("USES", "structure_factor_phase"), ("USES", "stabilizer"), ("RELATED_TO", "reflection_conditions")],
   iucr="Systematic absences", wiki="Systematic absence", aliases=["extinctions"])
 c("reflection_conditions", "Reflection conditions", "crystallography",
-  "The ITA-style statements (integral, zonal, serial) of which reflections can be present; derived as sublattices of present reflections on each stratum.",
+  "Generator-derived congruences for which reflections can be present, pruned against the Smith-form lattice of each stratum and reported as integral, zonal, and serial conditions. Not a transcription of the International Tables lists.",
   [("agentsg/reflection_lattice.py", "reflection_conditions"), ("agentsg/reflections.py", "reflection_conditions")],
   [("USES", "systematic_absences"), ("USES", "reflection_stratum"), ("USES", "dual_lattice"), ("USES", "smith_normal_form")],
   iucr="Reflection conditions", wiki="Systematic absence")
@@ -291,7 +293,7 @@ c("augmented_translation_lattice", "Augmented translation lattice Λ_S and its d
 c("centric_reflection", "Centric reflection / phase restriction", "crystallography",
   "A reflection mapped to −h by some operation has its phase restricted to two values; agentsg reports absence, centricity and the restricted phase (SgInfo semantics).",
   [("agentsg/group.py", "is_reflection_centric"), ("agentsg/group.py", "PhaseRestriction")],
-  [("USES", "structure_factor_phase"), ("RELATED_TO", "friedel_law")],
+  [("USES", "structure_factor_phase"), ("RELATED_TO", "friedel_law"), ("RELATED_TO", "wilson_statistics")],
   iucr="Centric and acentric distribution", wiki="Structure factor")
 c("friedel_law", "Friedel's law", "crystallography",
   "|F(h)| = |F(−h)| in the absence of anomalous scattering, so the diffraction pattern has the Laue symmetry.",
@@ -306,8 +308,8 @@ c("equivalent_reflections", "Symmetry-equivalent reflections", "crystallography"
 c("epsilon_factor", "Epsilon factor (reflection stabilizer order)", "crystallography",
   "The number of point-group operations fixing h; the expected intensity enhancement factor ε of Wilson statistics.",
   [("agentsg/reflections.py", "epsilon_factor"), ("agentsg/reflections.py", "reflection_multiplicity")],
-  [("IS_A", "stabilizer"), ("USES", "orbit_stabilizer_theorem")],
-  wiki="Structure factor")
+  [("IS_A", "stabilizer"), ("USES", "orbit_stabilizer_theorem"), ("RELATED_TO", "wilson_statistics")],
+  iucr="Centric and acentric distribution", wiki="Wilson plot")
 c("reciprocal_asu", "Reciprocal-space asymmetric unit", "crystallography",
   "A set of unique reflections under the Laue group (CCP4/cctbx/gemmi convention); agentsg maps hkl into it.",
   [("agentsg/asu.py", "ReciprocalAsu"), ("agentsg/cell/ambiguity.py", "_map_to_asu")],
@@ -775,6 +777,179 @@ c("matrix_order", "Order of a matrix / group element", "mathematics",
   "Smallest n with Wⁿ = I; 1, 2, 3, 4 or 6 for crystallographic rotations.",
   [("agentsg/reflection_lattice.py", "_matrix_order"), ("agentsg/lattice_symmetry.py", "_mat_pow_in_set")],
   [("RELATED_TO", "crystallographic_restriction")], iucr="Order (group theory)", wiki="Order (group theory)")
+
+# ---------------------------------------------------- drawn symmetry elements
+c("ita_graphical_symbols", "ITA graphical symbols for symmetry elements", "crystallography",
+  "The International Tables glyphs for axes and planes: polygon or lens for the rotation order, hooks for the screw index, and a styled line for a plane, drawn from the classified operations.",
+  [("agentsg/cell/diagrams.py", "draw_axis_symbol"), ("agentsg/cell/diagrams.py", "draw_plane_symbol")],
+  [("PART_OF", "ita_diagrams"), ("USES", "symmetry_element"), ("USES", "screw_axis"), ("USES", "glide_plane")],
+  iucr="Symmetry element", wiki="Symmetry element")
+c("ita_height_label", "ITA height and fraction labels", "crystallography",
+  "Printed heights of general-position images (a fraction of the projected coordinate, or a spelled-out coordinate for an inclined axis) and the single-glyph fractions used on the plate.",
+  [("agentsg/cell/diagrams.py", "height_label"), ("agentsg/cell/diagrams.py", "frac_label")],
+  [("PART_OF", "ita_diagrams"), ("USES", "general_position")],
+  wiki="International Tables for Crystallography")
+c("coordination_polyhedron", "Coordination polyhedron on a cubic plate", "crystallography",
+  "On a cubic plate the general-position images are joined into orthogonal polyhedra over the closed cell, one circle at each corner, instead of a flat height-labelled orbit.",
+  [("agentsg/cell/diagrams.py", "_draw_cubic_polyhedra"), ("agentsg/cell/diagrams.py", "_hull_polygon")],
+  [("PART_OF", "ita_diagrams"), ("USES", "general_position"), ("USES", "convex_hull")],
+  iucr="Symmetry element")
+c("projection_convention", "ITA projection convention", "crystallography",
+  "The projected cell outline and which axis is down the page: unique axis for a monoclinic group, otherwise c, taken from the operations rather than a stored plate.",
+  [("agentsg/cell/diagrams.py", "cell_frame"), ("agentsg/serve/handlers.py", "default_projection")],
+  [("PART_OF", "ita_diagrams"), ("USES", "crystal_system")],
+  wiki="International Tables for Crystallography",
+  aliases=["unique axis", "monoclinic unique axis"])
+
+def _glide(cid, label, definition):
+    c(cid, label, "crystallography", definition,
+      [("agentsg/cell/symmetry_elements.py", "_glide_symbol"), ("agentsg/hall.py", "_parse_generator")],
+      [("SPECIALIZES", "glide_plane")],
+      wiki="Glide plane")
+
+_glide("glide_a", "a-glide",
+       "A glide whose intrinsic translation is half the a edge. _glide_symbol returns the letter a for that reduced translation.")
+_glide("glide_b", "b-glide",
+       "A glide whose intrinsic translation is half the b edge. _glide_symbol returns the letter b for that reduced translation.")
+_glide("glide_c", "c-glide",
+       "A glide whose intrinsic translation is half the c edge. _glide_symbol returns the letter c for that reduced translation.")
+_glide("glide_n", "n-glide",
+       "A diagonal glide of half a face or body diagonal on a coordinate plane. _glide_symbol returns n for that case, and g for the hexagonal and some tetragonal diagonals it does not call n.")
+_glide("glide_d", "d-glide",
+       "A diamond glide: a quarter of a face or body diagonal. _glide_symbol returns d when four times the intrinsic translation is integral and two times is not.")
+_glide("glide_e", "e-glide",
+       "The double glide IUCr denotes e, used in the 2016 short symbols of five space groups. _glide_symbol never returns e; those and other leftover diagonal glides come back as g, and the Hermann-Mauguin lookup keeps the pre-2016 names.")
+
+def _screw(cid, label, definition):
+    c(cid, label, "crystallography", definition,
+      [("agentsg/cell/symmetry_elements.py", "_screw_index"), ("agentsg/hall.py", "_parse_generator")],
+      [("SPECIALIZES", "screw_axis")],
+      wiki="Screw axis")
+
+_screw("screw_21", "2₁ screw axis",
+       "A twofold rotation plus half the axis period. _screw_index returns 1 when the intrinsic translation is half the period; the Hall parser reads a screw digit t as translation t/N.")
+_screw("screw_31", "3₁ screw axis",
+       "A threefold rotation plus one third of the axis period. The screw index is 1.")
+_screw("screw_32", "3₂ screw axis",
+       "A threefold rotation plus two thirds of the axis period, the opposite hand of 3₁. The screw index is 2. Intensities are not used to choose between them.")
+_screw("screw_41", "4₁ screw axis",
+       "A fourfold rotation plus one quarter of the axis period. The screw index is 1.")
+_screw("screw_42", "4₂ screw axis",
+       "A fourfold rotation plus half the axis period. The screw index is 2.")
+_screw("screw_43", "4₃ screw axis",
+       "A fourfold rotation plus three quarters of the axis period, the opposite hand of 4₁. The screw index is 3. Intensities are not used to choose between them.")
+_screw("screw_6", "Hexagonal screws 6₁–6₅",
+       "Sixfold screws with index 1 through 5: intrinsic translation k/6 of the axis period. _screw_index returns that k; 6₁ and 6₅, and 6₂ and 6₄, are opposite hands.")
+
+c("chiral_space_group", "Chiral space group (Sohncke group)", "crystallography",
+  "A space group with no inversion, mirror, glide, or rotoinversion, so it is not identical to its mirror image. Enantiomorphic pairs such as P4₁ and P4₃ are drawn with a comma on the opposite hand. The plate records handedness; intensities are not used to choose which member of a pair.",
+  [("agentsg/cell/diagrams.py", "_draw_position_mark")],
+  [("USES", "screw_axis"), ("RELATED_TO", "inversion_centre"), ("RELATED_TO", "glide_plane")],
+  iucr="Chiral space group", wiki="Sohncke groups", aliases=["Sohncke groups", "chirality", "enantiomorphic pair"])
+c("symmorphic_space_group", "Symmorphic space group", "crystallography",
+  "A space group that has an origin at which every operation's intrinsic translation vanishes, so the group is a semidirect product of a point group and the translation lattice. agentsg sees a zero intrinsic part on an operation; it does not emit a symmorphic flag.",
+  [("agentsg/hall.py", ""), ("agentsg/cell/symmetry_elements.py", "classify_element")],
+  [("SPECIALIZES", "space_group"), ("CONTRASTS_WITH", "nonsymmorphic_space_group"), ("USES", "intrinsic_translation")],
+  iucr="Symmorphic space groups")
+c("nonsymmorphic_space_group", "Non-symmorphic space group", "crystallography",
+  "A space group whose operations include a screw or a glide that cannot all be cleared by an origin shift. agentsg classifies a nonzero intrinsic part; it does not label the group non-symmorphic.",
+  [("agentsg/cell/symmetry_elements.py", "_reduce_intrinsic"), ("agentsg/hall.py", "_parse_generator")],
+  [("SPECIALIZES", "space_group"), ("CONTRASTS_WITH", "symmorphic_space_group"), ("USES", "screw_axis"), ("USES", "glide_plane")],
+  iucr="Symmorphic space groups")
+c("geometric_crystal_class", "Geometric crystal class", "crystallography",
+  "A conjugacy class of crystallographic point groups in O(3). agentsg derives the point group as the set of rotation parts W; it does not tabulate the 32 geometric classes by name.",
+  [("agentsg/group.py", "point_group")],
+  [("RELATED_TO", "point_group"), ("RELATED_TO", "crystal_system")],
+  iucr="Geometric crystal class", wiki="Crystallographic point group",
+  aliases=["crystal class"])
+c("arithmetic_crystal_class", "Arithmetic crystal class", "crystallography",
+  "A conjugacy class of finite subgroups of GL(3,Z): the point group as integer matrices on a lattice basis. The rotation parts agentsg stores are those integer matrices. No arithmetic-class number is tabulated.",
+  [("agentsg/group.py", "point_group"), ("agentsg/symmetry_op.py", "SymmetryOp")],
+  [("RELATED_TO", "geometric_crystal_class"), ("RELATED_TO", "unimodular_matrix"), ("USES", "point_group")],
+  iucr="Arithmetic crystal class", wiki="Crystallographic point group")
+c("bravais_class", "Bravais class", "crystallography",
+  "An arithmetic crystal class together with the centring type of the lattice: the classification of which the 14 Bravais lattices are the symmorphic members. agentsg distinguishes holohedry and centring letter; it does not emit a Bravais-class symbol.",
+  [("agentsg/lattice_symmetry.py", "lattice_symmetry"), ("agentsg/cell/primitive.py", "lattice_letter")],
+  [("USES", "bravais_lattice"), ("USES", "holohedry"), ("USES", "lattice_centring"), ("RELATED_TO", "arithmetic_crystal_class")],
+  iucr="Bravais class")
+c("wilson_statistics", "Wilson statistics (centric and acentric intensities)", "crystallography",
+  "The expected distributions of diffracted intensity for centric and acentric reflections, and the epsilon enhancement where the stabilizer of h is larger than 1. agentsg reports the centric phase restriction and the epsilon factor. It does not fit a Wilson plot.",
+  [("agentsg/reflections.py", "epsilon_factor"), ("agentsg/group.py", "is_reflection_centric")],
+  [("USES", "epsilon_factor"), ("USES", "centric_reflection")],
+  iucr="Centric and acentric distribution", wiki="Wilson plot")
+c("tolerance_gated_matching", "Tolerance-gated cell matching", "algorithm",
+  "Two cells match when edges agree within a percent and angles within a degree, or when a residual stays under a threshold calibrated on same-lattice pairs. This is a numeric gate. It is not the exact certificate given by equality over the Selling closure.",
+  [("agentsg/cell/reindex.py", "_cell_close"), ("agentsg/cell/compare.py", "_deviations"), ("agentsg/cell/selling_cob.py", "_param_residual"), ("agentsg/cell/canonical.py", "calibrate_verify_tol")],
+  [("CONTRASTS_WITH", "selling_closure"), ("USES", "metric_tensor")],
+  wiki="Lattice reduction")
+c("site_symmetry_stratum", "Site-symmetry stratum (direct-space fixed set)", "crystallography",
+  "The locus of points in the unit cell with a given site-symmetry stabilizer: the intersection of the fixed-point loci of those operations. This is the direct-space counterpart of a reflection stratum. The two are analogous stratifications by stabilizer, not a lattice dual of each other.",
+  [("agentsg/wyckoff.py", "fixed_locus"), ("agentsg/wyckoff.py", "site_symmetry_ops")],
+  [("USES", "site_symmetry"), ("USES", "fixed_point_locus"), ("RELATED_TO", "reflection_stratum"), ("RELATED_TO", "wyckoff_position")],
+  iucr="Wyckoff position", wiki="Wyckoff positions")
+c("twinning_pseudomerohedry", "Twinning by pseudomerohedry", "crystallography",
+  "Twin laws from a lattice holohedry that only approximately contains the crystal Laue group, so the obliquity is small but not zero. twin_laws and the ambiguity cosets enumerate these operators when the cell is within the length and angle tolerances. The obliquity itself is not reported.",
+  [("agentsg/cell/reindex.py", "twin_laws"), ("agentsg/cell/ambiguity.py", "reindexing_ambiguity_operators")],
+  [("SPECIALIZES", "twinning_merohedry"), ("USES", "tolerance_gated_matching"), ("USES", "coset")],
+  iucr="Twinning by pseudomerohedry", wiki="Twinning (crystallography)")
+c("twinning_reticular_merohedry", "Twinning by reticular merohedry", "crystallography",
+  "Twinning in which only a sublattice is restored by the twin operation. Dictionary context. twin_laws enumerates cosets of the Laue group in the lattice holohedry; it does not build a twin lattice or a twin index.",
+  [("agentsg/cell/reindex.py", "twin_laws")],
+  [("RELATED_TO", "twinning_merohedry"), ("RELATED_TO", "sublattice")],
+  iucr="Twinning by reticular merohedry", wiki="Twinning (crystallography)")
+c("twin_index", "Twin index", "crystallography",
+  "The index of the twin lattice in the crystal lattice. Dictionary context. The code does not compute it.",
+  [("agentsg/cell/reindex.py", "twin_laws")],
+  [("RELATED_TO", "twinning_reticular_merohedry"), ("RELATED_TO", "sublattice")],
+  iucr="Twin index", wiki="Twinning (crystallography)")
+c("twin_obliquity", "Twin obliquity", "crystallography",
+  "The angle by which a twin operation fails to be an exact symmetry of the lattice. Dictionary context. Tolerances gate which operators are returned; the angle is not reported.",
+  [("agentsg/cell/reindex.py", "_cell_close")],
+  [("RELATED_TO", "twinning_pseudomerohedry"), ("RELATED_TO", "tolerance_gated_matching")],
+  iucr="Twin obliquity", wiki="Twinning (crystallography)")
+c("twin_lattice", "Twin lattice", "crystallography",
+  "The sublattice restored by every twin operation of a twin. Dictionary context. The code returns twin-law matrices, not that sublattice.",
+  [("agentsg/cell/reindex.py", "twin_laws")],
+  [("RELATED_TO", "twinning_reticular_merohedry"), ("RELATED_TO", "sublattice")],
+  iucr="Twin lattice", wiki="Twinning (crystallography)")
+c("crystfel_stream", "CrystFEL stream", "crystallography",
+  "A CrystFEL .stream file: one indexed unit cell, and optionally the reciprocal-lattice orientation, for each crystal in a serial experiment. Cells are converted from nanometres to angstroms.",
+  [("agentsg/cell/crystfel_stream.py", ""), ("agentsg/cell/crystfel_stream.py", "parse_stream")],
+  [("USES", "indexed_cell_distribution")],
+  wiki="Serial femtosecond crystallography")
+c("indexed_cell_distribution", "Indexed cell distribution", "crystallography",
+  "The set of per-crystal unit cells written by the indexer, before merging averages them. parse_stream yields one cell dict per indexed crystal.",
+  [("agentsg/cell/crystfel_stream.py", "parse_stream")],
+  [("PART_OF", "crystfel_stream"), ("RELATED_TO", "indexing_ambiguity")],
+  wiki="Serial femtosecond crystallography")
+c("reference_orbit", "Reference orbit of Selling superbases", "crystallography",
+  "One Selling reduction of a deposited cell, the deposited-to-reduced change of basis, and the labeled closure of obtuse superbases used to match a neighbour.",
+  [("agentsg/cell/selling_cob.py", "reference_orbit"), ("agentsg/cell/selling_cob.py", "ReferenceOrbit")],
+  [("USES", "selling_closure"), ("USES", "change_of_basis"), ("PART_OF", "reindexing")],
+  wiki="Lattice reduction")
+c("pdb_lattice_search", "PDB lattice search pipeline", "algorithm",
+  "The same path for a query and for each stored PDB cell: conventional cell, primitive cell from the centring letter, Selling reduction, Kurlin root form, then a KD-tree radius query on the six root components.",
+  [("agentsg/cell/pdb_server.py", ""), ("agentsg/cell/celldb.py", ""), ("agentsg/cell/rootindex.py", "")],
+  [("USES", "conventional_cell"), ("USES", "primitive_cell"), ("USES", "delaunay_selling_reduction"), ("USES", "kurlin_root_form"), ("USES", "kd_tree")],
+  refs=["Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543"],
+  wiki="K-d tree")
+c("k_subgroup_iia", "Klassengleiche subgroup of type IIa", "crystallography",
+  "A klassengleiche subgroup on the same conventional cell: the point group stays, and a point-group-invariant proper subset of the centring translations is dropped. Primitive groups have no IIa edge. This is derived from the operators, not from an ITA A1 maximality table.",
+  [("agentsg/subgroups.py", "_k_iia_edges")],
+  [("SPECIALIZES", "k_subgroup"), ("CONTRASTS_WITH", "k_subgroup_iib"), ("USES", "lattice_centring")],
+  iucr="Klassengleiche subgroups", aliases=["IIa", "type IIa"])
+c("k_subgroup_iib", "Klassengleiche subgroup of type IIb", "crystallography",
+  "A klassengleiche subgroup of a primitive group from an invariant index-2 or index-3 sublattice of Z³. The point group is kept and the cell is enlarged. Infinite isomorphic series beyond those two indices are not enumerated.",
+  [("agentsg/subgroups.py", "_k_iib_edges")],
+  [("SPECIALIZES", "k_subgroup"), ("CONTRASTS_WITH", "k_subgroup_iia"), ("USES", "sublattice")],
+  iucr="Klassengleiche subgroups", aliases=["IIb", "type IIb"])
+c("conorm_noise_floor", "Closure-invariant conorm noise floor", "algorithm",
+  "One floor s = c · σ_θ · T applied to every Selling conorm, where T is the sum of the six conorms. Selling flips permute the conorms and leave T fixed, so the floor is the same on every member of the closure. It is not a separate floor on each pair.",
+  [("agentsg/cell/rootform.py", "noise_floor"), ("agentsg/cell/rootform.py", "pair_noise_scales")],
+  [("USES", "obtuse_superbase"), ("RELATED_TO", "kurlin_root_form"), ("RELATED_TO", "floating_point_tolerance")],
+  refs=["Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543"],
+  aliases=["noise floor", "conorm floor"])
+
 CONCEPTS = C
 
 # Secondary code anchors: further routines that embody an already-catalogued concept.
@@ -782,21 +957,21 @@ EXTRA_ANCHORS = {
     "allowed_origins": [("agentsg/semi_invariants.py", "is_allowed_origin"), ("agentsg/semi_invariants.py", "n_alternative_origins"), ("agentsg/semi_invariants.py", "origin_lattice"), ("agentsg/semi_invariants.py", "_nicest_generator")],
     "structure_seminvariant": [("agentsg/semi_invariants.py", "_congruence")],
     "harker_section": [("agentsg/harker.py", "HarkerLocus"), ("agentsg/harker.py", "HarkerConstraint"), ("agentsg/harker.py", "_normalize_constraint")],
-    "hall_symbol": [("agentsg/hall.py", "ops_from_hall"), ("agentsg/hall.py", "_parse_generator")],
-    "space_group_identification": [("agentsg/identify.py", "_identify_by_origin"), ("agentsg/identify.py", "_identify_by_cob"), ("agentsg/identify.py", "hall_from_ops")],
-    "k_subgroup": [("agentsg/subgroups.py", "_kernel_basis"), ("agentsg/subgroups.py", "_closed_primitive_sections")],
-    "subgroup": [("agentsg/subgroups.py", "subgroup_graph"), ("agentsg/subgroups.py", "SubgroupEdge")],
+    "hall_symbol": [("agentsg/hall.py", "ops_from_hall"), ("agentsg/hall.py", "_parse_generator"), ("agentsg/hall.py", "_parse_hall_body"), ("agentsg/ita_settings.py", "hall_for_ops")],
+    "space_group_identification": [("agentsg/identify.py", "_identify_by_origin"), ("agentsg/identify.py", "_identify_by_cob"), ("agentsg/identify.py", "hall_from_ops"), ("agentsg/identify.py", "IdentifyResult")],
+    "k_subgroup": [("agentsg/subgroups.py", "_kernel_basis"), ("agentsg/subgroups.py", "_closed_primitive_sections"), ("agentsg/subgroups.py", "_invariant_mod_p")],
+    "subgroup": [("agentsg/subgroups.py", "subgroup_graph"), ("agentsg/subgroups.py", "SubgroupEdge"), ("agentsg/subgroups.py", "_centering_subgroups"), ("agentsg/subgroups.py", "_is_T_invariant")],
     "lattice_symmetry_determination": [("agentsg/lattice_symmetry.py", "_reciprocal_axis"), ("agentsg/lattice_symmetry.py", "LatticeSymmetry"), ("agentsg/lattice_symmetry.py", "evaluate_two_folds"), ("agentsg/lattice_symmetry.py", "TwoFoldScore")],
-    "reflection_conditions": [("agentsg/reflection_lattice.py", "present_lattices"), ("agentsg/reflection_lattice.py", "is_absent_by_lattice"), ("agentsg/reflection_lattice.py", "stratum_conditions"), ("agentsg/reflection_lattice.py", "format_conditions")],
+    "reflection_conditions": [("agentsg/reflection_lattice.py", "present_lattices"), ("agentsg/reflection_lattice.py", "is_absent_by_lattice"), ("agentsg/reflection_lattice.py", "stratum_conditions"), ("agentsg/reflection_lattice.py", "format_conditions"), ("agentsg/reflections.py", "reflection_conditions_grid")],
     "linear_congruence": [("agentsg/reflection_lattice.py", "_congruence_index"), ("agentsg/reflections.py", "_reduce_constraint")],
     "equivalent_reflections": [("agentsg/reflections.py", "are_equivalent_reflections")],
-    "extended_setting_notation": [("agentsg/setting.py", "format_cob"), ("agentsg/setting.py", "_lattice_coset_ops"), ("agentsg/setting.py", "parse_setting")],
+    "extended_setting_notation": [("agentsg/setting.py", "format_cob"), ("agentsg/setting.py", "_lattice_coset_ops"), ("agentsg/setting.py", "parse_setting"), ("agentsg/setting.py", "SpaceGroupSetting")],
     "site_symmetry": [("agentsg/wyckoff.py", "site_symmetry_order")],
     "reindexing": [("agentsg/cell/selling_cob.py", "match_operators"), ("agentsg/cell/selling_cob.py", "deposited_to_reduced"), ("agentsg/cell/selling_cob.py", "selling_matrix"), ("agentsg/cell/selling_cob.py", "reference_orbit"),
                    ("agentsg/cell/canonical.py", "canonical_superbase"), ("agentsg/cell/canonical.py", "reindexing_operator_via_canonical"), ("agentsg/cell/canonical.py", "best_reindex_with_residual"), ("agentsg/cell/canonical.py", "_reindex_coset"), ("agentsg/cell/canonical.py", "reindex"), ("agentsg/cell/canonical.py", "calibrate_verify_tol"),
                    ("agentsg/cell/reindex.py", "reindexing_operator"), ("agentsg/cell/reindex.py", "_find_base_reindex"), ("agentsg/cell/reindex.py", "_lattice_symmetry_matrices")],
     "lattice_centring": [("agentsg/cell/diagrams.py", "_centring_translations"), ("agentsg/cell/diagrams.py", "_draw_centring_markers")],
-    "primitive_cell": [("agentsg/cell/primitive.py", "primitive_cell"), ("agentsg/cell/primitive.py", "lattice_letter"), ("agentsg/cell/rootindex.py", "_primitive_for_roots"), ("agentsg/cell/celldb.py", "_primitive_for_roots")],
+    "primitive_cell": [("agentsg/cell/primitive.py", "primitive_cell"), ("agentsg/cell/primitive.py", "lattice_letter"), ("agentsg/cell/rootindex.py", "_primitive_for_roots"), ("agentsg/cell/celldb.py", "_primitive_for_roots"), ("agentsg/cell/symmetry_elements.py", "primitive_lattice")],
     "neartree": [("agentsg/cell/neartree.py", "build_neartree")],
     "kd_tree": [("agentsg/cell/rootindex.py", "build_root_index"), ("agentsg/cell/neartree.py", "lattice_index")],
     "obtuse_superbase": [("agentsg/cell/rootform.py", "vonorms"), ("agentsg/cell/rootform.py", "vonorms_from_conorms"), ("agentsg/cell/rootform.py", "conorm_sum"), ("agentsg/cell/rootform.py", "_superbase_lengths"), ("agentsg/cell/selling_closure.py", "_conorm_sum")],
@@ -830,6 +1005,20 @@ EXTRA_ANCHORS = {
     "wyckoff_position": [("agentsg/wyckoff.py", "site_symmetry_order"), ("agentsg/wyckoff.py", "fixed_locus")],
     "laue_class": [("agentsg/asu.py", "_laue_ops"), ("agentsg/cell/ambiguity.py", "_laue_rows")],
     "svd_pca": [("agentsg/serve/scatter.py", "project_query"), ("agentsg/serve/scatter.py", "scatter_payload")],
+    "change_of_basis": [("agentsg/cell/selling_cob.py", "cob_column_values"), ("agentsg/cell/selling_cob.py", "parse_cob_columns"), ("agentsg/cell/selling_cob.py", "cob_xyz"), ("agentsg/cell/selling_cob.py", "annotate_search_hits")],
+    "screw_axis": [("agentsg/cell/symmetry_elements.py", "_screw_index"), ("agentsg/hall.py", "_parse_generator")],
+    "glide_plane": [("agentsg/hall.py", "_parse_generator")],
+    "space_group": [("agentsg/space_groups.py", "SpaceGroup")],
+    "ita_setting": [("agentsg/ita_settings.py", "settings_for_number"), ("agentsg/ita_settings.py", "match_ops")],
+    "g6_s6_embedding": [("agentsg/cell/g6.py", "g6"), ("agentsg/cell/g6.py", "s6")],
+    "pdb_lattice_search": [("agentsg/cell/pdb_server.py", "search_compatible")],
+    "crystfel_stream": [("agentsg/cell/crystfel_stream.py", "read_cells")],
+    "indexed_cell_distribution": [("agentsg/cell/crystfel_stream.py", "stream_summary")],
+    "ita_diagrams": [("agentsg/cell/diagrams.py", "ita_plate")],
+    "ita_graphical_symbols": [("agentsg/cell/diagrams.py", "draw_parallel_plane_symbol"), ("agentsg/cell/diagrams.py", "symbol_legend"), ("agentsg/cell/diagrams.py", "element_legend")],
+    "asymmetric_unit": [("agentsg/asu.py", "AxisBound")],
+    "dirichlet_domain": [("agentsg/asu.py", "OptimizedAsu")],
+    "projection_convention": [("agentsg/serve/handlers.py", "_unique_axis")],
 }
 for _cid, _extra in EXTRA_ANCHORS.items():
     for _c in C:

@@ -286,6 +286,7 @@ def _close_T(seed: Iterable[Vector3], universe: frozenset[Vector3]) -> frozenset
 
 
 def _centering_subgroups(T: frozenset[Vector3]) -> list[frozenset[Vector3]]:
+    """Closed subgroups of a centring-translation set, excluding T itself."""
     nonzero = [t for t in T if t != ZERO3]
     found = {frozenset([ZERO3])}
     for r in range(1, len(nonzero) + 1):
@@ -297,6 +298,7 @@ def _centering_subgroups(T: frozenset[Vector3]) -> list[frozenset[Vector3]]:
 
 
 def _is_T_invariant(Tprime: frozenset[Vector3], Ws: frozenset[Matrix3]) -> bool:
+    """True when every rotation in Ws maps the translation set into itself."""
     for W in Ws:
         for t in Tprime:
             img = (W @ t).mod1()
@@ -358,6 +360,11 @@ def _drop_centering(ops: list[SymmetryOp], Tprime: frozenset[Vector3]) -> list[S
 
 
 def _k_iia_edges(rec: SpaceGroup) -> list[SubgroupEdge]:
+    """Klassengleiche IIa edges: same conventional cell, fewer centring translations.
+
+    Each edge keeps the point group and drops a point-group-invariant proper
+    subset of the centring translations. Primitive groups have none.
+    """
     ops = list(rec.operations())
     T = centering_translations(ops)
     if len(T) <= 1:
@@ -446,6 +453,7 @@ def _W_int(W: Matrix3) -> list[list[int]] | None:
 
 
 def _invariant_mod_p(Ws: frozenset[Matrix3], n: tuple[int, int, int], p: int) -> bool:
+    """True when n is an eigenvector of every W transpose, modulo p."""
     for W in Ws:
         Wi = _W_int(W)
         if Wi is None:

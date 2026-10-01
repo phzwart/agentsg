@@ -1,23 +1,27 @@
 """Build the agentsg concept knowledge graph.
 
-Outputs (in the concept_kg directory, which the server loads):
+Outputs (in ./out, which the server loads):
   agentsg_concepts.json       payload: concepts, relations, code evidence, references
   concept-schema.json         JSON Schema of the payload
   agentsg_kg.grits.jsonld     pygrits ledger (receipts for every claim)
   neo4j/*.csv, load.cypher    Neo4j import package + competency queries
+  README.md                   counts regenerated from the payload
 
 Refuses to write when ``git status --porcelain`` is non-empty unless
 ``--allow-dirty`` is passed. The payload records the commit hash and dirty flag.
 """
 from __future__ import annotations
-import csv, hashlib, json, subprocess, sys
+import csv, hashlib, json, re, subprocess, sys
 from pathlib import Path
 
-HERE = Path(__file__).parent
-REPO = HERE.parent.parent
-OUT = HERE.parent
+HERE = Path(__file__).resolve().parent
+REPO = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"], cwd=HERE, text=True,
+).strip())
+OUT = HERE / "out"
 sys.path.insert(0, str(HERE))
 from concepts import CONCEPTS  # noqa: E402
+from literature import lookup as literature_lookup  # noqa: E402
 from quotes import is_anaphoric, is_unreadable_markup, needles_for, page_matches, pick_sentence  # noqa: E402
 import pygrits  # noqa: E402
 
@@ -96,12 +100,13 @@ schema = {
                                    "sha256": {"type": "string"}}}},
                 "references": {"type": "array", "items": {
                     "type": "object", "required": ["source", "title", "url", "status"],
-                    "properties": {"source": {"enum": ["iucr", "wikipedia"]}, "title": {"type": "string"},
+                    "properties": {"source": {"enum": ["iucr", "wikipedia", "literature"]}, "title": {"type": "string"},
                                    "url": {"type": "string"}, "page_title": {"type": "string"},
-                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreadable-markup", "unreachable", "off-topic", "related"]},
+                                   "status": {"enum": ["quoted", "quoted-unverified-markup", "unreadable-markup", "unreachable", "off-topic", "related", "citation"]},
                                    "quote": {"type": "string"}, "prefix": {"type": "string"},
                                    "suffix": {"type": "string"}, "truncated": {"type": "boolean"},
-                                   "note": {"type": "string"}, "fetched": {"type": "string"}}}},
+                                   "note": {"type": "string"}, "fetched": {"type": "string"},
+                                   "doi": {"type": "string"}, "sha256": {"type": "string"}}}},
             },
         }
     },
@@ -161,10 +166,31 @@ for c in CONCEPTS:
             note = (note + " " if note else "") + "stripped markup left the sentence unreadable; quote withheld"
         else:
             status = "quoted-unverified-markup" if "unverified" in note else "quoted"
-        refs.append({"source": src, "title": key, "url": r.get("final_url") or r["url"],
-                     "page_title": page_title, "status": status,
-                     "quote": quote, "prefix": prefix, "suffix": suffix,
-                     "truncated": bool(r.get("truncated")), "note": note.strip(), "fetched": FETCH_DATE})
+        item = {"source": src, "title": key, "url": r.get("final_url") or r["url"],
+                "page_title": page_title, "status": status,
+                "quote": quote, "prefix": prefix, "suffix": suffix,
+                "truncated": bool(r.get("truncated")), "note": note.strip(), "fetched": FETCH_DATE}
+        # A content hash upgrades a verified sentence to how=quote. Markup that
+        # is still unverified stays derived: the hash would not be of the sentence.
+        if status == "quoted" and r.get("sha256"):
+            item["sha256"] = r["sha256"]
+        refs.append(item)
+    for citation in c["refs"]:
+        hit = literature_lookup(citation)
+        refs.append({
+            "source": "literature",
+            "title": citation,
+            "url": hit.get("url") or "",
+            "page_title": hit.get("title") or citation,
+            "status": "citation",
+            "quote": "",
+            "prefix": "",
+            "suffix": "",
+            "truncated": False,
+            "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+            "fetched": FETCH_DATE,
+            "doi": hit.get("doi") or "",
+        })
     payload["concepts"].append({
         "id": c["id"], "label": c["label"], "kind": c["kind"], "aliases": c["aliases"],
         "definition": c["definition"], "literature": c["refs"],
@@ -199,13 +225,35 @@ for pc in payload["concepts"]:
                                  "selector": {"@type": "oa:TextQuoteSelector", "exact": a["quote"]}},
                       "summary": f"{a['module']}:{a['symbol'] or '<module docstring>'} line {a['line']}"})
         used.append(eid); n_quote += 1
+    lit_n = 0
     for r in pc["references"]:
+        if r["source"] == "literature":
+            lit_n += 1
+            eid = f"evi:lit:{cid}:{lit_n}"
+            where = r.get("url") or "no DOI or URL confirmed"
+            graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "how": "derived", "agent": AGENT,
+                          "rationale": "Bibliographic pointer copied from the concept's literature list. No abstract sentence was fetched, so this is not a quote.",
+                          "summary": f"{r['title']} {where}".strip()})
+            n_ref += 1
+            used.append(eid)
+            continue
         eid = f"evi:ref:{cid}:{r['source']}"
-        if r["status"] in ("unreachable", "off-topic", "unreadable-markup") or not r.get("quote"):
+        if r.get("sha256") and r.get("quote") and r["status"] == "quoted":
+            sel = {"@type": "oa:TextQuoteSelector", "exact": r["quote"]}
+            if r.get("prefix"): sel["prefix"] = r["prefix"]
+            if r.get("suffix"): sel["suffix"] = r["suffix"]
+            graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "how": "quote", "agent": AGENT,
+                          "source": {"uri": r["url"], "sha256": r["sha256"], "media_type": "application/json"},
+                          "target": {"hasSource": r["url"], "selector": sel},
+                          "summary": f"{r['source']} definition of '{r.get('page_title', r['title'])}'"})
+            n_ref += 1
+        elif r["status"] in ("unreachable", "off-topic", "unreadable-markup") or not r.get("quote"):
             if r["status"] == "off-topic":
                 why = "page title does not match this concept, so the lede was not quoted"
             elif r["status"] == "unreadable-markup":
                 why = "markup stripping left the sentence unreadable, so it was not quoted"
+            elif r["status"] == "citation":
+                why = "bibliographic pointer only"
             else:
                 why = "the page could not be retrieved, so existence and wording are undetermined"
             graph.append({"@id": eid, "@type": "prov:Entity", "plan": plan_id, "agent": AGENT,
@@ -245,6 +293,27 @@ for pc in payload["concepts"]:
                   "used": used, "generated": generated,
                   "started_at": f"{FETCH_DATE}T00:00:00Z", "ended_at": f"{FETCH_DATE}T23:59:59Z"})
 
+def _code_ids(concept_id: str) -> list[str]:
+    for pc in payload["concepts"]:
+        if pc["id"] == concept_id:
+            return [f"evi:code:{concept_id}:{i}" for i in range(len(pc["code_evidence"]))]
+    return []
+
+for step, depends in (
+    ("conventional", "conventional_cell"),
+    ("primitive", "primitive_cell"),
+    ("selling", "delaunay_selling_reduction"),
+    ("root", "kurlin_root_form"),
+    ("kdtree", "kd_tree"),
+):
+    used = _code_ids(depends)[:1]
+    if not used or "ent:concept:pdb_lattice_search" not in {n["@id"] for n in graph}:
+        continue
+    graph.append({"@id": f"act:pdb:{step}", "@type": "prov:Activity", "plan": plan_id, "kind": "derivation",
+                  "performed_by": AGENT, "plan_step": f"pplan:steps/pdb_search/{step}",
+                  "used": used, "generated": ["ent:concept:pdb_lattice_search"],
+                  "started_at": f"{FETCH_DATE}T00:00:00Z", "ended_at": f"{FETCH_DATE}T23:59:59Z"})
+
 ledger = {"@context": "https://phzwart.github.io/pygrits/context.jsonld", "@graph": graph}
 bundle = pygrits.load(ledger)
 pygrits.validate(bundle)
@@ -276,19 +345,29 @@ for c in payload["concepts"]:
 w("code_evidence.csv", code_rows, ["id:ID(Evidence)", "module", "symbol", "symbol_kind", "line:int", "quote", "uri", "sha256", ":LABEL"])
 w("code_evidence_edges.csv", code_edges, [":START_ID(Concept)", ":END_ID(Evidence)", ":TYPE"])
 ref_rows, ref_edges, seen = [], [], set()
+_LABEL = {"iucr": "IUCr", "wikipedia": "Wikipedia", "literature": "Literature"}
+lit_count: dict[str, int] = {}
 for c in payload["concepts"]:
     for r in c["references"]:
-        rid = f"ref:{r['source']}:{r['title']}"
+        if r["source"] == "literature":
+            lit_count[c["id"]] = lit_count.get(c["id"], 0) + 1
+            receipt = f"evi:lit:{c['id']}:{lit_count[c['id']]}"
+            slug = re.sub(r"[^a-z0-9]+", "", r["title"].lower())[:48]
+            rid = f"ref:literature:{slug}"
+        else:
+            receipt = f"evi:ref:{c['id']}:{r['source']}"
+            rid = f"ref:{r['source']}:{r['title']}"
         if rid not in seen:
             seen.add(rid)
             ref_rows.append({"id:ID(Reference)": rid, "source": r["source"], "title": r["title"],
                              "page_title": r.get("page_title", ""), "url": r["url"], "status": r["status"],
                              "quote": r.get("quote", ""), "prefix": r.get("prefix", ""), "suffix": r.get("suffix", ""),
                              "truncated:boolean": str(bool(r.get("truncated"))).lower(), "note": r.get("note", ""),
-                             "fetched": r["fetched"], ":LABEL": "Reference;" + ("IUCr" if r["source"] == "iucr" else "Wikipedia")})
+                             "fetched": r["fetched"], "doi": r.get("doi", ""),
+                             ":LABEL": "Reference;" + _LABEL.get(r["source"], "Reference")})
         ref_edges.append({":START_ID(Concept)": c["id"], ":END_ID(Reference)": rid, ":TYPE": "DEFINED_IN",
-                          "receipt": f"evi:ref:{c['id']}:{r['source']}"})
-w("references.csv", ref_rows, ["id:ID(Reference)", "source", "title", "page_title", "url", "status", "quote", "prefix", "suffix", "truncated:boolean", "note", "fetched", ":LABEL"])
+                          "receipt": receipt})
+w("references.csv", ref_rows, ["id:ID(Reference)", "source", "title", "page_title", "url", "status", "quote", "prefix", "suffix", "truncated:boolean", "note", "fetched", "doi", ":LABEL"])
 w("reference_edges.csv", ref_edges, [":START_ID(Concept)", ":END_ID(Reference)", ":TYPE", "receipt"])
 
 (OUT / "neo4j" / "load.cypher").write_text('''// agentsg concept knowledge graph -- Neo4j 5 loader (LOAD CSV; copy the CSVs into the import/ directory)
@@ -317,9 +396,11 @@ LOAD CSV WITH HEADERS FROM 'file:///references.csv' AS row
 MERGE (r:Reference {id: row.`id:ID(Reference)`})
 SET r.source = row.source, r.title = row.title, r.page_title = row.page_title, r.url = row.url,
     r.status = row.status, r.quote = row.quote, r.prefix = row.prefix, r.suffix = row.suffix,
-    r.truncated = toBoolean(row.`truncated:boolean`), r.note = row.note, r.fetched = row.fetched
+    r.truncated = toBoolean(row.`truncated:boolean`), r.note = row.note, r.fetched = row.fetched,
+    r.doi = row.doi
 WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'iucr' SET r:IUCr }
 WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'wikipedia' SET r:Wikipedia }
+WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'literature' SET r:Literature }
 RETURN count(r);
 
 LOAD CSV WITH HEADERS FROM 'file:///reference_edges.csv' AS row
@@ -350,7 +431,24 @@ MATCH (a)-[r:DUAL_OF|CONTRASTS_WITH]->(b) RETURN a.label, type(r), b.label;
 // 7. Everything a module touches
 MATCH (c:Concept)-[:HAS_CODE_EVIDENCE]->(e {module: 'agentsg/semi_invariants.py'}) RETURN DISTINCT c.id, c.label;
 ''')
-print("neo4j:", len(payload["concepts"]), "concepts,", len(code_rows), "code evidence,", len(ref_rows), "references,", sum(len(c["relations"]) for c in payload["concepts"]), "relations")
+n_concepts = len(payload["concepts"])
+n_relations = sum(len(c["relations"]) for c in payload["concepts"])
+n_anchors = len(code_rows)
+n_references = len(ref_rows)
+n_unverified = sum(1 for c in payload["concepts"] for r in c["references"] if r["status"] == "quoted-unverified-markup")
+n_unreachable = sum(1 for c in payload["concepts"] for r in c["references"] if r["status"] == "unreachable")
+(OUT / "README.md").write_text(
+    "# agentsg concept knowledge graph\n\n"
+    "Generated by `python build.py`. Do not edit files in this directory by hand.\n\n"
+    f"- concepts: {n_concepts}\n"
+    f"- relations: {n_relations}\n"
+    f"- anchors: {n_anchors}\n"
+    f"- references: {n_references}\n"
+    f"- unverified: {n_unverified}\n"
+    f"- unreachable: {n_unreachable}\n"
+    f"- snapshot: {SNAPSHOT['commit']} dirty={str(SNAPSHOT['dirty']).lower()}\n"
+)
+print("neo4j:", n_concepts, "concepts,", n_anchors, "code evidence,", n_references, "references,", n_relations, "relations")
 print("snapshot:", SNAPSHOT["commit"], "dirty=" + str(SNAPSHOT["dirty"]).lower())
 lingering = [
     f"{c['id']} [{ref['source']}] {ref.get('quote','')}"

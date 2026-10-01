@@ -77,6 +77,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
 | What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |
+| A result lists `concepts` | Call `GET /v1/concept?id=` on each id before explaining the term, and quote the reference `quote` with its `url` and `status` |
 | What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |
 | What uses this concept? | `GET /v1/concept/used-by?id=smith_normal_form&depth=2` |
 | Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |

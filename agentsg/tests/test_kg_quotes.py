@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "concept_kg" / "builder"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src" / "agentsg" / "kg"))
 
 from quotes import (  # noqa: E402
     first_sentence,

@@ -16,7 +16,9 @@ from .app import ServerState
 from .concepts import (
     concept_count,
     concept_info,
+    concept_neighbors as concept_neighbors_query,
     concept_module as concept_module_query,
+    concept_search as concept_search_query,
     concept_receipt as concept_receipt_query,
     concept_used_by as concept_used_by_query,
     concept_uses as concept_uses_query,
@@ -111,6 +113,10 @@ def _mcp_playbook(base: str) -> str:
     body = body.replace(
         "| What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |",
         "| What does this word mean here, and where is it in the code? | `concept` with `q`, then `concept` with `id` of the top hit |",
+    )
+    body = body.replace(
+        "| A result lists `concepts` | Call `GET /v1/concept?id=` on each id before explaining the term, and quote the reference `quote` with its `url` and `status` |",
+        "| A result lists `concepts` | Call `concept` with each id before explaining the term, and quote the reference `quote` with its `url` and `status` |",
     )
     body = body.replace(
         "| What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |",
@@ -459,6 +465,25 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         Sample: where is the Smith normal form implemented?
         """
         return _result(concept_info, _clean({"q": q or None, "id": id or None, "limit": limit}))
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_search(q: str, limit: int = 8) -> dict[str, Any]:
+        """Token-overlap search of concept labels, aliases, and definitions.
+
+        q: words such as "Smith normal form". Returns hits with id and definition.
+        """
+        return _result(concept_search_query, {"q": q, "limit": limit})
+
+    @mcp.tool(annotations=_READONLY)
+    def concept_neighbors(id: str, relation: str = "", depth: int = 1) -> dict[str, Any]:
+        """Outgoing neighbours of a concept, optional relation filter, depth 1–3.
+
+        relation: USES, SPECIALIZES, IS_A, PART_OF, DUAL_OF, EQUIVALENT_TO,
+        RELATED_TO, DEFINED_BY, INSTANCE_OF, or CONTRASTS_WITH. Empty means all.
+        """
+        return _result(concept_neighbors_query, _clean({
+            "id": id, "relation": relation or None, "depth": depth,
+        }))
 
     @mcp.tool(annotations=_READONLY)
     def concept_uses(id: str, depth: int = 3) -> dict[str, Any]:

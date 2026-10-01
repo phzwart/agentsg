@@ -51,6 +51,41 @@ from .serialize import (
 )
 
 
+# Concept ids each tool exercises. Every id must exist in the concept payload.
+TOOL_CONCEPTS: dict[str, list[str]] = {
+    "space_group_info": [
+        "space_group", "hall_symbol", "hermann_mauguin_symbol", "point_group",
+        "reflection_conditions",
+    ],
+    "reflections_info": [
+        "reflection_conditions", "systematic_absences", "centric_reflection",
+        "epsilon_factor", "equivalent_reflections",
+    ],
+    "harker_info": ["harker_section", "symmetry_operation"],
+    "site_info": ["site_symmetry", "wyckoff_position", "crystallographic_orbit"],
+    "subgroups_info": ["subgroup", "t_subgroup", "k_subgroup"],
+    "lattice_symmetry_info": [
+        "lattice_symmetry_determination", "holohedry", "bravais_lattice", "metric_tensor",
+    ],
+    "compare_info": [
+        "kurlin_root_form", "selling_closure", "tolerance_gated_matching", "sublattice",
+    ],
+    "reindex_info": [
+        "reindexing", "indexing_ambiguity", "twinning_merohedry", "reference_orbit",
+    ],
+    "pdb_search": ["pdb_lattice_search", "kurlin_root_form", "kd_tree", "primitive_cell"],
+    "ita_plate_json": [
+        "ita_diagrams", "ita_graphical_symbols", "projection_convention", "general_position",
+    ],
+}
+
+
+def _with_concepts(tool: str, payload: dict[str, Any]) -> dict[str, Any]:
+    out = dict(payload)
+    out["concepts"] = list(TOOL_CONCEPTS[tool])
+    return out
+
+
 def _sg_payload(rec) -> dict[str, Any]:
     ops = list(rec.operations())
     pg = point_group(ops)
@@ -70,7 +105,7 @@ def _sg_payload(rec) -> dict[str, Any]:
 
 def space_group_info(data: dict[str, Any]) -> dict[str, Any]:
     rec = resolve_sg(data.get("sg"))
-    return _sg_payload(rec)
+    return _with_concepts("space_group_info", _sg_payload(rec))
 
 
 def setting_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -133,7 +168,7 @@ def site_info(data: dict[str, Any]) -> dict[str, Any]:
     xyz = parse_xyz_point(data.get("xyz"))
     ops = list(rec.operations())
     pts = orbit(xyz, ops)
-    return {
+    return _with_concepts("site_info", {
         "sg_number": rec.number,
         "sg_hm": rec.hermann_mauguin,
         "xyz": vec_to_json(xyz),
@@ -142,7 +177,7 @@ def site_info(data: dict[str, Any]) -> dict[str, Any]:
         "orbit": sorted(vec_to_json(p) for p in pts),
         "wyckoff_letter": None,
         "note": "ITA Wyckoff letters are not assigned; numeric orbit content only.",
-    }
+    })
 
 
 def reflections_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -170,13 +205,13 @@ def reflections_info(data: dict[str, Any]) -> dict[str, Any]:
         out["equivalent_hkls"] = [list(t) for t in eq.hkls]
         out["in_reciprocal_asu"] = rasu.is_in(hkl)
         out["asu_condition"] = rasu.condition_str
-    return out
+    return _with_concepts("reflections_info", out)
 
 
 def harker_info(data: dict[str, Any]) -> dict[str, Any]:
     rec = resolve_sg(data.get("sg"))
     loci = harker_sections(rec.operations())
-    return {
+    return _with_concepts("harker_info", {
         "sg_number": rec.number,
         "sg_hm": rec.hermann_mauguin,
         "loci": [
@@ -187,7 +222,7 @@ def harker_info(data: dict[str, Any]) -> dict[str, Any]:
             }
             for loc in loci
         ],
-    }
+    })
 
 
 def subgroups_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -199,7 +234,7 @@ def subgroups_info(data: dict[str, Any]) -> dict[str, Any]:
     maximal = data.get("maximal", True)
     if isinstance(maximal, str):
         maximal = maximal.lower() in ("1", "true", "yes")
-    return subgroup_graph(rec, kind=kind, maximal=bool(maximal))
+    return _with_concepts("subgroups_info", subgroup_graph(rec, kind=kind, maximal=bool(maximal)))
 
 
 def default_projection(crystal_system: str | None, sg=None) -> str:
@@ -334,7 +369,7 @@ def ita_plate_json(data: dict[str, Any], *, png_query: str) -> dict[str, Any]:
     if cob is not None:
         out["setting"] = format_cob(cob)
         out["cob"] = out["setting"]
-    return out
+    return _with_concepts("ita_plate_json", out)
 
 
 def _plate_copies(raw) -> list[dict[str, Any]]:
@@ -467,7 +502,7 @@ def lattice_symmetry_info(data: dict[str, Any]) -> dict[str, Any]:
             rec = resolve_sg(data["sg"])
             out["g6_distance_to_symmetry"] = distance_to_symmetry(
                 cell, pg(rec.operations()))
-    return out
+    return _with_concepts("lattice_symmetry_info", out)
 
 
 def compare_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -511,7 +546,7 @@ def compare_info(data: dict[str, Any]) -> dict[str, Any]:
                 for m in res.get("solutions", [])[:20]
             ],
         }
-    return out
+    return _with_concepts("compare_info", out)
 
 
 def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -521,7 +556,7 @@ def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
     angle_tol = float(data.get("angle_tol_deg", 2.0))
     ops = surface_geometric_operators(
         rec.number, cell, length_tol_pct=length_tol, angle_tol_deg=angle_tol)
-    return {
+    return _with_concepts("reindex_info", {
         "sg_number": rec.number,
         "sg_hm": rec.hermann_mauguin,
         "cell": list(cell),
@@ -538,7 +573,7 @@ def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
             }
             for g in ops
         ],
-    }
+    })
 
 
 def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
@@ -605,7 +640,7 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
         )
     if _as_bool(data.get("plot", False)):
         _attach_root_plot(state, result)
-    return result
+    return _with_concepts("pdb_search", result)
 
 
 def _attach_root_plot(state, result: dict[str, Any]) -> None:

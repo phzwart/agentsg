@@ -14,7 +14,9 @@ from .concepts import (
     concept_count,
     concept_info,
     concept_module,
+    concept_neighbors,
     concept_receipt,
+    concept_search,
     concept_used_by,
     concept_uses,
 )
@@ -162,6 +164,10 @@ def make_handler(state: ServerState):
                 return handlers.lattice_symmetry_info(query_to_body(qs))
             if path == "/v1/concept":
                 return concept_info(query_to_body(qs))
+            if path == "/v1/concept/search":
+                return concept_search(query_to_body(qs))
+            if path == "/v1/concept/neighbors":
+                return concept_neighbors(query_to_body(qs))
             if path == "/v1/concept/uses":
                 return concept_uses(query_to_body(qs))
             if path == "/v1/concept/used-by":
@@ -210,6 +216,10 @@ def make_handler(state: ServerState):
                 return handlers.reindex_info(data)
             if path == "/v1/concept":
                 return concept_info(data)
+            if path == "/v1/concept/search":
+                return concept_search(data)
+            if path == "/v1/concept/neighbors":
+                return concept_neighbors(data)
             if path == "/v1/concept/uses":
                 return concept_uses(data)
             if path == "/v1/concept/used-by":

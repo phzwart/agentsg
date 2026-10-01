@@ -4,8 +4,8 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "d0297508e0849a89a300ed630e6e2f54aa211e82",
-  "dirty": false
+  "commit": "211d536fa29de990eeed7c2aaa6b964fb2cbef3f",
+  "dirty": true
  },
  "concepts": [
   {
@@ -62,6 +62,15 @@
      "quote": "agentsg: exact-rational space-group algebra for all 230 groups.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/__init__.py",
      "sha256": "7a82b703f26aa7e0a1545931ed8fa9676735460f4257b79da17e812bcf9e8f7b"
+    },
+    {
+     "module": "agentsg/space_groups.py",
+     "symbol": "SpaceGroup",
+     "kind": "ClassDef",
+     "line": 304,
+     "quote": "A space group resolved from the standard-setting table.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py",
+     "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce"
     }
    ],
    "references": [
@@ -303,7 +312,7 @@
      "url": "https://en.wikipedia.org/wiki/Laue_group",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch unavailable: domain cache-only and page not cached (tried twice); existence not determined",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -369,7 +378,7 @@
      "url": "https://en.wikipedia.org/wiki/Holohedry",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch: domain is cache-only and page not cached; existence unknown",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -636,7 +645,9 @@
    "id": "hall_symbol",
    "label": "Hall space-group symbol",
    "kind": "crystallography",
-   "aliases": [],
+   "aliases": [
+    "Hall notation"
+   ],
    "definition": "Compact notation (Hall 1981) encoding the lattice centring and generator operations of a space group, including an optional origin shift in twelfths; parsed into generators.",
    "literature": [
     "Hall, S. R. (1981). Acta Cryst. A37, 517",
@@ -692,17 +703,68 @@
      "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
      "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_hall_body",
+     "kind": "FunctionDef",
+     "line": 188,
+     "quote": "Parse a verified non-empty Hall symbol string into generators and centrings.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    },
+    {
+     "module": "agentsg/ita_settings.py",
+     "symbol": "hall_for_ops",
+     "kind": "FunctionDef",
+     "line": 640,
+     "quote": "Hall of the tabulated setting whose operations equal ``symbol``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
+     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
     }
    ],
    "references": [
     {
      "source": "wikipedia",
      "title": "Hall notation",
-     "url": "https://en.wikipedia.org/wiki/Hall_notation",
-     "status": "unreachable",
+     "url": "https://en.wikipedia.org/wiki/Space_group#Notation",
+     "page_title": "Hall notation",
+     "status": "quoted",
+     "quote": "Rotation, translation and axis-direction symbols are clearly separated and inversion centers are explicitly defined.",
+     "prefix": "Hall notation",
+     "suffix": "The construction and format of the notation",
+     "truncated": false,
+     "note": "Section 'Hall notation' inside the article Space group; there is no standalone Hall notation article.",
      "fetched": "2026-09-30",
-     "note": "WebFetch error: en.wikipedia.org is cache-only in this environment and this page is not cached; direct curl blocked by proxy (403). Page existence not verified.",
-     "quote": ""
+     "sha256": "f41c9cd6790f09d7e4afd368c528068b707b2bd36a98b5d36a1bc09cc2a42fde"
+    },
+    {
+     "source": "literature",
+     "title": "Hall, S. R. (1981). Acta Cryst. A37, 517",
+     "url": "https://doi.org/10.1107/S0567739481001228",
+     "page_title": "Space-group notation with an explicit origin",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S0567739481001228"
+    },
+    {
+     "source": "literature",
+     "title": "ITA Vol. B 1.4",
+     "url": "",
+     "page_title": "ITA Vol. B 1.4",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -823,6 +885,24 @@
      "quote": "Return an ITA setting row for an extended symbol, or None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
      "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+    },
+    {
+     "module": "agentsg/ita_settings.py",
+     "symbol": "settings_for_number",
+     "kind": "FunctionDef",
+     "line": 635,
+     "quote": "Every ITA setting row of one space-group number.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
+     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+    },
+    {
+     "module": "agentsg/ita_settings.py",
+     "symbol": "match_ops",
+     "kind": "FunctionDef",
+     "line": 658,
+     "quote": "The setting row of ``number`` whose operations are ``ops``, or None.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
+     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
     }
    ],
    "references": [
@@ -933,7 +1013,35 @@
      "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
     }
    ],
-   "references": []
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Hermann-Mauguin symbols",
+     "url": "https://dictionary.iucr.org/Hermann-Mauguin_symbols",
+     "page_title": "Hermann-Mauguin symbols",
+     "status": "related",
+     "quote": "Hermann-Mauguin symbols, also known as international symbols, are oriented symbols giving the symmetry operations or symmetry elements of a point or space group.",
+     "prefix": "",
+     "suffix": "Three types of Hermann-Mauguin symbol are used: short, full",
+     "truncated": false,
+     "note": "dictionary page is adjacent to this concept, not its definition",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Zwart, Grosse-Kunstleve & Adams, Exploring Metric Symmetry, IUCr Comp. Comm. Newsletter 7 (2006)",
+     "url": "",
+     "page_title": "Zwart, Grosse-Kunstleve & Adams, Exploring Metric Symmetry, IUCr Comp. Comm. Newsletter 7 (2006)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    }
+   ]
   },
   {
    "id": "change_of_basis",
@@ -978,6 +1086,42 @@
      "quote": "Exact rational change-of-basis operator (P, p).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/change_of_basis.py",
      "sha256": "be1c03a26c68feadc7c1a03c46e94aed81113893badec8f75574e95ad7601291"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "cob_column_values",
+     "kind": "FunctionDef",
+     "line": 104,
+     "quote": "Nine ``num/den`` strings, row-major.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "parse_cob_columns",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Inverse of :func:`cob_column_values`.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "cob_xyz",
+     "kind": "FunctionDef",
+     "line": 129,
+     "quote": "Column notation for ``P`` (no origin shift).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "annotate_search_hits",
+     "kind": "FunctionDef",
+     "line": 259,
+     "quote": "Attach ``cob`` / ``cob_xyz`` / ``cob_coset`` to search hit dicts.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
     }
    ],
    "references": [
@@ -1189,7 +1333,7 @@
      "prefix": "",
      "suffix": "This is an equivalence relation whose",
      "truncated": false,
-     "note": "unverified: inline math (a, b, g, b = gag^{-1}) was stripped by the fetcher and restored from memory page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (a, b, g, b = gag^{-1}) was stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     },
     {
@@ -1399,7 +1543,7 @@
      "line": 187,
      "quote": "Lattice vectors in a neighbourhood of the origin, including centring.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -1422,7 +1566,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     },
     {
@@ -1475,10 +1619,10 @@
      "module": "agentsg/subgroups.py",
      "symbol": "_kernel_basis",
      "kind": "FunctionDef",
-     "line": 391,
+     "line": 398,
      "quote": "Columns of a Z-basis of {x ∈ Z³ : n·x ≡ 0 (mod p)}; det ±p.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/cell/sublattice.py",
@@ -1501,7 +1645,7 @@
      "prefix": "",
      "suffix": "The two-dimensional integer lattice is also",
      "truncated": false,
-     "note": "unverified: math markup (Z^n, R^n) stripped; prefix on page is a maintenance banner, normalized to empty",
+     "note": "unverified: math markup (Z^n, R^n) stripped; prefix on page is a maintenance banner, normalized to empty. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     }
    ]
@@ -1720,16 +1864,16 @@
      "line": 1,
      "quote": "Exact classification of crystallographic symmetry elements.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "classify_element",
      "kind": "FunctionDef",
-     "line": 445,
+     "line": 451,
      "quote": "Classify ``(W, w)`` as an ITA symmetry element.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
@@ -1738,25 +1882,25 @@
      "line": 205,
      "quote": "Translation lattice with the fixed-space vectors of each ``W`` cached.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "_canonical_line",
      "kind": "FunctionDef",
-     "line": 327,
+     "line": 333,
      "quote": "Point of the line nearest the origin, inside the unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "_canonical_plane",
      "kind": "FunctionDef",
-     "line": 349,
+     "line": 355,
      "quote": "Point of the plane nearest the origin, folded into the unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/diagrams.py",
@@ -1841,10 +1985,10 @@
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "classify_element",
      "kind": "FunctionDef",
-     "line": 445,
+     "line": 451,
      "quote": "Classify ``(W, w)`` as an ITA symmetry element.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/reflections.py",
@@ -1854,6 +1998,24 @@
      "quote": "Reflection conditions (systematic absences) derived from the operation list.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py",
      "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1"
+    },
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
     }
    ],
    "references": [
@@ -1868,7 +2030,8 @@
      "suffix": "Chasles' theorem shows that each Euclidean displacement",
      "truncated": false,
      "note": "",
-     "fetched": "2026-09-30"
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
     }
    ]
   },
@@ -1898,10 +2061,10 @@
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "_glide_symbol",
      "kind": "FunctionDef",
-     "line": 370,
+     "line": 376,
      "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/reflections.py",
@@ -1911,6 +2074,15 @@
      "quote": "Reflection conditions (systematic absences) derived from the operation list.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py",
      "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
     }
    ],
    "references": [
@@ -2007,7 +2179,7 @@
      "line": 1,
      "quote": "Exact classification of crystallographic symmetry elements.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/reflection_lattice.py",
@@ -2057,10 +2229,10 @@
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "_reduce_intrinsic",
      "kind": "FunctionDef",
-     "line": 251,
+     "line": 252,
      "quote": "Shortest representative of ``t`` modulo lattice vectors fixed by ``W``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
@@ -2069,16 +2241,16 @@
      "line": 1,
      "quote": "Exact classification of crystallographic symmetry elements.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
      "symbol": "_shortest_along",
      "kind": "FunctionDef",
-     "line": 299,
+     "line": 300,
      "quote": "Shortest lattice vector pointing the same way as ``axis``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     }
    ],
    "references": [
@@ -2144,7 +2316,7 @@
      "line": 165,
      "quote": "One solution of A x = b.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     }
    ],
    "references": [
@@ -2279,6 +2451,15 @@
      "kind": "FunctionDef",
      "line": 2165,
      "quote": "Draw the ITA symmetry-element diagram.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "ita_plate",
+     "kind": "FunctionDef",
+     "line": 2989,
+     "quote": "Render the classic ITA pairing: general-position diagram (left) and symmetry-element diagram (right), with a header.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
      "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
     }
@@ -2440,7 +2621,7 @@
      "url": "https://en.wikipedia.org/wiki/Site_symmetry",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch: domain is cache-only and page not cached; existence unknown",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -2661,7 +2842,7 @@
      "prefix": "",
      "suffix": "More formally, it is a group homomorphism",
      "truncated": false,
-     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     },
     {
@@ -2727,7 +2908,7 @@
      "prefix": "",
      "suffix": "More formally, it is a group homomorphism",
      "truncated": false,
-     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     }
    ]
@@ -2776,7 +2957,7 @@
      "prefix": "",
      "suffix": "More formally, it is a group homomorphism",
      "truncated": false,
-     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     }
    ]
@@ -2825,7 +3006,7 @@
      "prefix": "",
      "suffix": "More formally, it is a group homomorphism",
      "truncated": false,
-     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory",
+     "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     }
    ]
@@ -3180,7 +3361,7 @@
    "label": "Reflection conditions",
    "kind": "crystallography",
    "aliases": [],
-   "definition": "The ITA-style statements (integral, zonal, serial) of which reflections can be present; derived as sublattices of present reflections on each stratum.",
+   "definition": "Generator-derived congruences for which reflections can be present, pruned against the Smith-form lattice of each stratum and reported as integral, zonal, and serial conditions. Not a transcription of the International Tables lists.",
    "literature": [],
    "relations": [
     {
@@ -3254,6 +3435,15 @@
      "quote": "Format a list of ((c1, c2, ...), m) congruences as an ITA condition string.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflection_lattice.py",
      "sha256": "538655915e70d6509ce88d3e57feb8db3eb358261c18aa7366ac2a4c493ff50c"
+    },
+    {
+     "module": "agentsg/reflections.py",
+     "symbol": "reflection_conditions_grid",
+     "kind": "FunctionDef",
+     "line": 314,
+     "quote": "Reflection conditions by enumerating an hkl block (legacy).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py",
+     "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1"
     }
    ],
    "references": [
@@ -3678,6 +3868,10 @@
     {
      "type": "RELATED_TO",
      "target": "friedel_law"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "wilson_statistics"
     }
    ],
    "code_evidence": [
@@ -3881,6 +4075,10 @@
     {
      "type": "USES",
      "target": "orbit_stabilizer_theorem"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "wilson_statistics"
     }
    ],
    "code_evidence": [
@@ -3906,15 +4104,24 @@
    "references": [
     {
      "source": "wikipedia",
-     "title": "Structure factor",
-     "url": "https://en.wikipedia.org/wiki/Structure_factor",
-     "page_title": "Structure factor",
-     "status": "quoted",
-     "quote": "In condensed matter physics and crystallography, the static structure factor (or structure factor for short) is a mathematical description of how a material scatters incident radiation.",
+     "title": "Wilson plot",
+     "url": "https://en.wikipedia.org/wiki/Wilson_plot",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
+     "quote": ""
+    },
+    {
+     "source": "iucr",
+     "title": "Centric and acentric distribution",
+     "url": "https://dictionary.iucr.org/Centric_and_acentric_distribution",
+     "page_title": "Centric and acentric distribution",
+     "status": "related",
+     "quote": "Centric or acentric distribution usually refer to the X-ray diffracted intensity distribution.",
      "prefix": "",
-     "suffix": "The structure factor is a critical tool",
+     "suffix": "It is in general possible to distinguish",
      "truncated": false,
-     "note": "",
+     "note": "dictionary page is adjacent to this concept, not its definition",
      "fetched": "2026-09-30"
     }
    ]
@@ -4095,7 +4302,7 @@
      "url": "https://en.wikipedia.org/wiki/Euclidean_normalizer",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch: domain is cache-only and page not cached; existence unknown",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -4218,7 +4425,7 @@
      "url": "https://en.wikipedia.org/wiki/Euclidean_normalizer",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch: domain is cache-only and page not cached; existence unknown",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -4233,6 +4440,20 @@
      "truncated": false,
      "note": "unverified: subscript math markup (N_S(G)) rendered as plain text",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "ITA Vol. A Chapter 3.5 (Euclidean and affine normalizers)",
+     "url": "",
+     "page_title": "ITA Vol. A Chapter 3.5 (Euclidean and affine normalizers)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -4275,7 +4496,7 @@
      "prefix": "",
      "suffix": "or equivalently, the set of elements such that",
      "truncated": true,
-     "note": "unverified: sentence continues with inline math (gs = sg) that may have been stripped",
+     "note": "unverified: sentence continues with inline math (gs = sg) that may have been stripped. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     },
     {
@@ -4385,6 +4606,34 @@
      "truncated": false,
      "note": "dictionary page is adjacent to this concept, not its definition",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "SgInfo (Grosse-Kunstleve) TabTrial_si",
+     "url": "",
+     "page_title": "SgInfo (Grosse-Kunstleve) TabTrial_si",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    },
+    {
+     "source": "literature",
+     "title": "Giacovazzo, Direct Phasing in Crystallography",
+     "url": "",
+     "page_title": "Giacovazzo, Direct Phasing in Crystallography",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -4644,6 +4893,15 @@
      "quote": "Conventional axis-aligned real-space ASU brick (CCP4 / gemmi).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py",
      "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae"
+    },
+    {
+     "module": "agentsg/asu.py",
+     "symbol": "AxisBound",
+     "kind": "ClassDef",
+     "line": 147,
+     "quote": "Bound on one fractional coordinate: ``0 <= x </<= hi``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py",
+     "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae"
     }
    ],
    "references": [
@@ -4731,6 +4989,15 @@
      "kind": "FunctionDef",
      "line": 580,
      "quote": "Search allowed origin gauges for the most spherical Dirichlet ASU.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py",
+     "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae"
+    },
+    {
+     "module": "agentsg/asu.py",
+     "symbol": "OptimizedAsu",
+     "kind": "ClassDef",
+     "line": 564,
+     "quote": "Result of searching allowed origin gauges for an optimal Dirichlet domain.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/asu.py",
      "sha256": "a6c388acb4030942f52c58ae22d83b2b5028be810444e08e404cd95a397f08ae"
     }
@@ -5001,7 +5268,7 @@
      "line": 1,
      "quote": "Translationengleiche (t) and klassengleiche (k) subgroups, derived from ops.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
@@ -5010,16 +5277,16 @@
      "line": 140,
      "quote": "Subgroups of a crystallographic point group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
      "symbol": "subgroup_graph",
      "kind": "FunctionDef",
-     "line": 551,
+     "line": 559,
      "quote": "JSON-ready graph: parent node plus derived t/k child edges.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
@@ -5028,7 +5295,25 @@
      "line": 44,
      "quote": "One derived group → subgroup relation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
+    },
+    {
+     "module": "agentsg/subgroups.py",
+     "symbol": "_centering_subgroups",
+     "kind": "FunctionDef",
+     "line": 289,
+     "quote": "Closed subgroups of a centring-translation set, excluding T itself.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
+    },
+    {
+     "module": "agentsg/subgroups.py",
+     "symbol": "_is_T_invariant",
+     "kind": "FunctionDef",
+     "line": 301,
+     "quote": "True when every rotation in Ws maps the translation set into itself.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5085,16 +5370,16 @@
      "line": 1,
      "quote": "Translationengleiche (t) and klassengleiche (k) subgroups, derived from ops.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
      "symbol": "subgroup_edges",
      "kind": "FunctionDef",
-     "line": 538,
+     "line": 546,
      "quote": "Derived maximal t and/or k subgroup edges of ``sg``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5155,34 +5440,43 @@
      "line": 1,
      "quote": "Translationengleiche (t) and klassengleiche (k) subgroups, derived from ops.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
      "symbol": "_k_iib_edges",
      "kind": "FunctionDef",
-     "line": 470,
+     "line": 478,
      "quote": "Primitive-cell IIb: invariant index-2 and index-3 sublattices of Z³.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
      "symbol": "_kernel_basis",
      "kind": "FunctionDef",
-     "line": 391,
+     "line": 398,
      "quote": "Columns of a Z-basis of {x ∈ Z³ : n·x ≡ 0 (mod p)}; det ±p.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
      "symbol": "_closed_primitive_sections",
      "kind": "FunctionDef",
-     "line": 314,
+     "line": 316,
      "quote": "Primitive (one op per W) closed sections of a centred copy of G.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
+    },
+    {
+     "module": "agentsg/subgroups.py",
+     "symbol": "_invariant_mod_p",
+     "kind": "FunctionDef",
+     "line": 456,
+     "quote": "True when n is an eigenvector of every W transpose, modulo p.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5243,7 +5537,7 @@
      "line": 109,
      "quote": "Index-2 subgroups = kernels of nontrivial homomorphisms G → C2.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/subgroups.py",
@@ -5252,7 +5546,7 @@
      "line": 74,
      "quote": "Basis of the nullspace of a matrix over F2 (row lists of 0/1).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
@@ -5345,7 +5639,7 @@
      "line": 109,
      "quote": "Index-2 subgroups = kernels of nontrivial homomorphisms G → C2.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5398,7 +5692,7 @@
      "line": 74,
      "quote": "Basis of the nullspace of a matrix over F2 (row lists of 0/1).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5412,7 +5706,7 @@
      "prefix": "",
      "suffix": "GF(2) is the field with the smallest",
      "truncated": false,
-     "note": "unverified: math markup (F_2, Z_2) stripped, leaving empty slots in the parenthetical page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: math markup (F_2, Z_2) stripped, leaving empty slots in the parenthetical. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     }
    ]
@@ -5438,7 +5732,7 @@
      "line": 109,
      "quote": "Index-2 subgroups = kernels of nontrivial homomorphisms G → C2.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
-     "sha256": "29ba27f72e7cbb65bff2a471d1f2b3cbcf970715fa154f7c74cce9ec15b52899"
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
     }
    ],
    "references": [
@@ -5452,7 +5746,7 @@
      "prefix": "",
      "suffix": "",
      "truncated": true,
-     "note": "unverified: sentence ends in a displayed equation that was stripped stripped markup left the sentence unreadable; quote withheld",
+     "note": "unverified: sentence ends in a displayed equation that was stripped. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     },
     {
@@ -5867,7 +6161,7 @@
      "prefix": "",
      "suffix": "whose entries are given by the inner product",
      "truncated": true,
-     "note": "unverified: math markup for the vector list v_1,...,v_n stripped; truncated at clause boundary",
+     "note": "unverified: math markup for the vector list v_1,...,v_n stripped; truncated at clause boundary. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     }
    ]
@@ -5972,7 +6266,7 @@
      "prefix": "",
      "suffix": "When X-rays are incident on an atom, they make",
      "truncated": false,
-     "note": "unverified: WebFetch served a cached (possibly old) revision; current live lead may differ",
+     "note": "unverified: WebFetch served a cached (possibly old) revision; current live lead may differ. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     },
     {
@@ -6020,7 +6314,7 @@
      "prefix": "",
      "suffix": "When X-rays are incident on an atom, they make",
      "truncated": false,
-     "note": "unverified: WebFetch served a cached (possibly old) revision; current live lead may differ",
+     "note": "unverified: WebFetch served a cached (possibly old) revision; current live lead may differ. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     },
     {
@@ -6280,7 +6574,7 @@
      "url": "https://en.wikipedia.org/wiki/Neumann's_principle",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch: domain is cache-only and this URL is not cached (tried both raw apostrophe and %27 encoding)",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -6390,7 +6684,7 @@
      "prefix": "",
      "suffix": "That is, whenever P is applied twice to any vector",
      "truncated": false,
-     "note": "unverified: math markup P^2=P rendered as plain text",
+     "note": "unverified: math markup P^2=P rendered as plain text. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     }
    ]
@@ -6479,6 +6773,15 @@
      "quote": "Primitive cell for root-invariant computation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
      "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+    },
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "primitive_lattice",
+     "kind": "FunctionDef",
+     "line": 236,
+     "quote": "The primitive translation lattice, cached: origin only, no centring vectors.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     }
    ],
    "references": [
@@ -6792,6 +7095,34 @@
      "truncated": false,
      "note": "unverified: bold vector markup flattened dictionary page is adjacent to this concept, not its definition",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Grosse-Kunstleve, Sauter & Adams (2004). Acta Cryst. A60, 1-6",
+     "url": "https://doi.org/10.1107/S010876730302186X",
+     "page_title": "Numerically stable algorithms for the computation of reduced unit cells",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S010876730302186X"
+    },
+    {
+     "source": "literature",
+     "title": "Křivý & Gruber (1976). Acta Cryst. A32, 297",
+     "url": "https://doi.org/10.1107/S0567739476000636",
+     "page_title": "A unified algorithm for determining the reduced (Niggli) cell",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S0567739476000636"
     }
    ]
   },
@@ -6875,6 +7206,48 @@
      "truncated": false,
      "note": "unverified: bold vector markup flattened dictionary page is adjacent to this concept, not its definition",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Delaunay (1933)",
+     "url": "",
+     "page_title": "Delaunay (1933)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    },
+    {
+     "source": "literature",
+     "title": "Selling (1874)",
+     "url": "",
+     "page_title": "Selling (1874)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    },
+    {
+     "source": "literature",
+     "title": "Conway & Sloane, Low-dimensional lattices VI",
+     "url": "",
+     "page_title": "Conway & Sloane, Low-dimensional lattices VI",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7063,6 +7436,20 @@
      "truncated": false,
      "note": "page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Kurlin, V. (2022/2026) arXiv:2201.10543, Lemmas 4.1-4.5",
+     "url": "https://arxiv.org/abs/2201.10543",
+     "page_title": "Mathematics of 2-dimensional and 3-dimensional lattices",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7189,6 +7576,20 @@
      "truncated": false,
      "note": "page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Zwart, agentsg manuscript: 'The Selling closure for lattice comparison'",
+     "url": "",
+     "page_title": "Zwart, agentsg manuscript: 'The Selling closure for lattice comparison'",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7331,8 +7732,22 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543",
+     "url": "https://arxiv.org/abs/2201.10543",
+     "page_title": "Mathematics of 2-dimensional and 3-dimensional lattices",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7375,7 +7790,7 @@
      "prefix": "",
      "suffix": "the upper bound in inequality 1",
      "truncated": true,
-     "note": "unverified: inline math (x_1 <= ... <= x_n, y_1 <= ... <= y_n, permutation sigma, and the displayed inequality) stripped from fetched text",
+     "note": "unverified: inline math (x_1 <= ... <= x_n, y_1 <= ... <= y_n, permutation sigma, and the displayed inequality) stripped from fetched text. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     }
    ]
@@ -7538,8 +7953,36 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Andrews & Bernstein (1988, 2014)",
+     "url": "",
+     "page_title": "Andrews & Bernstein (1988, 2014)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    },
+    {
+     "source": "literature",
+     "title": "Kurlin (2022)",
+     "url": "",
+     "page_title": "Kurlin (2022)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7590,6 +8033,24 @@
      "quote": "S6 Selling scalars (b.c, a.c, a.b, a.d, b.d, c.d), d = -(a+b+c).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py",
      "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38"
+    },
+    {
+     "module": "agentsg/cell/g6.py",
+     "symbol": "g6",
+     "kind": "FunctionDef",
+     "line": 73,
+     "quote": "G6 vector of a unit cell (a,b,c,alpha,beta,gamma), angles in degrees.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py",
+     "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38"
+    },
+    {
+     "module": "agentsg/cell/g6.py",
+     "symbol": "s6",
+     "kind": "FunctionDef",
+     "line": 78,
+     "quote": "S6 (Selling) vector of a unit cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/g6.py",
+     "sha256": "48b8df3ea479da734f3862cd4193794f2a5bf0bec51e8c7a8620dcb2c5881b38"
     }
    ],
    "references": [
@@ -7605,6 +8066,34 @@
      "truncated": false,
      "note": "",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Andrews & Bernstein (1988). Acta Cryst. A44, 1009",
+     "url": "https://doi.org/10.1107/S0108767388006427",
+     "page_title": "Lattices and reduced cells as points in 6-space and selection of Bravais lattice type by projections",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S0108767388006427"
+    },
+    {
+     "source": "literature",
+     "title": "Andrews & Bernstein (2014). J. Appl. Cryst. 47, 346",
+     "url": "https://doi.org/10.1107/S1600576713031002",
+     "page_title": "The geometry of Niggli reduction: BGAOL — embedding Niggli reduction and analysis of boundaries",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S1600576713031002"
     }
    ]
   },
@@ -7687,7 +8176,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     },
     {
@@ -7745,7 +8234,7 @@
      "url": "https://en.wikipedia.org/wiki/Pseudosymmetry",
      "status": "unreachable",
      "fetched": "2026-09-30",
-     "note": "WebFetch error: en.wikipedia.org is cache-only in this environment and this page is not cached; direct curl blocked by proxy (403). Page existence not verified.",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
      "quote": ""
     },
     {
@@ -7868,7 +8357,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared.",
      "fetched": "2026-09-30"
     },
     {
@@ -7883,6 +8372,48 @@
      "truncated": false,
      "note": "",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Le Page (1982). J. Appl. Cryst. 15, 255",
+     "url": "https://doi.org/10.1107/S0021889882011959",
+     "page_title": "The derivation of the axes of the conventional unit cell from the dimensions of the Buerger-reduced cell",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S0021889882011959"
+    },
+    {
+     "source": "literature",
+     "title": "Lebedev, Vagin & Murshudov (2006). Acta Cryst. D62, 83",
+     "url": "https://doi.org/10.1107/S0907444905036759",
+     "page_title": "Intensity statistics in twinned crystals with examples from the PDB",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S0907444905036759"
+    },
+    {
+     "source": "literature",
+     "title": "Zwart, Grosse-Kunstleve & Adams (2006)",
+     "url": "",
+     "page_title": "Zwart, Grosse-Kunstleve & Adams (2006)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -7953,7 +8484,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     },
     {
@@ -7968,6 +8499,20 @@
      "truncated": false,
      "note": "unverified: bold/prime markup may differ",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Zwart, Grosse-Kunstleve & Adams (2006), sec. 2.4 / 3.2",
+     "url": "",
+     "page_title": "Zwart, Grosse-Kunstleve & Adams (2006), sec. 2.4 / 3.2",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -8054,7 +8599,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     },
     {
@@ -8069,6 +8614,48 @@
      "truncated": false,
      "note": "unverified: bold/prime markup may differ",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Billiet & Rolley-Le Coz (1980)",
+     "url": "https://doi.org/10.1107/S056773948000157X",
+     "page_title": "Le groupe P1 et ses sous-groupes. III. Conservation réticulaire",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S056773948000157X"
+    },
+    {
+     "source": "literature",
+     "title": "Rutherford (2006)",
+     "url": "",
+     "page_title": "Rutherford (2006)",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    },
+    {
+     "source": "literature",
+     "title": "OEIS A001001",
+     "url": "",
+     "page_title": "OEIS A001001",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -8120,7 +8707,7 @@
      "prefix": "",
      "suffix": "Coordinate-wise addition or subtraction of two",
      "truncated": true,
-     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list page title does not match the concept label or aliases; lede not quoted",
+     "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
     }
    ]
@@ -8221,7 +8808,7 @@
      "prefix": "",
      "suffix": "",
      "truncated": false,
-     "note": "unverified: inline math symbols (V, B, I, B*, V*) were stripped from the fetched text stripped markup left the sentence unreadable; quote withheld",
+     "note": "unverified: inline math symbols (V, B, I, B*, V*) were stripped from the fetched text. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     },
     {
@@ -8567,6 +9154,34 @@
      "truncated": false,
      "note": "redirects to Crystal twinning page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Brehm & Diederichs (2014). Acta Cryst. D70, 101",
+     "url": "https://doi.org/10.1107/S1399004713025431",
+     "page_title": "Breaking the indexing ambiguity in serial crystallography",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": "10.1107/S1399004713025431"
+    },
+    {
+     "source": "literature",
+     "title": "dials.cosym",
+     "url": "",
+     "page_title": "dials.cosym",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -8800,6 +9415,15 @@
      "kind": "FunctionDef",
      "line": 486,
      "quote": "Return the tabulated Hall symbol for the identified reference setting.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/identify.py",
+     "sha256": "8281a15347d0ada0efdc15045243ca80843cfc9e578ce12306f5c2c90cfe664f"
+    },
+    {
+     "module": "agentsg/identify.py",
+     "symbol": "IdentifyResult",
+     "kind": "ClassDef",
+     "line": 260,
+     "quote": "Result of matching operations to a standard-setting space group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/identify.py",
      "sha256": "8281a15347d0ada0efdc15045243ca80843cfc9e578ce12306f5c2c90cfe664f"
     }
@@ -9046,7 +9670,8 @@
      "suffix": "K-dimensional is that which concerns",
      "truncated": false,
      "note": "",
-     "fetched": "2026-09-30"
+     "fetched": "2026-09-30",
+     "sha256": "59d427a8078b114ea8999b230cde7ca5cb0ab262d7ee5f6f6827eeb3a77ae205"
     }
    ]
   },
@@ -9111,6 +9736,20 @@
      "truncated": false,
      "note": "page title does not match the concept label or aliases; lede not quoted",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Andrews, L. C. (2001). J. Appl. Cryst. 34, 663-668",
+     "url": "",
+     "page_title": "Andrews, L. C. (2001). J. Appl. Cryst. 34, 663-668",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -9477,10 +10116,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 612,
+     "line": 647,
      "quote": "SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "782efd90ce78756838c66c2586038db5493479e568aa8af18796097ca3173f89"
+     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -9707,6 +10346,20 @@
      "truncated": false,
      "note": "page has p/q as math markup inside the sentence; stripped form shown",
      "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "cctbx sgtbx tr_vec base factor 12",
+     "url": "",
+     "page_title": "cctbx sgtbx tr_vec base factor 12",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   },
@@ -9866,7 +10519,7 @@
      "line": 118,
      "quote": "Gaussian elimination over Fractions.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/cell/constraints.py",
@@ -9999,7 +10652,7 @@
      "line": 150,
      "quote": "Primitive integer basis of the kernel of a 3x3 integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
-     "sha256": "683dba1978e4faf1da311e39bcb512ee3bd8566d4f73d1c473c1eda1cc21f938"
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
     },
     {
      "module": "agentsg/harker.py",
@@ -10553,7 +11206,7 @@
      "prefix": "",
      "suffix": "",
      "truncated": false,
-     "note": "unverified: inline math (group symbol, x_1..x_s, n_i) was stripped from the extracted text; quote is not verbatim stripped markup left the sentence unreadable; quote withheld",
+     "note": "unverified: inline math (group symbol, x_1..x_s, n_i) was stripped from the extracted text; quote is not verbatim. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared. stripped markup left the sentence unreadable; quote withheld",
      "fetched": "2026-09-30"
     }
    ]
@@ -10813,6 +11466,2193 @@
      "truncated": false,
      "note": "",
      "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "ita_graphical_symbols",
+   "label": "ITA graphical symbols for symmetry elements",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The International Tables glyphs for axes and planes: polygon or lens for the rotation order, hooks for the screw index, and a styled line for a plane, drawn from the classified operations.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "PART_OF",
+     "target": "ita_diagrams"
+    },
+    {
+     "type": "USES",
+     "target": "symmetry_element"
+    },
+    {
+     "type": "USES",
+     "target": "screw_axis"
+    },
+    {
+     "type": "USES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "draw_axis_symbol",
+     "kind": "FunctionDef",
+     "line": 823,
+     "quote": "Draw a rotation/screw/rotoinversion axis symbol perpendicular to the page at fractional position ``xy`` (b-right/a-down mapping done by the caller).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "draw_plane_symbol",
+     "kind": "FunctionDef",
+     "line": 1050,
+     "quote": "Draw a plane (perpendicular to the page) as a styled line from p0 to p1.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "draw_parallel_plane_symbol",
+     "kind": "FunctionDef",
+     "line": 915,
+     "quote": "ITA symbol for a plane PARALLEL to the page (normal perpendicular to the projection): a right-angle bracket in a cell corner, drawn with SOLID legs.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "symbol_legend",
+     "kind": "FunctionDef",
+     "line": 1083,
+     "quote": "Render every ITA glyph this module draws, with a label, on one axes.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "element_legend",
+     "kind": "FunctionDef",
+     "line": 2725,
+     "quote": "Legend of only the symmetry elements that actually occur in ``sg``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Symmetry element",
+     "url": "https://en.wikipedia.org/wiki/Symmetry_element",
+     "page_title": "Symmetry element",
+     "status": "quoted",
+     "quote": "In chemistry and crystallography, a symmetry element is a point, line, or plane about which symmetry operations can take place.",
+     "prefix": "",
+     "suffix": "In particular, a symmetry element can be a",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Symmetry element",
+     "url": "https://dictionary.iucr.org/Symmetry_element",
+     "page_title": "Symmetry element",
+     "status": "quoted",
+     "quote": "A symmetry element (of a given crystal structure or object) is defined as a concept with a double meaning, namely the combination of a geometric element with the set of symmetry operations having this geometric element in common",
+     "prefix": "",
+     "suffix": "(termed its element set). Together with the identity",
+     "truncated": true,
+     "note": "",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "ita_height_label",
+   "label": "ITA height and fraction labels",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "Printed heights of general-position images (a fraction of the projected coordinate, or a spelled-out coordinate for an inclined axis) and the single-glyph fractions used on the plate.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "PART_OF",
+     "target": "ita_diagrams"
+    },
+    {
+     "type": "USES",
+     "target": "general_position"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "height_label",
+     "kind": "FunctionDef",
+     "line": 517,
+     "quote": "ITA height string for an image whose depth is ``coef * coord + t``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "frac_label",
+     "kind": "FunctionDef",
+     "line": 472,
+     "quote": "``Fraction`` in [0, 1) -> one fraction glyph ('' for 0, '½', '⁵⁄₁₂').",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "International Tables for Crystallography",
+     "url": "https://en.wikipedia.org/wiki/International_Union_of_Crystallography",
+     "page_title": "International Union of Crystallography",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "The IUCr is a member of the",
+     "truncated": false,
+     "note": "Wikipedia redirects this title to the IUCr article; quote is the IUCr lead sentence, not a definition of International Tables page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "coordination_polyhedron",
+   "label": "Coordination polyhedron on a cubic plate",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "On a cubic plate the general-position images are joined into orthogonal polyhedra over the closed cell, one circle at each corner, instead of a flat height-labelled orbit.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "PART_OF",
+     "target": "ita_diagrams"
+    },
+    {
+     "type": "USES",
+     "target": "general_position"
+    },
+    {
+     "type": "USES",
+     "target": "convex_hull"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "_draw_cubic_polyhedra",
+     "kind": "FunctionDef",
+     "line": 1662,
+     "quote": "Orthogonal polyhedra over the closed cell, with a circle at each corner.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "_hull_polygon",
+     "kind": "FunctionDef",
+     "line": 1562,
+     "quote": "2D convex hull as an (n, 2) array, or None when the points are flat.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Symmetry element",
+     "url": "https://dictionary.iucr.org/Symmetry_element",
+     "page_title": "Symmetry element",
+     "status": "related",
+     "quote": "A symmetry element (of a given crystal structure or object) is defined as a concept with a double meaning, namely the combination of a geometric element with the set of symmetry operations having this geometric element in common",
+     "prefix": "",
+     "suffix": "(termed its element set). Together with the identity",
+     "truncated": true,
+     "note": "dictionary page is adjacent to this concept, not its definition",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "projection_convention",
+   "label": "ITA projection convention",
+   "kind": "crystallography",
+   "aliases": [
+    "unique axis",
+    "monoclinic unique axis"
+   ],
+   "definition": "The projected cell outline and which axis is down the page: unique axis for a monoclinic group, otherwise c, taken from the operations rather than a stored plate.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "PART_OF",
+     "target": "ita_diagrams"
+    },
+    {
+     "type": "USES",
+     "target": "crystal_system"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "cell_frame",
+     "kind": "FunctionDef",
+     "line": 264,
+     "quote": "Shape of the projected unit cell, derived from the operations.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    },
+    {
+     "module": "agentsg/serve/handlers.py",
+     "symbol": "default_projection",
+     "kind": "FunctionDef",
+     "line": 241,
+     "quote": "Project a monoclinic group along its unique axis, else along c.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
+     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
+    },
+    {
+     "module": "agentsg/serve/handlers.py",
+     "symbol": "_unique_axis",
+     "kind": "FunctionDef",
+     "line": 253,
+     "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
+     "sha256": "2e46199a04867ce72f2226aff59d131db021b76d47b2e7b9b05ee3421153f8b3"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "International Tables for Crystallography",
+     "url": "https://en.wikipedia.org/wiki/International_Union_of_Crystallography",
+     "page_title": "International Union of Crystallography",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "The IUCr is a member of the",
+     "truncated": false,
+     "note": "Wikipedia redirects this title to the IUCr article; quote is the IUCr lead sentence, not a definition of International Tables page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_a",
+   "label": "a-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A glide whose intrinsic translation is half the a edge. _glide_symbol returns the letter a for that reduced translation.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_b",
+   "label": "b-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A glide whose intrinsic translation is half the b edge. _glide_symbol returns the letter b for that reduced translation.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_c",
+   "label": "c-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A glide whose intrinsic translation is half the c edge. _glide_symbol returns the letter c for that reduced translation.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_n",
+   "label": "n-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A diagonal glide of half a face or body diagonal on a coordinate plane. _glide_symbol returns n for that case, and g for the hexagonal and some tetragonal diagonals it does not call n.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_d",
+   "label": "d-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A diamond glide: a quarter of a face or body diagonal. _glide_symbol returns d when four times the intrinsic translation is integral and two times is not.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "glide_e",
+   "label": "e-glide",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The double glide IUCr denotes e, used in the 2016 short symbols of five space groups. _glide_symbol never returns e; those and other leftover diagonal glides come back as g, and the Hermann-Mauguin lookup keeps the pre-2016 names.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_glide_symbol",
+     "kind": "FunctionDef",
+     "line": 376,
+     "quote": "ITA glide letter for a reduced intrinsic translation lying in the plane.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Glide plane",
+     "url": "https://en.wikipedia.org/wiki/Glide_reflection",
+     "page_title": "Glide reflection",
+     "status": "quoted",
+     "quote": "In geometry, a glide reflection or transflection is a geometric transformation that consists of a reflection across a hyperplane and a translation (\"glide\") in a direction parallel to that hyperplane, combined into a single transformation.",
+     "prefix": "",
+     "suffix": "Because the distances between points are not",
+     "truncated": false,
+     "note": "redirects to Glide reflection",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "screw_21",
+   "label": "2₁ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A twofold rotation plus half the axis period. _screw_index returns 1 when the intrinsic translation is half the period; the Hall parser reads a screw digit t as translation t/N.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_31",
+   "label": "3₁ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A threefold rotation plus one third of the axis period. The screw index is 1.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_32",
+   "label": "3₂ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A threefold rotation plus two thirds of the axis period, the opposite hand of 3₁. The screw index is 2. Intensities are not used to choose between them.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_41",
+   "label": "4₁ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A fourfold rotation plus one quarter of the axis period. The screw index is 1.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_42",
+   "label": "4₂ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A fourfold rotation plus half the axis period. The screw index is 2.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_43",
+   "label": "4₃ screw axis",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A fourfold rotation plus three quarters of the axis period, the opposite hand of 4₁. The screw index is 3. Intensities are not used to choose between them.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "screw_6",
+   "label": "Hexagonal screws 6₁–6₅",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "Sixfold screws with index 1 through 5: intrinsic translation k/6 of the axis period. _screw_index returns that k; 6₁ and 6₅, and 6₂ and 6₄, are opposite hands.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "screw_axis"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_screw_index",
+     "kind": "FunctionDef",
+     "line": 318,
+     "quote": "Screw index k of an intrinsic translation along an n-fold axis.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Screw axis",
+     "url": "https://en.wikipedia.org/wiki/Screw_axis",
+     "page_title": "Screw axis",
+     "status": "quoted",
+     "quote": "A screw axis (helical axis or twist axis) is a line that is simultaneously the axis of rotation and the line along which translation of a body occurs.",
+     "prefix": "",
+     "suffix": "Chasles' theorem shows that each Euclidean displacement",
+     "truncated": false,
+     "note": "",
+     "fetched": "2026-09-30",
+     "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
+    }
+   ]
+  },
+  {
+   "id": "chiral_space_group",
+   "label": "Chiral space group (Sohncke group)",
+   "kind": "crystallography",
+   "aliases": [
+    "Sohncke groups",
+    "chirality",
+    "enantiomorphic pair"
+   ],
+   "definition": "A space group with no inversion, mirror, glide, or rotoinversion, so it is not identical to its mirror image. Enantiomorphic pairs such as P4₁ and P4₃ are drawn with a comma on the opposite hand. The plate records handedness; intensities are not used to choose which member of a pair.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "screw_axis"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "inversion_centre"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/diagrams.py",
+     "symbol": "_draw_position_mark",
+     "kind": "FunctionDef",
+     "line": 1587,
+     "quote": "Open circle at a general position, with a comma for the opposite hand.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
+     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Sohncke groups",
+     "url": "https://en.wikipedia.org/wiki/Space_group#Chirality",
+     "page_title": "Chirality",
+     "status": "quoted",
+     "quote": "The 65 \"Sohncke\" space groups, not containing any mirrors, inversion points, improper rotations or glide planes, yield [[chiral]] crystals, not identical to their mirror image",
+     "prefix": "Chirality",
+     "suffix": "whereas space groups that do include",
+     "truncated": true,
+     "note": "There is no standalone Sohncke article. Sentence taken from the Chirality section of Space group. [[chiral]] is wiki markup present in the section source.",
+     "fetched": "2026-09-30",
+     "sha256": "5d668608e9a07e8ae7a19fa508ff761b8c1ed06cd375bc197dbf8afae970cf34"
+    },
+    {
+     "source": "iucr",
+     "title": "Chiral space group",
+     "url": "https://dictionary.iucr.org/Chiral_space_group",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "symmorphic_space_group",
+   "label": "Symmorphic space group",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A space group that has an origin at which every operation's intrinsic translation vanishes, so the group is a semidirect product of a point group and the translation lattice. agentsg sees a zero intrinsic part on an operation; it does not emit a symmorphic flag.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "space_group"
+    },
+    {
+     "type": "CONTRASTS_WITH",
+     "target": "nonsymmorphic_space_group"
+    },
+    {
+     "type": "USES",
+     "target": "intrinsic_translation"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "Hall space-group symbol parser (Hall, *Acta Cryst.* A37, 517 (1981); ITA Vol.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    },
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "classify_element",
+     "kind": "FunctionDef",
+     "line": 451,
+     "quote": "Classify ``(W, w)`` as an ITA symmetry element.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Symmorphic space groups",
+     "url": "https://dictionary.iucr.org/Symmorphic_space_groups",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "nonsymmorphic_space_group",
+   "label": "Non-symmorphic space group",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A space group whose operations include a screw or a glide that cannot all be cleared by an origin shift. agentsg classifies a nonzero intrinsic part; it does not label the group non-symmorphic.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "space_group"
+    },
+    {
+     "type": "CONTRASTS_WITH",
+     "target": "symmorphic_space_group"
+    },
+    {
+     "type": "USES",
+     "target": "screw_axis"
+    },
+    {
+     "type": "USES",
+     "target": "glide_plane"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/symmetry_elements.py",
+     "symbol": "_reduce_intrinsic",
+     "kind": "FunctionDef",
+     "line": 252,
+     "quote": "Shortest representative of ``t`` modulo lattice vectors fixed by ``W``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/symmetry_elements.py",
+     "sha256": "57a5a0704ba14df06cbd6ccebc5b7ecb20b293c502d1b13e7dfa3c2f21e37502"
+    },
+    {
+     "module": "agentsg/hall.py",
+     "symbol": "_parse_generator",
+     "kind": "FunctionDef",
+     "line": 109,
+     "quote": "Parse one Hall generator token -> (Matrix3 W, Vector3 w, order).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/hall.py",
+     "sha256": "c15d0e3378e54f5ee22eab4acac7b2cba2ad97a97fb39712d1e8aad7f88ddafd"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Symmorphic space groups",
+     "url": "https://dictionary.iucr.org/Symmorphic_space_groups",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "geometric_crystal_class",
+   "label": "Geometric crystal class",
+   "kind": "crystallography",
+   "aliases": [
+    "crystal class"
+   ],
+   "definition": "A conjugacy class of crystallographic point groups in O(3). agentsg derives the point group as the set of rotation parts W; it does not tabulate the 32 geometric classes by name.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "point_group"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "crystal_system"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/group.py",
+     "symbol": "point_group",
+     "kind": "FunctionDef",
+     "line": 51,
+     "quote": "The set of distinct rotation parts W, ignoring translations -- this *is* the crystallographic point group, no separate table needed.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
+     "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Crystallographic point group",
+     "url": "https://en.wikipedia.org/wiki/Crystallographic_point_group",
+     "page_title": "Crystallographic point group",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "According to the crystallographic restriction theorem, point groups may only",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Geometric crystal class",
+     "url": "https://dictionary.iucr.org/Geometric_crystal_class",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "arithmetic_crystal_class",
+   "label": "Arithmetic crystal class",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A conjugacy class of finite subgroups of GL(3,Z): the point group as integer matrices on a lattice basis. The rotation parts agentsg stores are those integer matrices. No arithmetic-class number is tabulated.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "geometric_crystal_class"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "unimodular_matrix"
+    },
+    {
+     "type": "USES",
+     "target": "point_group"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/group.py",
+     "symbol": "point_group",
+     "kind": "FunctionDef",
+     "line": 51,
+     "quote": "The set of distinct rotation parts W, ignoring translations -- this *is* the crystallographic point group, no separate table needed.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
+     "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
+    },
+    {
+     "module": "agentsg/symmetry_op.py",
+     "symbol": "SymmetryOp",
+     "kind": "ClassDef",
+     "line": 41,
+     "quote": "Exact Seitz symmetry operator (W, w) acting as x' = W x + w (mod 1).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/symmetry_op.py",
+     "sha256": "4bff3d68b1e86ab0451668d0e64d289c45f5b5bdde2281548d3b34cec4964ed9"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Crystallographic point group",
+     "url": "https://en.wikipedia.org/wiki/Crystallographic_point_group",
+     "page_title": "Crystallographic point group",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "According to the crystallographic restriction theorem, point groups may only",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Arithmetic crystal class",
+     "url": "https://dictionary.iucr.org/Arithmetic_crystal_class",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "bravais_class",
+   "label": "Bravais class",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "An arithmetic crystal class together with the centring type of the lattice: the classification of which the 14 Bravais lattices are the symmorphic members. agentsg distinguishes holohedry and centring letter; it does not emit a Bravais-class symbol.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "bravais_lattice"
+    },
+    {
+     "type": "USES",
+     "target": "holohedry"
+    },
+    {
+     "type": "USES",
+     "target": "lattice_centring"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "arithmetic_crystal_class"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/lattice_symmetry.py",
+     "symbol": "lattice_symmetry",
+     "kind": "FunctionDef",
+     "line": 280,
+     "quote": "Determine the metric (lattice) symmetry of a unit cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
+     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+    },
+    {
+     "module": "agentsg/cell/primitive.py",
+     "symbol": "lattice_letter",
+     "kind": "FunctionDef",
+     "line": 46,
+     "quote": "Extract the Bravais lattice letter from an H-M or Hall symbol.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/primitive.py",
+     "sha256": "d794e48761ae8342658cde7fb55f4db933fc067180f19c26d514cd91b2c156d7"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Bravais class",
+     "url": "https://dictionary.iucr.org/Bravais_class",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "wilson_statistics",
+   "label": "Wilson statistics (centric and acentric intensities)",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The expected distributions of diffracted intensity for centric and acentric reflections, and the epsilon enhancement where the stabilizer of h is larger than 1. agentsg reports the centric phase restriction and the epsilon factor. It does not fit a Wilson plot.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "epsilon_factor"
+    },
+    {
+     "type": "USES",
+     "target": "centric_reflection"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/reflections.py",
+     "symbol": "epsilon_factor",
+     "kind": "FunctionDef",
+     "line": 348,
+     "quote": "Number of symmetry operations that leave ``hkl`` invariant (hW = h).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/reflections.py",
+     "sha256": "3963fd02b5b76c010549ec312de93021b308e2e3530fbbe960ef75a36851f3d1"
+    },
+    {
+     "module": "agentsg/group.py",
+     "symbol": "is_reflection_centric",
+     "kind": "FunctionDef",
+     "line": 90,
+     "quote": "True if some operation maps h → −h (phase-restricted / 'centric' reflection).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/group.py",
+     "sha256": "f2f125e7e220680de009f7a20ccfe68a4d619069d10e73dabf8713795e4dd86d"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Wilson plot",
+     "url": "https://en.wikipedia.org/wiki/Wilson_plot",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached).",
+     "quote": ""
+    },
+    {
+     "source": "iucr",
+     "title": "Centric and acentric distribution",
+     "url": "https://dictionary.iucr.org/Centric_and_acentric_distribution",
+     "page_title": "Centric and acentric distribution",
+     "status": "related",
+     "quote": "Centric or acentric distribution usually refer to the X-ray diffracted intensity distribution.",
+     "prefix": "",
+     "suffix": "It is in general possible to distinguish",
+     "truncated": false,
+     "note": "dictionary page is adjacent to this concept, not its definition",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "tolerance_gated_matching",
+   "label": "Tolerance-gated cell matching",
+   "kind": "algorithm",
+   "aliases": [],
+   "definition": "Two cells match when edges agree within a percent and angles within a degree, or when a residual stays under a threshold calibrated on same-lattice pairs. This is a numeric gate. It is not the exact certificate given by equality over the Selling closure.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "CONTRASTS_WITH",
+     "target": "selling_closure"
+    },
+    {
+     "type": "USES",
+     "target": "metric_tensor"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "_cell_close",
+     "kind": "FunctionDef",
+     "line": 83,
+     "quote": "True if two cell-parameter tuples agree within (length%, angle deg).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    },
+    {
+     "module": "agentsg/cell/compare.py",
+     "symbol": "_deviations",
+     "kind": "FunctionDef",
+     "line": 72,
+     "quote": "Compute percentage length deviations and degree angle differences.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py",
+     "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "_param_residual",
+     "kind": "FunctionDef",
+     "line": 180,
+     "quote": "Length error in percent, angle error in degrees, and their maximum.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    },
+    {
+     "module": "agentsg/cell/canonical.py",
+     "symbol": "calibrate_verify_tol",
+     "kind": "FunctionDef",
+     "line": 353,
+     "quote": "Derive a data-driven ``verify_abs`` residual threshold from a baseline.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
+     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Lattice reduction",
+     "url": "https://en.wikipedia.org/wiki/Lattice_reduction",
+     "page_title": "Lattice reduction",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "This is realized using",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "site_symmetry_stratum",
+   "label": "Site-symmetry stratum (direct-space fixed set)",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The locus of points in the unit cell with a given site-symmetry stabilizer: the intersection of the fixed-point loci of those operations. This is the direct-space counterpart of a reflection stratum. The two are analogous stratifications by stabilizer, not a lattice dual of each other.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "site_symmetry"
+    },
+    {
+     "type": "USES",
+     "target": "fixed_point_locus"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "reflection_stratum"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "wyckoff_position"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/wyckoff.py",
+     "symbol": "fixed_locus",
+     "kind": "FunctionDef",
+     "line": 84,
+     "quote": "All points in the unit cell fixed by ``op`` modulo the lattice.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py",
+     "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851"
+    },
+    {
+     "module": "agentsg/wyckoff.py",
+     "symbol": "site_symmetry_ops",
+     "kind": "FunctionDef",
+     "line": 34,
+     "quote": "Operations (W,w) that fix x modulo an integer lattice translation.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/wyckoff.py",
+     "sha256": "509f03408b4905eaf1b9799ecf76f0a72c24ab0ad01a162902a557d9e7128851"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Wyckoff positions",
+     "url": "https://en.wikipedia.org/wiki/Wyckoff_positions",
+     "page_title": "Wyckoff positions",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "Crystallography tables give the Wyckoff positions for different",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Wyckoff position",
+     "url": "https://dictionary.iucr.org/Wyckoff_position",
+     "page_title": "Wyckoff position",
+     "status": "related",
+     "quote": "A Wyckoff position of a space group G consists of all points X for which the site-symmetry groups are conjugate subgroups of G.",
+     "prefix": "",
+     "suffix": "Each Wyckoff positon of a space",
+     "truncated": false,
+     "note": "dictionary page is adjacent to this concept, not its definition",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "twinning_pseudomerohedry",
+   "label": "Twinning by pseudomerohedry",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "Twin laws from a lattice holohedry that only approximately contains the crystal Laue group, so the obliquity is small but not zero. twin_laws and the ambiguity cosets enumerate these operators when the cell is within the length and angle tolerances. The obliquity itself is not reported.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "twinning_merohedry"
+    },
+    {
+     "type": "USES",
+     "target": "tolerance_gated_matching"
+    },
+    {
+     "type": "USES",
+     "target": "coset"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "twin_laws",
+     "kind": "FunctionDef",
+     "line": 149,
+     "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    },
+    {
+     "module": "agentsg/cell/ambiguity.py",
+     "symbol": "reindexing_ambiguity_operators",
+     "kind": "FunctionDef",
+     "line": 126,
+     "quote": "Return the reindexing-ambiguity operators for a (space group, cell).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
+     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Twinning (crystallography)",
+     "url": "https://en.wikipedia.org/wiki/Crystal_twinning",
+     "page_title": "Crystal twinning",
+     "status": "quoted",
+     "quote": "Crystal twinning occurs when two or more adjacent crystals of the same mineral are oriented so that they share some of the same crystal lattice points in a symmetrical manner.",
+     "prefix": "",
+     "suffix": "The result is an intergrowth of two separate crystals",
+     "truncated": false,
+     "note": "redirects to Crystal twinning",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Twinning by pseudomerohedry",
+     "url": "https://dictionary.iucr.org/Twinning_by_pseudomerohedry",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "twinning_reticular_merohedry",
+   "label": "Twinning by reticular merohedry",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "Twinning in which only a sublattice is restored by the twin operation. Dictionary context. twin_laws enumerates cosets of the Laue group in the lattice holohedry; it does not build a twin lattice or a twin index.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "twinning_merohedry"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "sublattice"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "twin_laws",
+     "kind": "FunctionDef",
+     "line": 149,
+     "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Twinning (crystallography)",
+     "url": "https://en.wikipedia.org/wiki/Crystal_twinning",
+     "page_title": "Crystal twinning",
+     "status": "quoted",
+     "quote": "Crystal twinning occurs when two or more adjacent crystals of the same mineral are oriented so that they share some of the same crystal lattice points in a symmetrical manner.",
+     "prefix": "",
+     "suffix": "The result is an intergrowth of two separate crystals",
+     "truncated": false,
+     "note": "redirects to Crystal twinning",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Twinning by reticular merohedry",
+     "url": "https://dictionary.iucr.org/Twinning_by_reticular_merohedry",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "twin_index",
+   "label": "Twin index",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The index of the twin lattice in the crystal lattice. Dictionary context. The code does not compute it.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "twinning_reticular_merohedry"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "sublattice"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "twin_laws",
+     "kind": "FunctionDef",
+     "line": 149,
+     "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Twinning (crystallography)",
+     "url": "https://en.wikipedia.org/wiki/Crystal_twinning",
+     "page_title": "Crystal twinning",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "The result is an intergrowth of two separate crystals",
+     "truncated": false,
+     "note": "redirects to Crystal twinning page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Twin index",
+     "url": "https://dictionary.iucr.org/Twin_index",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "twin_obliquity",
+   "label": "Twin obliquity",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The angle by which a twin operation fails to be an exact symmetry of the lattice. Dictionary context. Tolerances gate which operators are returned; the angle is not reported.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "twinning_pseudomerohedry"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "tolerance_gated_matching"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "_cell_close",
+     "kind": "FunctionDef",
+     "line": 83,
+     "quote": "True if two cell-parameter tuples agree within (length%, angle deg).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Twinning (crystallography)",
+     "url": "https://en.wikipedia.org/wiki/Crystal_twinning",
+     "page_title": "Crystal twinning",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "The result is an intergrowth of two separate crystals",
+     "truncated": false,
+     "note": "redirects to Crystal twinning page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Twin obliquity",
+     "url": "https://dictionary.iucr.org/Twin_obliquity",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "twin_lattice",
+   "label": "Twin lattice",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The sublattice restored by every twin operation of a twin. Dictionary context. The code returns twin-law matrices, not that sublattice.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "RELATED_TO",
+     "target": "twinning_reticular_merohedry"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "sublattice"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/reindex.py",
+     "symbol": "twin_laws",
+     "kind": "FunctionDef",
+     "line": 149,
+     "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
+     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Twinning (crystallography)",
+     "url": "https://en.wikipedia.org/wiki/Crystal_twinning",
+     "page_title": "Crystal twinning",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "The result is an intergrowth of two separate crystals",
+     "truncated": false,
+     "note": "redirects to Crystal twinning page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "iucr",
+     "title": "Twin lattice",
+     "url": "https://dictionary.iucr.org/Twin_lattice",
+     "status": "unreachable",
+     "fetched": "2026-09-30",
+     "note": "dictionary.iucr.org returned a Cloudflare challenge on 2026-09-30 (HTTP 403); the page was not read.",
+     "quote": ""
+    }
+   ]
+  },
+  {
+   "id": "crystfel_stream",
+   "label": "CrystFEL stream",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "A CrystFEL .stream file: one indexed unit cell, and optionally the reciprocal-lattice orientation, for each crystal in a serial experiment. Cells are converted from nanometres to angstroms.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "indexed_cell_distribution"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/crystfel_stream.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "Parse CrystFEL stream files (serial crystallography indexing results).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/crystfel_stream.py",
+     "sha256": "dc81b91218d01ca89f3d137fa26d94029a42a838bc649799cf1b3441673d62c5"
+    },
+    {
+     "module": "agentsg/cell/crystfel_stream.py",
+     "symbol": "parse_stream",
+     "kind": "FunctionDef",
+     "line": 20,
+     "quote": "Yield one dict per indexed crystal.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/crystfel_stream.py",
+     "sha256": "dc81b91218d01ca89f3d137fa26d94029a42a838bc649799cf1b3441673d62c5"
+    },
+    {
+     "module": "agentsg/cell/crystfel_stream.py",
+     "symbol": "read_cells",
+     "kind": "FunctionDef",
+     "line": 47,
+     "quote": "Return a list of (a, b, c, alpha, beta, gamma) tuples (Angstrom) for every indexed crystal in the stream -- the per-pattern indexed-cell distribution.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/crystfel_stream.py",
+     "sha256": "dc81b91218d01ca89f3d137fa26d94029a42a838bc649799cf1b3441673d62c5"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Serial femtosecond crystallography",
+     "url": "https://en.wikipedia.org/wiki/Serial_femtosecond_crystallography",
+     "page_title": "Serial femtosecond crystallography",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "indexed_cell_distribution",
+   "label": "Indexed cell distribution",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "The set of per-crystal unit cells written by the indexer, before merging averages them. parse_stream yields one cell dict per indexed crystal.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "PART_OF",
+     "target": "crystfel_stream"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "indexing_ambiguity"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/crystfel_stream.py",
+     "symbol": "parse_stream",
+     "kind": "FunctionDef",
+     "line": 20,
+     "quote": "Yield one dict per indexed crystal.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/crystfel_stream.py",
+     "sha256": "dc81b91218d01ca89f3d137fa26d94029a42a838bc649799cf1b3441673d62c5"
+    },
+    {
+     "module": "agentsg/cell/crystfel_stream.py",
+     "symbol": "stream_summary",
+     "kind": "FunctionDef",
+     "line": 53,
+     "quote": "One-pass summary: chunk (frame) count, indexed-crystal count, indexing rate, and the mean/std of each cell parameter.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/crystfel_stream.py",
+     "sha256": "dc81b91218d01ca89f3d137fa26d94029a42a838bc649799cf1b3441673d62c5"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Serial femtosecond crystallography",
+     "url": "https://en.wikipedia.org/wiki/Serial_femtosecond_crystallography",
+     "page_title": "Serial femtosecond crystallography",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "reference_orbit",
+   "label": "Reference orbit of Selling superbases",
+   "kind": "crystallography",
+   "aliases": [],
+   "definition": "One Selling reduction of a deposited cell, the deposited-to-reduced change of basis, and the labeled closure of obtuse superbases used to match a neighbour.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "selling_closure"
+    },
+    {
+     "type": "USES",
+     "target": "change_of_basis"
+    },
+    {
+     "type": "PART_OF",
+     "target": "reindexing"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "reference_orbit",
+     "kind": "FunctionDef",
+     "line": 145,
+     "quote": "Selling-reduce ``cell`` and enumerate the typed closure once.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    },
+    {
+     "module": "agentsg/cell/selling_cob.py",
+     "symbol": "ReferenceOrbit",
+     "kind": "ClassDef",
+     "line": 134,
+     "quote": "One query: deposited-to-reduced ``P_ref`` and the labeled closure metrics.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
+     "sha256": "270799e556b27920680132a94efe1317bbf01a98543e4b51465a0b87bd1d16d3"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Lattice reduction",
+     "url": "https://en.wikipedia.org/wiki/Lattice_reduction",
+     "page_title": "Lattice reduction",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "This is realized using",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "pdb_lattice_search",
+   "label": "PDB lattice search pipeline",
+   "kind": "algorithm",
+   "aliases": [],
+   "definition": "The same path for a query and for each stored PDB cell: conventional cell, primitive cell from the centring letter, Selling reduction, Kurlin root form, then a KD-tree radius query on the six root components.",
+   "literature": [
+    "Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543"
+   ],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "conventional_cell"
+    },
+    {
+     "type": "USES",
+     "target": "primitive_cell"
+    },
+    {
+     "type": "USES",
+     "target": "delaunay_selling_reduction"
+    },
+    {
+     "type": "USES",
+     "target": "kurlin_root_form"
+    },
+    {
+     "type": "USES",
+     "target": "kd_tree"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/pdb_server.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "HTTP API for PDB lattice-similarity search.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
+     "sha256": "c2246c44981fe66f2ecaa0667289588324c2a72790b34d883476363685c95daf"
+    },
+    {
+     "module": "agentsg/cell/celldb.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "celldb: a persistent unit-cell / symmetry database keyed on the root invariant.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
+     "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+    },
+    {
+     "module": "agentsg/cell/rootindex.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "KD-tree index over precomputed Kurlin root invariants (6D Euclidean, Å).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootindex.py",
+     "sha256": "cb4175115c2ed662fdb5bc6f88d1fa7610de05b91c88ae971853221961b74edd"
+    },
+    {
+     "module": "agentsg/cell/pdb_server.py",
+     "symbol": "search_compatible",
+     "kind": "FunctionDef",
+     "line": 117,
+     "quote": "Return PDB ids within ``cutoff`` Å (root distance) of ``cell``.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
+     "sha256": "c2246c44981fe66f2ecaa0667289588324c2a72790b34d883476363685c95daf"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "K-d tree",
+     "url": "https://en.wikipedia.org/wiki/K-d_tree",
+     "page_title": "K-d tree",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "K-dimensional is that which concerns",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    },
+    {
+     "source": "literature",
+     "title": "Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543",
+     "url": "https://arxiv.org/abs/2201.10543",
+     "page_title": "Mathematics of 2-dimensional and 3-dimensional lattices",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
+    }
+   ]
+  },
+  {
+   "id": "k_subgroup_iia",
+   "label": "Klassengleiche subgroup of type IIa",
+   "kind": "crystallography",
+   "aliases": [
+    "IIa",
+    "type IIa"
+   ],
+   "definition": "A klassengleiche subgroup on the same conventional cell: the point group stays, and a point-group-invariant proper subset of the centring translations is dropped. Primitive groups have no IIa edge. This is derived from the operators, not from an ITA A1 maximality table.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "k_subgroup"
+    },
+    {
+     "type": "CONTRASTS_WITH",
+     "target": "k_subgroup_iib"
+    },
+    {
+     "type": "USES",
+     "target": "lattice_centring"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/subgroups.py",
+     "symbol": "_k_iia_edges",
+     "kind": "FunctionDef",
+     "line": 363,
+     "quote": "Klassengleiche IIa edges: same conventional cell, fewer centring translations.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Klassengleiche subgroups",
+     "url": "https://dictionary.iucr.org/Klassengleiche_subgroups",
+     "page_title": "Klassengleiche subgroups",
+     "status": "quoted",
+     "quote": "Subgroups of space groups occur in two categories namely klassengleiche subgroups or translationengleiche subgroups.",
+     "prefix": "pressure changes.",
+     "suffix": "(The terms originate from the german language.)",
+     "truncated": false,
+     "note": "page body matches the joint entry; quote is the sentence that names both klassengleiche and translationengleiche subgroups; the later 'In the second case' sentence is anaphoric and is not used",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "k_subgroup_iib",
+   "label": "Klassengleiche subgroup of type IIb",
+   "kind": "crystallography",
+   "aliases": [
+    "IIb",
+    "type IIb"
+   ],
+   "definition": "A klassengleiche subgroup of a primitive group from an invariant index-2 or index-3 sublattice of Z³. The point group is kept and the cell is enlarged. Infinite isomorphic series beyond those two indices are not enumerated.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "SPECIALIZES",
+     "target": "k_subgroup"
+    },
+    {
+     "type": "CONTRASTS_WITH",
+     "target": "k_subgroup_iia"
+    },
+    {
+     "type": "USES",
+     "target": "sublattice"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/subgroups.py",
+     "symbol": "_k_iib_edges",
+     "kind": "FunctionDef",
+     "line": 478,
+     "quote": "Primitive-cell IIb: invariant index-2 and index-3 sublattices of Z³.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/subgroups.py",
+     "sha256": "e3f9c3198e80585c064fc92d232164a0b1ea6a11d405aaa52e8681932d1dd554"
+    }
+   ],
+   "references": [
+    {
+     "source": "iucr",
+     "title": "Klassengleiche subgroups",
+     "url": "https://dictionary.iucr.org/Klassengleiche_subgroups",
+     "page_title": "Klassengleiche subgroups",
+     "status": "quoted",
+     "quote": "Subgroups of space groups occur in two categories namely klassengleiche subgroups or translationengleiche subgroups.",
+     "prefix": "pressure changes.",
+     "suffix": "(The terms originate from the german language.)",
+     "truncated": false,
+     "note": "page body matches the joint entry; quote is the sentence that names both klassengleiche and translationengleiche subgroups; the later 'In the second case' sentence is anaphoric and is not used",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
+   "id": "conorm_noise_floor",
+   "label": "Closure-invariant conorm noise floor",
+   "kind": "algorithm",
+   "aliases": [
+    "noise floor",
+    "conorm floor"
+   ],
+   "definition": "One floor s = c · σ_θ · T applied to every Selling conorm, where T is the sum of the six conorms. Selling flips permute the conorms and leave T fixed, so the floor is the same on every member of the closure. It is not a separate floor on each pair.",
+   "literature": [
+    "Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543"
+   ],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "obtuse_superbase"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "kurlin_root_form"
+    },
+    {
+     "type": "RELATED_TO",
+     "target": "floating_point_tolerance"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/cell/rootform.py",
+     "symbol": "noise_floor",
+     "kind": "FunctionDef",
+     "line": 165,
+     "quote": "Closure-invariant global conorm floor ``s = c · σ_θ · T`` (Angstrom²).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
+     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+    },
+    {
+     "module": "agentsg/cell/rootform.py",
+     "symbol": "pair_noise_scales",
+     "kind": "FunctionDef",
+     "line": 177,
+     "quote": "Global invariant floor broadcast to all six pairs (API compat).",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
+     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+    }
+   ],
+   "references": [
+    {
+     "source": "literature",
+     "title": "Kurlin, V. Mathematics of 2-dimensional and 3-dimensional lattices, arXiv:2201.10543",
+     "url": "https://arxiv.org/abs/2201.10543",
+     "page_title": "Mathematics of 2-dimensional and 3-dimensional lattices",
+     "status": "citation",
+     "quote": "",
+     "prefix": "",
+     "suffix": "",
+     "truncated": false,
+     "note": "bibliographic pointer from the concept's literature list; no abstract sentence was fetched",
+     "fetched": "2026-09-30",
+     "doi": ""
     }
    ]
   }

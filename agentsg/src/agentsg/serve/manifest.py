@@ -338,6 +338,31 @@ ENDPOINTS: list[dict[str, Any]] = [
         "_op_ids": {"GET": "conceptGet", "POST": "concept"},
     },
     {
+        "path": "/v1/concept/search",
+        "methods": ["GET", "POST"],
+        "description": "Token-overlap search of concept labels, aliases, and definitions",
+        "params": [
+            _p("q", "string", True, "Words to search, e.g. Smith normal form"),
+            _p("limit", "int", False, "Hit cap, 1–20, default 8"),
+        ],
+        "example": _curl("/v1/concept/search?q=Smith+normal+form"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptSearchGet", "POST": "conceptSearch"},
+    },
+    {
+        "path": "/v1/concept/neighbors",
+        "methods": ["GET", "POST"],
+        "description": "Outgoing concept relations, optional type filter, depth 1–3",
+        "params": [
+            _p("id", "string", True, "Start concept id"),
+            _p("relation", "string", False, "Relation type such as USES or SPECIALIZES"),
+            _p("depth", "int", False, "1, 2, or 3 (default 1)"),
+        ],
+        "example": _curl("/v1/concept/neighbors?id=glide_a&relation=SPECIALIZES"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "conceptNeighborsGet", "POST": "conceptNeighbors"},
+    },
+    {
         "path": "/v1/concept/uses",
         "methods": ["GET", "POST"],
         "description": "Concepts reached by USES in 1–3 steps, with each definition",

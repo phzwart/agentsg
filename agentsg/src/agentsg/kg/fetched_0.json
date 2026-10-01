@@ -231,7 +231,7 @@
   "prefix": "",
   "suffix": "This is an equivalence relation whose",
   "truncated": false,
-  "note": "unverified: inline math (a, b, g, b = gag^{-1}) was stripped by the fetcher and restored from memory"
+  "note": "unverified: inline math (a, b, g, b = gag^{-1}) was stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared."
  },
  {
   "source": "wiki",
@@ -322,20 +322,21 @@
   "prefix": "",
   "suffix": "More formally, it is a group homomorphism",
   "truncated": false,
-  "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory"
+  "note": "unverified: inline math symbols (G, S) were stripped by the fetcher and restored from memory. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared."
  },
  {
   "source": "wiki",
   "title": "Hall notation",
-  "url": "https://en.wikipedia.org/wiki/Hall_notation",
-  "final_url": "https://en.wikipedia.org/wiki/Hall_notation",
-  "exists": false,
-  "page_title": null,
-  "exact": null,
-  "prefix": null,
-  "suffix": null,
+  "url": "https://en.wikipedia.org/wiki/Space_group#Notation",
+  "final_url": "https://en.wikipedia.org/wiki/Space_group#Notation",
+  "exists": true,
+  "page_title": "Hall notation",
+  "exact": "Rotation, translation and axis-direction symbols are clearly separated and inversion centers are explicitly defined.",
+  "prefix": "Hall notation",
+  "suffix": "The construction and format of the notation",
   "truncated": false,
-  "note": "WebFetch error: en.wikipedia.org is cache-only in this environment and this page is not cached; direct curl blocked by proxy (403). Page existence not verified."
+  "note": "Section 'Hall notation' inside the article Space group; there is no standalone Hall notation article.",
+  "sha256": "f41c9cd6790f09d7e4afd368c528068b707b2bd36a98b5d36a1bc09cc2a42fde"
  },
  {
   "source": "wiki",
@@ -374,7 +375,7 @@
   "prefix": "",
   "suffix": "Coordinate-wise addition or subtraction of two",
   "truncated": true,
-  "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list"
+  "note": "unverified: inline math (R^n) stripped by fetcher and restored from memory; sentence continues with a list. Re-checked 2026-09-30 via Wikipedia API explaintext: the extract still contained TeX (\\displaystyle) spans, so the stored sentence was not cleared."
  },
  {
   "source": "wiki",
@@ -447,12 +448,12 @@
   "url": "https://en.wikipedia.org/wiki/Pseudosymmetry",
   "final_url": "https://en.wikipedia.org/wiki/Pseudosymmetry",
   "exists": false,
-  "page_title": null,
-  "exact": null,
+  "page_title": "",
+  "exact": "",
   "prefix": null,
   "suffix": null,
   "truncated": false,
-  "note": "WebFetch error: en.wikipedia.org is cache-only in this environment and this page is not cached; direct curl blocked by proxy (403). Page existence not verified."
+  "note": "Wikipedia API query on 2026-09-30 returned no article with this title (the page is missing, not merely uncached)."
  },
  {
   "source": "wiki",
@@ -478,7 +479,8 @@
   "prefix": "",
   "suffix": "Chasles' theorem shows that each Euclidean displacement",
   "truncated": false,
-  "note": ""
+  "note": "",
+  "sha256": "ac5c317588f5cdc5011be9d08064a611dcb5e1f51406b980d28cb943432672be"
  },
  {
   "source": "wiki",

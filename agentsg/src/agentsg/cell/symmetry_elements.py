@@ -233,6 +233,7 @@ _PRIMITIVE = None
 
 
 def primitive_lattice() -> Lattice:
+    """The primitive translation lattice, cached: origin only, no centring vectors."""
     global _PRIMITIVE
     if _PRIMITIVE is None:
         _PRIMITIVE = Lattice(translation_lattice([(0, 0, 0)]))
@@ -314,6 +315,11 @@ def _shortest_along(axis, lattice):
 
 
 def _screw_index(intr, period, n) -> int:
+    """Screw index k of an intrinsic translation along an n-fold axis.
+
+    k/n is the fraction of the axis period, folded into 0..n-1. Returns 0
+    when the intrinsic part is a lattice vector (a pure rotation).
+    """
     if period is None or _is_zero(intr):
         return 0
     coef = _dot(intr, period) / _dot(period, period)

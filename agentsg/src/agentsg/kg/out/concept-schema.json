@@ -148,7 +148,8 @@
               "source": {
                 "enum": [
                   "iucr",
-                  "wikipedia"
+                  "wikipedia",
+                  "literature"
                 ]
               },
               "title": {
@@ -167,7 +168,8 @@
                   "unreadable-markup",
                   "unreachable",
                   "off-topic",
-                  "related"
+                  "related",
+                  "citation"
                 ]
               },
               "quote": {
@@ -186,6 +188,12 @@
                 "type": "string"
               },
               "fetched": {
+                "type": "string"
+              },
+              "doi": {
+                "type": "string"
+              },
+              "sha256": {
                 "type": "string"
               }
             }

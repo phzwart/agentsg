@@ -23,6 +23,12 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "agentsg.serve" = ["*.md"]
+agentsg = [
+  "kg/out/*.json",
+  "kg/out/*.jsonld",
+  "kg/out/*.md",
+  "kg/out/neo4j/*",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

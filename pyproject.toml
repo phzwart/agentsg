@@ -31,6 +31,15 @@ Repository = "https://github.com/phzwart/agentsg"
 [tool.setuptools.packages.find]
 where = ["agentsg/src"]
 
+[tool.setuptools.package-data]
+agentsg = [
+  "kg/out/*.json",
+  "kg/out/*.jsonld",
+  "kg/out/*.md",
+  "kg/out/neo4j/*",
+  "serve/*.md",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["agentsg/tests"]
 markers = [

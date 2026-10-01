@@ -24,9 +24,11 @@ LOAD CSV WITH HEADERS FROM 'file:///references.csv' AS row
 MERGE (r:Reference {id: row.`id:ID(Reference)`})
 SET r.source = row.source, r.title = row.title, r.page_title = row.page_title, r.url = row.url,
     r.status = row.status, r.quote = row.quote, r.prefix = row.prefix, r.suffix = row.suffix,
-    r.truncated = toBoolean(row.`truncated:boolean`), r.note = row.note, r.fetched = row.fetched
+    r.truncated = toBoolean(row.`truncated:boolean`), r.note = row.note, r.fetched = row.fetched,
+    r.doi = row.doi
 WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'iucr' SET r:IUCr }
 WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'wikipedia' SET r:Wikipedia }
+WITH r, row CALL { WITH r, row WITH r, row WHERE row.source = 'literature' SET r:Literature }
 RETURN count(r);
 
 LOAD CSV WITH HEADERS FROM 'file:///reference_edges.csv' AS row
