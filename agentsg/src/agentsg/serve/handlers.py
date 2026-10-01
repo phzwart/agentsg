@@ -34,6 +34,13 @@ from ..cell import (
     surface_geometric_operators,
 )
 from ..cell.pdb_server import search_compatible
+from ..tolerances import (
+    BOUNDARY_REL,
+    COB_ANGLE_SIGMA_DEG,
+    LE_PAGE_MAX_DELTA_DEG,
+    METRIC_ANGLE_TOL_DEG,
+    METRIC_LENGTH_TOL_PCT,
+)
 from ..cell.primitive import lattice_letter
 from ..group import centering_translations, close_group
 from ..linalg import ZERO3
@@ -456,18 +463,16 @@ def _as_bool(raw) -> bool:
 
 
 def _cob_angle_sigma(data: dict[str, Any]) -> float:
-    from ..cell.selling_cob import DEFAULT_COB_ANGLE_SIGMA_DEG
     raw = data.get("angle_sigma")
     if raw is None or raw == "":
-        return DEFAULT_COB_ANGLE_SIGMA_DEG
+        return COB_ANGLE_SIGMA_DEG
     return float(raw)
 
 
 def _cob_boundary_rel(data: dict[str, Any]) -> float:
-    from ..cell.selling_cob import DEFAULT_COB_BOUNDARY_REL
     raw = data.get("boundary_rel")
     if raw is None or raw == "":
-        return DEFAULT_COB_BOUNDARY_REL
+        return BOUNDARY_REL
     return float(raw)
 
 
@@ -510,7 +515,7 @@ def cell_info(data: dict[str, Any]) -> dict[str, Any]:
 
 def lattice_symmetry_info(data: dict[str, Any]) -> dict[str, Any]:
     cell = parse_cell(data.get("cell"))
-    max_delta = float(data.get("max_delta", 3.0))
+    max_delta = float(data.get("max_delta", LE_PAGE_MAX_DELTA_DEG))
     ls = lattice_symmetry(cell, max_delta=max_delta)
     scores = []
     for s in (ls.two_fold_scores or [])[:12]:
@@ -586,8 +591,8 @@ def compare_info(data: dict[str, Any]) -> dict[str, Any]:
 def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
     rec = resolve_sg(data.get("sg"))
     cell = parse_cell(data.get("cell"))
-    length_tol = float(data.get("length_tol_pct", 2.0))
-    angle_tol = float(data.get("angle_tol_deg", 2.0))
+    length_tol = float(data.get("length_tol_pct", METRIC_LENGTH_TOL_PCT))
+    angle_tol = float(data.get("angle_tol_deg", METRIC_ANGLE_TOL_DEG))
     ops = surface_geometric_operators(
         rec.number, cell, length_tol_pct=length_tol, angle_tol_deg=angle_tol)
     return _with_concepts("reindex_info", {

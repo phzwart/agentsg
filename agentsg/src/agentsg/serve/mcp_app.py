@@ -11,6 +11,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from ..tolerances import (
+    BOUNDARY_REL,
+    COB_ANGLE_SIGMA_DEG,
+    LE_PAGE_MAX_DELTA_DEG,
+    METRIC_ANGLE_TOL_DEG,
+    METRIC_LENGTH_TOL_PCT,
+)
 from . import handlers
 from .app import ServerState
 from .concepts import (
@@ -381,7 +388,7 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     @mcp.tool(annotations=_READONLY)
     def lattice_symmetry(
         cell: list[float],
-        max_delta: float = 3.0,
+        max_delta: float = LE_PAGE_MAX_DELTA_DEG,
         include_g6: bool = False,
         sg: str | None = None,
     ) -> dict[str, Any]:
@@ -420,8 +427,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     def reindex(
         sg: str,
         cell: list[float],
-        length_tol_pct: float = 2.0,
-        angle_tol_deg: float = 2.0,
+        length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+        angle_tol_deg: float = METRIC_ANGLE_TOL_DEG,
     ) -> dict[str, Any]:
         """Geometric reindexing branches. Intensities are required to pick a branch."""
         return _result(handlers.reindex_info, {
@@ -440,8 +447,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         same_hm: bool = False,
         plot: bool = False,
         return_cob: bool = False,
-        angle_sigma: float = 0.05,
-        boundary_rel: float = 1e-3,
+        angle_sigma: float = COB_ANGLE_SIGMA_DEG,
+        boundary_rel: float = BOUNDARY_REL,
     ) -> dict[str, Any]:
         """PDB lattices near a cell on the sorted Kurlin root invariant.
 

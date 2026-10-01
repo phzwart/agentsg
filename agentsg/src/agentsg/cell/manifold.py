@@ -57,6 +57,7 @@ from heapq import heappush, heappop
 
 from .rootform import root_invariant, sorted_conorm_key
 from .canonical import best_reindex_with_residual, reindexing_via_canonical
+from ..tolerances import MANIFOLD_HOP_VERIFY_REL, MANIFOLD_PATH_VERIFY_REL
 
 
 # --------------------------------------------------------------- graph core ----
@@ -288,7 +289,7 @@ class DeformationManifold:
         return L, path
 
     # -- exact reindexing operator for a short hop ---------------------------
-    def reindex_to_landmark(self, i, verify_rel=1e-3):
+    def reindex_to_landmark(self, i, verify_rel=MANIFOLD_HOP_VERIFY_REL):
         """Exact integer operator ``P`` reindexing state ``i`` onto its nearest
         landmark's setting, plus the metric residual and the landmark index.
 
@@ -321,7 +322,7 @@ class DeformationManifold:
         max_res = 0.0
         for a, b in zip(path[:-1], path[1:]):
             ops = reindexing_via_canonical(self.cells[a], self.cells[b],
-                                           verify_rel=1e-2)
+                                           verify_rel=MANIFOLD_PATH_VERIFY_REL)
             if not ops:
                 Pstep, res = best_reindex_with_residual(self.cells[a], self.cells[b])
             else:

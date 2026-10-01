@@ -31,6 +31,12 @@ from math import acos, degrees, sqrt
 from .linalg import Matrix3, Vector3, IDENTITY3
 from .symmetry_op import SymmetryOp
 from .group import close_group
+from .tolerances import (
+    LE_PAGE_LENGTH_TOL_PCT,
+    LE_PAGE_MAX_DELTA_DEG,
+    METRIC_ANGLE_TOL_DEG,
+    METRIC_LENGTH_TOL_PCT,
+)
 
 
 # --- the Lebedev set, computed once ---------------------------------------
@@ -275,8 +281,8 @@ _ORDER_TO_SYSTEM = {
 }
 
 
-def lattice_symmetry(cell, max_delta: float = 3.0,
-                     length_tol_pct: float = 2.0) -> LatticeSymmetry:
+def lattice_symmetry(cell, max_delta: float = LE_PAGE_MAX_DELTA_DEG,
+                     length_tol_pct: float = LE_PAGE_LENGTH_TOL_PCT) -> LatticeSymmetry:
     """Determine the metric (lattice) symmetry of a unit cell.
 
     Parameters
@@ -347,8 +353,8 @@ def _cell_params(G):
     return params_from_metric(G)
 
 
-def tolerance_metric_symmetry(cell, length_tol_pct: float = 2.0,
-                              angle_tol_deg: float = 2.0):
+def tolerance_metric_symmetry(cell, length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+                              angle_tol_deg: float = METRIC_ANGLE_TOL_DEG):
     """Metric-automorphism group of a cell within a (length, angle) tolerance.
 
     Returns the set of integer rotations M (the Lebedev proper rotations closed

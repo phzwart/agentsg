@@ -28,6 +28,28 @@ def find_symbol(tree, symbol):
     return None
 
 
+def find_constant(tree, symbol):
+    """A module assignment whose following string is the graph quote."""
+    body = tree.body
+    for i, node in enumerate(body):
+        names = []
+        if isinstance(node, ast.Assign):
+            names = [t.id for t in node.targets if isinstance(t, ast.Name)]
+        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            names = [node.target.id]
+        if symbol not in names:
+            continue
+        nxt = body[i + 1] if i + 1 < len(body) else None
+        if (
+            isinstance(nxt, ast.Expr)
+            and isinstance(nxt.value, ast.Constant)
+            and isinstance(nxt.value.value, str)
+        ):
+            return node, first_sentence(nxt.value.value)
+        return node, None
+    return None, None
+
+
 def main():
     files: dict[str, dict] = {}
     out = []
@@ -52,25 +74,39 @@ def main():
                                  "tree": ast.parse(raw.decode("utf-8"))}
             f = files[module]
             node = f["tree"] if symbol == "" else find_symbol(f["tree"], symbol)
+            constant_quote = None
+            if node is None and symbol:
+                node, constant_quote = find_constant(f["tree"], symbol)
             if node is None:
                 problems.append(f"{c['id']}: symbol {symbol} not in {module}")
                 continue
-            quote = first_doc_line(node)
-            if quote is None:
-                problems.append(f"{c['id']}: {module}:{symbol or '<module>'} has no docstring")
+            if constant_quote is not None:
+                quote = constant_quote
+            elif isinstance(node, (ast.Assign, ast.AnnAssign)):
+                problems.append(f"{c['id']}: {module}:{symbol} has no quote sentence")
                 continue
-            doc = ast.get_docstring(node, clean=False) or ""
-            collapsed = " ".join(doc.split())
-            body = quote[:-3].rstrip() if quote.endswith("...") else quote
-            if not collapsed.startswith(body):
-                problems.append(f"{c['id']}: quote is not the docstring prefix in {module}")
-                continue
-            if node.body and isinstance(node.body[0], ast.Expr):
+            else:
+                quote = first_doc_line(node)
+                if quote is None:
+                    problems.append(f"{c['id']}: {module}:{symbol or '<module>'} has no docstring")
+                    continue
+                doc = ast.get_docstring(node, clean=False) or ""
+                collapsed = " ".join(doc.split())
+                body = quote[:-3].rstrip() if quote.endswith("...") else quote
+                if not collapsed.startswith(body):
+                    problems.append(f"{c['id']}: quote is not the docstring prefix in {module}")
+                    continue
+            if isinstance(node, (ast.Assign, ast.AnnAssign)):
+                lineno = node.lineno
+                kind = "constant"
+            elif node.body and isinstance(node.body[0], ast.Expr):
                 lineno = getattr(node.body[0], "lineno", 1)
+                kind = "module" if symbol == "" else type(node).__name__
             else:
                 lineno = getattr(node, "lineno", 1)
+                kind = "module" if symbol == "" else type(node).__name__
             out.append({"concept": c["id"], "module": module, "symbol": symbol,
-                        "kind": "module" if symbol == "" else type(node).__name__,
+                        "kind": kind,
                         "line": lineno, "exact": quote,
                         "sha256": f["sha256"], "uri": REPO_URL + module})
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

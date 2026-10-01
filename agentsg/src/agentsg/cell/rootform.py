@@ -53,6 +53,7 @@ from __future__ import annotations
 from math import sqrt
 
 from .metric import UnitCell
+from ..tolerances import REL_EPS, ROOT_SNAP_DECIMALS, ROOT_SNAP_REL, ROOT_STABILIZE_KAPPA, SYMMETRY_CUTOFF_Z
 
 
 # the six unordered index pairs of {0,1,2,3}
@@ -108,7 +109,7 @@ def delaunay_superbase(cell, max_iter=1000):
     # a non-canonical obtuse superbase whose tetrahedron edge structure is not
     # reachable by index permutation from the trivial one.
     scale = max(abs(_dot(S[i], S[i])) for i in range(4)) or 1.0
-    eps = 1e-9 * scale
+    eps = REL_EPS * scale
     for _ in range(max_iter):
         # find the pair with the most positive scalar product
         worst = eps
@@ -138,7 +139,7 @@ def _clamp0(x, scale=None):
     """
     if x >= 0.0:
         return float(x)
-    tol = 1e-9 * (float(scale) if scale is not None else 1.0)
+    tol = REL_EPS * (float(scale) if scale is not None else 1.0)
     return 0.0 if x > -tol else float(x)
 
 
@@ -223,7 +224,7 @@ def _slot_map(p, s, stabilize, kappa, length_scale):
     )
 
 
-def root_products(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None):
+def root_products(cell, stabilize=None, angle_sigma=None, kappa=ROOT_STABILIZE_KAPPA, floors=None):
     """Slot-wise root (or stabilised) products, keyed by index pair.
 
     Parameters
@@ -326,20 +327,20 @@ def sorted_concat_key(cell, **kw):
 def _present_key(values):
     """Snap noise-floor components to 0 and round the rest to 10 decimals.
 
-    A component whose absolute value is at most ``max(1e-6, 1e-6 * max|r|)``
+    A component whose absolute value is at most ``max(ROOT_SNAP_REL, ROOT_SNAP_REL * max|r|)``
     is written as 0.0. That is the float dust on an orthogonal root, not a
     change to a root that is actually angstroms long. Rounding stops a value
     such as ``5.000000000000002`` from leaving the key.
     """
     vals = [float(v) for v in values]
     scale = max((abs(v) for v in vals), default=0.0)
-    tol = max(1e-6, 1e-6 * scale)
+    tol = max(ROOT_SNAP_REL, ROOT_SNAP_REL * scale)
     out = []
     for value in vals:
         if abs(value) <= tol:
             out.append(0.0)
         else:
-            rounded = round(value, 10)
+            rounded = round(value, ROOT_SNAP_DECIMALS)
             out.append(0.0 if rounded == 0 else rounded)
     return tuple(out)
 
@@ -361,7 +362,7 @@ def _canonical_tuple(rp):
     return tuple(sorted(_present_key(rp[ij] for ij in _PAIRS)))
 
 
-def sorted_root_key(cell, stabilize=None, angle_sigma=None, kappa=2.0, floors=None):
+def sorted_root_key(cell, stabilize=None, angle_sigma=None, kappa=ROOT_STABILIZE_KAPPA, floors=None):
     """Return the sorted six-slot search key (default: √ conorms, Angstrom).
 
     Continuous and basis-invariant, but deliberately many-to-one except on
@@ -462,7 +463,7 @@ def volume_ratio_to_root_distance(volume_ratio, cell):
     return abs(volume_ratio ** (1.0 / 3.0) - 1.0) * nrho
 
 
-def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=11.0):
+def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=SYMMETRY_CUTOFF_Z):
     """Scale-correct sorted-key cutoff for accepting a symmetrised cell.
 
     A Kurlin symmetry deficiency (distance from a cell to its Reynolds-symmetrised

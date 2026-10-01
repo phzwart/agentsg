@@ -32,6 +32,7 @@ from dataclasses import dataclass
 from .metric import UnitCell, params_from_metric
 from .reduction import niggli_reduce
 from .sublattice import generate_sublattices
+from ..tolerances import COMPARE_ANGLE_TOL_DEG, COMPARE_LENGTH_TOL_PCT, VOLUME_FRAC
 
 
 @dataclass(frozen=True)
@@ -75,8 +76,8 @@ def _deviations(cell, target):
     return dl + da
 
 
-def compare_cells(cell_A, cell_B, length_tol_pct: float = 3.0,
-                  angle_tol_deg: float = 5.0, max_index: int | None = None):
+def compare_cells(cell_A, cell_B, length_tol_pct: float = COMPARE_LENGTH_TOL_PCT,
+                  angle_tol_deg: float = COMPARE_ANGLE_TOL_DEG, max_index: int | None = None):
     """Compare two unit cells and return all sublattice relations between them.
 
     Parameters
@@ -103,7 +104,7 @@ def compare_cells(cell_A, cell_B, length_tol_pct: float = 3.0,
     ratio = Vtarget / Vlego
     r = int(round(ratio))
     solutions = []
-    if r >= 1 and abs(ratio - r) <= 0.05 * r + 1e-6:
+    if r >= 1 and abs(ratio - r) <= VOLUME_FRAC * r + 1e-6:
         Glego = _metric(lego)
         indices = range(1, (max_index or r) + 1)
         for idx in indices:

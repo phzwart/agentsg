@@ -19,6 +19,13 @@ from ..change_of_basis import ChangeOfBasis
 from ..linalg import Matrix3, Vector3
 from ..setting import format_cob
 from .canonical import _closure_for_match, canonical_superbase
+from ..tolerances import (
+    BOUNDARY_REL as DEFAULT_COB_BOUNDARY_REL,
+    COB_ANGLE_SIGMA_DEG as DEFAULT_COB_ANGLE_SIGMA_DEG,
+    COB_ANGLE_TOL_DEG as _COB_ANGLE_TOL_DEG,
+    COB_LENGTH_TOL_PCT as _COB_LENGTH_TOL_PCT,
+    VERIFY_REL,
+)
 from .metric import UnitCell, params_from_metric
 from .primitive import lattice_letter, primitive_cell
 
@@ -142,13 +149,10 @@ class ReferenceOrbit:
 
 # A neighbour such as 1JXU vs 1CRN differs by ~0.5% in an edge and ~0.03° in
 # an angle. A 1% edge change is a different cell, not a noisy copy.
-_COB_LENGTH_TOL_PCT = 0.75
-_COB_ANGLE_TOL_DEG = 0.5
 # Zero-conorm width for the query closure. A unimodular reindexing at ordinary
 # float precision leaves "zero" conorms of ~1e-4 Å², which the 1e-9 classifier
-# calls V1. 0.05° is inside the 0.5° match tolerance and restores V2–V5.
-DEFAULT_COB_ANGLE_SIGMA_DEG = 0.05
-DEFAULT_COB_BOUNDARY_REL = 1e-3
+# calls V1. The named angle sigma is inside the match angle tolerance and
+# restores V2–V5. The numbers live in tolerances.py.
 
 
 def reference_orbit(
@@ -236,7 +240,7 @@ def match_operators(
     orbit: ReferenceOrbit,
     red_cell,
     P_pdb: Matrix3,
-    verify_rel=1e-6,
+    verify_rel=VERIFY_REL,
     length_tol_pct=_COB_LENGTH_TOL_PCT,
     angle_tol_deg=_COB_ANGLE_TOL_DEG,
 ):
@@ -274,7 +278,7 @@ def annotate_search_hits(
     cell,
     sg_hm,
     hits,
-    verify_rel=1e-6,
+    verify_rel=VERIFY_REL,
     angle_sigma=DEFAULT_COB_ANGLE_SIGMA_DEG,
     boundary_rel=DEFAULT_COB_BOUNDARY_REL,
 ):

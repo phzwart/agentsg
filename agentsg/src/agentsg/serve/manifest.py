@@ -4,6 +4,16 @@ from __future__ import annotations
 import os
 from typing import Any
 
+from ..tolerances import (
+    BOUNDARY_REL,
+    COB_ANGLE_SIGMA_DEG,
+    COB_ANGLE_TOL_DEG,
+    COB_LENGTH_TOL_PCT,
+    LE_PAGE_MAX_DELTA_DEG,
+    METRIC_ANGLE_TOL_DEG,
+    METRIC_LENGTH_TOL_PCT,
+)
+
 API_VERSION = "0.3.0"
 _BASE_TOKEN = "{{BASE_URL}}"
 _NAME_TOKEN = "{{API_NAME}}"
@@ -287,7 +297,8 @@ ENDPOINTS: list[dict[str, Any]] = [
         "description": "Le Page holohedry and Kurlin two-fold scores for a noisy cell",
         "params": [
             _p("cell", "array", True, "Six cell parameters (Å, degrees)"),
-            _p("max_delta", "float", False, "Le Page angle cutoff in degrees (default 3)"),
+            _p("max_delta", "float", False,
+               f"Le Page angle cutoff in degrees (default {LE_PAGE_MAX_DELTA_DEG:g})"),
             _p("include_g6", "bool", False, "If true, add diagnostic G6 deficiency (Å²)"),
         ],
         "example": _curl("/v1/lattice-symmetry",
@@ -321,8 +332,10 @@ ENDPOINTS: list[dict[str, Any]] = [
         "params": [
             _p("sg", "string", True, "IT number or Hermann–Mauguin of the indexed group"),
             _p("cell", "array", True, "Six cell parameters"),
-            _p("length_tol_pct", "float", False, "Length tolerance percent (default 2)"),
-            _p("angle_tol_deg", "float", False, "Angle tolerance degrees (default 2)"),
+            _p("length_tol_pct", "float", False,
+               f"Length tolerance percent (default {METRIC_LENGTH_TOL_PCT:g})"),
+            _p("angle_tol_deg", "float", False,
+               f"Angle tolerance degrees (default {METRIC_ANGLE_TOL_DEG:g})"),
         ],
         "example": _curl(
             "/v1/reindex",
@@ -446,11 +459,11 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("plot", "bool", False,
                "If true, SVD the hit Kurlin roots and return a PC1–PC2 scatter PNG"),
             _p("return_cob", "bool", False,
-               "If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within 0.75% and 0.5°, plus cob_residual (null if none)"),
+               f"If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within {COB_LENGTH_TOL_PCT:g}% and {COB_ANGLE_TOL_DEG:g}°, plus cob_residual (null if none)"),
             _p("angle_sigma", "float", False,
-               "Degrees. Zero-conorm width for the query Selling closure (default 0.05)"),
+               f"Degrees. Zero-conorm width for the query Selling closure (default {COB_ANGLE_SIGMA_DEG:g})"),
             _p("boundary_rel", "float", False,
-               "Relative width for near-zero conorm flips in the query closure (default 1e-3)"),
+               f"Relative width for near-zero conorm flips in the query closure (default {BOUNDARY_REL:g})"),
         ],
         "example": _curl(
             "/search?a=79&b=79&c=38&alpha=90&beta=90&gamma=90&sg=P212121&cutoff=1.0"
@@ -471,11 +484,11 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("plot", "bool", False,
                "If true, mean-centred SVD of the hit Kurlin roots; response adds xy, svd, and plot_png_base64"),
             _p("return_cob", "bool", False,
-               "If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within 0.75% and 0.5°, plus cob_residual (null if none)"),
+               f"If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within {COB_LENGTH_TOL_PCT:g}% and {COB_ANGLE_TOL_DEG:g}°, plus cob_residual (null if none)"),
             _p("angle_sigma", "float", False,
-               "Degrees. Zero-conorm width for the query Selling closure (default 0.05)"),
+               f"Degrees. Zero-conorm width for the query Selling closure (default {COB_ANGLE_SIGMA_DEG:g})"),
             _p("boundary_rel", "float", False,
-               "Relative width for near-zero conorm flips in the query closure (default 1e-3)"),
+               f"Relative width for near-zero conorm flips in the query closure (default {BOUNDARY_REL:g})"),
         ],
         "example": _curl(
             "/v1/pdb/search",

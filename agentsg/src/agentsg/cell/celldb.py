@@ -41,6 +41,7 @@ from .rootform import root_invariant, similarity_invariant
 from .selling_cob import COB_COLUMNS, cob_column_values, deposited_to_reduced, parse_cob_columns
 from .metric import UnitCell
 from .primitive import primitive_cell
+from ..tolerances import COMPARE_ANGLE_TOL_DEG, COMPARE_LENGTH_TOL_PCT, VOLUME_FRAC
 
 
 def _hm_setting_variants(hm: str) -> list[str]:
@@ -377,8 +378,9 @@ class CellDatabase:
         return idx.k_nearest(cell, k=k, sg_hm=sg_hm)
 
     def nearest_with_supercells(self, cell, k=10, max_index=4,
-                                length_tol_pct=3.0, angle_tol_deg=5.0,
-                                volume_tol=0.05):
+                                length_tol_pct=COMPARE_LENGTH_TOL_PCT,
+                                angle_tol_deg=COMPARE_ANGLE_TOL_DEG,
+                                volume_tol=VOLUME_FRAC):
         """Volume-spanning similarity: find related lattices INCLUDING super- and
         sub-lattices (doubled / halved / index-n cells), not just isometric ones.
 

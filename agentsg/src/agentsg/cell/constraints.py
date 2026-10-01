@@ -15,6 +15,8 @@ this equation, not a separate table.
 """
 from __future__ import annotations
 
+from ..tolerances import METRIC_INVARIANT_TOL, REL_EPS
+
 
 def _matT_G_mat(W, G):
     """Compute W^T G W for integer W (list of rows) and numeric G."""
@@ -36,7 +38,7 @@ def _int_rows(W):
     return [[int(rows[i][j]) for j in range(3)] for i in range(3)]
 
 
-def metric_is_invariant(G, point_group_ops, tol: float = 1e-6) -> bool:
+def metric_is_invariant(G, point_group_ops, tol: float = METRIC_INVARIANT_TOL) -> bool:
     """True iff W^T G W == G (within tol) for every rotation W in the point group.
 
     ``point_group_ops`` may be agentsg Matrix3 rotation parts (e.g. from
@@ -74,7 +76,7 @@ def symmetrize_metric(G, point_group_ops):
     return [[acc[i][j] / n for j in range(3)] for i in range(3)]
 
 
-def free_metric_parameters(point_group_ops, tol: float = 1e-9) -> int:
+def free_metric_parameters(point_group_ops, tol: float = REL_EPS) -> int:
     """Number of independent free parameters in a metric tensor invariant under
     the given point group -- i.e. the dimension of the space of allowed cells.
 

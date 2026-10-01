@@ -30,6 +30,14 @@ from fractions import Fraction
 from itertools import permutations
 
 from .metric import UnitCell
+from ..tolerances import (
+    BOUNDARY_REL,
+    REINDEX_BAND_REL,
+    REINDEX_BOUNDARY_REL,
+    REL_EPS,
+    SUPERBASE_MAX_VARIANTS,
+    VERIFY_REL,
+)
 
 # the four superbase vectors are indexed 0..3 with v0 = -(v1+v2+v3);
 # the six unordered pairs whose conorms characterise the lattice:
@@ -48,7 +56,7 @@ def _dotG(ci, cj, G):
     return sum(ci[a] * G[a][b] * cj[b] for a in range(3) for b in range(3))
 
 
-def canonical_superbase(cell, max_iter=1000, rel_eps=1e-9):
+def canonical_superbase(cell, max_iter=1000, rel_eps=REL_EPS):
     """Delaunay/Selling-reduce ``cell`` to an obtuse superbase, tracked in
     INTEGER lattice coordinates.
 
@@ -92,7 +100,7 @@ def canonical_superbase(cell, max_iter=1000, rel_eps=1e-9):
     raise RuntimeError("Delaunay reduction did not converge")
 
 
-def superbase_variants(cell, boundary_rel=1e-3, max_variants=64):
+def superbase_variants(cell, boundary_rel=BOUNDARY_REL, max_variants=SUPERBASE_MAX_VARIANTS):
     """Optional noise expander: obtuse superbases near the reduced one.
 
     For exact typed closure use :func:`agentsg.cell.selling_closure.selling_superbase_closure`.
@@ -246,7 +254,7 @@ def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True,
             for C in superbase_variants(cell, boundary_rel=boundary_rel):
                 seen[tuple(tuple(v) for v in C)] = C
     else:
-        br = boundary_rel if boundary_rel > 0 else 1e-3
+        br = boundary_rel if boundary_rel > 0 else BOUNDARY_REL
         for C in superbase_variants(cell, boundary_rel=br):
             seen[tuple(tuple(v) for v in C)] = C
     if not seen:
@@ -256,7 +264,7 @@ def _closure_for_match(cell, boundary_rel=0.0, use_typed_closure=True,
 
 
 def reindexing_via_canonical(cell_A, cell_B, boundary_rel=None,
-                             verify_rel=1e-6, verify_abs=0.0, conorm_tol=None,
+                             verify_rel=VERIFY_REL, verify_abs=0.0, conorm_tol=None,
                              use_typed_closure=True, angle_sigma=None):
     """Reindexing operators A -> B via Selling-superbase closure matching.
 
@@ -292,7 +300,7 @@ def reindexing_via_canonical(cell_A, cell_B, boundary_rel=None,
         tolerance is ``max(verify_abs, verify_rel * tr|G_B|)``.
     """
     if boundary_rel is None:
-        boundary_rel = 1e-3
+        boundary_rel = BOUNDARY_REL
     GA = _metric(cell_A)
     GB = _metric(cell_B)
     tol = max(verify_abs,
@@ -457,7 +465,7 @@ def best_reindex_with_residual(cell_A, cell_B, boundary_rel=0.0):
     return best_P, best_res
 
 
-def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=1e-3):
+def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=REINDEX_BAND_REL):
     """All integer operators tied (within a relative band) with the minimum
     metric residual -- the reindexing coset P.H (H = lattice holohedry). No
     acceptance gate; the caller decides whether to accept via the root distance.
@@ -504,7 +512,7 @@ def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=1e-3):
 
 
 def reindex(cell_A, cell_B, max_volume_frac=None, max_root_dist=None,
-            boundary_rel=6e-2, band_rel=1e-3):
+            boundary_rel=REINDEX_BOUNDARY_REL, band_rel=REINDEX_BAND_REL):
     """Reindex ``cell_A`` onto ``cell_B``, gated solely by the Kurlin root distance.
 
     This is the recommended entry point for cell reindexing. It splits the

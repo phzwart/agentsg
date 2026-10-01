@@ -36,6 +36,7 @@ classification of 3-dimensional lattices", arXiv:2201.10543 (2022), Lemma 6.2
 from __future__ import annotations
 
 from .metric import UnitCell, params_from_metric
+from ..tolerances import METRIC_ANGLE_TOL_DEG, METRIC_LENGTH_TOL_PCT
 
 
 def _matmul(A, B):
@@ -120,7 +121,7 @@ def _transform_metric(G, M):
     return [[sum(MtG[i][k] * M[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
 
 
-def reindexing_operators(cell_A, cell_B, length_tol_pct=2.0, angle_tol_deg=2.0):
+def reindexing_operators(cell_A, cell_B, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle_tol_deg=METRIC_ANGLE_TOL_DEG):
     """Return the complete coset of integer operators reindexing A onto B.
 
     If A and B are the same lattice, returns every integer unimodular P with
@@ -136,7 +137,7 @@ def reindexing_operators(cell_A, cell_B, length_tol_pct=2.0, angle_tol_deg=2.0):
     return sorted(coset)
 
 
-def reindexing_operator(cell_A, cell_B, length_tol_pct=2.0, angle_tol_deg=2.0):
+def reindexing_operator(cell_A, cell_B, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle_tol_deg=METRIC_ANGLE_TOL_DEG):
     """Return one integer operator reindexing A onto B (or None).
 
     Any valid reindexing; use :func:`reindexing_operators` for the full coset.
@@ -145,7 +146,7 @@ def reindexing_operator(cell_A, cell_B, length_tol_pct=2.0, angle_tol_deg=2.0):
     return ops[0] if ops else None
 
 
-def twin_laws(space_group_key, cell, length_tol_pct=2.0, angle_tol_deg=2.0):
+def twin_laws(space_group_key, cell, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle_tol_deg=METRIC_ANGLE_TOL_DEG):
     """Return twin-law coset representatives for a crystal on a given lattice.
 
     The lattice symmetry group ``H`` (holohedry, tolerance-aware) contains the

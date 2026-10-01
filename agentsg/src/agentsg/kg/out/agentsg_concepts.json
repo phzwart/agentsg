@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "8ab4f24c0bafc02a81453b8d6865f75b4acfe3f4",
+  "commit": "58692997e78c405b075d73e9a67dc90880f6bf3d",
   "dirty": true
  },
  "concepts": [
@@ -281,10 +281,10 @@
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_laue_matrices",
      "kind": "FunctionDef",
-     "line": 72,
+     "line": 73,
      "quote": "Rotation matrices of the crystal Laue group (point group closed with -I).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/asu.py",
@@ -299,10 +299,10 @@
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_laue_rows",
      "kind": "FunctionDef",
-     "line": 360,
+     "line": 362,
      "quote": "Rotation matrix rows for the crystal Laue group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -359,16 +359,16 @@
      "line": 1,
      "quote": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "lattice_symmetry",
      "kind": "FunctionDef",
-     "line": 280,
+     "line": 286,
      "quote": "Determine the metric (lattice) symmetry of a unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -1091,37 +1091,37 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "cob_column_values",
      "kind": "FunctionDef",
-     "line": 103,
+     "line": 110,
      "quote": "Nine ``num/den`` strings, row-major.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "parse_cob_columns",
      "kind": "FunctionDef",
-     "line": 108,
+     "line": 115,
      "quote": "Inverse of :func:`cob_column_values`.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "cob_xyz",
      "kind": "FunctionDef",
-     "line": 128,
+     "line": 135,
      "quote": "Column notation for ``P`` (no origin shift).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "annotate_search_hits",
      "kind": "FunctionDef",
-     "line": 281,
+     "line": 285,
      "quote": "Attach ``cob`` / ``cob_xyz`` / ``cob_coset`` to search hit dicts.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     }
    ],
    "references": [
@@ -1684,16 +1684,16 @@
      "line": 1,
      "quote": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/cell/constraints.py",
      "symbol": "free_metric_parameters",
      "kind": "FunctionDef",
-     "line": 78,
+     "line": 80,
      "quote": "Number of independent free parameters in a metric tensor invariant under the given point group -- i.e.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     }
    ],
    "references": [
@@ -1813,10 +1813,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_lebedev_matrices",
      "kind": "FunctionDef",
-     "line": 63,
+     "line": 69,
      "quote": "All 480 unimodular integer 3x3 matrices with elements in {-1, 0, 1} and finite order.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -2370,10 +2370,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_two_fold_axis_direct",
      "kind": "FunctionDef",
-     "line": 87,
+     "line": 93,
      "quote": "Direct-space axis of a two-fold: the +1 eigenvector, as an integer triple.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/semi_invariants.py",
@@ -3944,7 +3944,7 @@
      "line": 1,
      "quote": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/reflections.py",
@@ -4157,28 +4157,28 @@
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_map_to_asu",
      "kind": "FunctionDef",
-     "line": 379,
+     "line": 381,
      "quote": "Canonical ASU representative of a reflection under the Laue group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_map_to_asu_lexmax",
      "kind": "FunctionDef",
-     "line": 366,
+     "line": 368,
      "quote": "Lexicographically-maximum Laue image (legacy merging key).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_merge_to_asu",
      "kind": "FunctionDef",
-     "line": 415,
+     "line": 417,
      "quote": "Fold a {(h,k,l): I} mapping onto ASU keys, averaging duplicates.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -5552,10 +5552,10 @@
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_coset_reps",
      "kind": "FunctionDef",
-     "line": 80,
+     "line": 81,
      "quote": "Left-coset representatives of subgroup L in group H (identity coset first).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -5612,16 +5612,16 @@
      "line": 1,
      "quote": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_coset_reps",
      "kind": "FunctionDef",
-     "line": 80,
+     "line": 81,
      "quote": "Left-coset representatives of subgroup L in group H (identity coset first).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/reindex.py",
@@ -5630,7 +5630,7 @@
      "line": 1,
      "quote": "Reindexing between two settings of the same lattice, and twin-law cosets.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/subgroups.py",
@@ -6024,10 +6024,10 @@
      "module": "agentsg/cell/reduction.py",
      "symbol": "_gram_from_params",
      "kind": "FunctionDef",
-     "line": 68,
+     "line": 70,
      "quote": "Construct 3x3 Gram matrix from unit-cell parameters.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/constraints.py",
@@ -6036,16 +6036,16 @@
      "line": 1,
      "quote": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/cell/reduction.py",
      "symbol": "_transform_metric",
      "kind": "FunctionDef",
-     "line": 59,
+     "line": 61,
      "quote": "G' = M^T G M for 3x3 lists.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -6060,10 +6060,10 @@
      "module": "agentsg/cell/canonical.py",
      "symbol": "_transform_metric_int",
      "kind": "FunctionDef",
-     "line": 201,
+     "line": 209,
      "quote": "G' = P^T G P for an integer matrix P (float G).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/metric.py",
@@ -6096,10 +6096,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_metric_tensor",
      "kind": "FunctionDef",
-     "line": 125,
+     "line": 131,
      "quote": "Compute 3x3 numeric metric tensor from cell parameters.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -6144,10 +6144,10 @@
      "module": "agentsg/cell/reduction.py",
      "symbol": "_gram_from_params",
      "kind": "FunctionDef",
-     "line": 68,
+     "line": 70,
      "quote": "Construct 3x3 Gram matrix from unit-cell parameters.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     }
    ],
    "references": [
@@ -6363,10 +6363,10 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "_cart_basis",
      "kind": "FunctionDef",
-     "line": 63,
+     "line": 64,
      "quote": "Cartesian lattice basis vectors (v1,v2,v3) as rows, from a unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/metric.py",
@@ -6425,10 +6425,10 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "_cell_volume",
      "kind": "FunctionDef",
-     "line": 423,
+     "line": 424,
      "quote": "Unit-cell volume from parameters (local, dependency-free).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     }
    ],
    "references": [
@@ -6493,25 +6493,25 @@
      "line": 1,
      "quote": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/cell/constraints.py",
      "symbol": "metric_is_invariant",
      "kind": "FunctionDef",
-     "line": 40,
+     "line": 42,
      "quote": "True iff W^T G W == G (within tol) for every rotation W in the point group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/cell/constraints.py",
      "symbol": "free_metric_parameters",
      "kind": "FunctionDef",
-     "line": 78,
+     "line": 80,
      "quote": "Number of independent free parameters in a metric tensor invariant under the given point group -- i.e.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     }
    ],
    "references": [
@@ -6564,7 +6564,7 @@
      "line": 1,
      "quote": "The ONE sanctioned crossing of the exact/numeric boundary (see docs/DESIGN.md).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     }
    ],
    "references": [
@@ -6614,10 +6614,10 @@
      "module": "agentsg/cell/constraints.py",
      "symbol": "symmetrize_metric",
      "kind": "FunctionDef",
-     "line": 56,
+     "line": 58,
      "quote": "Project a numeric metric tensor onto the point-group-invariant subspace by Reynolds averaging: G_sym = (1/|PG|) sum_W W^T G W.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -6632,10 +6632,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_reynolds_two_fold",
      "kind": "FunctionDef",
-     "line": 176,
+     "line": 182,
      "quote": "Reynolds average of G over {I, M}: (G + Mᵀ G M) / 2.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -6667,10 +6667,10 @@
      "module": "agentsg/cell/constraints.py",
      "symbol": "symmetrize_metric",
      "kind": "FunctionDef",
-     "line": 56,
+     "line": 58,
      "quote": "Project a numeric metric tensor onto the point-group-invariant subspace by Reynolds averaging: G_sym = (1/|PG|) sum_W W^T G W.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     }
    ],
    "references": [
@@ -6733,10 +6733,10 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "primitive_matrix",
      "kind": "FunctionDef",
-     "line": 46,
+     "line": 53,
      "quote": "Centering matrix as exact rationals.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/primitive.py",
@@ -6769,10 +6769,10 @@
      "module": "agentsg/cell/celldb.py",
      "symbol": "_primitive_for_roots",
      "kind": "FunctionDef",
-     "line": 69,
+     "line": 70,
      "quote": "Primitive cell for root-invariant computation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+     "sha256": "05a6e4b173b72873456829cdfac0565b10cb9666807ca5e78b4c7259be507c41"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
@@ -6953,16 +6953,16 @@
      "line": 1,
      "quote": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "selling_reduced_cell",
      "kind": "FunctionDef",
-     "line": 78,
+     "line": 79,
      "quote": "One Selling-reduced cell: ``(a, b, c, alpha, beta, gamma)`` of ``v1,v2,v3``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     }
    ],
    "references": [
@@ -7030,43 +7030,61 @@
      "line": 1,
      "quote": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/reduction.py",
      "symbol": "niggli_gk",
      "kind": "FunctionDef",
-     "line": 123,
+     "line": 125,
      "quote": "Niggli-reduce a unit cell, tracking an exact change of basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/reduction.py",
      "symbol": "niggli_reduce",
      "kind": "FunctionDef",
-     "line": 273,
+     "line": 275,
      "quote": "Niggli-reduce a unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/reduction.py",
      "symbol": "_check_cob_invariant",
      "kind": "FunctionDef",
-     "line": 78,
+     "line": 80,
      "quote": "Assert M^T G_orig M == gram(reduced).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/reduction.py",
      "symbol": "_sign_matrix",
      "kind": "FunctionDef",
-     "line": 92,
+     "line": 94,
      "quote": "Determinant-+1 diagonal integer matrix for the Krivy-Gruber sign step.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REL_EPS",
+     "kind": "constant",
+     "line": 7,
+     "quote": "Relative floor for Niggli, Delaunay, and zero-conorm tests.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "NIGGLI_COB_TOL_REL",
+     "kind": "constant",
+     "line": 67,
+     "quote": "Relative tolerance when a Niggli change of basis is checked against the reduced metric.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -7156,19 +7174,19 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "delaunay_superbase",
      "kind": "FunctionDef",
-     "line": 93,
+     "line": 94,
      "quote": "Reduce to an obtuse superbase; return the 4 superbase vectors.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_selling_flip",
      "kind": "FunctionDef",
-     "line": 119,
+     "line": 120,
      "quote": "Selling move on pair (i,j): negate v_i, add to the two others except j.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -7286,64 +7304,64 @@
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_is_obtuse",
      "kind": "FunctionDef",
-     "line": 38,
+     "line": 39,
      "quote": "True if all scalar products v_i · v_j <= tol (obtuse superbase).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "conorms",
      "kind": "FunctionDef",
-     "line": 152,
+     "line": 153,
      "quote": "The six conorms p_ij = -v_i.v_j (>= 0) of the obtuse superbase.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "vonorms",
      "kind": "FunctionDef",
-     "line": 312,
+     "line": 313,
      "quote": "Seven vonorms (squared lengths) of the obtuse superbase of ``cell``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "vonorms_from_conorms",
      "kind": "FunctionDef",
-     "line": 289,
+     "line": 290,
      "quote": "Seven vonorms from six conorms (Kurlin Def.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "conorm_sum",
      "kind": "FunctionDef",
-     "line": 159,
+     "line": 160,
      "quote": "Invariant T = Σ_{i<j} p_ij (same on every Selling-closure member).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "_superbase_lengths",
      "kind": "FunctionDef",
-     "line": 146,
+     "line": 147,
      "quote": "Lengths |v_i| of the obtuse superbase vectors.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_conorm_sum",
      "kind": "FunctionDef",
-     "line": 57,
+     "line": 58,
      "quote": "T = Σ_{i<j} p_ij with p_ij = -v_i·v_j (invariant on the closure).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     }
    ],
    "references": [
@@ -7393,34 +7411,61 @@
      "line": 1,
      "quote": "Typed Selling-superbase closure (Kurlin Lemmas 4.1--4.5 / main_v5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "voronoi_type_from_superbase",
      "kind": "FunctionDef",
-     "line": 82,
+     "line": 83,
      "quote": "Classify Voronoi type V1--V5 from an obtuse superbase's zero conorms.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "voronoi_type",
      "kind": "FunctionDef",
-     "line": 106,
+     "line": 107,
      "quote": "Voronoi type (1..5) of ``cell`` from its Selling-reduced superbase.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_zero_pairs",
      "kind": "FunctionDef",
-     "line": 28,
+     "line": 29,
      "quote": "Index pairs (i,j) with |v_i · v_j| <= tol (orthogonal / boundary).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "CONORM_TOL_REL",
+     "kind": "constant",
+     "line": 10,
+     "quote": "Relative floor on a Selling conorm before an angle sigma widens zero detection.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ZERO_NOISE_MULT",
+     "kind": "constant",
+     "line": 13,
+     "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_SIGMA_DEG",
+     "kind": "constant",
+     "line": 49,
+     "quote": "Degrees.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -7458,7 +7503,7 @@
    "label": "Selling-superbase closure",
    "kind": "crystallography",
    "aliases": [],
-   "definition": "The complete finite set of obtuse superbases of one lattice (S₄×{±I} orbit at V1, plus extra classes at V2–V5); enumerated for exact reindexing and identity certification.",
+   "definition": "The complete finite set of obtuse superbases of one lattice (S₄×{±I} orbit at V1, plus extra classes at V2–V5); enumerated for exact reindexing and identity certification. Zero conorms use a relative floor of 1e-9, widened by three angle-sigma widths (default 0.05 degrees), and a relative boundary width of 1e-3.",
    "literature": [
     "Zwart, agentsg manuscript: 'The Selling closure for lattice comparison'"
    ],
@@ -7485,10 +7530,10 @@
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "selling_superbase_closure",
      "kind": "FunctionDef",
-     "line": 161,
+     "line": 162,
      "quote": "Finite Selling-superbase closure of ``cell`` (typed, Kurlin 4.1--4.5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -7497,7 +7542,7 @@
      "line": 1,
      "quote": "Bet-free reindexing via the typed Selling-superbase closure (main_v5 / Kurlin).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
@@ -7506,61 +7551,124 @@
      "line": 1,
      "quote": "Deposited-cell to Selling-reduced change of basis, and reference-orbit match.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "superbase_variants",
      "kind": "FunctionDef",
-     "line": 96,
+     "line": 104,
      "quote": "Optional noise expander: obtuse superbases near the reduced one.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_closure_for_match",
      "kind": "FunctionDef",
-     "line": 228,
+     "line": 236,
      "quote": "Full typed Selling-superbase closure, plus optional noise variants.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "selling_closure_representatives",
      "kind": "FunctionDef",
-     "line": 220,
+     "line": 221,
      "quote": "One obtuse superbase per isometry class (diagnostic / class count).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "closure_class_count",
      "kind": "FunctionDef",
-     "line": 240,
+     "line": 241,
      "quote": "Number of isometry classes in the closure (1 for V1; up to 4 for V5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_class_seeds",
      "kind": "FunctionDef",
-     "line": 141,
+     "line": 142,
      "quote": "Seed superbases: reduced one plus Kurlin alternate-class maps.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_v5_even_reps",
      "kind": "FunctionDef",
-     "line": 130,
+     "line": 131,
      "quote": "Three even-class representatives for a cuboid odd superbase (Lemma 4.5).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "CONORM_TOL_REL",
+     "kind": "constant",
+     "line": 10,
+     "quote": "Relative floor on a Selling conorm before an angle sigma widens zero detection.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ZERO_NOISE_MULT",
+     "kind": "constant",
+     "line": 13,
+     "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_SIGMA_DEG",
+     "kind": "constant",
+     "line": 49,
+     "quote": "Degrees.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "BOUNDARY_REL",
+     "kind": "constant",
+     "line": 52,
+     "quote": "Relative width of a near-zero Selling conorm that is still treated as a boundary flip.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "SUPERBASE_MAX_VARIANTS",
+     "kind": "constant",
+     "line": 55,
+     "quote": "Cap on the near-boundary superbase expander.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REINDEX_BOUNDARY_REL",
+     "kind": "constant",
+     "line": 58,
+     "quote": "Relative conorm width used when reindex searches the Selling closure of a deformed cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REINDEX_BAND_REL",
+     "kind": "constant",
+     "line": 61,
+     "quote": "Relative residual band that keeps near-best reindexing operators in the coset.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -7628,97 +7736,133 @@
      "line": 1,
      "quote": "Sorted root-product search key from Kurlin's root products.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_root_key",
      "kind": "FunctionDef",
-     "line": 365,
+     "line": 366,
      "quote": "Return the sorted six-slot search key (default: √ conorms, Angstrom).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_products",
      "kind": "FunctionDef",
-     "line": 227,
+     "line": 228,
      "quote": "Slot-wise root (or stabilised) products, keyed by index pair.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_invariant",
      "kind": "FunctionDef",
-     "line": 379,
+     "line": 380,
      "quote": "Back-compat alias for :func:`sorted_root_key`.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_distance",
      "kind": "FunctionDef",
-     "line": 396,
+     "line": 397,
      "quote": "Back-compat alias for :func:`sorted_root_distance`.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_conorm_key",
      "kind": "FunctionDef",
-     "line": 270,
+     "line": 271,
      "quote": "Sorted six conorms ``sort(p)`` in Angstrom² (Lipschitz / S⁶-like key).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_vonorm_key",
      "kind": "FunctionDef",
-     "line": 317,
+     "line": 318,
      "quote": "Sorted square roots of the seven vonorms (Angstrom; ABS D7 / Kurlin voform).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_concat_key",
      "kind": "FunctionDef",
-     "line": 322,
+     "line": 323,
      "quote": "Concatenated sorted 6-root ‖ sorted √vonorm key in R^13.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_root_distance",
      "kind": "FunctionDef",
-     "line": 389,
+     "line": 390,
      "quote": "Euclidean distance between sorted root keys (conservative search metric).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_rootmat",
      "kind": "FunctionDef",
-     "line": 209,
+     "line": 217,
      "quote": "Root-product matrix r_ij = sqrt(max(p_ij, 0)) -- linear in Angstrom, so a length-scaled tolerance is meaningful (conorms are quadratic in length).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_roots_close",
      "kind": "FunctionDef",
-     "line": 217,
+     "line": 225,
      "quote": "Do A's root products match B's under label permutation ``perm`` within ``tol`` (Angstrom)?",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_SNAP_REL",
+     "kind": "constant",
+     "line": 76,
+     "quote": "Relative size below which a sorted-root component is written as zero.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_SNAP_DECIMALS",
+     "kind": "constant",
+     "line": 79,
+     "quote": "Decimal places kept in a sorted-root key after the noise snap.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_STABILIZE_KAPPA",
+     "kind": "constant",
+     "line": 70,
+     "quote": "Exponent of the optional stabilised root product.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "SYMMETRY_CUTOFF_Z",
+     "kind": "constant",
+     "line": 73,
+     "quote": "Scale of the edge-noise null at the 95th percentile, used to turn a fractional noise into a root cutoff.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -7764,10 +7908,10 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_key_lower_bound",
      "kind": "FunctionDef",
-     "line": 401,
+     "line": 402,
      "quote": "Rearrangement lower bound: ``||sort(x)-sort(y)|| <= min_σ∈G ||x-σy||``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
@@ -7776,7 +7920,7 @@
      "line": 1,
      "quote": "Sorted root-product search key from Kurlin's root products.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     }
    ],
    "references": [
@@ -7813,64 +7957,64 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "similarity_invariant",
      "kind": "FunctionDef",
-     "line": 498,
+     "line": 499,
      "quote": "Volume-normalised sorted key ``key / V**(1/3)`` (a *similarity* key).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_volume_decomposition",
      "kind": "FunctionDef",
-     "line": 584,
+     "line": 585,
      "quote": "Split the sorted-key distance between two lattices into volume and shape.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_distance_to_volume_ratio",
      "kind": "FunctionDef",
-     "line": 432,
+     "line": 433,
      "quote": "Convert a sorted-key distance to the equivalent isotropic volume ratio.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "volume_ratio_to_root_distance",
      "kind": "FunctionDef",
-     "line": 452,
+     "line": 453,
      "quote": "Sorted-key distance produced by a pure isotropic volume change.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "root_cutoff_for_edge_tolerance",
      "kind": "FunctionDef",
-     "line": 522,
+     "line": 523,
      "quote": "Sorted-key distance cutoff corresponding to an accepted cell-edge change.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "symmetry_cutoff",
      "kind": "FunctionDef",
-     "line": 466,
+     "line": 467,
      "quote": "Scale-correct sorted-key cutoff for accepting a symmetrised cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "similarity_distance",
      "kind": "FunctionDef",
-     "line": 511,
+     "line": 512,
      "quote": "Euclidean distance between volume-normalised sorted keys.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     }
    ],
    "references": [
@@ -7930,7 +8074,7 @@
      "line": 1,
      "quote": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent reindexing across continuous lattice deformation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     },
     {
      "module": "agentsg/cell/neartree.py",
@@ -8141,10 +8285,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "kurlin_distance_to_two_fold",
      "kind": "FunctionDef",
-     "line": 185,
+     "line": 191,
      "quote": "Kurlin root-invariant distance from ``cell`` to its {I, M}-symmetrisation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -8215,7 +8359,7 @@
      "line": 1,
      "quote": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
@@ -8224,7 +8368,7 @@
      "line": 1,
      "quote": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -8257,7 +8401,7 @@
    "label": "Metric lattice symmetry (Le Page / Lebedev)",
    "kind": "algorithm",
    "aliases": [],
-   "definition": "Find the holohedry of a measured cell: test the 81 Lebedev two-folds (integer {−1,0,1} matrices) by the Le Page angle between direct and reciprocal axes, then close the accepted set.",
+   "definition": "Find the holohedry of a measured cell: test the 81 Lebedev two-folds (integer {−1,0,1} matrices) by the Le Page angle between direct and reciprocal axes, then close the accepted set. The default cutoff is 3 degrees and the length gate is 2 percent.",
    "literature": [
     "Le Page (1982). J. Appl. Cryst. 15, 255",
     "Lebedev, Vagin & Murshudov (2006). Acta Cryst. D62, 83",
@@ -8289,61 +8433,79 @@
      "line": 1,
      "quote": "Lattice (metric) symmetry determination -- Le Page (1982) / Lebedev et al.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "le_page_delta",
      "kind": "FunctionDef",
-     "line": 145,
+     "line": 151,
      "quote": "Angle (degrees) between the direct-space axis u and reciprocal-space axis h.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "tolerance_metric_symmetry",
      "kind": "FunctionDef",
-     "line": 352,
+     "line": 358,
      "quote": "Metric-automorphism group of a cell within a (length, angle) tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_reciprocal_axis",
      "kind": "FunctionDef",
-     "line": 113,
+     "line": 119,
      "quote": "Reciprocal-space axis of the two-fold = direct axis of the transpose.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "LatticeSymmetry",
      "kind": "ClassDef",
-     "line": 240,
+     "line": 246,
      "quote": "Result of a lattice-symmetry determination.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "evaluate_two_folds",
      "kind": "FunctionDef",
-     "line": 218,
+     "line": 224,
      "quote": "Score all 81 Lebedev two-folds (Le Page δ + Kurlin distance).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "TwoFoldScore",
      "kind": "ClassDef",
-     "line": 199,
+     "line": 205,
      "quote": "One Lebedev two-fold with Le Page δ and Kurlin root distance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "LE_PAGE_MAX_DELTA_DEG",
+     "kind": "constant",
+     "line": 16,
+     "quote": "Le Page angular cutoff in degrees: a two-fold is kept when its delta is at most this.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "LE_PAGE_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 19,
+     "quote": "Percent length change allowed when a Le Page two-fold is checked against the metric.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -8452,25 +8614,25 @@
      "line": 1,
      "quote": "Unit-cell comparison (\"exploring metric symmetry\").",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py",
-     "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004"
+     "sha256": "80714212d677640dc9080b08fd003286b3a728fd542beb0eff5aeff749e016bf"
     },
     {
      "module": "agentsg/cell/compare.py",
      "symbol": "compare_cells",
      "kind": "FunctionDef",
-     "line": 80,
+     "line": 81,
      "quote": "Compare two unit cells and return all sublattice relations between them.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py",
-     "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004"
+     "sha256": "80714212d677640dc9080b08fd003286b3a728fd542beb0eff5aeff749e016bf"
     },
     {
      "module": "agentsg/cell/celldb.py",
      "symbol": "CellDatabase",
      "kind": "ClassDef",
-     "line": 156,
+     "line": 157,
      "quote": "A DuckDB-backed lattice database keyed on the root invariant.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+     "sha256": "05a6e4b173b72873456829cdfac0565b10cb9666807ca5e78b4c7259be507c41"
     }
    ],
    "references": [
@@ -8582,10 +8744,10 @@
      "module": "agentsg/cell/compare.py",
      "symbol": "CellMatch",
      "kind": "ClassDef",
-     "line": 39,
+     "line": 40,
      "quote": "One solution of a cell comparison.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py",
-     "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004"
+     "sha256": "80714212d677640dc9080b08fd003286b3a728fd542beb0eff5aeff749e016bf"
     }
    ],
    "references": [
@@ -8859,142 +9021,142 @@
      "line": 1,
      "quote": "Reindexing between two settings of the same lattice, and twin-law cosets.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "reindexing_operators",
      "kind": "FunctionDef",
-     "line": 124,
+     "line": 125,
      "quote": "Return the complete coset of integer operators reindexing A onto B.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "reindexing_via_canonical",
      "kind": "FunctionDef",
-     "line": 261,
+     "line": 269,
      "quote": "Reindexing operators A -> B via Selling-superbase closure matching.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "match_operators",
      "kind": "FunctionDef",
-     "line": 243,
+     "line": 247,
      "quote": "Operators from the reference deposited cell to the PDB deposited cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "deposited_to_reduced",
      "kind": "FunctionDef",
-     "line": 92,
+     "line": 99,
      "quote": "Return ``(red_params, P)`` from the deposited cell to one Selling-reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "selling_matrix",
      "kind": "FunctionDef",
-     "line": 72,
+     "line": 79,
      "quote": "Integer unimodular matrix, primitive (or already-P) cell to one obtuse basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "reference_orbit",
      "kind": "FunctionDef",
-     "line": 160,
+     "line": 164,
      "quote": "Selling-reduce ``cell`` and enumerate the typed closure once.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "canonical_superbase",
      "kind": "FunctionDef",
-     "line": 52,
+     "line": 60,
      "quote": "Delaunay/Selling-reduce ``cell`` to an obtuse superbase, tracked in INTEGER lattice coordinates.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "reindexing_operator_via_canonical",
      "kind": "FunctionDef",
-     "line": 347,
+     "line": 355,
      "quote": "One reindexing operator A -> B via canonical superbase, or None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "best_reindex_with_residual",
      "kind": "FunctionDef",
-     "line": 418,
+     "line": 426,
      "quote": "Best canonical reindexing operator A -> B and its metric residual.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_reindex_coset",
      "kind": "FunctionDef",
-     "line": 461,
+     "line": 469,
      "quote": "All integer operators tied (within a relative band) with the minimum metric residual -- the reindexing coset P.H (H = lattice holohedry).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "reindex",
      "kind": "FunctionDef",
-     "line": 508,
+     "line": 516,
      "quote": "Reindex ``cell_A`` onto ``cell_B``, gated solely by the Kurlin root distance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "calibrate_verify_tol",
      "kind": "FunctionDef",
-     "line": 353,
+     "line": 361,
      "quote": "Derive a data-driven ``verify_abs`` residual threshold from a baseline.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "reindexing_operator",
      "kind": "FunctionDef",
-     "line": 140,
+     "line": 141,
      "quote": "Return one integer operator reindexing A onto B (or None).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "_find_base_reindex",
      "kind": "FunctionDef",
-     "line": 90,
+     "line": 91,
      "quote": "Find one integer P with P^T G_A P == G_B (the SPECIFIC setting B).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "_lattice_symmetry_matrices",
      "kind": "FunctionDef",
-     "line": 70,
+     "line": 71,
      "quote": "Integer rotation matrices of the (tolerance) lattice symmetry group H.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -9066,79 +9228,79 @@
      "line": 1,
      "quote": "Indexing-ambiguity (reindexing) operators for serial crystallography.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "reindexing_ambiguity_operators",
      "kind": "FunctionDef",
-     "line": 126,
+     "line": 127,
      "quote": "Return the reindexing-ambiguity operators for a (space group, cell).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "ReindexingReference",
      "kind": "ClassDef",
-     "line": 198,
+     "line": 200,
      "quote": "A fixed reference setting for a serial dataset.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "ambiguity_index",
      "kind": "FunctionDef",
-     "line": 192,
+     "line": 194,
      "quote": "Number of indexing ambiguities = |tolerance metric symmetry| / |Laue group|.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "AmbiguityResolution",
      "kind": "ClassDef",
-     "line": 332,
+     "line": 334,
      "quote": "Result of an intensity-based branch decision.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "GeometricOperator",
      "kind": "ClassDef",
-     "line": 439,
+     "line": 441,
      "quote": "One geometrically-allowed reindexing operator, with provenance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "surface_geometric_operators",
      "kind": "FunctionDef",
-     "line": 472,
+     "line": 474,
      "quote": "Return the COMPLETE list of geometrically-allowed reindexing operators.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "apply_to_hkl_batch",
      "kind": "FunctionDef",
-     "line": 169,
+     "line": 170,
      "quote": "Apply a reindexing operator to an (N, 3) array of Miller indices.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_cached_ambiguity",
      "kind": "FunctionDef",
-     "line": 94,
+     "line": 95,
      "quote": "Coset reps in the *input* basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -9214,16 +9376,16 @@
      "line": 1,
      "quote": "Reindexing between two settings of the same lattice, and twin-law cosets.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "twin_laws",
      "kind": "FunctionDef",
-     "line": 149,
+     "line": 150,
      "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -9292,43 +9454,61 @@
      "line": 1,
      "quote": "Deformation-manifold scaffold: landmarks (inducing points) for path-consistent reindexing across continuous lattice deformation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     },
     {
      "module": "agentsg/cell/manifold.py",
      "symbol": "DeformationManifold",
      "kind": "ClassDef",
-     "line": 235,
+     "line": 236,
      "quote": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     },
     {
      "module": "agentsg/cell/manifold.py",
      "symbol": "_metric_degeneracies",
      "kind": "FunctionDef",
-     "line": 126,
+     "line": 127,
      "quote": "Fixed-setting metric near-degeneracy signals that flag a symmetry junction.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     },
     {
      "module": "agentsg/cell/manifold.py",
      "symbol": "symmetry_junctions",
      "kind": "FunctionDef",
-     "line": 148,
+     "line": 149,
      "quote": "Indices of states that are STRICT local minima of a metric-degeneracy signal AND within ``rel_tol`` (fraction of mean edge) of an actual degeneracy.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     },
     {
      "module": "agentsg/cell/manifold.py",
      "symbol": "select_landmarks",
      "kind": "FunctionDef",
-     "line": 207,
+     "line": 208,
      "quote": "Physically-motivated landmark set: endpoints (extrema of the deformation coordinate) + symmetry junctions + optional farthest-point fill.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "MANIFOLD_HOP_VERIFY_REL",
+     "kind": "constant",
+     "line": 82,
+     "quote": "Relative residual allowed for one deformation-manifold hop onto a landmark.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "MANIFOLD_PATH_VERIFY_REL",
+     "kind": "constant",
+     "line": 85,
+     "quote": "Relative residual allowed for one hop when a manifold path is composed.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -9570,7 +9750,7 @@
      "line": 1,
      "quote": "celldb: a persistent unit-cell / symmetry database keyed on the root invariant.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+     "sha256": "05a6e4b173b72873456829cdfac0565b10cb9666807ca5e78b4c7259be507c41"
     },
     {
      "module": "agentsg/cell/rootindex.py",
@@ -9806,10 +9986,10 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_root_distance",
      "kind": "FunctionDef",
-     "line": 389,
+     "line": 390,
      "quote": "Euclidean distance between sorted root keys (conservative search metric).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -9842,10 +10022,10 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "sorted_conorm_distance",
      "kind": "FunctionDef",
-     "line": 282,
+     "line": 283,
      "quote": "Euclidean distance between sorted conorm keys (Angstrom²).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     }
    ],
    "references": [
@@ -9882,10 +10062,10 @@
      "module": "agentsg/cell/manifold.py",
      "symbol": "deformation_graph",
      "kind": "FunctionDef",
-     "line": 64,
+     "line": 65,
      "quote": "k-nearest-neighbour graph on lattice keys between cells.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     }
    ],
    "references": [
@@ -9922,10 +10102,10 @@
      "module": "agentsg/cell/manifold.py",
      "symbol": "_dijkstra",
      "kind": "FunctionDef",
-     "line": 106,
+     "line": 107,
      "quote": "Shortest-path distances from src over the weighted graph (pure Python).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     }
    ],
    "references": [
@@ -9966,10 +10146,10 @@
      "module": "agentsg/cell/manifold.py",
      "symbol": "DeformationManifold",
      "kind": "ClassDef",
-     "line": 235,
+     "line": 236,
      "quote": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     }
    ],
    "references": [
@@ -10006,10 +10186,10 @@
      "module": "agentsg/cell/manifold.py",
      "symbol": "farthest_point_landmarks",
      "kind": "FunctionDef",
-     "line": 186,
+     "line": 187,
      "quote": "Farthest-point (k-center) sampling on the distance matrix: greedily pick the state farthest from all current landmarks.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     }
    ],
    "references": [
@@ -10046,19 +10226,19 @@
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "_pearson",
      "kind": "FunctionDef",
-     "line": 399,
+     "line": 401,
      "quote": "Compute Pearson correlation coefficient between pairs of scalar observations.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "ReindexingReference",
      "kind": "ClassDef",
-     "line": 198,
+     "line": 200,
      "quote": "A fixed reference setting for a serial dataset.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -10116,10 +10296,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 687,
+     "line": 692,
      "quote": "SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
+     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -10212,25 +10392,43 @@
      "line": 1,
      "quote": "Niggli cell reduction -- the stabilised algorithm of Grosse-Kunstleve, Sauter & Adams, *Acta Cryst.* A60, 1-6 (2004).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reduction.py",
-     "sha256": "d42440bde28637c6c18b82fa357fd97716b29568b69d17390d5a9085ee805be7"
+     "sha256": "88867552c531d4209c6431b4c56d1ce0fffc08048d64d6a4c152633806d24de2"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
      "symbol": "_conorm_tol",
      "kind": "FunctionDef",
-     "line": 22,
+     "line": 23,
      "quote": "Relative numerical tolerance scaled by the maximum superbase vector length.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_closure.py",
-     "sha256": "87371b2bf23e7d0fcdbd74a42776a4a9c404fac75edf5bdb23e4da59fcb2edaf"
+     "sha256": "ab00f3558870a2ade6c2db554951f9c9c49da7329025a7695041d8317eaf0f39"
     },
     {
      "module": "agentsg/cell/constraints.py",
      "symbol": "metric_is_invariant",
      "kind": "FunctionDef",
-     "line": 40,
+     "line": 42,
      "quote": "True iff W^T G W == G (within tol) for every rotation W in the point group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REL_EPS",
+     "kind": "constant",
+     "line": 7,
+     "quote": "Relative floor for Niggli, Delaunay, and zero-conorm tests.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_INVARIANT_TOL",
+     "kind": "constant",
+     "line": 28,
+     "quote": "Relative residual at which a rotation is treated as leaving the metric tensor unchanged.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -10394,10 +10592,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_det3_int",
      "kind": "FunctionDef",
-     "line": 56,
+     "line": 62,
      "quote": "Determinant of a 3x3 integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/cell/metric.py",
@@ -10456,10 +10654,10 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "_int_inv",
      "kind": "FunctionDef",
-     "line": 53,
+     "line": 54,
      "quote": "Inverse of a unimodular integer matrix, returned as an integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/reflection_lattice.py",
@@ -10525,10 +10723,10 @@
      "module": "agentsg/cell/constraints.py",
      "symbol": "_rank",
      "kind": "FunctionDef",
-     "line": 103,
+     "line": 105,
      "quote": "Numeric rank of a small matrix via Gaussian elimination with pivoting.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     },
     {
      "module": "agentsg/rational_solve.py",
@@ -10747,10 +10945,10 @@
      "module": "agentsg/cell/constraints.py",
      "symbol": "_rank",
      "kind": "FunctionDef",
-     "line": 103,
+     "line": 105,
      "quote": "Numeric rank of a small matrix via Gaussian elimination with pivoting.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/constraints.py",
-     "sha256": "42f8e158b940fa388f9b813f7d9c2332e6a8cd9d687381f1cff5cb5bca8c787f"
+     "sha256": "689e635b20ff1e917b53e146dc012c633cd89dde3fb0f983a9cdf5210d95789c"
     }
    ],
    "references": [
@@ -10906,10 +11104,10 @@
      "module": "agentsg/cell/manifold.py",
      "symbol": "DeformationManifold",
      "kind": "ClassDef",
-     "line": 235,
+     "line": 236,
      "quote": "A landmark scaffold over a set of lattice states for path-consistent reindexing across continuous deformation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/manifold.py",
-     "sha256": "24237599110eca7be9e155c477c2e61ded61429accda48405cc7fc91c58b8577"
+     "sha256": "866e9943c246de21f5e18e888493a865b0a719a3f7d54a27a6417a48816ec4a3"
     }
    ],
    "references": [
@@ -10941,10 +11139,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_two_fold_axis_direct",
      "kind": "FunctionDef",
-     "line": 87,
+     "line": 93,
      "quote": "Direct-space axis of a two-fold: the +1 eigenvector, as an integer triple.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -10985,10 +11183,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_lebedev_matrices",
      "kind": "FunctionDef",
-     "line": 63,
+     "line": 69,
      "quote": "All 480 unimodular integer 3x3 matrices with elements in {-1, 0, 1} and finite order.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/cell/g6.py",
@@ -11003,37 +11201,37 @@
      "module": "agentsg/cell/canonical.py",
      "symbol": "_inv3_unimod",
      "kind": "FunctionDef",
-     "line": 172,
+     "line": 180,
      "quote": "Exact INTEGER inverse of a unimodular (det = +-1) integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_int_or_none",
      "kind": "FunctionDef",
-     "line": 139,
+     "line": 147,
      "quote": "If a 3x3 Fraction matrix is integral, return it as int tuple; else None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_inv3_frac",
      "kind": "FunctionDef",
-     "line": 152,
+     "line": 160,
      "quote": "Exact inverse of a 3x3 integer matrix as Fractions (or None if singular).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
     },
     {
      "module": "agentsg/cell/reindex.py",
      "symbol": "_int_inv",
      "kind": "FunctionDef",
-     "line": 53,
+     "line": 54,
      "quote": "Inverse of a unimodular integer matrix, returned as an integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -11376,10 +11574,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_igcd3",
      "kind": "FunctionDef",
-     "line": 104,
+     "line": 110,
      "quote": "Greatest common divisor of three integers.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/reflection_lattice.py",
@@ -11434,10 +11632,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "_mat_pow_in_set",
      "kind": "FunctionDef",
-     "line": 38,
+     "line": 44,
      "quote": "True iff M, M^2, ... stay within {-1,0,1} and reach the identity.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     }
    ],
    "references": [
@@ -11714,19 +11912,19 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "default_projection",
      "kind": "FunctionDef",
-     "line": 259,
+     "line": 266,
      "quote": "Project a monoclinic group along its unique axis, else along c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
+     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
     },
     {
      "module": "agentsg/serve/handlers.py",
      "symbol": "_unique_axis",
      "kind": "FunctionDef",
-     "line": 271,
+     "line": 278,
      "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "fe23be1c2a1cc9546e85ad6254b11bebbffb834019757e0778a2cd1129c3c08d"
+     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
     }
    ],
    "references": [
@@ -12712,10 +12910,10 @@
      "module": "agentsg/lattice_symmetry.py",
      "symbol": "lattice_symmetry",
      "kind": "FunctionDef",
-     "line": 280,
+     "line": 286,
      "quote": "Determine the metric (lattice) symmetry of a unit cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/lattice_symmetry.py",
-     "sha256": "b352e5df08b3b56c056856b18b4609f8f39e0ba2f143ef69e9cc702f0ab706dc"
+     "sha256": "fb9baa6ca40f637bf0fbb64f9d4aa6563fa9d65f456c54570f88ff01113deba7"
     },
     {
      "module": "agentsg/cell/primitive.py",
@@ -12806,7 +13004,7 @@
    "label": "Tolerance-gated cell matching",
    "kind": "algorithm",
    "aliases": [],
-   "definition": "Two cells match when edges agree within a percent and angles within a degree, or when a residual stays under a threshold calibrated on same-lattice pairs. This is a numeric gate. It is not the exact certificate given by equality over the Selling closure.",
+   "definition": "Two cells match when edges and angles stay inside a named tolerance: metric automorphisms, twin laws, and geometric reindexing use 2 percent and 2 degrees; cell comparison uses 3 percent and 5 degrees; a PDB change of basis uses 0.75 percent and 0.5 degrees, and is accepted at a relative metric residual of 1e-6. This is a numeric gate. It is not the exact certificate given by equality over the Selling closure.",
    "literature": [],
    "relations": [
     {
@@ -12823,37 +13021,118 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "_cell_close",
      "kind": "FunctionDef",
-     "line": 83,
+     "line": 84,
      "quote": "True if two cell-parameter tuples agree within (length%, angle deg).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/compare.py",
      "symbol": "_deviations",
      "kind": "FunctionDef",
-     "line": 72,
+     "line": 73,
      "quote": "Compute percentage length deviations and degree angle differences.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/compare.py",
-     "sha256": "4ca6930a5255b4cf5f2e48b2a03a8c03ad6e81ea437bba23f661e24852ea7004"
+     "sha256": "80714212d677640dc9080b08fd003286b3a728fd542beb0eff5aeff749e016bf"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "_param_residual",
      "kind": "FunctionDef",
-     "line": 194,
+     "line": 198,
      "quote": "Length error in percent, angle error in degrees, and their maximum.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "calibrate_verify_tol",
      "kind": "FunctionDef",
-     "line": 353,
+     "line": 361,
      "quote": "Derive a data-driven ``verify_abs`` residual threshold from a baseline.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "0d0339307258c89e4427500f9d1bd21773c1d65e8295724d0417ae488d6b04eb"
+     "sha256": "38702f34db93cd340b63483c4a0c38747320b637875508c129845188e2287f63"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 22,
+     "quote": "Percent edge tolerance for the metric-automorphism group, twin laws, and geometric reindexing.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 25,
+     "quote": "Angle tolerance in degrees for the metric-automorphism group, twin laws, and geometric reindexing.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COMPARE_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 34,
+     "quote": "Percent edge tolerance when comparing two cells, including sublattice matches.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COMPARE_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 37,
+     "quote": "Angle tolerance in degrees when comparing two cells, including sublattice matches.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 43,
+     "quote": "Percent edge tolerance for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 46,
+     "quote": "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "VERIFY_REL",
+     "kind": "constant",
+     "line": 64,
+     "quote": "Relative metric residual at which a change-of-basis operator is accepted.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "VOLUME_FRAC",
+     "kind": "constant",
+     "line": 40,
+     "quote": "Fractional volume agreement required for a sublattice index or a supercell match.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_SYM_RESIDUAL",
+     "kind": "constant",
+     "line": 31,
+     "quote": "Residual at or below which a geometric reindexing operator is exact metric symmetry.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -12972,19 +13251,19 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "twin_laws",
      "kind": "FunctionDef",
-     "line": 149,
+     "line": 150,
      "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     },
     {
      "module": "agentsg/cell/ambiguity.py",
      "symbol": "reindexing_ambiguity_operators",
      "kind": "FunctionDef",
-     "line": 126,
+     "line": 127,
      "quote": "Return the reindexing-ambiguity operators for a (space group, cell).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/ambiguity.py",
-     "sha256": "58f030d95e24dc20563eef1f52ea4290f369b45b1c0ed093f510b7813e4acf35"
+     "sha256": "a8ba4c8bccb246b03f65d0fcd5de3d85526caf617c23231bd5a3b8dd278e60e9"
     }
    ],
    "references": [
@@ -13034,10 +13313,10 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "twin_laws",
      "kind": "FunctionDef",
-     "line": 149,
+     "line": 150,
      "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -13087,10 +13366,10 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "twin_laws",
      "kind": "FunctionDef",
-     "line": 149,
+     "line": 150,
      "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -13140,10 +13419,10 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "_cell_close",
      "kind": "FunctionDef",
-     "line": 83,
+     "line": 84,
      "quote": "True if two cell-parameter tuples agree within (length%, angle deg).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -13193,10 +13472,10 @@
      "module": "agentsg/cell/reindex.py",
      "symbol": "twin_laws",
      "kind": "FunctionDef",
-     "line": 149,
+     "line": 150,
      "quote": "Return twin-law coset representatives for a crystal on a given lattice.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/reindex.py",
-     "sha256": "dfef1d20e2d696fd18c89be034e0984e3da678255af12134d70651d64c612d70"
+     "sha256": "3da9f0bc3bb0990c3d50e2fc5f9fc35ab9704f019de3fcd5da6709a24f417a3e"
     }
    ],
    "references": [
@@ -13361,19 +13640,64 @@
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "reference_orbit",
      "kind": "FunctionDef",
-     "line": 160,
+     "line": 164,
      "quote": "Selling-reduce ``cell`` and enumerate the typed closure once.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
      "symbol": "ReferenceOrbit",
      "kind": "ClassDef",
-     "line": 133,
+     "line": 140,
      "quote": "One query: deposited-to-reduced ``P_ref`` and the labeled closure metrics.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/selling_cob.py",
-     "sha256": "855862ec366b0398b7d4f208cee85256cb304abe092cb7a3f07cebb201b1fb5b"
+     "sha256": "77f561187a4b270b5d2fe096de56b64e8ff4007eeec99c841a9b7babb9d1d4c4"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_SIGMA_DEG",
+     "kind": "constant",
+     "line": 49,
+     "quote": "Degrees.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "BOUNDARY_REL",
+     "kind": "constant",
+     "line": 52,
+     "quote": "Relative width of a near-zero Selling conorm that is still treated as a boundary flip.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 43,
+     "quote": "Percent edge tolerance for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 46,
+     "quote": "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "VERIFY_REL",
+     "kind": "constant",
+     "line": 64,
+     "quote": "Relative metric residual at which a change-of-basis operator is accepted.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [
@@ -13440,7 +13764,7 @@
      "line": 1,
      "quote": "celldb: a persistent unit-cell / symmetry database keyed on the root invariant.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "2e17851c07fd8b289d589a39c34091e7184a9e84e6976bd796dbb1f38731c24b"
+     "sha256": "05a6e4b173b72873456829cdfac0565b10cb9666807ca5e78b4c7259be507c41"
     },
     {
      "module": "agentsg/cell/rootindex.py",
@@ -13624,19 +13948,37 @@
      "module": "agentsg/cell/rootform.py",
      "symbol": "noise_floor",
      "kind": "FunctionDef",
-     "line": 165,
+     "line": 166,
      "quote": "Closure-invariant global conorm floor ``s = c · σ_θ · T`` (Angstrom²).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
     },
     {
      "module": "agentsg/cell/rootform.py",
      "symbol": "pair_noise_scales",
      "kind": "FunctionDef",
-     "line": 177,
+     "line": 178,
      "quote": "Global invariant floor broadcast to all six pairs (API compat).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/rootform.py",
-     "sha256": "e3f485328b14238041dd06be18dc74850f2f1f566b32a06b058c669d6310e908"
+     "sha256": "c398a29b16d3c233b11cb34c138be69827505e2610e189965eab12ab2d0d544c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ZERO_NOISE_MULT",
+     "kind": "constant",
+     "line": 13,
+     "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_SIGMA_DEG",
+     "kind": "constant",
+     "line": 49,
+     "quote": "Degrees.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
     }
    ],
    "references": [

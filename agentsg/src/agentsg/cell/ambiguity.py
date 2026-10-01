@@ -62,6 +62,7 @@ from ..group import close_group, point_group
 from ..space_groups import space_group, SpaceGroup
 from ..lattice_symmetry import tolerance_metric_symmetry
 from .reduction import niggli_reduce
+from ..tolerances import METRIC_ANGLE_TOL_DEG, METRIC_LENGTH_TOL_PCT, METRIC_SYM_RESIDUAL
 
 _NEG_I = Matrix3([[Fr(-1), Fr(0), Fr(0)],
                   [Fr(0), Fr(-1), Fr(0)],
@@ -121,8 +122,8 @@ def _cached_ambiguity(sg_key, cell_sig, M_sig, len_tol, ang_tol):
 
 
 def reindexing_ambiguity_operators(space_group_key, cell,
-                                   length_tol_pct: float = 2.0,
-                                   angle_tol_deg: float = 2.0):
+                                   length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+                                   angle_tol_deg: float = METRIC_ANGLE_TOL_DEG):
     """Return the reindexing-ambiguity operators for a (space group, cell).
 
     Parameters
@@ -188,7 +189,8 @@ def apply_to_hkl_batch(op, hkl):
 
 
 def ambiguity_index(space_group_key, cell,
-                    length_tol_pct: float = 2.0, angle_tol_deg: float = 2.0) -> int:
+                    length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+                    angle_tol_deg: float = METRIC_ANGLE_TOL_DEG) -> int:
     """Number of indexing ambiguities = |tolerance metric symmetry| / |Laue group|."""
     return len(reindexing_ambiguity_operators(
         space_group_key, cell, length_tol_pct, angle_tol_deg))
@@ -216,8 +218,8 @@ class ReindexingReference:
     __slots__ = ("cell", "operators", "_G_ref", "_len_tol", "_ang_tol",
                  "_sg_key", "_laue_rows", "_ref_asu")
 
-    def __init__(self, space_group_key, cell, length_tol_pct: float = 2.0,
-                 angle_tol_deg: float = 2.0):
+    def __init__(self, space_group_key, cell, length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+                 angle_tol_deg: float = METRIC_ANGLE_TOL_DEG):
         self.cell = tuple(cell)
         self._len_tol = length_tol_pct
         self._ang_tol = angle_tol_deg
@@ -466,9 +468,9 @@ class GeometricOperator:
 
 
 def surface_geometric_operators(space_group_key, cell,
-                                length_tol_pct: float = 2.0,
-                                angle_tol_deg: float = 2.0,
-                                metric_sym_tol: float = 1e-6):
+                                length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+                                angle_tol_deg: float = METRIC_ANGLE_TOL_DEG,
+                                metric_sym_tol: float = METRIC_SYM_RESIDUAL):
     """Return the COMPLETE list of geometrically-allowed reindexing operators.
 
     This is the authoritative surface consumed by cell comparison and reindexing:

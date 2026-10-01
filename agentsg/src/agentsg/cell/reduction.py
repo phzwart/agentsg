@@ -28,6 +28,8 @@ to machine precision. A post-condition assertion enforces this on every return.
 from __future__ import annotations
 from math import sqrt, cos, radians, degrees, acos
 
+from ..tolerances import NIGGLI_COB_TOL_REL, REL_EPS
+
 
 def _params_to_scalars(a, b, c, al, be, ga):
     """Convert cell parameters to scalar products (A, B, C, xi, eta, zeta)."""
@@ -74,7 +76,7 @@ def _gram_from_params(a, b, c, alpha, beta, gamma):
     ]
 
 
-def _check_cob_invariant(G_orig, M, reduced, tol_rel=1e-6):
+def _check_cob_invariant(G_orig, M, reduced, tol_rel=NIGGLI_COB_TOL_REL):
     """Assert M^T G_orig M == gram(reduced). Raises AssertionError on failure."""
     G_pred = _transform_metric(G_orig, M)
     G_red = _gram_from_params(*reduced)
@@ -119,7 +121,7 @@ def _sign_matrix(l, m, nn):
     return best if best is not None else identity
 
 
-def niggli_gk(cell, eps_rel: float = 1e-9, max_iter: int = 1000):
+def niggli_gk(cell, eps_rel: float = REL_EPS, max_iter: int = 1000):
     """Niggli-reduce a unit cell, tracking an exact change of basis.
 
     A reimplementation of the Niggli reduction following the stabilised algorithm
@@ -268,7 +270,7 @@ def niggli_gk(cell, eps_rel: float = 1e-9, max_iter: int = 1000):
     return reduced, M
 
 
-def niggli_reduce(a, b, c, alpha, beta, gamma, eps_rel: float = 1e-9,
+def niggli_reduce(a, b, c, alpha, beta, gamma, eps_rel: float = REL_EPS,
                   max_iter: int = 1000):
     """Niggli-reduce a unit cell.
 

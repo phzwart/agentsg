@@ -16,9 +16,10 @@ single-class orbit; it is not by itself the V2--V5 closure.
 from __future__ import annotations
 
 from .canonical import canonical_superbase, _metric, _dotG
+from ..tolerances import CONORM_TOL_REL, ZERO_NOISE_MULT
 
 
-def _conorm_tol(C, G, rel=1e-9):
+def _conorm_tol(C, G, rel=CONORM_TOL_REL):
     """Relative numerical tolerance scaled by the maximum superbase vector length."""
     scale = max(abs(_dotG(C[i], C[i], G)) for i in range(4)) or 1.0
     return rel * scale
@@ -62,7 +63,7 @@ def _conorm_sum(C, G):
     return T
 
 
-def _zero_tol(C, G, tol_rel=1e-9, angle_sigma=None, noise_mult=3.0):
+def _zero_tol(C, G, tol_rel=CONORM_TOL_REL, angle_sigma=None, noise_mult=ZERO_NOISE_MULT):
     """Absolute conorm tolerance for zero detection / obtuseness.
 
     Default is a tiny relative floor. With ``angle_sigma`` (degrees), widen to
@@ -102,7 +103,7 @@ def voronoi_type_from_superbase(C, G, tol=None):
     return 4
 
 
-def voronoi_type(cell, tol_rel=1e-9, angle_sigma=None):
+def voronoi_type(cell, tol_rel=CONORM_TOL_REL, angle_sigma=None):
     """Voronoi type (1..5) of ``cell`` from its Selling-reduced superbase.
 
     Pass ``angle_sigma`` (degrees) to treat near-zero conorms within a few σ
@@ -157,7 +158,7 @@ def _class_seeds(C0, G, tol):
     return seeds
 
 
-def selling_superbase_closure(cell, tol_rel=1e-9, angle_sigma=None):
+def selling_superbase_closure(cell, tol_rel=CONORM_TOL_REL, angle_sigma=None):
     """Finite Selling-superbase closure of ``cell`` (typed, Kurlin 4.1--4.5).
 
     Returns distinct obtuse superbases as ordered 4-tuples of integer coordinate
@@ -216,7 +217,7 @@ def _s4_canonical_coform(C, G):
     return best
 
 
-def selling_closure_representatives(cell, tol_rel=1e-9, angle_sigma=None):
+def selling_closure_representatives(cell, tol_rel=CONORM_TOL_REL, angle_sigma=None):
     """One obtuse superbase per isometry class (diagnostic / class count).
 
     Deduplicates the full closure by the S4-canonical coform (lex-minimal
@@ -236,7 +237,7 @@ def selling_closure_representatives(cell, tol_rel=1e-9, angle_sigma=None):
     return list(by_class.values())
 
 
-def closure_class_count(cell, tol_rel=1e-9, angle_sigma=None):
+def closure_class_count(cell, tol_rel=CONORM_TOL_REL, angle_sigma=None):
     """Number of isometry classes in the closure (1 for V1; up to 4 for V5)."""
     return len(selling_closure_representatives(
         cell, tol_rel=tol_rel, angle_sigma=angle_sigma,
