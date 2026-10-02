@@ -943,6 +943,14 @@ c("k_subgroup_iib", "Klassengleiche subgroup of type IIb", "crystallography",
   [("agentsg/subgroups.py", "_k_iib_edges")],
   [("SPECIALIZES", "k_subgroup"), ("CONTRASTS_WITH", "k_subgroup_iia"), ("USES", "sublattice")],
   iucr="Klassengleiche subgroups", aliases=["IIb", "type IIb"])
+c("numeric_gate", "Named numeric gate", "algorithm",
+  "The angle, length, conorm, and residual cutoffs for Le Page symmetry, cell comparison, reindexing, and a PDB change of basis. Each number is a named constant in tolerances.py. Le Page uses 3 degrees and 2 percent. Metric automorphisms use 2 percent and 2 degrees. Cell comparison uses 3 percent and 5 degrees. A PDB match uses 0.75 percent and 0.5 degrees, with zero conorms inside 0.05 degrees and a relative boundary of 0.001.",
+  [("agentsg/tolerances.py", "")],
+  [("USES", "tolerance_gated_matching"), ("USES", "lattice_symmetry_determination"),
+   ("USES", "selling_closure"), ("USES", "reference_orbit"),
+   ("USES", "kurlin_root_form"), ("USES", "floating_point_tolerance")],
+  wiki="Machine epsilon",
+  aliases=["angle tolerance", "length tolerance", "angle sigma", "boundary_rel", "numeric tolerance"])
 c("conorm_noise_floor", "Closure-invariant conorm noise floor", "algorithm",
   "One floor s = c · σ_θ · T applied to every Selling conorm, where T is the sum of the six conorms. Selling flips permute the conorms and leave T fixed, so the floor is the same on every member of the closure. It is not a separate floor on each pair.",
   [("agentsg/cell/rootform.py", "noise_floor"), ("agentsg/cell/rootform.py", "pair_noise_scales")],
@@ -1029,6 +1037,22 @@ EXTRA_ANCHORS = {
     "tolerance_gated_matching": [("agentsg/tolerances.py", "METRIC_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "METRIC_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "COMPARE_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "COMPARE_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "COB_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "COB_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "VERIFY_REL"), ("agentsg/tolerances.py", "VOLUME_FRAC"), ("agentsg/tolerances.py", "METRIC_SYM_RESIDUAL")],
     "conorm_noise_floor": [("agentsg/tolerances.py", "ZERO_NOISE_MULT"), ("agentsg/tolerances.py", "COB_ANGLE_SIGMA_DEG")],
     "reference_orbit": [("agentsg/tolerances.py", "COB_ANGLE_SIGMA_DEG"), ("agentsg/tolerances.py", "BOUNDARY_REL"), ("agentsg/tolerances.py", "COB_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "COB_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "VERIFY_REL")],
+    "numeric_gate": [
+        ("agentsg/tolerances.py", "REL_EPS"), ("agentsg/tolerances.py", "CONORM_TOL_REL"),
+        ("agentsg/tolerances.py", "ZERO_NOISE_MULT"), ("agentsg/tolerances.py", "LE_PAGE_MAX_DELTA_DEG"),
+        ("agentsg/tolerances.py", "LE_PAGE_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "METRIC_LENGTH_TOL_PCT"),
+        ("agentsg/tolerances.py", "METRIC_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "METRIC_INVARIANT_TOL"),
+        ("agentsg/tolerances.py", "METRIC_SYM_RESIDUAL"), ("agentsg/tolerances.py", "COMPARE_LENGTH_TOL_PCT"),
+        ("agentsg/tolerances.py", "COMPARE_ANGLE_TOL_DEG"), ("agentsg/tolerances.py", "VOLUME_FRAC"),
+        ("agentsg/tolerances.py", "COB_LENGTH_TOL_PCT"), ("agentsg/tolerances.py", "COB_ANGLE_TOL_DEG"),
+        ("agentsg/tolerances.py", "COB_ANGLE_SIGMA_DEG"), ("agentsg/tolerances.py", "BOUNDARY_REL"),
+        ("agentsg/tolerances.py", "SUPERBASE_MAX_VARIANTS"), ("agentsg/tolerances.py", "REINDEX_BOUNDARY_REL"),
+        ("agentsg/tolerances.py", "REINDEX_BAND_REL"), ("agentsg/tolerances.py", "VERIFY_REL"),
+        ("agentsg/tolerances.py", "NIGGLI_COB_TOL_REL"), ("agentsg/tolerances.py", "ROOT_STABILIZE_KAPPA"),
+        ("agentsg/tolerances.py", "SYMMETRY_CUTOFF_Z"), ("agentsg/tolerances.py", "ROOT_SNAP_REL"),
+        ("agentsg/tolerances.py", "ROOT_SNAP_DECIMALS"), ("agentsg/tolerances.py", "MANIFOLD_HOP_VERIFY_REL"),
+        ("agentsg/tolerances.py", "MANIFOLD_PATH_VERIFY_REL"),
+    ],
 }
 for _cid, _extra in EXTRA_ANCHORS.items():
     for _c in C:

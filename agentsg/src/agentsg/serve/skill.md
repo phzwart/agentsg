@@ -71,11 +71,12 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Non-standard setting | `POST /v1/setting` `{"setting":"P 21 21 2 (2a,b-a,c)"}` |
 | Identify operators | `POST /v1/identify` `{"ops":["x,y,z",...]}` |
 | Cell volume, Niggli, root key | `GET /v1/cell?cell=79,79,38,90,90,90&sg=96` |
-| What Bravais / holohedry is this noisy cell? | `POST /v1/lattice-symmetry` `{"cell":[50,50,51,90,90,90]}` |
+| What Bravais / holohedry is this noisy cell? | `POST /v1/lattice-symmetry` `{"cell":[50,50,51,90,90,90]}`. Quote `max_delta_deg` |
 | Are these two lattices the same? | `POST /v1/compare` with `cell_a` and `cell_b` |
-| Native vs SeMet integer transform | `POST /v1/compare` with `include_sublattices: true` |
-| Serial XFEL reindex / ambiguity | `POST /v1/reindex` |
-| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |
+| Native vs SeMet integer transform | `POST /v1/compare` with `include_sublattices: true`. Quote `length_tol_pct` and `angle_tol_deg` |
+| Serial XFEL reindex / ambiguity | `POST /v1/reindex`. Quote `length_tol_pct` and `angle_tol_deg` |
+| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis and the `gates` that produced it |
+| What cutoff was used? | `GET /v1/concept?id=numeric_gate`. The constants live in `tolerances.py` |
 | Look up 1ABC | `GET /v1/pdb/1ABC` |
 | What does this word mean here, and where is it in the code? | `GET /v1/concept?q=Smith+normal+form`, then `GET /v1/concept?id=` the top hit |
 | A result lists `concepts` | Call `GET /v1/concept?id=` on each id, then explain the term in ordinary sentences: name the file and the function in the sentence, and put links at the end |
@@ -103,11 +104,13 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **Cell**: quote `volume`, `niggli`, and `root_invariant`. If the cell is C/I/F/R, you **must** send `sg` so the server reduces to primitive first.
 
-**Lattice symmetry**: quote `crystal_system` and `order` from the response. Do not call a noisy cell cubic unless the JSON does.
+**Lattice symmetry**: quote `crystal_system`, `order`, and `max_delta_deg`. That cutoff is the Le Page angle gate (default 3 degrees). Do not call a noisy cell cubic unless the JSON does.
 
-**Compare**: lead with `root_distance` in Å. G6 / similarity only if asked.
+**Compare**: lead with `root_distance` in Å. G6 / similarity only if asked. When `sublattices` is present, quote `length_tol_pct` and `angle_tol_deg` (default 3 percent and 5 degrees).
 
-**Reindex**: list branches. `is_metric_symmetry: true` (residual 0) is true merohedry. You cannot pick the intensity branch. Say that you cannot decide P3₁ vs P3₂ from the cell alone.
+**Reindex**: list branches and quote `length_tol_pct` and `angle_tol_deg` (default 2 percent and 2 degrees). `is_metric_symmetry: true` (residual 0) is true merohedry. You cannot pick the intensity branch. Say that you cannot decide P3₁ vs P3₂ from the cell alone.
+
+**Numeric gates**: every cutoff above is a named constant in `tolerances.py`. The concept id is `numeric_gate`. Quote the number the response reports. Do not invent a tighter or looser cutoff, and do not recite a gate that was not in the JSON.
 
 **Concept** (`/v1/concept`): the vocabulary of this code. It does not compute a space group. For operators, absences, sites, or cells, use those endpoints. When someone asks what a word means or where a routine lives, look it up here first.
 
@@ -125,7 +128,7 @@ When they ask what you can explain about the code, offer the questions under **C
 
 **PDB search**: list `pdb_id`, `distance` (Å on the sorted root invariant), `sg_hm`, `cell`. The index key is the six sorted roots of one obtuse superbase of the primitive lattice. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
 
-`cob` is absent unless the request set `return_cob` true. When it is set, the server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator when a closure member matches the stored reduced cell within 0.75% in each edge and 0.5° in each angle. The closure treats conorms inside `angle_sigma` degrees (default 0.05) as zero, and merges near-zero flips inside `boundary_rel` (default 1e-3). Both are request parameters. `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob_residual` is the remaining mismatch after that operator: the larger of the percent length error and the degree angle error. `cob: null` means no proper operator matched within that tolerance. Do not invent an operator from the distance, and do not read a small distance with `cob: null` as a proof that the crystal forms differ. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
+`cob` is absent unless the request set `return_cob` true. When it is set, the response includes `gates`: `length_tol_pct` 0.75, `angle_tol_deg` 0.5, `angle_sigma_deg` (default 0.05), and `boundary_rel` (default 0.001). Quote those four numbers. The server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator when a closure member matches the stored reduced cell within `length_tol_pct` in each edge and `angle_tol_deg` in each angle. The closure treats conorms inside `angle_sigma_deg` as zero, and merges near-zero flips inside `boundary_rel`. Both widths are request parameters (`angle_sigma`, `boundary_rel`). `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob_residual` is the remaining mismatch after that operator: the larger of the percent length error and the degree angle error. `cob: null` means no proper operator matched within that tolerance. Do not invent an operator from the distance, and do not read a small distance with `cob: null` as a proof that the crystal forms differ. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
 
 Settings with determinant −1 are omitted. They reverse handedness, and the lattice inversion is what puts them in the closure. If several proper operators match, `cob` is the one with the fewest minus signs in `cob_xyz`, then the spelling closest to `a,b,c`, chosen only among determinant +1. `cob_coset` is that full list in the same order, with `cob` first. Each entry has its own `residual`. Quote `cob_xyz` as the representative and list every other `cob_xyz` in the coset. Metric symmetry does not choose a single setting; the spelling rule only chooses which proper setting to lead with.
 
@@ -270,6 +273,7 @@ Offer this list when the user asks what you can explain about the code. Run a ca
 - How does a t-subgroup differ from a k-subgroup?
 - What is dual to the reciprocal lattice?
 - Show the receipt for the allowed-origins definition.
+- What numeric gates does a change of basis use?
 
 User: “Where is the Smith normal form implemented?”
 

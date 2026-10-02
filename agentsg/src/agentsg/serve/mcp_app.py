@@ -110,8 +110,8 @@ def _mcp_playbook(base: str) -> str:
         "| Draw / show the ITA plate | `ita_plate` with `sg`. The result includes the PNG and every in-cell copy. |",
     )
     body = body.replace(
-        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis from the query cell onto each deposited hit |',
-        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis onto each deposited cell. |",
+        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis and the `gates` that produced it |',
+        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis and the `gates` that produced it. |",
     )
     body = body.replace(
         "| Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |",
@@ -128,6 +128,10 @@ def _mcp_playbook(base: str) -> str:
     body = body.replace(
         "| Allowed origins of a space group | `GET /v1/allowed-origins?sg=225` |",
         "| Allowed origins of a space group | `allowed_origins` with `sg` |",
+    )
+    body = body.replace(
+        "| What cutoff was used? | `GET /v1/concept?id=numeric_gate`. The constants live in `tolerances.py` |",
+        '| What cutoff was used? | `concept` with `id="numeric_gate"`. The constants live in `tolerances.py` |',
     )
     body = body.replace(
         "| What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |",
@@ -150,6 +154,7 @@ def _mcp_playbook(base: str) -> str:
         ("GET /v1/concept?id=smith_normal_form", 'concept with id="smith_normal_form"'),
         ("GET /v1/concept?q=allowed+origin", 'concept with q="allowed origin"'),
         ("GET /v1/concept?id=allowed_origins", 'concept with id="allowed_origins"'),
+        ("GET /v1/concept?id=numeric_gate", 'concept with id="numeric_gate"'),
         (
             "GET /v1/concept/uses?id=reflection_conditions&depth=3",
             'concept_uses with id="reflection_conditions" and depth=3',
@@ -394,7 +399,8 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     ) -> dict[str, Any]:
         """Le Page holohedry and Kurlin two-fold scores for a cell.
 
-        max_delta: Le Page angle cutoff in degrees.
+        max_delta: Le Page angle cutoff in degrees. Default LE_PAGE_MAX_DELTA_DEG (3).
+        Report crystal_system, order, and max_delta_deg from the result.
         """
         return _result(handlers.lattice_symmetry_info, _clean({
             "cell": cell,
@@ -430,7 +436,11 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
         angle_tol_deg: float = METRIC_ANGLE_TOL_DEG,
     ) -> dict[str, Any]:
-        """Geometric reindexing branches. Intensities are required to pick a branch."""
+        """Geometric reindexing branches. Intensities are required to pick a branch.
+
+        length_tol_pct defaults to METRIC_LENGTH_TOL_PCT (2). angle_tol_deg defaults
+        to METRIC_ANGLE_TOL_DEG (2). Report both fields with the branches.
+        """
         return _result(handlers.reindex_info, {
             "sg": sg,
             "cell": cell,
@@ -456,15 +466,18 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         cells are reduced to primitive before the search.
         plot: when true, the tool result includes a PC1–PC2 scatter PNG of the hits.
         return_cob: when true, Selling-reduce the query and attach cob from the
-        query cell onto each deposited hit whose reduced cell matches within
-        0.75% in length and 0.5° in angle. cob_residual is that leftover
-        mismatch. cob is null when no proper operator is within tolerance.
+        query cell onto each deposited hit. The match uses COB_LENGTH_TOL_PCT
+        (0.75) and COB_ANGLE_TOL_DEG (0.5). cob_residual is the leftover
+        mismatch. cob is null when no proper operator is within those gates.
         Only determinant +1 settings are listed. cob is the one with the fewest
         minus signs, then the spelling closest to a,b,c; cob_coset lists every
-        proper match in that order.
-        angle_sigma (degrees, default 0.05) and boundary_rel (default 1e-3)
-        widen zero-conorm detection on the query closure so a reindexed
-        high-symmetry cell is not classified as a generic lattice.
+        proper match in that order. Report cob_xyz, cob_residual, the coset,
+        and the gates object.
+        angle_sigma defaults to COB_ANGLE_SIGMA_DEG (0.05). boundary_rel
+        defaults to BOUNDARY_REL (0.001). They widen zero-conorm detection on
+        the query closure so a reindexed high-symmetry cell is not classified
+        as a generic lattice. The names live in tolerances.py; concept id
+        numeric_gate.
         """
         import base64
         out = _result(lambda data: handlers.pdb_search(state, data), _clean({
@@ -577,6 +590,8 @@ def run_mcp(
     mcp = build_mcp(state, public_url=public)
     print(f"agentsg mcp on http://{host}:{port}/mcp")
     print(f"  concepts: {concept_count()}")
+    print("  playbook: tool playbook")
+    print("  numeric gates: concept numeric_gate (tolerances.py)")
     print(f"  public: {public}/mcp")
     print("  auth: open (no API key)")
     if state.db_path:

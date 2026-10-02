@@ -44,4 +44,5 @@ else
 fi
 
 echo "agentsg sg-muse on http://${AGENTSG_HOST}:${AGENTSG_PORT} (${AGENTSG_API_NAME}, ${AGENTSG_PUBLIC_URL})" >&2
+echo "playbook: ${AGENTSG_PUBLIC_URL}/skill.md  (numeric gates: concept numeric_gate)" >&2
 exec "$PYTHON" -m agentsg.serve

@@ -47,7 +47,7 @@ COB_ANGLE_TOL_DEG = 0.5
 "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell."
 
 COB_ANGLE_SIGMA_DEG = 0.05
-"Degrees. Zero-conorm width of the query Selling closure, inside the match angle tolerance."
+"Zero-conorm width of the query Selling closure, inside the match angle tolerance."
 
 BOUNDARY_REL = 1e-3
 "Relative width of a near-zero Selling conorm that is still treated as a boundary flip."

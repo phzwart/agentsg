@@ -15,6 +15,12 @@ def test_search_smith_and_allowed_origin():
     assert smith["snapshot"]
     allowed = graph.search("allowed origin")
     assert allowed["hits"][0]["id"] == "allowed_origins"
+    gates = graph.search("angle tolerance")
+    assert gates["hits"][0]["id"] == "numeric_gate"
+    card = graph.card("numeric_gate")
+    symbols = {row["symbol"] for row in card["code_evidence"]}
+    assert "COB_ANGLE_SIGMA_DEG" in symbols
+    assert "LE_PAGE_MAX_DELTA_DEG" in symbols
 
 
 def test_card_uses_module_and_receipt():
@@ -73,6 +79,7 @@ def test_http_concept_routes_and_skill_questions():
         status, md = _fetch(f"{base}/skill.md")
         text = md.decode()
         assert "Where is the Smith normal form implemented?" in text
+        assert "numeric_gate" in text
         assert "Concept questions" in text
         assert "ent:concept:allowed_origins" in text
         try:

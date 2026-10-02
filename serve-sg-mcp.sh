@@ -39,4 +39,5 @@ else
 fi
 
 echo "agentsg sg-mcp on http://${AGENTSG_MCP_HOST}:${AGENTSG_MCP_PORT}/mcp (${AGENTSG_MCP_PUBLIC_URL}/mcp, no API key)" >&2
+echo "playbook: tool playbook  (numeric gates: concept numeric_gate)" >&2
 exec "$PYTHON" -m agentsg.serve.mcp_app

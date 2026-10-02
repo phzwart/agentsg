@@ -356,6 +356,10 @@ def test_pdb_search_returns_cob_for_same_lattice(tmp_path):
             "cell": list(base), "sg": "P 21 21 21", "k": 2, "return_cob": True,
         })
         assert status == 200
+        assert result["gates"]["length_tol_pct"] == 0.75
+        assert result["gates"]["angle_tol_deg"] == 0.5
+        assert result["gates"]["angle_sigma_deg"] == 0.05
+        assert result["gates"]["boundary_rel"] == 1e-3
         by_id = {hit["pdb_id"]: hit for hit in result["hits"]}
         assert by_id["NEAR"]["cob"] is None
         swap = by_id["SWAP"]

@@ -312,4 +312,5 @@
 "pdb_lattice_search","ref:literature:kurlinvmathematicsof2dimensionaland3dimensionall","DEFINED_IN","evi:lit:pdb_lattice_search:1"
 "k_subgroup_iia","ref:iucr:Klassengleiche subgroups","DEFINED_IN","evi:ref:k_subgroup_iia:iucr"
 "k_subgroup_iib","ref:iucr:Klassengleiche subgroups","DEFINED_IN","evi:ref:k_subgroup_iib:iucr"
+"numeric_gate","ref:wikipedia:Machine epsilon","DEFINED_IN","evi:ref:numeric_gate:wikipedia"
 "conorm_noise_floor","ref:literature:kurlinvmathematicsof2dimensionaland3dimensionall","DEFINED_IN","evi:lit:conorm_noise_floor:1"

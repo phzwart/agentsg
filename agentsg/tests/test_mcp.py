@@ -69,6 +69,8 @@ def test_mcp_tools_have_no_auth_and_call_handlers():
     assert "plate PNG" in book
     assert "Where is the Smith normal form implemented?" in book
     assert "Concept questions" in book
+    assert 'id="numeric_gate"' in book
+    assert "the `gates` that produced it" in book
     assert "ita_plate_image" not in book
 
 

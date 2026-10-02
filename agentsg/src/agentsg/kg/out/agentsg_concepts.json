@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "58692997e78c405b075d73e9a67dc90880f6bf3d",
+  "commit": "897ff4dcb5142995df448570e65512b3cb6b582a",
   "dirty": true
  },
  "concepts": [
@@ -7075,7 +7075,7 @@
      "line": 7,
      "quote": "Relative floor for Niggli, Delaunay, and zero-conorm tests.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7084,7 +7084,7 @@
      "line": 67,
      "quote": "Relative tolerance when a Niggli change of basis is checked against the reduced metric.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -7447,7 +7447,7 @@
      "line": 10,
      "quote": "Relative floor on a Selling conorm before an angle sigma widens zero detection.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7456,16 +7456,16 @@
      "line": 13,
      "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
      "symbol": "COB_ANGLE_SIGMA_DEG",
      "kind": "constant",
      "line": 49,
-     "quote": "Degrees.",
+     "quote": "Zero-conorm width of the query Selling closure, inside the match angle tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -7614,7 +7614,7 @@
      "line": 10,
      "quote": "Relative floor on a Selling conorm before an angle sigma widens zero detection.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7623,16 +7623,16 @@
      "line": 13,
      "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
      "symbol": "COB_ANGLE_SIGMA_DEG",
      "kind": "constant",
      "line": 49,
-     "quote": "Degrees.",
+     "quote": "Zero-conorm width of the query Selling closure, inside the match angle tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7641,7 +7641,7 @@
      "line": 52,
      "quote": "Relative width of a near-zero Selling conorm that is still treated as a boundary flip.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7650,7 +7650,7 @@
      "line": 55,
      "quote": "Cap on the near-boundary superbase expander.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7659,7 +7659,7 @@
      "line": 58,
      "quote": "Relative conorm width used when reindex searches the Selling closure of a deformed cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7668,7 +7668,7 @@
      "line": 61,
      "quote": "Relative residual band that keeps near-best reindexing operators in the coset.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -7835,7 +7835,7 @@
      "line": 76,
      "quote": "Relative size below which a sorted-root component is written as zero.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7844,7 +7844,7 @@
      "line": 79,
      "quote": "Decimal places kept in a sorted-root key after the noise snap.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7853,7 +7853,7 @@
      "line": 70,
      "quote": "Exponent of the optional stabilised root product.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -7862,7 +7862,7 @@
      "line": 73,
      "quote": "Scale of the edge-noise null at the 95th percentile, used to turn a fractional noise into a root cutoff.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -8496,7 +8496,7 @@
      "line": 16,
      "quote": "Le Page angular cutoff in degrees: a two-fold is kept when its delta is at most this.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -8505,7 +8505,7 @@
      "line": 19,
      "quote": "Percent length change allowed when a Le Page two-fold is checked against the metric.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -9499,7 +9499,7 @@
      "line": 82,
      "quote": "Relative residual allowed for one deformation-manifold hop onto a landmark.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -9508,7 +9508,7 @@
      "line": 85,
      "quote": "Relative residual allowed for one hop when a manifold path is composed.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -10296,10 +10296,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 692,
+     "line": 714,
      "quote": "SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
+     "sha256": "75509f409e00737fff6d9ba05f7a4b5011d93f459baa761f0ac488490c2373b2"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -10419,7 +10419,7 @@
      "line": 7,
      "quote": "Relative floor for Niggli, Delaunay, and zero-conorm tests.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -10428,7 +10428,7 @@
      "line": 28,
      "quote": "Relative residual at which a rotation is treated as leaving the metric tensor unchanged.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -11912,19 +11912,19 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "default_projection",
      "kind": "FunctionDef",
-     "line": 266,
+     "line": 276,
      "quote": "Project a monoclinic group along its unique axis, else along c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
+     "sha256": "75509f409e00737fff6d9ba05f7a4b5011d93f459baa761f0ac488490c2373b2"
     },
     {
      "module": "agentsg/serve/handlers.py",
      "symbol": "_unique_axis",
      "kind": "FunctionDef",
-     "line": 278,
+     "line": 288,
      "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "586ef607082cf16f2bd3da18df75177c5a84cbc7d9a900b67407ab47b216453f"
+     "sha256": "75509f409e00737fff6d9ba05f7a4b5011d93f459baa761f0ac488490c2373b2"
     }
    ],
    "references": [
@@ -13060,7 +13060,7 @@
      "line": 22,
      "quote": "Percent edge tolerance for the metric-automorphism group, twin laws, and geometric reindexing.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13069,7 +13069,7 @@
      "line": 25,
      "quote": "Angle tolerance in degrees for the metric-automorphism group, twin laws, and geometric reindexing.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13078,7 +13078,7 @@
      "line": 34,
      "quote": "Percent edge tolerance when comparing two cells, including sublattice matches.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13087,7 +13087,7 @@
      "line": 37,
      "quote": "Angle tolerance in degrees when comparing two cells, including sublattice matches.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13096,7 +13096,7 @@
      "line": 43,
      "quote": "Percent edge tolerance for a Selling-closure member to match a stored reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13105,7 +13105,7 @@
      "line": 46,
      "quote": "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13114,7 +13114,7 @@
      "line": 64,
      "quote": "Relative metric residual at which a change-of-basis operator is accepted.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13123,7 +13123,7 @@
      "line": 40,
      "quote": "Fractional volume agreement required for a sublattice index or a supercell match.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13132,7 +13132,7 @@
      "line": 31,
      "quote": "Residual at or below which a geometric reindexing operator is exact metric symmetry.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -13659,9 +13659,9 @@
      "symbol": "COB_ANGLE_SIGMA_DEG",
      "kind": "constant",
      "line": 49,
-     "quote": "Degrees.",
+     "quote": "Zero-conorm width of the query Selling closure, inside the match angle tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13670,7 +13670,7 @@
      "line": 52,
      "quote": "Relative width of a near-zero Selling conorm that is still treated as a boundary flip.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13679,7 +13679,7 @@
      "line": 43,
      "quote": "Percent edge tolerance for a Selling-closure member to match a stored reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13688,7 +13688,7 @@
      "line": 46,
      "quote": "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -13697,7 +13697,7 @@
      "line": 64,
      "quote": "Relative metric residual at which a change-of-basis operator is accepted.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [
@@ -13918,6 +13918,315 @@
    ]
   },
   {
+   "id": "numeric_gate",
+   "label": "Named numeric gate",
+   "kind": "algorithm",
+   "aliases": [
+    "angle tolerance",
+    "length tolerance",
+    "angle sigma",
+    "boundary_rel",
+    "numeric tolerance"
+   ],
+   "definition": "The angle, length, conorm, and residual cutoffs for Le Page symmetry, cell comparison, reindexing, and a PDB change of basis. Each number is a named constant in tolerances.py. Le Page uses 3 degrees and 2 percent. Metric automorphisms use 2 percent and 2 degrees. Cell comparison uses 3 percent and 5 degrees. A PDB match uses 0.75 percent and 0.5 degrees, with zero conorms inside 0.05 degrees and a relative boundary of 0.001.",
+   "literature": [],
+   "relations": [
+    {
+     "type": "USES",
+     "target": "tolerance_gated_matching"
+    },
+    {
+     "type": "USES",
+     "target": "lattice_symmetry_determination"
+    },
+    {
+     "type": "USES",
+     "target": "selling_closure"
+    },
+    {
+     "type": "USES",
+     "target": "reference_orbit"
+    },
+    {
+     "type": "USES",
+     "target": "kurlin_root_form"
+    },
+    {
+     "type": "USES",
+     "target": "floating_point_tolerance"
+    }
+   ],
+   "code_evidence": [
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "",
+     "kind": "module",
+     "line": 1,
+     "quote": "Named numeric gates for lattice matching, Selling classification, and Le Page symmetry.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REL_EPS",
+     "kind": "constant",
+     "line": 7,
+     "quote": "Relative floor for Niggli, Delaunay, and zero-conorm tests.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "CONORM_TOL_REL",
+     "kind": "constant",
+     "line": 10,
+     "quote": "Relative floor on a Selling conorm before an angle sigma widens zero detection.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ZERO_NOISE_MULT",
+     "kind": "constant",
+     "line": 13,
+     "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "LE_PAGE_MAX_DELTA_DEG",
+     "kind": "constant",
+     "line": 16,
+     "quote": "Le Page angular cutoff in degrees: a two-fold is kept when its delta is at most this.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "LE_PAGE_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 19,
+     "quote": "Percent length change allowed when a Le Page two-fold is checked against the metric.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 22,
+     "quote": "Percent edge tolerance for the metric-automorphism group, twin laws, and geometric reindexing.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 25,
+     "quote": "Angle tolerance in degrees for the metric-automorphism group, twin laws, and geometric reindexing.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_INVARIANT_TOL",
+     "kind": "constant",
+     "line": 28,
+     "quote": "Relative residual at which a rotation is treated as leaving the metric tensor unchanged.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "METRIC_SYM_RESIDUAL",
+     "kind": "constant",
+     "line": 31,
+     "quote": "Residual at or below which a geometric reindexing operator is exact metric symmetry.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COMPARE_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 34,
+     "quote": "Percent edge tolerance when comparing two cells, including sublattice matches.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COMPARE_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 37,
+     "quote": "Angle tolerance in degrees when comparing two cells, including sublattice matches.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "VOLUME_FRAC",
+     "kind": "constant",
+     "line": 40,
+     "quote": "Fractional volume agreement required for a sublattice index or a supercell match.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_LENGTH_TOL_PCT",
+     "kind": "constant",
+     "line": 43,
+     "quote": "Percent edge tolerance for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_TOL_DEG",
+     "kind": "constant",
+     "line": 46,
+     "quote": "Angle tolerance in degrees for a Selling-closure member to match a stored reduced cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "COB_ANGLE_SIGMA_DEG",
+     "kind": "constant",
+     "line": 49,
+     "quote": "Zero-conorm width of the query Selling closure, inside the match angle tolerance.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "BOUNDARY_REL",
+     "kind": "constant",
+     "line": 52,
+     "quote": "Relative width of a near-zero Selling conorm that is still treated as a boundary flip.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "SUPERBASE_MAX_VARIANTS",
+     "kind": "constant",
+     "line": 55,
+     "quote": "Cap on the near-boundary superbase expander.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REINDEX_BOUNDARY_REL",
+     "kind": "constant",
+     "line": 58,
+     "quote": "Relative conorm width used when reindex searches the Selling closure of a deformed cell.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "REINDEX_BAND_REL",
+     "kind": "constant",
+     "line": 61,
+     "quote": "Relative residual band that keeps near-best reindexing operators in the coset.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "VERIFY_REL",
+     "kind": "constant",
+     "line": 64,
+     "quote": "Relative metric residual at which a change-of-basis operator is accepted.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "NIGGLI_COB_TOL_REL",
+     "kind": "constant",
+     "line": 67,
+     "quote": "Relative tolerance when a Niggli change of basis is checked against the reduced metric.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_STABILIZE_KAPPA",
+     "kind": "constant",
+     "line": 70,
+     "quote": "Exponent of the optional stabilised root product.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "SYMMETRY_CUTOFF_Z",
+     "kind": "constant",
+     "line": 73,
+     "quote": "Scale of the edge-noise null at the 95th percentile, used to turn a fractional noise into a root cutoff.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_SNAP_REL",
+     "kind": "constant",
+     "line": 76,
+     "quote": "Relative size below which a sorted-root component is written as zero.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "ROOT_SNAP_DECIMALS",
+     "kind": "constant",
+     "line": 79,
+     "quote": "Decimal places kept in a sorted-root key after the noise snap.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "MANIFOLD_HOP_VERIFY_REL",
+     "kind": "constant",
+     "line": 82,
+     "quote": "Relative residual allowed for one deformation-manifold hop onto a landmark.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    },
+    {
+     "module": "agentsg/tolerances.py",
+     "symbol": "MANIFOLD_PATH_VERIFY_REL",
+     "kind": "constant",
+     "line": 85,
+     "quote": "Relative residual allowed for one hop when a manifold path is composed.",
+     "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
+    }
+   ],
+   "references": [
+    {
+     "source": "wikipedia",
+     "title": "Machine epsilon",
+     "url": "https://en.wikipedia.org/wiki/Machine_epsilon",
+     "page_title": "Machine epsilon",
+     "status": "off-topic",
+     "quote": "",
+     "prefix": "",
+     "suffix": "This value characterizes computer arithmetic in the field of numerical analysis",
+     "truncated": false,
+     "note": "page title does not match the concept label or aliases; lede not quoted",
+     "fetched": "2026-09-30"
+    }
+   ]
+  },
+  {
    "id": "conorm_noise_floor",
    "label": "Closure-invariant conorm noise floor",
    "kind": "algorithm",
@@ -13969,16 +14278,16 @@
      "line": 13,
      "quote": "How many angle-sigma widths make the absolute zero-conorm tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     },
     {
      "module": "agentsg/tolerances.py",
      "symbol": "COB_ANGLE_SIGMA_DEG",
      "kind": "constant",
      "line": 49,
-     "quote": "Degrees.",
+     "quote": "Zero-conorm width of the query Selling closure, inside the match angle tolerance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/tolerances.py",
-     "sha256": "46b4110cb7f30dcbe67f9cc67952b7e35c8ba042e8be642bede69b96ba64c6df"
+     "sha256": "bfec8f3963350a1a362963252cfe15abe75d05b6ec35eb5899c491f1fddb382c"
     }
    ],
    "references": [

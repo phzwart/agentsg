@@ -331,6 +331,8 @@ def run_server(db_path: str | None = None, host: str = "127.0.0.1",
     print(f"  auth: {'bearer required' if state.token else 'open (no AGENTSG_TOKEN)'}")
     if log_path():
         print(f"  access log: {log_path()}")
+    print("  playbook: GET /skill.md")
+    print("  numeric gates: concept numeric_gate (tolerances.py)")
     print("  GET /health  /api  /plates  /openapi.json  /skill.md")
     try:
         httpd.serve_forever()

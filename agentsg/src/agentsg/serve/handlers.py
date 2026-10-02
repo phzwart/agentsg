@@ -37,6 +37,10 @@ from ..cell.pdb_server import search_compatible
 from ..tolerances import (
     BOUNDARY_REL,
     COB_ANGLE_SIGMA_DEG,
+    COB_ANGLE_TOL_DEG,
+    COB_LENGTH_TOL_PCT,
+    COMPARE_ANGLE_TOL_DEG,
+    COMPARE_LENGTH_TOL_PCT,
     LE_PAGE_MAX_DELTA_DEG,
     METRIC_ANGLE_TOL_DEG,
     METRIC_LENGTH_TOL_PCT,
@@ -76,14 +80,20 @@ TOOL_CONCEPTS: dict[str, list[str]] = {
     "subgroups_info": ["subgroup", "t_subgroup", "k_subgroup"],
     "lattice_symmetry_info": [
         "lattice_symmetry_determination", "holohedry", "bravais_lattice", "metric_tensor",
+        "numeric_gate",
     ],
     "compare_info": [
         "kurlin_root_form", "selling_closure", "tolerance_gated_matching", "sublattice",
+        "numeric_gate",
     ],
     "reindex_info": [
         "reindexing", "indexing_ambiguity", "twinning_merohedry", "reference_orbit",
+        "numeric_gate",
     ],
-    "pdb_search": ["pdb_lattice_search", "kurlin_root_form", "kd_tree", "primitive_cell"],
+    "pdb_search": [
+        "pdb_lattice_search", "kurlin_root_form", "kd_tree", "primitive_cell",
+        "reference_orbit", "selling_closure", "tolerance_gated_matching", "numeric_gate",
+    ],
     "ita_plate_json": [
         "ita_diagrams", "ita_graphical_symbols", "projection_convention", "general_position",
     ],
@@ -529,6 +539,7 @@ def lattice_symmetry_info(data: dict[str, Any]) -> dict[str, Any]:
         "order": ls.order,
         "crystal_system": ls.crystal_system,
         "two_fold_scores": scores,
+        "max_delta_deg": max_delta,
         "units": {"le_page_delta": "degrees", "kurlin_distance": "angstrom"},
     }
     if _as_bool(data.get("include_g6", False)):
@@ -573,6 +584,8 @@ def compare_info(data: dict[str, Any]) -> dict[str, Any]:
     if _as_bool(data.get("include_sublattices", False)):
         res = compare_cells(a, b)
         out["sublattices"] = {
+            "length_tol_pct": COMPARE_LENGTH_TOL_PCT,
+            "angle_tol_deg": COMPARE_ANGLE_TOL_DEG,
             "volume_ratio": res.get("volume_ratio"),
             "solutions": [
                 {
@@ -599,6 +612,8 @@ def reindex_info(data: dict[str, Any]) -> dict[str, Any]:
         "sg_number": rec.number,
         "sg_hm": rec.hermann_mauguin,
         "cell": list(cell),
+        "length_tol_pct": length_tol,
+        "angle_tol_deg": angle_tol,
         "note": (
             "Geometry surfaces branches only. Residual 0 (is_metric_symmetry) "
             "is true merohedry — intensities are required to decide; v1 cannot."
@@ -683,6 +698,13 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             angle_sigma=_cob_angle_sigma(data),
             boundary_rel=_cob_boundary_rel(data),
         )
+    if return_cob:
+        result["gates"] = {
+            "length_tol_pct": COB_LENGTH_TOL_PCT,
+            "angle_tol_deg": COB_ANGLE_TOL_DEG,
+            "angle_sigma_deg": _cob_angle_sigma(data),
+            "boundary_rel": _cob_boundary_rel(data),
+        }
     if _as_bool(data.get("plot", False)):
         _attach_root_plot(state, result)
     return _with_concepts("pdb_search", result)
