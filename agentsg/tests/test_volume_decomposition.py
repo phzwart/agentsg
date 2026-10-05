@@ -11,6 +11,7 @@ import pytest
 from agentsg.cell.rootform import (
     root_invariant, root_distance, _cell_volume,
     similarity_invariant, similarity_distance, root_volume_decomposition,
+    sorted_linear_distance, sorted_linear_key,
 )
 from agentsg.cell.metric import UnitCell
 
@@ -66,7 +67,7 @@ def test_decomposition_total_equals_root_distance():
     a = (45.0, 55.0, 67.0, 82.0, 96.0, 103.0)
     b = (46.0, 56.0, 66.0, 83.0, 95.0, 102.0)
     dec = root_volume_decomposition(a, b)
-    assert dec["total"] == pytest.approx(root_distance(a, b), rel=1e-12)
+    assert dec["total"] == pytest.approx(sorted_linear_distance(a, b), rel=1e-12)
 
 
 def test_decomposition_triangle_inequality():
@@ -83,11 +84,13 @@ def test_cutoff_analytic_single_and_all_edges():
     assert cut(2.5) == pytest.approx(2.5)
 
 
-def test_cutoff_orthogonal_exact():
+def test_cutoff_orthogonal_covers_all_edges():
     from agentsg.cell.rootform import root_cutoff_for_edge_tolerance as cut
-    # orthogonal cell: worst case is all three edges -> sqrt(3)*delta, exactly
-    assert cut(10, cell=(60.0, 70.0, 80.0, 90, 90, 90)) == pytest.approx(
-        math.sqrt(3) * 10.0, rel=1e-9)
+    # The √ key moved an orthogonal edge by exactly Δ. The linear key does not.
+    # The calibrated cutoff must still cover moving every edge together.
+    cell = (60.0, 70.0, 80.0, 90, 90, 90)
+    moved = (70.0, 80.0, 90.0, 90, 90, 90)
+    assert cut(10, cell=cell) >= sorted_linear_distance(cell, moved) - 1e-9
 
 
 def test_cutoff_is_conservative_bound():
@@ -100,7 +103,7 @@ def test_cutoff_is_conservative_bound():
     for _ in range(300):
         p = tuple([tri[i] + random.uniform(-8.0, 8.0) for i in range(3)]
                   + list(tri[3:]))
-        assert root_distance(tri, p) <= c + 1e-9
+        assert sorted_linear_distance(tri, p) <= c + 1e-9
 
 
 def test_shape_residual_matches_scaled_similarity():
@@ -110,8 +113,8 @@ def test_shape_residual_matches_scaled_similarity():
     dec = root_volume_decomposition(a, b)
     s = dec["scale_factor"]
     scaled_a = (a[0] * s, a[1] * s, a[2] * s, a[3], a[4], a[5])
-    assert dec["shape_residual"] == pytest.approx(root_distance(scaled_a, b),
-                                                  rel=1e-9)
+    assert dec["shape_residual"] == pytest.approx(
+        sorted_linear_distance(scaled_a, b), rel=1e-9)
 
 
 def test_volume_ratio_distance_round_trip():
@@ -130,7 +133,7 @@ def test_volume_ratio_to_distance_matches_actual_scaling():
     s = vr ** (1.0 / 3.0)
     scaled = (cell[0] * s, cell[1] * s, cell[2] * s, 90, 90, 90)
     assert volume_ratio_to_root_distance(vr, cell) == pytest.approx(
-        root_distance(cell, scaled), rel=1e-9)
+        sorted_linear_distance(cell, scaled), rel=1e-9)
 
 
 def test_symmetry_cutoff_volume_mode():
@@ -141,9 +144,9 @@ def test_symmetry_cutoff_volume_mode():
 
 
 def test_symmetry_cutoff_noise_mode_scales_with_rho():
-    from agentsg.cell.rootform import symmetry_cutoff, root_invariant
+    from agentsg.cell.rootform import symmetry_cutoff
     cell = (78.0, 78.0, 37.0, 90, 90, 90)
-    nrho = math.sqrt(sum(x * x for x in root_invariant(cell)))
+    nrho = math.sqrt(sum(x * x for x in sorted_linear_key(cell)))
     assert symmetry_cutoff(cell, noise_frac=0.01) == pytest.approx(
         11.0 * 0.01 * nrho, rel=1e-9)
 

@@ -1,4 +1,4 @@
-"""Tests for optional slot-wise root stabilisation (default None = √p)."""
+"""Tests for optional slot-wise maps (search default is the linear key)."""
 from __future__ import annotations
 
 import math
@@ -23,10 +23,11 @@ def _key_shift(base_key, cell, **kw):
     return math.sqrt(sum((base_key[i] - k[i]) ** 2 for i in range(len(base_key))))
 
 
-def test_default_stabilize_matches_sqrt():
+def test_default_stabilize_matches_linear():
     cell = (50.0, 60.0, 70.0, 80.0, 85.0, 95.0)
     assert sorted_root_key(cell) == sorted_root_key(cell, stabilize=None)
-    assert sorted_root_key(cell) == sorted_root_key(cell, stabilize="sqrt")
+    assert sorted_root_key(cell) == sorted_root_key(cell, stabilize="linear")
+    assert sorted_root_key(cell) != sorted_root_key(cell, stabilize="sqrt")
     rp = root_products(cell)
     rp2 = root_products(cell, stabilize="sqrt")
     assert rp == rp2
@@ -79,7 +80,7 @@ def test_p63_angle_noise_stabilisation_reduces_shift():
     sigmas = (0.01, 0.05, 0.10)
     # Order-of-magnitude bands with invariant floor s = σ_θ · T.
     expected = {
-        None: {0.01: (0.8, 2.5), 0.05: (2.0, 5.0), 0.10: (3.0, 7.0)},
+        "sqrt": {0.01: (0.8, 2.5), 0.05: (2.0, 5.0), 0.10: (3.0, 7.0)},
         "floored": {0.01: (0.1, 0.6), 0.05: (0.3, 1.2), 0.10: (0.3, 1.4)},
         "soft_threshold": {0.01: (0.0, 0.15), 0.05: (0.0, 0.4), 0.10: (0.05, 0.7)},
         "linear": {0.01: (0.0, 0.08), 0.05: (0.0, 0.25), 0.10: (0.0, 0.4)},
@@ -89,8 +90,8 @@ def test_p63_angle_noise_stabilisation_reduces_shift():
         for sig in sigmas:
             lo, hi = bands[sig]
             floors = pair_noise_scales(base, sig)
-            if mode is None:
-                base_kw = {}
+            if mode == "sqrt":
+                base_kw = {"stabilize": "sqrt"}
             elif mode == "linear":
                 base_kw = {"stabilize": "linear"}
             else:
@@ -110,15 +111,15 @@ def test_p63_angle_noise_stabilisation_reduces_shift():
             assert lo <= med <= hi, (
                 f"mode={mode} σ={sig}: median shift {med:.3f} not in [{lo},{hi}]"
             )
-            if mode is not None:
+            if mode != "sqrt":
                 # Stabilised median should beat plain √ at the same σ.
                 sqrt_med = statistics.median([
-                    _key_shift(sorted_root_key(base), (
+                    _key_shift(sorted_root_key(base, stabilize="sqrt"), (
                         base[0], base[1], base[2],
                         base[3] + rng.gauss(0.0, sig),
                         base[4] + rng.gauss(0.0, sig),
                         base[5] + rng.gauss(0.0, sig),
-                    ))
+                    ), stabilize="sqrt")
                     for _ in range(n_rep)
                 ])
                 assert med < 0.75 * sqrt_med, (

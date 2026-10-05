@@ -53,12 +53,13 @@ def test_superbase_sums_to_zero():
 
 
 def test_sorted_root_key_length6_and_sorted():
-    """Search key is the ascending six-tuple of root products."""
+    """Search key is the ascending six-tuple; the default is the linear key."""
     c = (40, 50, 60, 88, 92, 103)
     ri = sorted_root_key(c)
     assert len(ri) == 6
     assert list(ri) == sorted(ri)
-    assert ri == root_invariant(c)                     # back-compat alias
+    assert ri == sorted_root_key(c, stabilize="linear")
+    assert root_invariant(c) == sorted_root_key(c, stabilize="sqrt")
     assert all(x >= -1e-12 for x in ri)
 
 
@@ -133,7 +134,7 @@ def test_rearrangement_lower_bound_on_root_products():
     assert abs(sd - s6) < 1e-12
     # The published key is rounded to 10 decimals, so it can differ from the
     # raw product tuple by about 1e-10. That is the noise floor, not a new gap.
-    assert abs(sd - sorted_root_distance(cA, cB)) < 1e-9
+    assert abs(sd - sorted_root_distance(cA, cB, stabilize="sqrt")) < 1e-9
 
 
 def test_v5_sorted_key_injective_on_distinct_edge_lengths():
@@ -166,8 +167,8 @@ def test_v4_pairing_collision_same_sorted_multiset():
 
 
 def test_cubic_signature():
-    """Cubic P: three equal root products = edge length, three zero."""
-    ri = sorted_root_key((50, 50, 50, 90, 90, 90))
+    """Cubic P, √ key: three equal root products = edge length, three zero."""
+    ri = sorted_root_key((50, 50, 50, 90, 90, 90), stabilize="sqrt")
     nz = sorted(x for x in ri if x > 1e-6)
     assert len(nz) == 3
     assert all(abs(x - 50.0) < 1e-6 for x in nz)

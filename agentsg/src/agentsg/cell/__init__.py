@@ -25,9 +25,10 @@ primitive reduction, PDB search). The *metric* bridge remains
                     manifold, distances robust to cell choice and the Niggli
                     reduction-flip, and symmetry as a continuous distance-to-
                     subspace rather than a binary test.
-  * rootform.py     Sorted six root products: continuous Euclidean search key
-                    (injective for V3/V5; many-to-one for V1/V2/V4). Preferred
-                    retrieval coordinate; g6.py is diagnostic/legacy.
+  * rootform.py     Sorted linear key sort(p/sqrt(T)): continuous Euclidean
+                    search key (injective for V3/V5; many-to-one for V1/V2/V4).
+                    Preferred retrieval coordinate; g6.py is diagnostic/legacy.
+                    Kurlin √ products remain available as stabilize='sqrt'.
   * selling_closure.py  Typed Selling-superbase closure (Kurlin 4.1--4.5) for
                     exact certification / reindexing (main_v5).
   * neartree.py     Exact metric nearest-neighbour index (Andrews 2001) for
@@ -60,6 +61,7 @@ from .g6 import (
 from .rootform import (
     delaunay_superbase, conorms, root_products, root_invariant, root_distance,
     sorted_root_key, sorted_root_distance,
+    sorted_linear_key, sorted_linear_distance, aligned_linear_distance,
     pair_noise_scales, noise_floor, conorm_sum,
     sorted_conorm_key, sorted_conorm_distance,
     vonorms, vonorms_from_conorms, sorted_vonorm_key, sorted_concat_key,
@@ -107,6 +109,7 @@ __all__ = [
     "symmetry_deficiency_spectrum", "kurlin_deficiency_spectrum",
     "delaunay_superbase", "conorms", "root_products", "root_invariant",
     "root_distance", "sorted_root_key", "sorted_root_distance",
+    "sorted_linear_key", "sorted_linear_distance", "aligned_linear_distance",
     "pair_noise_scales", "noise_floor", "conorm_sum",
     "sorted_conorm_key", "sorted_conorm_distance",
     "vonorms", "vonorms_from_conorms", "sorted_vonorm_key", "sorted_concat_key",

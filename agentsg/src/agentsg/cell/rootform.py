@@ -1,55 +1,70 @@
 """
-Sorted root-product search key from Kurlin's root products.
+Sorted linear search key from the Selling conorms.
 
-Kurlin (2022 / April 2026) builds six root products ``r_ij = sqrt(p_ij)`` from
-the obtuse (Selling / Delaunay) superbase and arranges them in a type-dependent
-``2x3`` root form that retains opposite-edge pairing. That structured form is
-the complete isometry classification. This module deliberately uses a coarser
-object for Euclidean retrieval:
+The archive search key is the six Selling conorms of an obtuse superbase,
+scaled by the closure-invariant length ``sqrt(T)`` with ``T = Σ p_ij`` and
+sorted into a nondecreasing 6-tuple:
 
-  * the six root products, globally sorted into a nondecreasing 6-tuple
-    (``sorted_root_key`` / ``root_invariant``);
+    sorted_linear_key = sort(p_ij / sqrt(T))
 
-Properties of the sorted key:
+``sorted_root_key`` is that key. Pass ``stabilize='sqrt'`` for Kurlin's root
+products ``r_ij = sqrt(p_ij)``, which remain the complete-classification
+quantity (the type-dependent 2×3 root form keeps opposite-edge pairing; this
+module does not). ``root_invariant`` / ``root_distance`` still return the √
+key so stored √ columns and old callers do not change meaning. They are
+deprecated as the search key.
 
-  * invariant   : independent of the chosen basis (same multiset of root
-                  products on every obtuse-superbase branch of one lattice);
-  * continuous  : sorting is continuous through product ties; the key also
-                  stays continuous across Voronoi-type boundaries because all
-                  members of a lattice's Selling-superbase closure share the
-                  same sorted multiset;
-  * Euclidean   : plain L2 distance on the 6-tuple; by the rearrangement
-                  inequality this distance lower-bounds any physically allowed
-                  relabelling-orbit distance (conservative radius filter);
-  * many-to-one : not injective for Voronoi types V1, V2, V4 (forgotten pairing);
-                  injective for V3 and V5. Equality of sorted keys is never a
-                  proof of lattice identity — certify with the exact operator
-                  test over the Selling-superbase closure.
+Why the linear map is the search key
+-------------------------------------
+√ has a Hölder-½ cusp at a vanishing conorm. A lattice on a Selling boundary
+(one conorm exactly 0: a C-centred monoclinic cell with a = b, or any cell
+with a right angle) compared with the same lattice pushed just across that
+boundary gets a key distance that is almost entirely cusp. On the Scotty set
+(McCoy, Andrews, Bernstein & Read, Acta Cryst. D82, 813, 2026) two of five
+cases then fail retrieval: 1fe5 → 1u4j / 1g2x at 16.7 / 16.4 Å (rank about
+170) and 4nl7 → 2yht at 13.8 Å, while NCDist reports 2.1, 2.1 and 2.3. The
+linear key gives 2.7 / 2.9 and 5.4 Å on those pairs and stays within a factor
+of about 2 of NCDist on all eleven pairs.
 
-``root_invariant`` / ``root_distance`` remain as back-compat aliases for
-``sorted_root_key`` / ``sorted_root_distance``. They are *not* Kurlin Def. 5.1.
+Properties of the sorted linear key:
+
+  * one key per lattice : ``T`` is closure-invariant, and every member of the
+    Selling closure carries the same sorted multiset;
+  * rearrangement lower bound : the sorted-key distance is at most the aligned
+    distance over any superbase pairing (and equals the minimum over all of
+    S6);
+  * Lipschitz : continuous in the metric tensor, including at a vanishing
+    conorm, where √ is only Hölder-½;
+  * ångström units and length scaling : ``key(λΛ) = λ · key(Λ)``.
+
+Cube identity: for a cube of edge ``a`` the key is
+``(0, 0, 0, a/√3, a/√3, a/√3)``, and an isotropic change ``Δa`` moves the key
+by exactly ``Δa``.
+
+The key is many-to-one for Voronoi types V1, V2 and V4 (forgotten pairing) and
+injective for V3 and V5. Equality is never a proof of lattice identity.
+Certify with the exact operator test over the Selling-superbase closure.
+
+``floored`` and ``soft_threshold`` are noise models for frame-level serial
+data. They are not the archive search key.
 
 Pipeline
 --------
-1. Cartesian basis (v1,v2,v3) of the lattice from the unit cell.
-2. Delaunay/Selling reduction to an OBTUSE superbase {v0,v1,v2,v3},
-   v0 = -(v1+v2+v3), all conorms p_ij = -v_i.v_j >= 0.
-3. Six conorms -> six slot values via a monotone map f (default f=sqrt;
-   optional floored / soft-threshold / linear stabilisations for noisy data).
-4. Sort the six values into a nondecreasing 6-tuple (the search key).
-
-Optional stabilisations (``stabilize=``, default ``None`` = plain √) tame the
-Hölder-½ cusp of √ at vanishing conorms; see ``pair_noise_scales`` and
-``sorted_conorm_key``. A stabilised key is a different metric from Kurlin's.
+1. Cartesian basis (v1, v2, v3) of the lattice from the unit cell.
+2. Delaunay/Selling reduction to an obtuse superbase {v0, v1, v2, v3},
+   v0 = -(v1+v2+v3), all conorms p_ij = -v_i·v_j >= 0.
+3. Six conorms -> six slot values via ``p / sqrt(T)`` (or an explicit
+   ``stabilize`` map).
+4. Sort the six values into a nondecreasing 6-tuple.
 
 Reference: V. Kurlin, "A complete isometry classification of 3-dimensional
 lattices" (April 2026 revision); building on B. Delone (1932), E. Selling
 (1874), J. H. Conway & N. J. A. Sloane, "Low-dimensional lattices VI" (1992).
-See manuscript/main_v5.tex for the search/certify architecture.
 
-Dependency-free; float arithmetic (distances/roots are inherently numeric).
+Dependency-free; float arithmetic (distances are inherently numeric).
 """
 from __future__ import annotations
+import warnings
 from math import sqrt
 
 from .metric import UnitCell
@@ -250,11 +265,11 @@ def root_products(cell, stabilize=None, angle_sigma=None, kappa=ROOT_STABILIZE_K
 
     Notes
     -----
-    A stabilised key is a different metric from Kurlin's root products.
-    The floor chooses the resolution at which near-zero conorms are
-    treated as symmetric. Archive search should keep the default.
-    Serial or noisy frames may prefer ``floored``, ``soft_threshold``,
-    or :func:`sorted_conorm_key`.
+    ``None`` and ``'sqrt'`` are Kurlin's root products. The archive search
+    key is :func:`sorted_linear_key`, not this default. ``floored`` and
+    ``soft_threshold`` are noise models for frame-level serial data: the
+    floor chooses the resolution at which near-zero conorms are treated as
+    symmetric. They are not used for archive search.
     """
     p = conorms(cell)
     if stabilize is None or stabilize == "sqrt":
@@ -369,39 +384,96 @@ def _canonical_tuple(rp):
 
 
 def sorted_root_key(cell, stabilize=None, angle_sigma=None, kappa=ROOT_STABILIZE_KAPPA, floors=None):
-    """Return the sorted six-slot search key (default: √ conorms, Angstrom).
+    """Return the sorted six-slot search key (default: linear, ångström).
 
-    Continuous and basis-invariant, but deliberately many-to-one except on
-    Voronoi types V3 and V5. Optional ``stabilize`` selects a monotone slot map
-    (see :func:`root_products`); default ``None`` preserves archive √ behaviour.
-    Do not treat equality as a lattice-identity proof.
+    ``stabilize=None`` means ``'linear'``: ``sort(p_ij / sqrt(T))`` with
+    ``T = Σ p_ij``. Pass ``stabilize='sqrt'`` for Kurlin's root products.
+    ``'floored'`` and ``'soft_threshold'`` are noise models for frame-level
+    data, not for archive search. Continuous and basis-invariant, but
+    deliberately many-to-one except on Voronoi types V3 and V5. Do not treat
+    equality as a lattice-identity proof.
     """
+    if stabilize is None:
+        stabilize = "linear"
     return _canonical_tuple(root_products(
         cell, stabilize=stabilize, angle_sigma=angle_sigma,
         kappa=kappa, floors=floors,
     ))
 
 
-def root_invariant(cell, **kw):
-    """Back-compat alias for :func:`sorted_root_key`.
+def sorted_linear_key(cell):
+    """Sorted linear search key ``sort(p_ij / sqrt(Σ p))``, in ångström."""
+    return sorted_root_key(cell, stabilize="linear")
 
-    Historical name retained; this is the sorted search key, not Kurlin's
-    complete ordered root invariant. Keyword args forwarded to
-    :func:`sorted_root_key` (e.g. ``stabilize=``).
+
+def sorted_linear_distance(cell_A, cell_B):
+    """Euclidean distance between sorted linear keys, in ångström."""
+    return sorted_root_distance(cell_A, cell_B, stabilize="linear")
+
+
+def root_invariant(cell, **kw):
+    """Kurlin √ key. Deprecated as the archive search key.
+
+    Always requests ``stabilize='sqrt'`` unless the caller passes
+    ``stabilize`` explicitly, so stored √ keys and old callers keep their
+    meaning. The search key is :func:`sorted_linear_key`.
     """
+    warnings.warn(
+        "root_invariant returns Kurlin's square-root key; the archive search "
+        "key is sorted_linear_key",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    kw.setdefault("stabilize", "sqrt")
     return sorted_root_key(cell, **kw)
 
 
 def sorted_root_distance(cell_A, cell_B, **kw):
-    """Euclidean distance between sorted root keys (conservative search metric)."""
+    """Euclidean distance between sorted keys (default: the linear key)."""
     a = sorted_root_key(cell_A, **kw)
     b = sorted_root_key(cell_B, **kw)
     return sqrt(sum((a[i] - b[i]) ** 2 for i in range(len(a))))
 
 
 def root_distance(cell_A, cell_B, **kw):
-    """Back-compat alias for :func:`sorted_root_distance`."""
+    """Kurlin √ distance. Deprecated as the archive search distance.
+
+    Always requests ``stabilize='sqrt'`` unless the caller passes
+    ``stabilize`` explicitly. The search distance is
+    :func:`sorted_linear_distance`.
+    """
+    warnings.warn(
+        "root_distance returns Kurlin's square-root distance; the archive "
+        "search distance is sorted_linear_distance",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    kw.setdefault("stabilize", "sqrt")
     return sorted_root_distance(cell_A, cell_B, **kw)
+
+
+def aligned_linear_distance(pA, pB):
+    """Aligned linear distance of two conorm dicts on one labelling.
+
+    ``sqrt(Σ (pA_ij − pB_ij)²) / (T_A · T_B)^(1/4)``, with ``T = Σ p``.
+    When ``T_A = T_B = T`` the normaliser is ``1/sqrt(T)``, which is the
+    linear slot map. This is the exact-stage counterpart of the sorted-key
+    distance: the sorted distance lower-bounds it when both superbases are
+    obtuse.
+    """
+    diff2 = 0.0
+    tA = 0.0
+    tB = 0.0
+    for ij in _PAIRS:
+        a = float(pA[ij])
+        b = float(pB[ij])
+        diff2 += (a - b) * (a - b)
+        tA += a
+        tB += b
+    denom = (max(tA, 0.0) * max(tB, 0.0)) ** 0.25
+    if denom <= 0.0:
+        return 0.0
+    return sqrt(diff2) / denom
 
 
 def sorted_key_lower_bound(x, y, G=None):
@@ -532,19 +604,13 @@ def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
     differ by at most ``max_edge_change`` Angstrom -- what key-space radius is
     that?"
 
-    The sorted key carries units of length and, for an orthogonal cell, is
-    exactly ``sorted(0, 0, 0, a, b, c)``: changing one edge by delta moves one
-    component by exactly delta, so ``sorted_root_distance == delta`` (slope k = 1),
-    and changing all three edges by delta gives exactly ``sqrt(3) * delta``.
-    Empirically the single-edge slope has median k = 1.00 for near-orthogonal
-    lattices (tetragonal, orthorhombic, hexagonal, monoclinic, triclinic in the
-    PDB), but it is LARGER for cells whose primitive basis is strongly
-    non-orthogonal -- notably cubic groups, whose primitive cells are rhombohedra
-    (F -> 60 deg, I -> 109.47 deg): there a single conventional-edge change couples
-    into several root components (median k ~ 1.3, tail up to ~4.5). The analytic
-    ``n_edges`` bound is therefore a guide, not a guarantee; pass ``cell`` for an
-    exact, conservative per-cell cutoff whenever the lattice may be
-    non-orthogonal.
+    The sorted linear key carries units of length. For a cube of edge ``a`` it
+    is ``(0, 0, 0, a/√3, a/√3, a/√3)``, and an isotropic edge change ``Δa``
+    moves the key by exactly ``Δa``. A single conventional-edge change does not
+    move one slot by ``Δa``: the slots are ``p_ij/√T``, so length and ``T``
+    both change. The analytic ``n_edges`` bound (``sqrt(n) * delta``, which is
+    exact for the √ key on an orthogonal cell) is therefore only a guide for
+    the linear key. Pass ``cell`` for an exact, conservative per-cell cutoff.
 
     Parameters
     ----------
@@ -579,11 +645,19 @@ def root_cutoff_for_edge_tolerance(max_edge_change, cell=None, n_edges=1):
                              for j in range(6)))
                 if d > worst:
                     worst = d
-        # all edges together (upper envelope for this cell)
-        e = (max(a + max_edge_change, 1e-3), max(b + max_edge_change, 1e-3),
-             max(c + max_edge_change, 1e-3), al, be, ga)
-        d = sqrt(sum((base[j] - sorted_root_key(e)[j]) ** 2 for j in range(6)))
-        return max(worst, d)
+        # Every sign pattern of moving all three edges. For the linear key the
+        # worst box corner is not always the all-positive one.
+        for sa in (+1.0, -1.0):
+            for sb in (+1.0, -1.0):
+                for sc in (+1.0, -1.0):
+                    e = (max(a + sa * max_edge_change, 1e-3),
+                         max(b + sb * max_edge_change, 1e-3),
+                         max(c + sc * max_edge_change, 1e-3), al, be, ga)
+                    d = sqrt(sum((base[j] - sorted_root_key(e)[j]) ** 2
+                                 for j in range(6)))
+                    if d > worst:
+                        worst = d
+        return worst
     return float(n_edges) ** 0.5 * float(max_edge_change)
 
 
