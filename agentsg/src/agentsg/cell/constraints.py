@@ -56,7 +56,7 @@ def metric_is_invariant(G, point_group_ops, tol: float = METRIC_INVARIANT_TOL) -
 
 def symmetrize_metric(G, point_group_ops):
     """Project a numeric metric tensor onto the point-group-invariant subspace by
-    Reynolds averaging:  G_sym = (1/|PG|) sum_W W^T G W.
+    Reynolds averaging: G_sym is the mean of W^T G W over the point group.
 
     The result exactly satisfies W^T G_sym W = G_sym for all W in the group, and
     is the closest invariant metric to G in the Frobenius sense. This is how a

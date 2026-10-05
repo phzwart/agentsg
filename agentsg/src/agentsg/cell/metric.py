@@ -167,7 +167,7 @@ class UnitCell:
 
     # --- d-spacings and reflection geometry ---
     def d_spacing(self, hkl: Sequence[int]) -> float:
-        """Interplanar spacing d(hkl) = 1 / |h·a* + k·b* + l·c*|."""
+        """Interplanar spacing d(hkl), the reciprocal of the length of h a* + k b* + l c*."""
         h, k, l = hkl
         Gs = self.reciprocal_metric_tensor()
         hv = [h, k, l]

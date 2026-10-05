@@ -28,13 +28,16 @@ class NearTree:
 
     Parameters
     ----------
-    distance : callable(a, b) -> float
-        A metric on the payload objects. Must satisfy the triangle inequality
-        for correctness (the boundary-aware G6/S6 distances do).
+    distance : callable
+        ``distance(a, b) -> float``. A metric on the payload objects.
+        It must satisfy the triangle inequality (the boundary-aware G6/S6
+        distances do).
 
-    Insert points with :meth:`insert`, query with :meth:`nearest` (single) or
-    :meth:`k_nearest` / :meth:`within` (batch). Each point carries an arbitrary
-    ``payload`` returned with the result.
+    Notes
+    -----
+    Insert points with :meth:`insert`. Query with :meth:`nearest`,
+    :meth:`k_nearest`, or :meth:`within`. Each point carries an arbitrary
+    payload returned with the result.
     """
 
     __slots__ = ("_distance", "_left", "_right", "_left_max", "_right_max",
@@ -191,17 +194,19 @@ def lattice_index(cells_with_ids):
 
     Parameters
     ----------
-    cells_with_ids : iterable of (cell, payload)
-        ``cell`` is a (a,b,c,alpha,beta,gamma) tuple; ``payload`` is anything
-        you want back (e.g. a PDB id).
+    cells_with_ids : iterable of tuple
+        Each item is ``(parameters, payload)``. ``parameters`` is
+        ``(a, b, c, alpha, beta, gamma)``. ``payload`` is returned with
+        the hit, for example a PDB id.
 
+    Notes
+    -----
     The index uses the root invariant (Kurlin 2022) as the point and plain
-    Euclidean distance on it as the metric -- a single vector per lattice, no
-    orbit minimisation, continuous across the reduction-flip boundary. Queries
-    (``nearest_cell``/``k_nearest_cells``/``within_cells``) take a query *cell*;
-    distances are in Angstrom (root-product units).
-
-    Requires scipy (``pip install agentsg[db]``).
+    Euclidean distance on it as the metric. That is one vector per lattice,
+    with no orbit minimisation, and it is continuous across the
+    reduction-flip boundary. Queries (``nearest_cell``, ``k_nearest_cells``,
+    ``within_cells``) take a query cell. Distances are in Ångström
+    (root-product units). Requires SciPy (``pip install agentsg[db]``).
     """
     from .rootindex import build_root_index
     from .rootform import root_invariant

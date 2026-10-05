@@ -379,13 +379,13 @@ def calibrate_verify_tol(same_pairs, different_pairs=None):
 
     Returns
     -------
-    dict with keys:
-        ``verify_abs``   -- recommended absolute residual threshold,
-        ``same_max``     -- largest residual among same-lattice pairs,
-        ``diff_min``     -- smallest residual among different-lattice pairs
-                            (``inf`` if none supplied),
-        ``separated``    -- bool: do the two populations separate cleanly?
-        ``same_residuals``, ``diff_residuals`` -- the raw residual lists.
+    dict
+        ``verify_abs`` is the recommended absolute residual threshold.
+        ``same_max`` is the largest residual among same-lattice pairs.
+        ``diff_min`` is the smallest residual among different-lattice
+        pairs, or infinity if none were supplied. ``separated`` is true
+        when the two populations separate cleanly. ``same_residuals``
+        and ``diff_residuals`` are the raw residual lists.
 
     Notes
     -----

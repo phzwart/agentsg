@@ -287,23 +287,29 @@ def lattice_symmetry(cell, max_delta: float = LE_PAGE_MAX_DELTA_DEG,
 
     Parameters
     ----------
-    cell : (a, b, c, alpha, beta, gamma), angles in degrees. Best supplied as a
-        reduced (Niggli) cell -- the 480-matrix argument is proven for reduced
-        cells -- but any cell works.
-    max_delta : angular tolerance in degrees on the Le Page delta; two-folds
-        with delta <= max_delta are accepted. Acceptance remains Le-Page-gated;
-        each accepted two-fold also carries its Kurlin root-invariant distance
-        to the {I, M}-symmetrised metric (see :class:`TwoFoldScore`).
-    length_tol_pct : maximum percent length change allowed under MᵀGM vs G.
-        Le Page is purely angular; without this gate a few-percent edge mismatch
-        can still look "tetragonal". Default 2% (same scale as
-        :func:`tolerance_metric_symmetry`).
+    cell : tuple
+        ``(a, b, c, alpha, beta, gamma)``, angles in degrees. Best supplied
+        as a reduced (Niggli) cell. The 480-matrix argument is proven for
+        reduced cells, but any cell works.
+    max_delta : float
+        Angular tolerance in degrees on the Le Page delta. Two-folds with
+        delta at most ``max_delta`` are accepted. Acceptance remains
+        Le-Page-gated. Each accepted two-fold also carries its Kurlin
+        root-invariant distance to the ``{I, M}``-symmetrised metric
+        (see :class:`TwoFoldScore`).
+    length_tol_pct : float
+        Maximum percent length change allowed under ``Mᵀ G M`` versus ``G``.
+        Le Page is purely angular. Without this gate a few-percent edge
+        mismatch can still look tetragonal. Default 2%, the same scale as
+        :func:`tolerance_metric_symmetry`.
 
-    Returns a :class:`LatticeSymmetry` with the closed operation set (exact
-    integer rotations as SymmetryOp with zero translation), the holohedry order,
-    the crystal system (or ``"order-N"`` sentinel when the closed order is not
-    a known holohedry — see :data:`_ORDER_TO_SYSTEM`), and the accepted
-    two-folds with Le Page / Kurlin scores.
+    Returns
+    -------
+    LatticeSymmetry
+        The closed operation set (exact integer rotations as SymmetryOp
+        with zero translation), the holohedry order, the crystal system
+        (or the ``order-N`` sentinel when the closed order is not a known
+        holohedry), and the accepted two-folds with Le Page and Kurlin scores.
     """
     G = _metric_tensor(cell)
     ref = _cell_params(G)

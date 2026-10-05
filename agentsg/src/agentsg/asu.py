@@ -6,7 +6,8 @@ Asymmetric units in real and reciprocal space.
 * ``DirichletAsu`` — metric Voronoi / Dirichlet fundamental domain, with a
   sphericity / inertia-ellipsoid optimiser over allowed origin gauges.
 
-Brick and reciprocal tables live in ``asu_data`` (gemmi-verified literals).
+Brick and reciprocal tables live in ``asu_data``. They are generated from
+the operators by ``python -m agentsg.generate_asu_data`` (the CCP4 choice).
 """
 from __future__ import annotations
 from dataclasses import dataclass

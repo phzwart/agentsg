@@ -229,26 +229,32 @@ def root_products(cell, stabilize=None, angle_sigma=None, kappa=ROOT_STABILIZE_K
 
     Parameters
     ----------
-    stabilize : None | 'sqrt' | 'floored' | 'soft_threshold' | 'linear'
-        Default ``None`` (same as ``'sqrt'``) is Kurlin ``r_ij = sqrt(p_ij)``.
-        ``floored`` uses ``sqrt(p+s)-sqrt(s)``; ``soft_threshold`` uses
-        ``sqrt(max(p-κs, 0))``; ``linear`` uses ``p/√T`` with invariant
-        ``T = Σ p_ij``. A monotone per-slot map ``f(p)`` preserves one key
-        per lattice and the rearrangement lower bound only when ``f`` depends
-        on ``p`` and *lattice invariants* (not basis-dependent lengths).
+    cell : tuple
+        ``(a, b, c, alpha, beta, gamma)``, angles in degrees.
+    stabilize : str, optional
+        ``None`` (the default, same as ``'sqrt'``) is Kurlin
+        ``r_ij = sqrt(p_ij)``. Also ``'floored'``, ``'soft_threshold'``, or
+        ``'linear'``. ``floored`` uses ``sqrt(p+s)-sqrt(s)``.
+        ``soft_threshold`` uses ``sqrt(max(p-κs, 0))``. ``linear`` uses
+        ``p/√T`` with invariant ``T = Σ p_ij``. A monotone per-slot map
+        preserves one key per lattice, and the rearrangement lower bound,
+        only when it depends on ``p`` and lattice invariants.
     angle_sigma : float, optional
-        Angular noise σ in degrees; builds the invariant floor
+        Angular noise in degrees. Builds the invariant floor
         ``s = σ_θ · T`` when ``floors`` is omitted.
     kappa : float
-        Soft-threshold multiple of ``s`` (table default 2).
+        Soft-threshold multiple of ``s``. Table default 2.
     floors : float or dict, optional
-        Explicit global floor (Angstrom²) or per-pair dict; overrides
-        ``angle_sigma``. Prefer a scalar / invariant floor.
+        Explicit global floor (Å²) or a per-pair dict. Overrides
+        ``angle_sigma``. Prefer a scalar or other invariant floor.
 
-    A stabilised key is a *different* metric from Kurlin's √ root products: the
-    floor chooses the resolution at which near-zero conorms are treated as
-    symmetric. Archive search should keep the default; serial/noisy frames may
-    prefer ``floored``, ``soft_threshold``, or :func:`sorted_conorm_key`.
+    Notes
+    -----
+    A stabilised key is a different metric from Kurlin's root products.
+    The floor chooses the resolution at which near-zero conorms are
+    treated as symmetric. Archive search should keep the default.
+    Serial or noisy frames may prefer ``floored``, ``soft_threshold``,
+    or :func:`sorted_conorm_key`.
     """
     p = conorms(cell)
     if stabilize is None or stabilize == "sqrt":

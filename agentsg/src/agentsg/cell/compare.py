@@ -82,14 +82,21 @@ def compare_cells(cell_A, cell_B, length_tol_pct: float = COMPARE_LENGTH_TOL_PCT
 
     Parameters
     ----------
-    cell_A, cell_B : (a, b, c, alpha, beta, gamma), angles in degrees.
-    length_tol_pct : tolerance on edge-length deviation, in percent.
-    angle_tol_deg  : tolerance on angle deviation, in degrees.
-    max_index      : optional cap on the sublattice index searched; defaults to
-        the rounded volume ratio.
+    cell_A, cell_B : tuple
+        ``(a, b, c, alpha, beta, gamma)``, angles in degrees.
+    length_tol_pct : float
+        Tolerance on edge-length deviation, in percent.
+    angle_tol_deg : float
+        Tolerance on angle deviation, in degrees.
+    max_index : int, optional
+        Cap on the sublattice index searched. Defaults to the rounded
+        volume ratio.
 
-    Returns a dict with the reduced lego and target cells, the volume ratio, and
-    a list of :class:`CellMatch` solutions (sorted by combined deviation).
+    Returns
+    -------
+    dict
+        Reduced lego and target cells, the volume ratio, and a list of
+        :class:`CellMatch` solutions sorted by combined deviation.
     """
     rA, _ = niggli_reduce(*cell_A)
     rB, _ = niggli_reduce(*cell_B)

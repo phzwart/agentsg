@@ -63,7 +63,7 @@ def orbit(x: Vector3, operations: Iterable[SymmetryOp]) -> frozenset[Vector3]:
 
 
 def multiplicity(x: Vector3, operations: Sequence[SymmetryOp]) -> int:
-    """Orbit multiplicity of x = |G| / |site-symmetry(x)|."""
+    """Orbit multiplicity of x, the group order divided by the site-symmetry order."""
     return len(orbit(x, operations))
 
 

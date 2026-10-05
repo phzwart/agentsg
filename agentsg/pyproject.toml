@@ -17,6 +17,7 @@ test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy", "duckdb", "scipy"]
 db = ["duckdb", "numpy", "scipy"]
 plot = ["matplotlib", "numpy"]
 mcp = ["fastmcp>=4"]
+full = ["duckdb", "numpy", "scipy", "matplotlib", "fastmcp>=4"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

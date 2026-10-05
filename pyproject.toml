@@ -21,6 +21,8 @@ test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy", "duckdb", "scipy"]
 db = ["duckdb", "numpy", "scipy"]
 plot = ["matplotlib", "numpy"]
 mcp = ["fastmcp>=4"]
+docs = ["sphinx>=7", "myst-parser>=3", "furo", "sphinx-copybutton"]
+full = ["duckdb", "numpy", "scipy", "matplotlib", "fastmcp>=4"]
 
 [project.urls]
 Repository = "https://github.com/phzwart/agentsg"

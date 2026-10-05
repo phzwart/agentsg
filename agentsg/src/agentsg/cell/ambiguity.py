@@ -124,32 +124,42 @@ def _cached_ambiguity(sg_key, cell_sig, M_sig, len_tol, ang_tol):
 def reindexing_ambiguity_operators(space_group_key, cell,
                                    length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
                                    angle_tol_deg: float = METRIC_ANGLE_TOL_DEG):
-    """Return the reindexing-ambiguity operators for a (space group, cell).
+    """Return the reindexing-ambiguity operators for a space group and cell.
 
     Parameters
     ----------
-    space_group_key : space-group number, Hermann-Mauguin or Hall symbol, or a
+    space_group_key : int or str or SpaceGroup
+        Space-group number, Hermann-Mauguin or Hall symbol, or a
         SpaceGroup instance.
-    cell : (a, b, c, alpha, beta, gamma), angles in degrees. It is Niggli-reduced
-        internally so equivalent cells hit the same cache entry; operators are
-        always returned in the *input* basis (Laue and metric symmetry are
-        aligned through the Niggli change of basis).
-    length_tol_pct : tolerance (percent) on edge lengths for the metric-symmetry
+    cell : tuple
+        ``(a, b, c, alpha, beta, gamma)``, angles in degrees. It is
+        Niggli-reduced internally so equivalent cells hit the same cache
+        entry. Operators are always returned in the input basis. Laue and
+        metric symmetry are aligned through the Niggli change of basis.
+    length_tol_pct : float
+        Tolerance, in percent, on edge lengths for the metric-symmetry
         determination.
-    angle_tol_deg : tolerance (degrees) on angles.
+    angle_tol_deg : float
+        Tolerance, in degrees, on angles.
 
-    Returns a tuple of :class:`SymmetryOp` (exact integer rotations, zero
-    translation) -- coset representatives of the crystal Laue group in the
-    *tolerance* metric-automorphism group, identity first. Because the quotient
-    is taken within the tolerance group, the result includes not only the exact
-    reindexings but also the pseudo-symmetry branches (e.g. a monoclinic cell
-    with beta near 90 gets its pseudo-orthorhombic partner) and the cell-choice
-    transforms across Niggli reduction boundaries. The result is memoised; the
-    same (space group, reduced cell, Niggli CoB, tolerances) never recomputes.
+    Returns
+    -------
+    tuple of SymmetryOp
+        Exact integer rotations with zero translation. They are coset
+        representatives of the crystal Laue group in the tolerance
+        metric-automorphism group, identity first. Because the quotient is
+        taken within the tolerance group, the result includes the exact
+        reindexings, the pseudo-symmetry branches (a monoclinic cell with
+        beta near 90 gets its pseudo-orthorhombic partner), and the
+        cell-choice transforms across Niggli reduction boundaries. The
+        result is memoised. The same space group, reduced cell, Niggli
+        change of basis, and tolerances never recompute.
 
-    Apply an operator to Miller indices with :func:`apply_to_hkl_batch` (or
-    ``op.W`` directly). Picking the correct branch per frame (correlation to a
-    reference) is left to the caller; this function supplies the *candidates*.
+    Notes
+    -----
+    Apply an operator to Miller indices with :func:`apply_to_hkl_batch`,
+    or with ``op.W`` directly. Picking the correct branch per frame is
+    left to the caller. This function supplies the candidates.
     """
     if isinstance(space_group_key, SpaceGroup):
         sg_key = space_group_key.number
@@ -191,7 +201,11 @@ def apply_to_hkl_batch(op, hkl):
 def ambiguity_index(space_group_key, cell,
                     length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
                     angle_tol_deg: float = METRIC_ANGLE_TOL_DEG) -> int:
-    """Number of indexing ambiguities = |tolerance metric symmetry| / |Laue group|."""
+    """Number of indexing ambiguities.
+
+    The order of the tolerance metric symmetry divided by the order of the
+    Laue group.
+    """
     return len(reindexing_ambiguity_operators(
         space_group_key, cell, length_tol_pct, angle_tol_deg))
 
