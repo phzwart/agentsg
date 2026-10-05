@@ -114,6 +114,10 @@ def _mcp_playbook(base: str) -> str:
         "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis and the `gates` that produced it. |",
     )
     body = body.replace(
+        "| Neighbours along one relation | `GET /v1/concept/neighbors?id=glide_a&relation=SPECIALIZES` |",
+        "| Neighbours along one relation | `concept_neighbors` with `id` and an optional `relation` |",
+    )
+    body = body.replace(
         "| Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |",
         "| Remind yourself of this playbook | call the `playbook` tool |",
     )

@@ -82,6 +82,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | A result lists `concepts` | Call `GET /v1/concept?id=` on each id, then explain the term in ordinary sentences: name the file and the function in the sentence, and put links at the end |
 | What does a concept rest on? | `GET /v1/concept/uses?id=reflection_conditions&depth=3` |
 | What uses this concept? | `GET /v1/concept/used-by?id=smith_normal_form&depth=2` |
+| Neighbours along one relation | `GET /v1/concept/neighbors?id=glide_a&relation=SPECIALIZES` |
 | Which concepts does this file implement? | `GET /v1/concept/module?module=agentsg/semi_invariants.py` |
 | Show the receipt for a claim | `GET /v1/concept/receipt?id=` the `receipt` field from the card |
 | Remind yourself of this playbook | `GET /api` (full catalog) or `GET /skill.md` |
@@ -120,7 +121,7 @@ When someone asks what a word means or where it lives in the code, look it up fi
 
 Decide that privately from the returned `status`, and do not name the status. A Wikipedia sentence is about the term when the status is `quoted` or `quoted-unverified-markup` (in the second case, mention that the subscripts may have been lost). Use an IUCr sentence when Wikipedia is `unreachable`, `off-topic`, or `unreadable-markup`. A `related` page is a neighbour. An empty `quote` is not a definition. A contrast or a dual that was not returned is not there; do not add one.
 
-`/v1/concept/uses` is what the idea rests on, nearest first. `/v1/concept/used-by` is what rests on it. Say both in sentences, not as a list grouped by depth. `/v1/concept/module` is what one file implements; a bare filename such as `semi_invariants.py` matches. Name each function in a sentence.
+`/v1/concept/uses` is what the idea rests on, nearest first. `/v1/concept/used-by` is what rests on it. Say both in sentences, not as a list grouped by depth. `/v1/concept/neighbors` walks one relation type (`USES`, `SPECIALIZES`, `IS_A`, `PART_OF`, `RELATED_TO`, and the rest of the types on the card). `/v1/concept/search` is the same word search as `/v1/concept?q=`. `/v1/concept/module` is what one file implements; a bare filename such as `semi_invariants.py` matches. Name each function in a sentence.
 
 Fetch `/v1/concept/receipt` only when they ask where a sentence came from. Only then may you mention the receipt id. Pass the id already on the result (`definition_receipt`, `code_evidence[].receipt`, `references[].receipt`, `relations[].receipt`). `how=quote` is a sentence taken from a docstring or a page. `how=derived` is a paraphrase. `how=inferred` is a relation. If they did not ask, skip all of that.
 
@@ -361,7 +362,7 @@ Only this question asks where a sentence came from, so you may name the receipt.
 5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem. The operator is `cob` from a `return_cob` search, or nothing.
 6. **Monoclinic ITA plates use `projection: "b"`.** The server already defaults monoclinic to `b`; other systems default to `c`.
 7. **Explain, do not dump.** Translate JSON into ITA language. Quote numbers from the response.
-8. **Concept answers come from `/v1/concept`.** Answer in ordinary sentences, as at a blackboard: no heading, no list. Name the file and the function in the sentence. Quote one dictionary or Wikipedia sentence only when that page is about the term, and say so if it is only a neighbour or the subscripts were lost. Put links at the end. Skip hashes and receipt ids unless they ask where a sentence came from. Offer the Concept questions when they ask what you can explain about the code. What an idea rests on is `/v1/concept/uses`; what rests on it is `/v1/concept/used-by`.
+8. **Concept answers come from `/v1/concept`.** Answer in ordinary sentences, as at a blackboard: no heading, no list. Name the file and the function in the sentence. Quote one dictionary or Wikipedia sentence only when that page is about the term, and say so if it is only a neighbour or the subscripts were lost. Put links at the end. Skip hashes and receipt ids unless they ask where a sentence came from. Offer the Concept questions when they ask what you can explain about the code. What an idea rests on is `/v1/concept/uses`; what rests on it is `/v1/concept/used-by`; one relation type is `/v1/concept/neighbors`.
 
 # Units
 
