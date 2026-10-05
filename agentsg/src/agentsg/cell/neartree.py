@@ -201,14 +201,15 @@ def lattice_index(cells_with_ids):
 
     Notes
     -----
-    The index uses the root invariant (Kurlin 2022) as the point and plain
-    Euclidean distance on it as the metric. That is one vector per lattice,
-    with no orbit minimisation, and it is continuous across the
-    reduction-flip boundary. Queries (``nearest_cell``, ``k_nearest_cells``,
-    ``within_cells``) take a query cell. Distances are in Ångström
-    (root-product units). Requires SciPy (``pip install agentsg[db]``).
+    The index uses Kurlin's square-root key as the point and plain Euclidean
+    distance on it as the metric. That is one vector per lattice, with no
+    orbit minimisation, and it is continuous across the reduction-flip
+    boundary. Queries (``nearest_cell``, ``k_nearest_cells``,
+    ``within_cells``) take a query cell and use the same square-root key.
+    The archive search index is separate and uses the sorted linear key.
+    Distances are in ångström. Requires SciPy (``pip install agentsg[db]``).
     """
     from .rootindex import build_root_index
     from .rootform import root_invariant
     pts = [(root_invariant(cell), payload) for cell, payload in cells_with_ids]
-    return build_root_index(pts)
+    return build_root_index(pts, key=root_invariant)

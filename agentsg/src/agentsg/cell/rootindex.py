@@ -26,11 +26,13 @@ def _primitive_for_roots(cell, sg_hm):
         return cell
 
 
-def build_root_index(roots_with_ids):
+def build_root_index(roots_with_ids, *, key=None):
     """Build a :class:`RootIndex` from ``(root_tuple, payload)`` pairs.
 
-    ``root_tuple`` is a length-6 sequence ``(r0,..,r5)``; ``payload`` is
-    returned with query results (typically a PDB id).
+    ``root_tuple`` is a length-6 sequence. ``payload`` is returned with query
+    results (typically a PDB id). ``key`` is the function applied to a query
+    cell; the default is :func:`sorted_linear_key`, which matches the archive
+    columns. A tree built from square-root keys passes ``root_invariant``.
     """
     try:
         from scipy.spatial import cKDTree
@@ -40,10 +42,10 @@ def build_root_index(roots_with_ids):
     roots_with_ids = list(roots_with_ids)
     if not roots_with_ids:
         tree = cKDTree(np.empty((0, 6)))
-        return RootIndex(tree, [])
+        return RootIndex(tree, [], key=key)
     roots = np.asarray([r[0] for r in roots_with_ids], dtype=np.float64)
     ids = [r[1] for r in roots_with_ids]
-    return RootIndex(cKDTree(roots), ids)
+    return RootIndex(cKDTree(roots), ids, key=key)
 
 
 class RootIndex:
@@ -55,19 +57,20 @@ class RootIndex:
     matched against stored roots by exact Euclidean distance (Å).
     """
 
-    __slots__ = ("_tree", "_ids")
+    __slots__ = ("_tree", "_ids", "_key")
 
-    def __init__(self, tree, ids):
+    def __init__(self, tree, ids, key=None):
         self._tree = tree
         self._ids = ids
+        self._key = sorted_linear_key if key is None else key
 
     def __len__(self):
         return len(self._ids)
 
     def _query_root(self, cell, sg_hm=None):
-        """Compute the 6D root invariant coordinate for the query cell."""
+        """Compute the 6D query coordinate in the same key the tree stores."""
         return np.asarray(
-            sorted_linear_key(_primitive_for_roots(cell, sg_hm)), dtype=np.float64)
+            self._key(_primitive_for_roots(cell, sg_hm)), dtype=np.float64)
 
     def k_nearest(self, cell, k=10, sg_hm=None):
         """Return the k nearest ``(payload, distance)`` to ``cell``."""
