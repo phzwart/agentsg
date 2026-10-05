@@ -505,8 +505,8 @@ def closure_distance(cell_A, cell_B, boundary_rel=0.0):
     :func:`agentsg.cell.rootform.sorted_linear_distance`. With
     ``boundary_rel > 0`` non-obtuse members are admitted and the bound does
     not apply: that is the deformation-tolerant match. On the Hfq pair
-    4nl7 → 2yht the sorted linear distance is 5.43 Å, the exact closure
-    (rel 0) gives 6.80 Å, and rel 0.06 gives 5.0 Å.
+    4nl7 → 2yht the sorted linear distance and the exact closure distance
+    are both 5.43 Å, and rel 0.06 gives 4.46 Å.
     """
     return best_reindex_with_residual(cell_A, cell_B, boundary_rel=boundary_rel)
 

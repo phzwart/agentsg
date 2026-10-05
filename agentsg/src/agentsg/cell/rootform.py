@@ -455,25 +455,26 @@ def root_distance(cell_A, cell_B, **kw):
 def aligned_linear_distance(pA, pB):
     """Aligned linear distance of two conorm dicts on one labelling.
 
-    ``sqrt(Σ (pA_ij − pB_ij)²) / (T_A · T_B)^(1/4)``, with ``T = Σ p``.
-    When ``T_A = T_B = T`` the normaliser is ``1/sqrt(T)``, which is the
-    linear slot map. This is the exact-stage counterpart of the sorted-key
-    distance: the sorted distance lower-bounds it when both superbases are
-    obtuse.
+    ``sqrt(Σ (pA_ij/sqrt(T_A) − pB_ij/sqrt(T_B))²)`` with ``T = Σ p``.
+    Each slot is the linear-key coordinate, so the sorted-key distance
+    lower-bounds this over every pairing when both superbases are obtuse.
+    When ``T_A = T_B = T`` it equals ``||Δp|| / sqrt(T)``, which is the same
+    number as ``sqrt(Σ (pA − pB)²) / (T_A · T_B)^(1/4)``.
     """
-    diff2 = 0.0
     tA = 0.0
     tB = 0.0
     for ij in _PAIRS:
-        a = float(pA[ij])
-        b = float(pB[ij])
-        diff2 += (a - b) * (a - b)
-        tA += a
-        tB += b
-    denom = (max(tA, 0.0) * max(tB, 0.0)) ** 0.25
-    if denom <= 0.0:
+        tA += float(pA[ij])
+        tB += float(pB[ij])
+    if tA <= 0.0 or tB <= 0.0:
         return 0.0
-    return sqrt(diff2) / denom
+    sA = sqrt(tA)
+    sB = sqrt(tB)
+    diff2 = 0.0
+    for ij in _PAIRS:
+        d = float(pA[ij]) / sA - float(pB[ij]) / sB
+        diff2 += d * d
+    return sqrt(diff2)
 
 
 def sorted_key_lower_bound(x, y, G=None):
