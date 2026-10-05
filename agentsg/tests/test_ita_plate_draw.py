@@ -883,9 +883,9 @@ def test_projection_all_uses_the_three_setting_symbols():
     import matplotlib.pyplot as plt
     fig = ita_plate(26, projection="all")
     titles = [ax.get_title() for ax in fig.axes]
-    assert "Pmc2\u2081" in titles
-    assert "Pcm2\u2081" in titles
-    assert "Pm2\u2081b" in titles
+    assert "along c: P m c 2\u2081 (a,b,c)" in titles
+    assert "along a: P b 2\u2081 m (b,c,a)" in titles
+    assert "along b: P 2\u2081 m a (c,a,b)" in titles
     marked = sum(any(t.get_text() == "0" for t in ax.texts) for ax in fig.axes)
     assert marked >= 3
     plt.close(fig)

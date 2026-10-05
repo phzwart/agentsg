@@ -84,7 +84,7 @@ c("ita_setting", "ITA settings (origin choice, cell choice, unique axis)", "crys
   [("USES", "change_of_basis"), ("USES", "origin_shift"), ("RELATED_TO", "conventional_cell")],
   iucr="Conventional cell", wiki="Space group", aliases=["origin choice 2", "rhombohedral axes"])
 c("extended_setting_notation", "Extended setting notation (symbol + change of basis)", "crystallography",
-  "A base space-group symbol followed by a parenthesised change of basis, e.g. 'C 2y (x+y,z,x-y)'; when det P ≠ 1 the transform introduces centring translations.",
+  "A base space-group symbol followed by a parenthesised change of basis, e.g. 'C 2y (x+y,z,x-y)'. The new centring is the translation coset in the new cell: a non-unit det can remove centring, and det 1 can still change C into A.",
   [("agentsg/setting.py", ""), ("agentsg/setting.py", "parse_cob"), ("agentsg/setting.py", "SpaceGroupSetting")],
   [("USES", "change_of_basis"), ("USES", "lattice_centring"), ("USES", "group_closure")],
   iucr="Hermann-Mauguin symbols",

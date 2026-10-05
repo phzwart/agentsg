@@ -24,6 +24,9 @@ venv/
 manuscript/*.aux
 manuscript/*.log
 manuscript/*.out
+manuscript/**/*.aux
+manuscript/**/*.log
+manuscript/**/*.out
 manuscript/*.bbl
 manuscript/*.blg
 manuscript/*.pdf
@@ -33,9 +36,12 @@ symcell-update.zip
 # Large / regenerable data (build with agentsg.cell.celldb / analysis scripts)
 data/*.duckdb
 data/*.duckdb_old
+data/*.duckdb.old
+data/*.stream
 data/access.jsonl
 *.duckdb
 *.duckdb_old
+*.duckdb.old
 
 # Local Muse / tunnel secrets and host-specific launchd
 agentsg/serve.local.env

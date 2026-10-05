@@ -5,6 +5,7 @@ tag is '', '1', '2', 'H', or 'R'. hm_2016 is empty when it matches
 the Hermann-Mauguin symbol.
 """
 from __future__ import annotations
+import re
 
 ITA_SETTINGS: tuple[tuple[int, str, str, str, str], ...] = (
     (1, 'P 1', 'P 1', '', ''),
@@ -617,15 +618,152 @@ def _index():
 _BY_NORM, _BY_HALL = _index()
 
 
+# Monoclinic numbers in ITA Table 4.3.2.1. Short names and ``14:b2`` codes
+# are derived from these rows; nothing is typed by hand.
+_MONOCLINIC = range(3, 16)
+_SCREW_PAREN = re.compile(r"\((\d)\)")
+
+
+def _strip_screw_parens(text: str) -> str:
+    """Turn ``P2(1)/c`` into ``P21/c``. A change of basis has commas and is left alone."""
+    if "," in text:
+        return text
+    return _SCREW_PAREN.sub(r"\1", text)
+
+
+def _unique_axis_of(hm: str) -> str | None:
+    """``'b'`` for ``P 1 21/n 1``, ``'c'`` for ``P 1 1 21/a``, ``'a'`` for ``P 21/c 1 1``."""
+    parts = hm.split()
+    if len(parts) != 4:
+        return None
+    found = ["abc"[i] for i, tok in enumerate(parts[1:]) if tok != "1"]
+    if len(found) == 1:
+        return found[0]
+    return None
+
+
+def _compress_monoclinic(hm: str) -> str | None:
+    """Drop explicit ``1`` axis tokens: ``P 1 21/n 1`` → ``P21/n``."""
+    parts = hm.split()
+    if _unique_axis_of(hm) is None:
+        return None
+    kept = [parts[0]] + [tok for tok in parts[1:] if tok != "1"]
+    if len(kept) < 2:
+        return None
+    return "".join(kept)
+
+
+def _build_aliases():
+    """Short monoclinic names and ``number:setting`` codes, from table order."""
+    short_hits: dict[str, list] = {}
+    for row in ITA_SETTINGS:
+        if row[0] not in _MONOCLINIC:
+            continue
+        axis = _unique_axis_of(row[1])
+        short = _compress_monoclinic(row[1])
+        if axis is None or short is None:
+            continue
+        short_hits.setdefault(_norm(short), []).append((row, axis))
+    short_unique: dict[str, tuple] = {}
+    for key, hits in short_hits.items():
+        halls = {hit[0][2] for hit in hits}
+        if len(halls) == 1:
+            short_unique[key] = (hits[0][0], None)
+            continue
+        b_hits = [hit for hit in hits if hit[1] == "b"]
+        b_halls = {hit[0][2] for hit in b_hits}
+        if len(b_halls) == 1:
+            short_unique[key] = (b_hits[0][0], "unique axis b")
+    codes: dict[str, tuple] = {}
+    by_axis: dict[tuple, list] = {}
+    for row in ITA_SETTINGS:
+        if row[0] not in _MONOCLINIC:
+            continue
+        axis = _unique_axis_of(row[1])
+        if axis is None:
+            continue
+        by_axis.setdefault((row[0], axis), []).append(row)
+    for (number, axis), rows in by_axis.items():
+        for index, row in enumerate(rows, start=1):
+            codes[_norm(f"{number}:{axis}{index}")] = row
+    for row in ITA_SETTINGS:
+        tag = row[3]
+        if tag in ("1", "2", "H", "R"):
+            codes.setdefault(_norm(f"{row[0]}:{tag}"), row)
+    return short_unique, codes
+
+
+_SHORT, _CODE = _build_aliases()
+
+
+def canonical_lookup_key(text: str) -> str:
+    """Hall symbol when ``text`` is a short name, screw parenthesis, or ``number:setting``.
+
+    Otherwise the screw-stripped text, which is ``text`` itself when nothing changed.
+    """
+    if not isinstance(text, str):
+        return text
+    stripped = _strip_screw_parens(text.strip())
+    key = _norm(stripped)
+    if key in _CODE:
+        return _CODE[key][2]
+    if key in _SHORT:
+        return _SHORT[key][0][2]
+    return stripped
+
+
+def symbol_resolution(text: str) -> dict | None:
+    """Alias metadata for a symbol, or None when ``text`` is already canonical.
+
+    ``assumed`` is set only when a short name collapsed unique axes and the
+    unique-axis-b row was chosen, which is the ITA default.
+    """
+    if not isinstance(text, str):
+        return None
+    raw = text.strip()
+    stripped = _strip_screw_parens(raw)
+    key = _norm(stripped)
+    if key in _CODE:
+        return {"resolved_from": raw, "hall": _CODE[key][2]}
+    if key in _SHORT:
+        row, assumed = _SHORT[key]
+        out = {"resolved_from": raw, "hall": row[2]}
+        if assumed:
+            out["assumed"] = assumed
+        return out
+    if stripped != raw:
+        return {"resolved_from": raw}
+    return None
+
+
+def hm_short(row) -> str | None:
+    """Compressed monoclinic symbol when parsing it returns this same Hall row.
+
+    ``None`` when the row is not monoclinic, or the short name belongs to a
+    different setting (the unique-axis-b default).
+    """
+    if row[0] not in _MONOCLINIC:
+        return None
+    short = _compress_monoclinic(row[1])
+    if short is None:
+        return None
+    hit = _SHORT.get(_norm(short))
+    if hit is None or hit[0][2] != row[2]:
+        return None
+    return short
+
+
 def lookup_setting(key: str):
     """Return an ITA setting row for an extended symbol, or None.
 
     Accepts a Hermann–Mauguin symbol, its 2016 e-glide spelling, a ``:1``,
-    ``:2``, ``:H`` or ``:R`` qualifier, and a Hall symbol.
+    ``:2``, ``:H`` or ``:R`` qualifier, a Hall symbol, a short monoclinic
+    name (``P21/n``), a parenthesised screw (``P2(1)/c``), and an ITA
+    ``number:setting`` code (``14:b2``, ``68:1``).
     """
     if not isinstance(key, str):
         return None
-    text = key.strip()
+    text = canonical_lookup_key(key)
     if text in _BY_HALL:
         return _BY_HALL[text]
     return _BY_NORM.get(_norm(text))

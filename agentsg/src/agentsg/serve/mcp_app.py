@@ -106,8 +106,16 @@ def _mcp_playbook(base: str) -> str:
         "The `pdb_search` tool result includes the scatter PNG when `plot` is true. Display that image.",
     )
     body = body.replace(
-        "| Draw / show the ITA plate | `GET /plates?sg=19` (PNG) or `POST /v1/ita-plate` `{\"sg\":96,\"legend\":true}` then **GET the returned `png_url`** |",
-        "| Draw / show the ITA plate | `ita_plate` with `sg`. The result includes the PNG and every in-cell copy. |",
+        "| Draw / show the ITA plate | `GET /plates?sg=19` (PNG) or `POST /v1/ita-plate` `{\"sg\":96,\"legend\":true}` then **GET the returned `png_url`**. `setting` is a change of basis with `sg` (`{\"sg\":\"C 2 2 21\",\"setting\":\"a/2+b/2,-a/2+b/2,c\"}`), a full setting (`{\"setting\":\"C 2 2 21 (a/2+b/2,-a/2+b/2,c)\"}`), or `\"R\"` on an R group |",
+        "| Draw / show the ITA plate | `ita_plate` with `sg`. `setting` may be a change of basis (`a/2+b/2,-a/2+b/2,c`), a full setting (`C 2 2 21 (a/2+b/2,-a/2+b/2,c)`), or `R` on an R group. The result includes the PNG and every in-cell copy. |",
+    )
+    body = body.replace(
+        "| Space-group info (ops, order, system, absences) | `GET /v1/space-group?sg=96` or `POST /v1/space-group` `{\"sg\":\"P21/n\"}`. Short monoclinic names, `P2(1)/c`, and `14:b2` are accepted. Quote `assumed` when it is present |",
+        "| Space-group info (ops, order, system, absences) | `space_group` with `sg`. Short monoclinic names, `P2(1)/c`, and `14:b2` are accepted. Quote `assumed` when it is present |",
+    )
+    body = body.replace(
+        "| Non-standard setting | `POST /v1/setting` `{\"setting\":\"P 21 21 2 (2a,b-a,c)\"}`. Quote `centring_from`, `centring_to`, and `centring_changed`. `added_centering` is deprecated and is true only when the new cell has more centring vectors |",
+        "| Non-standard setting | `setting` with a symbol and optional change of basis. Quote `centring_from`, `centring_to`, and `centring_changed`. `added_centering` is deprecated and is true only when the new cell has more centring vectors |",
     )
     body = body.replace(
         '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Distances are Å on `sort(p/sqrt(Σ p))`. Add `"plot": true` for an SVD scatter of those linear keys. Add `"return_cob": true` for the change of basis and the `gates` that produced it |',
@@ -298,7 +306,9 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     def space_group(sg: str) -> dict[str, Any]:
         """Look up a space group: Hermann–Mauguin, system, order, operators, derived absences.
 
-        sg: IT number 1–230, Hermann–Mauguin, or Hall symbol.
+        sg: IT number 1–230, Hermann–Mauguin, Hall, a short monoclinic name
+        such as P21/n (unique axis b when that short name is ambiguous),
+        a parenthesised screw such as P2(1)/c, or an ITA code such as 14:b2 or 68:1.
         """
         return _result(handlers.space_group_info, {"sg": sg})
 
@@ -306,7 +316,10 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
     def setting(setting: str) -> dict[str, Any]:
         """Parse a non-standard setting and its change-of-basis.
 
-        setting: HM symbol plus optional ITA change-of-basis, e.g. 'P 21 21 2 (2a,b-a,c)'.
+        setting: HM symbol, short monoclinic name, or number:setting code, plus an
+        optional change of basis, e.g. 'P 21 21 2 (2a,b-a,c)' or 'P21/n'.
+        centring_from, centring_to, and centring_changed describe the translation
+        coset. added_centering is deprecated.
         """
         return _result(handlers.setting_info, {"setting": setting})
 
@@ -428,7 +441,10 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         projection: 'a', 'b', 'c', or 'all'. Monoclinic defaults to b; otherwise c.
         'all' draws the three element projections (one panel for a cubic group).
         compact: counts by symbol plus one representative, for the large cubic groups.
-        setting: a change-of-basis string, or 'R' for rhombohedral axes of an R group.
+        setting is one of:
+        sg plus a change of basis, sg='C 2 2 21', setting='a/2+b/2,-a/2+b/2,c';
+        a full setting, setting='C 2 2 21 (a/2+b/2,-a/2+b/2,c)';
+        or 'R' for rhombohedral axes of an R group, sg='R 3', setting='R'.
         """
         data = _clean({
             "sg": sg,

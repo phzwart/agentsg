@@ -211,12 +211,16 @@ def _split_setting(text: str) -> tuple[str, str | None]:
         elif text[i] == "(":
             depth -= 1
             if depth == 0:
+                cob = text[i:]
+                # ``P2(1)`` is a screw index, not a change of basis.
+                if "," not in cob:
+                    return text, None
                 base = text[:i].strip()
                 if not base:
                     raise ValueError(
                         "setting is missing a space-group symbol before the change of basis"
                     )
-                return base, text[i:]
+                return base, cob
     raise ValueError(f"unbalanced parentheses in setting {text!r}")
 
 
@@ -224,11 +228,15 @@ def parse_setting(text: str):
     """Parse '<base> (<cob>)' into (base_key, ChangeOfBasis).
 
     ``base_key`` is the leading Hall or Hermann-Mauguin string (an optional
-    'Hall:' prefix is stripped). If there is no parenthesised part, the whole
-    string is the base and the change of basis is the identity. Nested
+    'Hall:' prefix is stripped). A short monoclinic name, a parenthesised
+    screw, or an ITA ``number:setting`` code is rewritten to the Hall symbol
+    of that setting before lookup. If there is no parenthesised part, the
+    whole string is the base and the change of basis is the identity. Nested
     parentheses in the CoB (``(y+z)/2``) are allowed.
     """
     base, cob_txt = _split_setting(text)
+    from .ita_settings import canonical_lookup_key
+    base = canonical_lookup_key(base)
     if cob_txt is None:
         return base, ChangeOfBasis(IDENTITY3, Vector3((0, 0, 0)))
     return base, parse_cob(cob_txt)

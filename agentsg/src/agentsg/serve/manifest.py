@@ -14,7 +14,7 @@ from ..tolerances import (
     METRIC_LENGTH_TOL_PCT,
 )
 
-API_VERSION = "0.3.0"
+API_VERSION = "0.3.1"
 _BASE_TOKEN = "{{BASE_URL}}"
 _NAME_TOKEN = "{{API_NAME}}"
 _AUTH = '-H "Authorization: Bearer $AGENTSG_TOKEN"'
@@ -281,7 +281,9 @@ ENDPOINTS: list[dict[str, Any]] = [
         "description": "ITA plate metadata and element inventory plus png_url to fetch the drawing",
         "params": [
             _p("sg", "string", False, "IT number, Hermann–Mauguin, or Hall (or use setting)"),
-            _p("setting", "string", False, "Non-standard setting string instead of sg"),
+            _p("setting", "string", False,
+               "Change of basis (a/2+b/2,-a/2+b/2,c), a full setting "
+               "'C 2 2 21 (a/2+b/2,-a/2+b/2,c)', or R for an R group"),
             _p("projection", "string", False, "a, b, c, or all. Monoclinic defaults to b; else c"),
             _p("legend", "bool", False, "If true, include the element legend panel"),
             _p("show_centring", "bool", False, "If true, draw centring translations"),
@@ -296,7 +298,8 @@ ENDPOINTS: list[dict[str, Any]] = [
         "description": "Raw ITA plate PNG (same arguments as /v1/ita-plate)",
         "params": [
             _p("sg", "string", False, "IT number or Hermann–Mauguin"),
-            _p("setting", "string", False, "Non-standard setting string"),
+            _p("setting", "string", False,
+               "Change of basis, full 'symbol (cob)' setting, or R for an R group"),
             _p("projection", "string", False, "a, b, c, or all"),
             _p("legend", "string", False, "true to draw the legend"),
             _p("show_centring", "string", False, "true to draw centring"),

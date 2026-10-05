@@ -130,6 +130,22 @@ def _sg_label(sg):
     return num, modern
 
 
+def _spaced_hm(name):
+    """ITA symbol with spaces kept and screw indices as subscripts."""
+    return " ".join(_subscript_token(tok) for tok in str(name).split())
+
+
+def _subscript_token(token):
+    chars = []
+    for i, ch in enumerate(token):
+        prev = token[i - 1] if i else ""
+        if ch.isdigit() and prev.isdigit():
+            chars.append(ch.translate(_SUBDIGIT))
+        else:
+            chars.append(ch)
+    return "".join(chars)
+
+
 def _display_hm(name):
     """Compact a spaced HM symbol and print screw indices as subscripts."""
     text = str(name)
@@ -149,36 +165,62 @@ def _display_hm(name):
     return "".join(out)
 
 
-# Orthorhombic view -> which old axes become (new a, new b, new c).
-# Projection c keeps the standard symbol. Projection a swaps a with b
-# (Pmc2₁ → Pcm2₁). Projection b swaps b with c (Pmc2₁ → Pm2₁b).
-_ORTHO_SRC = {
-    "c": (0, 1, 2),
-    "a": (1, 0, 2),
-    "b": (0, 2, 1),
-}
-_AXIS_LETTER = {"a": 0, "b": 1, "c": 2}
-_AXIS_NAME = "abc"
+def _panel_change_of_basis(projection):
+    """Right-handed cob whose new axes are the panel's down, right, and depth.
+
+    Columns are those three old axes. One in-plane sign is flipped when the
+    permutation is left-handed, so ``det = +1``. The spelling uses a, b, c.
+    """
+    from fractions import Fraction as Fr
+    from ..change_of_basis import ChangeOfBasis
+    from ..linalg import Matrix3, Vector3
+    from ..setting import format_cob
+    down, right, depth = _PROJ[projection][0]
+    axes = (
+        (Fr(1), Fr(0), Fr(0)),
+        (Fr(0), Fr(1), Fr(0)),
+        (Fr(0), Fr(0), Fr(1)),
+    )
+    cols = [axes[down], axes[right], axes[depth]]
+
+    def _matrix(columns):
+        return Matrix3([[columns[j][i] for j in range(3)] for i in range(3)])
+
+    if _matrix(cols).det() < 0:
+        cols[1] = tuple(-c for c in cols[1])
+    cob = ChangeOfBasis(_matrix(cols), Vector3((0, 0, 0)))
+    return cob, format_cob(cob, letters="abc")
 
 
-def _orthorhombic_setting_symbol(symbol, projection):
-    """HM symbol of an orthorhombic group as drawn in ``projection``."""
-    parts = str(symbol).split()
-    if len(parts) != 4 or projection not in _ORTHO_SRC:
-        return symbol
-    lat, fields = parts[0], parts[1:]
-    src = _ORTHO_SRC[projection]
-    dest = [0, 0, 0]
-    for new, old in enumerate(src):
-        dest[old] = new
-    renamed = []
-    for old in src:
-        token = "".join(
-            _AXIS_NAME[dest[_AXIS_LETTER[ch]]] if ch in _AXIS_LETTER else ch
-            for ch in fields[old]
+def _panel_transformed_ops(sg, cob):
+    """Operators and centring translations of ``sg`` in the panel basis."""
+    from ..group import close_group
+    from ..setting import SpaceGroupSetting
+    if hasattr(sg, "base") and hasattr(sg, "cob"):
+        transformed = [cob.apply_to_op(op) for op in sg.operations()]
+        return close_group(transformed)
+    return SpaceGroupSetting(sg, cob).operations()
+
+
+def orthorhombic_panel(sg, projection):
+    """ITA setting of an orthorhombic group drawn along ``projection``.
+
+    Returns ``(title, cob_text, operators, setting_row)``. The title is the
+    tabulated Hermann–Mauguin symbol of the transformed group, not a shuffle
+    of the original letters.
+    """
+    from ..ita_settings import display_hm, match_ops
+    cob, cob_text = _panel_change_of_basis(projection)
+    ops = _panel_transformed_ops(sg, cob)
+    number = _sg_number(sg)
+    row = match_ops(number, ops)
+    if row is None:
+        raise ValueError(
+            f"no ITA setting of No. {number} matches projection {projection}"
         )
-        renamed.append(token)
-    return " ".join([lat, *renamed])
+    hm = display_hm(row[1], row[3], row[4])
+    title = f"along {projection}: {_spaced_hm(hm)} {cob_text}"
+    return title, cob_text, ops, row
 
 
 def _sg_order(sg):
@@ -3083,10 +3125,15 @@ def _stamp_plate_title(fig, sg, system):
 
 
 def _element_panel_title(sg, projection, system):
-    """Title of one symmetry-element panel in the three-projection figure."""
-    _num, name = _sg_label(sg)
+    """Title of one symmetry-element panel in the three-projection figure.
+
+    An orthorhombic panel is the ITA symbol of the group after the panel's
+    axis permutation, with that change of basis in the subtitle.
+    """
     if system == "orthorhombic":
-        name = _orthorhombic_setting_symbol(name, projection)
+        title, _cob, _ops, _row = orthorhombic_panel(sg, projection)
+        return title
+    _num, name = _sg_label(sg)
     return _display_hm(name)
 
 

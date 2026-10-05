@@ -341,6 +341,8 @@ def _sg_cache_key(key):
             raise KeyError(f'space-group number {key} out of range 1..230')
         return ('n', key)
     if isinstance(key, str):
+        from .ita_settings import canonical_lookup_key
+        key = canonical_lookup_key(key)
         if key in _BY_HALL:
             return ('hall', key)
         nk = _norm_hm(key)

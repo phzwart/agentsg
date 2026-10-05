@@ -28,7 +28,7 @@ agentsg is an **engine**, not International Tables Volume A. It derives operator
 | Numbered generators and general-position lines *(1) (2)…* | Unsorted closed `ops` | Count them (`order`). Do not pretend ITA numbering. |
 | Schoenflies, Patterson symmetry, origin-choice essays | Number, HM, Hall, system, Laue class | Do not invent Schoenflies or Patterson. |
 | Maximal subgroups / ITA A1 graphs (t and k), affine normalizer, Wyckoff **sets** | `GET /v1/subgroups` derives finite-index **t** and **k** (IIa / index-2·3 IIb) from operators. `GET /v1/normalizer` derives the Euclidean normalizer from the operators: which holohedry rotations conjugate the group to itself, and the translation group T′ from one Smith form. Not derived: the affine normalizer, ITA tabulated Wyckoff sets, infinite isomorphic series, or an editorial maximality proof. | Call the endpoint. Label every subgroup edge **t** or **k**. A det −1 normalizer element maps a chiral molecule to its mirror image. Do not recite A1 or a tabulated normalizer from memory. |
-| ITA 2016 e-glide shorts (`Aem2`, `Cmce`, `Cmme`, `Ccce`, `Aea2`) | Classic names only (`Abm2`, `Cmca`, …) | If lookup 404s, retry the pre-2016 symbol. |
+| ITA 2016 e-glide names (`Cmce`, `Ccce`, …), short monoclinic names (`P21/n`, `C2/n`), parenthesised screws (`P2(1)/c`), and `number:setting` codes (`14:b2`, `14:c1`, `68:1`) | The same operators as the full ITA setting. An ambiguous short name assumes unique axis b and says so in `assumed` | Call `space_group` or `setting` with the short form. Do not invent a short name the result does not resolve. |
 | Plane groups, rod/layer groups, magnetic groups | 230 3-D space groups | Out of scope. |
 | Intensity-based enantiomorph / reindex choice | Geometric branches only | You cannot decide P3₁ vs P3₂ or which twin from the cell. |
 | “This primitive 4-op 222 is P222” | `/v1/identify` returns the **type** (`sg_number`) plus `det`, `input_order`, `matched_order` | If `|det| > 1`, quote the type and the CoB. A primitive cell of F222 is still **#22**, not #16 — body-diagonal 2-folds are not unimodular-equivalent to P222. |
@@ -59,7 +59,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 | Intent | Call this |
 |---|---|
-| Space-group info (ops, order, system, absences) | `GET /v1/space-group?sg=96` or `POST /v1/space-group` `{"sg":96}` |
+| Space-group info (ops, order, system, absences) | `GET /v1/space-group?sg=96` or `POST /v1/space-group` `{"sg":"P21/n"}`. Short monoclinic names, `P2(1)/c`, and `14:b2` are accepted. Quote `assumed` when it is present |
 | Is *hkl* allowed? phase, equivalents | `GET /v1/reflections?sg=96&hkl=1,0,0` |
 | All reflection conditions | `GET /v1/reflections?sg=96` |
 | Multiplicity / site symmetry at (x,y,z) | `GET /v1/site?sg=225&xyz=1/4,1/4,1/4` |
@@ -68,9 +68,9 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 | Euclidean normalizer | `GET /v1/normalizer?sg=19`. Optional `cell` when the metric may add operators. Quote `gates`. det −1 maps a chiral molecule to its mirror image |
 | Match two models with corresponding atoms | `POST /v1/match-models` with `sg`, `cell_a`, `xyz_a`, `xyz_b` (or `pdb_a` and `pdb_b`) |
 | t / k subgroup graph | `GET /v1/subgroups?sg=96` or `?kind=t` / `?kind=k` |
-| Draw / show the ITA plate | `GET /plates?sg=19` (PNG) or `POST /v1/ita-plate` `{"sg":96,"legend":true}` then **GET the returned `png_url`** |
+| Draw / show the ITA plate | `GET /plates?sg=19` (PNG) or `POST /v1/ita-plate` `{"sg":96,"legend":true}` then **GET the returned `png_url`**. `setting` is a change of basis with `sg` (`{"sg":"C 2 2 21","setting":"a/2+b/2,-a/2+b/2,c"}`), a full setting (`{"setting":"C 2 2 21 (a/2+b/2,-a/2+b/2,c)"}`), or `"R"` on an R group |
 | Discover every endpoint | `GET /api` |
-| Non-standard setting | `POST /v1/setting` `{"setting":"P 21 21 2 (2a,b-a,c)"}` |
+| Non-standard setting | `POST /v1/setting` `{"setting":"P 21 21 2 (2a,b-a,c)"}`. Quote `centring_from`, `centring_to`, and `centring_changed`. `added_centering` is deprecated and is true only when the new cell has more centring vectors |
 | Identify operators | `POST /v1/identify` `{"ops":["x,y,z",...]}` |
 | Cell volume, Niggli, Kurlin square-root key | `GET /v1/cell?cell=79,79,38,90,90,90&sg=96`. `root_invariant` is `sort(√p)`, not the PDB search key |
 | What Bravais / holohedry is this noisy cell? | `POST /v1/lattice-symmetry` `{"cell":[50,50,51,90,90,90]}`. Quote `max_delta_deg` |

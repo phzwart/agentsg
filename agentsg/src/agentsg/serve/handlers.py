@@ -48,7 +48,7 @@ from ..tolerances import (
 )
 from ..cell.primitive import lattice_letter
 from ..group import centering_translations, close_group
-from ..linalg import ZERO3
+from ..linalg import IDENTITY3, ZERO3
 from ..setting import SpaceGroupSetting, format_cob
 from .http import HttpError
 from .serialize import (
@@ -132,9 +132,30 @@ def _sg_payload(rec) -> dict[str, Any]:
     }
 
 
+def _alias_fields(text: str) -> dict[str, str]:
+    """``resolved_from`` / ``assumed`` when a short or coded symbol was rewritten."""
+    from ..ita_settings import symbol_resolution
+    from ..setting import _split_setting
+    try:
+        base, _cob = _split_setting(text)
+    except ValueError:
+        base = text
+    meta = symbol_resolution(base)
+    if not meta:
+        return {}
+    out = {"resolved_from": meta["resolved_from"]}
+    if meta.get("assumed"):
+        out["assumed"] = meta["assumed"]
+    return out
+
+
 def space_group_info(data: dict[str, Any]) -> dict[str, Any]:
-    rec = resolve_sg(data.get("sg"))
-    return _with_concepts("space_group_info", _sg_payload(rec))
+    raw = data.get("sg")
+    rec = resolve_sg(raw)
+    payload = _sg_payload(rec)
+    if isinstance(raw, str):
+        payload.update(_alias_fields(raw))
+    return _with_concepts("space_group_info", payload)
 
 
 def setting_info(data: dict[str, Any]) -> dict[str, Any]:
@@ -145,16 +166,62 @@ def setting_info(data: dict[str, Any]) -> dict[str, Any]:
     P = st.change_of_basis_matrix()
     det = P.det()
     ops = list(st.operations())
-    return {
+    centring = _centring_change(st, ops)
+    out = {
         "setting": str(st),
         "base_sg_number": st.base.number,
         "base_sg_hm": st.base.hermann_mauguin,
         "cob": format_cob(st.cob),
         "P": matrix_to_json(P),
         "det": frac_to_json(det),
-        "added_centering": abs(int(det)) != 1 if det.denominator == 1 else True,
+        "centring_from": centring["centring_from"],
+        "centring_to": centring["centring_to"],
+        "centring_changed": centring["centring_changed"],
+        "added_centering": centring["added_centering"],
+        "note": (
+            "added_centering is deprecated; it is true only when the new cell "
+            "has more centring vectors than the old. Use centring_from, "
+            "centring_to, and centring_changed."
+        ),
         "order": st.order(),
         "ops": [op_to_xyz(op) for op in sorted(ops, key=lambda o: o.as_xyz())],
+    }
+    if centring["centring_to"] is None:
+        out["centring_translations"] = centring["centring_translations"]
+    out.update(_alias_fields(str(text)))
+    return out
+
+
+def _translation_coset(ops) -> frozenset:
+    """Identity-rotation translations of a closed group, reduced mod 1."""
+    return frozenset(op.w.v for op in ops if op.W == IDENTITY3)
+
+
+def _centring_letter(coset: frozenset) -> str | None:
+    """Bravais letter whose centring set equals ``coset``, or None."""
+    from ..hall import LATTICE_CENTERING
+    from ..linalg import Vector3
+    for letter, vecs in LATTICE_CENTERING.items():
+        tabulated = frozenset(Vector3(v).mod1().v for v in vecs)
+        if tabulated == coset:
+            return letter
+    return None
+
+
+def _centring_change(st, ops) -> dict[str, Any]:
+    """How the change of basis rewrites the translation lattice."""
+    from ..hall import LATTICE_CENTERING
+    from ..linalg import Vector3
+    origin = lattice_letter(st.base.hermann_mauguin)
+    old = frozenset(Vector3(v).mod1().v for v in LATTICE_CENTERING[origin])
+    new = _translation_coset(ops)
+    rows = sorted(new, key=lambda v: (v[0], v[1], v[2]))
+    return {
+        "centring_from": origin,
+        "centring_to": _centring_letter(new),
+        "centring_changed": new != old,
+        "added_centering": len(new) > len(old),
+        "centring_translations": [[frac_to_json(c) for c in v] for v in rows],
     }
 
 
@@ -412,11 +479,91 @@ _RHOMBO_GROUPS = {146, 148, 155, 160, 161, 166, 167}
 _RHOMBO_COB = "((2a+b+c)/3,(-a+b+c)/3,(-a-2b+c)/3)"
 
 
+_BARE_LATTICE = {"P", "A", "B", "C", "I", "F"}
+
+
+def _looks_like_cob(text: str) -> bool:
+    """True when ``text`` is a change of basis and not a symbol plus a cob.
+
+    A cob has commas and does not start with a Hermann–Mauguin lattice letter.
+    ``a/2+b/2,-a/2+b/2,c`` and ``(a,b,c)`` are cobs. ``C 2 2 21 (a,b,c)`` is not.
+    """
+    s = text.strip()
+    if len(s) >= 2 and s[0] == "(" and s[-1] == ")":
+        inner = s[1:-1].strip()
+    else:
+        inner = s
+    if "," not in inner:
+        return False
+    head = inner.lstrip()
+    if not head:
+        return False
+    i = 1 if head[0] == "-" else 0
+    if i < len(head) and head[i] in "PABCIFRH":
+        return False
+    return True
+
+
+def _bare_lattice_letter(text: str) -> str | None:
+    token = text.strip()
+    if len(token) == 1 and token.isalpha() and token.upper() in _BARE_LATTICE:
+        return token.upper()
+    return None
+
+
+def _named_group(obj):
+    """(Hermann–Mauguin, IT number) of a SpaceGroup or SpaceGroupSetting."""
+    number = getattr(obj, "number", None)
+    name = getattr(obj, "hermann_mauguin", None)
+    if number is None and hasattr(obj, "base"):
+        number = obj.base.number
+        name = obj.base.hermann_mauguin
+    return name, number
+
+
+def _setting_conflict(setting_text: str, sg_text: str, setting_obj, sg_obj) -> None:
+    hm_s, n_s = _named_group(setting_obj)
+    hm_g, n_g = _named_group(sg_obj)
+    if n_s == n_g:
+        return
+    raise HttpError(
+        400,
+        f"setting {setting_text!r} names space group {hm_s} (No. {n_s}), "
+        f"which conflicts with sg {sg_text!r} (No. {n_g}). "
+        "Pass a change of basis, e.g. setting='a/2+b/2,-a/2+b/2,c', or omit sg.",
+    )
+
+
+def _reject_bare_lattice(letter: str) -> None:
+    raise HttpError(
+        400,
+        f"setting {letter!r} is a lattice letter, not a change of basis. "
+        "Pass the change of basis to the primitive cell, e.g. "
+        "setting='a/2+b/2,-a/2+b/2,c'.",
+    )
+
+
+def _symbol_of(text: str):
+    """Resolve a symbol, stripping a trailing change of basis when one is attached."""
+    from ..setting import _split_setting
+    raw = str(text).strip()
+    if "(" in raw and "," in raw:
+        base, cob = _split_setting(raw)
+        if cob is not None:
+            return resolve_sg(base)
+    return resolve_sg(raw)
+
+
 def resolve_plate_sg(data: dict[str, Any]):
-    """SpaceGroup or SpaceGroupSetting for plate / classify."""
+    """SpaceGroup or SpaceGroupSetting for a plate.
+
+    ``setting`` may be a bare or parenthesised change of basis together with
+    ``sg``, a full ``symbol (cob)`` string, or ``R`` for an R group. A symbol
+    in ``setting`` must be the same IT number as ``sg``.
+    """
+    from ..setting import parse_cob
     setting = data.get("setting")
     if isinstance(setting, str) and setting.strip().lower() in ("r", "rhombohedral"):
-        from ..setting import parse_cob
         sg = resolve_sg(data.get("sg"))
         if getattr(sg, "number", None) not in _RHOMBO_GROUPS:
             raise ValueError(
@@ -424,9 +571,34 @@ def resolve_plate_sg(data: dict[str, Any]):
                 "146, 148, 155, 160, 161, 166 and 167"
             )
         return SpaceGroupSetting(sg, parse_cob(_RHOMBO_COB))
+    sg_text = data.get("sg")
     if setting:
-        return SpaceGroupSetting.parse(str(setting))
-    return resolve_sg(data.get("sg"))
+        text = str(setting).strip()
+        letter = _bare_lattice_letter(text)
+        if letter is not None:
+            if sg_text is not None and str(sg_text).strip() != "":
+                from ..space_groups import space_group
+                try:
+                    named = space_group(letter)
+                except KeyError:
+                    named = None
+                if named is not None:
+                    _setting_conflict(text, str(sg_text), named, _symbol_of(sg_text))
+            _reject_bare_lattice(letter)
+        if _looks_like_cob(text):
+            if sg_text is None or str(sg_text).strip() == "":
+                raise HttpError(400, "a change of basis needs a space-group symbol in sg")
+            return SpaceGroupSetting(_symbol_of(sg_text), parse_cob(text))
+        parsed = SpaceGroupSetting.parse(text)
+        if sg_text is not None and str(sg_text).strip() != "":
+            _setting_conflict(text, str(sg_text), parsed, _symbol_of(sg_text))
+        return parsed
+    if isinstance(sg_text, str) and "(" in sg_text and "," in sg_text:
+        from ..setting import _split_setting
+        _base, cob = _split_setting(sg_text.strip())
+        if cob is not None:
+            return SpaceGroupSetting.parse(sg_text.strip())
+    return resolve_sg(sg_text)
 
 
 def _sg_number(sg):
