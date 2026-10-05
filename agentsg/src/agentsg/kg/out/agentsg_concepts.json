@@ -4,8 +4,8 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "38c3c571a921d42e1be88a9bf6290f5045d46333",
-  "dirty": true
+  "commit": "848c5ab15261cdf2c4f79275ed10b3971ebe3950",
+  "dirty": false
  },
  "concepts": [
   {
@@ -43,7 +43,7 @@
      "line": 1,
      "quote": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol, Hall symbol, and crystal system.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py",
-     "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce"
+     "sha256": "352396afd2b2a1fc51fc2f9d7b78fc92cb2d5d2d59d9178fb6af79945ca338b0"
     },
     {
      "module": "agentsg/group.py",
@@ -70,7 +70,7 @@
      "line": 304,
      "quote": "A space group resolved from the standard-setting table.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py",
-     "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce"
+     "sha256": "352396afd2b2a1fc51fc2f9d7b78fc92cb2d5d2d59d9178fb6af79945ca338b0"
     }
    ],
    "references": [
@@ -425,10 +425,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "draw_inversion",
      "kind": "FunctionDef",
-     "line": 1022,
+     "line": 1064,
      "quote": "Draw an ITA inversion centre symbol (small open circle) at xy.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -500,10 +500,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_draw_axis_inversion",
      "kind": "FunctionDef",
-     "line": 866,
+     "line": 908,
      "quote": "Open circle in the middle of a lens: the −1 of a 2/m or 2₁/m symbol.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -717,10 +717,10 @@
      "module": "agentsg/ita_settings.py",
      "symbol": "hall_for_ops",
      "kind": "FunctionDef",
-     "line": 640,
+     "line": 778,
      "quote": "Hall of the tabulated setting whose operations equal ``symbol``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     }
    ],
    "references": [
@@ -793,25 +793,25 @@
      "line": 329,
      "quote": "Look up a space group by number (1-230), Hermann-Mauguin symbol, or Hall symbol.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py",
-     "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce"
+     "sha256": "352396afd2b2a1fc51fc2f9d7b78fc92cb2d5d2d59d9178fb6af79945ca338b0"
     },
     {
      "module": "agentsg/ita_settings.py",
      "symbol": "display_hm",
      "kind": "FunctionDef",
-     "line": 582,
+     "line": 583,
      "quote": "ITA name of one setting, with origin choice or rhombohedral axes spelled out.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_display_hm",
      "kind": "FunctionDef",
-     "line": 134,
+     "line": 150,
      "quote": "Compact a spaced HM symbol and print screw indices as subscripts.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -875,34 +875,34 @@
      "line": 1,
      "quote": "ITA alternate settings.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     },
     {
      "module": "agentsg/ita_settings.py",
      "symbol": "lookup_setting",
      "kind": "FunctionDef",
-     "line": 621,
+     "line": 757,
      "quote": "Return an ITA setting row for an extended symbol, or None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     },
     {
      "module": "agentsg/ita_settings.py",
      "symbol": "settings_for_number",
      "kind": "FunctionDef",
-     "line": 635,
+     "line": 773,
      "quote": "Every ITA setting row of one space-group number.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     },
     {
      "module": "agentsg/ita_settings.py",
      "symbol": "match_ops",
      "kind": "FunctionDef",
-     "line": 658,
+     "line": 796,
      "quote": "The setting row of ``number`` whose operations are ``ops``, or None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/ita_settings.py",
-     "sha256": "5c7be6f83602de11f91d2a25d7db7fcdf83613413512c6028e38a2d7a1cfd969"
+     "sha256": "0d2c476da10d4e228b564735cf0a6a2b0fb3a8092cd7d9d8047a0f37e405524d"
     }
    ],
    "references": [
@@ -939,7 +939,7 @@
    "label": "Extended setting notation (symbol + change of basis)",
    "kind": "crystallography",
    "aliases": [],
-   "definition": "A base space-group symbol followed by a parenthesised change of basis, e.g. 'C 2y (x+y,z,x-y)'; when det P ≠ 1 the transform introduces centring translations.",
+   "definition": "A base space-group symbol followed by a parenthesised change of basis, e.g. 'C 2y (x+y,z,x-y)'. The new centring is the translation coset in the new cell: a non-unit det can remove centring, and det 1 can still change C into A.",
    "literature": [
     "Zwart, Grosse-Kunstleve & Adams, Exploring Metric Symmetry, IUCr Comp. Comm. Newsletter 7 (2006)"
    ],
@@ -965,7 +965,7 @@
      "line": 1,
      "quote": "Extended setting notation: a base space group with an *attached change of basis*.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     },
     {
      "module": "agentsg/setting.py",
@@ -974,43 +974,43 @@
      "line": 150,
      "quote": "Parse a parenthesised change-of-basis string into a ChangeOfBasis(P, p).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     },
     {
      "module": "agentsg/setting.py",
      "symbol": "SpaceGroupSetting",
      "kind": "ClassDef",
-     "line": 259,
+     "line": 267,
      "quote": "A base space group viewed through an attached change of basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     },
     {
      "module": "agentsg/setting.py",
      "symbol": "format_cob",
      "kind": "FunctionDef",
-     "line": 332,
+     "line": 340,
      "quote": "Render a ChangeOfBasis back into the parenthesised column notation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     },
     {
      "module": "agentsg/setting.py",
      "symbol": "_lattice_coset_ops",
      "kind": "FunctionDef",
-     "line": 238,
+     "line": 246,
      "quote": "Images of the integer lattice under P^-1, reduced mod 1 -- the centring translations introduced (or removed) by a det != 1 change of basis.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     },
     {
      "module": "agentsg/setting.py",
      "symbol": "parse_setting",
      "kind": "FunctionDef",
-     "line": 224,
+     "line": 228,
      "quote": "Parse '<base> (<cob>)' into (base_key, ChangeOfBasis).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/setting.py",
-     "sha256": "ebeee2685f4accb6bcaf0c39406c5ae5f70743c76b1956b3e13d0baa103a317c"
+     "sha256": "bd264ca46486a67c69d95786739dd2f5e3a8ac1b563e3fdd8145c9be8dbff65d"
     }
    ],
    "references": [
@@ -1404,19 +1404,19 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_centring_translations",
      "kind": "FunctionDef",
-     "line": 2103,
+     "line": 2145,
      "quote": "Centring translations (incl.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_draw_centring_markers",
      "kind": "FunctionDef",
-     "line": 2123,
+     "line": 2165,
      "quote": "Explicitly indicate pure lattice (centring) translations.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -1675,7 +1675,7 @@
      "line": 1,
      "quote": "The 230 standard-setting space groups: number, Hermann-Mauguin symbol, Hall symbol, and crystal system.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/space_groups.py",
-     "sha256": "eafe184f67476b6e55638be430331a160d50e7b07861b719c1d7b5fff2ea65ce"
+     "sha256": "352396afd2b2a1fc51fc2f9d7b78fc92cb2d5d2d59d9178fb6af79945ca338b0"
     },
     {
      "module": "agentsg/cell/constraints.py",
@@ -1906,19 +1906,19 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "classify_element",
      "kind": "FunctionDef",
-     "line": 1792,
+     "line": 1834,
      "quote": "Classify a symmetry operation (W, w) as an ITA symmetry element.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "classify_space_group",
      "kind": "FunctionDef",
-     "line": 1803,
+     "line": 1845,
      "quote": "Classify every operation of a space group.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -2132,10 +2132,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_draw_bar4",
      "kind": "FunctionDef",
-     "line": 874,
+     "line": 916,
      "quote": "ITA −4: an open square with a lens inscribed in it.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -2434,34 +2434,34 @@
      "line": 1,
      "quote": "ITA-style space-group diagrams (general-position and symmetry-element).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "general_position_diagram",
      "kind": "FunctionDef",
-     "line": 1315,
+     "line": 1357,
      "quote": "Draw the ITA general-position (equivalent-points) diagram.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "symmetry_element_diagram",
      "kind": "FunctionDef",
-     "line": 2165,
+     "line": 2207,
      "quote": "Draw the ITA symmetry-element diagram.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "ita_plate",
      "kind": "FunctionDef",
-     "line": 2989,
+     "line": 3031,
      "quote": "Render the classic ITA pairing: general-position diagram (left) and symmetry-element diagram (right), with a header.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -2732,28 +2732,28 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "best_general_point",
      "kind": "FunctionDef",
-     "line": 1213,
+     "line": 1255,
      "quote": "A general position whose projected orbit stays readable.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "general_position_multiplicity",
      "kind": "FunctionDef",
-     "line": 3155,
+     "line": 3202,
      "quote": "Number of distinct general-position points in one cell (== group order including centring).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "general_position_images",
      "kind": "FunctionDef",
-     "line": 528,
+     "line": 570,
      "quote": "Exact ITA description of every general-position image.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -2825,10 +2825,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_stabilizer",
      "kind": "FunctionDef",
-     "line": 1464,
+     "line": 1506,
      "quote": "Operations that fix ``centre`` (torus distance).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -10562,10 +10562,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 822,
+     "line": 994,
      "quote": "SVD the hit-set linear keys and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "d398cdd213f0527ce73cffc3f1470aac9dca32955a6d5d8f9236b8667d3fed02"
+     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -10615,10 +10615,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_hull_polygon",
      "kind": "FunctionDef",
-     "line": 1562,
+     "line": 1604,
      "quote": "2D convex hull as an (n, 2) array, or None when the points are flat.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -10740,10 +10740,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_stabilizer",
      "kind": "FunctionDef",
-     "line": 1464,
+     "line": 1506,
      "quote": "Operations that fix ``centre`` (torus distance).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -11299,10 +11299,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_projection_maps",
      "kind": "FunctionDef",
-     "line": 1126,
+     "line": 1168,
      "quote": "In-plane affine maps of every operation: image (right, down) = A x + t.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -11963,46 +11963,46 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "draw_axis_symbol",
      "kind": "FunctionDef",
-     "line": 823,
+     "line": 865,
      "quote": "Draw a rotation/screw/rotoinversion axis symbol perpendicular to the page at fractional position ``xy`` (b-right/a-down mapping done by the caller).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "draw_plane_symbol",
      "kind": "FunctionDef",
-     "line": 1050,
+     "line": 1092,
      "quote": "Draw a plane (perpendicular to the page) as a styled line from p0 to p1.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "draw_parallel_plane_symbol",
      "kind": "FunctionDef",
-     "line": 915,
+     "line": 957,
      "quote": "ITA symbol for a plane PARALLEL to the page (normal perpendicular to the projection): a right-angle bracket in a cell corner, drawn with SOLID legs.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "symbol_legend",
      "kind": "FunctionDef",
-     "line": 1083,
+     "line": 1125,
      "quote": "Render every ITA glyph this module draws, with a label, on one axes.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "element_legend",
      "kind": "FunctionDef",
-     "line": 2725,
+     "line": 2767,
      "quote": "Legend of only the symmetry elements that actually occur in ``sg``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -12056,19 +12056,19 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "height_label",
      "kind": "FunctionDef",
-     "line": 517,
+     "line": 559,
      "quote": "ITA height string for an image whose depth is ``coef * coord + t``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "frac_label",
      "kind": "FunctionDef",
-     "line": 472,
+     "line": 514,
      "quote": "``Fraction`` in [0, 1) -> one fraction glyph ('' for 0, '½', '⁵⁄₁₂').",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -12113,19 +12113,19 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_draw_cubic_polyhedra",
      "kind": "FunctionDef",
-     "line": 1662,
+     "line": 1704,
      "quote": "Orthogonal polyhedra over the closed cell, with a circle at each corner.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_hull_polygon",
      "kind": "FunctionDef",
-     "line": 1562,
+     "line": 1604,
      "quote": "2D convex hull as an (n, 2) array, or None when the points are flat.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
@@ -12169,28 +12169,28 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "cell_frame",
      "kind": "FunctionDef",
-     "line": 264,
+     "line": 306,
      "quote": "Shape of the projected unit cell, derived from the operations.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     },
     {
      "module": "agentsg/serve/handlers.py",
      "symbol": "default_projection",
      "kind": "FunctionDef",
-     "line": 379,
+     "line": 446,
      "quote": "Project a monoclinic group along its unique axis, else along c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "d398cdd213f0527ce73cffc3f1470aac9dca32955a6d5d8f9236b8667d3fed02"
+     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
     },
     {
      "module": "agentsg/serve/handlers.py",
      "symbol": "_unique_axis",
      "kind": "FunctionDef",
-     "line": 391,
+     "line": 458,
      "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "d398cdd213f0527ce73cffc3f1470aac9dca32955a6d5d8f9236b8667d3fed02"
+     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
     }
    ],
    "references": [
@@ -12883,10 +12883,10 @@
      "module": "agentsg/cell/diagrams.py",
      "symbol": "_draw_position_mark",
      "kind": "FunctionDef",
-     "line": 1587,
+     "line": 1629,
      "quote": "Open circle at a general position, with a comma for the opposite hand.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/diagrams.py",
-     "sha256": "682213a63675fa6224ab13f36f7fa104f4fd2d6b42293de3fb00041945d670e5"
+     "sha256": "c5d1952332c620fc07552f6b8e6a04a2cd597de55ade9580624a959f65dd1f03"
     }
    ],
    "references": [
