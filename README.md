@@ -180,7 +180,7 @@ sorted_linear_key((78, 78, 37, 90, 90, 90))
 d = sorted_linear_distance((78, 78, 37, 90, 90, 90), (79, 79, 38, 90, 90, 90))
 
 # pdb_search distances are in this same metric
-db = CellDatabase("data/pdb_cells_sorted_linear.duckdb")
+db = CellDatabase("data/pdb_cells.duckdb")
 idx = db.build_index()
 hits = idx.k_nearest((100, 100, 100, 90, 90, 90), k=20)
 ```

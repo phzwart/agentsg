@@ -39,6 +39,8 @@ from .semi_invariants import (
     floating_origin_basis, pin_floating_origin, is_allowed_origin,
     discrete_allowed_origins,
 )
+from .normalizer import EuclideanNormalizer, euclidean_normalizer
+from .match_models import MatchResult, MatchCandidate, match_models
 from .reflections import (
     reflection_conditions, EquivalentHKL,
     equivalent_reflections, are_equivalent_reflections,
@@ -75,6 +77,8 @@ __all__ = [
     "SemiInvariant", "semi_invariants", "is_semi_invariant",
     "floating_origin_basis", "pin_floating_origin", "is_allowed_origin",
     "discrete_allowed_origins",
+    "EuclideanNormalizer", "euclidean_normalizer",
+    "MatchResult", "MatchCandidate", "match_models",
     "reflection_conditions", "EquivalentHKL",
     "equivalent_reflections", "are_equivalent_reflections",
     "epsilon_factor", "reflection_multiplicity", "laue_multiplicity",

@@ -77,6 +77,14 @@ TOOL_CONCEPTS: dict[str, list[str]] = {
     ],
     "harker_info": ["harker_section", "symmetry_operation"],
     "allowed_origins_info": ["allowed_origins", "floating_origin"],
+    "normalizer_info": [
+        "euclidean_normalizer", "euclidean_normalizer_linear", "allowed_origins",
+        "floating_origin", "numeric_gate",
+    ],
+    "match_models_info": [
+        "model_matching", "euclidean_normalizer", "allowed_origins",
+        "floating_origin", "torus_distance",
+    ],
     "site_info": ["site_symmetry", "wyckoff_position", "crystallographic_orbit"],
     "subgroups_info": ["subgroup", "t_subgroup", "k_subgroup"],
     "lattice_symmetry_info": [
@@ -92,7 +100,7 @@ TOOL_CONCEPTS: dict[str, list[str]] = {
         "numeric_gate",
     ],
     "pdb_search": [
-        "pdb_lattice_search", "kurlin_root_form", "kd_tree", "primitive_cell",
+        "pdb_lattice_search", "sorted_linear_key", "kurlin_root_form", "kd_tree", "primitive_cell",
         "reference_orbit", "selling_closure", "tolerance_gated_matching", "numeric_gate",
     ],
     "ita_plate_json": [
@@ -259,6 +267,100 @@ def allowed_origins_info(data: dict[str, Any]) -> dict[str, Any]:
         "origins": [vec_to_json(o) for o in origins],
         "floating_origin": [vec_to_json(v) for v in floating],
     })
+
+
+def _candidate_json(item) -> dict[str, Any]:
+    return {
+        "reindex": matrix_to_json(item.reindex),
+        "operator": item.operator.as_xyz(),
+        "discrete_origin": vec_to_json(item.discrete_origin),
+        "floating_shift": [frac_to_json(component) for component in item.floating_shift.v],
+        "rmsd": item.rmsd,
+        "snap_residual": list(item.snap_residual),
+        "ambiguous_snap": item.ambiguous_snap,
+        "det": item.det,
+    }
+
+
+def normalizer_info(data: dict[str, Any]) -> dict[str, Any]:
+    """Euclidean normalizer. JSON follows the allowed-origins vectors."""
+    from ..normalizer import euclidean_normalizer
+    rec = resolve_sg(data.get("sg"))
+    cell = None if data.get("cell") is None else parse_cell(data.get("cell"))
+    length_tol = float(data.get("length_tol_pct", METRIC_LENGTH_TOL_PCT))
+    angle_tol = float(data.get("angle_tol_deg", METRIC_ANGLE_TOL_DEG))
+    norm = euclidean_normalizer(
+        rec, cell, length_tol_pct=length_tol, angle_tol_deg=angle_tol,
+    )
+    return _with_concepts("normalizer_info", {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "metric_specialized": norm.metric_specialized,
+        "index": norm.index(),
+        "n_linear": len(norm.linear_reps),
+        "n_origins": norm.origin_lattice.n_alternative_origins,
+        "origins": [vec_to_json(origin) for origin in norm.origin_lattice.discrete_origins()],
+        "floating_origin": [vec_to_json(vector) for vector in norm.origin_lattice.floating],
+        "linear_reps": [
+            {"M": matrix_to_json(matrix), "m": vec_to_json(shift), "det": det}
+            for matrix, shift, det in norm.linear_reps
+        ],
+        "rejected": [
+            {"M": matrix_to_json(matrix), "reason": reason}
+            for matrix, reason in norm.rejected
+        ],
+        "gates": norm.gates,
+        "note": (
+            "det -1 maps a chiral molecule to its mirror image. "
+            "The affine normalizer is not computed, and Wyckoff letters are not assigned."
+        ),
+    })
+
+
+def match_models_info(data: dict[str, Any]) -> dict[str, Any]:
+    """Match two corresponding models. Arrays, or two PDB paths when gemmi is installed."""
+    from ..match_models import match_models, match_models_pdb
+    allow = data.get("allow_improper", False)
+    if isinstance(allow, str):
+        allow = allow.lower() in ("1", "true", "yes")
+    cartesian = data.get("cartesian", False)
+    if isinstance(cartesian, str):
+        cartesian = cartesian.lower() in ("1", "true", "yes")
+    chain_map = None
+    if data.get("pdb_a") or data.get("pdb_b"):
+        if not data.get("pdb_a") or not data.get("pdb_b"):
+            raise ValueError("pdb_a and pdb_b are both required")
+        result, chain_map = match_models_pdb(
+            data["pdb_a"], data["pdb_b"], data.get("sg"),
+            cell_a=data.get("cell_a"), cell_b=data.get("cell_b"),
+            allow_improper=bool(allow),
+        )
+        rec = resolve_sg(data.get("sg"))
+    else:
+        if data.get("xyz_a") is None or data.get("xyz_b") is None:
+            raise ValueError("xyz_a and xyz_b are required when pdb paths are omitted")
+        rec = resolve_sg(data.get("sg"))
+        result = match_models(
+            data["xyz_a"], data["xyz_b"], rec, data.get("cell_a"),
+            cell_b=data.get("cell_b"), allow_improper=bool(allow),
+            cartesian=bool(cartesian),
+        )
+    payload = {
+        "sg_number": rec.number,
+        "sg_hm": rec.hermann_mauguin,
+        "n_atoms": result.n_atoms,
+        "enantiomorph_flag": result.enantiomorph_flag,
+        "best": _candidate_json(result.best),
+        "ranked": [_candidate_json(item) for item in result.ranked],
+        "note": (
+            "det -1 maps a chiral molecule to its mirror image. "
+            "enantiomorph_flag is true when such a representative fits better "
+            "than every proper one."
+        ),
+    }
+    if chain_map is not None:
+        payload["chain_map"] = [[left, right] for left, right in chain_map]
+    return _with_concepts("match_models_info", payload)
 
 
 def subgroups_info(data: dict[str, Any]) -> dict[str, Any]:

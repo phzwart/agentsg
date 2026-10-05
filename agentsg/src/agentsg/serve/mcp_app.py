@@ -110,8 +110,8 @@ def _mcp_playbook(base: str) -> str:
         "| Draw / show the ITA plate | `ita_plate` with `sg`. The result includes the PNG and every in-cell copy. |",
     )
     body = body.replace(
-        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Add `"plot": true` for an SVD scatter of those hits. Add `"return_cob": true` for the change of basis and the `gates` that produced it |',
-        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis and the `gates` that produced it. |",
+        '| Find similar PDB cells | `POST /v1/pdb/search` with `sg` + `cutoff` or `k`. Distances are Å on `sort(p/sqrt(Σ p))`. Add `"plot": true` for an SVD scatter of those linear keys. Add `"return_cob": true` for the change of basis and the `gates` that produced it |',
+        "| Find similar PDB cells | `pdb_search` with `sg` and `cutoff` or `k`. Distances are Å on `sort(p/sqrt(Σ p))`. Set `plot` true for the scatter PNG. Set `return_cob` true for the change of basis and the `gates` that produced it. |",
     )
     body = body.replace(
         "| Neighbours along one relation | `GET /v1/concept/neighbors?id=glide_a&relation=SPECIALIZES` |",
@@ -132,6 +132,14 @@ def _mcp_playbook(base: str) -> str:
     body = body.replace(
         "| Allowed origins of a space group | `GET /v1/allowed-origins?sg=225` |",
         "| Allowed origins of a space group | `allowed_origins` with `sg` |",
+    )
+    body = body.replace(
+        "| Euclidean normalizer | `GET /v1/normalizer?sg=19`. Optional `cell` when the metric may add operators. Quote `gates`. det −1 maps a chiral molecule to its mirror image |",
+        "| Euclidean normalizer | `normalizer` with `sg` and an optional `cell`. Quote `gates`. det −1 maps a chiral molecule to its mirror image |",
+    )
+    body = body.replace(
+        "| Match two models with corresponding atoms | `POST /v1/match-models` with `sg`, `cell_a`, `xyz_a`, `xyz_b` (or `pdb_a` and `pdb_b`) |",
+        "| Match two models with corresponding atoms | `match_models` with `sg`, `cell_a`, and `xyz_a`/`xyz_b` or `pdb_a`/`pdb_b` |",
     )
     body = body.replace(
         "| What cutoff was used? | `GET /v1/concept?id=numeric_gate`. The constants live in `tolerances.py` |",
@@ -174,6 +182,7 @@ def _mcp_playbook(base: str) -> str:
         ("GET /v1/concept?id=t_subgroup", 'concept with id="t_subgroup"'),
         ("GET /v1/concept?id=k_subgroup", 'concept with id="k_subgroup"'),
         ("GET /v1/concept?id=reciprocal_lattice", 'concept with id="reciprocal_lattice"'),
+        ("GET /v1/concept?id=sorted_linear_key", 'concept with id="sorted_linear_key"'),
         (
             "GET /v1/concept/receipt?id=ent:concept:allowed_origins",
             'concept_receipt with receipt="ent:concept:allowed_origins"',
@@ -208,7 +217,7 @@ You have MCP tools for the agentsg crystallography engine.
 
 After a tool error, read the message and retry with corrected arguments. Do not invent a result.
 
-HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `allowed_origins`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_used_by`, `concept_module`, `concept_receipt`, `playbook`.
+HTTP paths named below are the same operations. Call the tool instead: `space_group`, `reflections`, `site`, `harker`, `allowed_origins`, `normalizer`, `match_models`, `subgroups`, `ita_plate`, `setting`, `identify`, `cell`, `lattice_symmetry`, `compare_cells`, `reindex`, `pdb_search`, `pdb_lookup`, `concept`, `concept_uses`, `concept_used_by`, `concept_module`, `concept_receipt`, `playbook`.
 
 **Concepts.** For “what does this word mean?”, “where is this implemented?”, “what does this rest on?”, “what uses this?”, “what does this file implement?”, or “where did that sentence come from?”, call `concept`, `concept_uses`, `concept_used_by`, `concept_module`, or `concept_receipt`. Answer in ordinary sentences, as at a blackboard: no heading and no list. Name the file and the function in the sentence. Put links at the end. Skip hashes and receipt ids unless they ask. When they ask what you can explain about the code, offer the list under Concept questions and wait for one.
 
@@ -340,6 +349,59 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         (empty when the origin is unique, one vector for a polar axis, three for P1).
         """
         return _result(handlers.allowed_origins_info, {"sg": sg})
+
+    @mcp.tool(annotations=_READONLY)
+    def normalizer(
+        sg: str,
+        cell: list[float] | None = None,
+        length_tol_pct: float = METRIC_LENGTH_TOL_PCT,
+        angle_tol_deg: float = METRIC_ANGLE_TOL_DEG,
+    ) -> dict[str, Any]:
+        """Euclidean normalizer of a space group.
+
+        cell: optional a, b, c in Å and alpha, beta, gamma in degrees. Without
+        it, the holohedry is that of the group's lattice type.
+        det -1 maps a chiral molecule to its mirror image. The affine
+        normalizer is not computed. Quote gates from the result.
+        """
+        return _result(handlers.normalizer_info, _clean({
+            "sg": sg,
+            "cell": cell,
+            "length_tol_pct": length_tol_pct,
+            "angle_tol_deg": angle_tol_deg,
+        }))
+
+    @mcp.tool(annotations=_READONLY)
+    def match_models(
+        sg: str,
+        cell_a: list[float],
+        xyz_a: list[list[float]] | None = None,
+        xyz_b: list[list[float]] | None = None,
+        cell_b: list[float] | None = None,
+        pdb_a: str | None = None,
+        pdb_b: str | None = None,
+        allow_improper: bool = False,
+        cartesian: bool = False,
+    ) -> dict[str, Any]:
+        """Match corresponding atoms under the Euclidean normalizer.
+
+        xyz_a and xyz_b are fractional coordinates in the same order, or
+        Cartesian when cartesian is true. pdb_a and pdb_b are file paths
+        paired by chain, residue, and atom name (requires gemmi).
+        det -1 is included only when allow_improper is true. It maps a chiral
+        molecule to its mirror image.
+        """
+        return _result(handlers.match_models_info, _clean({
+            "sg": sg,
+            "cell_a": cell_a,
+            "xyz_a": xyz_a,
+            "xyz_b": xyz_b,
+            "cell_b": cell_b,
+            "pdb_a": pdb_a,
+            "pdb_b": pdb_b,
+            "allow_improper": allow_improper,
+            "cartesian": cartesian,
+        }))
 
     @mcp.tool(annotations=_READONLY)
     def subgroups(sg: str, kind: str = "both", maximal: bool = True) -> dict[str, Any]:

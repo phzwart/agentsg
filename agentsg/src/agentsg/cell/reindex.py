@@ -146,7 +146,7 @@ def reindexing_operator(cell_A, cell_B, length_tol_pct=METRIC_LENGTH_TOL_PCT, an
     return ops[0] if ops else None
 
 
-def twin_laws(space_group_key, cell, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle_tol_deg=METRIC_ANGLE_TOL_DEG):
+def twin_laws(space_group_key, cell, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle_tol_deg=METRIC_ANGLE_TOL_DEG, classify=False):
     """Return twin-law coset representatives for a crystal on a given lattice.
 
     The lattice symmetry group ``H`` (holohedry, tolerance-aware) contains the
@@ -158,6 +158,11 @@ def twin_laws(space_group_key, cell, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle
 
     Captures pseudo-merohedry as well as exact merohedry, because ``H`` is the
     tolerance metric-automorphism group.
+
+    With ``classify=True`` each representative is labeled ``normalizer`` when
+    it conjugates the space group to itself (a re-indexing ambiguity, or an
+    equivalent placement of the model) and ``twin`` when it changes the space
+    group. The unlabeled list is unchanged when the flag is omitted.
     """
     from ..space_groups import space_group
     from ..group import point_group
@@ -188,4 +193,14 @@ def twin_laws(space_group_key, cell, length_tol_pct=METRIC_LENGTH_TOL_PCT, angle
         if coset not in covered:
             covered.add(coset)
             reps.append(M)
-    return reps
+    if not classify:
+        return reps
+    from ..normalizer import euclidean_normalizer
+    norm = euclidean_normalizer(
+        space_group_key, cell,
+        length_tol_pct=length_tol_pct, angle_tol_deg=angle_tol_deg,
+    )
+    accepted = set()
+    for M, _shift, _det in norm.linear_reps:
+        accepted.add(tuple(tuple(int(x) for x in row) for row in M.rows))
+    return [(M, "normalizer" if M in accepted else "twin") for M in reps]

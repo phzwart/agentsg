@@ -215,6 +215,50 @@ ENDPOINTS: list[dict[str, Any]] = [
         "_op_ids": {"GET": "allowedOriginsGet", "POST": "allowedOrigins"},
     },
     {
+        "path": "/v1/normalizer",
+        "methods": ["GET", "POST"],
+        "description": (
+            "Euclidean normalizer of a space group: holohedry rotations that "
+            "conjugate the operators to themselves, and the allowed-origin "
+            "translations. det -1 maps a chiral molecule to its mirror image"
+        ),
+        "params": [
+            _p("sg", "string", True, "IT number, Hermann–Mauguin, or Hall"),
+            _p("cell", "string", False,
+               "Optional a,b,c,alpha,beta,gamma. Without it, the lattice-type holohedry is used"),
+            _p("length_tol_pct", "float", False, "Edge tolerance in percent. Default METRIC_LENGTH_TOL_PCT (2)"),
+            _p("angle_tol_deg", "float", False, "Angle tolerance in degrees. Default METRIC_ANGLE_TOL_DEG (2)"),
+        ],
+        "example": _curl("/v1/normalizer?sg=19"),
+        "side_effects": "none",
+        "_op_ids": {"GET": "normalizerGet", "POST": "normalizer"},
+    },
+    {
+        "path": "/v1/match-models",
+        "methods": ["POST"],
+        "description": (
+            "Match corresponding atoms under the Euclidean normalizer. "
+            "Pass xyz_a and xyz_b, or pdb_a and pdb_b"
+        ),
+        "params": [
+            _p("sg", "string", True, "IT number, Hermann–Mauguin, or Hall"),
+            _p("cell_a", "list", True, "a, b, c, alpha, beta, gamma of model A"),
+            _p("xyz_a", "list", False, "Fractional or Cartesian coordinates of model A"),
+            _p("xyz_b", "list", False, "Coordinates of model B, same order as xyz_a"),
+            _p("cell_b", "list", False, "Cell of model B. Defaults to cell_a"),
+            _p("pdb_a", "string", False, "PDB or mmCIF path. Requires gemmi"),
+            _p("pdb_b", "string", False, "PDB or mmCIF path. Requires gemmi"),
+            _p("allow_improper", "bool", False, "Include det -1 representatives. They mirror a chiral molecule"),
+            _p("cartesian", "bool", False, "xyz arrays are Cartesian rather than fractional"),
+        ],
+        "example": _curl(
+            "/v1/match-models",
+            data='{"sg":19,"cell_a":[10,15,22,90,90,90],"xyz_a":[[0.1,0.2,0.3]],"xyz_b":[[0.1,0.2,0.3]]}',
+        ),
+        "side_effects": "none",
+        "_op_ids": {"POST": "matchModels"},
+    },
+    {
         "path": "/v1/subgroups",
         "methods": ["GET", "POST"],
         "description": (

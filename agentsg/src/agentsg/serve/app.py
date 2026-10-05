@@ -154,6 +154,8 @@ def make_handler(state: ServerState):
                 return handlers.harker_info(query_to_body(qs))
             if path == "/v1/allowed-origins":
                 return handlers.allowed_origins_info(query_to_body(qs))
+            if path == "/v1/normalizer":
+                return handlers.normalizer_info(query_to_body(qs))
             if path == "/v1/subgroups":
                 return handlers.subgroups_info(query_to_body(qs))
             if path == "/v1/ita-plate":
@@ -205,6 +207,10 @@ def make_handler(state: ServerState):
                 return handlers.harker_info(data)
             if path == "/v1/allowed-origins":
                 return handlers.allowed_origins_info(data)
+            if path == "/v1/normalizer":
+                return handlers.normalizer_info(data)
+            if path == "/v1/match-models":
+                return handlers.match_models_info(data)
             if path == "/v1/subgroups":
                 return handlers.subgroups_info(data)
             if path == "/v1/ita-plate":

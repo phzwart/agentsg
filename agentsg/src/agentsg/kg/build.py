@@ -303,7 +303,7 @@ for step, depends in (
     ("conventional", "conventional_cell"),
     ("primitive", "primitive_cell"),
     ("selling", "delaunay_selling_reduction"),
-    ("root", "kurlin_root_form"),
+    ("linear", "sorted_linear_key"),
     ("kdtree", "kd_tree"),
 ):
     used = _code_ids(depends)[:1]

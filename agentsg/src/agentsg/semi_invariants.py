@@ -85,6 +85,11 @@ class OriginLattice:
     _V: tuple[tuple[int, ...], ...]      # rows of V; column v_i = generator i
     _V_inv: tuple[tuple[int, ...], ...]
     _s: tuple[int, ...]
+    # Smith factor ``U A V = D`` of the stacked ``(W − I)`` blocks in the
+    # primitive basis, and the rotation order of those blocks. The Euclidean
+    # normalizer reuses this factorization instead of recomputing it.
+    _U: tuple[tuple[int, ...], ...] = ()
+    _stack_W: tuple[Matrix3, ...] = ()
 
     @property
     def n_alternative_origins(self) -> int:
@@ -189,15 +194,19 @@ def _origin_lattice_cached(ops: tuple[SymmetryOp, ...]) -> OriginLattice:
             A.extend(AW)
         U, s, V = smith_normal_form(A)
     else:
+        U = []
         s, V = [0, 0, 0], [[int(i == j) for j in range(3)] for i in range(3)]
     s = list(s) + [0] * (3 - len(s))
     V_inv = _unimodular_inverse(V)
     Vt = tuple(tuple(r) for r in V)
     Vi = tuple(tuple(r) for r in V_inv)
+    Ut = tuple(tuple(int(x) for x in row) for row in U)
+    stack_W = tuple(rotations)
 
     lat = OriginLattice(
         floating=(), torsion=(), centering=tuple(centering),
         _Bt=Bt, _Bt_inv=Bt_inv, _V=Vt, _V_inv=Vi, _s=tuple(s),
+        _U=Ut, _stack_W=stack_W,
     )
 
     # Floating directions: pull back kernel columns, then HNF for a canonical
@@ -220,6 +229,7 @@ def _origin_lattice_cached(ops: tuple[SymmetryOp, ...]) -> OriginLattice:
     return OriginLattice(
         floating=floating, torsion=tuple(torsion), centering=tuple(centering),
         _Bt=Bt, _Bt_inv=Bt_inv, _V=Vt, _V_inv=Vi, _s=tuple(s),
+        _U=Ut, _stack_W=stack_W,
     )
 
 
