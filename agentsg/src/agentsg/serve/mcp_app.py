@@ -464,10 +464,12 @@ def build_mcp(state: ServerState, *, public_url: str = _PUBLIC_DEFAULT):
         angle_sigma: float = COB_ANGLE_SIGMA_DEG,
         boundary_rel: float = BOUNDARY_REL,
     ) -> dict[str, Any]:
-        """PDB lattices near a cell on the sorted Kurlin root invariant.
+        """PDB lattices near a cell on the sorted linear key.
 
-        Provide cutoff (Å) and/or k nearest neighbours. sg is required so centred
-        cells are reduced to primitive before the search.
+        Distances are ångström in ``sort(p_ij / sqrt(Σ p))``. Provide cutoff
+        (Å) and/or k nearest neighbours. sg is required so centred cells are
+        reduced to primitive before the search. The response ``pipeline``
+        reports ``invariant: sorted_linear_key``.
         plot: when true, the tool result includes a PC1–PC2 scatter PNG of the hits.
         return_cob: when true, Selling-reduce the query and attach cob from the
         query cell onto each deposited hit. The match uses COB_LENGTH_TOL_PCT

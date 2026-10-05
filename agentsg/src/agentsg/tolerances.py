@@ -40,6 +40,9 @@ COMPARE_ANGLE_TOL_DEG = 5.0
 VOLUME_FRAC = 0.05
 "Fractional volume agreement required for a sublattice index or a supercell match."
 
+# COB_LENGTH_TOL_PCT, COB_ANGLE_TOL_DEG, COB_ANGLE_SIGMA_DEG, and BOUNDARY_REL
+# are edge, angle, and conorm gates on the reduced cell. They do not depend on
+# whether the archive search key is the linear map or the square-root products.
 COB_LENGTH_TOL_PCT = 0.75
 "Percent edge tolerance for a Selling-closure member to match a stored reduced cell."
 

@@ -1,7 +1,7 @@
 """HTTP API for PDB lattice-similarity search.
 
 Serves radius queries against a prebuilt DuckDB file (``pdb_cells.duckdb``)
-using the Kurlin root invariant. Requires DuckDB (``pip install agentsg[db]``).
+using the sorted linear key. Requires DuckDB (``pip install agentsg[db]``).
 
 Computation pipeline (query and stored PDB rows use the same path)
 -----------------------------------------------------------------
@@ -13,10 +13,10 @@ Computation pipeline (query and stored PDB rows use the same path)
    lattice via the ITA Table 5.1.3.1 transforms (:mod:`agentsg.cell.primitive`).
 3. **Selling / Delaunay reduction** — the primitive cell is reduced to an
    obtuse superbase (:func:`agentsg.cell.rootform.delaunay_superbase`).
-4. **Root form** — conorms ``p_ij = -v_i·v_j`` → root products ``√p_ij`` →
-   Kurlin root invariant (:func:`agentsg.cell.rootform.root_invariant`).
-5. **Search** — Euclidean distance on the six root components (Å); a cKDTree
-   index over precomputed database roots returns all PDB ids within ``cutoff``.
+4. **Linear key** — conorms ``p_ij = -v_i·v_j`` → ``p_ij / sqrt(Σ p)`` →
+   sorted linear key (:func:`agentsg.cell.rootform.sorted_linear_key`).
+5. **Search** — Euclidean distance on the six linear components (Å); a cKDTree
+   index over precomputed database keys returns all PDB ids within ``cutoff``.
 
 Command-line usage::
 
@@ -55,7 +55,7 @@ Response (both methods)::
       "pipeline": {
         "centering_to_primitive": "ITA Table 5.1.3.1",
         "reduction": "selling_delaunay",
-        "invariant": "kurlin_root"
+        "invariant": "sorted_linear_key"
       },
       "count": 3,
       "hits": [
@@ -64,7 +64,7 @@ Response (both methods)::
       ]
     }
 
-Distances are root-product units (Å).
+Distances are linear-key units (Å).
 """
 from __future__ import annotations
 
@@ -82,7 +82,7 @@ from .primitive import lattice_letter, primitive_cell
 _PIPELINE = {
     "centering_to_primitive": "ITA Table 5.1.3.1",
     "reduction": "selling_delaunay",
-    "invariant": "kurlin_root",
+        "invariant": "sorted_linear_key",
 }
 
 
@@ -119,8 +119,8 @@ def search_compatible(
     """Return PDB ids within ``cutoff`` Å (root distance) of ``cell``.
 
     The query cell is reduced to primitive using ``sg_hm`` (centering letter),
-    then Selling/Delaunay-reduced to the Kurlin root invariant before distance
-    is computed — matching how roots were stored at database build time.
+    then Selling/Delaunay-reduced to the sorted linear key before distance
+    is computed — matching how keys were stored at database build time.
 
     When ``same_hm`` is true (``same_sg`` is accepted as an alias), candidates
     are restricted to the same Hermann-Mauguin setting string, not the IT

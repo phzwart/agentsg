@@ -1,4 +1,4 @@
-"""Scatter plot of a PDB-search hit set in the SVD basis of its Kurlin roots."""
+"""Scatter plot of a PDB-search hit set in the SVD basis of its linear keys."""
 from __future__ import annotations
 
 import base64
@@ -9,14 +9,14 @@ import numpy as np
 
 
 def root_svd(roots) -> dict[str, Any]:
-    """Mean-centred SVD of an (n, 6) Kurlin-root matrix.
+    """Mean-centred SVD of an (n, 6) linear-key matrix.
 
     Returns scores on the first two right singular vectors, the column mean,
     ``Vt``, and a JSON-ready spectrum. ``n`` must be at least 2.
     """
     X = np.asarray(roots, dtype=np.float64)
     if X.ndim != 2 or X.shape[0] < 2 or X.shape[1] != 6:
-        raise ValueError("need at least two 6-vectors of Kurlin roots")
+        raise ValueError("need at least two 6-vectors of the linear key")
     mean = X.mean(axis=0)
     centred = X - mean
     _, sigma, vt = np.linalg.svd(centred, full_matrices=False)
@@ -40,7 +40,7 @@ def root_svd(roots) -> dict[str, Any]:
         "svd": {
             "n": int(X.shape[0]),
             "centered": True,
-            "feature": "root_invariant r0..r5",
+            "feature": "sorted_linear_key l0..l5",
             "singular_values": [float(s) for s in sigma],
             "variance_frac": [float(v) for v in frac],
             "variance_cum": [float(v) for v in cum],
@@ -94,7 +94,7 @@ def render_scatter_png(
     pc2 = 100.0 * variance_frac[1] if len(variance_frac) > 1 else 0.0
     ax.set_xlabel(f"PC1 ({pc1:.1f}% of root variance)")
     ax.set_ylabel(f"PC2 ({pc2:.1f}% of root variance)")
-    ax.set_title("Kurlin roots of the search hits")
+    ax.set_title("Linear keys of the search hits")
     ax.set_aspect("equal", adjustable="datalim")
     cb = fig.colorbar(sc, ax=ax, fraction=0.046, pad=0.04)
     cb.set_label("root distance (Å)")

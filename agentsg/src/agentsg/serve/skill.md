@@ -127,7 +127,7 @@ Fetch `/v1/concept/receipt` only when they ask where a sentence came from. Only 
 
 When they ask what you can explain about the code, offer the questions under **Concept questions** and wait. Do not answer that list as if you had already looked the terms up.
 
-**PDB search**: list `pdb_id`, `distance` (Å on the sorted root invariant), `sg_hm`, `cell`. The index key is the six sorted roots of one obtuse superbase of the primitive lattice. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
+**PDB search**: list `pdb_id`, `distance` (Å on the sorted linear key `sort(p/sqrt(Σ p))`), `sg_hm`, `cell`. The index key is the six scaled Selling conorms of one obtuse superbase of the primitive lattice. `pipeline.invariant` is `sorted_linear_key`. Each stored row also has one Selling-reduced cell and the deposited-to-reduced change of basis. The Selling orbit is computed on the query, not stored. A small `distance` is a candidate, not identity, and it is not an operator.
 
 `cob` is absent unless the request set `return_cob` true. When it is set, the response includes `gates`: `length_tol_pct` 0.75, `angle_tol_deg` 0.5, `angle_sigma_deg` (default 0.05), and `boundary_rel` (default 0.001). Quote those four numbers. The server Selling-reduces the query, enumerates that lattice’s obtuse-superbase closure once, and keeps an operator when a closure member matches the stored reduced cell within `length_tol_pct` in each edge and `angle_tol_deg` in each angle. The closure treats conorms inside `angle_sigma_deg` as zero, and merges near-zero flips inside `boundary_rel`. Both widths are request parameters (`angle_sigma`, `boundary_rel`). `cob` then maps the query cell onto the deposited PDB cell (columns are the PDB basis in the query basis; entries are `[numerator, denominator]`). `cob_xyz` is the same matrix in column notation, for example `(a,b,c)`. `cob_residual` is the remaining mismatch after that operator: the larger of the percent length error and the degree angle error. `cob: null` means no proper operator matched within that tolerance. Do not invent an operator from the distance, and do not read a small distance with `cob: null` as a proof that the crystal forms differ. A reindexed query of the same lattice still returns that PDB id; the operator absorbs the reindexing.
 
@@ -140,10 +140,10 @@ Omit `plot` unless the user asked for a figure. With `"plot": true` the same res
 `plot` true and fewer than 2 hits that have stored roots:
 
 ```
-"plot": { "n": 0, "note": "need at least 2 hits with Kurlin roots" }
+"plot": { "n": 0, "note": "need at least 2 hits with linear keys" }
 ```
 
-`plot` true and at least 2 hits. The server mean-centres the stored Kurlin roots `r0`..`r5` of those hits, takes the SVD, and projects onto the first two right singular vectors. The query cell is placed in that basis afterwards; it is not part of the fit. Point colour is `distance` (Å).
+`plot` true and at least 2 hits. The server mean-centres the stored linear keys `l0`..`l5` of those hits, takes the SVD, and projects onto the first two right singular vectors. The query cell is placed in that basis afterwards; it is not part of the fit. Point colour is `distance` (Å).
 
 ```
 "hits": [
@@ -160,7 +160,7 @@ Omit `plot` unless the user asked for a figure. With `"plot": true` the same res
 "svd": {
   "n": 8,
   "centered": true,
-  "feature": "root_invariant r0..r5",
+  "feature": "sorted_linear_key l0..l5",
   "singular_values": [1.2, 0.3],
   "variance_frac": [0.73, 0.17],
   "variance_cum": [0.73, 0.90],
@@ -174,7 +174,7 @@ Omit `plot` unless the user asked for a figure. With `"plot": true` the same res
 | `hits[].xy` | `[PC1, PC2]` of that hit. Same order as `hits`. |
 | `query_xy` | `[PC1, PC2]` of the query cell. Red star on the figure. |
 | `svd.n` | How many hits entered the SVD. |
-| `svd.feature` | Always `root_invariant r0..r5`. |
+| `svd.feature` | Always `sorted_linear_key l0..l5`. |
 | `svd.singular_values` | Economy SVD, longest first. |
 | `svd.variance_frac` | `σ² / Σσ²` for each component. Quote the first two as the axis percentages. |
 | `svd.variance_cum` | Running sum of `variance_frac`. |
@@ -244,7 +244,7 @@ POST /v1/pdb/search
 {"cell": [79, 79, 38, 90, 90, 90], "sg": 96, "k": 10}
 ```
 
-User: “Plot those cells” / “SVD of the Kurlin roots”
+User: “Plot those cells” / “SVD of the linear keys”
 
 ```
 POST /v1/pdb/search
@@ -357,7 +357,7 @@ Only this question asks where a sentence came from, so you may name the receipt.
 
 1. **Derive, do not tabulate.** Absences and site content come from operators. Never invent ITA Wyckoff letters (`a`, `b`, `c`, …).
 2. **Centred cells need `sg`.** C/I/F/R conventional cells must be reduced to primitive before any root, PDB search, or lattice comparison. Always send `sg`.
-3. **Kurlin over G6.** Distances are Å on the root invariant. G6 (Å²) is diagnostic only; do not lead with it.
+3. **Linear key over G6.** PDB and search distances are Å on the sorted linear key. G6 (Å²) is diagnostic only; do not lead with it.
 4. **Geometry surfaces; intensities decide.** `/v1/reindex` lists branches. This API cannot pick the intensity branch.
 5. **Root key is not a proof of identity** for every Voronoi type. Small distance means “same lattice for search,” not a theorem. The operator is `cob` from a `return_cob` search, or nothing.
 6. **Monoclinic ITA plates use `projection: "b"`.** The server already defaults monoclinic to `b`; other systems default to `c`.

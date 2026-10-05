@@ -443,7 +443,7 @@ ENDPOINTS: list[dict[str, Any]] = [
     {
         "path": "/search",
         "methods": ["GET", "POST"],
-        "description": "PDB lattices near a cell in Kurlin root space (legacy alias of /v1/pdb/search)",
+        "description": "PDB lattices near a cell in linear-key space (legacy alias of /v1/pdb/search)",
         "params": [
             _p("a", "float", True, "Cell edge a in Å (GET). POST may send cell:[6] instead"),
             _p("b", "float", True, "Cell edge b in Å"),
@@ -453,11 +453,11 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("gamma", "float", True, "Angle γ in degrees"),
             _p("sg", "string", True,
                "IT number or HM. Required so centred cells are reduced to primitive before the root"),
-            _p("cutoff", "float", False, "Radius in Å on the root invariant. Provide cutoff and/or k"),
+            _p("cutoff", "float", False, "Radius in Å on the sorted linear key. Provide cutoff and/or k"),
             _p("k", "int", False, "If set, return this many nearest neighbours"),
             _p("same_hm", "bool", False, "If true, restrict hits to the same Hermann–Mauguin setting"),
             _p("plot", "bool", False,
-               "If true, SVD the hit Kurlin roots and return a PC1–PC2 scatter PNG"),
+               "If true, SVD the hit linear keys and return a PC1–PC2 scatter PNG"),
             _p("return_cob", "bool", False,
                f"If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within {COB_LENGTH_TOL_PCT:g}% and {COB_ANGLE_TOL_DEG:g}°, plus cob_residual (null if none)"),
             _p("angle_sigma", "float", False,
@@ -474,7 +474,7 @@ ENDPOINTS: list[dict[str, Any]] = [
     {
         "path": "/v1/pdb/search",
         "methods": ["GET", "POST"],
-        "description": "PDB lattices within cutoff Å and/or k nearest neighbours on the root invariant",
+        "description": "PDB lattices within cutoff Å and/or k nearest neighbours on the sorted linear key",
         "params": [
             _p("cell", "array", True, "Six cell parameters; GET may use a,b,c,alpha,beta,gamma instead"),
             _p("sg", "string", True, "IT number or HM; required for centring → primitive"),
@@ -482,7 +482,7 @@ ENDPOINTS: list[dict[str, Any]] = [
             _p("k", "int", False, "Nearest-neighbour count"),
             _p("same_hm", "bool", False, "If true, keep only the same Hermann–Mauguin setting"),
             _p("plot", "bool", False,
-               "If true, mean-centred SVD of the hit Kurlin roots; response adds xy, svd, and plot_png_base64"),
+               "If true, mean-centred SVD of the hit linear keys; response adds xy, svd, and plot_png_base64"),
             _p("return_cob", "bool", False,
                f"If true, include cob onto each deposited cell when a det +1 operator matches the reduced cell within {COB_LENGTH_TOL_PCT:g}% and {COB_ANGLE_TOL_DEG:g}°, plus cob_residual (null if none)"),
             _p("angle_sigma", "float", False,

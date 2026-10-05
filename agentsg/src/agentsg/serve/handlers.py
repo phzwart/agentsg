@@ -29,6 +29,7 @@ from ..cell import (
     root_distance,
     root_invariant,
     root_volume_decomposition,
+    sorted_linear_key,
     similarity_distance,
     similarity_invariant,
     surface_geometric_operators,
@@ -676,6 +677,11 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             "same_hm": same_hm,
             "count": len(enriched),
             "hits": enriched,
+            "pipeline": {
+                "centering_to_primitive": "ITA Table 5.1.3.1",
+                "reduction": "selling_delaunay",
+                "invariant": "sorted_linear_key",
+            },
         }
         if return_cob:
             from ..cell.selling_cob import annotate_search_hits
@@ -711,7 +717,7 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
 
 
 def _attach_root_plot(state, result: dict[str, Any]) -> None:
-    """SVD the hit-set Kurlin roots and attach a PC1–PC2 scatter."""
+    """SVD the hit-set linear keys and attach a PC1–PC2 scatter."""
     from .scatter import scatter_payload
 
     hits = result.get("hits") or []
@@ -729,14 +735,14 @@ def _attach_root_plot(state, result: dict[str, Any]) -> None:
     if len(rows) < 2:
         result["plot"] = {
             "n": len(rows),
-            "note": "need at least 2 hits with Kurlin roots",
+            "note": "need at least 2 hits with linear keys",
         }
         return
     payload = scatter_payload(
         rows,
         [h["pdb_id"] for h in kept],
         distances,
-        root_invariant(result["primitive_cell"]),
+        sorted_linear_key(result["primitive_cell"]),
     )
     for hit, xy in zip(kept, payload["xy"]):
         hit["xy"] = xy

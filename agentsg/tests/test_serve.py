@@ -315,7 +315,7 @@ def test_pdb_search_and_lookup(sample_db):
         assert status == 200
         assert plotted["count"] == 2
         assert plotted["svd"]["n"] == 2
-        assert plotted["svd"]["feature"] == "root_invariant r0..r5"
+        assert plotted["svd"]["feature"] == "sorted_linear_key l0..l5"
         assert len(plotted["svd"]["variance_frac"]) >= 1
         for hit in plotted["hits"]:
             assert len(hit["xy"]) == 2
