@@ -111,17 +111,24 @@ def test_centred_symbol_uses_primitive_roots(tmp_path, monkeypatch):
                                batch_size=8, progress_every=0,
                                log=lambda *_: None)
     db = CellDatabase(dbp)
-    row = db.sql("SELECT a,b,c,alpha,beta,gamma,sg_hm,r0,r1,r2,r3,r4,r5 "
-                 "FROM cells LIMIT 1")[0]
+    row = db.sql(
+        "SELECT a,b,c,alpha,beta,gamma,sg_hm,"
+        "r0,r1,r2,r3,r4,r5,l0,l1,l2,l3,l4,l5 FROM cells LIMIT 1"
+    )[0]
     conv = row[:6]
-    stored = row[7:13]
-    # stored roots are the PRIMITIVE roots, not the conventional ones
-    prim_ri = root_invariant(_primitive_for_roots(conv, row[6]))
+    stored_sqrt = row[7:13]
+    stored_lin = row[13:19]
+    # stored square-root key is the PRIMITIVE key, not the conventional one
+    prim = _primitive_for_roots(conv, row[6])
+    prim_ri = root_invariant(prim)
     conv_ri = root_invariant(conv)
-    dprim = math.sqrt(sum((prim_ri[i] - stored[i]) ** 2 for i in range(6)))
-    dconv = math.sqrt(sum((conv_ri[i] - stored[i]) ** 2 for i in range(6)))
+    dprim = math.sqrt(sum((prim_ri[i] - stored_sqrt[i]) ** 2 for i in range(6)))
+    dconv = math.sqrt(sum((conv_ri[i] - stored_sqrt[i]) ** 2 for i in range(6)))
     assert dprim < 1e-9        # matches primitive
     assert dconv > 1.0         # differs from conventional (the bug we fixed)
+    from agentsg.cell.rootform import sorted_linear_key
+    lin = sorted_linear_key(prim)
+    assert stored_lin == pytest.approx(lin)
     db.close()
 
 
@@ -134,10 +141,11 @@ def test_index_query_matches_brute(tmp_path, monkeypatch):
                                log=lambda *_: None)
     db = CellDatabase(dbp)
     idx = db.build_index()
-    allroots = db.sql("SELECT pdb_id,r0,r1,r2,r3,r4,r5 FROM cells")
+    allroots = db.sql("SELECT pdb_id,l0,l1,l2,l3,l4,l5 FROM cells")
     q = recs[7]
     qcell = (q["a"], q["b"], q["c"], q["alpha"], q["beta"], q["gamma"])
-    qi = root_invariant(_primitive_for_roots(qcell, q["sg_hm"]))
+    from agentsg.cell.rootform import sorted_linear_key
+    qi = sorted_linear_key(_primitive_for_roots(qcell, q["sg_hm"]))
     brute = sorted(
         (math.sqrt(sum((qi[i] - r[i + 1]) ** 2 for i in range(6))), r[0])
         for r in allroots)[:5]

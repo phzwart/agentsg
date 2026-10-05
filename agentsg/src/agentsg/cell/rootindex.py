@@ -1,9 +1,10 @@
-"""KD-tree index over precomputed Kurlin root invariants (6D Euclidean, Å).
+"""KD-tree index over precomputed linear search keys (6D Euclidean, Å).
 
-The root invariant is a fixed 6-vector per lattice, so ``scipy.spatial.cKDTree``
-gives exact nearest-neighbour / radius queries with much lower overhead than the
-pure-Python :class:`~agentsg.cell.neartree.NearTree` (which remains for
-arbitrary metrics such as boundary-aware G6/S6 distances).
+The sorted linear key is a fixed 6-vector per lattice, so
+``scipy.spatial.cKDTree`` gives exact nearest-neighbour / radius queries with
+much lower overhead than the pure-Python
+:class:`~agentsg.cell.neartree.NearTree` (which remains for arbitrary metrics
+such as boundary-aware G6/S6 distances).
 
 Requires scipy (``pip install agentsg[db]``).
 """
@@ -12,7 +13,7 @@ from __future__ import annotations
 import numpy as np
 
 from .primitive import primitive_cell
-from .rootform import root_invariant
+from .rootform import sorted_linear_key
 
 
 def _primitive_for_roots(cell, sg_hm):
@@ -66,7 +67,7 @@ class RootIndex:
     def _query_root(self, cell, sg_hm=None):
         """Compute the 6D root invariant coordinate for the query cell."""
         return np.asarray(
-            root_invariant(_primitive_for_roots(cell, sg_hm)), dtype=np.float64)
+            sorted_linear_key(_primitive_for_roots(cell, sg_hm)), dtype=np.float64)
 
     def k_nearest(self, cell, k=10, sg_hm=None):
         """Return the k nearest ``(payload, distance)`` to ``cell``."""

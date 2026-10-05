@@ -1,25 +1,25 @@
 """
-celldb: a persistent unit-cell / symmetry database keyed on the root invariant.
+celldb: a persistent unit-cell / symmetry database keyed on the linear key.
 
-Builds and queries a lattice database whose search key is the Kurlin (2022)
-sorted root invariant (:mod:`agentsg.cell.rootform`) — a continuous Euclidean
-key that is injective for V3/V5 and many-to-one for V1/V2/V4, so "find lattices
+Builds and queries a lattice database whose search key is the sorted linear
+key ``sort(p_ij / sqrt(Σ p))`` (:func:`agentsg.cell.rootform.sorted_linear_key`).
+It is injective for V3/V5 and many-to-one for V1/V2/V4, so "find lattices
 like this" is nearest-neighbour search with no orbit minimisation and no
-reduction-flip discontinuity.
+reduction-flip discontinuity. Columns ``r0``..``r5`` keep Kurlin's square-root
+key and are not queried by default.
 
 Two layers:
 
   * Storage / SQL prefilter -- DuckDB (optional; ``pip install agentsg[db]``).
     An embedded, single-file, columnar SQL engine. Each row stores the PDB id,
-    the unit cell, the space group, the cell volume, the six root-invariant
-    components r0..r5, one Selling-reduced cell (red_a..red_gamma), and the
+    the unit cell, the space group, the cell volume, the linear key l0..l5,
+    the legacy square-root key r0..r5, one Selling-reduced cell (red_a..red_gamma), and the
     deposited-to-reduced change of basis (cob00..cob22, exact ``num/den``).
     SQL handles coarse prefiltering (by space group, by
     volume band); the exact ranking is done in memory.
 
   * Exact ranking -- an in-memory cKDTree (:mod:`agentsg.cell.rootindex`) over
-    the root invariants, giving exact k-NN / radius queries in root-product
-    (Angstrom) units.
+    the linear keys, giving exact k-NN / radius queries in ångström.
 
     * PDB ingestion -- :func:`fetch_pdb_cells` pulls unit cell + space group for a
     list of PDB ids (or the entire current holdings) from the RCSB data API
@@ -37,11 +37,15 @@ only :class:`CellDatabase` needs it. The PDB fetch uses only the standard librar
 from __future__ import annotations
 import json
 import urllib.request
-from .rootform import root_invariant, similarity_invariant
+from .rootform import similarity_invariant, sorted_linear_key, sorted_root_key
 from .selling_cob import COB_COLUMNS, cob_column_values, deposited_to_reduced, parse_cob_columns
 from .metric import UnitCell
 from .primitive import primitive_cell
 from ..tolerances import COMPARE_ANGLE_TOL_DEG, COMPARE_LENGTH_TOL_PCT, VOLUME_FRAC
+
+SEARCH_KEY = "sorted_linear_key"
+SCHEMA_VERSION = "2"
+_LINEAR_COLS = tuple(f"l{i}" for i in range(6))
 
 
 def _hm_setting_variants(hm: str) -> list[str]:
@@ -143,12 +147,20 @@ CREATE TABLE IF NOT EXISTS cells (
     volume DOUBLE,
     sg_number INTEGER, sg_hm VARCHAR,
     r0 DOUBLE, r1 DOUBLE, r2 DOUBLE, r3 DOUBLE, r4 DOUBLE, r5 DOUBLE,
+    l0 DOUBLE, l1 DOUBLE, l2 DOUBLE, l3 DOUBLE, l4 DOUBLE, l5 DOUBLE,
     s0 DOUBLE, s1 DOUBLE, s2 DOUBLE, s3 DOUBLE, s4 DOUBLE, s5 DOUBLE,
     red_a DOUBLE, red_b DOUBLE, red_c DOUBLE,
     red_alpha DOUBLE, red_beta DOUBLE, red_gamma DOUBLE,
     cob00 VARCHAR, cob01 VARCHAR, cob02 VARCHAR,
     cob10 VARCHAR, cob11 VARCHAR, cob12 VARCHAR,
     cob20 VARCHAR, cob21 VARCHAR, cob22 VARCHAR
+);
+"""
+
+_META_SCHEMA = """
+CREATE TABLE IF NOT EXISTS schema_meta (
+    key VARCHAR PRIMARY KEY,
+    value VARCHAR
 );
 """
 
@@ -176,13 +188,25 @@ class CellDatabase:
         self._db = duckdb.connect(path, read_only=read_only)
         if not read_only:
             self._db.execute(_SCHEMA)
+            self._db.execute(_META_SCHEMA)
             self._migrate_schema()
 
     def _migrate_schema(self):
-        """Add similarity-invariant columns to existing databases."""
+        """Add columns an older database does not have yet.
+
+        ``l0``..``l5`` are the linear search key. ``r0``..``r5`` stay the
+        square-root key. ``schema_meta.search_key`` is set to
+        ``sorted_linear_key`` only when no row still lacks ``l0``, so an
+        index built on square-root keys is refused until
+        :meth:`backfill_linear_keys`.
+        """
+        self._db.execute(_META_SCHEMA)
         cols = {row[0] for row in self._db.execute("DESCRIBE cells").fetchall()}
         for i in range(6):
             name = f"s{i}"
+            if name not in cols:
+                self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
+        for name in _LINEAR_COLS:
             if name not in cols:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
         for name in ("red_a", "red_b", "red_c", "red_alpha", "red_beta", "red_gamma"):
@@ -191,6 +215,43 @@ class CellDatabase:
         for name in COB_COLUMNS:
             if name not in cols:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} VARCHAR")
+        self._db.execute(
+            "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
+            "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            [SCHEMA_VERSION],
+        )
+        pending = self._db.execute(
+            "SELECT COUNT(*) FROM cells WHERE l0 IS NULL AND r0 IS NOT NULL"
+        ).fetchone()[0]
+        if pending == 0:
+            self._set_search_key()
+
+    def _search_key(self):
+        """Stored search-key name, or None when the database has not been marked."""
+        try:
+            row = self._db.execute(
+                "SELECT value FROM schema_meta WHERE key = 'search_key'"
+            ).fetchone()
+        except Exception:
+            return None
+        return None if row is None else row[0]
+
+    def _set_search_key(self):
+        self._db.execute(
+            "INSERT INTO schema_meta (key, value) VALUES ('search_key', ?) "
+            "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            [SEARCH_KEY],
+        )
+
+    def _require_linear_key(self):
+        """Refuse a query index that is still the square-root key."""
+        key = self._search_key()
+        if key != SEARCH_KEY:
+            raise RuntimeError(
+                "this database is not keyed on sorted_linear_key "
+                f"(search_key={key!r}). Run backfill_linear_keys before "
+                "build_index."
+            )
 
     # -- ingestion --
     def add_cell(self, pdb_id, cell, sg_number=None, sg_hm=None):
@@ -201,15 +262,16 @@ class CellDatabase:
         first): Kurlin's invariant is a lattice invariant, and the deposited
         conventional cell of a centred group describes only a sublattice. The
         stored cell parameters and volume remain the deposited conventional
-        values. The roots, ``red_a`` … ``red_gamma``, and ``cob00`` … ``cob22``
-        are computed on the primitive lattice. ``red_*`` is one obtuse-basis
-        cell and ``cob*`` is ``P`` with ``P^T G P`` equal to that cell. The
-        Selling orbit is not stored.
+        values.         ``l0``..``l5`` are the linear search key and ``r0``..``r5`` are
+        Kurlin's square-root key, both on the primitive lattice. ``red_*`` is
+        one obtuse-basis cell and ``cob*`` is ``P`` with ``P^T G P`` equal to
+        that cell. The Selling orbit is not stored.
         """
         try:
             vol = UnitCell(*cell).volume()
             prim = _primitive_for_roots(cell, sg_hm)
-            ri = root_invariant(prim)
+            ri = sorted_root_key(prim, stabilize="sqrt")
+            lk = sorted_linear_key(prim)
             si = similarity_invariant(prim)
             red, cob = deposited_to_reduced(cell, sg_hm)
             cob_vals = cob_column_values(cob)
@@ -218,17 +280,73 @@ class CellDatabase:
         self._db.execute(
             "INSERT OR REPLACE INTO cells "
             "(pdb_id, a, b, c, alpha, beta, gamma, volume, sg_number, sg_hm, "
-            "r0, r1, r2, r3, r4, r5, s0, s1, s2, s3, s4, s5, "
+            "r0, r1, r2, r3, r4, r5, l0, l1, l2, l3, l4, l5, "
+            "s0, s1, s2, s3, s4, s5, "
             "red_a, red_b, red_c, red_alpha, red_beta, red_gamma, "
             + ", ".join(COB_COLUMNS) + ") "
-            "VALUES (" + ",".join("?" * (28 + len(COB_COLUMNS))) + ")",
+            "VALUES (" + ",".join("?" * (34 + len(COB_COLUMNS))) + ")",
             [pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
              vol, sg_number, sg_hm,
              ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
+             lk[0], lk[1], lk[2], lk[3], lk[4], lk[5],
              si[0], si[1], si[2], si[3], si[4], si[5],
              red[0], red[1], red[2], red[3], red[4], red[5],
              *cob_vals])
         return True
+
+    def backfill_linear_keys(self, *, progress=False, batch=5_000):
+        """Fill ``l0``..``l5`` with :func:`sorted_linear_key` and mark the index.
+
+        Rows that already have a linear key are left alone. ``r0``..``r5`` are
+        not changed. After every remaining row has ``l0``, ``schema_meta``
+        records ``search_key = sorted_linear_key``.
+        """
+        rows = self._db.execute(
+            "SELECT pdb_id, a, b, c, alpha, beta, gamma, sg_hm "
+            "FROM cells WHERE l0 IS NULL"
+        ).fetchall()
+        n = 0
+        buf = []
+        sql = (
+            "UPDATE cells SET l0=?, l1=?, l2=?, l3=?, l4=?, l5=? "
+            "WHERE pdb_id=?"
+        )
+        self._db.execute("BEGIN")
+
+        def _flush():
+            nonlocal n
+            if not buf:
+                return
+            self._db.executemany(sql, buf)
+            n += len(buf)
+            buf.clear()
+            if progress:
+                print(f"  backfilled {n:,}/{len(rows):,} linear keys", flush=True)
+
+        try:
+            for row in rows:
+                pdb_id = row[0]
+                cell = tuple(row[1:7])
+                sg_hm = row[7]
+                try:
+                    prim = _primitive_for_roots(cell, sg_hm)
+                    lk = sorted_linear_key(prim)
+                except Exception:
+                    continue
+                buf.append([lk[0], lk[1], lk[2], lk[3], lk[4], lk[5], pdb_id])
+                if len(buf) >= batch:
+                    _flush()
+            _flush()
+            self._db.execute("COMMIT")
+        except Exception:
+            self._db.execute("ROLLBACK")
+            raise
+        pending = self._db.execute(
+            "SELECT COUNT(*) FROM cells WHERE l0 IS NULL AND r0 IS NOT NULL"
+        ).fetchone()[0]
+        if pending == 0:
+            self._set_search_key()
+        return n
 
     def backfill_similarity_invariants(self, *, progress=False, batch=10_000):
         """Compute s0..s5 = similarity_invariant(primitive cell) for existing rows."""
@@ -347,7 +465,7 @@ class CellDatabase:
         if volume is not None:
             where.append("volume BETWEEN ? AND ?")
             params += [volume * (1 - volume_tol), volume * (1 + volume_tol)]
-        sql = "SELECT pdb_id, r0,r1,r2,r3,r4,r5 FROM cells"
+        sql = "SELECT pdb_id, l0,l1,l2,l3,l4,l5 FROM cells"
         if where:
             sql += " WHERE " + " AND ".join(where)
         return self._db.execute(sql, params).fetchall()
@@ -361,13 +479,14 @@ class CellDatabase:
         ``sg_number`` restricts to one IT number (all deposited settings of that
         number); ``volume_band`` (a fractional tolerance, e.g. 0.25) restricts to
         cells within that fraction of the query volume. Ranking is exact
-        root-invariant Euclidean distance.
+        linear-key Euclidean distance.
 
         ``sg_hm`` is the query cell's space-group symbol; when the query lattice
         is centred, pass it so the query root is computed on the *primitive*
         cell, matching how the stored roots were computed. Without it the query
         cell is assumed primitive.
         """
+        self._require_linear_key()
         from .rootindex import build_root_index
         vol = UnitCell(*cell).volume() if volume_band is not None else None
         rows = self._candidates(sg_number=sg_number, match_sg_hm=match_sg_hm,
@@ -480,18 +599,16 @@ class CellDatabase:
 
     # -- persistent fast index (build tree once, query many) --
     def build_index(self, sg_number=None, shuffle=True):
-        """Build an in-memory root-invariant KD-tree from stored r0..r5.
+        """Build an in-memory KD-tree from the stored linear key ``l0``..``l5``.
 
-        Unlike :meth:`nearest`, which rebuilds a tree per call, this constructs
-        the index once from the precomputed root columns (no root recompute) and
-        returns a :class:`RootIndex` supporting repeated sub-millisecond queries.
-        Optionally restrict to one space-group number.
-
-        ``shuffle`` is accepted for API compatibility but ignored (cKDTree build
-        order does not affect correctness or balance).
+        Refuses a database whose ``search_key`` is not ``sorted_linear_key``.
+        Run :meth:`backfill_linear_keys` on a snapshot that still has only the
+        square-root columns. ``shuffle`` is accepted for API compatibility but
+        ignored.
         """
+        self._require_linear_key()
         from .rootindex import build_root_index
-        sql = "SELECT pdb_id, r0,r1,r2,r3,r4,r5 FROM cells"
+        sql = "SELECT pdb_id, l0,l1,l2,l3,l4,l5 FROM cells"
         params = []
         if sg_number is not None:
             sql += " WHERE sg_number = ?"; params.append(sg_number)
@@ -513,13 +630,14 @@ class CellDatabase:
 
     def within(self, cell, radius, sg_number=None, volume_band=None, sg_hm=None,
                match_sg_hm=None):
-        """Return all PDB entries within ``radius`` (Å, root distance) of ``cell``.
+        """Return all PDB entries within ``radius`` (Å, linear key) of ``cell``.
 
         Optional SQL prefilters match :meth:`nearest` (``match_sg_hm`` preferred
         over ``sg_number``). Pass ``sg_hm`` for a centred query lattice so the
-        query root is computed on the primitive cell. Returns (pdb_id, distance)
+        query key is computed on the primitive cell. Returns (pdb_id, distance)
         sorted by distance.
         """
+        self._require_linear_key()
         from .rootindex import build_root_index
         vol = UnitCell(*cell).volume() if volume_band is not None else None
         rows = self._candidates(sg_number=sg_number, match_sg_hm=match_sg_hm,
@@ -530,15 +648,16 @@ class CellDatabase:
         return idx.within(cell, radius, sg_hm=sg_hm)
 
     def lookup_roots(self, pdb_ids):
-        """Return {pdb_id: [r0..r5]} for stored Kurlin roots.
+        """Return {pdb_id: [l0..l5]} for the stored linear search key.
 
-        Rows with a missing component are omitted.
+        Rows with a missing component are omitted. The square-root columns
+        ``r0``..``r5`` are not returned.
         """
         if not pdb_ids:
             return {}
         placeholders = ",".join("?" * len(pdb_ids))
         rows = self._db.execute(
-            f"SELECT pdb_id, r0,r1,r2,r3,r4,r5 FROM cells "
+            f"SELECT pdb_id, l0,l1,l2,l3,l4,l5 FROM cells "
             f"WHERE pdb_id IN ({placeholders})",
             list(pdb_ids)).fetchall()
         out = {}

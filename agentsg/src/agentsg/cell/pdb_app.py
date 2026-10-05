@@ -159,6 +159,15 @@ def _cli(argv=None):
         print(f"backfilled {n:,} rows in {argv[1]}")
         db.close()
         return 0
+    if cmd == "backfill-linear":
+        if len(argv) < 2:
+            print("usage: pdb_app backfill-linear <db_path>")
+            return 2
+        db = CellDatabase(argv[1])
+        n = db.backfill_linear_keys(progress=True)
+        print(f"backfilled {n:,} linear keys in {argv[1]}")
+        db.close()
+        return 0
     if cmd == "backfill-selling":
         if len(argv) < 2:
             print("usage: pdb_app backfill-selling <db_path>")
@@ -193,7 +202,10 @@ def _cli(argv=None):
             print(f"{pdb_id}\t{dist:.4f}")
         db.close()
         return 0
-    print(f"unknown command: {cmd!r} (use build | backfill-similarity | backfill-selling | query)")
+    print(
+        f"unknown command: {cmd!r} "
+        "(use build | backfill-similarity | backfill-linear | backfill-selling | query)"
+    )
     return 2
 
 
