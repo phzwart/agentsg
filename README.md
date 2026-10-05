@@ -172,28 +172,25 @@ Override the bind address with `--host`, `--port`, or `AGENTSG_MCP_HOST` and
 ## Using the library
 
 ```python
-from agentsg.cell import root_invariant, root_distance, root_cutoff_for_edge_tolerance
+from agentsg.cell import sorted_linear_key, sorted_linear_distance
 from agentsg.cell import CellDatabase
 
-# compare two cells by the sorted search key (continuous lower bound)
-d = root_distance((78,78,37,90,90,90), (79,79,38,90,90,90))
+# search key: sort(p_ij / sqrt(sum p)), in ångström
+sorted_linear_key((78, 78, 37, 90, 90, 90))
+d = sorted_linear_distance((78, 78, 37, 90, 90, 90), (79, 79, 38, 90, 90, 90))
 
-# open the prebuilt PDB database and do a fast nearest-neighbour search
-db  = CellDatabase("data/pdb_cells.duckdb")
-idx = db.build_index()                       # cKDTree over stored roots
-hits = idx.k_nearest((100,100,100,90,90,90), k=20)
-
-# choose a search radius from an edge tolerance you're willing to accept
-r = root_cutoff_for_edge_tolerance(10, cell=(100,100,100,90,90,90))
-near = idx.within((100,100,100,90,90,90), r)
+# pdb_search distances are in this same metric
+db = CellDatabase("data/pdb_cells_sorted_linear.duckdb")
+idx = db.build_index()
+hits = idx.k_nearest((100, 100, 100, 90, 90, 90), k=20)
 ```
 
 ## What's here
 
-- **Lattice search key** (`agentsg.cell.rootform`) — the sorted six-vector
-  key and its lower-bound distance. Kurlin's structured root form remains the
-  complete classification; the sorted key is the lossy filter used for search.
-  Also the volume/shape decomposition and the edge-tolerance cutoff.
+- **Lattice search key** (`agentsg.cell.rootform`) — `sort(p_ij / sqrt(Σ p))`,
+  one key per lattice, a rearrangement lower bound, Lipschitz, and linear in
+  the cell edges. `pdb_search` reports distances in this metric. Kurlin's
+  square-root products stay available with `stabilize="sqrt"`.
 - **Full-PDB database** (`agentsg.cell.celldb`, `pdb_app.py`) — resumable
   downloader/builder + DuckDB store with precomputed primitive-lattice roots,
   and a persistent NearTree metric index.

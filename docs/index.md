@@ -3,11 +3,13 @@
 Exact-rational space-group algebra for all 230 groups, and numeric unit-cell
 math, with no required third-party libraries.
 
-Each lattice is given a sorted six-vector Selling key: continuous, Euclidean,
-and a lower bound on the true distance, so a radius search cannot miss a match.
-Identity and the reindexing operator come from the finite Selling closure, not
-from equality of the key. The same calls are a local HTTP API and a set of MCP
-tools.
+Each lattice is given one search key, `sort(p_ij / sqrt(Σ p))`, in ångström.
+The total of the six Selling conorms is the same for every obtuse superbase of
+the lattice, the sorted distance is a rearrangement lower bound on the labelled
+distance, the key is Lipschitz in the metric, and it scales with the cell
+edges. A cube of edge `a` occupies `(0, 0, 0, a/√3, a/√3, a/√3)`. Identity and
+the reindexing operator come from the finite Selling closure, not from equality
+of the key. The same calls are a local HTTP API and a set of MCP tools.
 
 ```{toctree}
 :maxdepth: 2
