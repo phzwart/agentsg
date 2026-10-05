@@ -299,7 +299,7 @@ class DeformationManifold:
         landmark is beyond ``verify_rel`` (the state is off the sampled manifold).
         """
         L = self.nearest_landmark(i)
-        P, resid = best_reindex_with_residual(self.cells[i], self.cells[L])
+        P, _, resid = best_reindex_with_residual(self.cells[i], self.cells[L])
         from .metric import UnitCell
         GB = UnitCell(*self.cells[L]).metric_tensor()
         tol = verify_rel * (abs(GB[0][0]) + abs(GB[1][1]) + abs(GB[2][2]))
@@ -324,7 +324,7 @@ class DeformationManifold:
             ops = reindexing_via_canonical(self.cells[a], self.cells[b],
                                            verify_rel=MANIFOLD_PATH_VERIFY_REL)
             if not ops:
-                Pstep, res = best_reindex_with_residual(self.cells[a], self.cells[b])
+                Pstep, _, res = best_reindex_with_residual(self.cells[a], self.cells[b])
             else:
                 Pstep = ops[0]
                 from .metric import UnitCell

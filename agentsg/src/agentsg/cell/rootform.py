@@ -508,11 +508,11 @@ def _cell_volume(cell):
 
 
 def root_distance_to_volume_ratio(distance, cell):
-    """Convert a sorted-key distance to the equivalent isotropic volume ratio.
+    """Convert a linear-key distance to the equivalent isotropic volume ratio.
 
-    For a *pure isotropic* volume change the root key scales linearly with
-    the length scale factor, so ``distance = |(V'/V)**(1/3) - 1| * ||key||``.
-    Inverting gives the fractional volume change a given distance corresponds to::
+    An isotropic volume change by the factor ``(1+f)`` scales the linear key
+    by ``(1+f)**(1/3)``, so
+    ``distance = |(V'/V)**(1/3) - 1| * ||key||``. Inverting gives::
 
         V'/V = (1 + distance / ||key||)**3
 
@@ -528,9 +528,10 @@ def root_distance_to_volume_ratio(distance, cell):
 
 
 def volume_ratio_to_root_distance(volume_ratio, cell):
-    """Sorted-key distance produced by a pure isotropic volume change.
+    """Linear-key distance produced by a pure isotropic volume change.
 
-    The inverse of :func:`root_distance_to_volume_ratio`::
+    The inverse of :func:`root_distance_to_volume_ratio`. A volume factor
+    ``(1+f)`` scales the key by ``(1+f)**(1/3)``::
 
         distance = |volume_ratio**(1/3) - 1| * ||key||
 
@@ -544,10 +545,10 @@ def volume_ratio_to_root_distance(volume_ratio, cell):
 def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=SYMMETRY_CUTOFF_Z):
     """Scale-correct sorted-key cutoff for accepting a symmetrised cell.
 
-    A Kurlin symmetry deficiency (distance from a cell to its Reynolds-symmetrised
-    metric) has units of length and grows with cell size, so an absolute Angstrom
+    A linear-key deficiency (distance from a cell to its Reynolds-symmetrised
+    metric) has units of length and grows with cell size, so an absolute ångström
     cutoff does not transfer between cells. Both sensible references are
-    proportional to the cell's own key norm ``||key||``:
+    proportional to the cell's own linear-key norm ``||key||``:
 
     * ``volume_tol`` -- accept when the deficiency is no larger than a pure
       isotropic volume change of this fraction (e.g. ``0.05`` for 5 %). Returns
@@ -556,9 +557,8 @@ def symmetry_cutoff(cell, volume_tol=None, noise_frac=None, z=SYMMETRY_CUTOFF_Z)
       fractional size ``noise_frac`` (e.g. ``0.01`` for 1 % cell precision).
       Returns ``z * noise_frac * ||key||``; the default ``z=11`` is the p95 of the
       noise null distribution (``z=12.4`` for p99), empirically scale-invariant
-      under *edge-length* perturbations. It is not calibrated for angular noise
-      at vanishing conorms (Hölder-½ regime of plain √); use a stabilised key or
-      sorted conorms when that regime dominates.
+      under *edge-length* perturbations. The linear key is Lipschitz at a
+      vanishing conorm; the square-root key is only Hölder-½ there.
 
     Exactly one of ``volume_tol`` / ``noise_frac`` must be given. In both cases
     the returned cutoff is ``(dimensionless) * ||key||``, so it automatically

@@ -79,7 +79,7 @@ from .reindex import reindexing_operators, reindexing_operator, twin_laws
 from .canonical import (
     canonical_superbase, superbase_variants, reindexing_via_canonical,
     reindexing_operator_via_canonical, best_reindex_with_residual,
-    calibrate_verify_tol, reindex,
+    closure_distance, calibrate_verify_tol, reindex,
 )
 from .selling_group import (
     selling_group, selling_group_S4, selling_generators,
@@ -122,7 +122,8 @@ __all__ = [
     "NearTree", "build_neartree", "lattice_index",
     "reindexing_operators", "reindexing_operator", "twin_laws",
     "canonical_superbase", "superbase_variants", "reindexing_via_canonical",
-    "reindexing_operator_via_canonical", "best_reindex_with_residual", "reindex",
+    "reindexing_operator_via_canonical", "best_reindex_with_residual",
+    "closure_distance", "reindex",
     "calibrate_verify_tol",
     "selling_group", "selling_group_S4", "selling_generators",
     "selling_generators_S4", "expand_group", "permutation_cob", "inversion_cob",

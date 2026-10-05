@@ -3,7 +3,7 @@ Bet-free reindexing via the typed Selling-superbase closure (main_v5 / Kurlin).
 
 Search vs certification
 -----------------------
-Continuous Euclidean retrieval uses the *sorted* six root products
+Continuous Euclidean retrieval uses the sorted linear key
 (:mod:`agentsg.cell.rootform`). Exact identity and reindexing use the finite
 type-dependent Selling-superbase closure (:mod:`agentsg.cell.selling_closure`):
 one isometry class for V1 (S4 x {+/-I}), and 2/3/3/4 non-isometric classes for
@@ -18,7 +18,9 @@ Functions
 * :func:`canonical_superbase`   -- integer superbase coords + conorms of a cell.
 * :func:`reindexing_via_canonical` -- the reindexing coset A -> B over the
   Selling-superbase closure.
-* :func:`best_reindex_with_residual` -- best operator + raw metric residual.
+* :func:`best_reindex_with_residual` -- best operator, aligned linear
+  distance, and metric residual.
+* :func:`closure_distance` -- that triple, with the exact-closure lower bound.
 * :func:`calibrate_verify_tol`  -- data-driven residual threshold.
 
 These complement :func:`agentsg.cell.reindex.reindexing_operators` (brute
@@ -221,6 +223,25 @@ def _rootmat(p):
             for i in range(4)]
 
 
+def _pair_conorms(C, G):
+    """Six conorms of superbase ``C`` under metric ``G``, keyed by index pair."""
+    return {(i, j): -_dotG(C[i], C[j], G) for i, j in _PAIRS}
+
+
+def _aligned_linear(CA, CB, perm, GA, GB):
+    """Linear distance of two superbases after the label permutation ``perm``.
+
+    A global sign does not change conorms, so the sign tried by the match loop
+    is not an argument. ``perm[k]`` is the vector of ``CB`` placed at label ``k``.
+    """
+    from .rootform import aligned_linear_distance
+    pB = {
+        (i, j): -_dotG(CB[perm[i]], CB[perm[j]], GB)
+        for i, j in _PAIRS
+    }
+    return aligned_linear_distance(_pair_conorms(CA, GA), pB)
+
+
 def _roots_close(rA, rB, perm, tol):
     """Do A's root products match B's under label permutation ``perm`` within
     ``tol`` (Angstrom)?"""
@@ -398,12 +419,12 @@ def calibrate_verify_tol(same_pairs, different_pairs=None):
     """
     same_res = []
     for A, B in same_pairs:
-        _, r = best_reindex_with_residual(A, B)
+        _, _, r = best_reindex_with_residual(A, B)
         same_res.append(r)
     diff_res = []
     if different_pairs is not None:
         for A, B in different_pairs:
-            _, r = best_reindex_with_residual(A, B)
+            _, _, r = best_reindex_with_residual(A, B)
             diff_res.append(r)
     same_max = max(same_res) if same_res else 0.0
     diff_min = min(diff_res) if diff_res else float("inf")
@@ -423,18 +444,25 @@ def calibrate_verify_tol(same_pairs, different_pairs=None):
 
 
 def best_reindex_with_residual(cell_A, cell_B, boundary_rel=0.0):
-    """Best canonical reindexing operator A -> B and its metric residual.
+    """Best canonical reindexing operator A -> B.
 
-    Unlike :func:`reindexing_via_canonical`, this applies NO acceptance
-    threshold: it returns ``(P, resid)`` for the integer operator ``P`` that
-    minimises ``|P^T G_A P - G_B|`` over the typed Selling-superbase closure.
-    Returns ``(None, inf)`` only if no integer unimodular candidate exists.
+    Unlike :func:`reindexing_via_canonical`, this applies no acceptance
+    threshold. It returns ``(P, aligned_linear, metric_residual)`` for the
+    integer operator that minimises the aligned linear distance of the matched
+    superbase pair, with ``|P^T G_A P - G_B|`` as the tie-break. The operator
+    enumeration is unchanged. Returns ``(None, inf, inf)`` when no integer
+    unimodular candidate exists.
+
+    With ``boundary_rel = 0`` the closure is exact and the aligned distance is
+    at least :func:`agentsg.cell.rootform.sorted_linear_distance`. With
+    ``boundary_rel > 0`` non-obtuse members are admitted and that lower bound
+    does not apply.
     """
     GA = _metric(cell_A)
     GB = _metric(cell_B)
     vA = _closure_for_match(cell_A, boundary_rel)
     vB = _closure_for_match(cell_B, boundary_rel)
-    best_P, best_res = None, float("inf")
+    best = None
     for CA in vA:
         U = [[CA[1][r], CA[2][r], CA[3][r]] for r in range(3)]
         for CB in vB:
@@ -460,15 +488,36 @@ def best_reindex_with_residual(cell_A, cell_B, boundary_rel=0.0):
                     Gp = _transform_metric_int(GA, P)
                     resid = max(abs(Gp[a][b] - GB[a][b])
                                 for a in range(3) for b in range(3))
-                    if resid < best_res:
-                        best_res, best_P = resid, P
-    return best_P, best_res
+                    aligned = _aligned_linear(CA, CB, perm, GA, GB)
+                    if best is None or (aligned, resid) < (best[0], best[1]):
+                        best = (aligned, resid, P)
+    if best is None:
+        return None, float("inf"), float("inf")
+    aligned, resid, P = best
+    return P, aligned, resid
+
+
+def closure_distance(cell_A, cell_B, boundary_rel=0.0):
+    """Aligned linear distance of the best Selling-closure match.
+
+    Returns ``(P, aligned_linear, metric_residual)``. With ``boundary_rel = 0``
+    the closure is exact and ``aligned_linear`` is at least
+    :func:`agentsg.cell.rootform.sorted_linear_distance`. With
+    ``boundary_rel > 0`` non-obtuse members are admitted and the bound does
+    not apply: that is the deformation-tolerant match. On the Hfq pair
+    4nl7 → 2yht the sorted linear distance is 5.43 Å, the exact closure
+    (rel 0) gives 6.80 Å, and rel 0.06 gives 5.0 Å.
+    """
+    return best_reindex_with_residual(cell_A, cell_B, boundary_rel=boundary_rel)
 
 
 def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=REINDEX_BAND_REL):
-    """All integer operators tied (within a relative band) with the minimum
-    metric residual -- the reindexing coset P.H (H = lattice holohedry). No
-    acceptance gate; the caller decides whether to accept via the root distance.
+    """Integer operators within the metric-residual band of the minimum.
+
+    Membership is the residual band (operators tied with the minimum
+    ``|P^T G_A P - G_B|``). The list is ordered by aligned linear distance,
+    then by that residual. No acceptance gate; the caller decides whether to
+    accept via the linear-key distance.
     """
     GA = _metric(cell_A)
     GB = _metric(cell_B)
@@ -502,45 +551,58 @@ def _reindex_coset(cell_A, cell_B, boundary_rel, band_rel=REINDEX_BAND_REL):
                     Gp = _transform_metric_int(GA, P)
                     resid = max(abs(Gp[a][b] - GB[a][b])
                                 for a in range(3) for b in range(3))
-                    scored.append((resid, tuple(tuple(int(x) for x in row) for row in P)))
+                    aligned = _aligned_linear(CA, CB, perm, GA, GB)
+                    Pt = tuple(tuple(int(x) for x in row) for row in P)
+                    scored.append((aligned, resid, Pt))
                     if resid < best_res:
                         best_res = resid
     if not scored:
         return []
     band = best_res + band_rel * scale
-    return sorted({P for resid, P in scored if resid <= band})
+    best_for = {}
+    for aligned, resid, P in scored:
+        if resid > band:
+            continue
+        prev = best_for.get(P)
+        if prev is None or (aligned, resid) < prev:
+            best_for[P] = (aligned, resid)
+    return [
+        P for P, _ in sorted(
+            best_for.items(), key=lambda kv: (kv[1][0], kv[1][1], kv[0])
+        )
+    ]
 
 
 def reindex(cell_A, cell_B, max_volume_frac=None, max_root_dist=None,
             boundary_rel=REINDEX_BOUNDARY_REL, band_rel=REINDEX_BAND_REL):
-    """Reindex ``cell_A`` onto ``cell_B``, gated solely by the Kurlin root distance.
+    """Reindex ``cell_A`` onto ``cell_B``, gated by the sorted linear distance.
 
     This is the recommended entry point for cell reindexing. It splits the
     problem into the two questions that are actually distinct:
 
-    1. **Should we reindex at all?** -- decided by the *setting-invariant* Kurlin
-       root distance between the two lattices. If ``root_distance(A, B) >
-       max_root_dist`` the cells are not the same lattice within the accepted
-       deformation and an empty coset is returned.
+    1. **Should we reindex at all?** -- decided by the setting-invariant linear
+       key distance between the two lattices. If
+       ``sorted_linear_distance(A, B) > max_root_dist`` the cells are not the
+       same lattice within the accepted deformation and an empty coset is
+       returned.
     2. **What is the reindexing?** -- the Selling/canonical-superbase coset,
-       returned in full when (1) passes.
+       returned in full when (1) passes. Operators in the residual band are
+       ordered by aligned linear distance, then metric residual.
 
     The metric residual ``|P^T G_A P - G_B|`` is deliberately NOT used as the
     acceptance gate: it is setting-dependent (two settings of the *same* lattice
     can have a large residual), which is exactly the ambiguity the Selling route
-    exists to defeat. The root distance is a lattice invariant -- blind to
+    exists to defeat. The linear distance is a lattice invariant -- blind to
     setting, sensitive only to genuine lattice difference -- so it is the correct
-    quantity to threshold. See :func:`agentsg.cell.rootform.root_distance`.
+    quantity to threshold. See :func:`agentsg.cell.rootform.sorted_linear_distance`.
 
     The gate is expressed as a **fractional volume change**, which is
-    scale-free: the absolute root distance grows ~linearly with cell size for
-    the *same* fractional deformation (``root_distance ~ ||RI(cell)||``), so a
-    fixed Angstrom threshold is too tight for large cells and too loose for
-    small ones. The volume-fraction gate divides that scale out. Internally it
-    becomes the per-cell root radius
+    scale-free: an isotropic volume change by the factor ``(1+f)`` scales the
+    linear key by ``(1+f)**(1/3)``, so a fixed ångström threshold is too tight
+    for large cells and too loose for small ones. The volume-fraction gate
+    divides that scale out. Internally it becomes
     ``symmetry_cutoff(cell_A, volume_tol=max_volume_frac) =
-    |(1+max_volume_frac)**(1/3) - 1| * ||RI(cell_A)||`` -- the root distance a
-    pure isotropic volume change of ``max_volume_frac`` would produce.
+    |(1+max_volume_frac)**(1/3) - 1| * ||key(cell_A)||``.
 
     Parameters
     ----------
@@ -567,10 +629,10 @@ def reindex(cell_A, cell_B, max_volume_frac=None, max_root_dist=None,
 
     Returns
     -------
-    (ops, root_dist) : (list of 3x3 int tuples, float)
-        ``ops`` is the reindexing coset (empty if the root gate rejects), and
-        ``root_dist`` is the measured Kurlin root distance (always returned, so
-        the caller can inspect the decision).
+    (ops, linear_dist) : (list of 3x3 int tuples, float)
+        ``ops`` is the reindexing coset (empty if the linear-key gate rejects),
+        and ``linear_dist`` is the measured sorted linear distance (always
+        returned, so the caller can inspect the decision).
 
     Notes
     -----
@@ -580,10 +642,10 @@ def reindex(cell_A, cell_B, max_volume_frac=None, max_root_dist=None,
     (an intensity correlation, or a fixed reference-frame convention) acting over
     this same coset.
     """
-    from .rootform import root_distance, symmetry_cutoff
+    from .rootform import sorted_linear_distance, symmetry_cutoff
     if (max_volume_frac is None) == (max_root_dist is None):
         raise ValueError("give exactly one of max_volume_frac or max_root_dist")
-    rd = root_distance(cell_A, cell_B)
+    rd = sorted_linear_distance(cell_A, cell_B)
     if max_volume_frac is not None:
         gate = symmetry_cutoff(cell_A, volume_tol=max_volume_frac)
     else:

@@ -137,7 +137,7 @@ def test_residual_grows_with_deformation():
     resids = []
     for scale in (1.0, 1.02, 1.05, 1.10, 1.20):
         b = (REF[0], REF[1], REF[2] * scale, REF[3], REF[4], REF[5])
-        _, r = best_reindex_with_residual(REF, b)
+        _, _, r = best_reindex_with_residual(REF, b)
         resids.append(r)
     assert resids[0] < 1e-6                      # identity: exact
     for k in range(1, len(resids)):
@@ -147,7 +147,7 @@ def test_residual_grows_with_deformation():
 def test_best_residual_zero_for_reindexed_self():
     GA = _G(REF)
     GB = _transform(GA, ((0, 1, 0), (0, 0, 1), (1, 0, 0)))
-    P, r = best_reindex_with_residual(REF, _cell_of(GB))
+    P, _, r = best_reindex_with_residual(REF, _cell_of(GB))
     assert r < 1e-6
     assert P is not None
 
@@ -290,8 +290,12 @@ def test_integer_inverse_matches_fraction_on_unimodular():
 
 
 def test_reindex_root_gate():
-    """The root-gated reindex: accepts same-form pairs (true op in coset),
-    rejects a genuinely different lattice, and the gate value controls it."""
+    """The linear-key gate: accepts same-form pairs (true op in the coset)
+    and rejects a genuinely different lattice.
+
+    0.85 Å sits between those two populations in the linear metric. The old
+    2.5 Å threshold was the square-root key.
+    """
     import random
     import numpy as np
     from agentsg.cell import reindex
@@ -339,7 +343,7 @@ def test_reindex_root_gate():
         Msc = rlcob(rng, co)
         cos = params_from_metric(
             (Msc.T @ np.array(UnitCell(*co).metric_tensor()) @ Msc).tolist())
-        ops, rd = reindex(cos, cr, max_root_dist=2.5)
+        ops, rd = reindex(cos, cr, max_root_dist=0.85)
         if ops:
             acc += 1
             if any(is_correct(P, Msc) for P in ops):
@@ -348,7 +352,7 @@ def test_reindex_root_gate():
         Md = rlcob(rng, cod)
         cosd = params_from_metric(
             (Md.T @ np.array(UnitCell(*cod).metric_tensor()) @ Md).tolist())
-        opsd, _ = reindex(cos, cosd, max_root_dist=2.5)
+        opsd, _ = reindex(cos, cosd, max_root_dist=0.85)
         if not opsd:
             rej += 1
     assert acc >= n * 0.95        # nearly all same-form accepted
