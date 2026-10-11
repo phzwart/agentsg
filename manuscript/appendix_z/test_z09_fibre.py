@@ -52,9 +52,9 @@ def test_v3_v5_injective_key():
     from agentsg.cell.rootform import sorted_root_key
     c5 = cell_from_conorms((1.0, 2.0, 3.0, 0.0, 0.0, 0.0))
     expect = tuple(sorted(math.sqrt(x) for x in (1, 2, 3, 0, 0, 0)))
-    assert key_l2(sorted_root_key(c5), expect) < 1e-9
+    assert key_l2(sorted_root_key(c5, stabilize="sqrt"), expect) < 1e-9
     c3 = cell_from_conorms((0.0, 2.0, 3.0, 4.0, 5.0, 0.0))
-    k3 = sorted_root_key(c3)
+    k3 = sorted_root_key(c3, stabilize="sqrt")
     assert k3[0] == 0.0 and abs(k3[1]) < 1e-9
 
 
@@ -68,6 +68,7 @@ def test_explicit_colliding_pair():
     assert np.linalg.eigvalsh(gram_from_conorms(conorm_dict_from_six(b)))[0] > 0
     ca = cell_from_conorms(a)
     cb = cell_from_conorms(b)
-    assert key_l2(sorted_root_key(ca), sorted_root_key(cb)) < 1e-9
+    assert key_l2(sorted_root_key(ca, stabilize="sqrt"),
+                  sorted_root_key(cb, stabilize="sqrt")) < 1e-9
     G4 = s4_slot_permutations()
     assert b not in {apply_slot_perm(a, g) for g in G4}

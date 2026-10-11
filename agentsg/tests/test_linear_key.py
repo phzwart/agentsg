@@ -162,3 +162,22 @@ def test_scotty_pairs():
         assert abs(dist - expected) <= 0.02 * expected
         if hit in _FORMER_FAILURES:
             assert dist < 6.0
+
+
+def test_pseudosymmetric_scaling():
+    """Near beta = 90 the linear distance scales as delta, the sqrt key as sqrt(delta)."""
+    def cell(beta):
+        return (50.0, 70.0, 60.0, 90.0, beta, 90.0)
+
+    lin = {}
+    sqr = {}
+    for d in (1.0, 0.1, 0.01):
+        lin[d] = sorted_linear_distance(cell(90 + d), cell(90 + 2 * d))
+        sqr[d] = sorted_root_distance(
+            cell(90 + d), cell(90 + 2 * d), stabilize="sqrt"
+        )
+    assert abs(lin[1.0] / lin[0.1] - 10.0) < 0.5
+    assert abs(lin[0.1] / lin[0.01] - 10.0) < 0.5
+    assert abs(sqr[1.0] / sqr[0.1] - math.sqrt(10.0)) < 0.5
+    assert abs(sqr[0.1] / sqr[0.01] - math.sqrt(10.0)) < 0.5
+    assert sqr[0.01] / lin[0.01] > 30.0

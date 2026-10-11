@@ -18,14 +18,14 @@ def test_p63_sqrt_noise_medians():
     from agentsg.cell.rootform import sorted_root_key, conorms
 
     rng = random.Random(SEED_NOISE)
-    r0 = sorted_root_key(P63)
+    r0 = sorted_root_key(P63, stabilize="sqrt")
     p0 = conorms(P63)
 
     for sigma, expected in TABLE_C1["sqrt"].items():
         shifts = []
         for _ in range(300):
             noisy = perturb_angles(P63, sigma, rng)
-            shifts.append(key_l2(r0, sorted_root_key(noisy)))
+            shifts.append(key_l2(r0, sorted_root_key(noisy, stabilize="sqrt")))
         med = statistics.median(shifts)
         assert_within_pct(med, expected, pct=10, label=f"√ σ={sigma}")
 
@@ -55,9 +55,10 @@ def test_triclinic_less_amplified():
     from agentsg.cell.rootform import sorted_root_key
 
     rng = random.Random(SEED_NOISE + 1)
-    r0 = sorted_root_key(TRICLINIC_NOISE)
+    r0 = sorted_root_key(TRICLINIC_NOISE, stabilize="sqrt")
     shifts = [
-        key_l2(r0, sorted_root_key(perturb_angles(TRICLINIC_NOISE, 0.1, rng)))
+        key_l2(r0, sorted_root_key(perturb_angles(TRICLINIC_NOISE, 0.1, rng),
+                                   stabilize="sqrt"))
         for _ in range(300)
     ]
     med = statistics.median(shifts)

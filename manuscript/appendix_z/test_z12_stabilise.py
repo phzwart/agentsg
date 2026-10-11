@@ -17,7 +17,7 @@ def _median_shift(mode, sigma, rng, n=300):
     from agentsg.cell.rootform import sorted_root_key
 
     if mode == "sqrt":
-        kw = {}
+        kw = {"stabilize": "sqrt"}
     elif mode == "linear":
         kw = {"stabilize": "linear"}
     else:

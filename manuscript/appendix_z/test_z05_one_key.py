@@ -28,7 +28,7 @@ def test_one_sorted_key_on_closure(vtype):
         keys.add(vals)
     assert len(keys) == 1
     # sqrt key agrees with sorted_root_key
-    k_pkg = sorted_root_key(cell)
+    k_pkg = sorted_root_key(cell, stabilize="sqrt")
     k_clo = tuple(math.sqrt(max(v, 0.0)) for v in next(iter(keys)))
     assert key_l2(k_pkg, k_clo) < 1e-6
 

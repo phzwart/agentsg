@@ -21,7 +21,7 @@
 \newcommand{\sitem}[2]{\medskip\noindent\refstepcounter{scheck}\label{#1}\textbf{\thescheck\ #2.}\ }
 
 \title{Supporting Information\\[4pt]
-\large Selling reduction and sorted Kurlin roots: a conservative Euclidean key for lattice search and exact reindexing}
+\large The Selling closure for lattice comparison: Euclidean search keys and exact reindexing operators}
 \author{Petrus H. Zwart\\ \small Molecular Biophysics and Integrated Bioimaging Division,\\ \small Lawrence Berkeley National Laboratory, Berkeley, CA 94720, USA}
 \date{}
 
@@ -345,6 +345,24 @@ c distribution: median, MAD, 99.9th percentile.
 keys = sorted conorms per crystal (linear key); PCA on centred keys; report loadings.
 theta = angle between beam direction and cstar; bins: theta<10 deg vs theta>80 deg;
     report MAD or sd of c in each bin; bootstrap CI on the ratio (expect ~3).
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:linear-key}{The linear archive key: invariance, scaling, Lipschitz, rearrangement bound, pseudo-symmetric fidelity (exhaustive per lattice + synthetic + deposited pairs)}
+Claim (Sections 2.2, 2.3; Appendix C): one key per lattice over the full closure; $\mathrm{sort}(p/\sqrt{T})$ scales as length with the cube identity; Lipschitz where the square-root key is H\"older-$\tfrac12$; the sorted distance lower-bounds the aligned distance over the 24 relabellings; between pseudo-symmetric lattices the linear distance scales as $\delta$ where the square-root distance scales as $\sqrt\delta$; the Scotty distances track NCDist (cells and NCDist values from McCoy \emph{et al.}, 2026, Tables 1--5).
+\begin{footnotesize}\begin{verbatim}
+closure invariance: for each V1-V5 test lattice, every member of the brute-force
+    closure gives the same sort(p/sqrt(T))            (one key, all five types)
+scaling: key(s*cell) = s*key(cell); cube of edge a: key = (0,0,0,a/sqrt(3) x3)
+    and |key(a+d) - key(a)| = d exactly
+Lipschitz: P63 cell (41.8,41.8,233,90,90,120), angle noise 0.01 / 0.1 deg:
+    median key shift 0.011 / 0.12 A   (square-root key: 1.50 / 4.47 A)
+rearrangement bound: 300 random cell pairs: sorted linear distance <= min over
+    the 24 relabellings of the aligned linear distance   (0 violations)
+pseudo-symmetry: monoclinic (50,70,60,90,beta,90), pairs (90+d, 90+2d) for
+    d = 1, 0.1, 0.01 deg: linear 0.80 / 0.080 / 0.008 A
+    against square root   3.1 / 0.95  / 0.30  A
+Scotty cells: 1fe5->1u4j 2.72, 1fe5->1g2x 2.87, 4nl7->2yht 5.43 A
+    (NCDist 2.09 / 2.08 / 2.34; square root 16.7 / 16.4 / 13.8 A)
 \end{verbatim}\end{footnotesize}
 
 \end{document}
