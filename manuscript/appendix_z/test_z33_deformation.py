@@ -71,3 +71,13 @@ def test_ladder_closure_value_upper_bounds_the_ideal():
         rung = float(np.linalg.norm(GA - M.T @ GB @ M))
         ideal = deformation_distance(A, B)["d_AB"]
         assert ideal <= rung + 1e-9
+
+
+def test_ball_counts_and_radius_regimes():
+    import math
+    from agentsg.cell.deformation import _metric, _radius, _unimodular_ball
+
+    assert len(_unimodular_ball(1)) == 6960      # of 3^9 = 19683 candidates
+    assert len(_unimodular_ball(2)) == 135408
+    H = _metric((41.8, 41.8, 233.0, 90.0, 90.0, 120.0))
+    assert 7.0 < _radius(H, H, 0.0) < 9.0        # entry ball infeasible here

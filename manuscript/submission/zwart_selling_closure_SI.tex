@@ -422,6 +422,12 @@ failure onset (P6_3 cell, sigma = 0.05 deg): operator counts at
 Claim (Section 2.2, Table 6): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
 \begin{footnotesize}\begin{verbatim}
 implementation: agentsg.cell.deformation.deformation_distance
+ball counts: entries <= 1 -> 6 960 unimodular of 19 683 candidates;
+    entries <= 2 -> 135 408
+sufficiency of the radius-one ball: iff lmax(G_A) + D < 4 lmin(G_B)
+    (R(D) < 2); Hfq pair R = 1.86 (suffices); the P6_3 cell gives
+    R = 7.9 already at D = 0, where the widened closure is the
+    enumerator instead
 near-face pair (one conorm at +delta vs -delta, delta = 0.1 and 0.02):
     d = 4*delta exactly (Frobenius on G); both directions equal; certified
     at radius 1; Delta_cell = one angle by -8.54*delta degrees
