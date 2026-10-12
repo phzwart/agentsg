@@ -385,4 +385,37 @@ seam tP || tI (2:1): d( tP(R), tI(2R) ) = 0.64, 0.15, 0.025, 0.004 at
 separations: d(cP, tI curve) = 0.50; d(cI, tP curve) = 0.71
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:closure-metric}{The closure minimum is a congruence statistic, not a similarity metric (random + constructed + deposited pairs)}
+Claim (Sections 2.2, 2.4; Appendix D): the key lower-bounds the closure-aligned minimum; between different lattices that minimum is a face-discontinuous upper bound; widened matches are not bounded by the key; the interior margin condition certifies exactness.
+\begin{footnotesize}\begin{verbatim}
+random pairs (N = 120, seeded): sorted key <= closure minimum in every case
+    (0 violations); equality in 1 of 120; ratio median 1.14, max 4.9
+near-face pair, p_A = (4,7,9,5,6,+delta) and p_B realized from
+    (4,7,9,5,6,-delta): key ~ 0.165 / 0.033 / 0.007 at delta = 0.5 / 0.1 / 0.02;
+    closure minimum 0.536 / 0.510 / 0.508 (stuck); widened (rel 0.2)
+    0.184 / 0.037 / 0.0074  -> closure / widened = 3 / 14 / 71
+Hfq 4nl7 -> 2yht: key = closure minimum = 5.434; widened minimum 5.434,
+    4.455, 2.825, 2.651 at boundary_rel = 0.02, 0.06, 0.12, 0.3
+    (NCDist 2.34, McCoy et al., 2026)
+interior pairs (N = 40): widening improved the minimum in 3 cases; assert
+    that in each such case the least positive normalised conorm of one
+    lattice lies below the minimum (the certificate's contrapositive)
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:guarantee}{Guarantee under the noise model: retrieval, coverage, coset, soundness (all five Voronoi types + failure onset)}
+Claim (Sections 2.4; Appendix D): with radius, zero tolerance and residual at stated multiples of one conorm noise scale, two noisy measurements of one lattice are retrieved and yield the full exact coset; setting a tolerance below its multiple produces the partial-coset failure.
+\begin{footnotesize}\begin{verbatim}
+for each Voronoi type V1..V5 test cell, angular noise sigma = 0.02 deg,
+    fixed seed, two independently noised copies:
+    expected = coset size of the clean cell matched against itself
+    with angle_sigma = sigma and verification rel = 1e-3, assert the
+    recovered operator count equals expected
+    retrieval: assert the noisy pair's linear-key distance is below the
+    noise-scale radius
+failure onset (P6_3 cell, sigma = 0.05 deg): operator counts at
+    verification rel = 1e-6, 1e-4, 1e-3 are non-decreasing; the smallest
+    tolerance recovers a strict subset (none, at this seed) and the
+    noise-scale tolerance recovers the full coset of 24 [Section 4.3]
+\end{verbatim}\end{footnotesize}
+
 \end{document}
