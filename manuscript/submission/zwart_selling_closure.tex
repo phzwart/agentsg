@@ -59,6 +59,7 @@
 \@namedef{zn@z:lysozyme}{27}
 \@namedef{zn@z:xfel}{28}
 \@namedef{zn@z:linear-key}{29}
+\@namedef{zn@z:skeleton}{30}
 \makeatother
 
 \begin{document}                  % DO NOT DELETE THIS LINE
@@ -77,11 +78,11 @@
 \maketitle                        % DO NOT DELETE THIS LINE
 
 \begin{synopsis}
-A unit cell is one description of a lattice, not the lattice itself. A six-number key built from the sorted square roots of the Selling scalars gives every basis of a lattice the same continuous coordinate, whose Euclidean distance never exceeds the true lattice distance, so ordinary nearest-neighbour software can retrieve candidate matches safely; the finite set of obtuse superbases then decides identity exactly and returns the integer reindexing operator with its full symmetry coset.
+A unit cell is one description of a lattice, not the lattice itself. Sorting a lattice's normalised Selling scalars gives every basis the same continuous Euclidean coordinate, whose distance never exceeds the true lattice distance; on it the Protein Data Bank becomes an atlas of lattice shapes organised by a computable Bravais skeleton, and the finite set of obtuse superbases returns exact reindexing operators with their full symmetry cosets.
 \end{synopsis}
 
 \begin{abstract}
-Every crystallographic unit cell is a choice of basis for a lattice, and a lattice has infinitely many bases. Classical reduction (Niggli, Buerger, Delone) selects one representative cell per lattice, which suits tabulation and lattice typing but not comparison: an arbitrarily small change to a lattice can make its representative jump. Searching archives of hundreds of thousands of cells, following lattices through thousands of serial-crystallography frames, and tracing a lattice along a perturbation trajectory are comparison tasks, and they need a coordinate that does not jump. This paper separates the work into two stages with different representations. For search, each lattice receives a single vector of six numbers, the square roots of the six Selling scalars of its obtuse superbase sorted into increasing order; these are Kurlin's root products with their pairing discarded. The key varies continuously with the lattice, is identical for every basis of the lattice at every Voronoi type, and is indexed with a standard KD tree. It is deliberately not unique --- a bounded number of distinct lattices can share a key --- but its Euclidean distance is a lower bound on the orbit distance between lattices, so a radius query cannot miss a match. For certification, the candidates are compared exactly: the finite set of obtuse superbases of each lattice, here called the Selling closure, is enumerated and an integer change-of-basis matrix is constructed from retained integer coordinates and verified against the metric tensor. Nothing is rounded, and symmetry-related alternatives are returned as a coset rather than lost. The two stages are used to index 206\,214 PDB cells, to place archival hen egg-white lysozyme cells on a common shape trajectory, to decompose per-crystal cell variation in a 12\,474-crystal XFEL data set, and to replace a 6960-matrix reindexing search by a cached two-operator coset. The rule throughout is to search continuously and conservatively and to decide exactly.
+Every crystallographic unit cell is a choice of basis for a lattice, and a lattice has infinitely many bases. Classical reduction (Niggli, Buerger, Delone) selects one representative cell per lattice, which suits tabulation and lattice typing but not comparison: an arbitrarily small change to a lattice can make its representative jump. Searching archives of hundreds of thousands of cells, following lattices through thousands of serial-crystallography frames, and tracing a lattice along a perturbation trajectory are comparison tasks, and they need a coordinate that does not jump. The work is separated into two stages with different representations. For search, each lattice receives one vector of six numbers: its Selling scalars divided by the square root of their sum and sorted into increasing order. The key is identical for every basis of the lattice at every Voronoi type, scales as a length, is Lipschitz in the metric tensor where square-root products are not, and is indexed with a standard KD tree; its Euclidean distance is a lower bound on the orbit distance between lattices, so a radius query cannot miss a match. For certification, candidates are compared exactly: the finite set of obtuse superbases of each lattice, here called the Selling closure, is enumerated, and an integer change-of-basis matrix is constructed from retained integer coordinates and verified against the metric tensor; symmetry-related alternatives are returned as a coset rather than lost. Two results are built on these stages. The first is an atlas of the Protein Data Bank: 206\,214 deposited cells, volume-normalised, occupy a stratified shape space in which the crystal systems emerge without being inputs; the three cubic lattices are single computable points, the tetragonal and rhombohedral families are curves meeting them at exact nexus points, and distinct families run together along asymptotic seams at extreme axial ratios. The second is reindexing: identifying the lattice first, over the closure, returns the exact integer operator and its full automorphism coset without a symmetry tolerance, recovering basis relations that a $3^\circ$ angular gate drops and that entry-bounded matrix searches silently miss. Family-scale (hen egg-white lysozyme) and per-crystal (a 12\,474-crystal XFEL stream) analyses follow as uses of the same coordinate.
 \end{abstract}
 
 %==============================================================================
@@ -94,7 +95,7 @@ The traditional way to remove the ambiguity is reduction: a rule that selects on
 
 There is a second, less obvious demand. A comparison coordinate necessarily discards basis information, but reindexing --- transforming Miller indices, coordinates or symmetry operators from one cell setting to another --- needs that information back, and needs it exactly. A method that compares well but reindexes approximately is of limited use in a crystallographic pipeline.
 
-The proposal made here is not to find one representation that does both jobs, but to stop asking for one. Search is done on a coarse, continuous, Euclidean key; certification and reindexing are done exactly on a finite basis-aware object; and the hand-off between them is made safe by a one-sided distance bound. The ingredients are classical or recent, and the paper is explicit about which is which. Selling reduction and the obtuse superbase go back to Selling, Delone and Bravais (Bravais, 1850; Delone, 1932), the conorm/vonorm language is that of Conway \& Sloane (1992), and the crystallographic $S^6$ embedding, the uniqueness of the reduced Selling scalars as a list and the practical reduction algorithm are due to Andrews, Bernstein and Sauter (Andrews \& Bernstein, 1988, 2014, 2016, 2023; Andrews \emph{et al.}, 2019). The type-dependent enumeration of obtuse superbases, the completeness proof of the resulting isometry classification and the perturbation bound on individual root products are Kurlin's (Bright \emph{et al.}, 2021; Kurlin, 2026). What is added here is elementary: the observation that sorting the six root products gives one key per lattice at every Voronoi type, a lemma that its Euclidean distance is a lower bound on the orbit distance, a noise analysis at symmetric lattices, and an exact reindexing procedure over the complete finite set of obtuse superbases --- the \emph{Selling closure} --- that returns the automorphism coset without a symmetry tolerance. The main text keeps to the constructions and the results; derivations and proofs are in Appendices~A--D, and every statement that can be checked by computation carries a mark $^{[\mathrm{S}n]}$ pointing at the corresponding check in the Supporting Information.
+The proposal made here is not to find one representation that does both jobs, but to stop asking for one. Search is done on an object whose distance is a lower bound on the true lattice distance, and what it retrieves is refined by an exact procedure afterwards: the key is coarse, continuous and Euclidean, the refinement is integer and complete, and the lower bound is what makes the hand-off safe --- nothing within the search radius is missed, and nothing retrieved is trusted until certified. The ingredients are classical or recent, and the paper is explicit about which is which. Selling reduction and the obtuse superbase go back to Selling, Delone and Bravais (Bravais, 1850; Delone, 1932), the conorm/vonorm language is that of Conway \& Sloane (1992), and the crystallographic $S^6$ embedding, the uniqueness of the reduced Selling scalars as a list and the practical reduction algorithm are due to Andrews, Bernstein and Sauter (Andrews \& Bernstein, 1988, 2014, 2016, 2023; Andrews \emph{et al.}, 2019). The type-dependent enumeration of obtuse superbases, the completeness proof of the resulting isometry classification and the perturbation bound on individual root products are Kurlin's (Bright \emph{et al.}, 2021; Kurlin, 2026). What is added here is elementary: the observation that sorting the six root products gives one key per lattice at every Voronoi type, a lemma that its Euclidean distance is a lower bound on the orbit distance, a noise analysis at symmetric lattices, and an exact reindexing procedure over the complete finite set of obtuse superbases --- the \emph{Selling closure} --- that returns the automorphism coset without a symmetry tolerance. The paper reports two results built on these pieces: an atlas of the Protein Data Bank in lattice-shape space, organised by a computable skeleton of symmetry strata, and exact reindexing against a reference over the closure. The main text keeps to the constructions and the results; derivations and proofs are in Appendices~A--D, and every statement that can be checked by computation carries a mark $^{[\mathrm{S}n]}$ pointing at the corresponding check in the Supporting Information.
 
 %==============================================================================
 \section{Theory and methods}
@@ -132,6 +133,17 @@ Let $x,y\in\mathbb R^6$ and let $G\subseteq S_6$ be any set of permutations. The
 \end{lemma}
 
 With $G$ the image of $S_4$, the key distance is a lower bound on the true orbit distance between two lattices.\chk{z:lowerbound} A radius query on keys therefore returns every lattice within that radius of the query, plus occasionally a few impostors, which the next stage removes. A fixed-$k$ nearest-neighbour query carries no such guarantee, because key collisions can crowd the list; it remains a useful exploratory tool.
+
+\subsection{A representative can jump while the lattice does not}
+\label{sec:trajectory}
+
+Along the synthetic monoclinic series ($a=120$, $b=189.1$\,\Ang, $\beta=91.2^\circ$, $c$ from 150 to 100\,\Ang) the metric changes smoothly. The Selling closure stays at 12 obtuse superbases, the V4 count, through $a=c$ (Fig.~\ref{fig:trajectory}). In the equal-perturbation test about $a=b$, reference $(40,40,60,90,91,90)$ against neighbours shifted by $\pm0.001$\,\Ang\ in $b$, the raw reduced distance is 0.080 on one side of the boundary and 118.5 on the other, while the sorted-key distance to the same reference is 0.0010 on both sides.\chk{z:trajectory} An earlier raw-distance figure of 83.7 is not reproduced and is not used. The jump is the arrangement ambiguity that Andrews \emph{et al.} (2019) themselves acknowledge: a single $S^6$ representative is one of 24 (or more) arrangements, so raw $S^6$ distance is not a lattice distance, and their companion treatment restores one by minimizing over reflections and boundary transforms. The sorted key removes that minimization by construction, at the cost of uniqueness. The discontinuity belongs to the representative, not to the lattice, and the point $a=c$, where an axis exchange becomes an exact symmetry, is a junction that the search coordinate passes through smoothly while the exact stage exposes the extra operators that become admissible there.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/fig_trajectory.pdf}
+\caption{A representative can jump while the sorted key does not. (a) Equal perturbation of $0.001$\,\Ang\ on either side of $a=b$: raw reduced distance $0.080$ versus $118.5$, sorted-key distance $0.0010$ on both sides. (b) Along the monoclinic series the Selling closure stays at 12 superbases through $a=c$. (c) Consecutive raw reduced steps stay tens of angstroms; consecutive sorted-key steps stay near $0.25$\,\Ang.}
+\label{fig:trajectory}
+\end{figure}
 
 \subsection{Pseudo-symmetry near right angles}
 \label{sec:noise}
@@ -176,18 +188,7 @@ Archive-scale results use the unit cells of 206\,214 PDB entries. The lysozyme f
 \section{Results}
 %==============================================================================
 
-\subsection{A representative can jump while the lattice does not}
-\label{sec:trajectory}
-
-Along the synthetic monoclinic series ($a=120$, $b=189.1$\,\Ang, $\beta=91.2^\circ$, $c$ from 150 to 100\,\Ang) the metric changes smoothly. The Selling closure stays at 12 obtuse superbases, the V4 count, through $a=c$ (Fig.~\ref{fig:trajectory}). In the equal-perturbation test about $a=b$, reference $(40,40,60,90,91,90)$ against neighbours shifted by $\pm0.001$\,\Ang\ in $b$, the raw reduced distance is 0.080 on one side of the boundary and 118.5 on the other, while the sorted-key distance to the same reference is 0.0010 on both sides.\chk{z:trajectory} An earlier raw-distance figure of 83.7 is not reproduced and is not used. The jump is the arrangement ambiguity that Andrews \emph{et al.} (2019) themselves acknowledge: a single $S^6$ representative is one of 24 (or more) arrangements, so raw $S^6$ distance is not a lattice distance, and their companion treatment restores one by minimizing over reflections and boundary transforms. The sorted key removes that minimization by construction, at the cost of uniqueness. The discontinuity belongs to the representative, not to the lattice, and the point $a=c$, where an axis exchange becomes an exact symmetry, is a junction that the search coordinate passes through smoothly while the exact stage exposes the extra operators that become admissible there.
-
-\begin{figure}
-\includegraphics[width=\textwidth]{figures/fig_trajectory.pdf}
-\caption{A representative can jump while the sorted key does not. (a) Equal perturbation of $0.001$\,\Ang\ on either side of $a=b$: raw reduced distance $0.080$ versus $118.5$, sorted-key distance $0.0010$ on both sides. (b) Along the monoclinic series the Selling closure stays at 12 superbases through $a=c$. (c) Consecutive raw reduced steps stay tens of angstroms; consecutive sorted-key steps stay near $0.25$\,\Ang.}
-\label{fig:trajectory}
-\end{figure}
-
-\subsection{Archive search as ordinary computational geometry}
+\subsection{The PDB in lattice-shape space}
 \label{sec:pdb}
 
 Keys were computed for the 206\,214 PDB cells and indexed with a KD tree.\chk{z:timing} On the precomputed keys the index builds in 0.044\,s and a median $k=10$ query takes 0.010\,ms (Python 3.12, NumPy 2.5.3, SciPy 1.18.1). Earlier figures of 0.28\,s and 0.04\,ms are not this measurement. A radius query on that index carries the guarantee of Lemma~\ref{lem:lb}; certification is applied only to the candidates it returns. For scale, the SAUC search of alternate unit cells reported 500-nearest-neighbour queries over roughly half a million PDB and CSD cells in about 4\,s with a Selling embedding versus about 8\,s with Niggli (McGill \emph{et al.}, 2014); those searches operate in an orbit-aware space, whereas a query here searches the lossy key and relies on the certification stage that follows. There is one key per lattice at every Voronoi type;\chk{z:one-key} the extra superbases of symmetric lattices are never inserted into the index and are opened only for certification.
@@ -200,13 +201,15 @@ For shape comparison the key is divided by $V^{1/3}$, a neighbourhood graph is b
 \label{fig:pdb}
 \end{figure}
 
-\subsection{An archival protein family as a trajectory}
-\label{sec:lysozyme}
+The structure the colouring reveals has an exact, computable skeleton. In the volume-normalised key space each Bravais family is a definite geometric object: the three cubic lattices are single points --- cP at $(0,0,0,0.577,0.577,0.577)$, cI at $(0.257,\dots,0.257)$ and cF at $(0,0,0.397,0.397,0.397,0.397)$ --- the tetragonal, rhombohedral and hexagonal families are one-parameter curves, the orthorhombic families two-parameter surfaces, and so on down to triclinic, which fills the five-dimensional shape cone.\chk{z:skeleton} The curves meet the points at exact nexus: cP is a quintuple point --- the terminus of the tP curve, the corner of the oP surface, the end of the oC family through its tP edge, and the $\alpha=90^\circ$ point of the rhombohedral curve; hR meets tI at exactly two points, cI at ($\alpha=109.47^\circ$, $c/a=1$) and cF at ($\alpha=60^\circ$, $c/a=\sqrt2$), and the two nexus are fed by different centrings, oI running into the first through $\mathrm{oI}(a{=}b)=\mathrm{tI}$ and oF into the second through $\mathrm{oF}(a{=}b)=\mathrm{tI}$ at axial ratio $\sqrt2\,c/a$.\chk{z:skeleton} Distinct families also run together without meeting, along asymptotic seams at extreme axial ratio: hP at $c/a=R$ runs alongside hR at hexagonal-setting $c/a=3R$ (ABC stacking at spacing $c/3$ against AA stacking at $c$), with key distance 0.093, 0.014 and 0.0009 at $R=1$, 4 and 32; and tI at $c/a=2R$ runs alongside tP at $c/a=R$ (a body-centred cell is two interleaved P lattices at half the repeat), with distance 0.64, 0.15 and 0.004 at $R=1$, 4 and 64, plus a mirror seam at the flat end through the $45^\circ$ relation $\mathrm{tI}(R/\sqrt2)$.\chk{z:skeleton} The two tetragonal curves are farthest apart near the cubic points, 0.50 from cP to the tI curve and 0.71 from cI to the tP curve, which is why the embedding shows the tetragonal branches splitting at the cubic pinch and re-approaching at both extremes.\chk{z:skeleton} Table~\ref{tab:nexus} collects the skeleton. A population bridge at a nexus means lattices can pass through the symmetry; a bridge along a seam means two families merely become metrically indistinguishable at extreme aspect. The embedding renders both as branches approaching; the skeleton tells them apart.
+
+
+\subsection{The atlas at family and per-crystal scale}
+\label{sec:lysozyme}\label{sec:xfel}
+
+The same coordinate zooms from the archive to one protein family and to the individual crystals of one experiment.
 
 The 1361 hen egg-white lysozyme cells span six space groups: 1152 tetragonal $P4_32_12$, 100 orthorhombic $P2_12_12_1$, 59 monoclinic $P2_1$, 41 triclinic $P1$, and small trigonal and hexagonal groups.\chk{z:lysozyme} The key handles all of them in one setting-independent space before any system-specific analysis is chosen. Within the 1113 native-volume tetragonal cells, which span a 26\% range in volume, the leading intrinsic coordinate of the key-distance graph (Fiedler, 1973) correlates with cell shrinkage at $|r|=0.92$: $a$ varies smoothly from about 76.8 to 80.0\,\Ang\ while $c$ stays flat and then steps between preferred values near 37 and 38\,\Ang.\chk{z:lysozyme} For this single-setting subset the same trend could be read directly from $(a,c)$; the gain is that the subset was isolated from a heterogeneous census by one lattice-level distance, after which conventional interpretation proceeds in whatever coordinates suit it.
-
-\subsection{Per-crystal cell variation in a serial XFEL data set}
-\label{sec:xfel}
 
 Merged depositions keep only a consensus cell; the CrystFEL stream retains every indexed cell. Because these are unconstrained per-frame cells of a high-symmetry lattice, they are keyed by sorted conorms without the square root (Section~\ref{sec:noise}) and the cloud is analysed by principal components rather than a nonlinear embedding. The $c$ axis has median 233.3\,\Ang, median absolute deviation 0.13\,\Ang, and a maximum of 245\,\Ang. The key is blind to orientation, so orientation metadata can be projected onto the variation as an independent diagnostic (Fig.~\ref{fig:xfel}). Crystals with the beam within $10^\circ$ of $c^*$ ($n=141$) have a $c$-axis median absolute deviation of 0.22\,\Ang, against 0.083\,\Ang\ for beam angles above $80^\circ$ ($n=2866$), a ratio of 2.6.\chk{z:xfel} The earlier scatters of 1.53\,\Ang\ and about 0.5\,\Ang\ are not reproduced under this binning and are not used. The same projection could be made for pulse energy, detector geometry, time delay or temperature without touching the lattice representation.
 
@@ -216,20 +219,14 @@ Merged depositions keep only a consensus cell; the CrystFEL stream retains every
 \label{fig:xfel}
 \end{figure}
 
-\subsection{Reindexing: identify the lattice first, then the basis}
-\label{sec:reindex}
+\subsection{Exact reindexing over the Selling closure}
+\label{sec:reindex}\label{sec:flip}\label{sec:tolerance}
 
 A conventional reindexing search asks which small integer matrix maps one cell onto another, mixing ``is this the same lattice?'' with ``which basis?''. Here they are separated by the procedure of Section~\ref{sec:reindex-proc}. On an orthorhombic P cell presented in an even-class basis $\{v_1,v_3,v_2-v_1\}$ the procedure returns the full eight-member $mmm$ coset, whereas the 24 relabellings of a single reduced superbase return nothing;\chk{z:coset} on an arbitrary unimodular resetting of a reference cell, with and without noise and centering, it recovers the resetting up to automorphism for eight lattice types.\chk{z:reindex-proc}
 
 On the 200 perturbed monoclinic frames spanning both sides of a reduction flip, a brute-force baseline tested all 6960 unimodular matrices with entries in $\{-1,0,1\}$ per frame. The key-first workflow reduced each frame to a cached two-operator coset, with the reference closure enumerated once before the first frame.\chk{z:reindex-bench} A rerun of that appendix procedure does not recover the earlier wall-clock figures: on this machine the 6960-matrix baseline has median 15\,ms per frame and the cached procedure median 75\,ms per frame. The figures 0.07\,ms per frame and 330-fold are not reproduced and are not used. The baseline is a cost comparison, not a correctness reference. A search over matrices with entries in $\{-1,0,1\}$ finds the relating operator only if that operator has no entry of magnitude two or more; for arbitrary input settings this fails outright, since $\mathrm{GL}(3,\mathbb Z)$ is infinite and most random resettings with entries up to $\pm2$ are invisible to it (192 of 200 in the test).\chk{z:brute-complete} The usual defence is to reduce both cells first. With Niggli reduction the defence works: for two Niggli cells of the same lattice, exact or noisy, in random input settings, every relating operator had entries in $\{-1,0,1\}$ across eight lattice types,\chk{z:brute-complete} consistent with the classical fact that Buerger-cell boundary transformations and point-group operations in a reduced basis are all small. With Selling reduction alone it does not work: two obtuse superbases of the same V3 lattice (rhombic dodecahedron; face-centred lattices) can be related by an operator with an entry of magnitude two,\chk{z:brute-complete} which the small search silently misses. The brute force is therefore complete only conditionally, on a correct Niggli reducer and on an entry bound that holds for reduced bases, whereas the closure route is complete unconditionally, by enumeration, and needs at most 32 candidates rather than 6960.\chk{z:reindex-bench}
 
-\subsection{Reduction flips are recovered exactly, not tolerated as pseudo-symmetry}
-\label{sec:flip}
-
 Near a pseudo-symmetric boundary a tolerance-gated symmetry search can drop a basis change that is needed only because reduction picked a different representative. In the controlled monoclinic family, exchanging $a$ and $c$ is an exact integer relation between two settings of the same lattice for every $|a-c|$, but an exact metric symmetry only at $a=c$. With a $3^\circ$ Le~Page tolerance the exchange is admitted up to about $|a-c|=2.85$\,\Ang\ and then excluded, although the two descriptions remain exactly related; raising the tolerance merely admits unrelated pseudo-symmetries. The closure-based operator search recovers the exact exchange regardless of how far the lattice is from symmetric (Table~\ref{tab:flip}).\chk{z:lepage} The same family, with $a=c$ imposed, gives $H^*$ of index 2 over $H$ and recovers the exchange with residual proportional to $|a-c|$ at every distortion; the near-tetragonal cuboid with its two short edges equalized gives index 2 and a four-fold outside $H$.\chk{z:pseudo}
-
-\subsection{Coset size, tolerance and noise on high-symmetry frames}
-\label{sec:tolerance}
 
 Matching only one representative per isometry class returns one operator per class pair and loses the coset. On exact cells, an orthorhombic P cell against itself returns the order-8 $mmm$ coset when matched over the full 32-member closure and only 2 operators when matched over representatives; the $P6_3$ cell against itself returns 24 ($6/mmm$ including $-I$) versus 4.\chk{z:coset} Too tight a verification tolerance lets noise select a subset of the coset: on $P6_3$ frames with $0.05^\circ$ angular noise, a relative tolerance of $10^{-4}$ returned 12 of the 24 operators and $10^{-3}$ returned all 24.\chk{z:verify-tol} With exact zero detection a measured $P6_3$ frame is classified as V1 and only the 24 relabellings of one superbase are matched; widening the zero tolerance to a few $\sigma$ on the invariant scale of Appendix~C restores the V4 classification and the full closure, and two independently perturbed frames at $0.01^\circ$ and $0.05^\circ$ angular noise then both recovered all 24 operators.\chk{z:noisy-frames}
 
@@ -243,7 +240,7 @@ Reduction methods are sometimes compared as competing answers to one question. I
 
 \subsection{A lower-bound key is enough}
 
-Lattice-isometry space has not been equipped with a Euclidean metric here; Kurlin (2026) explicitly postpones that construction. What is available is weaker and sufficient: a lossy key whose distance is a lower bound on the true one, which is exactly what a certified filter needs. The exploratory tools that run on the key --- nearest neighbours, principal components, embeddings --- are descriptive, and their validation is done upstream by auditing key collisions and graph edges against exact comparisons.
+Lattice-isometry space has not been equipped with a Euclidean metric here; Kurlin (2026) explicitly postpones that construction. What is available is weaker and sufficient: search on an object whose distance lower-bounds the true one, refined by an exact procedure afterwards --- which is exactly what a certified filter needs. The exploratory tools that run on the key --- nearest neighbours, principal components, embeddings --- are descriptive, and their validation is done upstream by auditing key collisions and graph edges against exact comparisons.
 
 \subsection{Which tolerances remain, and what they decide}
 
@@ -251,7 +248,7 @@ The Le~Page-style bet --- that an exact integer relation between two settings is
 
 \subsection{Continuity does not abolish crystal systems}
 
-Higher-symmetry lattices sit on lower-dimensional loci of lattice space where extra metric equalities hold and extra automorphisms appear. The PDB population is naturally read as a continuous object stratified by these familiar discrete classes, and a trajectory may approach, cross or leave a stratum. A representation built around one canonical cell makes such transitions look like jumps in description; a lattice-level coordinate lets the physical path and the changing set of exact basis correspondences be handled separately.
+Higher-symmetry lattices sit on lower-dimensional loci of lattice space where extra metric equalities hold and extra automorphisms appear. The PDB population is naturally read as a continuous object stratified by these familiar discrete classes, and a trajectory may approach, cross or leave a stratum. A representation built around one canonical cell makes such transitions look like jumps in description; a lattice-level coordinate lets the physical path and the changing set of exact basis correspondences be handled separately. The skeleton of Table~\ref{tab:nexus} makes the stratification concrete: strata intersect at exact nexus points, and distinct strata can also run together along asymptotic seams without meeting, so a bridge in the population is read against the computed skeleton rather than from the picture alone.
 
 \subsection{Scope and attribution}
 
@@ -261,7 +258,7 @@ Three objects must stay distinct: Kurlin's structured root form, which is the co
 \section{Conclusions}
 %==============================================================================
 
-A century of reduction practice has rightly emphasized the question of which cell should represent a lattice. Large-scale computation is better served by asking first which lattice this is and which are near it, and only then which basis is needed. Selling reduction provides the finite object between those questions; sorting its root products provides a continuous Euclidean key whose distance is a safe lower bound; exact integer algebra over the Selling closure provides the reindexing operator and its coset. In one line: Euclidean key, then finite Selling closure, then exact operator.
+A century of reduction practice has rightly emphasized the question of which cell should represent a lattice. Asking first which lattice this is, and which are near it, yields two results. In one continuous Euclidean coordinate --- the sorted, normalised Selling scalars, one key per lattice with a conservative distance --- the Protein Data Bank becomes an atlas: a stratified shape space with a computable Bravais skeleton of points, curves, nexus and seams over which the deposited population drapes, readable at archive, family and per-crystal scale. Over the finite Selling closure, reindexing becomes exact: the integer operator and its full automorphism coset are recovered without a symmetry tolerance, where angular gates and entry-bounded searches fail. The key retrieves, the closure decides, and the lower bound is what makes the hand-off safe. In one line: Euclidean key, then finite Selling closure, then exact operator.
 
 %==============================================================================
 \appendix
@@ -466,6 +463,23 @@ $|a-c|$ (\Ang) & flip $\delta$ ($^\circ$) & key dist. & $\delta$-gate & exact op
 5.0  & 5.22  & $2\times10^{-14}$ & drops & yes & $0$ \\
 10.0 & 10.41 & $7\times10^{-15}$ & drops & yes & $0$ \\
 \end{tabular}
+\end{table}
+
+\begin{table}
+\caption{The Bravais skeleton of the volume-normalised key space: fixed points, exact nexus and asymptotic seams. Coordinates and distances are dimensionless (key over $V^{1/3}$).}
+\label{tab:nexus}
+\begin{footnotesize}\begin{tabular}{lll}
+object & where & value \\
+\hline
+cP point & terminus of tP, oP, oC and hR($\alpha{=}90^\circ$) & $(0,0,0,0.577{\times}3)$ \\
+cI point & hR($\alpha{=}109.47^\circ$) $=$ tI($c/a{=}1$); oI limit & $(0.257{\times}6)$ \\
+cF point & hR($\alpha{=}60^\circ$) $=$ tI($c/a{=}\sqrt2$); oF limit & $(0,0,0.397{\times}4)$ \\
+oC through tP & oC($a{=}b$) coincides with tP & exact \\
+oI, oF feeds & oI($a{=}b$) $=$ tI; oF($a{=}b$) $=$ tI($\sqrt2\,c/a$) & exact \\
+seam hP $\parallel$ hR & hP($R$) beside hR(hex $3R$) & $0.093\to0.0009$, $R{=}1\to32$ \\
+seam tP $\parallel$ tI & tP($R$) beside tI($2R$); flat: tI($R/\sqrt2$) & $0.64\to0.004$, $R{=}1\to64$ \\
+curve separation & cP to the tI curve; cI to the tP curve & $0.50$; $0.71$ \\
+\end{tabular}\end{footnotesize}
 \end{table}
 
 \begin{table}
