@@ -418,4 +418,18 @@ failure onset (P6_3 cell, sigma = 0.05 deg): operator counts at
     noise-scale tolerance recovers the full coset of 24 [Section 4.3]
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:deformation}{The ideal: certified, symmetrised deformation distance (constructed + deposited pairs + random ladder check)}
+Claim (Section 2.2, Table 6): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
+\begin{footnotesize}\begin{verbatim}
+implementation: agentsg.cell.deformation.deformation_distance
+near-face pair (one conorm at +delta vs -delta, delta = 0.1 and 0.02):
+    d = 4*delta exactly (Frobenius on G); both directions equal; certified
+    at radius 1; Delta_cell = one angle by -8.54*delta degrees
+Hfq 4nl7 -> 2yht: bound ||M|| <= 1.86 so the entries-<=1 ball suffices;
+    directed values 492 and 533 A^2, both certified; reported d = 533
+    (the max); the 8% difference is the anchoring asymmetry
+ladder: for 15 random near pairs, the jointly-obtuse closure match
+    evaluated in the same norm upper-bounds the certified ideal
+\end{verbatim}\end{footnotesize}
+
 \end{document}
