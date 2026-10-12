@@ -265,28 +265,47 @@ Claim (Sections 2.4, 3.5): the reference closure is enumerated once. A rerun giv
     assert the cached result is the two-operator coset
 \end{verbatim}\end{footnotesize}
 
-\sitem{z:brute-complete}{When a $\{-1,0,1\}$ unimodular search is complete (exhaustive per lattice + random + implementation check)}
-Claim (Section 3.5, Appendix D): (i) most random resettings need entries of magnitude 2 and are missed on unreduced input; (ii) between Niggli cells of one lattice the relating operator has entries in $\{-1,0,1\}$ (exact and noisy, eight lattice types); (iii) between Selling-reduced settings of a V3 lattice an entry of magnitude 2 occurs; (iv) the Niggli reducer's change-of-basis must satisfy the metric identity.
+\sitem{z:brute-complete}{When a $\{-1,0,1\}$ unimodular search is complete (stratum-wide machine proof + random + adversarial + implementation check)}
+Claim (Sections 2.2, 2.3, 4.3; Appendix D): (i) most random resettings need entries of magnitude 2 and are missed on unreduced input; (ii) between Niggli cells of one lattice every relating operator has entries in $\{-1,0,1\}$ (exact and noisy, eight lattice types, plus adversarial anisotropic and near-degenerate cases); (iii) proposition, machine-checked per Voronoi type and valid for every lattice: the closure in one superbase's integer coordinates is stratum-fixed (1/2/3/6/16 classes) and obtuse on the whole open stratum; between any two Selling-reduced settings some relating operator has entries in $\{-1,0,1\}$; the full coset escapes --- V4 self-cosets reach entry 2 (18/24 bases), V5 reach 2 (60/64) and cross-class pairs reach 3 --- while V1--V3 cosets never do (an earlier draft placed the escape in V3; that construction's counterpart cell was not reduced, and the corrected enumeration retires it); (iv) the Niggli reducer's change-of-basis must satisfy the metric identity; (v) between different lattices the radius-one truncation fails where the certificate radius exceeds 2.
 \begin{footnotesize}\begin{verbatim}
-(i)  200 random unimodular M with entries in [-2,2]: count max|entry| > 1   (observed 192/200)
-(ii) for R in {oF(3,4,5), oI(3,4,5), cF, cI, hP(3,3,5), mP(120,189.1,120.3,90,91.2,90),
-               oF(3,3.2,5), triclinic(40,50,60,80,95,110)} (centred ones made primitive):
-       150 trials: two copies, noise (0.02 A, 0.05 deg) applied BEFORE a random resetting
-       M1, M2 (entries in [-2,2]); Niggli-reduce both with an independent reducer
-       (e.g. spglib.niggli_reduce), recover N1, N2 from Ln = M^T L exactly (assert integer,
-       |det|=1); P = (M1 N1)^{-1} (M2 N2); record max|entry|      (observed 1 in all cases,
-       also without noise)
-(iii) V3 test lattice (conorms 0,2,3,4,5,0): for all pairs of obtuse superbases in the
-       brute-force closure and all 3-of-4 vector choices, P = A^T B^{-T}; record max|entry|
-       (observed 2, e.g. [[-1,2,0],[0,1,-1],[-1,1,0]]); repeat for V1,V2,V4,V5 (observed 1);
-       confirm the {-1,0,1} search returns no operator for that V3 pair while the closure
-       route returns it.
+(i)   200 random unimodular M with entries in [-2,2]: count max|entry| > 1  (observed 192/200)
+(ii)  for R in {oF(3,4,5), oI(3,4,5), cF, cI, hP(3,3,5), mP(120,189.1,120.3,90,91.2,90),
+       oF(3,3.2,5), triclinic(40,50,60,80,95,110)} (centred ones made primitive):
+       trials: two copies, noise (0.02 A, 0.05 deg) BEFORE random resettings M1, M2
+       (entries in [-2,2]); Niggli-reduce both; coset ops between the reduced cells:
+       max|entry| = 1 in all cases, also without noise.
+       adversarial (exact): needle hP(41.8,41.8,233), plate(80,80,3.4,gamma=120),
+       near-tie(10,10.001,10.002,89.99,90.01,90), near-cube, cuboid(3,4,5),
+       skew needle(7.47,47.69,7.15,91.69,90.81,98.53); direct operator
+       P = (M2 N2)^{-1}(M1 N1): integer, metric identity to 1e-6, max|entry| = 1.
+(iii) per type V1..V5: Gram linear in the stratum's free conorms ->
+       flip-BFS with integer conorm-COEFFICIENT vectors (a slot is zero iff its
+       coefficient vector is zero) gives the stratum-fixed closure:
+       1/2/3/6/16 classes; every member conorm has coefficients >= 0 (obtuse on
+       the whole open stratum). Generic automorphisms: Q^T Gk Q = Gk for all
+       coefficient matrices (orders 2/2/2/4/8, entries <= 1). For all member-basis
+       pairs (A,B), coset = B^-1 Aut A:
+         min over coset of max|entry| = 1 for every pair, every type;
+         max: V1/V2/V3 = 1; V4 = 2 (self-pairs: 18 of 24 bases escape);
+              V5 = 3 (self-pairs 60/64 at 2; cross-class pairs at 3).
+       numeric instance (cuboid 3x4x5): settings (7.07,4,5,90,135,124.45) and
+       (6.40,4,5.83,90,132.04,128.66); coset of 8, entries [1,1,1,1,2,2,3,3];
+       the {-1,0,1} scan finds exactly 4; the closure route returns all 8
+       (and the 4-operator V4 self-coset with its entry-2 members).
+       regression: the retracted V3 'entry-2 pair' came from pairing closure
+       members under arbitrary signed permutations; the constructed cell's
+       superbase completion has a negative conorm, i.e. it was not reduced.
 (iv)  for random cells: (red, N) = niggli_reduce(cell); assert N^T G N == G(red) to 1e-9,
        |det N| = 1, and convergence on noisy cells. On the current reducer a 500-cell
        noisy sample (seed SEED_BRUTE+1) gave 0 non-convergences and maximum metric
        error 8e-13. The earlier report that an in-house reducer failed the identity,
        and failed to converge on 1--2 percent of noisy cells, is not reproduced.
        The Selling route does not use this reducer.
+(v)   reduced needle pair A=(7.47,47.69,7.15,91.69,90.81,98.53),
+       B=(7.27,42.89,7.01,91.26,90.24,92.72): ball(1) minimum 298.2, ball(2)
+       minimum 105.1 (ratio 2.8), minimiser entry 2, certificate radius
+       R(D) = 7.0 > 2 -- the truncation fails exactly where eq. (cert) says so;
+       random search: 35 of 400 anisotropic reduced pairs improved at radius 2.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:timing}{KD tree on 206\,214 PDB keys returns planted neighbours (empirical, benchmark)}
@@ -348,7 +367,7 @@ theta = angle between beam direction and cstar; bins: theta<10 deg vs theta>80 d
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:linear-key}{The linear archive key: invariance, scaling, Lipschitz, rearrangement bound, pseudo-symmetric fidelity (exhaustive per lattice + synthetic + deposited pairs)}
-Claim (Sections 2.2, 2.3; Appendix C): one key per lattice over the full closure; $\mathrm{sort}(p/\sqrt{T})$ scales as length with the cube identity; Lipschitz where the square-root key is H\"older-$\tfrac12$; the sorted distance lower-bounds the aligned distance over the 24 relabellings; between pseudo-symmetric lattices the linear distance scales as $\delta$ where the square-root distance scales as $\sqrt\delta$; the Scotty distances track NCDist (cells and NCDist values from McCoy \emph{et al.}, 2026, Tables 1--5).
+Claim (Sections 2.2, 2.3; Appendix C): one key per lattice over the full closure; $\mathrm{sort}(p/\sqrt{T})$ scales as length with the cube identity; Lipschitz where the square-root key is H\"older-$\tfrac12$; the sorted distance lower-bounds the aligned distance over the 24 relabellings; between pseudo-symmetric lattices the linear distance scales as $\delta$ where the square-root distance scales as $\sqrt\delta$; on the Scotty pairs the linear key reproduces NCDist's ranking and the square-root key reverses it --- NCDist values carry an arbitrary internal scale factor and are used only ordinally (cells and NCDist values from McCoy \emph{et al.}, 2026, Tables 1--5).
 \begin{footnotesize}\begin{verbatim}
 closure invariance: for each V1-V5 test lattice, every member of the brute-force
     closure gives the same sort(p/sqrt(T))            (one key, all five types)
@@ -362,7 +381,8 @@ pseudo-symmetry: monoclinic (50,70,60,90,beta,90), pairs (90+d, 90+2d) for
     d = 1, 0.1, 0.01 deg: linear 0.80 / 0.080 / 0.008 A
     against square root   3.1 / 0.95  / 0.30  A
 Scotty cells: 1fe5->1u4j 2.72, 1fe5->1g2x 2.87, 4nl7->2yht 5.43 A
-    (NCDist 2.09 / 2.08 / 2.34; square root 16.7 / 16.4 / 13.8 A)
+    (same ranking as NCDist 2.09 / 2.08 / 2.34 -- arbitrary scale, ordinal
+    use only; the square-root key 16.7 / 16.4 / 13.8 A reverses the order)
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:skeleton}{The Bravais skeleton of the normalised key space: points, nexus, seams (exhaustive per structure + coarse scan)}
@@ -396,7 +416,8 @@ near-face pair, p_A = (4,7,9,5,6,+delta) and p_B realized from
     0.184 / 0.037 / 0.0074  -> closure / widened = 3 / 14 / 71
 Hfq 4nl7 -> 2yht: key = closure minimum = 5.434; widened minimum 5.434,
     4.455, 2.825, 2.651 at boundary_rel = 0.02, 0.06, 0.12, 0.3
-    (NCDist 2.34, McCoy et al., 2026)
+    (same direction as NCDist, whose value 2.34 is on an arbitrary internal
+    scale and is not compared by magnitude; McCoy et al., 2026)
 interior pairs (N = 40): widening improved the minimum in 3 cases; assert
     that in each such case the least positive normalised conorm of one
     lattice lies below the minimum (the certificate's contrapositive)
