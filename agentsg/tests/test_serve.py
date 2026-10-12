@@ -69,7 +69,7 @@ def test_openapi_covers_routes():
     assert "/v1/help" in paths
     assert "/v1/ita-plate.png" in paths
     manifest = build_api_manifest()
-    assert manifest["api_version"] == API_VERSION == "0.3.1"
+    assert manifest["api_version"] == API_VERSION == "0.3.5"
     assert "/v1/subgroups" in paths
     assert {e["path"] for e in manifest["endpoints"]} == paths
     assert spec["openapi"].startswith("3.")
@@ -98,7 +98,8 @@ def test_http_discovery_and_space_group():
         assert status == 200
         assert health["status"] == "ok"
         assert health["read_only"] is True
-        assert health["api_version"] == "0.3.1"
+        assert health["api_version"] == "0.3.5"
+        assert health["auth_required"] is False
         status, root = _fetch(f"{base}/")
         assert status == 200
         assert root["docs"] == "/docs/muse.md"
@@ -130,8 +131,17 @@ def test_http_discovery_and_space_group():
         assert sg_get["sg_number"] == 96
         assert sg_get["sg_hm"] == sg["sg_hm"]
 
+        status, manifest = _fetch(f"{base}/api")
+        assert status == 200
+        assert manifest["auth"] == {"scheme": "none"}
+        sg_example = next(
+            e["example"] for e in manifest["endpoints"] if e["path"] == "/v1/space-group"
+        )
+        assert "Authorization" not in sg_example
+
         status, help_ = _fetch(f"{base}/v1/help")
         assert status == 200
+        assert help_["auth"] == "none"
         assert help_["calls"]
         assert any("space-group" in c["path"] for c in help_["calls"])
     finally:
@@ -437,7 +447,7 @@ def test_api_manifest_auth_and_plates_errors():
         status, manifest = _fetch(f"{base}/api", token="secret")
         assert status == 200
         assert manifest["name"] == "agentsg"
-        assert manifest["api_version"] == "0.3.1"
+        assert manifest["api_version"] == "0.3.5"
         assert manifest["auth"] == {"scheme": "bearer", "header": "Authorization"}
         by_path = {e["path"]: e for e in manifest["endpoints"]}
         assert "/search" in by_path

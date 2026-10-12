@@ -95,8 +95,8 @@ is the endpoint catalog and `GET /plates?sg=19` draws the plate.
 
 ## Security
 
-- `agentsg/serve.local.env` holds the public-server token. Leave it unprinted and uncommitted.
-- Leave `AGENTSG_TOKEN` unset on the local API. It binds `127.0.0.1`.
+- `agentsg/serve.local.env` is local process config. Leave it unprinted and uncommitted.
+- `./serve-sg-muse.sh` and `./serve-sg-mcp.sh` leave `AGENTSG_TOKEN` unset. A local API binds `127.0.0.1` and requires a token only when `AGENTSG_TOKEN` is set.
 - Leave `data/*.duckdb` and LaTeX `*.aux`, `*.log`, `*.out` uncommitted.
 
 ## Git

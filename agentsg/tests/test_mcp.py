@@ -7,7 +7,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import pytest
 
 from agentsg.serve.app import ServerState
-from agentsg.serve.front import make_front_handler, upstream_for_host
+from agentsg.serve.front import is_landing_host, make_front_handler, upstream_for_host
 from agentsg.serve.mcp_app import build_mcp
 
 
@@ -18,6 +18,12 @@ def test_upstream_for_host():
     assert upstream_for_host("SG-MCP.MXAGENTS.ORG:443", mcp_port=1, muse_port=2)[2] is True
     host, port, is_mcp = upstream_for_host("sg-muse.mxagents.org", mcp_port=1, muse_port=9876)
     assert (host, port, is_mcp) == ("127.0.0.1", 9876, False)
+    assert upstream_for_host(
+        "cell-embed.mxagents.org", mcp_port=1, muse_port=2, embed_port=8051,
+    ) == ("127.0.0.1", 8051, False)
+    assert is_landing_host("mxagents.org")
+    assert is_landing_host("WWW.MXAGENTS.ORG:443")
+    assert not is_landing_host("sg-muse.mxagents.org")
 
 
 def test_mcp_tools_have_no_auth_and_call_handlers():
@@ -186,16 +192,18 @@ def test_front_routes_by_host():
 
     muse = ThreadingHTTPServer(("127.0.0.1", 0), echo("muse"))
     mcp = ThreadingHTTPServer(("127.0.0.1", 0), echo("mcp"))
+    embed = ThreadingHTTPServer(("127.0.0.1", 0), echo("embed"))
     front = ThreadingHTTPServer(
         ("127.0.0.1", 0),
         make_front_handler(
             mcp_port=mcp.server_address[1],
             muse_port=muse.server_address[1],
+            embed_port=embed.server_address[1],
             rate_per_minute=0,
         ),
     )
     threads = []
-    for httpd in (muse, mcp, front):
+    for httpd in (muse, mcp, embed, front):
         thread = threading.Thread(target=httpd.serve_forever, daemon=True)
         thread.start()
         threads.append(thread)
@@ -203,14 +211,30 @@ def test_front_routes_by_host():
         import urllib.request
         front_port = front.server_address[1]
 
-        def fetch(host: str) -> bytes:
-            req = urllib.request.Request(f"http://127.0.0.1:{front_port}/health")
+        def fetch(host: str, path: str = "/health", method: str = "GET"):
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{front_port}{path}", method=method,
+            )
             req.add_header("Host", host)
             with urllib.request.urlopen(req, timeout=5) as resp:
-                return resp.read()
+                return resp.status, resp.getheader("Content-Type"), resp.read()
 
-        assert fetch("sg-mcp.mxagents.org") == b"mcp"
-        assert fetch("sg-muse.mxagents.org") == b"muse"
+        assert fetch("sg-mcp.mxagents.org")[2] == b"mcp"
+        assert fetch("sg-muse.mxagents.org")[2] == b"muse"
+        assert fetch("cell-embed.mxagents.org")[2] == b"embed"
+        status, ctype, page = fetch("mxagents.org", "/")
+        assert status == 200
+        assert ctype.startswith("text/html")
+        assert b"<title>MX Agents</title>" in page
+        assert b"Space-group and symmetry agents" in page
+        assert b"Unit-cell embedding" in page
+        assert b"https://sg-muse.mxagents.org" in page
+        assert b"https://sg-mcp.mxagents.org/mcp" in page
+        assert b"https://cell-embed.mxagents.org" in page
+        head_status, head_type, head_body = fetch("www.mxagents.org", "/", "HEAD")
+        assert head_status == 200
+        assert head_type.startswith("text/html")
+        assert head_body == b""
     finally:
-        for httpd in (front, mcp, muse):
+        for httpd in (front, embed, mcp, muse):
             httpd.shutdown()

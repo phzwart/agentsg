@@ -1,10 +1,11 @@
 """Resumable full-PDB unit-cell database builder.
 
-Downloads every current PDB entry's unit cell + space group + id from RCSB and
-stores them in a DuckDB file with the six root-invariant components precomputed
-on insert (see :mod:`agentsg.cell.celldb`). The build is resumable: rerunning
-against an existing database skips ids already stored, so an interrupted crawl
-resumes where it left off, losing at most one batch.
+``build`` is the whole construction. It downloads current PDB cells from RCSB,
+stores each deposited cell with its primitive-lattice keys and one
+Selling-reduced cell, then fills UniProt lists from the PDBe SIFTS chain
+table and deposition-group ids. The two annotations are stored separately.
+Rerunning skips ids and columns already stored, so an interrupted run
+resumes where it left off.
 
 A prebuilt snapshot is https://doi.org/10.5281/zenodo.22986222.
 Use that unless you need to rebuild.
@@ -15,20 +16,79 @@ Build (or resume) the whole PDB into ``pdb_cells.duckdb``::
 
     python -m agentsg.cell.pdb_app build pdb_cells.duckdb
 
+The same command on a random sample, for a check of every step::
+
+    python -m agentsg.cell.pdb_app build pdb_cells.duckdb --sample 100
+
 Query the k nearest lattices to a cell::
 
     python -m agentsg.cell.pdb_app query pdb_cells.duckdb \\
         --cell 79 79 38 90 90 90 -k 5
 
+The ``backfill-*`` commands repeat one annotation step on a database that
+already has cells. ``build`` runs them itself.
+
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
 """
 from __future__ import annotations
+import random
 import sys
 import time
 import urllib.error
 
 from .celldb import CellDatabase, list_pdb_ids, fetch_pdb_cells
+
+
+def sample_ids(ids, n, seed=0):
+    """Return ``n`` ids from ``ids``, stable for a given seed.
+
+    The whole list is returned when ``n`` is at least its length. Order is the
+    random sample order, not the holdings order.
+    """
+    ids = list(ids)
+    if n >= len(ids):
+        return ids
+    return random.Random(seed).sample(ids, n)
+
+
+def construct_pdb_database(db_path="pdb_cells.duckdb", ids=None, sample=None,
+                           seed=0, batch_size=250, log=print, **kwargs):
+    """Build a cell database and fill every derived column.
+
+    Steps, in order: RCSB cell download (primitive-lattice keys and one
+    Selling cell are written on insert), then any missing linear keys,
+    similarity keys, and Selling cells, then UniProt lists, then
+    deposition-group ids on every row. ``sample``
+    draws that many ids from ``ids`` or, when ``ids`` is omitted, from the
+    current RCSB holdings.
+    """
+    if sample is not None:
+        pool = list(ids) if ids is not None else list_pdb_ids(timeout=kwargs.get("timeout", 60))
+        ids = sample_ids(pool, sample, seed)
+        log(f"sample {len(ids)} of {len(pool)} PDB ids (seed {seed})")
+    summary = build_pdb_database(
+        db_path, ids=ids, batch_size=batch_size, log=log, **kwargs,
+    )
+    db = CellDatabase(db_path)
+    try:
+        log("linear keys ...")
+        summary["linear"] = db.backfill_linear_keys(progress=True)
+        log("similarity keys ...")
+        summary["similarity"] = db.backfill_similarity_invariants(progress=True)
+        log("Selling cells ...")
+        summary["selling"] = db.backfill_selling_cells(progress=True)
+        log("UniProt lists ...")
+        summary["uniprot"] = db.backfill_uniprot(progress=True)
+        log("deposition groups ...")
+        summary["deposit_group"] = db.backfill_deposit_group(progress=True)
+    finally:
+        db.close()
+    log(
+        f"construct done: {summary['rows_in_db']} rows, "
+        f"uniprot {summary['uniprot']}, deposition groups {summary['deposit_group']}"
+    )
+    return summary
 
 
 def _existing_ids(db):
@@ -135,6 +195,36 @@ def build_pdb_database(db_path="pdb_cells.duckdb", ids=None, resume=True,
     return summary
 
 
+def _parse_build_args(argv):
+    """``db_path``, batch size, sample count, and seed from ``build`` arguments."""
+    db_path = argv[0]
+    batch = 250
+    sample = None
+    seed = 0
+    i = 1
+    if i < len(argv) and not str(argv[i]).startswith("-"):
+        batch = int(argv[i])
+        i += 1
+    while i < len(argv):
+        flag = argv[i]
+        if flag == "--batch" and i + 1 < len(argv):
+            batch = int(argv[i + 1])
+            i += 2
+        elif flag == "--sample" and i + 1 < len(argv):
+            sample = int(argv[i + 1])
+            i += 2
+        elif flag == "--seed" and i + 1 < len(argv):
+            seed = int(argv[i + 1])
+            i += 2
+        else:
+            raise ValueError(f"unrecognised build argument {flag!r}")
+        if sample is not None and sample < 1:
+            raise ValueError("--sample must be at least 1")
+        if batch < 1:
+            raise ValueError("--batch must be at least 1")
+    return db_path, batch, sample, seed
+
+
 def _cli(argv=None):
     """Command-line entry point for pdb_app commands."""
     argv = list(sys.argv[1:] if argv is None else argv)
@@ -144,11 +234,14 @@ def _cli(argv=None):
     cmd = argv[0]
     if cmd == "build":
         if len(argv) < 2:
-            print("usage: pdb_app build <db_path> [batch_size]")
+            print("usage: pdb_app build <db_path> [batch_size] [--sample N] [--seed N] [--batch N]")
             return 2
-        db_path = argv[1]
-        bs = int(argv[2]) if len(argv) > 2 else 250
-        build_pdb_database(db_path, batch_size=bs)
+        try:
+            db_path, batch, sample, seed = _parse_build_args(argv[1:])
+        except ValueError as exc:
+            print(f"usage: pdb_app build <db_path> [batch_size] [--sample N] [--seed N] [--batch N]\n{exc}")
+            return 2
+        construct_pdb_database(db_path, sample=sample, seed=seed, batch_size=batch)
         return 0
     if cmd == "backfill-similarity":
         if len(argv) < 2:
@@ -175,6 +268,26 @@ def _cli(argv=None):
         db = CellDatabase(argv[1])
         n = db.backfill_selling_cells(progress=True)
         print(f"backfilled {n:,} Selling-reduced cells in {argv[1]}")
+        db.close()
+        return 0
+    if cmd == "backfill-uniprot":
+        if len(argv) < 2:
+            print("usage: pdb_app backfill-uniprot <db_path> [--refresh]")
+            return 2
+        refresh = "--refresh" in argv[2:]
+        db = CellDatabase(argv[1])
+        n = db.backfill_uniprot(progress=True, refresh=refresh)
+        print(f"backfilled {n:,} UniProt lists in {argv[1]}")
+        db.close()
+        return 0
+    if cmd == "backfill-deposit-group":
+        if len(argv) < 2:
+            print("usage: pdb_app backfill-deposit-group <db_path> [--refresh]")
+            return 2
+        refresh = "--refresh" in argv[2:]
+        db = CellDatabase(argv[1])
+        n = db.backfill_deposit_group(progress=True, refresh=refresh)
+        print(f"backfilled {n:,} deposition groups in {argv[1]}")
         db.close()
         return 0
     if cmd == "query":
@@ -204,7 +317,8 @@ def _cli(argv=None):
         return 0
     print(
         f"unknown command: {cmd!r} "
-        "(use build | backfill-similarity | backfill-linear | backfill-selling | query)"
+        "(use build | backfill-similarity | backfill-linear | backfill-selling | "
+        "backfill-uniprot | backfill-deposit-group | query)"
     )
     return 2
 

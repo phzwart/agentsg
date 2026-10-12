@@ -362,7 +362,7 @@ precompute its Kurlin root invariant. Needs the optional DuckDB extra
 (`pip install -e ".[db]"`); the core package stays dependency-free.
 
 ```bash
-# build (or resume) the whole PDB into a single DuckDB file (~206k cells)
+# build (or resume) the whole PDB: cells, keys, Selling cells, UniProt, deposition groups
 python -m agentsg.cell.pdb_app build pdb_cells.duckdb
 
 # query the k nearest lattices to a cell

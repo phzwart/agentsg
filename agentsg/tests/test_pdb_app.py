@@ -153,3 +153,43 @@ def test_index_query_matches_brute(tmp_path, monkeypatch):
     # k-th distances agree exactly (membership can differ only on ties)
     assert sorted(d for _, d in got) == pytest.approx([d for d, _ in brute])
     db.close()
+
+
+def test_sample_ids_is_stable():
+    pool = [f"{i:04d}" for i in range(40)]
+    assert pdb_app.sample_ids(pool, 10, seed=3) == pdb_app.sample_ids(pool, 10, seed=3)
+    assert len(set(pdb_app.sample_ids(pool, 10, seed=3))) == 10
+    assert pdb_app.sample_ids(pool, 100, seed=3) == pool
+
+
+def test_parse_build_args():
+    assert pdb_app._parse_build_args(
+        ["out.duckdb", "--sample", "100", "--seed", "1"]
+    ) == ("out.duckdb", 250, 100, 1)
+    assert pdb_app._parse_build_args(["out.duckdb", "80"]) == ("out.duckdb", 80, None, 0)
+
+
+def test_construct_sample_fills_derived_columns(tmp_path, monkeypatch):
+    recs = _fake_records(6)
+    _install_fake_fetch(monkeypatch, recs)
+    seen = []
+    monkeypatch.setattr(
+        CellDatabase, "backfill_uniprot",
+        lambda self, **k: seen.append("uniprot") or 0,
+    )
+    monkeypatch.setattr(
+        CellDatabase, "backfill_deposit_group",
+        lambda self, **k: seen.append("deposit") or 0,
+    )
+    dbp = str(tmp_path / "sample.duckdb")
+    summary = pdb_app.construct_pdb_database(
+        dbp, ids=[r["pdb_id"] for r in recs], sample=3, seed=2,
+        progress_every=0, log=lambda *_a, **_k: None,
+    )
+    assert summary["stored"] == 3
+    assert seen == ["uniprot", "deposit"]
+    db = CellDatabase(dbp)
+    assert len(db) == 3
+    row = db.sql("SELECT l0, s0, red_a, cob00 FROM cells")[0]
+    assert all(value is not None for value in row)
+    db.close()

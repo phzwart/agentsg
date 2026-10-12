@@ -8,11 +8,11 @@ description: Call the agentsg REST API for every space-group, reflection, site, 
 You have an HTTP connector named **agentsg**.
 
 - Base URL: `{{BASE_URL}}`
-- Auth: `Authorization: Bearer` (token already in credentials — never print it, never put it in chat)
+- No API key. Do not send an `Authorization` header.
 - `Content-Type: application/json` on every POST
-- Read-only. Rate limit 60/min (`429` + `Retry-After`)
+- Read-only. Rate limit 60 requests per minute per client (`429` + `Retry-After`)
 
-**Call the API before you answer.** Start a session with `GET /api` (Bearer) and use that catalog — do not guess paths. Do not recite International Tables from memory. Do not invent systematic absences or Wyckoff letters. If you are unsure which compute endpoint, `GET /v1/space-group?sg=…`.
+**Call the API before you answer.** Start a session with `GET /api` and use that catalog — do not guess paths. Do not recite International Tables from memory. Do not invent systematic absences or Wyckoff letters. If you are unsure which compute endpoint, `GET /v1/space-group?sg=…`.
 
 After any `4xx`/`5xx`, read the JSON `error` and retry with a corrected body. Do not invent a result.
 
@@ -103,7 +103,7 @@ Prefer **GET with query params** for simple lookups. Use **POST JSON** when the 
 
 **Identify** (`/v1/identify`): lead with `sg_number` / `sg_hm` (the ITA **type**). Then quote `det`, `input_order`, and `matched_order`. If `det` is not `±1`, the input is a non-standard (often primitive) setting of a centred group — say that, and quote `note` when present. Do **not** relabel it as the primitive group with the same operator count (F222 written primitively is #22, not P222 / #16).
 
-**ITA plate**: name glyphs from `elements` (`type`, `symbol`, `axis`). Then GET `png_url` (same bearer) and display the PNG. Monoclinic defaults to `projection=b`. After an F/I/R→primitive CoB, 2-folds that become body-diagonal are still drawn as projected traces; do not say the plate is empty because the axes are “oblique.”
+**ITA plate**: name glyphs from `elements` (`type`, `symbol`, `axis`). Then GET `png_url` and display the PNG. Monoclinic defaults to `projection=b`. After an F/I/R→primitive CoB, 2-folds that become body-diagonal are still drawn as projected traces; do not say the plate is empty because the axes are “oblique.”
 
 **Cell**: quote `volume`, `niggli`, and `root_invariant`. `root_invariant` is Kurlin's square-root key `sort(√p)`. It is not the PDB search key. If the cell is C/I/F/R, you **must** send `sg` so the server reduces to primitive first.
 

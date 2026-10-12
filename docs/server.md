@@ -36,6 +36,8 @@ search returns HTTP 503.
 
 When `AGENTSG_TOKEN` is set, compute routes expect
 `Authorization: Bearer <token>`. Leave it unset for a local process.
+`./serve-sg-muse.sh` unsets it, so https://sg-muse.mxagents.org is open and
+the rate limit is per client address.
 
 Simple lookups accept GET query strings. A list body is POST JSON
 (`Content-Type: application/json`).

@@ -8,6 +8,10 @@ Download it as described in [](installation) and install the `db` extra
 Each row stores the deposited conventional cell, the space group, the PDB id,
 the primitive-lattice root key, one Selling-reduced cell, and the exact
 rational change of basis from the deposited cell to that reduced cell.
+Each row may also carry two independent annotations: a list of UniProt
+accessions, short names, and residue counts, and a PDB deposition-group id
+listed as ``DEPOSITION_GROUP_<id>``. Similarity between UniProt lists is not
+defined. An entry can have either annotation, both, or neither.
 Roots are taken on the primitive lattice, so two centred settings of one
 lattice land on the same point.
 
@@ -34,10 +38,10 @@ python -m agentsg.cell.pdb_app query data/pdb_cells.duckdb \
     --cell 79 79 38 90 90 90 -k 5
 ```
 
-Rebuilding from RCSB instead of Zenodo:
+Rebuilding from RCSB instead of Zenodo. One command downloads the cells, writes the primitive-lattice keys and one Selling-reduced cell, then fills UniProt lists and deposition-group ids as separate columns:
 
 ```bash
 python -m agentsg.cell.pdb_app build data/pdb_cells.duckdb
 ```
 
-The build is resumable. Rerun it to fill in only the missing ids.
+The build is resumable. Rerun it to fill in only the missing ids and columns. `--sample 100` runs the same steps on 100 random entries.

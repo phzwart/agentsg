@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Launch the sg-muse agentsg API: 127.0.0.1:9876, public URL
-# https://sg-muse.mxagents.org. Secrets stay in agentsg/serve.local.env
-# (gitignored). Point cloudflared at the front door (./serve-tunnel-front.sh
-# on 127.0.0.1:9880), which forwards this host here and sg-mcp to FastMCP.
+# https://sg-muse.mxagents.org. No API key. Other local settings stay in
+# agentsg/serve.local.env (gitignored). Point cloudflared at the front door
+# (./serve-tunnel-front.sh on 127.0.0.1:9880), which forwards this host here
+# and sg-mcp to FastMCP.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,15 +23,11 @@ export AGENTSG_HOST="${AGENTSG_HOST:-127.0.0.1}"
 export AGENTSG_PORT="${AGENTSG_PORT:-9876}"
 export AGENTSG_PUBLIC_URL="${AGENTSG_PUBLIC_URL:-https://sg-muse.mxagents.org}"
 export AGENTSG_API_NAME="${AGENTSG_API_NAME:-sg-muse}"
+unset AGENTSG_TOKEN
 
 if [[ ! -f "$AGENTSG_DB" ]]; then
   echo "PDB database not found: $AGENTSG_DB" >&2
   echo "Download it as described in AGENTS.md." >&2
-  exit 1
-fi
-
-if [[ -z "${AGENTSG_TOKEN:-}" ]]; then
-  echo "AGENTSG_TOKEN is not set. Add it to agentsg/serve.local.env (not committed)." >&2
   exit 1
 fi
 
@@ -43,6 +40,6 @@ else
   exit 1
 fi
 
-echo "agentsg sg-muse on http://${AGENTSG_HOST}:${AGENTSG_PORT} (${AGENTSG_API_NAME}, ${AGENTSG_PUBLIC_URL})" >&2
+echo "agentsg sg-muse on http://${AGENTSG_HOST}:${AGENTSG_PORT} (${AGENTSG_API_NAME}, ${AGENTSG_PUBLIC_URL}, no API key)" >&2
 echo "playbook: ${AGENTSG_PUBLIC_URL}/skill.md  (numeric gates: concept numeric_gate)" >&2
 exec "$PYTHON" -m agentsg.serve

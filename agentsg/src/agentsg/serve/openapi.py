@@ -74,8 +74,15 @@ def _operation(entry: dict[str, Any], method: str) -> dict[str, Any]:
     return op
 
 
-def build_openapi() -> dict[str, Any]:
-    """Return the OpenAPI 3.1 document as a dict."""
+def build_openapi(*, auth_required: bool | None = None) -> dict[str, Any]:
+    """Return the OpenAPI 3.1 document as a dict.
+
+    ``auth_required`` follows the running server. When omitted, it follows
+    ``AGENTSG_TOKEN`` in the environment.
+    """
+    import os
+    if auth_required is None:
+        auth_required = bool(os.environ.get("AGENTSG_TOKEN", "").strip())
     paths: dict[str, Any] = {}
     for entry in ENDPOINTS:
         item: dict[str, Any] = {}
@@ -89,12 +96,16 @@ def build_openapi() -> dict[str, Any]:
             "version": API_VERSION,
             "description": (
                 "Read-only crystallographic space-group and lattice tools. "
-                "Call GET /api (Bearer) for the machine-readable catalog "
-                "before guessing endpoints. Same catalog generates this spec."
+                + (
+                    "Call GET /api (Bearer) for the machine-readable catalog "
+                    if auth_required else
+                    "Call GET /api for the machine-readable catalog "
+                )
+                + "before guessing endpoints. Same catalog generates this spec."
             ),
         },
         "servers": [{"url": public_url()}],
-        "security": [{"bearerAuth": []}],
+        "security": [{"bearerAuth": []}] if auth_required else [],
         "components": {
             "securitySchemes": {
                 "bearerAuth": {

@@ -142,6 +142,15 @@ def parse_tokens(raw: str | Iterable[str] | None) -> frozenset[str]:
     return frozenset(part.strip() for part in parts if str(part).strip())
 
 
+def client_address_key(handler) -> str:
+    """Caller address: Cloudflare, then X-Forwarded-For, then the socket."""
+    for name in ("CF-Connecting-IP", "X-Forwarded-For"):
+        raw = handler.headers.get(name)
+        if raw:
+            return raw.split(",")[0].strip()
+    return handler.client_address[0]
+
+
 def check_bearer(handler, token: str | Iterable[str] | None) -> str:
     """Require ``Authorization: Bearer`` when server tokens are configured.
 

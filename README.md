@@ -221,3 +221,38 @@ Each row also stores one Selling-reduced cell (`red_a` … `red_gamma`) and the
 rational change of basis from the deposited cell to that reduced cell
 (`cob00` … `cob22`, exact `numerator/denominator`). You can also rebuild it
 with `python -m agentsg.cell.pdb_app build`.
+
+## Cell-embed site
+
+The public scatter is a static copy of the cell explorer: the same lasso,
+crystal-system and centring filters, and Selling-cell drawing. Coordinates
+are the frozen geo 0.1 plane in `linear_embed/out/geo_0.1/cells.npz`.
+
+Refresh that archive, then the site:
+
+```bash
+PYTHONPATH="agentsg/src:.venv/lib/python3.12/site-packages" \
+KMP_DUPLICATE_LIB_OK=TRUE \
+../leanmap/.venv/bin/python linear_embed/export_plane.py
+python -m agentsg.explorer.build_static --out site/ --k 25
+```
+
+`export_plane.py` runs every current PDB cell through
+`linear_embed/out/geo_0.1/model.pt`. Points already on
+`embedding.npy` keep those coordinates. New cells take the checkpoint's
+output. The Pages upload does not include the weights.
+
+One-time Cloudflare setup, from the repository root:
+
+```bash
+npx wrangler login
+npx wrangler pages project create cell-embed --production-branch main
+```
+
+`scripts/deploy_explorer.sh` rebuilds `site/` and runs
+`npx wrangler pages deploy site --project-name cell-embed`. It reads
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from the environment.
+
+Attach the custom domain in the Pages project after `cell-embed` is removed
+from the agentsg tunnel. Until that hostname is free, stage the site on
+`cells.mxagents.org`.

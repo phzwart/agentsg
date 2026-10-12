@@ -43,6 +43,9 @@ data/access.jsonl
 *.duckdb_old
 *.duckdb.old
 
+# Generated cell-embed site (rebuild with agentsg.explorer.build_static)
+site/data/
+
 # Local Muse / tunnel secrets and host-specific launchd
 agentsg/serve.local.env
 agentsg/deploy/

@@ -1038,9 +1038,9 @@ def pdb_lookup(state, pdb_id: str) -> dict[str, Any]:
     return {"pdb_id": pid, **info}
 
 
-def help_catalog() -> dict[str, Any]:
+def help_catalog(*, auth_required: bool = False) -> dict[str, Any]:
     """Short index derived from the same catalog as GET /api."""
-    from .manifest import ENDPOINTS, apply_site, public_url
+    from .manifest import ENDPOINTS, present_example, public_url
     compute = [
         e for e in ENDPOINTS
         if e["path"].startswith("/v1/") or e["path"] in ("/search", "/plates", "/api")
@@ -1048,13 +1048,17 @@ def help_catalog() -> dict[str, Any]:
     return {
         "service": "agentsg",
         "base_url": public_url(),
-        "auth": "Authorization: Bearer (stored in connector credentials)",
+        "auth": (
+            "Authorization: Bearer (stored in connector credentials)"
+            if auth_required else
+            "none"
+        ),
         "rule": "GET /api for the full catalog, then call an endpoint before answering.",
         "skill": "/skill.md",
         "discover": "/api",
         "calls": [
             {"when": e["description"], "method": e["methods"][0], "path": e["path"],
-             "example": apply_site(e["example"])}
+             "example": present_example(e["example"], auth_required=auth_required)}
             for e in compute
         ],
     }

@@ -293,3 +293,173 @@ def test_backfill_selling_cells():
     assert row[2] == pytest.approx(37.9)
     assert db.backfill_selling_cells() == 0
     db.close()
+
+
+def _cell():
+    return (79.1, 79.1, 37.9, 90, 90, 90)
+
+
+def _uniprot_rows(db, pdb_id):
+    rows = db.sql("SELECT uniprots FROM cells WHERE pdb_id = ?", [pdb_id])
+    value = rows[0][0]
+    if value is None:
+        return None
+    return [(item["acc"], item["name"], item["n_res"]) for item in value]
+
+
+def test_migrate_adds_uniprots_column(tmp_path):
+    path = tmp_path / "old.duckdb"
+    con = duckdb.connect(str(path))
+    con.execute("CREATE TABLE cells (pdb_id VARCHAR, r0 DOUBLE, l0 DOUBLE)")
+    con.execute("INSERT INTO cells VALUES ('A', 1, 1)")
+    con.close()
+    db = CellDatabase(str(path))
+    cols = {row[0] for row in db.sql("DESCRIBE cells")}
+    assert "uniprots" in cols
+    assert "deposit_group" in cols
+    assert _uniprot_rows(db, "A") is None
+    db.close()
+
+
+def test_backfill_uniprot_lists():
+    chain = """# test release
+PDB\tCHAIN\tSP_PRIMARY\tRES_BEG\tRES_END\tPDB_BEG\tPDB_END\tSP_BEG\tSP_END
+one\tA\tP00698\t1\t40\t1\t40\t1\t40
+two\tA\tP00720\t1\t10\t1\t10\t1\t10
+two\tB\tP00720\t1\t30\t1\t\t1\t30
+two\tA\tP02185\t1\t25\t1\t25\t1\t25
+ord\tA\tP00020\t1\t10\t1\t10\t1\t10
+ord\tA\tP00010\t1\t10\t1\t10\t1\t10
+noname\tA\tP99999\t1\t5\t1\t5\t1\t5
+"""
+    names = """Entry\tEntry Name\tProtein names
+P00698\tLYSC_CHICK\tLysozyme C (EC 3.2.1.17) (Allergen Gal d 4)
+P00720\tENLYS_BPT4\tEndolysin (EC 3.2.1.17)
+P02185\tMYG_PHYCA\tMyoglobin
+P00010\tEARLY_TEST\tEarlier protein
+P00020\tLATE_TEST\tLater protein
+"""
+    db = CellDatabase(":memory:")
+    for pdb_id in ("ONE", "TWO", "ORD", "NONAME", "NONE"):
+        db.add_cell(pdb_id, _cell(), 96, "P 43 21 2")
+    n = db.backfill_uniprot(chain_uniprot=chain, names=names, source="r1")
+    assert n == 5
+    assert _uniprot_rows(db, "ONE") == [("P00698", "Lysozyme C", 40)]
+    assert _uniprot_rows(db, "TWO") == [
+        ("P00720", "Endolysin", 40),
+        ("P02185", "Myoglobin", 25),
+    ]
+    assert _uniprot_rows(db, "ORD") == [
+        ("P00010", "Earlier protein", 10),
+        ("P00020", "Later protein", 10),
+    ]
+    assert _uniprot_rows(db, "NONAME") == [("P99999", None, 5)]
+    assert _uniprot_rows(db, "NONE") == []
+    assert db.sql("SELECT value FROM schema_meta WHERE key = 'uniprot_source'") == [("r1",)]
+
+    db.add_cell("NEW", _cell(), 96, "P 43 21 2")
+    assert _uniprot_rows(db, "NEW") is None
+    changed = """# later
+PDB\tCHAIN\tSP_PRIMARY\tRES_BEG\tRES_END
+one\tA\tP00998\t1\t5
+new\tA\tP00007\t1\t12
+"""
+    changed_names = """Entry\tEntry Name\tProtein names
+P00007\tNEW_TEST\tNew protein
+P00998\tOTHER_TEST\tOther protein
+"""
+    n = db.backfill_uniprot(chain_uniprot=changed, names=changed_names, source="r2")
+    assert n == 1
+    assert _uniprot_rows(db, "ONE") == [("P00698", "Lysozyme C", 40)]
+    assert _uniprot_rows(db, "NEW") == [("P00007", "New protein", 12)]
+    assert _uniprot_rows(db, "NONE") == []
+
+    n = db.backfill_uniprot(
+        chain_uniprot=changed, names=changed_names, source="r3", refresh=True,
+    )
+    assert n == 6
+    assert _uniprot_rows(db, "ONE") == [("P00998", "Other protein", 5)]
+    assert db.sql("SELECT value FROM schema_meta WHERE key = 'uniprot_source'") == [("r3",)]
+    db.close()
+
+
+def test_pick_deposit_group_ignores_other_memberships():
+    from agentsg.cell.deposit_group import (
+        deposit_groups_from_entries,
+        deposition_group_label,
+        pick_deposit_group,
+    )
+
+    memberships = [
+        {"aggregation_method": "matching_uniprot_accession", "group_id": "P00698"},
+        {"aggregation_method": "matching_deposit_group_id", "group_id": "G_1002344"},
+        {"aggregation_method": "matching_deposit_group_id", "group_id": "G_1000001"},
+    ]
+    assert pick_deposit_group(memberships) == "G_1000001"
+    assert pick_deposit_group(None) == ""
+    assert deposition_group_label("G_1002344") == "DEPOSITION_GROUP_G_1002344"
+    found = deposit_groups_from_entries(
+        [
+            {"rcsb_id": "7i66", "rcsb_entry_group_membership": memberships[:2]},
+            {"rcsb_id": "1LYZ", "rcsb_entry_group_membership": None},
+        ],
+        ["7I66", "1LYZ", "GONE"],
+    )
+    assert found == {"7I66": "G_1002344", "1LYZ": "", "GONE": ""}
+
+
+def test_backfill_deposit_group_is_independent_of_uniprot():
+    chain = """PDB\tCHAIN\tSP_PRIMARY\tRES_BEG\tRES_END
+one\tA\tP00698\t1\t40
+"""
+    names = """Entry\tEntry Name\tProtein names
+P00698\tLYSC_CHICK\tLysozyme C
+"""
+    db = CellDatabase(":memory:")
+    for pdb_id in ("ONE", "NONE", "BARE"):
+        db.add_cell(pdb_id, _cell(), 96, "P 43 21 2")
+    db.backfill_uniprot(chain_uniprot=chain, names=names, source="r")
+    db.add_cell("NEW", _cell(), 96, "P 43 21 2")
+    assert _uniprot_rows(db, "NEW") is None
+    groups = {"NONE": "G_1002344", "BARE": "", "ONE": "G_9", "NEW": "G_7"}
+    n = db.backfill_deposit_group(groups=groups, source="test")
+    assert n == 4
+    assert _uniprot_rows(db, "ONE") == [("P00698", "Lysozyme C", 40)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='ONE'") == [("G_9",)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='NONE'") == [("G_1002344",)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='BARE'") == [("",)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='NEW'") == [("G_7",)]
+    assert db.backfill_deposit_group(groups={"NONE": "G_1"}, source="again") == 0
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='ONE'") == [("G_9",)]
+    n = db.backfill_deposit_group(
+        groups={"NONE": "G_2", "BARE": "G_3", "ONE": "G_8", "NEW": "G_7"},
+        source="refresh", refresh=True,
+    )
+    assert n == 4
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='NONE'") == [("G_2",)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='BARE'") == [("G_3",)]
+    assert db.sql("SELECT deposit_group FROM cells WHERE pdb_id='ONE'") == [("G_8",)]
+    assert _uniprot_rows(db, "ONE") == [("P00698", "Lysozyme C", 40)]
+    assert db.sql("SELECT value FROM schema_meta WHERE key='deposit_group_source'") == [("refresh",)]
+    db.close()
+
+
+def test_backfill_uniprot_sums_segments():
+    chain = """PDB\tCHAIN\tSP_PRIMARY\tRES_BEG\tRES_END\tPDB_BEG\tPDB_END\tSP_BEG\tSP_END
+ab\tA\tP00698\t1\t100\t1\t100\t1\t100
+ab\tA\tP00698\t101\t110\t101\t110\t101\t110
+ab\tB\tP00698\t1\t40\t1\t40\t1\t40
+ab\tA\tP00720\t\t\t\t\t1\t50
+"""
+    names = """P00698\tLysozyme C
+P00720\tEndolysin
+"""
+    db = CellDatabase(":memory:")
+    db.add_cell("AB", _cell(), 96, "P 43 21 2")
+    db.backfill_uniprot(chain_uniprot=chain, names=names, source="chains")
+    # Chain A is two segments, 100 + 10, and chain B adds 40 of the same accession.
+    assert _uniprot_rows(db, "AB") == [
+        ("P00698", "Lysozyme C", 150),
+        ("P00720", "Endolysin", 50),
+    ]
+    db.close()

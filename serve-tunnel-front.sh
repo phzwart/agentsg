@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Single origin for the Cloudflare tunnel. cloudflared --url can point at
-# only one local port; this router sends sg-mcp.mxagents.org to the MCP
-# server and every other hostname (sg-muse) to the HTTP API.
+# only one local port; this router serves the landing page on mxagents.org
+# and www.mxagents.org, sends sg-mcp.mxagents.org to the MCP server,
+# cell-embed.mxagents.org to the linear-key explorer, and every other
+# hostname (sg-muse) to the HTTP API.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

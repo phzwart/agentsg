@@ -24,6 +24,7 @@ from .http import (
     HttpError,
     RateLimiter,
     check_bearer,
+    client_address_key,
     parse_tokens,
     parse_json_body,
     query_params,
@@ -92,8 +93,9 @@ def make_handler(state: ServerState):
             path = self._norm(path)
             key = check_bearer(self, state.token if path not in _OPEN_PATHS else None)
             if path not in _OPEN_PATHS:
+                limit_key = key if state.token else client_address_key(self)
                 try:
-                    state.limiter.check(key)
+                    state.limiter.check(limit_key)
                 except HttpError as exc:
                     if exc.status == 429:
                         raise
@@ -112,8 +114,12 @@ def make_handler(state: ServerState):
                     "health": "/health",
                     "read_only": True,
                     "note": (
-                        "Discover endpoints with GET /api (Bearer). "
-                        "Then call a compute path before answering. "
+                        (
+                            "Discover endpoints with GET /api (Bearer). "
+                            if state.token else
+                            "Discover endpoints with GET /api. "
+                        )
+                        + "Then call a compute path before answering. "
                         "Space-group lookup: GET /v1/space-group?sg=96. "
                         "ITA plate PNG: GET /plates?sg=19."
                     ),
@@ -133,15 +139,15 @@ def make_handler(state: ServerState):
                     "auth_required": bool(state.token),
                 }
             if path == "/openapi.json":
-                return build_openapi()
+                return build_openapi(auth_required=bool(state.token))
             if path == "/docs/muse.md":
                 return ("text", _pkg_text("muse.md"))
             if path == "/skill.md":
                 return ("text", _pkg_text("skill.md"))
             if path == "/v1/help":
-                return handlers.help_catalog()
+                return handlers.help_catalog(auth_required=bool(state.token))
             if path == "/api":
-                return build_api_manifest()
+                return build_api_manifest(auth_required=bool(state.token))
             if path == "/plates":
                 return ("png", handlers.plates_png(qs))
             if path == "/v1/space-group":

@@ -87,14 +87,14 @@ def _image_result(png: bytes, data: dict[str, Any]):
 def _mcp_playbook(base: str) -> str:
     """Scientific playbook with MCP tools and no API key.
 
-    The HTTP ``skill.md`` still documents bearer auth. This copy keeps the
+    The HTTP ``skill.md`` is the open REST contract. This copy keeps the
     LIMITATIONS and keeps the call table, and replaces the connector contract.
     """
     raw = (_HERE / "skill.md").read_text(encoding="utf-8")
     body = raw.split("# LIMITATIONS", 1)[1]
     body = body.replace("{{BASE_URL}}", base).replace("{{API_NAME}}", "sg-mcp")
     body = body.replace(
-        "Then GET `png_url` (same bearer) and display the PNG.",
+        "Then GET `png_url` and display the PNG.",
         "The tool result includes the plate PNG. Display that image.",
     )
     body = body.replace(

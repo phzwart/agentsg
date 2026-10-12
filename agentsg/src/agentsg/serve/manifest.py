@@ -14,7 +14,7 @@ from ..tolerances import (
     METRIC_LENGTH_TOL_PCT,
 )
 
-API_VERSION = "0.3.1"
+API_VERSION = "0.3.5"
 _BASE_TOKEN = "{{BASE_URL}}"
 _NAME_TOKEN = "{{API_NAME}}"
 _AUTH = '-H "Authorization: Bearer $AGENTSG_TOKEN"'
@@ -558,24 +558,42 @@ ENDPOINTS: list[dict[str, Any]] = [
 ]
 
 
-def _public_endpoint(entry: dict[str, Any]) -> dict[str, Any]:
+def present_example(example: str, *, auth_required: bool) -> str:
+    """Fill the site tokens. Drop the bearer header when the server is open."""
+    text = apply_site(example)
+    if not auth_required:
+        text = text.replace(_AUTH + " ", "")
+    return text
+
+
+def _public_endpoint(entry: dict[str, Any], *, auth_required: bool) -> dict[str, Any]:
     return {
         "path": entry["path"],
         "methods": list(entry["methods"]),
         "description": entry["description"],
         "params": [dict(p) for p in entry["params"]],
-        "example": apply_site(entry["example"]),
+        "example": present_example(entry["example"], auth_required=auth_required),
         "side_effects": entry["side_effects"],
     }
 
 
-def build_api_manifest() -> dict[str, Any]:
-    """Machine-readable catalog served at GET /api."""
+def build_api_manifest(*, auth_required: bool | None = None) -> dict[str, Any]:
+    """Machine-readable catalog served at GET /api.
+
+    ``auth_required`` follows the running server. When omitted, it follows
+    ``AGENTSG_TOKEN`` in the environment.
+    """
+    if auth_required is None:
+        auth_required = bool(os.environ.get("AGENTSG_TOKEN", "").strip())
     return {
         "name": api_name(),
         "api_version": API_VERSION,
-        "auth": {"scheme": "bearer", "header": "Authorization"},
-        "endpoints": [_public_endpoint(e) for e in ENDPOINTS],
+        "auth": (
+            {"scheme": "bearer", "header": "Authorization"}
+            if auth_required else
+            {"scheme": "none"}
+        ),
+        "endpoints": [_public_endpoint(e, auth_required=auth_required) for e in ENDPOINTS],
     }
 
 

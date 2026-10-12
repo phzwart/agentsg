@@ -3,8 +3,10 @@
 ``cloudflared tunnel run --url`` sends every published hostname to a single
 origin. This process splits that origin:
 
+- ``mxagents.org`` and ``www.mxagents.org`` → the static landing page
 - ``sg-mcp.mxagents.org`` → the FastMCP server (no API key)
-- every other host → the bearer-token HTTP API
+- ``cell-embed.mxagents.org`` → the linear-key explorer
+- every other host → the HTTP API (the public muse process has no API key)
 
 The MCP side is rate-limited per ``CF-Connecting-IP`` (default 60/minute).
 """
@@ -15,6 +17,7 @@ import json
 import os
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlparse
 from urllib.request import ProxyHandler, Request, build_opener
@@ -26,13 +29,25 @@ _HOP = {
     "connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
     "te", "trailers", "transfer-encoding", "upgrade", "content-length",
 }
+_LANDING_HOSTS = {"mxagents.org", "www.mxagents.org"}
+_LANDING = Path(__file__).with_name("index.html").read_bytes()
 
 
-def upstream_for_host(host: str, *, mcp_port: int, muse_port: int) -> tuple[str, int, bool]:
+def is_landing_host(host: str) -> bool:
+    """True for the apex and www hostnames that serve the static page."""
+    name = host.split(":")[0].strip().lower()
+    return name in _LANDING_HOSTS
+
+
+def upstream_for_host(
+    host: str, *, mcp_port: int, muse_port: int, embed_port: int = 8051,
+) -> tuple[str, int, bool]:
     """Return ``(host, port, is_mcp)`` for a request Host header."""
     name = host.split(":")[0].strip().lower()
     if name == "sg-mcp.mxagents.org" or name.startswith("sg-mcp."):
         return "127.0.0.1", mcp_port, True
+    if name == "cell-embed.mxagents.org" or name.startswith("cell-embed."):
+        return "127.0.0.1", embed_port, False
     return "127.0.0.1", muse_port, False
 
 
@@ -40,6 +55,7 @@ def make_front_handler(
     *,
     mcp_port: int,
     muse_port: int,
+    embed_port: int = 8051,
     rate_per_minute: int = 60,
 ):
     """Build a reverse-proxy handler. ``rate_per_minute`` 0 disables the MCP limit."""
@@ -103,13 +119,35 @@ def make_front_handler(
                 query={k: v[0] for k, v in parse_qs(parsed.query).items()},
             )
 
+        def _serve_landing(self, host_header: str, body: bytes) -> None:
+            parsed = urlparse(self.path)
+            path = parsed.path or "/"
+            if self.command not in ("GET", "HEAD"):
+                self._send_json(405, {"error": "method not allowed"})
+                self._record(405, body, host_header)
+                return
+            if path not in ("/", "/index.html"):
+                self._send_json(404, {"error": "not found"})
+                self._record(404, body, host_header)
+                return
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(_LANDING)))
+            self.end_headers()
+            if self.command != "HEAD":
+                self.wfile.write(_LANDING)
+            self._record(200, body, host_header)
+
         def _forward(self) -> None:
             host_header = self.headers.get("Host", "")
-            dest_host, dest_port, is_mcp = upstream_for_host(
-                host_header, mcp_port=mcp_port, muse_port=muse_port,
-            )
             length = int(self.headers.get("Content-Length", "0") or "0")
             body = self.rfile.read(length) if length else b""
+            if is_landing_host(host_header):
+                self._serve_landing(host_header, body)
+                return
+            dest_host, dest_port, is_mcp = upstream_for_host(
+                host_header, mcp_port=mcp_port, muse_port=muse_port, embed_port=embed_port,
+            )
             if is_mcp and limiter is not None:
                 try:
                     limiter.check(self._client_key())
@@ -161,6 +199,7 @@ def run_front(
     port: int = 9880,
     mcp_port: int = 9877,
     muse_port: int = 9876,
+    embed_port: int = 8051,
     rate_per_minute: int = 60,
 ):
     """Listen until interrupted."""
@@ -169,11 +208,14 @@ def run_front(
         make_front_handler(
             mcp_port=mcp_port,
             muse_port=muse_port,
+            embed_port=embed_port,
             rate_per_minute=rate_per_minute,
         ),
     )
     print(f"agentsg front on http://{host}:{port}")
+    print("  mxagents.org, www.mxagents.org → landing page")
     print(f"  sg-mcp.* → 127.0.0.1:{mcp_port} (no API key)")
+    print(f"  cell-embed.* → 127.0.0.1:{embed_port}")
     print(f"  other hosts → 127.0.0.1:{muse_port}")
     if log_path():
         print(f"  access log: {log_path()}")
@@ -194,6 +236,8 @@ def main(argv=None) -> int:
                         default=int(os.environ.get("AGENTSG_MCP_PORT", "9877")))
     parser.add_argument("--muse-port", type=int,
                         default=int(os.environ.get("AGENTSG_PORT", "9876")))
+    parser.add_argument("--embed-port", type=int,
+                        default=int(os.environ.get("AGENTSG_EMBED_PORT", "8051")))
     parser.add_argument("--rate", type=int,
                         default=int(os.environ.get("AGENTSG_MCP_RATE", "60")),
                         help="MCP requests per minute per client IP (0 disables)")
@@ -203,6 +247,7 @@ def main(argv=None) -> int:
         port=args.port,
         mcp_port=args.mcp_port,
         muse_port=args.muse_port,
+        embed_port=args.embed_port,
         rate_per_minute=args.rate,
     )
     return 0

@@ -14,7 +14,9 @@ Two layers:
     An embedded, single-file, columnar SQL engine. Each row stores the PDB id,
     the unit cell, the space group, the cell volume, the linear key l0..l5,
     the legacy square-root key r0..r5, one Selling-reduced cell (red_a..red_gamma), and the
-    deposited-to-reduced change of basis (cob00..cob22, exact ``num/den``).
+    deposited-to-reduced change of basis (cob00..cob22, exact ``num/den``),
+    an optional ragged UniProt list (``uniprots``) and, independently, the
+    PDB deposition-group id (``deposit_group``).
     SQL handles coarse prefiltering (by space group, by
     volume band); the exact ranking is done in memory.
 
@@ -44,7 +46,7 @@ from .primitive import primitive_cell
 from ..tolerances import COMPARE_ANGLE_TOL_DEG, COMPARE_LENGTH_TOL_PCT, VOLUME_FRAC
 
 SEARCH_KEY = "sorted_linear_key"
-SCHEMA_VERSION = "2"
+SCHEMA_VERSION = "3"
 _LINEAR_COLS = tuple(f"l{i}" for i in range(6))
 
 
@@ -153,7 +155,9 @@ CREATE TABLE IF NOT EXISTS cells (
     red_alpha DOUBLE, red_beta DOUBLE, red_gamma DOUBLE,
     cob00 VARCHAR, cob01 VARCHAR, cob02 VARCHAR,
     cob10 VARCHAR, cob11 VARCHAR, cob12 VARCHAR,
-    cob20 VARCHAR, cob21 VARCHAR, cob22 VARCHAR
+    cob20 VARCHAR, cob21 VARCHAR, cob22 VARCHAR,
+    uniprots STRUCT(acc VARCHAR, name VARCHAR, n_res INTEGER)[],
+    deposit_group VARCHAR
 );
 """
 
@@ -215,6 +219,13 @@ class CellDatabase:
         for name in COB_COLUMNS:
             if name not in cols:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} VARCHAR")
+        if "uniprots" not in cols:
+            self._db.execute(
+                "ALTER TABLE cells ADD COLUMN uniprots "
+                "STRUCT(acc VARCHAR, name VARCHAR, n_res INTEGER)[]"
+            )
+        if "deposit_group" not in cols:
+            self._db.execute("ALTER TABLE cells ADD COLUMN deposit_group VARCHAR")
         self._db.execute(
             "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
@@ -427,6 +438,132 @@ class CellDatabase:
         except Exception:
             self._db.execute("ROLLBACK")
             raise
+        return n
+
+    def backfill_uniprot(self, *, refresh=False, progress=False, batch=5_000,
+                          chain_uniprot=None, names=None, source=None):
+        """Fill ``uniprots`` with every UniProt accession on each entry.
+
+        Each element is ``{acc, name, n_res}``. Null means the row has not
+        been filled. An empty list means SIFTS was consulted and the entry
+        has no UniProt accession. Rows that already have a list are left
+        alone unless ``refresh`` is set. When ``chain_uniprot`` is omitted,
+        the SIFTS chain table and UniProt names are downloaded. ``source`` is
+        stored in ``schema_meta`` under ``uniprot_source``; a download uses
+        the SIFTS release note instead.
+        """
+        from .uniprot import assemble_uniprot_lists, fetch_uniprot_tables, uniprot_list_type
+
+        if refresh:
+            pending = self._db.execute("SELECT pdb_id FROM cells").fetchall()
+        else:
+            pending = self._db.execute(
+                "SELECT pdb_id FROM cells WHERE uniprots IS NULL"
+            ).fetchall()
+        if not pending:
+            return 0
+
+        if chain_uniprot is None:
+            lists, release = fetch_uniprot_tables(log=print if progress else None)
+            source = source or release
+        else:
+            lists, release = assemble_uniprot_lists(chain_uniprot, names)
+            source = source or release
+
+        sql = (
+            f"UPDATE cells SET uniprots = ?::{uniprot_list_type()} WHERE pdb_id = ?"
+        )
+        n = 0
+        buf = []
+        self._db.execute("BEGIN")
+
+        def _flush():
+            nonlocal n
+            if not buf:
+                return
+            self._db.executemany(sql, buf)
+            n += len(buf)
+            buf.clear()
+            if progress:
+                print(f"  backfilled {n:,}/{len(pending):,} UniProt lists", flush=True)
+
+        try:
+            for (pdb_id,) in pending:
+                items = lists.get(pdb_id, [])
+                value = [
+                    {"acc": acc, "name": name, "n_res": n_res}
+                    for acc, name, n_res in items
+                ]
+                buf.append([value, pdb_id])
+                if len(buf) >= batch:
+                    _flush()
+            _flush()
+            self._db.execute(
+                "INSERT INTO schema_meta (key, value) VALUES ('uniprot_source', ?) "
+                "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+                [source or ""],
+            )
+            self._db.execute("COMMIT")
+        except Exception:
+            self._db.execute("ROLLBACK")
+            raise
+        return n
+
+    def backfill_deposit_group(self, *, refresh=False, progress=False, batch=200,
+                               groups=None, source=None):
+        """Fill ``deposit_group`` on every row.
+
+        The value is the RCSB deposition-group id (``G_1002344``), or ``""``
+        when the entry is not in a deposition group. Null means the row has
+        not been looked up. This is independent of the UniProt list: an entry
+        keeps both. A second call skips rows already filled unless
+        ``refresh`` is set. ``groups``, when given, is
+        ``{pdb_id: group_id or ""}`` and no request is made.
+        """
+        from .deposit_group import fetch_deposit_groups
+
+        where = "TRUE" if refresh else "deposit_group IS NULL"
+        pending = [
+            row[0] for row in self._db.execute(
+                f"SELECT pdb_id FROM cells WHERE {where}"
+            ).fetchall()
+        ]
+        if not pending:
+            return 0
+
+        sql = "UPDATE cells SET deposit_group = ? WHERE pdb_id = ?"
+        source = source or (
+            "rcsb:matching_deposit_group_id" if groups is None else "provided"
+        )
+        if groups is not None:
+            groups = {str(pid).upper(): value for pid, value in groups.items()}
+
+        def _write(rows):
+            self._db.execute("BEGIN")
+            try:
+                self._db.executemany(sql, rows)
+                self._db.execute("COMMIT")
+            except Exception:
+                self._db.execute("ROLLBACK")
+                raise
+
+        n = 0
+        if groups is None:
+            for start in range(0, len(pending), batch):
+                chunk = pending[start:start + batch]
+                got = fetch_deposit_groups(chunk, batch=batch)
+                _write([[got.get(pid, "") or "", pid] for pid in chunk])
+                n += len(chunk)
+                if progress:
+                    print(f"  deposition groups {n:,}/{len(pending):,}", flush=True)
+        else:
+            _write([[groups.get(pid, "") or "", pid] for pid in pending])
+            n = len(pending)
+        self._db.execute(
+            "INSERT INTO schema_meta (key, value) VALUES ('deposit_group_source', ?) "
+            "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            [source or ""],
+        )
         return n
 
     def add_pdb(self, ids, batch_size=250, progress=False):
