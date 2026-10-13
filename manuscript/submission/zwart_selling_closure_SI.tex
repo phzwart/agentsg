@@ -440,7 +440,7 @@ failure onset (P6_3 cell, sigma = 0.05 deg): operator counts at
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:deformation}{The ideal: certified, symmetrised deformation distance (constructed + deposited pairs + random ladder check)}
-Claim (Section 2.2, Table 6): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
+Claim (Section 2.2, Table 6): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; the minimiser is nearly obtuse --- at value $D$ its frame's superbase conorms in the anchor's reduced coordinates are $\ge-\sqrt3 D$, which collapses the $\mathrm{GL}(3,\mathbb Z)$ minimisation into the widened closure; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
 \begin{footnotesize}\begin{verbatim}
 implementation: agentsg.cell.deformation.deformation_distance
 ball counts: entries <= 1 -> 6 960 unimodular of 19 683 candidates;
@@ -457,6 +457,12 @@ Hfq 4nl7 -> 2yht: bound ||M|| <= 1.86 so the entries-<=1 ball suffices;
     (the max); the 8% difference is the anchoring asymmetry
 ladder: for 15 random near pairs, the jointly-obtuse closure match
     evaluated in the same norm upper-bounds the certified ideal
+near-obtuseness lemma: random reduced pairs (seeded; anchors verified
+    obtuse in the standard superbase coordinates), global minimum over the
+    entries<=2 ball at value D: the minimising frame's superbase conorms
+    are >= -sqrt(3) D in the anchor's coordinates, from the bilinear bound
+    |w_i^T E w_j| <= |w_i||w_j| ||E||, max |w_i||w_j| = sqrt(3);
+    observed worst penetration 0.70 D over 40+ pairs
 \end{verbatim}\end{footnotesize}
 
 \end{document}

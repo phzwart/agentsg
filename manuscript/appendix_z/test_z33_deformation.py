@@ -73,6 +73,57 @@ def test_ladder_closure_value_upper_bounds_the_ideal():
         assert ideal <= rung + 1e-9
 
 
+def test_near_obtuseness_of_the_minimiser():
+    """The lemma that collapses GL(3,Z) into the widened closure: a candidate
+    at value D presents B in a frame whose superbase conorms, read in the
+    reduced anchor's coordinates, are >= -sqrt(3)*D (bilinear bound
+    |w_i^T E w_j| <= |w_i||w_j| ||E||, max |w_i||w_j| = sqrt(3))."""
+    import numpy as np
+    from agentsg.cell.canonical import canonical_superbase
+    from agentsg.cell.deformation import _ball_min, _metric, _unimodular_ball
+    from agentsg.cell.metric import params_from_metric
+
+    def _reduce(cell):
+        G = _metric(cell)
+        C, _ = canonical_superbase(cell)
+        Bm = np.array([[C[j + 1][r] for j in range(3)] for r in range(3)],
+                      dtype=float)
+        return tuple(params_from_metric((Bm.T @ G @ Bm).tolist()))
+
+    w = [np.array(v, float)
+         for v in ((-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1))]
+    pairs = [(i, j) for i in range(4) for j in range(i + 1, 4)]
+    ball = _unimodular_ball(2)
+    rng = random.Random(5)
+    checked = 0
+    worst = 0.0
+    for _ in range(60):
+        a = rng.uniform(3, 9)
+        c = a * rng.uniform(1, 4)
+        A0 = (a, a * rng.uniform(0.9, 1.3), c,
+              90 + rng.uniform(0, 25), 90 + rng.uniform(0, 25),
+              90 + rng.uniform(0, 30))
+        B0 = tuple(x * (1 + rng.gauss(0, 0.05)) if i < 3
+                   else x + rng.gauss(0, 2.0) for i, x in enumerate(A0))
+        try:
+            A, B = _reduce(A0), _reduce(B0)
+            GA, GB = _metric(A), _metric(B)
+        except Exception:
+            continue
+        if min(-w[i] @ GA @ w[j] for i, j in pairs) < -1e-6:
+            continue  # anchor must be genuinely reduced
+        D, M = _ball_min(GA, GB, ball)
+        if D < 1e-9:
+            continue
+        H = M.astype(float).T @ GB @ M.astype(float)
+        pen = max(0.0, -min(-w[i] @ H @ w[j] for i, j in pairs))
+        assert pen <= math.sqrt(3.0) * D + 1e-9, (A, B, pen, D)
+        worst = max(worst, pen / D)
+        checked += 1
+    assert checked >= 40
+    assert worst < math.sqrt(3.0)  # observed ~0.70
+
+
 def test_ball_counts_and_radius_regimes():
     import math
     from agentsg.cell.deformation import _metric, _radius, _unimodular_ball
