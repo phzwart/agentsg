@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.6
+
+- The MX Agents landing page tells people to install the space-group agents locally and point a client at `127.0.0.1`, instead of linking to the public Muse and MCP hosts.
+
 ## 0.3.5
 
 - The public sg-muse server starts with no bearer token, the same way sg-mcp does. Compute routes are open, and the rate limit is per client address.

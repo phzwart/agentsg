@@ -2,21 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Linear-key explorer</title>
+<title>Cell components</title>
 <style>
   html, body { margin: 0; height: 100%; background: #fff; color: #222;
     font: 14px Helvetica, Arial, sans-serif; }
-  #app { display: grid; grid-template-columns: 1fr 520px; grid-template-rows: auto 1fr; height: 100%; }
-  #banner { grid-column: 1 / -1; border-bottom: 1px solid #ddd; padding: 10px 16px; }
-  #banner p { margin: 0; line-height: 1.45; }
-  #stage { position: relative; min-width: 0; }
-  #stage.lasso { cursor: crosshair; }
-  canvas, #axes, #pick { position: absolute; inset: 0; width: 100%; height: 100%; }
-  #axes, #pick { pointer-events: none; }
-  #side { border-left: 1px solid #ddd; padding: 16px 16px 24px; overflow: auto; }
+  #app { display: grid; grid-template-columns: 1fr 380px; height: 100%; }
+  #stage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    min-width: 0; padding: 8px; gap: 8px; box-sizing: border-box; background: #f3f3f3; }
+  .panel { position: relative; min-width: 0; min-height: 0; background: #fff;
+    border: 1px solid #222; box-sizing: border-box; }
+  .panel canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .panel.lasso canvas { cursor: crosshair; }
+  .panel h2 { position: absolute; left: 8px; top: 6px; margin: 0; font-size: 13px;
+    font-weight: 600; background: rgba(255,255,255,0.9); padding: 2px 6px;
+    border: 1px solid #222; pointer-events: none; z-index: 1; }
+  .corner-toggle { position: absolute; right: 8px; top: 6px; z-index: 2; display: flex; }
+  .corner-toggle button { padding: 2px 8px; border: 1px solid #222; background: rgba(255,255,255,0.92);
+    font-size: 12px; line-height: 1.3; }
+  .corner-toggle button + button { border-left: 0; }
+  .corner-toggle button.on { background: #222; color: #fff; }
+  .panel.space canvas { cursor: grab; }
+  .panel.space canvas.dragging { cursor: grabbing; }
+  #side { padding: 16px 16px 24px; overflow: auto; border-left: 1px solid #222; }
   h1 { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
-  h2 { font-size: 14px; font-weight: 600; margin: 14px 0 4px; }
-  h2 a, #unilegend a, #celluni a { color: #0645ad; }
+  #side h2 { position: static; margin: 0 0 4px; font-size: 14px; border: 0; background: none; padding: 0; pointer-events: auto; }
+  #celltitle a, #celluni a, #unilegend a { color: #0645ad; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; }
+  td { text-align: left; padding: 3px 4px; border-bottom: 1px solid #eee; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  #cellfig { display: block; width: 100%; height: 220px; margin: 6px 0 4px; touch-action: none; cursor: grab; user-select: none; }
+  #cellfig.dragging { cursor: grabbing; }
   p.lead, p.note { color: #444; margin: 0 0 12px; line-height: 1.4; }
   fieldset { border: 0; margin: 0 0 12px; padding: 0; }
   legend { font-weight: 600; padding: 0; margin-bottom: 4px; }
@@ -24,57 +39,37 @@
   form { display: flex; gap: 8px; margin-bottom: 12px; }
   #pdb { width: 110px; padding: 4px 6px; border: 1px solid #ccc; font: inherit; }
   button { font: inherit; padding: 4px 10px; border: 1px solid #ccc; background: #f6f6f6; cursor: pointer; }
-  #status { font-weight: 600; min-height: 1.3em; margin: 8px 0; }
-  table { border-collapse: collapse; width: 100%; font-size: 12px; }
-  th, td { text-align: left; padding: 3px 4px; border-bottom: 1px solid #eee; }
-  th { font-weight: 600; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  #hover { font-weight: 600; min-height: 2.6em; margin: 8px 0 4px; }
+  #anno { color: #444; margin: 0 0 12px; line-height: 1.4; }
   #legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 0; }
-  #legend span { display: inline-flex; align-items: center; gap: 5px; }
-  #legend i { width: 10px; height: 10px; display: inline-block; }
-  #legend span.off { opacity: 0.35; }
   #uniactions { display: flex; gap: 8px; margin: 0 0 8px; }
   #uniactions[hidden] { display: none; }
   #unilegend { display: flex; flex-direction: column; gap: 2px; margin: 0 0 8px; }
-  #unilegend label { display: flex; align-items: center; gap: 6px; width: 100%; text-align: left; }
+  #unilegend label { display: flex; align-items: center; gap: 6px; width: 100%; margin: 0; }
   #unilegend label.off { opacity: 0.35; }
   #unilegend i { width: 10px; height: 10px; display: inline-block; flex: none; }
-  #hover { color: #444; min-height: 1.2em; }
-  #cellfig { display: block; width: 100%; height: 260px; margin: 6px 0 4px; touch-action: none; cursor: grab; user-select: none; }
-  #cellfig.dragging { cursor: grabbing; }
-  #ids { width: 100%; height: 260px; font: 12px ui-monospace, monospace; box-sizing: border-box; }
-  #idactions { display: flex; gap: 8px; margin-top: 8px; }
-
-  @media (max-width: 800px) {
-    html, body { height: auto; }
-    #app { grid-template-columns: 1fr; grid-template-rows: auto minmax(52vh, 70vh) auto; height: auto; }
-    #side { border-left: 0; border-top: 1px solid #ddd; }
-  }
+  #legend span { display: inline-flex; align-items: center; gap: 5px; }
+  #legend i { width: 10px; height: 10px; display: inline-block; }
+  #ids { width: 100%; height: 140px; font: 12px ui-monospace, monospace; box-sizing: border-box; }
+  #idactions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 </style>
 </head>
 <body>
 <div id="app">
-  <div id="banner">
-    <p>Volume-normalised shapes of primitive cells. This plot embeds every PDB cell so that similar shapes sit together, using Selling-closure distances between nearby settings. Symmetry fixes edges and angles, and those constraints straddle the familiar unit-cell shapes.</p>
-  </div>
-  <div id="stage">
-    <canvas id="cloud"></canvas>
-    <svg id="axes"></svg>
-    <svg id="pick"></svg>
-  </div>
+  <div id="stage"></div>
   <aside id="side">
-    <h1>Volume-normalised linear key</h1>
-    <p class="lead">The checkboxes decide which cells are drawn. Colour only paints them. Then either pick one cell, or lasso a region and take those PDB ids elsewhere.</p>
+    <h1>All cells, three components</h1>
+    <p class="lead">Classical MDS of the volume-normalised sorted key. The lower right panel is an Isomap of the lasso, and a lasso there narrows that selection.</p>
     <fieldset>
-      <legend>Encoder</legend>
-      <div id="encoders"></div>
+      <legend>Pointer</legend>
+      <label><input type="radio" name="tool" value="lasso" checked> lasso</label>
+      <label><input type="radio" name="tool" value="move"> move</label>
     </fieldset>
     <fieldset>
       <legend>Colour</legend>
       <label><input type="radio" name="color" value="system" checked> crystal system</label>
       <label><input type="radio" name="color" value="centring"> centring</label>
       <div id="legend"></div>
-      <p class="note">Paints the cells that remain. It does not hide any.</p>
     </fieldset>
     <fieldset>
       <legend>Crystal system</legend>
@@ -85,52 +80,1961 @@
       <div id="centrings"></div>
     </fieldset>
     <p id="shown" class="note"></p>
-    <fieldset>
-      <legend>Selection</legend>
-      <label><input type="radio" name="select" value="one" checked> one cell</label>
-      <label><input type="radio" name="select" value="lasso"> lasso</label>
-    </fieldset>
     <form id="search">
-      <input id="pdb" placeholder="1ENX" autocomplete="off">
+      <input id="pdb" placeholder="1MDG" autocomplete="off">
       <button type="submit">Show</button>
     </form>
-    <div id="one">
-      <div id="hover"></div>
-      <div id="cellcard" hidden>
-        <h2 id="celltitle"></h2>
-        <p id="cellsetting" class="note"></p>
-        <table>
-          <tbody id="cellparams"></tbody>
-        </table>
-        <p id="celluni" class="note"></p>
-        <svg id="cellfig"></svg>
-        <p class="note">Drag to turn the cell. Scroll to zoom. Double-click to reset. The table holds the true edges; turning the picture foreshortens them.</p>
-      </div>
-      <div id="status"></div>
+    <div id="hover"></div>
+    <div id="cellcard" hidden>
+      <h2 id="celltitle"></h2>
+      <p id="cellsetting" class="note"></p>
+      <table>
+        <tbody id="cellparams"></tbody>
+      </table>
+      <p id="celluni" class="note"></p>
+      <svg id="cellfig"></svg>
+      <p class="note">Drag to turn the cell. Scroll to zoom. Double-click to reset. The table holds the true edges; turning the picture foreshortens them.</p>
     </div>
-    <div id="many" hidden>
-      <p id="idcount" class="note">Drag a loop around the cells you want. Unticked systems and centrings are left out.</p>
-      <fieldset>
-        <legend>Colour this selection</legend>
-        <label><input type="radio" name="lassocolor" value="uniprot" checked> UniProt id</label>
-        <label><input type="radio" name="lassocolor" value="deposit"> deposition group</label>
-      </fieldset>
-      <div id="uniactions" hidden>
-        <button type="button" id="uniall">Select all</button>
-        <button type="button" id="uninone">Deselect all</button>
-      </div>
-      <div id="unilegend"></div>
-      <p id="uninote" class="note"></p>
-      <textarea id="ids" readonly></textarea>
-      <div id="idactions">
-        <button type="button" id="copyids">Copy</button>
-        <button type="button" id="downloadids">Download</button>
-      </div>
+    <p id="idcount" class="note">Drag a loop on any plane. The lower right panel maps that selection, and a lasso there narrows it.</p>
+    <fieldset>
+      <legend>Colour this selection</legend>
+      <label><input type="radio" name="lassocolor" value="uniprot" checked> UniProt id</label>
+      <label><input type="radio" name="lassocolor" value="deposit"> deposition group</label>
+    </fieldset>
+    <div id="uniactions" hidden>
+      <button type="button" id="uniall">Select all</button>
+      <button type="button" id="uninone">Deselect all</button>
     </div>
-    <p id="foot" class="note"></p>
+    <div id="unilegend"></div>
+    <p id="uninote" class="note"></p>
+    <textarea id="ids" readonly></textarea>
+    <div id="idactions">
+      <button type="button" id="copyids">Copy</button>
+      <button type="button" id="downloadids">Download</button>
+      <button type="button" id="clearloops">Clear lassos</button>
+    </div>
   </aside>
 </div>
-<script src="d3.min.js"></script>
-<script src="app.js"></script>
+<script>
+const PAIRS = [[0, 1], [0, 2], [1, 2]];
+const STATIC = location.port !== "8052";
+const UNI_COLORS = [
+  "#4c78a8", "#f58518", "#e45756", "#54a24b", "#b279a2", "#72b7b2",
+  "#eeca3b", "#ff9da6", "#9d755d", "#1f77b4", "#2ca02c", "#9467bd",
+];
+const UNI_OTHER = -2;
+const UNI_NONE = -1;
+const stage = document.getElementById("stage");
+let meta, xyz, sys, cent, index;
+let colorBy = "system";
+let tool = "lasso";
+let hiddenSys = new Set();
+let hiddenCent = new Set();
+let focus = -1;
+let picked = -1;
+let zoomSyncTimer = 0;
+let selected = null;
+let selectedIds = [];
+let selectedIndex = [];
+let poolIndex = [];
+let embedX = null;
+let embedY = null;
+let geoGen = 0;
+let cellEdges = null;
+let proteinOff = null;
+let proteinAccId = null;
+let proteinNameId = null;
+let proteinNres = null;
+let proteinAcc = null;
+let proteinName = null;
+let knnIdx = null;
+let knnDist = null;
+let nodeOfRow = null;
+let knnK = 50;
+let lassoUni = null;
+let uniHidden = new Set();
+let labelCode = null;
+let codeColor = new Map();
+let labelBy = "uniprot";
+let labelToken = 0;
+let annoToken = 0;
+let cellView = null;
+const panels = [];
+let spectral = null;
+
+function resizeCanvas(canvas) {
+  const r = canvas.parentElement.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, r.width * dpr);
+  canvas.height = Math.max(1, r.height * dpr);
+  canvas._cssW = r.width;
+  canvas._cssH = r.height;
+}
+
+function pointOf(panel, i) {
+  if (panel.spectral) {
+    if (!embedX || !Number.isFinite(embedX[i])) return null;
+    return [embedX[i], embedY[i]];
+  }
+  return [xyz[i * 3 + panel.axes[0]], xyz[i * 3 + panel.axes[1]]];
+}
+
+function fitView(panel) {
+  let xmin = Infinity, xmax = -Infinity, ymin = Infinity, ymax = -Infinity;
+  for (let i = 0; i < meta.n; i++) {
+    if (!visible(i)) continue;
+    const p = pointOf(panel, i);
+    if (!p) continue;
+    const x = p[0], y = p[1];
+    if (x < xmin) xmin = x; if (x > xmax) xmax = x;
+    if (y < ymin) ymin = y; if (y > ymax) ymax = y;
+  }
+  if (!isFinite(xmin)) { xmin = -1; xmax = 1; ymin = -1; ymax = 1; }
+  const dx = (xmax - xmin) || 1, dy = (ymax - ymin) || 1;
+  const w = panel.canvas._cssW || 1, h = panel.canvas._cssH || 1;
+  const pad = 0.06;
+  let vw = dx * (1 + 2 * pad), vh = dy * (1 + 2 * pad);
+  if (vw / vh > w / h) vh = vw * h / w;
+  else vw = vh * w / h;
+  const cx = (xmin + xmax) / 2, cy = (ymin + ymax) / 2;
+  panel.view = { x0: cx - vw / 2, y0: cy - vh / 2, x1: cx + vw / 2, y1: cy + vh / 2 };
+  panel.home = panel.view;
+}
+
+function toScreen(panel, x, y) {
+  const v = panel.view;
+  const w = panel.canvas._cssW, h = panel.canvas._cssH;
+  return [
+    (x - v.x0) / (v.x1 - v.x0) * w,
+    h - (y - v.y0) / (v.y1 - v.y0) * h,
+  ];
+}
+
+function toWorld(panel, sx, sy) {
+  const v = panel.view;
+  const w = panel.canvas._cssW, h = panel.canvas._cssH;
+  return [
+    v.x0 + (sx / w) * (v.x1 - v.x0),
+    v.y0 + (1 - sy / h) * (v.y1 - v.y0),
+  ];
+}
+
+function visible(i) {
+  return !hiddenSys.has(sys[i]) && !hiddenCent.has(cent[i]);
+}
+
+function kept(i) {
+  if (!selected || !selected[i]) return false;
+  if (labelCode && uniHidden.has(labelCode[i])) return false;
+  return true;
+}
+
+function colorOf(i) {
+  if (kept(i) && labelCode && codeColor.has(labelCode[i])) return codeColor.get(labelCode[i]);
+  if (colorBy === "system") return meta.systemColors[sys[i]];
+  return meta.centeringColors[cent[i]];
+}
+
+function inside(x, y, poly) {
+  let c = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const xi = poly[i][0], yi = poly[i][1];
+    const xj = poly[j][0], yj = poly[j][1];
+    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+}
+
+function loopCount() {
+  const planes = panels.reduce((n, p) => n + p.loops.length, 0);
+  return planes + (spectral ? spectral.loops.length : 0);
+}
+
+function planeLoops() {
+  const loops = [];
+  for (const panel of panels) {
+    for (const poly of panel.loops) {
+      if (poly.length >= 3) loops.push({ axes: panel.axes, poly });
+    }
+  }
+  return loops;
+}
+
+function collectPool() {
+  const loops = planeLoops().map((loop) => {
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+    for (const p of loop.poly) {
+      if (p[0] < x0) x0 = p[0]; if (p[0] > x1) x1 = p[0];
+      if (p[1] < y0) y0 = p[1]; if (p[1] > y1) y1 = p[1];
+    }
+    return { axes: loop.axes, poly: loop.poly, x0, x1, y0, y1 };
+  });
+  const picked = [];
+  if (!loops.length) return picked;
+  for (let i = 0; i < meta.n; i++) {
+    if (!visible(i)) continue;
+    const coords = [xyz[i * 3], xyz[i * 3 + 1], xyz[i * 3 + 2]];
+    for (const loop of loops) {
+      const x = coords[loop.axes[0]], y = coords[loop.axes[1]];
+      if (x < loop.x0 || x > loop.x1 || y < loop.y0 || y > loop.y1) continue;
+      if (inside(x, y, loop.poly)) {
+        picked.push(i);
+        break;
+      }
+    }
+  }
+  return picked;
+}
+
+function inSpectral(i) {
+  const p = pointOf(spectral, i);
+  if (!p) return false;
+  for (const poly of spectral.loops) {
+    if (poly.length >= 3 && inside(p[0], p[1], poly)) return true;
+  }
+  return false;
+}
+
+function commitSelection(indices) {
+  selected = new Uint8Array(meta.n);
+  const ids = [];
+  for (const i of indices) {
+    selected[i] = 1;
+    ids.push(meta.pdb_id[i]);
+  }
+  selectedIndex = indices;
+  selectedIds = ids;
+  writeIds();
+  requestLabels();
+}
+
+function recomputePool() {
+  spectral.loops = [];
+  poolIndex = collectPool();
+  embedX = null;
+  embedY = null;
+  commitSelection(poolIndex);
+  requestEmbed();
+}
+
+function refineSpectral() {
+  if (!spectral.loops.length) {
+    commitSelection(poolIndex);
+    return;
+  }
+  commitSelection(poolIndex.filter(inSpectral));
+}
+
+function listedIds() {
+  if (!lassoUni || !labelCode || uniHidden.size === 0) return selectedIds;
+  const out = [];
+  for (let k = 0; k < selectedIndex.length; k++) {
+    if (!uniHidden.has(labelCode[selectedIndex[k]])) out.push(selectedIds[k]);
+  }
+  return out;
+}
+
+function writeIds() {
+  const ids = listedIds();
+  const n = ids.length;
+  const total = selectedIds.length;
+  const planes = panels.reduce((k, p) => k + p.loops.length, 0);
+  const narrowed = spectral && spectral.loops.length;
+  const count = document.getElementById("idcount");
+  if (!planes) {
+    count.textContent = "Drag a loop on any plane. The lower right panel maps that selection, and a lasso there narrows it.";
+  } else if (lassoUni && uniHidden.size) {
+    const noun = n === 1 ? "cell" : "cells";
+    count.textContent = `${n.toLocaleString()} ${noun} from the ticked labels, of ${total.toLocaleString()} in the selection.`;
+  } else if (!narrowed) {
+    count.textContent = `${total.toLocaleString()} cells in the union of ${planes} lasso${planes === 1 ? "" : "s"}.`;
+  } else {
+    count.textContent = `${total.toLocaleString()} cells in the Isomap lasso, from ${poolIndex.length.toLocaleString()} in the plane lassos.`;
+  }
+  const ta = document.getElementById("ids");
+  ta.value = n && n <= 20000
+    ? ids.join("\n")
+    : (n ? ids.slice(0, 200).join("\n") + `\n… ${n.toLocaleString()} ids; use Download for the full list` : "");
+}
+
+async function sha256Hex(buf) {
+  const dig = await crypto.subtle.digest("SHA-256", buf);
+  return [...new Uint8Array(dig)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function loadChecked(manifest, role) {
+  const parts = [];
+  for (const spec of manifest.files[role]) {
+    const res = await fetch("data/" + spec.name);
+    if (!res.ok) throw new Error(spec.name + " failed to load");
+    const buf = await res.arrayBuffer();
+    const got = await sha256Hex(buf);
+    if (got !== spec.sha256) throw new Error(spec.name + " hash does not match the manifest");
+    parts.push(new Uint8Array(buf));
+  }
+  const total = parts.reduce((n, part) => n + part.length, 0);
+  const out = new Uint8Array(total);
+  let cursor = 0;
+  for (const part of parts) {
+    out.set(part, cursor);
+    cursor += part.length;
+  }
+  return out.buffer;
+}
+
+function littleEndian() {
+  return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
+}
+
+function i32(buf, count) {
+  if (littleEndian() && buf.byteLength === count * 4) return new Int32Array(buf.slice(0));
+  const view = new DataView(buf);
+  const out = new Int32Array(count);
+  for (let i = 0; i < count; i++) out[i] = view.getInt32(i * 4, true);
+  return out;
+}
+
+function f32(buf, count) {
+  if (littleEndian() && buf.byteLength === count * 4) return new Float32Array(buf.slice(0));
+  const view = new DataView(buf);
+  const out = new Float32Array(count);
+  for (let i = 0; i < count; i++) out[i] = view.getFloat32(i * 4, true);
+  return out;
+}
+
+async function loadArchive() {
+  const manifest = await (await fetch("data/manifest.json")).json();
+  meta = JSON.parse(new TextDecoder().decode(await loadChecked(manifest, "meta")));
+  const points = await loadChecked(manifest, "points");
+  const view = new DataView(points);
+  const n = view.getUint32(0, true);
+  sys = new Uint8Array(points, 4, n);
+  cent = new Uint8Array(points, 4 + n, n);
+  let off = 4 + 2 * n;
+  off += (4 - (off % 4)) % 4;
+  xyz = f32(points.slice(off), n * 3);
+  cellEdges = f32(await loadChecked(manifest, "cells"), n * 6);
+  const proteins = await loadChecked(manifest, "proteins");
+  const m = meta.proteins.m;
+  proteinOff = i32(proteins.slice(0, (n + 1) * 4), n + 1);
+  proteinAccId = i32(proteins.slice((n + 1) * 4, (n + 1 + m) * 4), m);
+  proteinNameId = i32(proteins.slice((n + 1 + m) * 4, (n + 1 + 2 * m) * 4), m);
+  proteinNres = i32(proteins.slice((n + 1 + 2 * m) * 4), m);
+  proteinAcc = JSON.parse(new TextDecoder().decode(await loadChecked(manifest, "protein_acc")));
+  proteinName = JSON.parse(new TextDecoder().decode(await loadChecked(manifest, "protein_name")));
+  nodeOfRow = i32(await loadChecked(manifest, "node_of_row"), n);
+  knnK = manifest.k;
+  const nLat = manifest.n_lattices;
+  knnIdx = i32(await loadChecked(manifest, "knn_idx"), nLat * knnK);
+  knnDist = f32(await loadChecked(manifest, "knn_dist"), nLat * knnK);
+}
+
+function proteinsAt(i) {
+  const items = [];
+  for (let k = proteinOff[i]; k < proteinOff[i + 1]; k++) {
+    items.push({
+      acc: proteinAcc[proteinAccId[k]],
+      name: proteinName[proteinNameId[k]],
+      n_res: proteinNres[k],
+    });
+  }
+  return items;
+}
+
+function staticCell(i) {
+  return {
+    pdb_id: meta.pdb_id[i],
+    deposited: meta.sg_hm[i],
+    a: cellEdges[i * 6],
+    b: cellEdges[i * 6 + 1],
+    c: cellEdges[i * 6 + 2],
+    alpha: cellEdges[i * 6 + 3],
+    beta: cellEdges[i * 6 + 4],
+    gamma: cellEdges[i * 6 + 5],
+    uniprots: proteinsAt(i),
+    group_label: meta.deposit[i] || "",
+  };
+}
+
+function classifyLocal(indices) {
+  const labels = indices.map((i) => {
+    if (labelBy === "deposit") {
+      const acc = meta.deposit[i] || "";
+      return [acc, acc];
+    }
+    if (proteinOff[i] === proteinOff[i + 1]) return ["", ""];
+    const k = proteinOff[i];
+    const acc = proteinAcc[proteinAccId[k]] || "";
+    return [acc, proteinName[proteinNameId[k]] || acc];
+  });
+  const counts = new Map();
+  const names = new Map();
+  for (const [acc, name] of labels) {
+    counts.set(acc, (counts.get(acc) || 0) + 1);
+    if (acc && !names.has(acc)) names.set(acc, name || acc);
+  }
+  const ranked = [...counts.keys()].filter((acc) => acc);
+  ranked.sort((a, b) => counts.get(b) - counts.get(a) || (a < b ? -1 : a > b ? 1 : 0));
+  const colorOf = new Map(ranked.slice(0, 12).map((acc, code) => [acc, code]));
+  const otherName = labelBy === "deposit" ? "other groups" : "other proteins";
+  const noneName = labelBy === "deposit" ? "no deposition group" : "no UniProt";
+  const groups = [];
+  for (const [acc, code] of colorOf) {
+    groups.push({ acc, name: names.get(acc), n: counts.get(acc), code, color: UNI_COLORS[code] });
+  }
+  const otherN = ranked.slice(12).reduce((n, acc) => n + counts.get(acc), 0);
+  if (otherN) groups.push({ acc: "", name: otherName, n: otherN, code: UNI_OTHER, color: "#d0d0d0" });
+  const noneN = counts.get("") || 0;
+  if (noneN) groups.push({ acc: "", name: noneName, n: noneN, code: UNI_NONE, color: "#666666" });
+  const codes = labels.map(([acc]) => {
+    if (!acc) return UNI_NONE;
+    if (colorOf.has(acc)) return colorOf.get(acc);
+    return UNI_OTHER;
+  });
+  return { groups, codes };
+}
+
+function dijkstra(head, to, weight, start) {
+  const n = head.length - 1;
+  const dist = new Float64Array(n);
+  dist.fill(Infinity);
+  dist[start] = 0;
+  const heap = [[0, start]];
+  const seen = new Uint8Array(n);
+  const swap = (a, b) => { const t = heap[a]; heap[a] = heap[b]; heap[b] = t; };
+  while (heap.length) {
+    let i = 0;
+    const node = heap[0][1];
+    heap[0] = heap[heap.length - 1];
+    heap.pop();
+    while (true) {
+      const l = i * 2 + 1, r = l + 1;
+      let s = i;
+      if (l < heap.length && heap[l][0] < heap[s][0]) s = l;
+      if (r < heap.length && heap[r][0] < heap[s][0]) s = r;
+      if (s === i) break;
+      swap(i, s);
+      i = s;
+    }
+    if (seen[node]) continue;
+    seen[node] = 1;
+    const base = dist[node];
+    for (let e = head[node]; e < head[node + 1]; e++) {
+      const nxt = to[e];
+      const nd = base + weight[e];
+      if (nd < dist[nxt]) {
+        dist[nxt] = nd;
+        let j = heap.length;
+        heap.push([nd, nxt]);
+        while (j) {
+          const p = (j - 1) >> 1;
+          if (heap[p][0] <= heap[j][0]) break;
+          swap(p, j);
+          j = p;
+        }
+      }
+    }
+  }
+  return dist;
+}
+
+function gramMatrix(dist, n) {
+  const d2 = new Float64Array(n * n);
+  let grand = 0;
+  for (let i = 0; i < n * n; i++) {
+    d2[i] = dist[i] * dist[i];
+    grand += d2[i];
+  }
+  grand /= n * n;
+  const rowMean = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    let sum = 0;
+    for (let j = 0; j < n; j++) sum += d2[i * n + j];
+    rowMean[i] = sum / n;
+  }
+  const gram = new Float64Array(n * n);
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      gram[i * n + j] = -0.5 * (d2[i * n + j] - rowMean[i] - rowMean[j] + grand);
+    }
+  }
+  return gram;
+}
+
+function classicalMds(dist, n) {
+  const gram = gramMatrix(dist, n);
+  const coords = new Float64Array(n * 2);
+  const v = [new Float64Array(n), new Float64Array(n)];
+  const tmp = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    v[0][i] = Math.sin((i + 1) * 12.9898);
+    v[1][i] = Math.cos((i + 1) * 78.233);
+  }
+  const dot = (a, b) => { let s = 0; for (let i = 0; i < n; i++) s += a[i] * b[i]; return s; };
+  const normalize = (a) => {
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += a[i] * a[i];
+    const len = Math.sqrt(sum) || 1;
+    for (let i = 0; i < n; i++) a[i] /= len;
+  };
+  const apply = (src, dst) => {
+    for (let i = 0; i < n; i++) {
+      let s = 0;
+      const row = i * n;
+      for (let j = 0; j < n; j++) s += gram[row + j] * src[j];
+      dst[i] = s;
+    }
+  };
+  normalize(v[0]);
+  const along = dot(v[0], v[1]);
+  for (let i = 0; i < n; i++) v[1][i] -= along * v[0][i];
+  normalize(v[1]);
+  const lambda = [0, 0];
+  for (let iter = 0; iter < 80; iter++) {
+    apply(v[0], tmp);
+    lambda[0] = dot(v[0], tmp);
+    normalize(tmp);
+    v[0].set(tmp);
+    apply(v[1], tmp);
+    const proj = dot(v[0], tmp);
+    for (let i = 0; i < n; i++) tmp[i] -= proj * v[0][i];
+    lambda[1] = dot(v[1], tmp);
+    normalize(tmp);
+    v[1].set(tmp);
+  }
+  for (let axis = 0; axis < 2; axis++) {
+    if (lambda[axis] <= 1e-12) continue;
+    const scale = Math.sqrt(lambda[axis]);
+    for (let i = 0; i < n; i++) coords[i * 2 + axis] = v[axis][i] * scale;
+  }
+  return coords;
+}
+
+function landmarkEmbed(distAll, landmarks, n) {
+  const L = landmarks.length;
+  const land = new Float64Array(L * L);
+  for (let r = 0; r < L; r++) {
+    for (let c = 0; c < L; c++) land[r * L + c] = distAll[r * n + landmarks[c]];
+  }
+  const xy = classicalMds(land, L);
+  const meanSq = new Float64Array(L);
+  for (let c = 0; c < L; c++) {
+    let sum = 0;
+    for (let r = 0; r < L; r++) sum += land[r * L + c] ** 2;
+    meanSq[c] = sum / L;
+  }
+  let xx = 0, xySum = 0, yy = 0;
+  for (let i = 0; i < L; i++) {
+    const x = xy[i * 2], y = xy[i * 2 + 1];
+    xx += x * x; xySum += x * y; yy += y * y;
+  }
+  const det = xx * yy - xySum * xySum;
+  const out = new Float64Array(n * 2);
+  if (Math.abs(det) < 1e-18) return out;
+  const inv00 = yy / det, inv01 = -xySum / det, inv10 = -xySum / det, inv11 = xx / det;
+  for (let j = 0; j < n; j++) {
+    let a = 0, b = 0, ok = true;
+    for (let r = 0; r < L; r++) {
+      const d = distAll[r * n + j];
+      if (!Number.isFinite(d)) { ok = false; break; }
+      const delta = d * d - meanSq[r];
+      const x = xy[r * 2], y = xy[r * 2 + 1];
+      a += (inv00 * x + inv01 * y) * delta;
+      b += (inv10 * x + inv11 * y) * delta;
+    }
+    if (!ok) continue;
+    out[j * 2] = -0.5 * a;
+    out[j * 2 + 1] = -0.5 * b;
+  }
+  return out;
+}
+
+function embedComponent(head, to, weight) {
+  const n = head.length - 1;
+  if (n === 1) return new Float64Array(2);
+  if (n <= 450) {
+    const full = new Float64Array(n * n);
+    let cap = 0;
+    for (let s = 0; s < n; s++) {
+      const dist = dijkstra(head, to, weight, s);
+      full.set(dist, s * n);
+      for (let j = 0; j < n; j++) if (Number.isFinite(dist[j]) && dist[j] > cap) cap = dist[j];
+    }
+    if (!cap) cap = 1;
+    for (let i = 0; i < full.length; i++) if (!Number.isFinite(full[i])) full[i] = cap * 2;
+    return classicalMds(full, n);
+  }
+  const count = Math.min(160, n);
+  const chosen = [];
+  const rows = [];
+  const nearest = new Float64Array(n);
+  nearest.fill(Infinity);
+  let start = 0;
+  for (let i = 0; i < count; i++) {
+    chosen.push(start);
+    const dist = dijkstra(head, to, weight, start);
+    rows.push(dist);
+    for (let j = 0; j < n; j++) if (dist[j] < nearest[j]) nearest[j] = dist[j];
+    for (const node of chosen) nearest[node] = -Infinity;
+    let best = 0;
+    for (let j = 1; j < n; j++) if (nearest[j] > nearest[best]) best = j;
+    if (!Number.isFinite(nearest[best])) break;
+    start = best;
+  }
+  const distAll = new Float64Array(chosen.length * n);
+  for (let r = 0; r < chosen.length; r++) distAll.set(rows[r], r * n);
+  return landmarkEmbed(distAll, chosen, n);
+}
+
+function isomapCoords(cellIndices) {
+  const nLat = knnIdx.length / knnK;
+  const member = new Int32Array(nLat);
+  member.fill(-1);
+  const lattices = [];
+  const inverse = new Int32Array(cellIndices.length);
+  for (let k = 0; k < cellIndices.length; k++) {
+    const lat = nodeOfRow[cellIndices[k]];
+    let local = member[lat];
+    if (local < 0) {
+      local = lattices.length;
+      member[lat] = local;
+      lattices.push(lat);
+    }
+    inverse[k] = local;
+  }
+  const m = lattices.length;
+  const coords = new Float64Array(m * 2);
+  if (m >= 2) {
+    const undirected = new Map();
+    for (let i = 0; i < m; i++) {
+      const base = lattices[i] * knnK;
+      for (let slot = 0; slot < knnK; slot++) {
+        const nb = knnIdx[base + slot];
+        if (nb < 0) continue;
+        const j = member[nb];
+        if (j < 0 || j === i) continue;
+        const d = knnDist[base + slot];
+        if (!(d > 0)) continue;
+        const a = i < j ? i : j, b = i < j ? j : i;
+        const key = a * m + b;
+        const prev = undirected.get(key);
+        if (prev === undefined) undirected.set(key, [d, 1]);
+        else { prev[0] += d; prev[1] += 1; }
+      }
+    }
+    const degree = new Int32Array(m);
+    for (const key of undirected.keys()) {
+      degree[key / m | 0]++;
+      degree[key % m]++;
+    }
+    const head = new Int32Array(m + 1);
+    for (let i = 0; i < m; i++) head[i + 1] = head[i] + degree[i];
+    const to = new Int32Array(head[m]);
+    const weight = new Float64Array(head[m]);
+    const cursor = head.slice();
+    for (const [key, pair] of undirected) {
+      const a = key / m | 0, b = key % m;
+      const d = pair[0] / pair[1];
+      to[cursor[a]] = b; weight[cursor[a]++] = d;
+      to[cursor[b]] = a; weight[cursor[b]++] = d;
+    }
+    const seen = new Int32Array(m);
+    seen.fill(-1);
+    let nComp = 0;
+    const pieces = [];
+    for (let seed = 0; seed < m; seed++) {
+      if (seen[seed] >= 0) continue;
+      const nodes = [];
+      const stack = [seed];
+      seen[seed] = nComp;
+      while (stack.length) {
+        const node = stack.pop();
+        nodes.push(node);
+        for (let e = head[node]; e < head[node + 1]; e++) {
+          const nxt = to[e];
+          if (seen[nxt] >= 0) continue;
+          seen[nxt] = nComp;
+          stack.push(nxt);
+        }
+      }
+      nComp++;
+      if (nodes.length === 1) {
+        pieces.push([nodes, null]);
+        continue;
+      }
+      const local = new Int32Array(m);
+      local.fill(-1);
+      nodes.forEach((node, i) => { local[node] = i; });
+      const subN = nodes.length;
+      const subDeg = new Int32Array(subN);
+      for (const node of nodes) {
+        for (let e = head[node]; e < head[node + 1]; e++) subDeg[local[node]]++;
+      }
+      const subHead = new Int32Array(subN + 1);
+      for (let i = 0; i < subN; i++) subHead[i + 1] = subHead[i] + subDeg[i];
+      const subTo = new Int32Array(subHead[subN]);
+      const subW = new Float64Array(subHead[subN]);
+      const subCursor = subHead.slice();
+      for (const node of nodes) {
+        const i = local[node];
+        for (let e = head[node]; e < head[node + 1]; e++) {
+          const j = local[to[e]];
+          const at = subCursor[i]++;
+          subTo[at] = j;
+          subW[at] = weight[e];
+        }
+      }
+      const xy = embedComponent(subHead, subTo, subW);
+      let mx = 0, my = 0;
+      for (let i = 0; i < subN; i++) { mx += xy[i * 2]; my += xy[i * 2 + 1]; }
+      mx /= subN; my /= subN;
+      for (let i = 0; i < subN; i++) { xy[i * 2] -= mx; xy[i * 2 + 1] -= my; }
+      pieces.push([nodes, xy]);
+    }
+    pieces.sort((a, b) => b[0].length - a[0].length);
+    let cursorX = 0;
+    let started = false;
+    const singletons = [];
+    for (const [nodes, xy] of pieces) {
+      if (!xy) { singletons.push(nodes[0]); continue; }
+      let xmin = Infinity, xmax = -Infinity;
+      for (let i = 0; i < nodes.length; i++) {
+        const x = xy[i * 2];
+        if (x < xmin) xmin = x;
+        if (x > xmax) xmax = x;
+      }
+      const shift = started ? cursorX - xmin : 0;
+      for (let i = 0; i < nodes.length; i++) {
+        coords[nodes[i] * 2] = xy[i * 2] + shift;
+        coords[nodes[i] * 2 + 1] = xy[i * 2 + 1];
+      }
+      const width = xmax - xmin;
+      cursorX = xmax + shift + 0.18 * Math.max(width, 1);
+      started = true;
+    }
+    if (singletons.length && started) {
+      let left = Infinity;
+      for (let i = 0; i < m; i++) if (coords[i * 2] < left) left = coords[i * 2];
+      for (const node of singletons) coords[node * 2] = left - 0.18;
+    }
+  }
+  const xy = new Float32Array(cellIndices.length * 2);
+  for (let k = 0; k < cellIndices.length; k++) {
+    xy[k * 2] = coords[inverse[k] * 2];
+    xy[k * 2 + 1] = coords[inverse[k] * 2 + 1];
+  }
+  return { xy, n_lattices: m };
+}
+
+async function requestEmbed() {
+  const gen = ++geoGen;
+  const asked = poolIndex.slice();
+  if (asked.length < 2) {
+    embedX = null;
+    embedY = null;
+    if (spectral) fitView(spectral);
+    return;
+  }
+  if (STATIC) {
+    if (spectral) spectral.title.textContent = "Computing Isomap…";
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    if (gen !== geoGen) return;
+    try {
+      const result = isomapCoords(asked);
+      if (gen !== geoGen) return;
+      embedX = new Float32Array(meta.n);
+      embedY = new Float32Array(meta.n);
+      embedX.fill(NaN);
+      embedY.fill(NaN);
+      if (result.n_lattices >= 2) {
+        for (let k = 0; k < asked.length; k++) {
+          embedX[asked[k]] = result.xy[k * 2];
+          embedY[asked[k]] = result.xy[k * 2 + 1];
+        }
+      }
+    } catch (err) {
+      if (gen !== geoGen) return;
+      if (spectral && !spectral.space) spectral.title.textContent = String(err.message || err);
+      return;
+    }
+    if (spectral && !spectral.space) spectral.title.textContent = "Selling Isomap";
+    fitView(spectral);
+    draw();
+    return;
+  }
+  let payload;
+  try {
+    const res = await fetch("/embed", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ indices: asked }),
+    });
+    payload = await res.json();
+  } catch (err) {
+    if (gen !== geoGen) return;
+    return;
+  }
+  if (gen !== geoGen) return;
+  embedX = new Float32Array(meta.n);
+  embedY = new Float32Array(meta.n);
+  embedX.fill(NaN);
+  embedY.fill(NaN);
+  if (payload.xy && payload.n_lattices >= 2) {
+    const bytes = Uint8Array.from(atob(payload.xy), (c) => c.charCodeAt(0));
+    const xy = new Float32Array(bytes.buffer);
+    for (let k = 0; k < asked.length; k++) {
+      embedX[asked[k]] = xy[k * 2];
+      embedY[asked[k]] = xy[k * 2 + 1];
+    }
+  }
+  fitView(spectral);
+  draw();
+}
+
+const colorPacks = new Map();
+let frame = 0;
+let frameMode = 0;
+const framePanels = new Set();
+
+function packColor(hex, toward) {
+  const key = hex + "/" + toward;
+  const hit = colorPacks.get(key);
+  if (hit !== undefined) return hit;
+  const n = parseInt(hex.slice(1), 16);
+  const mix = (shift) => {
+    const c = (n >> shift) & 255;
+    return Math.round(c + (255 - c) * toward);
+  };
+  const bytes = new Uint8Array([mix(16), mix(8), mix(0), 255]);
+  const packed = new Uint32Array(bytes.buffer)[0];
+  colorPacks.set(key, packed);
+  return packed;
+}
+
+function colorLookup(toward, useLabels) {
+  const sysC = meta.systemColors.map((hex) => packColor(hex, toward));
+  const centC = meta.centeringColors.map((hex) => packColor(hex, toward));
+  const labels = new Map();
+  if (useLabels && labelCode) {
+    for (const [code, hex] of codeColor) labels.set(code, packColor(hex, 0));
+  }
+  const bySys = colorBy === "system";
+  return (i) => {
+    if (useLabels && labelCode && !uniHidden.has(labelCode[i])) {
+      const packed = labels.get(labelCode[i]);
+      if (packed !== undefined) return packed;
+    }
+    return bySys ? sysC[sys[i]] : centC[cent[i]];
+  };
+}
+
+function stamp(words, w, h, px, py, col, side) {
+  const r = Math.floor((side - 1) / 2);
+  if (px < -r || py < -r || px >= w + side || py >= h + side) return;
+  const x0 = px - r, y0 = py - r;
+  const xa = Math.max(0, x0), xb = Math.min(w - 1, x0 + side - 1);
+  const ya = Math.max(0, y0), yb = Math.min(h - 1, y0 + side - 1);
+  for (let y = ya; y <= yb; y++) {
+    const row = y * w;
+    for (let x = xa; x <= xb; x++) words[row + x] = col;
+  }
+}
+
+function dotSide(panel, marked, dpr) {
+  let zoomK = 1;
+  if (panel.space) zoomK = panel.dist || 1;
+  else {
+    const home = panel.home;
+    const v = panel.view;
+    const span = v.x1 - v.x0;
+    zoomK = home && span ? Math.abs((home.x1 - home.x0) / span) : 1;
+  }
+  const dotPx = Math.min(9, 1.7 + 1.15 * Math.log2(Math.max(zoomK, 1))) / 4;
+  const css = Math.max(dotPx, 1 / dpr) * (marked ? 2.1 : 1);
+  return Math.max(1, Math.round(css * dpr));
+}
+
+function cloudTarget(panel) {
+  const canvas = panel.canvas;
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.width, h = canvas.height;
+  const cssW = canvas._cssW || 1, cssH = canvas._cssH || 1;
+  if (!panel.cloud) panel.cloud = document.createElement("canvas");
+  if (panel.cloud.width !== w || panel.cloud.height !== h) {
+    panel.cloud.width = w;
+    panel.cloud.height = h;
+    panel.image = null;
+  }
+  const ictx = panel.cloud.getContext("2d", { alpha: false });
+  if (!panel.image || panel.image.width !== w || panel.image.height !== h) {
+    panel.image = ictx.createImageData(w, h);
+    panel.words = new Uint32Array(panel.image.data.buffer, panel.image.data.byteOffset, w * h);
+  }
+  const words = panel.words;
+  words.fill(0xffffffff);
+  const iw = cssW | 0, ih = cssH | 0;
+  const hit = (panel.hit && panel.hit.map.length === iw * ih) ? panel.hit.map : new Int32Array(Math.max(1, iw * ih));
+  hit.fill(-1);
+  panel.hit = { map: hit, w: iw, h: ih };
+  return { ictx, words, w, h, cssW, cssH, dpr, hit, iw, ih };
+}
+
+let spaceCx = 0, spaceCy = 0, spaceCz = 0;
+let projX = null, projY = null, projZ = null;
+const SPACE_BINS = 32;
+let spaceBins = null;
+
+function spacePivot() {
+  if (tool === "move" && picked >= 0 && visible(picked)) {
+    return [xyz[picked * 3], xyz[picked * 3 + 1], xyz[picked * 3 + 2]];
+  }
+  return null;
+}
+
+function measureSpace() {
+  let n = 0, sx = 0, sy = 0, sz = 0;
+  for (let i = 0; i < meta.n; i++) {
+    if (!visible(i)) continue;
+    sx += xyz[i * 3];
+    sy += xyz[i * 3 + 1];
+    sz += xyz[i * 3 + 2];
+    n++;
+  }
+  if (!n) { spaceCx = 0; spaceCy = 0; spaceCz = 0; return; }
+  spaceCx = sx / n;
+  spaceCy = sy / n;
+  spaceCz = sz / n;
+}
+
+function projectScreen(panel, i) {
+  const fit = panel.spaceFit;
+  if (!fit) return [panel.canvas._cssW / 2, panel.canvas._cssH / 2];
+  const x = xyz[i * 3] - fit.cx;
+  const y = xyz[i * 3 + 1] - fit.cy;
+  const z = xyz[i * 3 + 2] - fit.cz;
+  const x1 = fit.cyaw * x + fit.syaw * z;
+  const z1 = -fit.syaw * x + fit.cyaw * z;
+  const y1 = fit.cp * y - fit.sp * z1;
+  return [fit.ox + x1 * fit.scale, fit.oy - y1 * fit.scale];
+}
+
+function paintSpace(panel) {
+  measureSpace();
+  const pivot = spacePivot();
+  const t = cloudTarget(panel);
+  const n = meta.n;
+  if (!projX || projX.length !== n) {
+    projX = new Float32Array(n);
+    projY = new Float32Array(n);
+    projZ = new Float32Array(n);
+  }
+  if (!spaceBins) spaceBins = Array.from({ length: SPACE_BINS }, () => []);
+  for (let b = 0; b < SPACE_BINS; b++) spaceBins[b].length = 0;
+  const cy = Math.cos(panel.yaw), sy = Math.sin(panel.yaw);
+  const cp = Math.cos(panel.pitch), sp = Math.sin(panel.pitch);
+  const cx = pivot ? pivot[0] : spaceCx;
+  const cy0 = pivot ? pivot[1] : spaceCy;
+  const cz = pivot ? pivot[2] : spaceCz;
+  let zmin = Infinity, zmax = -Infinity;
+  let xmin = Infinity, xmax = -Infinity, ymin = Infinity, ymax = -Infinity;
+  let reach = 1e-6;
+  for (let i = 0; i < n; i++) {
+    if (!visible(i)) continue;
+    const x = xyz[i * 3] - cx;
+    const y = xyz[i * 3 + 1] - cy0;
+    const z = xyz[i * 3 + 2] - cz;
+    const x1 = cy * x + sy * z;
+    const z1 = -sy * x + cy * z;
+    const y1 = cp * y - sp * z1;
+    projX[i] = x1;
+    projY[i] = y1;
+    projZ[i] = sp * y + cp * z1;
+    if (x1 < xmin) xmin = x1; if (x1 > xmax) xmax = x1;
+    if (y1 < ymin) ymin = y1; if (y1 > ymax) ymax = y1;
+    if (projZ[i] < zmin) zmin = projZ[i];
+    if (projZ[i] > zmax) zmax = projZ[i];
+    if (pivot) {
+      const d = Math.hypot(x, y, z);
+      if (d > reach) reach = d;
+    }
+  }
+  const zspan = (zmax - zmin) || 1;
+  let scale, ox, oy;
+  if (pivot) {
+    scale = Math.min(t.cssW, t.cssH) * 0.45 / reach * (panel.dist || 1);
+    ox = t.cssW / 2;
+    oy = t.cssH / 2;
+  } else {
+    const dx = (xmax - xmin) || 1, dy = (ymax - ymin) || 1;
+    const pad = 0.08;
+    const fit = Math.min(t.cssW / (dx * (1 + 2 * pad)), t.cssH / (dy * (1 + 2 * pad)));
+    scale = fit * (panel.dist || 1);
+    const mx = (xmin + xmax) / 2, my = (ymin + ymax) / 2;
+    ox = t.cssW / 2 - mx * scale;
+    oy = t.cssH / 2 + my * scale;
+  }
+  panel.spaceFit = {
+    cx, cy: cy0, cz,
+    cyaw: cy, syaw: sy, cp, sp, scale, ox, oy,
+  };
+  for (let i = 0; i < n; i++) {
+    if (!visible(i)) continue;
+    let b = ((projZ[i] - zmin) / zspan) * (SPACE_BINS - 1);
+    if (b < 0) b = 0;
+    else if (b > SPACE_BINS - 1) b = SPACE_BINS - 1;
+    spaceBins[b | 0].push(i);
+  }
+  const picking = loopCount() > 0;
+  const pale = picking ? 0.3 : 0;
+  const plainCol = colorLookup(pale, false);
+  const markCol = colorLookup(0, true);
+  const plainSide = dotSide(panel, false, t.dpr);
+  const markSide = dotSide(panel, true, t.dpr);
+  const lit = (i) => !!(selected && selected[i]);
+  const plot = (i, marked, writeHit) => {
+    const sx = ox + projX[i] * scale;
+    const sy = oy - projY[i] * scale;
+    if (sx < -2 || sy < -2 || sx > t.cssW + 2 || sy > t.cssH + 2) return;
+    if (writeHit) {
+      const ix = sx | 0, iy = sy | 0;
+      if (ix >= 0 && iy >= 0 && ix < t.iw && iy < t.ih) t.hit[iy * t.iw + ix] = i;
+    }
+    stamp(t.words, t.w, t.h, (sx * t.dpr) | 0, (sy * t.dpr) | 0,
+      marked ? markCol(i) : plainCol(i), marked ? markSide : plainSide);
+  };
+  for (let b = 0; b < SPACE_BINS; b++) {
+    const bin = spaceBins[b];
+    for (let k = 0; k < bin.length; k++) {
+      const i = bin[k];
+      plot(i, picking && lit(i), true);
+    }
+  }
+  if (picking) {
+    for (let b = 0; b < SPACE_BINS; b++) {
+      const bin = spaceBins[b];
+      for (let k = 0; k < bin.length; k++) {
+        const i = bin[k];
+        if (lit(i)) plot(i, true, false);
+      }
+    }
+  }
+  t.ictx.putImageData(panel.image, 0, 0);
+  panel.cloudDirty = false;
+}
+
+function paintCloud(panel) {
+  if (panel.space) { paintSpace(panel); return; }
+  const t = cloudTarget(panel);
+  const { ictx, words, w, h, cssW, cssH, dpr, hit, iw, ih } = t;
+  const v = panel.view;
+  const xScale = cssW / (v.x1 - v.x0);
+  const yScale = cssH / (v.y1 - v.y0);
+  const picking = loopCount() > 0;
+  const narrowed = panel.spectral && panel.loops.length > 0;
+  const pale = picking ? 0.3 : 0;
+  const plainCol = colorLookup(pale, false);
+  const markCol = colorLookup(0, true);
+  const plainSide = dotSide(panel, false, dpr);
+  const markSide = dotSide(panel, true, dpr);
+  const lit = (i) => {
+    if (!selected || !selected[i]) return false;
+    if (narrowed) return inSpectral(i);
+    return true;
+  };
+  const plot = (i, marked) => {
+    let x, y;
+    if (panel.spectral) {
+      x = embedX[i];
+      y = embedY[i];
+      if (!Number.isFinite(x)) return;
+    } else {
+      x = xyz[i * 3 + panel.axes[0]];
+      y = xyz[i * 3 + panel.axes[1]];
+    }
+    const sx = (x - v.x0) * xScale;
+    const sy = cssH - (y - v.y0) * yScale;
+    if (sx < -2 || sy < -2 || sx > cssW + 2 || sy > cssH + 2) return;
+    const ix = sx | 0, iy = sy | 0;
+    if (ix >= 0 && iy >= 0 && ix < iw && iy < ih) hit[iy * iw + ix] = i;
+    stamp(words, w, h, (sx * dpr) | 0, (sy * dpr) | 0, marked ? markCol(i) : plainCol(i), marked ? markSide : plainSide);
+  };
+  const paintPass = (marked) => {
+    if (panel.spectral) {
+      for (let k = 0; k < poolIndex.length; k++) {
+        const i = poolIndex[k];
+        if (visible(i) && lit(i) === marked) plot(i, marked);
+      }
+    } else {
+      for (let i = 0; i < meta.n; i++) {
+        if (!visible(i)) continue;
+        if ((picking && lit(i)) !== marked) continue;
+        plot(i, marked);
+      }
+    }
+  };
+  paintPass(false);
+  paintPass(true);
+  ictx.putImageData(panel.image, 0, 0);
+  panel.cloudDirty = false;
+}
+
+function present(panel) {
+  if (!panel.view || !panel.canvas._cssW) return;
+  if (panel.cloudDirty || !panel.cloud) paintCloud(panel);
+  const ctx = panel.canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.drawImage(panel.cloud, 0, 0);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  if (!panel.space) {
+    for (const poly of panel.loops) {
+      strokeLoop(ctx, poly.map(p => toScreen(panel, p[0], p[1])), true);
+    }
+    if (panel.draft && panel.draft.length > 1) strokeLoop(ctx, panel.draft, false);
+  }
+  if (focus >= 0 && focus !== picked) markAt(ctx, panel, focus, markRing);
+  markAt(ctx, panel, picked, markX);
+}
+
+function markAt(ctx, panel, index, draw) {
+  if (index < 0 || !visible(index)) return;
+  let sx, sy;
+  if (panel.space) {
+    const s = projectScreen(panel, index);
+    sx = s[0];
+    sy = s[1];
+  } else {
+    const p = pointOf(panel, index);
+    if (!p || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return;
+    [sx, sy] = toScreen(panel, p[0], p[1]);
+  }
+  const w = panel.canvas._cssW, h = panel.canvas._cssH;
+  if (sx < -14 || sy < -14 || sx > w + 14 || sy > h + 14) return;
+  draw(ctx, sx, sy);
+}
+
+function atPicked(panel, sx, sy) {
+  if (picked < 0 || panel.space || !visible(picked)) return false;
+  const p = pointOf(panel, picked);
+  if (!p) return false;
+  const [px, py] = toScreen(panel, p[0], p[1]);
+  return (px - sx) ** 2 + (py - sy) ** 2 <= 14 * 14;
+}
+
+function markRing(ctx, sx, sy) {
+  ctx.beginPath();
+  ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+  ctx.strokeStyle = "#111";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+function markX(ctx, sx, sy) {
+  const r = 8;
+  ctx.beginPath();
+  ctx.moveTo(sx - r, sy - r);
+  ctx.lineTo(sx + r, sy + r);
+  ctx.moveTo(sx + r, sy - r);
+  ctx.lineTo(sx - r, sy + r);
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 4.5;
+  ctx.stroke();
+  ctx.strokeStyle = "#111";
+  ctx.lineWidth = 1.75;
+  ctx.stroke();
+  ctx.lineCap = "butt";
+}
+
+function flushFrame() {
+  frame = 0;
+  const mode = frameMode;
+  const which = [...framePanels];
+  frameMode = 0;
+  framePanels.clear();
+  if (mode === 2 && which.length) {
+    for (const panel of which) present(panel);
+    return;
+  }
+  for (const panel of panels) present(panel);
+  if (spectral) present(spectral);
+}
+
+function scheduleOverlay() {
+  if (frameMode < 1) frameMode = 1;
+  if (!frame) frame = requestAnimationFrame(flushFrame);
+}
+
+function scheduleCloud(panel) {
+  panel.cloudDirty = true;
+  framePanels.add(panel);
+  frameMode = 2;
+  if (!frame) frame = requestAnimationFrame(flushFrame);
+}
+
+function scheduleAll() {
+  for (const panel of panels) panel.cloudDirty = true;
+  if (spectral) spectral.cloudDirty = true;
+  framePanels.clear();
+  frameMode = 2;
+  if (!frame) frame = requestAnimationFrame(flushFrame);
+}
+
+function strokeLoop(ctx, pts, closed) {
+  if (!pts || pts.length < 2) return;
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  if (closed) ctx.closePath();
+  ctx.fillStyle = "rgba(17,17,17,0.08)";
+  if (closed) ctx.fill();
+  ctx.strokeStyle = "#111";
+  ctx.lineWidth = 1.25;
+  ctx.stroke();
+}
+
+function draw() {
+  let shown = 0;
+  for (let i = 0; i < meta.n; i++) if (visible(i)) shown++;
+  document.getElementById("shown").textContent =
+    `${shown.toLocaleString()} of ${meta.n.toLocaleString()} cells shown`;
+  scheduleAll();
+}
+
+function nearest(panel, sx, sy) {
+  if (panel.cloudDirty || !panel.hit) paintCloud(panel);
+  const hit = panel.hit;
+  if (!hit || !hit.w) return -1;
+  const x0 = Math.max(0, (sx - 10) | 0);
+  const x1 = Math.min(hit.w - 1, (sx + 10) | 0);
+  const y0 = Math.max(0, (sy - 10) | 0);
+  const y1 = Math.min(hit.h - 1, (sy + 10) | 0);
+  let best = -1, bestD = 100;
+  for (let y = y0; y <= y1; y++) {
+    const row = y * hit.w;
+    for (let x = x0; x <= x1; x++) {
+      const i = hit.map[row + x];
+      if (i < 0) continue;
+      const d = (x - sx) ** 2 + (y - sy) ** 2;
+      if (d < bestD) { bestD = d; best = i; }
+    }
+  }
+  return best;
+}
+
+function describe(i) {
+  if (i < 0) return "";
+  return `${meta.pdb_id[i]}   ${meta.sg_hm[i]}   ${meta.systems[sys[i]]}   ${meta.centerings[cent[i]]}`;
+}
+
+function setFocus(i) {
+  if (i === focus) return;
+  focus = i;
+  document.getElementById("hover").textContent = describe(i);
+  scheduleOverlay();
+}
+
+function zoomFactor(panel) {
+  const home = panel.home, v = panel.view;
+  if (!home || !v) return 1;
+  const span = v.x1 - v.x0;
+  if (!span) return 1;
+  return Math.abs((home.x1 - home.x0) / span);
+}
+
+function matchPlaneZoom(source, index) {
+  const k = Math.min(4000, Math.max(0.4, zoomFactor(source)));
+  for (const panel of panels) {
+    if (panel === source || !panel.home) continue;
+    const p = pointOf(panel, index);
+    if (!p) continue;
+    const home = panel.home;
+    const hw = Math.abs(home.x1 - home.x0) / k;
+    const hh = Math.abs(home.y1 - home.y0) / k;
+    panel.view = {
+      x0: p[0] - hw / 2, x1: p[0] + hw / 2,
+      y0: p[1] - hh / 2, y1: p[1] + hh / 2,
+    };
+    scheduleCloud(panel);
+  }
+}
+
+function externalLink(href, text) {
+  const link = document.createElement("a");
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.textContent = text;
+  return link;
+}
+
+function uniprotLink(acc) {
+  return externalLink("https://www.uniprot.org/uniprotkb/" + encodeURIComponent(acc) + "/", acc);
+}
+
+function depositionGroupLink(label) {
+  const id = label.startsWith("DEPOSITION_GROUP_") ? label.slice("DEPOSITION_GROUP_".length) : label;
+  return externalLink("https://www.rcsb.org/groups/summary/entry/" + encodeURIComponent(id), label);
+}
+
+function fmtAngle(x) {
+  for (const t of [60, 90, 120]) {
+    if (Math.abs(x - t) < 1e-3) return t.toFixed(2);
+  }
+  return x.toFixed(2);
+}
+
+const vadd = (u, v) => [u[0] + v[0], u[1] + v[1], u[2] + v[2]];
+const vsub = (u, v) => [u[0] - v[0], u[1] - v[1], u[2] - v[2]];
+const vmul = (v, s) => [v[0] * s, v[1] * s, v[2] * s];
+const vdot3 = (u, v) => u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+const vcross = (u, v) => [
+  u[1] * v[2] - u[2] * v[1],
+  u[2] * v[0] - u[0] * v[2],
+  u[0] * v[1] - u[1] * v[0],
+];
+const vlen = (v) => Math.hypot(v[0], v[1], v[2]);
+const vunit = (v) => {
+  const n = vlen(v);
+  return n < 1e-12 ? [1, 0, 0] : vmul(v, 1 / n);
+};
+function vrodrigues(v, axis, ang) {
+  const c = Math.cos(ang), s = Math.sin(ang);
+  return vadd(vadd(vmul(v, c), vmul(vcross(axis, v), s)), vmul(axis, vdot3(axis, v) * (1 - c)));
+}
+
+function cellFrame(va, vb, vc) {
+  const axes = [va, vb, vc];
+  const ranked = [0, 1, 2].sort((i, j) => vlen(axes[j]) - vlen(axes[i]) || i - j);
+  const u1 = vunit(axes[ranked[0]]);
+  const u2 = vunit(axes[ranked[1]]);
+  let normal = vunit(vcross(u1, u2));
+  if (vdot3(axes[ranked[2]], normal) < 0) normal = vmul(normal, -1);
+  const view = vunit(vadd(vadd(u1, u2), normal));
+  let right = vsub(u1, vmul(view, vdot3(u1, view)));
+  right = vlen(right) < 1e-8 ? vunit(vsub(u2, vmul(view, vdot3(u2, view)))) : vunit(right);
+  let up = vunit(vcross(view, right));
+  if (vdot3(u2, up) < 0) up = vmul(up, -1);
+  return { right, up, view };
+}
+
+function svgEl(name, attrs) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", name);
+  for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
+  return el;
+}
+
+function drawWire(body) {
+  const a = body.a, b = body.b, c = body.c;
+  const rad = Math.PI / 180;
+  const ca = Math.cos(body.alpha * rad), cb = Math.cos(body.beta * rad), cg = Math.cos(body.gamma * rad);
+  const sg = Math.sin(body.gamma * rad);
+  const V = a * b * c * Math.sqrt(Math.max(0, 1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg));
+  const va = [a, 0, 0];
+  const vb = [b * cg, b * sg, 0];
+  const vc = [c * cb, c * (ca - cb * cg) / sg, V / (a * b * sg)];
+  const corners = [
+    [0, 0, 0], va, vadd(va, vb), vb, vc,
+    vadd(vc, va), vadd(vadd(vc, va), vb), vadd(vc, vb),
+  ];
+  const center = vmul(vadd(vadd(va, vb), vc), 0.5);
+  let radius = 0;
+  for (const p of corners) radius = Math.max(radius, vlen(vsub(p, center)));
+  const home = cellFrame(va, vb, vc);
+  cellView = {
+    corners, center, radius,
+    right: home.right.slice(), up: home.up.slice(), view: home.view.slice(),
+    home, zoom: 1,
+  };
+  paintCell();
+}
+
+function paintCell() {
+  if (!cellView) return;
+  const { corners, center, radius, right, up, view, zoom } = cellView;
+  const fig = document.getElementById("cellfig");
+  fig.replaceChildren();
+  const w = 300, h = 220, margin = 28;
+  fig.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  fig.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  const k = Math.min(w - 2 * margin, h - 2 * margin) / (2 * radius) * zoom;
+  const P = corners.map((p) => {
+    const d = vsub(p, center);
+    return [w / 2 + vdot3(d, right) * k, h / 2 - vdot3(d, up) * k, vdot3(d, view)];
+  });
+  const faces = [[0, 1, 2, 3], [0, 3, 7, 4], [0, 4, 5, 1], [5, 6, 7, 4], [1, 2, 6, 5], [2, 3, 7, 6]];
+  const front = [];
+  for (const idx of faces) {
+    const mid = vmul(idx.reduce((s, i) => vadd(s, corners[i]), [0, 0, 0]), 1 / idx.length);
+    let normal = vcross(vsub(corners[idx[1]], corners[idx[0]]), vsub(corners[idx[2]], corners[idx[0]]));
+    if (vdot3(normal, vsub(mid, center)) < 0) normal = vmul(normal, -1);
+    normal = vunit(normal);
+    const facing = vdot3(normal, view);
+    if (facing <= 0.02) continue;
+    front.push({ idx, facing, depth: vdot3(vsub(mid, center), view) });
+  }
+  front.sort((p, q) => p.depth - q.depth);
+  for (const face of front) {
+    const g = Math.round(242 - 48 * face.facing);
+    const d = face.idx.map((i, n) => `${n ? "L" : "M"}${P[i][0].toFixed(2)},${P[i][1].toFixed(2)}`).join("") + "Z";
+    fig.appendChild(svgEl("path", { d, fill: `rgb(${g},${g},${g})`, stroke: "none" }));
+  }
+  const edges = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+  for (const [i, j] of edges) {
+    fig.appendChild(svgEl("path", {
+      d: `M${P[i][0].toFixed(2)},${P[i][1].toFixed(2)}L${P[j][0].toFixed(2)},${P[j][1].toFixed(2)}`,
+      fill: "none", stroke: "#111", "stroke-linecap": "round", "stroke-width": "1.75",
+    }));
+  }
+  for (const [i, text] of [[1, "a"], [3, "b"], [4, "c"]]) {
+    const ox = P[i][0] - w / 2, oy = P[i][1] - h / 2;
+    const n = Math.hypot(ox, oy) || 1;
+    const label = svgEl("text", {
+      x: (P[i][0] + 12 * ox / n).toFixed(2),
+      y: (P[i][1] + 12 * oy / n).toFixed(2),
+      "text-anchor": "middle", "dominant-baseline": "central",
+      fill: "#222", "font-size": "13", "font-family": "Helvetica, Arial, sans-serif",
+    });
+    label.textContent = text;
+    fig.appendChild(label);
+  }
+  fig.appendChild(svgEl("circle", { cx: P[0][0].toFixed(2), cy: P[0][1].toFixed(2), r: "3.5", fill: "#111" }));
+}
+
+function orbitCell(dx, dy) {
+  if (!cellView) return;
+  const k = 0.012;
+  let { right, up, view } = cellView;
+  right = vrodrigues(right, up, -dx * k);
+  view = vrodrigues(view, up, -dx * k);
+  up = vrodrigues(up, right, -dy * k);
+  view = vrodrigues(view, right, -dy * k);
+  view = vunit(view);
+  right = vunit(vcross(up, view));
+  up = vunit(vcross(view, right));
+  cellView.right = right;
+  cellView.up = up;
+  cellView.view = view;
+}
+
+function bindCellFig() {
+  const fig = document.getElementById("cellfig");
+  let drag = null;
+  fig.addEventListener("pointerdown", (ev) => {
+    if (!cellView || ev.button !== 0) return;
+    drag = { x: ev.clientX, y: ev.clientY };
+    try { fig.setPointerCapture(ev.pointerId); } catch (err) { /* synthetic pointers */ }
+    fig.classList.add("dragging");
+  });
+  fig.addEventListener("pointermove", (ev) => {
+    if (!drag) return;
+    orbitCell(ev.clientX - drag.x, ev.clientY - drag.y);
+    drag.x = ev.clientX;
+    drag.y = ev.clientY;
+    paintCell();
+  });
+  const endDrag = () => {
+    drag = null;
+    fig.classList.remove("dragging");
+  };
+  fig.addEventListener("pointerup", endDrag);
+  fig.addEventListener("pointercancel", endDrag);
+  fig.addEventListener("dblclick", () => {
+    if (!cellView) return;
+    cellView.right = cellView.home.right.slice();
+    cellView.up = cellView.home.up.slice();
+    cellView.view = cellView.home.view.slice();
+    cellView.zoom = 1;
+    paintCell();
+  });
+  fig.addEventListener("wheel", (ev) => {
+    if (!cellView) return;
+    ev.preventDefault();
+    cellView.zoom *= ev.deltaY < 0 ? 1.08 : 1 / 1.08;
+    cellView.zoom = Math.min(3, Math.max(0.45, cellView.zoom));
+    paintCell();
+  }, { passive: false });
+}
+
+function renderCell(body) {
+  const card = document.getElementById("cellcard");
+  card.hidden = false;
+  const title = document.getElementById("celltitle");
+  title.replaceChildren();
+  title.appendChild(externalLink(
+    "https://www.rcsb.org/structure/" + encodeURIComponent(body.pdb_id),
+    body.pdb_id,
+  ));
+  document.getElementById("cellsetting").textContent =
+    "Selling-reduced primitive cell of deposited " + body.deposited + ". Edges are divided by the cube root of that primitive volume, so this cell has volume 1.";
+  const rows = [
+    ["a", body.a.toFixed(4), "α", fmtAngle(body.alpha) + "°"],
+    ["b", body.b.toFixed(4), "β", fmtAngle(body.beta) + "°"],
+    ["c", body.c.toFixed(4), "γ", fmtAngle(body.gamma) + "°"],
+  ];
+  const tb = document.getElementById("cellparams");
+  tb.replaceChildren();
+  for (const [k1, v1, k2, v2] of rows) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${k1}</td><td class="num">${v1}</td><td>${k2}</td><td class="num">${v2}</td>`;
+    tb.appendChild(tr);
+  }
+  drawWire(body);
+  const proteins = document.getElementById("celluni");
+  const items = body.uniprots || [];
+  proteins.replaceChildren();
+  if (items.length) {
+    proteins.append("UniProt, longest first: ");
+    items.forEach((item, k) => {
+      if (k) proteins.append("; ");
+      proteins.append((item.name || item.acc) + " (");
+      if (item.acc) proteins.append(uniprotLink(item.acc));
+      proteins.append(", " + item.n_res + ")");
+    });
+  } else {
+    proteins.append("No UniProt on this entry.");
+  }
+  if (body.group_label) {
+    proteins.append(document.createElement("br"));
+    proteins.append(depositionGroupLink(body.group_label));
+  }
+}
+
+async function showAnnotation(i) {
+  const token = ++annoToken;
+  picked = i;
+  setFocus(i);
+  scheduleOverlay();
+  if (spectral && spectral.space && tool === "move") scheduleCloud(spectral);
+  const card = document.getElementById("cellcard");
+  card.hidden = false;
+  document.getElementById("cellsetting").textContent = "Looking up the Selling-reduced cell…";
+  document.getElementById("cellparams").replaceChildren();
+  document.getElementById("celluni").replaceChildren();
+  document.getElementById("cellfig").replaceChildren();
+  document.getElementById("celltitle").replaceChildren();
+  let body;
+  try {
+    if (STATIC) {
+      body = staticCell(i);
+    } else {
+      const res = await fetch("/cell?id=" + encodeURIComponent(meta.pdb_id[i]));
+      body = await res.json();
+      if (!res.ok) throw new Error(body.error || "Lookup failed");
+    }
+  } catch (err) {
+    if (token !== annoToken) return;
+    card.hidden = true;
+    document.getElementById("hover").textContent = String(err.message || err);
+    return;
+  }
+  if (token !== annoToken) return;
+  renderCell(body);
+}
+
+function renderUniLegend(body) {
+  const box = document.getElementById("unilegend");
+  const note = document.getElementById("uninote");
+  const actions = document.getElementById("uniactions");
+  box.replaceChildren();
+  if (!body || !body.groups.length) {
+    actions.hidden = true;
+    note.textContent = body ? "No cells in the selection." : "";
+    return;
+  }
+  actions.hidden = false;
+  note.textContent = "Tick the labels you want. Their PDB ids are listed below, and Copy uses that list.";
+  for (const group of body.groups) {
+    const row = document.createElement("label");
+    const tick = document.createElement("input");
+    tick.type = "checkbox";
+    tick.checked = !uniHidden.has(group.code);
+    if (!tick.checked) row.className = "off";
+    const swatch = document.createElement("i");
+    swatch.style.background = group.color;
+    tick.addEventListener("change", () => {
+      if (tick.checked) uniHidden.delete(group.code);
+      else uniHidden.add(group.code);
+      renderUniLegend(lassoUni);
+      writeIds();
+      draw();
+    });
+    row.append(tick, swatch);
+    if (group.acc && group.acc.startsWith("DEPOSITION_GROUP_")) {
+      row.append(depositionGroupLink(group.acc));
+    } else if (group.acc) {
+      row.append(document.createTextNode((group.name || group.acc) + "  "), uniprotLink(group.acc));
+    } else {
+      row.append(document.createTextNode(group.name || ""));
+    }
+    row.append(document.createTextNode("  " + group.n.toLocaleString()));
+    box.appendChild(row);
+  }
+}
+
+async function requestLabels() {
+  const token = ++labelToken;
+  const ids = selectedIds.slice();
+  const indices = selectedIndex.slice();
+  lassoUni = null;
+  labelCode = null;
+  codeColor = new Map();
+  const note = document.getElementById("uninote");
+  document.getElementById("uniactions").hidden = true;
+  document.getElementById("unilegend").replaceChildren();
+  if (!ids.length) {
+    note.textContent = "";
+    return;
+  }
+  const colorName = labelBy === "deposit" ? "deposition group" : "UniProt id";
+  note.textContent = "Coloring the selection by " + colorName + "…";
+  let body;
+  try {
+    if (STATIC) {
+      body = classifyLocal(indices);
+    } else {
+      const res = await fetch("/labels", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids, by: labelBy }),
+      });
+      body = await res.json();
+      if (!res.ok) throw new Error(body.error || "Label lookup failed");
+    }
+  } catch (err) {
+    if (token !== labelToken) return;
+    note.textContent = String(err.message || err);
+    return;
+  }
+  if (token !== labelToken) return;
+  lassoUni = body;
+  labelCode = new Int16Array(meta.n);
+  labelCode.fill(-999);
+  for (let k = 0; k < indices.length; k++) labelCode[indices[k]] = body.codes[k];
+  codeColor = new Map((body.groups || []).map((group) => [group.code, group.color]));
+  uniHidden = new Set((body.groups || []).map((group) => group.code));
+  renderUniLegend(body);
+  writeIds();
+  draw();
+}
+
+function bindPlane(panel) {
+  const canvas = panel.canvas;
+  canvas.addEventListener("wheel", (ev) => {
+    ev.preventDefault();
+    if (panel.space) {
+      panel.dist = Math.min(40, Math.max(0.4, (panel.dist || 1) * (ev.deltaY > 0 ? 1 / 1.12 : 1.12)));
+      scheduleCloud(panel);
+      return;
+    }
+    const r = canvas.getBoundingClientRect();
+    const sx = ev.clientX - r.left, sy = ev.clientY - r.top;
+    const [wx, wy] = toWorld(panel, sx, sy);
+    const z = ev.deltaY > 0 ? 1.12 : 1 / 1.12;
+    const v = panel.view;
+    const next = {
+      x0: wx - (wx - v.x0) * z, x1: wx + (v.x1 - wx) * z,
+      y0: wy - (wy - v.y0) * z, y1: wy + (v.y1 - wy) * z,
+    };
+    const home = panel.home;
+    if (home) {
+      const zx = Math.abs((home.x1 - home.x0) / (next.x1 - next.x0));
+      if (zx > 4000 || zx < 0.4) return;
+    }
+    panel.view = next;
+    scheduleCloud(panel);
+  }, { passive: false });
+  canvas.addEventListener("pointerdown", (ev) => {
+    try { canvas.setPointerCapture(ev.pointerId); } catch (err) { /* synthetic pointers */ }
+    if (panel.space) {
+      panel.drag = { kind: "orbit", x: ev.clientX, y: ev.clientY, yaw: panel.yaw, pitch: panel.pitch };
+      canvas.classList.add("dragging");
+      return;
+    }
+    const r = canvas.getBoundingClientRect();
+    if (tool === "lasso") {
+      panel.draft = [[ev.clientX - r.left, ev.clientY - r.top]];
+      panel.drag = { kind: "lasso" };
+      return;
+    }
+    panel.drag = { kind: "move", x: ev.clientX, y: ev.clientY, view: { ...panel.view } };
+  });
+  canvas.addEventListener("pointermove", (ev) => {
+    const r = canvas.getBoundingClientRect();
+    const sx = ev.clientX - r.left, sy = ev.clientY - r.top;
+    if (panel.drag && panel.drag.kind === "orbit") {
+      panel.yaw = panel.drag.yaw + (ev.clientX - panel.drag.x) * 0.008;
+      panel.pitch = Math.max(-1.4, Math.min(1.4, panel.drag.pitch + (ev.clientY - panel.drag.y) * 0.008));
+      scheduleCloud(panel);
+      return;
+    }
+    if (panel.drag && panel.drag.kind === "lasso") {
+      const prev = panel.draft[panel.draft.length - 1];
+      if ((prev[0] - sx) ** 2 + (prev[1] - sy) ** 2 > 16) panel.draft.push([sx, sy]);
+      scheduleOverlay();
+      return;
+    }
+    if (panel.drag && panel.drag.kind === "move") {
+      const dx = ev.clientX - panel.drag.x, dy = ev.clientY - panel.drag.y;
+      const v = panel.drag.view;
+      const wx = (v.x1 - v.x0) / canvas._cssW;
+      const wy = (v.y1 - v.y0) / canvas._cssH;
+      panel.view = {
+        x0: v.x0 - dx * wx, x1: v.x1 - dx * wx,
+        y0: v.y0 + dy * wy, y1: v.y1 + dy * wy,
+      };
+      scheduleCloud(panel);
+      return;
+    }
+    const hit = nearest(panel, sx, sy);
+    if (hit !== focus) setFocus(hit);
+  });
+  canvas.addEventListener("pointerup", (ev) => {
+    const r = canvas.getBoundingClientRect();
+    const sx = ev.clientX - r.left, sy = ev.clientY - r.top;
+    let clicked = false;
+    let closed = false;
+    if (panel.drag && panel.drag.kind === "lasso" && panel.draft && panel.draft.length >= 3) {
+      panel.loops.push(panel.draft.map(p => toWorld(panel, p[0], p[1])));
+      closed = true;
+      if (panel.spectral) refineSpectral();
+      else recomputePool();
+    } else if (panel.drag && panel.drag.kind === "lasso") {
+      clicked = true;
+    } else if (panel.drag && panel.drag.kind === "orbit") {
+      const dx = ev.clientX - panel.drag.x, dy = ev.clientY - panel.drag.y;
+      clicked = dx * dx + dy * dy < 16;
+    } else if (panel.drag && panel.drag.kind === "move") {
+      const dx = ev.clientX - panel.drag.x, dy = ev.clientY - panel.drag.y;
+      clicked = dx * dx + dy * dy < 16;
+    }
+    panel.draft = null;
+    panel.drag = null;
+    canvas.classList.remove("dragging");
+    if (clicked) {
+      let hit = nearest(panel, sx, sy);
+      if (atPicked(panel, sx, sy)) hit = picked;
+      if (hit >= 0) {
+        if (tool === "move" && !panel.spectral && hit === picked) {
+          clearTimeout(zoomSyncTimer);
+          zoomSyncTimer = setTimeout(() => matchPlaneZoom(panel, hit), 280);
+        } else {
+          clearTimeout(zoomSyncTimer);
+          showAnnotation(hit);
+        }
+      }
+    }
+    if (closed) draw();
+    else scheduleOverlay();
+  });
+  canvas.addEventListener("dblclick", (ev) => {
+    if (panel.space) {
+      panel.yaw = 0.6;
+      panel.pitch = 0.35;
+      panel.dist = 1;
+      scheduleCloud(panel);
+      return;
+    }
+    const r = canvas.getBoundingClientRect();
+    if (tool === "move" && atPicked(panel, ev.clientX - r.left, ev.clientY - r.top)) return;
+    clearTimeout(zoomSyncTimer);
+    fitView(panel);
+    scheduleCloud(panel);
+  });
+}
+
+function buildPanels() {
+  stage.replaceChildren();
+  panels.length = 0;
+  PAIRS.forEach((axes) => {
+    const wrap = document.createElement("div");
+    wrap.className = "panel lasso";
+    const title = document.createElement("h2");
+    const pct = axes.map(a => `${a + 1} (${(100 * meta.variance[a]).toFixed(1)}%)`);
+    title.textContent = `component ${pct[0]}  ×  ${pct[1]}`;
+    const canvas = document.createElement("canvas");
+    wrap.append(title, canvas);
+    stage.append(wrap);
+    const panel = { axes, canvas, view: null, loops: [], draft: null, drag: null };
+    panels.push(panel);
+    bindPlane(panel);
+  });
+  const wrap = document.createElement("div");
+  wrap.className = "panel lasso";
+  const title = document.createElement("h2");
+  title.textContent = "Selling Isomap";
+  const toggle = document.createElement("div");
+  toggle.className = "corner-toggle";
+  for (const [mode, label] of [["isomap", "Isomap"], ["space", "3D"]]) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = label;
+    button.dataset.mode = mode;
+    button.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      setCorner(mode);
+    });
+    toggle.append(button);
+  }
+  const canvas = document.createElement("canvas");
+  wrap.append(title, toggle, canvas);
+  stage.append(wrap);
+  spectral = {
+    spectral: true, canvas, title, toggle, view: null, loops: [], draft: null, drag: null,
+    space: false, yaw: 0.6, pitch: 0.35, dist: 1,
+  };
+  bindPlane(spectral);
+  setCorner("isomap");
+}
+
+function setCorner(mode) {
+  if (!spectral) return;
+  spectral.space = mode === "space";
+  const wrap = spectral.canvas.parentElement;
+  wrap.classList.toggle("space", spectral.space);
+  wrap.classList.toggle("lasso", tool === "lasso" && !spectral.space);
+  spectral.title.textContent = spectral.space ? "Three components" : "Selling Isomap";
+  for (const button of spectral.toggle.querySelectorAll("button")) {
+    button.classList.toggle("on", button.dataset.mode === mode);
+  }
+  scheduleCloud(spectral);
+}
+
+function applyTool() {
+  for (const panel of panels) panel.canvas.parentElement.classList.toggle("lasso", tool === "lasso");
+  if (spectral) {
+    spectral.canvas.parentElement.classList.toggle("lasso", tool === "lasso" && !spectral.space);
+    if (spectral.space) scheduleCloud(spectral);
+  }
+}
+
+function legend() {
+  const box = document.getElementById("legend");
+  box.replaceChildren();
+  const names = colorBy === "system" ? meta.systems : meta.centerings;
+  const colors = colorBy === "system" ? meta.systemColors : meta.centeringColors;
+  const counts = new Map();
+  const codes = colorBy === "system" ? sys : cent;
+  for (const c of codes) counts.set(c, (counts.get(c) || 0) + 1);
+  names.forEach((name, i) => {
+    if (!counts.get(i)) return;
+    const span = document.createElement("span");
+    span.innerHTML = `<i style="background:${colors[i]}"></i>${name}`;
+    box.append(span);
+  });
+}
+
+function checks(el, names, colors, codes, hidden) {
+  el.replaceChildren();
+  const present = new Set(codes);
+  names.forEach((name, i) => {
+    if (!present.has(i)) return;
+    const label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" checked> <i style="width:10px;height:10px;background:${colors[i]};display:inline-block"></i> ${name}`;
+    label.querySelector("input").addEventListener("change", (ev) => {
+      if (ev.target.checked) hidden.delete(i); else hidden.add(i);
+      for (const panel of panels) fitView(panel);
+      recomputePool();
+      draw();
+    });
+    el.append(label);
+  });
+}
+
+function layout() {
+  for (const panel of panels) {
+    resizeCanvas(panel.canvas);
+    fitView(panel);
+  }
+  resizeCanvas(spectral.canvas);
+  fitView(spectral);
+  draw();
+}
+
+async function main() {
+  try {
+    if (STATIC) await loadArchive();
+    else {
+      meta = await (await fetch("/meta")).json();
+      const buf = await (await fetch("/points")).arrayBuffer();
+      const view = new DataView(buf);
+      const n = view.getUint32(0, true);
+      sys = new Uint8Array(buf, 4, n);
+      cent = new Uint8Array(buf, 4 + n, n);
+      let off = 4 + 2 * n;
+      off += (4 - (off % 4)) % 4;
+      xyz = new Float32Array(buf, off, n * 3);
+    }
+  } catch (err) {
+    document.querySelector("p.lead").textContent = String(err.message || err);
+    return;
+  }
+  if (meta.note) document.querySelector("p.lead").textContent = meta.note;
+  selected = new Uint8Array(meta.n);
+  index = new Map(meta.pdb_id.map((id, i) => [id.toUpperCase(), i]));
+  bindCellFig();
+  buildPanels();
+  legend();
+  checks(document.getElementById("systems"), meta.systems, meta.systemColors, sys, hiddenSys);
+  checks(document.getElementById("centrings"), meta.centerings, meta.centeringColors, cent, hiddenCent);
+  document.querySelectorAll('input[name="color"]').forEach((el) => {
+    el.addEventListener("change", () => { colorBy = el.value; legend(); draw(); });
+  });
+  document.querySelectorAll('input[name="tool"]').forEach((el) => {
+    el.addEventListener("change", () => { tool = el.value; applyTool(); });
+  });
+  document.getElementById("search").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const id = document.getElementById("pdb").value.trim().toUpperCase();
+    const i = index.get(id);
+    if (i === undefined) {
+      document.getElementById("hover").textContent = `${id || "empty id"} is not among these cells`;
+      document.getElementById("cellcard").hidden = true;
+      return;
+    }
+    showAnnotation(i);
+  });
+  document.querySelectorAll('input[name="lassocolor"]').forEach((el) => {
+    el.addEventListener("change", () => {
+      labelBy = el.value;
+      if (selectedIds.length) requestLabels();
+    });
+  });
+  document.getElementById("uniall").addEventListener("click", () => {
+    uniHidden = new Set();
+    renderUniLegend(lassoUni);
+    writeIds();
+    draw();
+  });
+  document.getElementById("uninone").addEventListener("click", () => {
+    uniHidden = new Set((lassoUni ? lassoUni.groups : []).map((group) => group.code));
+    renderUniLegend(lassoUni);
+    writeIds();
+    draw();
+  });
+  document.getElementById("clearloops").addEventListener("click", () => {
+    for (const panel of panels) panel.loops = [];
+    recomputePool();
+    draw();
+  });
+  document.getElementById("copyids").addEventListener("click", async () => {
+    await navigator.clipboard.writeText(listedIds().join("\n"));
+  });
+  document.getElementById("downloadids").addEventListener("click", () => {
+    const blob = new Blob([listedIds().join("\n") + "\n"], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "lasso-ids.txt";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  window.addEventListener("resize", layout);
+  layout();
+}
+main();
+</script>
 </body>
 </html>

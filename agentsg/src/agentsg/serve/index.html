@@ -64,9 +64,17 @@
   }
   a { color: var(--link); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  code {
+  code, pre {
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.92em;
+    font-size: 0.86rem;
+  }
+  pre {
+    margin: 0 0 1rem;
+    padding: 0.75rem 0.9rem;
+    overflow-x: auto;
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+    border: 1px solid var(--line);
+    line-height: 1.45;
   }
   .contact {
     margin: 0;
@@ -81,11 +89,10 @@
   <p class="tagline">Crystallography tools for people and agents.</p>
 
   <h2>Space-group and symmetry agents</h2>
-  <p>These answer a space-group question from the operators. They look up a group and its setting, reflection conditions, sites, subgroups, and ITA plates, and they compare a unit cell with cells deposited in the PDB. No access token.</p>
-  <ul>
-    <li><a href="https://sg-muse.mxagents.org"><code>sg-muse</code></a> — HTTP API. Ask it directly, or point an HTTP connector at it.</li>
-    <li><a href="https://sg-mcp.mxagents.org/mcp"><code>sg-mcp</code></a> — the same tools over MCP, for an agent client.</li>
-  </ul>
+  <p>Install them on your own machine and use them in a local workflow. They answer a space-group question from the operators: the group and its setting, reflection conditions, sites, subgroups, and ITA plates, and a comparison of a unit cell with cells deposited in the PDB.</p>
+  <pre><code>pip install "agentsg[mcp,db,plot] @ git+https://github.com/phzwart/agentsg.git"
+python -m agentsg.serve.mcp_app --db pdb_cells.duckdb</code></pre>
+  <p>Point an MCP client at <code>http://127.0.0.1:9877/mcp</code>. The same tools are an HTTP API with <code>python -m agentsg.serve</code> on <code>http://127.0.0.1:8765</code>. <code>GET /skill.md</code> is the playbook. The cell file is the <a href="https://doi.org/10.5281/zenodo.22986222">Zenodo snapshot</a>.</p>
 
   <h2>Unit-cell embedding</h2>
   <p>A map of deposited unit cells. Explore the shape of cell space, select a region, and colour the selection by UniProt accession or deposition group.</p>

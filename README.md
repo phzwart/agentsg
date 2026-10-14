@@ -224,23 +224,21 @@ with `python -m agentsg.cell.pdb_app build`.
 
 ## Cell-embed site
 
-The public scatter is a static copy of the cell explorer: the same lasso,
-crystal-system and centring filters, and Selling-cell drawing. Coordinates
-are the frozen geo 0.1 plane in `linear_embed/out/geo_0.1/cells.npz`.
+The public page is the four-panel explorer. Three panels are the classical
+MDS of the volume-normalised sorted key. The fourth is an Isomap of the
+lasso on the Selling-closure neighbour graph, with a toggle to the three
+components in space. A click opens the volume-1 Selling-reduced cell,
+its UniProt accessions, and its deposition group.
 
-Refresh that archive, then the site:
+Refresh the site from `linear_embed/out/closure_all`:
 
 ```bash
-PYTHONPATH="agentsg/src:.venv/lib/python3.12/site-packages" \
-KMP_DUPLICATE_LIB_OK=TRUE \
-../leanmap/.venv/bin/python linear_embed/export_plane.py
-python -m agentsg.explorer.build_static --out site/ --k 25
+python linear_embed/build_explorer_site.py --out site/
 ```
 
-`export_plane.py` runs every current PDB cell through
-`linear_embed/out/geo_0.1/model.pt`. Points already on
-`embedding.npy` keep those coordinates. New cells take the checkpoint's
-output. The Pages upload does not include the weights.
+That writes the component coordinates, the closure neighbours, and the
+Selling cells. The graph files are split so each stays under the Pages
+25 MB limit. The page computes the Isomap in the browser.
 
 One-time Cloudflare setup, from the repository root:
 
@@ -256,3 +254,17 @@ npx wrangler pages project create cell-embed --production-branch main
 Attach the custom domain in the Pages project after `cell-embed` is removed
 from the agentsg tunnel. Until that hostname is free, stage the site on
 `cells.mxagents.org`.
+
+## Landing page
+
+`https://mxagents.org` and `https://www.mxagents.org` are the static page in
+`agentsg/src/agentsg/serve/index.html`. Publish it with:
+
+```bash
+./scripts/deploy_landing.sh
+```
+
+That creates the Pages project `mxagents` and registers both hostnames. Then
+point the `www` and apex DNS rows at `mxagents.pages.dev`, the same way
+`cell-embed` points at `cell-embed.pages.dev`. Leave `sg-muse` and `sg-mcp`
+on the tunnel.

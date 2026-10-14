@@ -228,8 +228,10 @@ def test_front_routes_by_host():
         assert b"<title>MX Agents</title>" in page
         assert b"Space-group and symmetry agents" in page
         assert b"Unit-cell embedding" in page
-        assert b"https://sg-muse.mxagents.org" in page
-        assert b"https://sg-mcp.mxagents.org/mcp" in page
+        assert b"http://127.0.0.1:9877/mcp" in page
+        assert b"python -m agentsg.serve.mcp_app" in page
+        assert b"https://sg-muse.mxagents.org" not in page
+        assert b"https://sg-mcp.mxagents.org/mcp" not in page
         assert b"https://cell-embed.mxagents.org" in page
         head_status, head_type, head_body = fetch("www.mxagents.org", "/", "HEAD")
         assert head_status == 200

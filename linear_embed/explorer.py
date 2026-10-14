@@ -58,8 +58,12 @@ UNIPROT_OTHER = -2
 UNIPROT_NONE = -1
 UNIPROT_TOP = 12
 ENCODERS = {
-    "geo 0.1": OUT / "geo_0.1" / "embedding.npy",
-    "geo 0.5": OUT / "embedding.npy",
+    "geo 0.1": OUT / "geo_0.1_lr1e-4" / "embedding.npy",
+    "geo 0.5": OUT / "geo_0.5_lr1e-4" / "embedding.npy",
+    "geo 0.5 from start": OUT / "geo_0.5_from_start" / "embedding.npy",
+    "geo 0.1 by system": OUT / "geo_0.1_sys512" / "embedding.npy",
+    "geo 0.1 frame": OUT / "geo_0.1_frame" / "embedding.npy",
+    "geo 0.1 min dist 1": OUT / "geo_0.1_sys512_mindist1" / "embedding.npy",
 }
 
 

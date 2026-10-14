@@ -1,9 +1,5 @@
 /data/*
   Cache-Control: public, max-age=86400
-  Access-Control-Allow-Origin: *
 
 /index.html
-  Cache-Control: no-cache
-
-/app.js
   Cache-Control: no-cache
