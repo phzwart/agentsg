@@ -489,4 +489,30 @@ anisotropic column search (P6_3 needle (41.8, 41.8, 233, 90, 90, 120) vs
     appearing exactly where the per-column prescription admits it
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:ca-benchmark}{Carbonic anhydrase II: one protein, one deformed family (1065 deposited cells)}
+Claim (Section 4.5): the 1065-entry carbonic anhydrase list is retrieved by one sorted-key ball of radius 2.5\,\Ang\ around 1CA2; it is a single continuously deformed crystal form (1062 $P2_1$ + 3 $P1$, one component at radius 0.5\,\Ang); the medoid 4L5V has positive anisotropy budget ($\approx1155$\,\Ang$^2$); on seeded pairs the radius-one ideal is certified and the interior margin makes the closure minimum exactly the ideal; strains run from $\sim$1\% (median) to 10.3\% (6BBS, certified at 639\,\Ang$^2$).
+\begin{footnotesize}\begin{verbatim}
+data: agentsg/tests/data/ca_cells.csv -- pdb, sg, cell for the user-supplied
+    1065 codes; cells and space groups from the PDB snapshot
+    (doi 10.5281/zenodo.22986222); harvested by one sorted-linear-key search
+    around 1CA2 (P 1 21 1, 42.7 41.7 73 90 104.6 90) at cutoff 2.5 A;
+    every listed code fell inside the ball (recall 1.0 from one query);
+    the ball also holds 145 entries not on the list (not asserted).
+family: sg counts {P 1 21 1: 1062, P 1: 3}; 956 distinct deposited cells;
+    NN key distance median < 0.1 A (observed 0.05); union-find on key
+    pairs at 0.5 A gives one component >= 1060 members containing the
+    three P1 deposits.
+medoid: argmin of summed key distances = 4L5V (42.361 41.398 72.235
+    90 104.37 90); Niggli budget D_max = 4 lmin - lmax in (1000, 1300)
+    (observed 1155 A^2).
+pairs (seeded, n = 25; a 60-pair run gives the quoted statistics):
+    radius-1 ideal certified (R < 2 both directions) 25/25;
+    interior margin (closure minimum below every positive normalised
+    conorm of both cells) 25/25 -> closure minimum == ideal;
+    d median in (40, 130) (observed 82; p90 154; max 209 A^2);
+    strain median 0.012, p90 0.022.
+extreme: deformation_distance(4L5V, 6BBS) certified, d in (600, 680)
+    (observed 639 A^2), strain norm in (0.09, 0.12) (observed 0.103).
+\end{verbatim}\end{footnotesize}
+
 \end{document}
