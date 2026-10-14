@@ -130,6 +130,44 @@ def _sweep(pdb, D, n, seed):
     return recs
 
 
+def test_anisotropic_column_search_on_the_needle():
+    """How far to search, per column: each column of M is a B-lattice vector
+    whose squared length matches the corresponding diagonal of G_A within D
+    (|E_jj| <= ||E||_F = D). On the P6_3 needle against itself at D = 50 A^2
+    the three shells hold 6, 6 and 2 vectors (72 column triples) while the
+    isotropic entry box at floor(R) = 7 holds 15^9 matrices; the next
+    candidate enters the long shell only at D ~ 125 A^2, the in-plane stack
+    of length 232.7 A that shadows the 233 A axis."""
+    np = _np()
+    H = (41.8, 41.8, 233.0, 90.0, 90.0, 120.0)
+    G = _metric(H)
+    lam = np.linalg.eigvalsh(G)
+    D = 50.0
+    R = math.sqrt((lam[-1] + D) / lam[0])
+    assert 7.0 < R < 8.0
+    box = (2 * math.floor(R) + 1) ** 9
+    assert box == 15 ** 9
+
+    # enumerate all lattice vectors with coordinates up to the per-column bound
+    nmax = int(math.floor(math.sqrt((G[2, 2] + D) / lam[0])))
+    rng_n = range(-nmax, nmax + 1)
+    vecs = np.array([(i, j, k) for i in rng_n for j in rng_n for k in rng_n
+                     if (i, j, k) != (0, 0, 0)], dtype=float)
+    lens = np.einsum("ni,ij,nj->n", vecs, G, vecs)
+    counts = []
+    for jj in range(3):
+        target = G[jj, jj]
+        counts.append(int(np.sum(np.abs(lens - target) <= D)))
+    assert counts == [6, 6, 2]
+    assert counts[0] * counts[1] * counts[2] == 72
+
+    # the near-miss that anisotropy hides: in-plane stacks at norm-form 31
+    gap = G[2, 2] - 31.0 * G[0, 0]
+    assert 120.0 < gap < 130.0          # enters the c-shell only at D ~ 125
+    n_wide = int(np.sum(np.abs(lens - G[2, 2]) <= 130.0))
+    assert n_wide > 2                   # and then it genuinely enters
+
+
 def test_certified_base_2yht():
     """2yht (D_max ~ 1739): at D = 20 A^2 (0.3% of ||G||) the Niggli basis
     jumps in most directions; ball-1 recovers and is certified; the widened

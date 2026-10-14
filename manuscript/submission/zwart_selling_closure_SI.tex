@@ -480,6 +480,13 @@ sweep (2yht, D = 20, seeded, n = 8..25): perturb G_N by D*E; Niggli-reduce;
 sweep (2d4k, D = 20, seeded, n = 5..15): ball-1 minimum <= 1.05 D (15/15)
     but R(min) >= 2 in every run (0/15 certified -- the budget is negative);
     widened closure residual <= 1.05 D (15/15), certificate intact
+anisotropic column search (P6_3 needle (41.8, 41.8, 233, 90, 90, 120) vs
+    itself, D = 50): per-column shells |m_j^T G m_j - G_jj| <= D hold
+    6 / 6 / 2 vectors (72 column triples) against the entry box 15^9 at
+    floor(R) = 7; the in-plane norm-form-31 stack (length 232.7 A) sits
+    124.6 A^2 below c^2 = 54289 and enters the long shell only at D ~ 125,
+    where the wide count exceeds 2 -- the pseudo-sublattice ambiguity
+    appearing exactly where the per-column prescription admits it
 \end{verbatim}\end{footnotesize}
 
 \end{document}
