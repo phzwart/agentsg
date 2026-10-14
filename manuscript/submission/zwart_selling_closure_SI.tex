@@ -317,27 +317,37 @@ on a 3000-cell subset, plant a neighbour inside the query radius;
     assert every planted neighbour is returned by the radius query (Lemma 1).
 \end{verbatim}\end{footnotesize}
 
-\sitem{z:embedding}{Crystal systems occupy coherent regions of the shape embedding (empirical, PDB)}
-Claim (Section 3.2) is qualitative; the check is that the embedding is reproducible and that the labels, unused in its construction, are locally homogeneous.
+\sitem{z:embedding}{Crystal systems occupy the predicted regions of the SVD key display (empirical, PDB)}
+Claim (Section 4.1, Fig.~2): the display is the leading three singular directions of the volume-normalised key matrix (a deterministic linear projection; no graph, optimiser or seed); crystal-system labels, unused in the construction, occupy coherent regions; the population's branches and junctions coincide with the exact Bravais skeleton overlaid in the same projection.
 \begin{footnotesize}\begin{verbatim}
-k-NN graph on keys/V^(1/3); 2-D embedding with a fixed seed.
-homogeneity: for each cell, fraction of its k neighbours (in key space, not 2-D)
-    with the same crystal system; report the distribution and compare with the
-    label-shuffled null.  Reproducibility: repeat with 3 seeds; report Procrustes distance.
+X = keys / V^(1/3) for the archive; U S Vt = svd(X); display = X @ Vt.T[:, :3]
+    (deterministic; distances in the display never exceed key distances)
+overlay: skeleton points and curves (cP, cI, cF; tP, tI, hP, hR; oC(a=b)=tP
+    edge) computed from cells as in z:skeleton, projected with the same Vt
+validation: each displayed junction lies at its predicted skeleton element
+    (tetragonal pinch at cP; rhombohedral branch leaving cP; hR-tI contacts
+    at cI and cF only; seams at extreme aspect)
+homogeneity: fraction of k key-space neighbours sharing the crystal system,
+    against the label-shuffled null
+script: manuscript/figures_src/make_fig_pdb.py (runs against the PDB snapshot)
 \end{verbatim}\end{footnotesize}
 
-\sitem{z:audit}{Collision / edge audit of the key-space graph (empirical, PDB)}
-Claim (Section 3.2): the fraction of edges whose key distance is within 10\% of the exact orbit distance has not been reported. The check below is the computation that would report it. Do not read embedding branches as topology until that fraction is in the paper.
+\sitem{z:audit}{Certified edges for selection embeddings (empirical, PDB selections)}
+Claim (Section 4.1): a selection's local picture is an Isomap of pairwise widened-closure distances in which every graph edge is checked by the interior-margin certificate, so the embedded distances are provably the ideal on certified edges; edges that fail the certificate are recomputed with the widened closure before use.
 \begin{footnotesize}\begin{verbatim}
-for each k-NN edge (i,j): ops = reindexing_via_canonical(cell_i, cell_j, verify_abs=calibrated)
-    classify: same lattice (ops non-empty), collision (keys within eps but ops empty),
-              ordinary neighbour (otherwise)
-report counts; report the fraction of edges whose key distance is within 10% of the
-    exact orbit distance computed over the closure (edge fidelity).
+for the selection: D[i,j] = widened closure distance (boundary_rel at the
+    noise scale); Isomap on D
+for each k-NN edge the Isomap consumes:
+    margin = min positive normalised conorm of both endpoints
+    certified iff D[i,j] < margin  (then closure minimum == ideal, App. D)
+    on failure: recompute the edge with widening sqrt(3) * D[i,j] or the
+    certificate ball of eq. (cert)
+report the certified fraction (expected ~1 on family-interior selections;
+    carbonic anhydrase family: all sampled pairs certified, Section 4.5)
 \end{verbatim}\end{footnotesize}
 
-\sitem{z:effrank}{Local entropy effective rank of key neighbourhoods (empirical, PDB)}
-Claim (Section 3.2): $k=40$ neighbourhoods on a 30\,000-cell subsample of the volume-normalised keys give entropy effective rank from 1.00 to 5.69, median 2.02. The previously printed median 4.12 is not reproduced by this estimator.
+\sitem{z:effrank}{Local entropy effective rank of key neighbourhoods (retired; recorded for reproducibility)}
+Retired from the main text: the display is now a deterministic SVD validated against the Bravais skeleton (z:embedding), and no dimensionality argument is made. Recorded result: $k=40$ neighbourhoods on a 30\,000-cell subsample of the volume-normalised keys give entropy effective rank from 1.00 to 5.69, median 2.02; the previously printed median 4.12 is not reproduced by this estimator.
 \begin{footnotesize}\begin{verbatim}
 for each of M neighbourhoods (k nearest in key space, k stated): X = centred keys (k x 6)
     sigma = singular values; p = sigma/sum(sigma); r_eff = exp(-sum p log p)
