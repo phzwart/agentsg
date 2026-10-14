@@ -140,6 +140,59 @@ def test_medoid_budget_and_certified_pairs():
     assert 40 < float(np.median(ds)) < 130
 
 
+def test_niggli_single_chamber_and_one_strain_mode():
+    """All Niggli cells in one chamber (operator vs the medoid's Niggli
+    basis a signed permutation; seeded subsample), the family edging the
+    a=b exchange wall; strain against the medoid dominated by one mode."""
+    import itertools
+
+    from agentsg.cell.deformation import _ball_min, _metric, _unimodular_ball
+    from agentsg.cell.reduction import niggli_reduce
+    np = _np()
+    cells, _ = _load()
+    pdbs = list(cells)
+    ball1 = _unimodular_ball(1)
+
+    sperms = []
+    for perm in itertools.permutations(range(3)):
+        for sgn in itertools.product((1, -1), repeat=3):
+            S = np.zeros((3, 3))
+            for i, (p, s) in enumerate(zip(perm, sgn)):
+                S[p, i] = s
+            sperms.append(S)
+
+    redM, _ = niggli_reduce(*cells["4L5V"])
+    GMN = _metric(redM)
+    GM = _metric(cells["4L5V"])
+    rng = random.Random(11)
+    picks = rng.sample(pdbs, 150)
+    jumped = 0
+    gaps = []
+    eps6 = []
+    for p in picks:
+        red, _ = niggli_reduce(*cells[p])
+        GN = _metric(red)
+        _, MN = _ball_min(GMN, GN, ball1)
+        if not any(np.allclose(MN.astype(float), S) for S in sperms):
+            jumped += 1
+        gaps.append(abs(red[1] - red[0]))
+        G = _metric(cells[p])
+        _, M = _ball_min(GM, G, ball1)
+        Mf = M.astype(float)
+        dG = Mf.T @ G @ Mf - GM
+        e = 0.5 * np.linalg.solve(GM, dG)
+        e = 0.5 * (e + e.T)
+        eps6.append([e[0, 0], e[1, 1], e[2, 2],
+                     math.sqrt(2) * e[0, 1], math.sqrt(2) * e[0, 2],
+                     math.sqrt(2) * e[1, 2]])
+    assert jumped == 0                    # one chamber across the family
+    assert min(gaps) < 0.6                # and it edges the a=b wall
+    # (full set: 1FQR reaches |b - a| = 0.3 A)
+    E = np.array(eps6)
+    w = np.linalg.eigvalsh(np.cov((E - E.mean(0)).T))[::-1]
+    assert w[0] / w.sum() > 0.6           # one dominant deformation mode
+
+
 def test_strain_extreme_is_certified():
     """The farthest member (6BBS) is a 10% swollen copy of the same form,
     with a certified ideal distance near 639 A^2."""

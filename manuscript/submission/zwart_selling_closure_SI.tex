@@ -513,6 +513,14 @@ pairs (seeded, n = 25; a 60-pair run gives the quoted statistics):
     strain median 0.012, p90 0.022.
 extreme: deformation_distance(4L5V, 6BBS) certified, d in (600, 680)
     (observed 639 A^2), strain norm in (0.09, 0.12) (observed 0.103).
+niggli chamber (seeded subsample n = 150; full-set run identical): the
+    ball-1 minimiser between each member's Niggli Gram and the medoid's is
+    a signed permutation in every case (0 jumps; full set 0/1065); min
+    |b - a| over members < 0.5 A (the family edges the a=b exchange wall).
+strain mode (same subsample): PCA of the 6-component strain tensors vs the
+    medoid has first-mode share > 0.6 (full set 0.79/0.10/0.06); MDS of
+    certified ideal distances on a stratified n=112 subsample puts 84% of
+    variance on one axis [Figure: fig_ca].
 \end{verbatim}\end{footnotesize}
 
 \end{document}
