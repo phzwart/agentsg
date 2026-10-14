@@ -465,4 +465,21 @@ near-obtuseness lemma: random reduced pairs (seeded; anchors verified
     observed worst penetration 0.70 D over 40+ pairs
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:declared-error}{Relating reduced cells under a declared error radius (Scotty bases + seeded sweeps)}
+Claim (Sections 2.2, 4.4, Table 7): with the error model $\Gmet'=\Gmet_{\rm Niggli}+D\,E$, $E$ random symmetric with $\|E\|_F=1$ (the ideal's norm, so $D$, $\sqrt3 D$ and $R(D)$ are commensurate), the Niggli basis jumps chambers in more than half of directions already at $D=20$\,\Ang$^2$ on 2yht; the radius-one ball and the widened closure both recover a value $\le D$ in every run; the ball's certificate $R(D)<2$ is the anisotropy budget $D_{\max}=4\lambda_{\min}-\lambda_{\max}$, negative for 7 of the 17 Scotty bases (both lysozyme cells, 5wey, and all four GabD cells), on which it certifies nothing at any error level; the widening certificate at $\sqrt3 D$ is anisotropy-independent.
+\begin{footnotesize}\begin{verbatim}
+budgets: for each Scotty base (primitive, Niggli-reduced): D_max = 4 lmin - lmax
+    of the Niggli Gram; assert the negative set is exactly
+    {2d4k, 1vdp, 5wey, 4nl6, 1jr7, 2r6s, 8cdf}; 2yht in (1600, 1900);
+    4amt in (800, 1000); 2d4k < -900                     [Table 7]
+sweep (2yht, D = 20, seeded, n = 8..25): perturb G_N by D*E; Niggli-reduce;
+    jump = CoB not a signed permutation (observed 14/25);
+    ball-1 minimum <= 1.05 D (25/25) and R(min) < 2 (25/25);
+    widened closure at boundary_rel = sqrt(3) D / max vonorm:
+    matched metric residual <= 1.05 D (24/25)
+sweep (2d4k, D = 20, seeded, n = 5..15): ball-1 minimum <= 1.05 D (15/15)
+    but R(min) >= 2 in every run (0/15 certified -- the budget is negative);
+    widened closure residual <= 1.05 D (15/15), certificate intact
+\end{verbatim}\end{footnotesize}
+
 \end{document}
