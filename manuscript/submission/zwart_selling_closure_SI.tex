@@ -533,4 +533,33 @@ strain mode (same subsample): PCA of the 6-component strain tensors vs the
     variance on one axis [Figure: fig_ca].
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:overlap}{The widened closure is a union of on-cone guarantees (all five types + clipping)}
+Claim (Section 2.2, Appendix E): for $\|\Gmet'-\Gmet\|\le\varepsilon$, each lattice's exact closure lies inside the other's widened closure at $\tau=3\varepsilon$ at the same integer coordinates; conversely every widened frame is an exact obtuse superbase of the clipped lattice, within $2\sqrt6\,\tau$; hence Kurlin's completeness is only ever invoked on the cone.
+\begin{footnotesize}\begin{verbatim}
+overlap: for each type V1..V5 (seeded cells, random symmetric E, eps = 1%
+    of ||G||): every parent closure member has daughter conorms >= -3 eps
+    (observed worst 0.93 eps over 20 cases); the daughter's band-BFS at
+    boundary_rel = 3 eps / max vonorm contains the ENTIRE parent closure
+    as canonical superbase sets (20/20)
+clipping: near-wall cell (two small conorms), band 2*tau: for every widened
+    member with a negative conorm, clip negatives to zero in the member
+    frame; assert the standard superbase is exactly obtuse under the
+    clipped Gram, the Gram is positive definite, and the move is
+    <= 2*sqrt(6) * (2*tau); at least one member genuinely non-obtuse
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:align-coset}{Alignment ambiguity is one coset of the $\varepsilon$-automorphisms (pseudo-symmetric self-match)}
+Claim (Appendix E; Section 2.4's pseudo-symmetry subsection): alignments within $\varepsilon$ of optimal form the coset $\Pop_0\,\mathrm{Aut}_{2\varepsilon}$; uniqueness iff $2\varepsilon$ is below the pseudo-symmetry margin $s(B)$, which scales linearly with the distance to the stratum; the returned band is group-closed.
+\begin{footnotesize}\begin{verbatim}
+B = (50, 70, 60, 90, 90 + delta, 90), matched against itself:
+    tight band: |ops| = 4 (exact 2/m), residuals < 1e-6
+    band past the margin (boundary_rel 0.05, verify_rel 2e-2): |ops| = 8
+    (pseudo-mmm); margin = extra operators' residual, linear in delta:
+    296 A^2 at delta = 2 deg, 29.6 at 0.2 deg (assert in (250,350)/(25,35))
+    group closure: max over pairs of ||(Pi^-1 Pj)^T G (Pi^-1 Pj) - G||
+    <= 2 x the accepted band
+    uniqueness criterion: at delta = 2, a band below the margin still
+    returns exactly 4
+\end{verbatim}\end{footnotesize}
+
 \end{document}
