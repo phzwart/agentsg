@@ -562,4 +562,20 @@ B = (50, 70, 60, 90, 90 + delta, 90), matched against itself:
     returns exactly 4
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:isometry}{On one-chamber families the key is exact, not a bound (serial-data regime)}
+Claim (Sections 2.3, 4.2; Appendix C): if every member's conorms deviate from a reference's by less than $\delta < \min(m,g)/2$ (margin $m$, smallest conorm gap $g$), the key distance equals the exact aligned distance for every pair, the fibre is trivial on the family, and the margin certificate holds pairwise; violating only the gap condition leaves a bounded underestimate, never an overestimate.
+\begin{footnotesize}\begin{verbatim}
+exact case: reference conorms (10, 14, 18, 22, 26, 30) (margin 10, gap 4),
+    delta = 1.5, 25-member family (seeded): for sampled pairs,
+    |key distance - aligned distance| < 1e-9; closure value below every
+    positive normalised conorm of both cells (margin certificate holds)
+gap violation: reference (10, 14, 18, 21, 21.5, 30) (gap 0.5 < 2 delta):
+    over 60 seeded pairs the key never exceeds the aligned distance;
+    swaps occur; worst slack < 4 delta / sqrt(sum p)
+consequence: N cells in one chamber need N reductions and vector
+    arithmetic for their entire pairwise geometry; near-tied conorms are
+    repaired at the same O(N) cost by aligning once to the cached
+    reference and using Euclidean distances on aligned vectors
+\end{verbatim}\end{footnotesize}
+
 \end{document}
