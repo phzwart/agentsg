@@ -598,4 +598,21 @@ transport: the twofold along b permutes the six members as
     member pair; the COB linking members 1->3 equals that linking 2->4
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:sym-profile}{The self-spectrum is a symmetry-distance profile (rung = twice the symmetrisation price)}
+Claim (Appendix E): every rung of the ideal self-spectrum sits at twice the minimum-norm symmetrisation cost onto the stratum where that operator becomes exact (exactly for involutions, by the reflection identity); wall strata give the reduction-setting ("Selling jump") operators and tie strata the pseudo-symmetry operators, so one ladder covers both.
+\begin{footnotesize}\begin{verbatim}
+daughter (30.02, 39.97, 50.03, 90.25, 92.05, 89.80) vs itself:
+    tight band: 2 ops (1, -1), residual 0
+    next band: 4 ops, new rung 27.4 = 2 x 13.7 (constrained cost of
+        zeroing G12, G23: the monoclinic wall stratum) within 2%
+    wide band: 8 ops, new rungs 152.4-153.9 = 2 x 77.2 (cost of
+        zeroing all off-diagonals: mmm) within 2%
+involution identity: for every accepted non-trivial operator,
+    residual = 2 x ||G - (G + Q^T G Q)/2|| to machine precision
+parent (30, 40, 50, 90, 92, 90): the single constraint p13 = 0 costs
+    sqrt(2) x 52.349 = 74.03 = s(B)/2 (s(B) = 148.1 from the pseudo
+    band), lands exactly on (30, 40, 50, 90, 90, 90), all eight mmm
+    operators exact afterwards, closure grows 6 -> 16 members
+\end{verbatim}\end{footnotesize}
+
 \end{document}
