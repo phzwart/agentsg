@@ -53,7 +53,8 @@ def _vecset(S):
 def _widened_members(cell, tau):
     """the widened closure by its definition: every superbase whose six
     conorms are >= -tau, from all superbases with entries in [-2, 2] (input
-    coordinates; Appendix B bounds members well inside this window)."""
+    coordinates; for this monoclinic pair every member of the relevant
+    stratum closures has entries in {-1, 0, 1})."""
     import numpy as np
     G = _metric(cell)
     r = np.arange(-2, 3)

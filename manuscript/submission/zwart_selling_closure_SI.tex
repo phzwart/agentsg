@@ -533,19 +533,29 @@ strain mode (same subsample): PCA of the 6-component strain tensors vs the
     variance on one axis [Figure: fig_ca].
 \end{verbatim}\end{footnotesize}
 
-\sitem{z:overlap}{The widened closure is a union of on-cone guarantees (all five types + clipping)}
-Claim (Section 2.4; Appendix B): for $\|\Gmet'-\Gmet\|\le\varepsilon$, each lattice's exact closure lies inside the other's widened closure at $\tau=3\varepsilon$ at the same integer coordinates; conversely every widened frame is an exact obtuse superbase of the clipped lattice, within $2\sqrt6\,\tau$; hence Kurlin's completeness is only ever invoked on the cone.
+\sitem{z:overlap}{Coverage and clipping: the exact shift identity, its frame dependence, and the coverage bound}
+Claim (Section 2.4; Appendix B): a conorm shifts by exactly $-u_i^{\sf T}\Delta\Gmet\,u_j$, at most $c_{ij}\eta$ with $c_{ij}=\|\mathrm{sym}(u_iu_j^{\sf T})\|_F$; every exact member is a widened member of the perturbed lattice iff $\tau\ge\tau_{\rm cov}$; $\tau=3\eta$ suffices except in six of the sixteen labelled cuboid frames ($2\sqrt3$); frame-free, $\tau=\sqrt2\,\eta^*$; every widened frame is an exact obtuse superbase of the clipped lattice within $2\sqrt6\,\tau$.
 \begin{footnotesize}\begin{verbatim}
-overlap: for each type V1..V5 (seeded cells, random symmetric E, eps = 1%
-    of ||G||): every parent closure member has daughter conorms >= -3 eps
-    (observed worst 0.93 eps over 20 cases); the daughter's band-BFS at
-    boundary_rel = 3 eps / max vonorm contains the ENTIRE parent closure
-    as canonical superbase sets (20/20)
-clipping: near-wall cell (two small conorms), band 2*tau: for every widened
-    member with a negative conorm, clip negatives to zero in the member
-    frame; assert the standard superbase is exactly obtuse under the
-    clipped Gram, the Gram is positive definite, and the move is
-    <= 2*sqrt(6) * (2*tau); at least one member genuinely non-obtuse
+identity: Delta p_ij = -u_i^T dG u_j exactly, for every member, slot and
+    random symmetric dG
+wall constants over every zero pattern and labelled frame (0 to 3 zeros):
+    <= sqrt 5, except cuboid frames whose zeros form a path with
+    v0 = -(v1+v2+v3) interior: 2 sqrt 3 = 3.46; member vectors carry
+    entries up to 3 (the stratum proposition bounds coset operators,
+    not member vectors)
+adversarial dG of norm eta along sym(u_i u_j^T) in such a frame: a member
+    falls to -3.46 eta, outside tau = 3 eta; tau_cov read off the
+    closure covers it and 20 random dG per pattern
+frame-free: with eta* = max over members and labellings of ||U^T dG U||_F,
+    every shift <= sqrt 2 eta* (standard superbase constant); eta* is
+    median 2.8x and up to 17x the reduced-frame eta
+random overlap: for each type V1..V5 (seeded cells, random symmetric E,
+    eps = 1% of ||G||): every parent closure member has daughter
+    conorms >= -3 eps (observed worst 0.93 eps over 20 cases)
+clipping: near-wall cell (two small conorms): for every widened member with
+    a negative conorm, clip negatives to zero in the member frame; the
+    standard superbase is exactly obtuse under the clipped Gram, the Gram
+    is positive definite, and the move is <= 2*sqrt(6) * (2*tau)
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:align-coset}{Alignment ambiguity is one coset of the $\varepsilon$-automorphisms (pseudo-symmetric self-match)}
