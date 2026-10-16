@@ -637,4 +637,25 @@ seams: hP + hR and tP + tI -> no positive-definite common solution,
 edges: oC + tP, oI + tI, oF + tI -> common two-dimensional faces
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:s6dist}{How an S6 distance relates to closure matching (CS6Dist)}
+Claim (Appendix A): one boundary transformation per zero face reaches every closure orbit; a one-sided search over an exact closure fails where two-sided matching or a widened one-sided search succeeds; CS6Dist is two-sided and near-face, never exceeds the exact-closure straight-segment bound, and is a partial widening.
+\begin{footnotesize}\begin{verbatim}
+orbit reach (pure Python): V2, V3, V4, V5 test lattices have 2, 3, 3, 4
+    relabelling orbits; one Selling move at each zero face of the reduced
+    superbase, with the 24 relabellings, reaches all of them
+one-sided trap, worked pair (30,40,50,90,92,90) vs its nudge (eta 14.4):
+    parent's reduced cell vs daughter's exact closure 1126.7; both exact
+    closures 13.4; parent's reduced cell vs daughter's widened closure 14.5
+CS6Dist (compiled from github.com/yayahjb/ncdist; runs when NCDIST_DIR is
+    set, skipped otherwise): worked pair 13.35; relabelled self 0;
+    S6MS on-face mirrors orthogonal; S6MSX unreductions max singular
+    value phi^2 = 2.618
+bracket, 960 trials (cP oP tP hP mP aP cF cI x noise 1e-4, 1e-3, 5e-3
+    x 40 noisy reindexed copies): CS6Dist never exceeds the straight
+    segment between exact closure points; often below the reduced key
+    bound (its unreduction reaches unreduced presentations)
+partial widening: against the full widened chord minimum, median ratio
+    1.0-1.7 and maximum about 3.4 near two or three walls; bounded, no jumps
+\end{verbatim}\end{footnotesize}
+
 \end{document}
