@@ -8,7 +8,8 @@ member-pair residual spectrum is three-level -- the distance, the
 pseudo-symmetry margin s(B), the bulk -- with the pseudo level proposed only
 by pairings into the widened extras. Worked monoclinic pair: parent
 (30, 40, 50, 90, 92, 90) on two Selling walls, daughter nudged off both by
-eps = 14.4 A^2; levels 14.4 / 150.7 / >= 992 A^2.
+eps = 14.4 A^2; at tau = 3 eps levels 14.4 / >= 1378 A^2; past the
+pseudo-wall (tau >= 45.0) levels 14.4 / 150.7 / >= 992 A^2.
 """
 from __future__ import annotations
 
@@ -20,7 +21,6 @@ pytestmark = [pytest.mark.zcheck]
 
 PARENT = (30.0, 40.0, 50.0, 90.0, 92.0, 90.0)
 DAUGHTER = (30.02, 39.97, 50.03, 90.25, 92.05, 89.80)
-MAXCON = 2447.65  # parent's largest conorm, sets the relative band
 
 # parent closure, slide order: superbases as rows (b0, b1, b2, b3)
 PARENT_MEMBERS = {
@@ -51,12 +51,21 @@ def _vecset(S):
 
 
 def _widened_members(cell, tau):
+    """the widened closure by its definition: every superbase whose six
+    conorms are >= -tau, from all superbases with entries in [-2, 2] (input
+    coordinates; Appendix B bounds members well inside this window)."""
     import numpy as np
-    from agentsg.cell.canonical import superbase_variants
+    G = _metric(cell)
+    r = np.arange(-2, 3)
+    M = np.array(np.meshgrid(*[r] * 9, indexing="ij")).reshape(9, -1).T.reshape(-1, 3, 3)
+    B = M[np.abs(np.round(np.linalg.det(M))) == 1].astype(float)
+    SB = np.concatenate([-(B.sum(1))[:, None, :], B], 1)
+    P = -np.einsum("nia,ab,njb->nij", SB, G, SB)
+    q = np.stack([P[:, i, j] for i, j in
+                  [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]], 1)
     out = {}
-    for M in superbase_variants(cell, boundary_rel=tau / MAXCON,
-                                max_variants=512):
-        out.setdefault(_vecset(M), np.array(M, dtype=float))
+    for S in SB[q.min(1) >= -tau]:
+        out.setdefault(_vecset(S), S)
     return out
 
 
@@ -80,40 +89,43 @@ def _pair_min_residual(Si, Sj, GP, GD):
 
 
 def test_three_level_candidate_spectrum():
-    """6 x 16 member pairings resolve into exactly three residual levels:
-    twelve at eps (the 2/m coset), twelve at s(B) (pseudo-mmm, proposed
-    only by pairings into the widened extras), the rest >= 992."""
+    """At tau = 3 eps the widened closure of the daughter is exactly the six
+    parent members, and the 6 x 6 pairings give two levels: twelve at eps
+    (the 2/m coset) and nothing below 1300. The pseudo-mmm level s(B) is
+    proposed only once the band passes 45.0 A^2 (= 49.54 - 4.54, the depth
+    of the first frame across the pseudo-wall); at tau = 60 the 14 members
+    give three levels: twelve at eps, ten at s(B) (only via the new
+    members), the rest >= 992."""
     import numpy as np
     GP, GD = _metric(PARENT), _metric(DAUGHTER)
     eps = float(np.linalg.norm(GD - GP))
     assert 14.0 < eps < 15.0
-    tau = 3.0 * eps
-
-    wide = _widened_members(DAUGHTER, tau)
-    assert len(wide) == 16
     parent_sets = {_vecset(S) for S in PARENT_MEMBERS.values()}
-    assert parent_sets <= set(wide)          # overlap lemma, in coordinates
-    extras = {k for k in wide if k not in parent_sets}
-    assert len(extras) == 10
 
-    level1 = level2 = 0
-    bulk_min = float("inf")
-    for Si in PARENT_MEMBERS.values():
-        for key, Sj in wide.items():
-            r, _ = _pair_min_residual(Si, Sj, GP, GD)
-            if r < 30.0:
-                level1 += 1
-                assert abs(r - eps) < 1.0           # level 1 IS eps
-                assert key in parent_sets           # never an extra
-            elif r < 300.0:
-                level2 += 1
-                assert 140.0 < r < 160.0            # level 2 IS s(B)
-                assert key in extras                # only via the extras
-            else:
-                bulk_min = min(bulk_min, r)
-    assert level1 == 12
-    assert level2 == 12
-    assert bulk_min > 900.0                          # the gap to the bulk
+    def spectrum(tau):
+        wide = _widened_members(DAUGHTER, tau)
+        lv1, lv2, bulk = 0, 0, float("inf")
+        for Si in PARENT_MEMBERS.values():
+            for key, Sj in wide.items():
+                r, _ = _pair_min_residual(Si, Sj, GP, GD)
+                if r < 30.0:
+                    lv1 += 1
+                    assert abs(r - eps) < 1.0 and key in parent_sets
+                elif r < 300.0:
+                    lv2 += 1
+                    assert 140.0 < r < 160.0 and key not in parent_sets
+                else:
+                    bulk = min(bulk, r)
+        return wide, lv1, lv2, bulk
+
+    wide, lv1, lv2, bulk = spectrum(3.0 * eps)
+    assert set(wide) == parent_sets               # overlap, and nothing else
+    assert (lv1, lv2) == (12, 0) and bulk > 1300.0
+    assert len(_widened_members(DAUGHTER, 44.9)) == 6
+    assert len(_widened_members(DAUGHTER, 45.1)) == 7
+    wide, lv1, lv2, bulk = spectrum(60.0)
+    assert len(wide) == 14 and parent_sets <= set(wide)
+    assert (lv1, lv2) == (12, 10) and bulk > 900.0
 
 
 def test_cob_transport_under_accepted_operator():
