@@ -136,3 +136,37 @@ def test_constrained_symmetrisation_of_the_parent():
 
     assert n_members(PARENT) == 6
     assert n_members(cell_star) == 16
+
+
+def test_bravais_classes_as_conorm_patterns():
+    """reduced conorms of representative cells: every Bravais class is a
+    pattern of zeros and ties (Table 3)."""
+    import numpy as np
+    from itertools import combinations
+    from agentsg.cell.canonical import _closure_for_match
+    from agentsg.cell.metric import params_from_metric
+
+    def sorted_conorms(cell):
+        G = _metric(cell)
+        M = np.array(_closure_for_match(cell, boundary_rel=0.0)[0], float)
+        return sorted(float(-M[i] @ G @ M[j]) for i, j in combinations(range(4), 2))
+
+    def from_vectors(V):
+        V = np.array(V, float)
+        return tuple(params_from_metric(V @ V.T))
+
+    a = 30.0
+    cases = {
+        (30, 40, 50, 90, 92, 90): [0, 0, 52.35, 847.65, 1600, 2447.65],
+        (30, 40, 50, 90, 90, 90): [0, 0, 0, 900, 1600, 2500],
+        (30, 30, 50, 90, 90, 90): [0, 0, 0, 900, 900, 2500],
+        (30, 30, 50, 90, 90, 120): [0, 0, 450, 450, 450, 2500],
+        (30, 30, 30, 90, 90, 90): [0, 0, 0, 900, 900, 900],
+        from_vectors([[0, a/2, a/2], [a/2, 0, a/2], [a/2, a/2, 0]]):
+            [0, 0, 225, 225, 225, 225],                       # cF
+        from_vectors([[-a/2, a/2, a/2], [a/2, -a/2, a/2], [a/2, a/2, -a/2]]):
+            [225] * 6,                                        # cI
+    }
+    for cell, want in cases.items():
+        got = sorted_conorms(cell)
+        assert all(abs(x - y) < 0.05 for x, y in zip(got, want)), (cell, got)

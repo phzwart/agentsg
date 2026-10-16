@@ -148,3 +148,20 @@ def test_cob_transport_under_accepted_operator():
 
     # the concrete instance quoted on the slide and in the SI
     assert np.array_equal(W(1, 3), W(2, 4))
+
+
+def test_worked_example_closure_table():
+    """the six parent members carry one conorm multiset (two zeros at the
+    two right angles) and therefore one sorted linear key."""
+    import numpy as np
+    from itertools import combinations
+    from agentsg.cell.rootform import sorted_linear_key
+    G = _metric(PARENT)
+    want = sorted([847.65, 1600.0, 2447.65, 0.0, 52.35, 0.0])
+    for S in PARENT_MEMBERS.values():
+        M = np.array(S, float)
+        p = sorted(float(-M[i] @ G @ M[j]) for i, j in combinations(range(4), 2))
+        assert all(abs(a - b) < 0.01 for a, b in zip(p, want))
+    k = sorted_linear_key(PARENT)
+    assert all(abs(a - b) < 0.006 for a, b in
+               zip(k, (0.0, 0.0, 0.744, 12.051, 22.747, 34.798)))
