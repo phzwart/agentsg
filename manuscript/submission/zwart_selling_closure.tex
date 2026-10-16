@@ -73,6 +73,7 @@
 \@namedef{zn@z:sym-profile}{40}
 \@namedef{zn@z:nexus}{41}
 \@namedef{zn@z:s6dist}{42}
+\@namedef{zn@z:single-frame}{43}
 \makeatother
 
 \begin{document}                  % DO NOT DELETE THIS LINE
@@ -195,16 +196,17 @@ For twin-law and indexing analysis the nearby symmetric lattice $R^*$ is built b
 \label{sec:reindex-proc}
 \label{sec:exact}
 
-Reindexing transforms indices, coordinates and symmetry operators from one setting to another and needs the relating operator exactly. The closure route reads it off the matched members:
+Reindexing transforms indices, coordinates and symmetry operators from one setting to another and needs the relating operator exactly. The closure route reads it off matched members, and all closure work is done once, on the reference:
 \begin{enumerate}
 \item \emph{Go primitive, and keep the way back.} Convert centred settings with the rational centering matrix $\Cmat$, $\Bbasis_{\rm prim}=\Bbasis_{\rm conv}\Cmat$. This is the only rational step.
-\item \emph{Enumerate.} Reduce, and enumerate the (widened) closure with integer coordinates. For a reference, the closure, its web and $H=\mathrm{Aut}(R)$ are computed once and cached; at most 32 members.
+\item \emph{Prepare the reference, once.} Enumerate its widened closure with integer coordinates, keeping one frame per labelling class (matching loops over the labellings anyway; an orthorhombic or cubic reference drops from 384 labelled frames to 16). Self-match it to obtain $H=\mathrm{Aut}(R)$, its $\eta$-automorphisms with their prices in $R$'s frame, and $s(R)$. Cache all of it.
+\item \emph{Reduce the new cell, once.} One Selling-reduced superbase; no closure is enumerated for the new cell.
 \item \emph{Screen} (optional). Discard a frame whose sorted key lies outside the noise-derived radius (Section~\ref{sec:key}).
-\item \emph{Match} (Section~\ref{sec:match}). Every member pair proposes $\Pop$; accept within the band.
-\item \emph{Report the coset}, $\Pop_0H$, split by determinant sign if handedness matters. With a known space group the distinct indexing alternatives are the $|H|/|L|$ cosets of the Laue group, one representative each (Lebedev \emph{et al.}, 2006; Brehm \& Diederichs, 2014; Gildea \& Winter, 2018).\chk{z:coset-reps}
+\item \emph{Match} (Section~\ref{sec:match}). The single frame, under each labelling, against every cached member proposes $\Pop$, with $\Gmet_N=\Pop^{\mathsf T}\Gmet_R\Pop$; accept within the band. The overlap proposition guarantees that the frame's counterpart is in the cache.
+\item \emph{Copy the coset from the reference}, $H\Pop_0$ --- and, where pseudo-symmetry is wanted, the cached $\eta$-automorphisms times $\Pop_0$, each with its price quoted in $R$'s frame, since the Frobenius norm of a residual depends on the basis it is written in. Split by determinant sign if handedness matters; whether the answer is unique or a coset was decided once, by $2\eta<s(R)$. With a known space group the distinct indexing alternatives are the $|H|/|L|$ cosets of the Laue group, one representative each (Lebedev \emph{et al.}, 2006; Brehm \& Diederichs, 2014; Gildea \& Winter, 2018).\chk{z:coset-reps}
 \item \emph{Propagate.} With $\Bbasis_N=\Bbasis_R\Pop$: $x_R=\Pop\,x_N$, $h_R=\Pop^{-\mathsf T}h_N$, $W_R=\Pop W_N\Pop^{-1}$; in conventional settings $\Pop_{\rm conv}=\Cmat_R\,\Pop\,\Cmat_N^{-1}$.
 \end{enumerate}
-Nothing is rounded: the operators are integer because they are built from integer coordinates, and floating point enters only at verification.\chk{z:reindex-proc} A new frame costs one reduction, one closure enumeration --- usually a single member --- and at most $32\times|\Sclosure(N)|\times48$ integer products.\chk{z:reindex-bench} With the retrieval radius, the zero tolerance and the verification band set at stated multiples of $\eta$, the measured pair is retrieved, the widened closure contains every true member, the full coset is accepted, and nothing false is (Appendix~B).\chk{z:guarantee} What no procedure decides is whether two cells are congruent within $\eta$ or distinct by less; that boundary is the noise model itself, and the decision belongs to intensity statistics.
+Nothing is rounded: the operators are integer because they are built from integer coordinates, and floating point enters only at verification.\chk{z:reindex-proc} A new frame costs one reduction and at most $48$ integer products per cached frame.\chk{z:reindex-bench} On noisy, reindexed cells of five references --- monoclinic on two walls, orthorhombic and cubic on three, the $P6_3$ needle and a generic triclinic cell --- the single frame recovered the setting every time, never worse than the true operator; and on a pseudo-symmetric reference ($\beta=90.2^\circ$, pseudo-$mmm$) the coset copied from the reference equalled the set returned by full two-sided matching every time.\chk{z:single-frame} Copying is valid while the new cell stays near the reference: a cell at distance $d$ shifts each cached residual by at most about $2d$, so the cached verdict holds while $2(d+\eta)<s(R)$. A stream that spreads further is covered by landmarks --- each cell copies from its nearest landmark, and landmarks are linked to the reference by certified integer operators, whose composition is exact --- with the landmark density set by the local margin: sparse where $s$ is large, dense near symmetry strata where it is small. With the retrieval radius, the zero tolerance and the verification band set at stated multiples of $\eta$, the measured pair is retrieved, the widened closure contains every true member, the full coset is accepted, and nothing false is (Appendix~B).\chk{z:guarantee} What no procedure decides is whether two cells are congruent within $\eta$ or distinct by less; that boundary is the noise model itself, and the decision belongs to intensity statistics.
 
 \emph{Relation to fixed matrix lists.} The familiar list of 6\,960 unimodular matrices with entries in $\{-1,0,1\}$ is a truncation of the search in equation~(\ref{eq:ideal}), and its completeness has a precise condition. If a candidate achieves value $D$, comparing the two quadratic forms bounds the operator,
 \begin{equation}
@@ -482,21 +484,21 @@ PREPARE_REFERENCE(R_conv, sigma):           # run once, cache the result
   C_R, G_R <- centering matrix and primitive metric of R   # rational C_R
   eta      <- noise scale from sigma on the invariant scale T(G_R)
   U_R      <- selling_reduce(G_R)            # integer rows, obtuse
-  S_R      <- widened_closure(U_R, G_R, 3*eta)   # all members, <= 32 exact
+  S_R      <- widened_closure(U_R, G_R, 3*eta)   # one frame per labelling class
   key_R    <- sort(conorms / sqrt(T));  radius <- multiple of eta
-  H        <- REINDEX_FRAME(ref, R_conv)     # self-match: Aut(R)
+  H, H_eta <- self-match of S_R             # Aut(R); eta-automorphisms + prices
+  s_R      <- first nonzero self residual      # unique iff 2*eta < s_R
   if space group known: branches <- one representative per coset H/L
   return ref
 
 REINDEX_FRAME(ref, N_conv):                  # per frame
   C_N, G_N <- centering matrix and primitive metric of N
   if |key(G_N) - ref.key_R| > ref.radius: return EMPTY     # optional
-  S_N <- widened_closure(selling_reduce(G_N), G_N, 3*eta)  # usually 1
-  ops <- {}
-  for C_R' in ref.S_R, C_N' in S_N, pi in S4, s in {+1,-1}:
-      P <- (rows 1..3 of s*C_R'[pi])^T (rows 1..3 of C_N')^{-T}
-      if || P^T ref.G_R P - G_N || <= band(eta): ops <- ops + {P}
-  ops <- deduplicate(ops)                    # = P0 * ref.H, by det sign
+  U_N <- selling_reduce(G_N)                # ONE frame, no closure
+  best <- argmin over U_R' in ref.S_R, pi in S4, s in {+1,-1} of
+          || P^T ref.G_R P - G_N ||,  P <- (rows 1..3 of s*U_R'[pi])^T (rows 1..3 of U_N)^{-T}
+  if residual(best) > band(eta): return NONE  # report the residual
+  ops <- { h P0 : h in ref.H }               # coset copied from the reference
   # x_R = P x_N ; h_R = P^{-T} h_N ; W_R = P W_N P^{-1} ; P_conv = C_R P C_N^{-1}
   return ops
 \end{verbatim}\end{small}

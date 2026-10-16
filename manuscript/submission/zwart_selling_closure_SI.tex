@@ -658,4 +658,19 @@ partial widening: against the full widened chord minimum, median ratio
     1.0-1.7 and maximum about 3.4 near two or three walls; bounded, no jumps
 \end{verbatim}\end{footnotesize}
 
+\sitem{z:single-frame}{A new cell needs no closure: one reduced frame against the cached reference, coset copied}
+Claim (Section 3.3; Appendix E): against a reference whose widened closure is cached (one frame per labelling class), one Selling-reduced frame of a new cell recovers the setting; the coset is copied from the reference's self-match as Aut(R) P0 and equals full two-sided matching.
+\begin{footnotesize}\begin{verbatim}
+cache: widened closures of oP (30,40,50) and cP (30) hold 384 labelled
+    frames, 16 labelling classes
+setting recovery: references mP (30,40,50,90,92,90), oP, P6_3 needle,
+    cP, generic aP; 12 noisy (eta = 1e-3 ||G||), reindexed (entries
+    up to 2) new cells each: the best candidate from the single reduced
+    frame has residual <= that of the true operator in every trial
+coset copy: reference (50,70,60,90,90.2,90), cached self-match = 8
+    operators (2/m exact + pseudo-mmm at 29.6 A^2); 12 noisy reindexed
+    cells: {h P0 : h in cache} equals the full two-sided matching
+    result in every trial
+\end{verbatim}\end{footnotesize}
+
 \end{document}
