@@ -1,0 +1,234 @@
+%------------------------------------------------------------------------------
+% Manuscript for Acta Crystallographica Section A, prepared with the IUCr
+% LaTeX macro package (iucr.cls).  Compile with pdflatex.
+%------------------------------------------------------------------------------
+\documentclass[preprint,pdf]{iucr}          % DO NOT DELETE THIS LINE
+\journalcode{A}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+
+\newcommand{\Ang}{\text{\AA}}
+\newcommand{\Gmet}{\mathbf{G}}
+\newcommand{\Sw}{\mathcal{S}_\tau}
+\newcommand{\Cl}{\mathcal{G}}
+\newcommand{\sym}{\operatorname{sym}}
+% every checkable statement carries \chk{zNN}: the test file
+% manuscript/appendix_z/test_zNN_*.py that verifies it (Appendix C)
+\newcommand{\chk}[1]{\textsuperscript{[#1]}}
+
+\begin{document}                  % DO NOT DELETE THIS LINE
+
+\title{The widened Selling closure: uniqueness, overlap and completeness under measurement error}
+\shorttitle{The widened Selling closure}
+
+\cauthor{Petrus H.}{Zwart}{phzwart@lbl.gov}{}
+\aff{Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, \country{USA}}
+\shortauthor{Zwart}
+
+\keyword{Selling reduction}\keyword{obtuse superbase}\keyword{lattice reduction}\keyword{measurement error}\keyword{pseudo-symmetry}
+
+\maketitle                        % DO NOT DELETE THIS LINE
+
+\begin{synopsis}
+Selling reduction with its boundary moved from zero to $-\tau$ defines a unique, finite set of nearly reduced cells for a measured lattice; it equals the union of the exact Selling closures of all lattices within $\tau$, and it is computed completely by idealising the cell onto its nearest stratum, walking Kurlin's exact closure there, and filtering in the measured metric.
+\end{synopsis}
+
+\begin{abstract}
+The obtuse superbases of a lattice --- its Selling closure --- form a finite set that Kurlin (2026) has shown to be complete and enumerable. A measured cell sits near the walls of the obtuse cone rather than on them, so its exact closure jumps with the noise. The natural repair is to move the boundary: the widened closure $\Sw$ is the set of all superbases whose six conorms are at least $-\tau$. Three properties are established. \emph{Uniqueness}: $\Sw$ is defined by membership and so does not depend on a starting cell or a reduction order, although the frame at which reduction to $-\tau$ stops does. \emph{Overlap}: $\Sw$ is exactly the union of the exact closures of all lattices that each of its members sees within $\tau$ in its own conorms; the overlap and truncation lemmas are the two inclusions. \emph{Completeness}: if the shortest lattice vector has squared length $\lambda_1>32\tau$, then $\Sw$ is obtained by setting to zero every conorm of one reduced cell that is at most $4\tau$, walking the exact closure of that idealised lattice, and keeping the members whose conorms in the measured metric are at least $-\tau$. The proof follows the coset-minimum route of Conway and Sloane and two integer constants on four points. Walks on the measured metric, the obvious alternative, miss members for every choice of band, and the threshold $4\tau$ cannot be lowered to $\tau$. One walk gives every frame's depth, so the widened closure at every band is a re-filter. Translating a metric error into $\tau$ depends on the frame in which the error is declared; the exact shift identity, its constants by zero pattern, a frame-free bound and a covariance route are given.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+A lattice has infinitely many bases, and reduction selects a few. Selling reduction selects the \emph{obtuse superbases}: quadruples of lattice vectors summing to zero whose six pairwise dot products are all non-positive (Selling, 1874; Delone, 1932; Conway \& Sloane, 1992). A lattice usually has one such superbase up to labelling, but a lattice on a wall of the obtuse cone --- one with a vanishing dot product, which is the case for every right angle --- has several, and the complete set, the \emph{Selling closure}, has between one and sixteen members according to the Voronoi type. Kurlin (2026) proved that the closure is complete and gave its members type by type.
+
+Measured cells are never on walls. A right angle measured as $90.2^\circ$ moves a zero conorm to a small positive or negative number, the members whose conorms dip below zero are discarded, and the exact closure of the measured cell jumps from several members to one. Every downstream use of the closure --- deciding the lattice symmetry, matching two settings, comparing two lattices (Andrews \emph{et al.}, 2019; Andrews \& Bernstein, 2023) --- inherits the jump.
+
+The repair adopted here is to move the boundary of reduction from $0$ to $-\tau$, with $\tau$ set by the measurement error. The \emph{widened closure} $\Sw$ is the set of superbases whose six conorms are all at least $-\tau$. The definition raises three questions, and this paper answers them. Is the set well defined, independent of how one arrives at it? How does it relate to the exact closures of the lattices the measurement could have come from? And can it be computed completely --- does a finite procedure return all of it and nothing else? The answers are yes, exactly, and yes under a stated condition, with a construction that differs in one essential respect from the obvious one: the walk is run on an idealised lattice, not on the measured one.
+
+%==============================================================================
+\section{The Selling closure}
+\label{sec:closure}
+%==============================================================================
+
+A superbase is a quadruple $F=(v_0,v_1,v_2,v_3)$ of lattice vectors with $v_0+v_1+v_2+v_3=0$, any three of which form a basis. Its six \emph{conorms} are $p_{ij}=-v_i\cdot v_j$, and $F$ is \emph{obtuse} when all six are non-negative. The metric tensor in the basis $(v_1,v_2,v_3)$ is linear in the conorms (Conway \& Sloane, 1992), so conorms are coordinates on the cone of metrics. A \emph{Selling flip} at the slot $ij$ replaces $v_i$ by $-v_i$ and the two remaining vectors $v_k,v_l$ by $v_i+v_k$ and $v_i+v_l$; it changes the sign of $p_{ij}$, and Selling's reduction applies it at negative conorms until none remain. Applied at a zero conorm it maps one obtuse superbase to another, and the obtuse superbases of a lattice, connected by flips at their zeros, form its Selling closure $\Cl(\Gmet)$. Kurlin (2026) proved that $\Cl(\Gmet)$ is complete and finite and listed it for each of the five Voronoi types; its members are integer superbases, related by integer changes of basis that do not depend on the metric within a stratum, the set of lattices sharing a zero pattern.
+
+The proofs below use two further facts. The seven partial sums $v_S=\sum_{i\in S}v_i$, one for each split of the four vectors into two groups, represent the seven non-zero classes of $\Lambda/2\Lambda$, and their squared lengths, the vonorms, sum to four times $\sum p_{ij}$. A superbase is obtuse exactly when every partial sum is a shortest vector of its class (Conway \& Sloane, 1992; Kurlin, 2026, Lemmas 2.4, 2.7 and A.1). And, because the four vectors sum to zero, every lattice vector $x=\sum c_iv_i$ satisfies Selling's identity
+\begin{equation}
+|x|^2=\sum_{i<j}p_{ij}\,(c_i-c_j)^2 ,
+\label{eq:selling}
+\end{equation}
+whatever the signs of the conorms. Squared lengths are in \Ang$^2$, as are conorms, metric errors and $\tau$.
+
+%==============================================================================
+\section{The widened closure and how it is computed}
+\label{sec:methods}
+%==============================================================================
+
+\subsection{Definition}
+For a metric $\Gmet$ and a band $\tau\ge0$,
+\begin{equation}
+\Sw(\Gmet)=\bigl\{\,F\ \text{a superbase}\;:\;p_{ij}(F;\Gmet)\ge-\tau\ \text{for all six slots}\,\bigr\}.
+\label{eq:def}
+\end{equation}
+At $\tau=0$ this is the exact closure. For $\tau>0$ it is the set of stopping points of Selling reduction with the boundary moved to $-\tau$. The \emph{depth} of a superbase is the magnitude of its most negative conorm, $d(F)=\max(0,-\min_{ij}p_{ij})$, so $F\in\Sw$ exactly when $d(F)\le\tau$.
+
+\subsection{Snap, walk, filter}
+The construction proved complete in Section~\ref{sec:complete} has four steps.
+\begin{enumerate}
+\item \emph{Reduce once}: Selling-reduce the measured cell to an obtuse superbase $F_0$.
+\item \emph{Snap}: set to zero every conorm of $F_0$ that is at most $4\tau$. The result is a lattice $\Lambda^*$ lying exactly on a stratum.
+\item \emph{Walk}: enumerate the exact closure $\Cl(\Lambda^*)$ from $F_0$ by flips at the exact zeros of $\Lambda^*$, keeping every member as an integer superbase.
+\item \emph{Filter}: keep the members whose conorms in the measured metric are at least $-\tau$, or record each member's depth and filter later.
+\end{enumerate}
+The walk in step 3 runs on the idealised lattice, where Kurlin's theorem applies exactly; the measured metric enters only in step 4, once per member. The integer changes of basis between members are the same on $\Lambda^*$ and on the measured cell.
+
+\subsection{Verification}
+Every quantitative statement is checked against brute force: all superbases whose coordinates relative to $F_0$ have entries in $[-2,2]$ (135\,408 unimodular bases), filtered by equation~(\ref{eq:def}). Test lattices are given by conorm vectors, so $F_0$ is obtuse by construction, and cover eight shapes --- monoclinic with two walls, orthorhombic, cubic and hexagonal primitive, body-centred cubic (six equal conorms), a generic triclinic cell, a plate and a needle --- with walls moved to random values in $[0,6\tau]$, the other conorms jittered, and $\tau$ up to $0.99\,\lambda_1/32$. The worked example is the monoclinic cell $30.02$, $39.97$, $50.03$\,\Ang, $90.25^\circ$, $92.05^\circ$, $89.80^\circ$, a $14.4$\,\Ang$^2$ perturbation of the cell $30$--$40$--$50$\,\Ang, $\beta=92^\circ$, which sits on two walls. The checks are the test files listed in Appendix~C, cited in the text as [z$nn$].
+
+%==============================================================================
+\section{Results}
+\label{sec:results}
+%==============================================================================
+
+\subsection{Uniqueness: the set, not the frame}
+\label{sec:unique}
+Equation~(\ref{eq:def}) mentions no starting cell, no reduction order and no frame, so $\Sw(\Gmet)$ is unique; it is invariant under any change of input basis, which only re-expresses its members. The frame at which reduction to $-\tau$ stops is not unique. Started from 400 random unreduced bases with entries up to 3 and two flip orders, reduction of the worked cell at $\tau=43.2$\,\Ang$^2$ stopped at six different frames, and of a noisy orthorhombic cell at sixteen; every stopping frame was a member of $\Sw$, but on a noisy cubic cell at $\tau=10$\,\Ang$^2$ the 400 restarts found 15 of the 16 members.\chk{z45} A reduced representative is therefore order-dependent inside the band, restarting is not an enumeration, and the object to compute and compare is the set.
+
+\subsection{Overlap and truncation}
+\label{sec:overlap}
+For a superbase $F$ and two metrics, let $\delta_F(\Gmet,\Gmet')=\max_{ij}|p_{ij}(F;\Gmet')-p_{ij}(F;\Gmet)|$ be the largest change in $F$'s own six conorms. It needs no frame: relabelling $F$ permutes its conorms and leaves the maximum unchanged.
+
+\emph{Proposition 1.} For every metric $\Gmet$ and band $\tau\ge0$,
+\begin{equation}
+\Sw(\Gmet)=\bigl\{\,F\;:\;F\in\Cl(\Gmet')\ \text{for some}\ \Gmet'\ \text{with}\ \delta_F(\Gmet,\Gmet')\le\tau\,\bigr\}.
+\label{eq:union}
+\end{equation}
+The widened closure is the union of the exact closures of all lattices that its members see within $\tau$. The inclusion $\supseteq$ is the \emph{overlap} lemma: an exact member of a lattice within $\tau$ has every conorm at least $-\tau$. The inclusion $\subseteq$ is the \emph{truncation} lemma: setting the negative conorms of a widened member to zero, in its own frame, gives a lattice for which it is exactly obtuse, at distance $\delta_F$ equal to its depth, and that lattice is the nearest such in this measure. Both proofs are one line (Appendix~A), need no constant, and make no choice of frame.
+
+Proposition~1 is what makes the widened closure a meaningful object for measured data: a member of $\Sw$ is precisely a frame that is exactly reduced for some lattice consistent with the measurement at band $\tau$, and every such frame is a member.
+
+\subsection{Completeness}
+\label{sec:complete}
+Proposition~1 characterises $\Sw$ through infinitely many lattices. The second result reduces them to one.
+
+\emph{Theorem 2.} Let $F_0$ be an obtuse superbase of $\Gmet$, let $\lambda_1$ be the squared length of the shortest lattice vector, and suppose $\lambda_1>32\tau$. Let $\Lambda^*$ be the lattice obtained by setting to zero every conorm of $F_0$ that is at most $4\tau$. Then $\Lambda^*$ is positive definite, and
+\begin{equation}
+\Sw(\Gmet)=\bigl\{\,F\in\Cl(\Lambda^*)\;:\;p_{ij}(F;\Gmet)\ge-\tau\ \text{for all six slots}\,\bigr\}.
+\label{eq:theorem}
+\end{equation}
+The right-hand side is the snap--walk--filter construction. Combined with Kurlin's enumeration of $\Cl(\Lambda^*)$ it gives a finite, complete computation of the widened closure: one reduction, one exact closure of between one and sixteen members, one filter. The proof (Appendix~A) has two inequalities. A superbase that is not obtuse for $\Lambda^*$ exceeds the shortest vector of some class of $\Lambda/2\Lambda$ by at least four times the smallest surviving conorm, hence by more than $16\tau$; a superbase in $\Sw$ exceeds it by at most $16\tau$. The second inequality rests on two integer constants on four points, $4$ and $8$, both attained.\chk{z44}
+
+On every test lattice and band the construction returned exactly the brute-force set, including walls placed in the grey zone between $\tau$ and $4\tau$.\chk{z44} The two inequalities of the proof hold on every brute-force frame.\chk{z44} The hypothesis is sufficient, not sharp: the worked cell has $\lambda_1/32=28.2$\,\Ang$^2$, and the construction is still exact there at $\tau=43.2$ and $60$\,\Ang$^2$.\chk{z44}
+
+\subsection{Why the walk must run on the idealised lattice}
+\label{sec:walks}
+The obvious alternative is to walk the measured metric directly: flip wherever a conorm is within a band of zero and keep the frames whose conorms are at least $-\tau$. Table~\ref{tab:walks} compares four such walks with Theorem~2 on 80 cells with walls at grey-zone and random positions. All four miss members; the walk with a band of $2\tau$ filtered afterwards, used in earlier drafts without proof, misses them in two cases.\chk{z45}
+
+\begin{table}
+\caption{Walks on the measured metric against brute force, 80 cells (orthorhombic, cubic, plate, monoclinic and hexagonal strata; walls at grey-zone and random positions; $\tau=0.1$ and $0.5\,\lambda_1/32$).}
+\label{tab:walks}
+\begin{tabular}{lc}
+\toprule
+procedure & cells with a wrong set \\
+\midrule
+walk at $|p|\le\tau$, keep only frames with $d\le\tau$ & 13 \\
+walk at $|p|\le\tau$, filter at the end & 13 \\
+walk at $|p|\le2\tau$, keep only frames with $d\le\tau$ & 13 \\
+walk at $|p|\le2\tau$, filter at the end & 2 \\
+snap at $4\tau$, walk $\Cl(\Lambda^*)$, filter (Theorem~2) & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mechanism is a member reached only through a non-member. With walls at $1.2\tau$ and $0.5\tau$, a flip at the first produces a conorm of $-1.2\tau$, outside the band; a second flip, at the second wall, lands on a member of depth $0.7\tau$. A walk confined to the band never takes the first step, and on the idealised lattice both walls are zero and the step costs nothing. The same example shows that the snapping threshold cannot be $\tau$: the lattice with only the $0.5\tau$ wall set to zero has a closure without that member, and on orthorhombic, cubic and plate cells the construction with threshold $\tau$ returns six of the seven members.\chk{z44}
+
+\subsection{One walk, every band}
+\label{sec:ladder}
+The snapped lattice changes only when $4\tau$ crosses a conorm of $F_0$, so one walk serves a whole range of bands, and the widened closure at any band in that range is a re-filter of the same frames by depth. The worked cell has reduced conorms $(49.5, 1588.9, 2444.7, 4.2, 847.5, 4.5)$\,\Ang$^2$. Snapped at $4\times43.2$, all three small conorms become walls; $\Lambda^*$ is orthorhombic with sixteen members, whose depths in the measured metric are $0$, $4.2$, $4.5$, $4.5$, $8.7$, $8.7$, $45.0$, $49.5$, $49.5$, $53.7$ (four), $57.9$, $62.5$ and $62.5$\,\Ang$^2$. The widened closure therefore has six members for $8.7\le\tau<45.0$ --- the six members of the parent cell's exact closure, at the same integer coordinates --- seven at $45.1$, nine at $50$ and fourteen at $60$\,\Ang$^2$, as brute force confirms.\chk{z45} The members entering at $45.0$ are those that realise the parent's near-orthorhombic pseudo-symmetry; the depth at which a frame enters is the band at which the corresponding near-symmetry becomes visible.
+
+\subsection{From measurement error to a band}
+\label{sec:noise}
+Propositions~1 and Theorem~2 are statements about $\tau$, in conorms. A measurement error is usually stated as a metric error $\Delta\Gmet$ of Frobenius norm $\eta$, and the bridge between the two is exact: a conorm is linear in the metric, so
+\begin{equation}
+\Delta p_{ij}=-u_i^{\mathsf T}\,\Delta\Gmet\,u_j ,
+\label{eq:shift}
+\end{equation}
+with no higher-order term, where $u_i$ are the integer coordinates of the member's vectors in the frame in which $\Delta\Gmet$ is written. The worst case over errors of norm $\eta$ is $c_{ij}\eta$, with $c_{ij}=\|\sym(u_iu_j^{\mathsf T})\|_F$, and every exact member of a cached closure survives in the widened closure of the measurement exactly when $\tau$ is at least the coverage bound $\tau_{\rm cov}=\max(c_{ij}\eta-p_{ij})$, read off the cached closure.\chk{z36}
+
+The constants depend on the frame, because member vectors are not confined to $\{-1,0,1\}$: on two and three walls they carry entries up to $3$. On walls the largest constant is $\sqrt2$ with one zero, $\sqrt5$ with two, and with three zeros $2\sqrt3$ in six of the sixteen labelled cuboid frames (those whose zeros form a path with $v_0=-(v_1+v_2+v_3)$ at an interior vertex) and at most $\sqrt5$ in the other ten; on positive slots it is at most $7.2$. In a $2\sqrt3$ frame an adversarial error of norm $\eta$ drives a member to $-3.46\,\eta$, so the customary band $\tau=3\eta$ is not a worst-case guarantee in every frame.\chk{z36} Three declarations remove the ambiguity: state $\eta$ in the frame in which the error was estimated and use $\tau_{\rm cov}$ there; or measure the error in every member's own frame, where the constant is $\sqrt2$, and use $\tau=\sqrt2\,\eta^*$ with $\eta^*$ the largest of these norms --- uniform, but $2.8$ times the reduced-frame $\eta$ in the median case and up to $17$ times;\chk{z36} or, when the metric's error covariance $\Sigma$ is available, give each member conorm its exact standard deviation from equation~(\ref{eq:shift}) and set the band slot by slot.
+
+%==============================================================================
+\section{Discussion}
+%==============================================================================
+
+The three results separate cleanly. Uniqueness and overlap are properties of the definition and hold for every lattice and band. Completeness is a property of a construction and holds under $\lambda_1>32\tau$. The translation from a metric error to $\tau$ is a declaration about the experiment and is the only place a frame enters.
+
+The hypothesis of Theorem~2 is mild in practice --- for a shortest edge of 30\,\Ang\ it allows bands up to 28\,\Ang$^2$ --- and loose: the construction was exact in every case tested, including bands beyond it. The constant comes from splitting conorms at $8\tau$ in the excess bound, and a sharper split is the obvious route to a weaker hypothesis. Where it fails, the failure is detectable: $\lambda_1\le32\tau$ means that a lattice vector is not resolved by the declared error, and the reduced cell itself is then in question.
+
+Snapping is not symmetry assignment. It imposes only zeros, never the equalities that distinguish, for instance, tetragonal from orthorhombic, and it deliberately over-idealises, setting walls up to $4\tau$ to zero; that is what makes the walk complete, and the filter removes what it over-includes. Which frames are members does not depend on equalities --- Kurlin's member counts depend on the Voronoi type alone --- so walls are sufficient for the closure; equalities appear as relabellings found when the closure is matched to itself. The assigned symmetry is read from that self-match of the filtered set, with the depth ladder of Section~\ref{sec:ladder} stating at which band each higher symmetry would enter.
+
+The $S^6$ distance of Andrews \emph{et al.} (2019) and Andrews \& Bernstein (2023) approaches the same boundary problem from the other side, by measuring distances along paths that cross boundaries through mirror and unreduction maps. The widened closure instead fixes a set of frames, with a completeness statement, against which a plain distance can be taken.
+
+%==============================================================================
+\section{Conclusions}
+%==============================================================================
+
+Selling reduction with its boundary at $-\tau$ defines a unique set, the widened closure, which is exactly the union of the exact closures of all lattices consistent with the measurement at that band. If the shortest lattice vector exceeds $32\tau$ in squared length, the set is computed completely by snapping one reduced cell onto its nearest stratum at $4\tau$, walking Kurlin's exact closure there, and filtering in the measured metric; walking the measured metric instead misses members for every band. One walk gives every frame's depth and so the widened closure at every band. The frame enters only when a metric error is translated into $\tau$, through an exact linear identity whose constants are listed here.
+
+%==============================================================================
+\appendix
+\section{Proofs}
+%==============================================================================
+
+\emph{Proposition 1.} ($\supseteq$) If $F$ is obtuse for $\Gmet'$ and $\delta_F(\Gmet,\Gmet')\le\tau$, then $p_{ij}(F;\Gmet)\ge p_{ij}(F;\Gmet')-\tau\ge-\tau$. ($\subseteq$) If $F\in\Sw(\Gmet)$, let $\Gmet_F$ be the metric whose conorms in the frame of $F$ are $\max(p_{ij},0)$; it is positive definite, since it exceeds $\Gmet$ by a sum of positive semidefinite terms, $F$ is obtuse for it, and $\delta_F(\Gmet,\Gmet_F)=d(F)\le\tau$. No metric for which $F$ is obtuse is nearer in $\delta_F$, because each negative conorm must move at least to zero.\hfill$\square$
+
+The proof of Theorem 2 uses the class excess $e_c(F)=|v_c(F)|^2-\mu_c$ of a superbase in class $c$ of $\Lambda/2\Lambda$, where $v_c(F)$ is its partial sum in that class and $\mu_c$ the class minimum.
+
+\emph{Lemma A1 (class excess identity).} Let $F$ be any superbase, $w=\sum s_iv_i$ ($s\in\{0,1\}^4$) a partial sum, and $w'$ a vector of the same class with coordinates $s+2k$, $k\in\mathbb Z^4$. Then $|w|^2-|w'|^2=-4\sum_{i<j}p_{ij}\gamma_{ij}$, where $\gamma_{ij}=\Delta k(\Delta k+d)$, $\Delta k=k_i-k_j$, $d=s_i-s_j$; each $\gamma_{ij}$ is a non-negative integer, zero exactly when $\Delta k\in\{0,-d\}$. \emph{Proof.} Equation~(\ref{eq:selling}) for $w$ and $w'$, $(d+2\Delta k)^2-d^2=4\Delta k(\Delta k+d)$, and $t(t+d)\ge0$ for integers $t$ and $d\in\{-1,0,1\}$.
+
+\emph{Lemma A2 (class gap).} Let $\Lambda^*$ be obtained from $F_0$ by setting conorms $\le\theta$ to zero, be positive definite, and let $m^*$ be the smallest conorm of $F_0$ above $\theta$. If $F$ is not obtuse for $\Lambda^*$, then $e_c(F)\ge4m^*$ in some class. \emph{Proof.} In the frame of $F_0$, with $w$ the partial sum of $F_0$ in class $c$ --- a class minimum for $\Gmet$ and for $\Lambda^*$ --- and $w'=v_c(F)$, Lemma~A1 gives $e_c(F)=4\sum p^0_{ij}\gamma_{ij}$, a sum of non-negative terms, and the excess for $\Lambda^*$ is the same sum over slots with $p^0_{ij}>\theta$. If those terms vanish for all seven classes, every partial sum of $F$ is a class minimum of $\Lambda^*$ and $F$ is obtuse for it; otherwise some $\gamma_{ij}\ge1$ multiplies a $p^0_{ij}\ge m^*$.
+
+\emph{Lemma A3 (nearly obtuse superbases have small excess).} If $\lambda_1>32\tau$ and every conorm of $F$ is at least $-\tau$, then $e_c(F)\le16\tau$ in every class. \emph{Proof.} Call a slot of $F$ large if $p_{ij}>8\tau$ and let $N$ be the slots with $p_{ij}<0$. The large slots connect the four vectors: otherwise a split crossed only by slots with $p_{ij}\le8\tau$ has a partial sum of squared length at most $32\tau<\lambda_1$. With $w'$ a class minimum, Lemma~A1 in the frame of $F$ gives $0\le e_c(F)=4\sum_N|p_{ij}|\gamma_{ij}-4\sum_{p_{ij}>0}p_{ij}\gamma_{ij}$, so $\sum_{\rm large}p\gamma\le\tau\sum_N\gamma$. If a large $\gamma$ were positive, Lemma~A4(ii) would give $8\tau\sum_{\rm large}\gamma<\tau\sum_N\gamma\le8\tau\sum_{\rm large}\gamma$. So the large $\gamma$ vanish, and Lemma~A4(i) gives $e_c(F)\le4\tau\cdot4$.
+
+\emph{Lemma A4 (two constants on four points).} Let $L$ be a set of slots connecting the four vectors and $N$ disjoint from $L$. (i) If $\gamma_{ij}=0$ on $L$, then $\sum_N\gamma_{ij}\le4$. (ii) $\sum_N\gamma_{ij}\le8\sum_L\gamma_{ij}$. Both are attained. \emph{Proof.} In (i), $|\Delta k|\le1$ on $L$, so with $k_0=0$ all $|k_i|\le3$ and the maximum is a finite enumeration over the 38 connected slot sets, the sets $N$ and the 14 partial sums. In (ii), the ratio is enumerated for $|k_i|\le15$; beyond, $Q=\sum_L\Delta k^2>75$, and $\sum_N\gamma\le\rho Q+\sqrt{|N|\rho Q}$, $\sum_L\gamma\ge Q-\sqrt{|L|Q}$, with $\rho\le3+2\sqrt2$ the largest generalised eigenvalue of $\sum_N\Delta k^2$ against $\sum_L\Delta k^2$, keep it below $8$ for every pattern. Equality in (ii): $L=\{01,02,13\}$, $N=\{03,12,23\}$, $s=(0,0,1,1)$.\chk{z44}
+
+\emph{Theorem 2.} If the slots of $F_0$ above $4\tau$ did not connect the four vectors, a partial sum would have squared length at most $16\tau<\lambda_1$; so $\Lambda^*$ is positive definite. The inclusion $\supseteq$ in equation~(\ref{eq:theorem}) is the definition. For $\subseteq$, let $F\in\Sw(\Gmet)$: Lemma~A3 gives $e_c(F)\le16\tau$ in every class, the smallest surviving conorm exceeds $4\tau$, and Lemma~A2 then makes $F$ obtuse for $\Lambda^*$.\hfill$\square$
+
+%==============================================================================
+\section{Constants of the shift identity}
+%==============================================================================
+
+For a member with coordinate vectors $u_i,u_j$ in the declared frame, $c_{ij}=\|\sym(u_iu_j^{\mathsf T})\|_F=[\tfrac12(|u_i|^2|u_j|^2+(u_i\cdot u_j)^2)]^{1/2}$, by Cauchy--Schwarz in the Frobenius product, and an error along $\sym(u_iu_j^{\mathsf T})$ attains it. The constants depend only on the zero pattern and the labelling of the frame, because member coordinates are fixed on a stratum; the values in Section~\ref{sec:noise} are the maxima over all zero patterns with zero to three walls and all their labelled frames.\chk{z36} In a member's own frame the member is the standard superbase $(-e_1-e_2-e_3,e_1,e_2,e_3)$, whose largest constant, for $(-1,-1,-1)$ with $e_i$, is $\sqrt2$; hence the frame-free bound. With error covariance $\Sigma$ on the six independent metric entries, the variance of $p_{ij}$ is the quadratic form of $\Sigma$ on $\sym(u_iu_j^{\mathsf T})$, exact in any frame.
+
+%==============================================================================
+\section{Computational checks}
+%==============================================================================
+
+Each mark [z$nn$] refers to \texttt{manuscript/appendix\_z/test\_z$nn$\_*.py} in the \texttt{agentsg} repository.
+
+\begin{tabular}{ll}
+\toprule
+mark & what is checked \\
+\midrule
+z36 & shift identity; wall and slot constants over all zero patterns and frames; \\
+    & adversarial loss at $3\eta$; coverage bound; frame-free $\sqrt2\,\eta^*$ \\
+z44 & constants 4 and 8 (Lemma A4); class gap and excess on brute-force frames; \\
+    & Theorem 2 against brute force; grey zone; worked cell beyond the hypothesis \\
+z45 & reduction endpoints and restarts; walks on the measured metric (Table~1); \\
+    & depth ladder of the worked cell \\
+\bottomrule
+\end{tabular}
+
+\begin{references}
+\reference{Andrews, L. C. \& Bernstein, H. J. (2023). \emph{Acta Cryst.} A\textbf{79}, 485--498.}
+\reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2019). \emph{Acta Cryst.} A\textbf{75}, 593--599.}
+\reference{Conway, J. H. \& Sloane, N. J. A. (1992). \emph{Proc. R. Soc. London Ser. A}, \textbf{436}, 55--68.}
+\reference{Delone, B. N. (1932). \emph{Z. Kristallogr.} \textbf{84}, 109--149.}
+\reference{Kurlin, V. (2026). \emph{A complete isometry classification of 3-dimensional lattices.} Revised manuscript, April 2026. https://kurlin.org/projects/lattice-geometry/lattices3Dmaths.pdf.}
+\reference{Selling, E. (1874). \emph{J. Reine Angew. Math.} \textbf{77}, 143--229.}
+\end{references}
+
+\end{document}
