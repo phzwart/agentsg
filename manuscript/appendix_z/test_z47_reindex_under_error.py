@@ -5,7 +5,9 @@ error of Frobenius norm eta in R's frame, then reindexed by a random
 unimodular M. With the band tau at the coverage bound of the snapped
 stratum's closure: (i) N's reduced frame, written in R's coordinates, is a
 member of the cache; (ii) the true operator M is among the operators the
-single reduced frame proposes. (A cache built by snapping only at tau loses
+single reduced frame proposes; (iii) the a-priori certificate
+sqrt2 eta V / (lambda_min(G_R) - eta), with V the summed squared lengths of
+N's reduced basis, bounds the true frame's depth in R. (A cache built by snapping only at tau loses
 the true operator when N reduces into a hidden member; random errors here
 never do, and that case is constructed in test_z46.)
 """
@@ -83,6 +85,7 @@ def test_true_operator_is_proposed_under_declared_error():
             refs.append((name, p, unit))
     lost_by_tau_snap = 0
     trials = 0
+    certs, within = [], 0
     for name, p, unit in refs:
         GR = _gram(p)
         eta = 0.25 * unit
@@ -105,6 +108,13 @@ def test_true_operator_is_proposed_under_declared_error():
             assert _key(in_R) in keys, name                     # (i) a cached member
             true = tuple(np.round(M).astype(int).ravel())
             assert true in _proposed(cache, SN), name           # (ii) the true operator
+            # (iii) the a-priori certificate bounds the true frame's depth in R
+            lmin = np.linalg.eigvalsh(GR).min()
+            V = sum(SN[i] @ GN @ SN[i] for i in (1, 2, 3))
+            cert = 2 ** 0.5 * eta * V / (lmin - eta)
+            assert max(0.0, -_cn(in_R, GR).min()) <= cert + 1e-9
+            certs.append(cert / eta)
+            within += cert <= tau
             trials += 1
             lost_by_tau_snap += true not in _proposed(cache_tau, SN)
     assert trials == len(refs) * 12
@@ -112,3 +122,5 @@ def test_true_operator_is_proposed_under_declared_error():
     # tau-snap cache did not fail here; that failure is the constructed
     # case of test_z46_selling_groupoid
     assert lost_by_tau_snap == 0
+    # the certificate is valid but conservative (median about 13 eta)
+    assert 10 < float(np.median(certs)) < 16 and within == 15

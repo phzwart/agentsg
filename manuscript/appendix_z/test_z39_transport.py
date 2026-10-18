@@ -121,7 +121,7 @@ def test_three_level_candidate_spectrum():
 
     wide, lv1, lv2, bulk = spectrum(3.0 * eps)
     assert set(wide) == parent_sets               # overlap, and nothing else
-    assert (lv1, lv2) == (12, 0) and bulk > 1300.0
+    assert (lv1, lv2) == (12, 0) and 1377.0 < bulk < 1380.0
     assert len(_widened_members(DAUGHTER, 44.9)) == 6
     assert len(_widened_members(DAUGHTER, 45.1)) == 7
     wide, lv1, lv2, bulk = spectrum(60.0)
