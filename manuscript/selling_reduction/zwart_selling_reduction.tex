@@ -63,7 +63,16 @@ A Selling reduction does not work with three cell vectors but with four: the cel
 \[
 p_{ab}=-a\cdot b,\quad p_{ac}=-a\cdot c,\quad p_{bc}=-b\cdot c,\quad p_{ad}=-a\cdot d,\quad p_{bd}=-b\cdot d,\quad p_{cd}=-c\cdot d,
 \]
-are the \emph{conorms} (Selling, 1874; Conway \& Sloane, 1992). The superbase is \emph{obtuse}, which is to say Selling-reduced, when all six conorms are non-negative: every pair of the four vectors meets at $90^\circ$ or more. The metric tensor of the cell is a linear combination of the conorms, so the six conorms are an alternative set of six cell parameters.
+are the \emph{conorms} (Selling, 1874; Conway \& Sloane, 1992). The superbase is \emph{obtuse}, which is to say Selling-reduced, when all six conorms are non-negative: every pair of the four vectors meets at $90^\circ$ or more. The metric tensor of the cell is a linear combination of the conorms,
+\begin{equation}
+\Gmet=\begin{pmatrix}
+p_{ab}+p_{ac}+p_{ad} & -p_{ab} & -p_{ac}\\
+-p_{ab} & p_{ab}+p_{bc}+p_{bd} & -p_{bc}\\
+-p_{ac} & -p_{bc} & p_{ac}+p_{bc}+p_{cd}
+\end{pmatrix},
+\label{eq:gram}
+\end{equation}
+so the six conorms are an alternative set of six cell parameters, and a change to the conorms is a change to the cell with no basis vectors to reconstruct.
 
 Selling reduction is a repeated \emph{flip}. If a conorm is negative, say $p_{ab}<0$, replace $a$ by $-a$ and add the old $a$ to the two remaining vectors: the new superbase is $(-a,\ b,\ c+a,\ d+a)$. The flipped conorm changes sign and the total $p_{ab}+\dots+p_{cd}$ decreases, so the procedure stops, and it stops at an obtuse superbase. The same flip applied at a conorm that is exactly zero leads from one obtuse superbase to another obtuse superbase of the same lattice. This is the whole reason the reduced cell is not unique.
 
@@ -164,7 +173,7 @@ Only six zero patterns are possible, up to relabelling, if the four vectors of t
 
 \subsection{Measured cells: idealise, enumerate, filter}
 \label{sec:snap}
-A measured cell is first Selling-reduced to a superbase $F_0$. Its small conorms are then idealised: every conorm of $F_0$ that is at most $4\tau$ is set to zero, all of them at once, where $\tau$ is a band in \Ang$^2$ set from the measurement error (Appendix~B). This gives an idealised lattice, written $\Lambda^*$, with an exact zero pattern. Its exact closure is enumerated by flips at those zeros, keeping each member as integer combinations of the reduced cell vectors. Finally each member is evaluated with the \emph{measured} metric tensor, and the members whose six conorms are all at least $-\tau$ are kept. Equivalently, in terms of operators: the enumeration of $\Lambda^*$'s closure yields a list of integer changes of basis $\Wop_1,\dots,\Wop_m$ from the reduced cell to each member --- words in the six flips and the relabellings --- and these are applied to the \emph{measured} reduced cell; the superbases $F_0\Wop_k$ whose conorms under the measured metric are all at least $-\tau$ are the result. The operators are the same on $\Lambda^*$ and on the measured cell because they are integer matrices that do not involve the metric. The target of this procedure is the \emph{widened closure}
+A measured cell is first Selling-reduced to a superbase $F_0$. Its small conorms are then idealised: every conorm of $F_0$ that is at most $4\tau$ is set to zero, all of them at once, where $\tau$ is a band in \Ang$^2$ set from the measurement error (Appendix~B). Equation~(\ref{eq:gram}) turns the idealised conorms into a metric tensor $\Gmet^*$ in the same basis; this is the idealised lattice, written $\Lambda^*$, and it has an exact zero pattern. Its exact closure is enumerated by flips at those zeros, keeping each member as integer combinations of the reduced cell vectors. Finally each member is evaluated with the \emph{measured} metric tensor, and the members whose six conorms are all at least $-\tau$ are kept. Equivalently, in terms of operators: the enumeration of $\Lambda^*$'s closure yields a list of integer changes of basis $\Wop_1,\dots,\Wop_m$ from the reduced cell to each member --- words in the six flips and the relabellings --- and these are applied to the \emph{measured} reduced cell; the superbases $F_0\Wop_k$ whose conorms under the measured metric are all at least $-\tau$ are the result. The operators are the same on $\Lambda^*$ and on the measured cell because they are integer matrices that do not involve the metric. The target of this procedure is the \emph{widened closure}
 \begin{equation}
 \Sw(\Gmet)=\bigl\{\,F\;:\;\text{all six conorms of }F\text{ under }\Gmet\text{ are}\ \ge-\tau\,\bigr\},
 \label{eq:def}
@@ -276,7 +285,39 @@ idealise at $4\tau$, enumerate the exact closure, filter & 0 \\
 
 \emph{Where the easily missed members are.} The members that a walk misses have a recognisable form. Their most negative conorm is not one of the measured cell's small conorms but the \emph{difference} of two of them: a near-equality in the measured cell that is a near-zero in theirs. They occur only where three walls meet, as at an orthorhombic or cubic corner, and only when one small conorm $z$ is at most $\tau$ and the other, $y$, lies between $\tau$ and $z+\tau$; they never occur at the two-wall corner of a monoclinic or hexagonal cell.\chk{z46} They carry no symmetry: a lattice lying exactly on such a difference-wall has point group $\bar1$.\chk{z46} An easily missed member is simply another reduced cell within the band, and a second measurement of the same lattice can well reduce to it.
 
-\emph{One enumeration serves every band.} The idealised lattice changes only when $4\tau$ crosses one of the measured cell's conorms, so one enumeration of its closure serves a whole range of bands, with each member labelled by its depth. The measured worked cell has reduced conorms $(49.5, 1588.9, 2444.7, 4.2, 847.5, 4.5)$\,\Ang$^2$. Idealised at $4\times43.2$\,\Ang$^2$, all three small conorms become zeros, the idealised lattice is orthorhombic with sixteen members, and their depths in the measured metric are $0$, $4.2$, $4.5$, $4.5$, $8.7$, $8.7$, $45.0$, $49.5$, $49.5$, $53.7$ (four times), $57.9$, $62.5$ and $62.5$\,\Ang$^2$. The widened closure therefore has six members for any band between $8.7$ and $45.0$\,\Ang$^2$ --- the six members of the unperturbed cell's closure, written with the same integer coefficients --- seven at $45.1$, nine at $50$ and fourteen at $60$\,\Ang$^2$.\chk{z45}
+\emph{A worked filter.} Table~\ref{tab:filter} shows the whole procedure on the measured worked cell. Its reduced superbase has measured conorms $(49.5, 1588.9, 2444.7, 4.2, 847.5, 4.5)$\,\Ang$^2$ in the slots $da, db, dc, ab, ac, bc$. With $\tau=43.2$\,\Ang$^2$ the three conorms below $4\tau=172.8$ are set to zero, and equation~(\ref{eq:gram}) gives the idealised metric tensor: an orthorhombic cell with edges $\sqrt{847.5}=29.1$, $\sqrt{1588.9}=39.9$ and $\sqrt{2444.7+847.5}=57.4$\,\Ang\ (each squared edge is the sum of the three conorms of that vector, two of which have been set to zero for $a$ and $b$). Its exact closure, enumerated by flips at the three zeros, has sixteen members; the first column gives each as a word in the flips, the second its six conorms under the \emph{measured} metric tensor, obtained from the member's integer coordinates and the measured $\Gmet$ with no further reduction. The filter keeps a member when the smallest of those six numbers is at least $-\tau$. Nothing is inherited: a member is judged on its own six conorms, and several kept members have a parent on the walk that is rejected.\chk{z45}
+
+\begin{table}
+\caption{The filter on the measured worked cell ($30.02$, $39.97$, $50.03$\,\Ang, $90.25^\circ$, $92.05^\circ$, $89.80^\circ$). Each row is a member of the idealised lattice's closure, named by a word in the flips of Table~\ref{tab:flips} from the reduced cell $e$; the six numbers are its conorms under the measured metric tensor, in the slots $da, db, dc, ab, ac, bc$, in \Ang$^2$. ``Enters at'' is the band from which the member belongs to the widened closure, the negative of its smallest conorm. At $\tau=43.2$ the six members above the line are kept.}
+\label{tab:filter}
+\begin{footnotesize}
+\begin{tabular}{lrrrrrrr}
+\toprule
+word & $da$ & $db$ & $dc$ & $ab$ & $ac$ & $bc$ & enters at \\
+\midrule
+$e$ & 49.5 & 1588.9 & 2444.7 & 4.2 & 847.5 & 4.5 & 0 \\
+$ab$ & 851.7 & 1593.1 & 2440.6 & $-4.2$ & 53.7 & 8.7 & 4.2 \\
+$bc$ & 45.0 & 8.7 & 2449.3 & 1593.4 & 852.0 & $-4.5$ & 4.5 \\
+$ab.bc.db$ & 2453.8 & $-4.5$ & 847.5 & 1606.3 & 57.9 & $-4.2$ & 4.5 \\
+$ab.bc$ & 842.9 & 4.5 & 2449.3 & 1601.8 & 62.5 & $-8.7$ & 8.7 \\
+$bc.db$ & 2458.0 & $-8.7$ & 53.7 & 1602.1 & 843.3 & 4.2 & 8.7 \\
+\midrule
+$da$ & $-49.5$ & 2494.3 & 1638.4 & 53.7 & 897.0 & $-45.0$ & 49.5 \\
+$da.ab.bc$ & 942.0 & $-45.0$ & 1593.4 & 2556.7 & 12.9 & $-8.7$ & 45.0 \\
+$da.ab.ac$ & $-49.5$ & 2543.8 & 1588.9 & 954.9 & $-4.2$ & 12.9 & 49.5 \\
+$da.ab$ & 950.7 & 2548.0 & 1584.7 & $-53.7$ & 4.2 & 8.7 & 53.7 \\
+$ab.ac$ & 49.5 & 1539.3 & 2494.3 & 905.4 & $-53.7$ & 62.5 & 53.7 \\
+$bc.db.dc$ & 45.0 & 2511.7 & $-53.7$ & 1548.4 & 897.0 & 57.9 & 53.7 \\
+$ab.ac.bc.ac$ & 1610.5 & 959.1 & 2565.5 & $-4.2$ & $-8.7$ & $-53.7$ & 53.7 \\
+$da.ab.bc.ac$ & 2569.6 & $-57.9$ & 1606.3 & 954.9 & $-12.9$ & 4.2 & 57.9 \\
+$ab.ac.bc$ & $-12.9$ & 967.8 & 2556.7 & 1601.8 & 8.7 & $-62.5$ & 62.5 \\
+$ab.bc.ac$ & 1664.2 & $-57.9$ & 2511.7 & 905.4 & $-62.5$ & 53.7 & 62.5 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+Three things are visible in the table. First, the sign of a conorm belongs to the member: the reduced cell has $p_{ab}=+4.2$, the member reached by the flip $ab$ has $-4.2$ in that slot, and flipping again returns to $+4.2$. Second, the deeper members carry integer combinations of the three small conorms, $-(49.5+4.2)=-53.7$, $-(49.5-4.5)=-45.0$, $-(49.5+4.2+8.7)=-62.5$, and it is these combinations, not the measured conorms themselves, that decide when a member enters; the member $da$, whose entry at $45.0$ opens the near-orthorhombic symmetry, is a case of a difference. Third, one enumeration serves every band: the idealised lattice does not change until $4\tau$ reaches the next conorm, $847.5$\,\Ang$^2$, so the table gives the widened closure for every $\tau$ up to $211$\,\Ang$^2$ by reading off the last column --- six members for $8.7\le\tau<45.0$, which are the six members of the unperturbed cell's closure at the same integer coordinates, seven at $45.1$, nine at $50$, fourteen at $60$, sixteen from $62.5$.\chk{z45} The widened closure of Section~\ref{sec:measured} is therefore not recomputed when the band changes; it is re-read.
 
 \emph{Pseudo-symmetry has a price and a threshold.} The steps of the idealised lattice's closure are exact integer matrices, and its symmetries --- here the eight of $mmm$ --- are among them. Applied to the measured metric tensor they are not exact; each changes it by a residual, which is the \emph{price} of that pseudo-symmetry in \Ang$^2$. Members with the same depth enter the widened closure together, and the depth at which a member enters is the band at which the pseudo-symmetry it carries becomes visible: on the worked cell the members entering at $45.0$\,\Ang$^2$ are the ones that carry the near-orthorhombic twofolds. Within the band, the steps that join members, the steps through members just outside the band, and the priced symmetries together describe the measured cell completely; the structure is that of the idealised lattice, restricted to what the measurement can support.
 

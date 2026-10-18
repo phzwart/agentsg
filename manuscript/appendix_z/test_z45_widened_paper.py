@@ -126,3 +126,36 @@ def test_depth_ladder_of_the_worked_pair(superbases):
     for tau, n in ((43.2, 6), (44.9, 6), (45.1, 7), (50.0, 9), (60.0, 14)):
         truth, _ = _brute(superbases, Gf, tau)
         assert sum(d <= tau for d in depth) == len(truth) == n
+
+
+def test_worked_filter_table():
+    """Table 'filter' of the paper: the sixteen members of the idealised
+    closure of the measured worked cell, their conorms under the measured
+    metric (as sorted six-tuples) and their entry bands; idealised cell edges."""
+    import numpy as np
+    from agentsg.cell.canonical import canonical_superbase
+    from agentsg.cell.metric import UnitCell
+    G = np.array(UnitCell(*DAUGHTER).metric_tensor())
+    F0 = np.array(canonical_superbase(DAUGHTER)[0], float)
+    Gf = F0[1:4] @ G @ F0[1:4].T
+    p0 = _cn(np.array(S0, float), Gf)
+    assert np.allclose(p0, [49.54, 1588.88, 2444.74, 4.19, 847.47, 4.54], atol=0.01)
+    ps = np.where(p0 <= 4 * 43.2, 0.0, p0)
+    Gs = _gram(ps)
+    assert np.allclose(np.sqrt(np.diag(Gs)), [29.1, 39.9, 57.4], atol=0.05)
+    _, frames = _generate(p0, 4 * 43.2, 43.2)
+    rows = sorted((round(-min(_cn(S, Gf)), 1), tuple(np.round(sorted(_cn(S, Gf)), 1)))
+                  for S in frames.values())
+    enters = [r[0] for r in rows]
+    assert enters == [-4.2, 4.2, 4.5, 4.5, 8.7, 8.7, 45.0, 49.5, 49.5, 53.7, 53.7, 53.7, 53.7, 57.9, 62.5, 62.5]
+    table = {
+        (4.2, 847.5, 1588.9, 2444.7, 4.5, 49.5),
+        (-4.2, 8.7, 53.7, 851.7, 1593.1, 2440.6),
+        (-4.5, 8.7, 45.0, 852.0, 1593.4, 2449.3),
+        (-45.0, -49.5, 53.7, 897.0, 1638.4, 2494.3),
+        (-62.5, -57.9, 53.7, 905.4, 1664.2, 2511.7),
+    }
+    got = {r[1] for r in rows}
+    for t_ in table:
+        assert tuple(sorted(t_)) in got, t_
+    assert sum(e <= 43.2 for e in enters) == 6 and sum(e <= 60 for e in enters) == 14
