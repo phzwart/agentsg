@@ -196,3 +196,53 @@ def test_partial_snaps_are_nested_in_the_full_snap():
                 assert C <= full
                 union |= C
         assert union == full and len(full) == 16
+
+
+def test_primitive_monoclinic_worked_example(superbases):
+    """a = 30, b = 40, c = 50 A, beta = 100 deg: six members on a ring of
+    flips; the symmetries 1 and -1 are loops at the reduced cell, the 2-fold
+    and the mirror are arrows from it to the opposite member of the ring; no
+    frame outside the exact closure lies within a band below 260.5 A^2."""
+    import numpy as np
+    from agentsg.cell.canonical import canonical_superbase
+    from agentsg.cell.metric import UnitCell
+    from test_z44_widened_complete import SL, _brute, _flip
+    cell = (30, 40, 50, 90, 100, 90)
+    G = np.array(UnitCell(*cell).metric_tensor())
+    F0 = np.array(canonical_superbase(cell)[0], float)
+    assert np.allclose(F0[1:4], np.eye(3))                  # reduced basis = a, b, c
+    p0 = _cn(np.array(S0, float), G)
+    assert np.allclose(sorted(p0), [0, 0, 260.5, 639.5, 1600.0, 2239.5], atol=0.1)
+    _, mem = _generate(p0, 0.0, 1e18)
+    expected = {
+        "M0": [(-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1)],
+        "M1": [(0, -1, -1), (-1, 0, 0), (0, 1, 0), (1, 0, 1)],
+        "M2": [(-1, 0, -1), (1, 1, 0), (0, -1, 0), (0, 0, 1)],
+        "M3": [(1, 0, 1), (0, 1, -1), (0, -1, 0), (-1, 0, 0)],
+        "M4": [(1, -1, 1), (0, 0, -1), (0, 1, 0), (-1, 0, 0)],
+        "M5": [(1, -1, 0), (0, 0, 1), (0, 1, 0), (-1, 0, -1)],
+    }
+    name = {_key(np.array(v, float)): n for n, v in expected.items()}
+    assert set(mem) == set(name)
+    edges = set()
+    for k, S in mem.items():
+        q = _cn(S, G)
+        for n, (i, j) in enumerate(SL):
+            if abs(q[n]) < 1e-9:
+                edges.add(frozenset((name[k], name[_key(_flip(S, i, j))])))
+    ring = [("M0", "M1"), ("M1", "M5"), ("M5", "M4"), ("M4", "M3"), ("M3", "M2"), ("M2", "M0")]
+    assert edges == {frozenset(e) for e in ring}
+    targets = {}
+    for k, S in mem.items():
+        for pm in itertools.permutations(range(4)):
+            for sg in (1, -1):
+                W = (sg * S[list(pm)])[1:4].T
+                if np.allclose(W.T @ G @ W, G, atol=1e-7 * np.abs(G).max()):
+                    targets[tuple(np.round(W).astype(int).ravel())] = name[k]
+    assert targets == {(1, 0, 0, 0, 1, 0, 0, 0, 1): "M0", (-1, 0, 0, 0, -1, 0, 0, 0, -1): "M0",
+                       (-1, 0, 0, 0, 1, 0, 0, 0, -1): "M4", (1, 0, 0, 0, -1, 0, 0, 0, 1): "M4"}
+    for tau in (10.0, 100.0, 260.0):
+        truth, _ = _brute(superbases, G, tau)
+        assert truth == set(mem)                            # no near-wall frame yet
+    truth, _ = _brute(superbases, G, 261.0)
+    assert len(truth) > 6
