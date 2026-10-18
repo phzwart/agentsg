@@ -171,12 +171,10 @@ def test_classical_ambiguities_are_cell_shapes():
             shapes.setdefault(shape_of[k], S)
         n90 = sorted((_nice_cell(S, G)[1] for S in shapes.values()), reverse=True)
         assert n90 == expected[name], (name, n90)
-    # the primitive orthorhombic 30 x 40 x 50 cell: its three monoclinic-looking shapes
-    p = np.array([900., 1600., 2500., 0., 0., 0.])
+    # the primitive orthorhombic 30 x 40 x 55 cell: its three monoclinic-looking shapes
+    p = np.array([900., 1600., 3025., 0., 0., 0.])
     G = _gram(p)
     mem, orbit_of, shape_of, _ = _orbits_and_shapes(p, G)
     cells = sorted({tuple(np.round(_nice_cell(S, G)[0], 1)) for S in mem.values()})
-    assert (30.0, 40.0, 50.0, 90.0, 90.0, 90.0) in cells
-    assert (30.0, 40.0, 58.3, 90.0, 121.0, 90.0) in cells
-    assert (30.0, 50.0, 50.0, 90.0, 90.0, 126.9) in cells
-    assert (40.0, 50.0, 50.0, 90.0, 90.0, 143.1) in cells
+    assert cells == [(30.0, 40.0, 55.0, 90.0, 90.0, 90.0), (30.0, 40.0, 62.6, 90.0, 118.6, 90.0),
+                     (30.0, 50.0, 55.0, 90.0, 90.0, 126.9), (40.0, 50.0, 55.0, 90.0, 90.0, 143.1)], cells

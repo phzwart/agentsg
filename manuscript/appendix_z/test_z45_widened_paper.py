@@ -143,6 +143,10 @@ def test_worked_filter_table():
     ps = np.where(p0 <= 4 * 43.2, 0.0, p0)
     Gs = _gram(ps)
     assert np.allclose(np.sqrt(np.diag(Gs)), [29.1, 39.9, 57.4], atol=0.05)
+    # the idealised reduced cell is monoclinic-looking (beta 120.5); the orthogonal cell is (a, b, a+c)
+    assert abs(np.degrees(np.arccos(Gs[0, 2] / np.sqrt(Gs[0, 0] * Gs[2, 2]))) - 120.5) < 0.1
+    ac = np.array([1.0, 0.0, 1.0])
+    assert abs(np.sqrt(ac @ Gs @ ac) - 49.4) < 0.05 and abs(Gs[0] @ ac) < 1e-6 and abs(Gs[1] @ ac) < 1e-6
     _, frames = _generate(p0, 4 * 43.2, 43.2)
     rows = sorted((round(-min(_cn(S, Gf)), 1), tuple(np.round(sorted(_cn(S, Gf)), 1)))
                   for S in frames.values())
