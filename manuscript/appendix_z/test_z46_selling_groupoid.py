@@ -241,6 +241,13 @@ def test_primitive_monoclinic_worked_example(superbases):
                     targets[tuple(np.round(W).astype(int).ravel())] = name[k]
     assert targets == {(1, 0, 0, 0, 1, 0, 0, 0, 1): "M0", (-1, 0, 0, 0, -1, 0, 0, 0, -1): "M0",
                        (-1, 0, 0, 0, 1, 0, 0, 0, -1): "M4", (1, 0, 0, 0, -1, 0, 0, 0, 1): "M4"}
+    # M4 in its listed order (-c, b, -a) has a different metric tensor (conorms
+    # 639.5 and 2239.5 exchanged); in the twofold's order (-a, b, -c) the same one
+    M4 = np.array(expected["M4"], float)
+    assert not np.allclose(M4[1:4] @ G @ M4[1:4].T, G)
+    assert np.allclose(_cn(M4, G), [2239.5, 1600.0, 639.5, 0.0, 260.5, 0.0], atol=0.1)
+    twofold_order = np.array([[-1, 0, 0], [0, 1, 0], [0, 0, -1]], float)
+    assert np.allclose(twofold_order @ G @ twofold_order.T, G)
     for tau in (10.0, 100.0, 260.0):
         truth, _ = _brute(superbases, G, tau)
         assert truth == set(mem)                            # no near-wall frame yet
