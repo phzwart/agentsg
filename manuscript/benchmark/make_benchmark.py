@@ -108,10 +108,14 @@ def make_case(rnd, family, sort, p, eta, extra, cid, member_basis=None, E=None, 
     lam1 = lam1_of(p)
     tau = 3 * eta if tau is None else tau
     bt = {n: b for n, b, _ in SORTS}[sort]
+    from agentsg.cell.reduction import niggli_gk
+    nig, Mn = niggli_gk(tuple(cell_of(GN)))
     case = {
         "id": cid, "family": family, "sort": sort, "bravais": bt,
         "reference_cell": cell_of(GR), "reference_conorms": [float(x) for x in p],
         "measured_cell": cell_of(GN), "true_operator": M.astype(int).tolist(),
+        "measured_niggli_cell": [float(x) for x in nig],
+        "niggli_from_measured": np.array(Mn).astype(int).tolist(),
         "eta": float(eta), "tau": float(tau), "lambda1": float(lam1),
         "hypothesis_ok": bool(lam1 > 32 * tau),
         "expected": {"widened_members": brute_count(GR, tau), **extra},

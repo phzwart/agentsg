@@ -17,7 +17,10 @@ unimodular matrix), the true operator, the suggested band `tau = 3 eta`,
 | boundary | 9 | the boundary sorts O3, M2B, M3 |
 
 `true_operator` M satisfies `G_measured = M^T (G_reference + E) M` with the
-error E in the reference's reduced frame.
+error E in the reference's reduced frame. `measured_niggli_cell` is the
+Niggli-reduced measured cell (Grosse-Kunstleve, Sauter & Adams 2004) and
+`niggli_from_measured` the matrix N with `G_niggli = N^T G_measured N`, so the
+true operator from the Niggli cell to the reference frame is `M N`.
 
 ## Scoring
 
