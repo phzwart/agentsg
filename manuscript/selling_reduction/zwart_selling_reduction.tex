@@ -412,12 +412,36 @@ Completeness of the stored set matters. A new cell constructed so that its only 
 
 The band that makes the true operator one of the candidates can be stated in advance, under a hypothesis on the error expressed in the reference frame. If the new cell's metric tensor, carried to the reference frame by the true operator, is within $\eta$ of the reference's, if $\lambda_1>32\tau$ for the band below, and $V$ is the sum of the squared lengths of the new cell's three reduced vectors, then the band $\tau=\sqrt2\,\eta\,V/(\lambda_{\min}-\eta)$, with $\lambda_{\min}$ the smallest eigenvalue of the reference metric tensor, suffices (Proposition~3, Appendix~A); the frame-free bound of Appendix~B gives a version that does not refer to the operator. The guarantee held in all 180 cases but is conservative, with median $13\eta$ against a band near $3\eta$ that was in fact enough.\chk{z47}
 
+\subsection{Measured cells from powder indexing}
+\label{sec:conograph}
+Oishi-Tomiyasu (2012, 2024) gives an error-stable Bravais-lattice determination for a measured cell, with a proof of completeness under a bound on the error, and distributes seven measured primitive cells from powder indexing with her program's output: for each Bravais type, the cell of that type nearest to the input and its distance. The closure gives the same information without a search over types. Table~\ref{tab:conograph} treats each of the seven cells by Section~\ref{sec:snap} at the largest band the theorem allows, $\tau=\lambda_1/32$, and prices every operator out of the reduced cell in the closure of the idealised lattice; the price at which the number of operators reaches the order of a holohedry is the band at which that symmetry is offered.\chk{z51} In all seven cases the band idealises the walls of the type the sample was indexed as, and the type's holohedry is reached in the price ladder at a price of the same size as the program's distance, between $0.4$ and $2.5$ times it, with the same ordering of types: for the alumina sample, $\bar3m$ at $1.7$\,\Ang$^2$ against the program's $1.9$ and $m\bar3m$ at $9.2$ against $9.6$. The two measures differ in definition --- a distance to the nearest lattice of a type against the residual of the operators that generate the type --- so the numbers agree in order and size, not in value. Her test set of 4738 cells from a private database is not distributed; the seven cells are what is public.
+
+\begin{table}
+\caption{The seven sample cells of BLDConograph (Oishi-Tomiyasu, 2024) by the closure: Bravais type and name as distributed; members of the idealised closure at $\tau=\lambda_1/32$; the price in \Ang$^2$ at which the number of operators out of the reduced cell reaches the order of the type's holohedry, and of the next holohedry up where one is reached; the program's minimal distance to a cell of that type.\chk{z51}}
+\label{tab:conograph}
+\begin{footnotesize}
+\begin{tabular}{llrrrr}
+\toprule
+type & sample & members & price, type & price, next & distance \\
+\midrule
+tI & HERMES\_Sr327\_250K & 2 & 0.77 & 132.6 & 0.57 \\
+tP & 1339prbasrcuo\_bs1 & 16 & 0.10 & 26.0 & 0.056 \\
+cI & sample3 & 1 & 2.98 & -- & 2.07 \\
+cF & CeO2\_matsushita & 3 & 0.11 & -- & 0.084 \\
+hP & M402-pf-119673 & 6 & 22.5 & 196.1 & 20.5 \\
+mC & Acrinol-B-D8CuKa1 & 1 & 0.96 & 86.2 & 0.72 \\
+hR & Alumina676 & 3 & 1.69 & 9.18 & 1.93 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
 %==============================================================================
 \section{Discussion}
 \label{sec:discussion}
 %==============================================================================
 
-\emph{Relation to earlier work.} The ingredients are classical. Selling (1874) and Delone (1933) introduced the reduction and the sorts; Conway \& Sloane (1992) the conorm language and the identity used in Appendix~A; Kurlin (2026) the finiteness and enumeration of obtuse superbases; Andrews, Bernstein and Sauter the $S^6$ formalism in which the flips are the boundary transformations and distances are measured across them (Andrews \emph{et al.}, 2019; Andrews \& Bernstein, 2023). Delone obtained his sorts from patterns of zeros and equalities, so Section~\ref{sec:sorts} is a confirmation, not a discovery. What is added here is: the accounting of Table~\ref{tab:sorts}, which separates the symmetries visible in a reduced cell from those that are operators to other cells and shows that symmetries never cross between cell shapes; the widened closure with its uniqueness and union characterisation; the idealisation at $4\tau$ with its completeness theorem and the demonstration that walks from the measured cell are incomplete; and the reindexing guarantee from one reduced cell. In the language of algebra the closure is a groupoid --- objects, invertible arrows, consistent composition (Brandt, 1927; Brown, 2006) --- and the symmetries form the action groupoid of the point group on the members; nothing beyond the definitions is used.
+\emph{Relation to earlier work.} The ingredients are classical. Selling (1874) and Delone (1933) introduced the reduction and the sorts; Conway \& Sloane (1992) the conorm language and the identity used in Appendix~A; Kurlin (2026) the finiteness and enumeration of obtuse superbases; Andrews, Bernstein and Sauter the $S^6$ formalism in which the flips are the boundary transformations and distances are measured across them (Andrews \emph{et al.}, 2019; Andrews \& Bernstein, 2023). Delone obtained his sorts from patterns of zeros and equalities, so Section~\ref{sec:sorts} is a confirmation, not a discovery. Closest in aim is Oishi-Tomiyasu's error-stable Bravais-lattice determination (2012, 2024): a bound on the error under which a finite list of basis transforms is provably enough, which is the role $\lambda_1>32\tau$ plays here; she also names the failure that the hidden members of Section~\ref{sec:nearcong} resolve, a noisy cell that is nearly reduced while the true cell is not reduced in the same basis, and counts 336 transforms for a nearly face-centred cubic metric under Buerger reduction, where the closure has sixteen members. What is added here is: the accounting of Table~\ref{tab:sorts}, which separates the symmetries visible in a reduced cell from those that are operators to other cells and shows that symmetries never cross between cell shapes; the widened closure with its uniqueness and union characterisation; the idealisation at $4\tau$ with its completeness theorem and the demonstration that walks from the measured cell are incomplete; and the reindexing guarantee from one reduced cell. In the language of algebra the closure is a groupoid --- objects, invertible arrows, consistent composition (Brandt, 1927; Brown, 2006) --- and the symmetries form the action groupoid of the point group on the members; nothing beyond the definitions is used.
 
 \emph{Where reindexing has been hard.} The closure says in advance where two correct descriptions of one lattice can disagree. Within one sort it is the shapes of Table~\ref{tab:shapes}: each is a reduced cell of the lattice that a Selling reduction can return, and that a Niggli reduction with a tolerance (Grosse-Kunstleve \emph{et al.}, 2004) can return when a near-zero decides the other way; no symmetry relates two of them, and a comparison that applies only the symmetries of the cell it holds cannot reconcile them. The monoclinic $c$ versus $a+c$ choice is the oldest instance; the table shows it to be one of three, and Table~\ref{tab:special} shows the textbook lattice conditions themselves --- $a=c$ for a C-centred orthorhombic lattice hiding in a monoclinic cell, $c/a=\sqrt2$, $b=\sqrt3\,a$ --- to be single linear conditions on conorms, the monoclinic ones carried one per cell choice, and shows that primitive orthorhombic, tetragonal and cubic lattices carry the same kind of alternative, each a monoclinic-looking cell that becomes the reported cell when the orthogonal walls are not recognised. Across sorts it is the walls: a measured cell within $\tau$ of a wall idealises into a sort with more members, and each member that enters at a depth below $\tau$ carries, in the monoclinic example, the pseudo-twofold whose price is the perturbation. The widened closure holds both kinds of alternative at once, with a depth for each, so, under the condition of Theorem~2, a reindexing is a lookup in a finite table rather than a search whose completeness depends on the cell it started from; the cells reported by two programs, or two data sets, are compared by reducing each once and pairing against the stored members, and the operator found is correct up to the symmetries and pseudo-symmetries priced within the band. The one open edge is the strongly anisotropic cell at low angular precision, where the widened set outgrows any single closure and the brute-force window takes over.
 
@@ -493,6 +517,7 @@ z47 & reindexing under a declared error: membership, true operator, guarantee \\
 z48 & the 24 Delone sorts reproduced from six zero patterns \\
 z49 & bands per slot on needles and plates: exactness, the plate floor, detection of the failed hypothesis; the cell shapes of Table~\ref{tab:shapes} \\
 z50 & the 37 codimension-one specialisations between sorts and the shapes that carry them (Table~\ref{tab:special}) \\
+z51 & the seven BLDConograph sample cells: idealised closure, price ladder, comparison with the program's distances (Table~\ref{tab:conograph}) \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}
@@ -509,6 +534,8 @@ z50 & the 37 codimension-one specialisations between sorts and the shapes that c
 \reference{Kurlin, V. (2026). \emph{A complete isometry classification of 3-dimensional lattices.} Revised manuscript, April 2026. https://kurlin.org/projects/lattice-geometry/lattices3Dmaths.pdf.}
 \reference{Lebedev, A. A., Vagin, A. A. \& Murshudov, G. N. (2006). \emph{Acta Cryst.} D\textbf{62}, 83--95.}
 \reference{Le Page, Y. (1982). \emph{J. Appl. Cryst.} \textbf{15}, 255--259.}
+\reference{Oishi-Tomiyasu, R. (2012). \emph{Acta Cryst.} A\textbf{68}, 525--535.}
+\reference{Oishi-Tomiyasu, R. (2024). Ideas of lattice-basis reduction theory for error-stable Bravais lattice determination and ab-initio indexing. arXiv:2312.07909; code at https://github.com/rtomiyasu.}
 \reference{Selling, E. (1874). \emph{J. Reine Angew. Math.} \textbf{77}, 143--229.}
 \end{references}
 
