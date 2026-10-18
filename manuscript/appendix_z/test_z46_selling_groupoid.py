@@ -253,3 +253,81 @@ def test_primitive_monoclinic_worked_example(superbases):
         assert truth == set(mem)                            # no near-wall frame yet
     truth, _ = _brute(superbases, G, 261.0)
     assert len(truth) > 6
+
+
+def _orbits_and_shapes(p, G=None):
+    """Aut-orbits of the closure members, and distinct cell shapes (conorm
+    vectors up to relabelling)."""
+    import numpy as np
+    from test_z44_widened_complete import SL
+    G = _gram(p) if G is None else G
+    _, mem = _generate(p, 0.0, 1e18)
+    keys = list(mem)
+    idx = {k: i for i, k in enumerate(keys)}
+    aut = []
+    for S in mem.values():
+        for pm in itertools.permutations(range(4)):
+            for sg in (1, -1):
+                W = (sg * S[list(pm)])[1:4].T
+                if np.allclose(W.T @ G @ W, G, atol=1e-7 * np.abs(G).max()):
+                    aut.append(W)
+    parent = list(range(len(keys)))
+
+    def find(x):
+        while parent[x] != x:
+            x = parent[x]
+        return x
+    for k, S in mem.items():
+        for W in aut:
+            kk = _key(np.round(S @ W.T))        # rows are coordinate vectors; W acts on columns
+            assert kk in idx                   # a symmetry maps members to members
+            parent[find(idx[kk])] = find(idx[k])
+    orbit_of = {k: find(idx[k]) for k in keys}
+    I = {e: n for n, e in enumerate(SL)}
+    perms = [[I[tuple(sorted((g[a], g[b])))] for a, b in SL] for g in itertools.permutations(range(4))]
+    shape_of = {k: min(tuple(np.round(_cn(S, G), 6)[q]) for q in perms) for k, S in mem.items()}
+    return mem, orbit_of, shape_of, len(aut)
+
+
+def test_symmetry_orbits_are_the_distinct_cell_shapes():
+    """in every sort, two members are related by a symmetry iff they have the
+    same conorm vector up to relabelling; the number of Aut-orbits equals the
+    number of distinct reduced-cell shapes. mP: 6 members, 3 shapes,
+    {M0,M4}, {M1,M3}, {M2,M5}; 288 labelled steps out of M0, 4 symmetries;
+    the M1 shape is the cell 30, 40, 53.7 A, beta = 113.4 deg."""
+    import numpy as np
+    from agentsg.cell.metric import UnitCell
+    rnd = np.random.default_rng(3)
+    expected = {"C5": 2, "T5": 3, "O3": 2, "O4": 2, "O5": 4, "M2B": 2, "M3": 2,
+                "M4": 3, "A2": 2, "A3": 3}
+    for name, bt, pat in SORTS:
+        letters = sorted(set(pat) - {"0"})
+        val = dict(zip(letters, rnd.uniform(300, 2500, len(letters))))
+        s = [0.0 if ch == "0" else val[ch] for ch in pat]
+        p = np.array([s[3], s[4], s[5], s[2], s[1], s[0]])
+        mem, orbit_of, shape_of, naut = _orbits_and_shapes(p)
+        same_orbit = {(a, b) for a in mem for b in mem if orbit_of[a] == orbit_of[b]}
+        same_shape = {(a, b) for a in mem for b in mem if shape_of[a] == shape_of[b]}
+        assert same_orbit == same_shape, name
+        assert len(set(orbit_of.values())) == expected.get(name, 1), name
+    cell = (30, 40, 50, 90, 100, 90)
+    G = np.array(UnitCell(*cell).metric_tensor())
+    p0 = _cn(np.array(S0, float), G)
+    mem, orbit_of, shape_of, naut = _orbits_and_shapes(p0, G)
+    M = {n: _key(np.array(v, float)) for n, v in {
+        "M0": [(-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1)],
+        "M1": [(0, -1, -1), (-1, 0, 0), (0, 1, 0), (1, 0, 1)],
+        "M2": [(-1, 0, -1), (1, 1, 0), (0, -1, 0), (0, 0, 1)],
+        "M3": [(1, 0, 1), (0, 1, -1), (0, -1, 0), (-1, 0, 0)],
+        "M4": [(1, -1, 1), (0, 0, -1), (0, 1, 0), (-1, 0, 0)],
+        "M5": [(1, -1, 0), (0, 0, 1), (0, 1, 0), (-1, 0, -1)]}.items()}
+    pairs = [("M0", "M4"), ("M1", "M3"), ("M2", "M5")]
+    for a, b in pairs:
+        assert orbit_of[M[a]] == orbit_of[M[b]]
+    assert len(set(orbit_of.values())) == 3
+    assert 48 * len(mem) == 288 and naut == 4
+    S1 = mem[M["M1"]]
+    Gm = S1[1:4] @ G @ S1[1:4].T
+    a, b, c = np.sqrt(np.diag(Gm))
+    beta = np.degrees(np.arccos(Gm[0, 2] / (a * c)))
+    assert np.allclose([a, b, c, beta], [30.0, 40.0, 53.7, 113.4], atol=0.05)
