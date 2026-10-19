@@ -8,6 +8,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{graphicx}
 
 \newcommand{\Ang}{\text{\AA}}
 \newcommand{\Gmet}{\mathbf{G}}
@@ -127,7 +128,13 @@ $M_5$ & $a-b,\ c,\ b,\ -a-c$ & $M_1$, $M_4$ & \\
 \end{tabular}
 \end{table}
 
-The point group is $2/m$ and each of its four operations carries $M_0$ to a member (last column of Table~\ref{tab:mono}).\chk{z46} The identity and the inversion are swaps of $M_0$, visible in it. The twofold sends $(a,b,c)\mapsto(-a,b,-c)$ and so carries $(-a-b-c,a,b,c)$ to $(a-b+c,-a,b,-c)$: not a reordering of $M_0$ but the member $M_4$, three flips away, and the mirror does the same. Read in the twofold's order $M_4$ has the metric tensor of $(a,b,c)$; read in the order of Table~\ref{tab:mono} it has a different one, with $639.5$ and $2239.5$ exchanged. As a product, the twofold is the flips $ab$, $bc$, $db$ --- the path $M_0\to M_1\to M_5\to M_4$, which ends at $M_4$ in the labelling $(c,\ -a+b-c,\ -b,\ a)$ --- followed by the swap $-(a,c,b,d)$, which gives $(a-b+c,-a,b,-c)$; the mirror is the same flips with the swap $(a,c,b,d)$.\chk{z46} Half of the point group is therefore not visible in the reduced cell: it consists of operators between reduced cells. ``Visible'' means only that the operation reorders the reduced superbase; a search over lattice vectors, as Le Page's, finds the twofold either way, since it tests directions rather than relabellings.
+The point group is $2/m$ and each of its four operations carries $M_0$ to a member (last column of Table~\ref{tab:mono}).\chk{z46} The identity and the inversion are swaps of $M_0$, visible in it. The twofold sends $(a,b,c)\mapsto(-a,b,-c)$ and so carries $(-a-b-c,a,b,c)$ to $(a-b+c,-a,b,-c)$: not a reordering of $M_0$ but the member $M_4$, three flips away, and the mirror does the same. Read in the twofold's order $M_4$ has the metric tensor of $(a,b,c)$; read in the order of Table~\ref{tab:mono} it has a different one, with $639.5$ and $2239.5$ exchanged. As a product, the twofold is the flips $ab$, $bc$, $db$ --- the path $M_0\to M_1\to M_5\to M_4$, which ends at $M_4$ in the labelling $(c,\ -a+b-c,\ -b,\ a)$ --- followed by the swap $-(a,c,b,d)$, which gives $(a-b+c,-a,b,-c)$; the mirror is the same flips with the swap $(a,c,b,d)$.\chk{z46} Half of the point group is therefore not visible in the reduced cell: it consists of operators between reduced cells (Figure~\ref{fig:ring}a). ``Visible'' means only that the operation reorders the reduced superbase; a search over lattice vectors, as Le Page's, finds the twofold either way, since it tests directions rather than relabellings.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{figures/fig1_ring_and_depths.pdf}
+\caption{(a) The closure of the $100^\circ$ cell: six members on a ring, joined by flips at the two walls (edge labels are the flip in the labelling of Table~\ref{tab:mono}), coloured by cell shape; the twofold and the mirror carry $M_0$ to $M_4$ along three flips and a swap, so they are operators between members rather than relabellings. (b) The $92^\circ$ cell: the sixteen members of its idealised closure (Table~\ref{tab:filter}) by depth under the measured metric; the six of the ring enter below $9$\,\Ang$^2$, the ten members carrying the near-orthorhombic symmetry between $45$ and $62.5$\,\Ang$^2$, and the band $\tau$ selects among them. Placeholder drawing.}
+\label{fig:ring}
+\end{figure}
 
 \subsection{Delone sorts}
 \label{sec:sorts}
