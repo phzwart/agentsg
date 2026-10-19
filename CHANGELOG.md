@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.7
+
+- The cell database takes Crystallography Open Database entries next to the PDB ones: `CellDatabase.add_cod(path)` reads a COD table export (CSV/TSV) or a tree of COD CIFs and stores each cell as `COD<id>` with `source = 'cod'`, its esds (`sig_a` … `sig_gamma`) and chemical formula; rhombohedral-axes cells (`:R`) are treated as primitive. Existing rows are marked `source = 'pdb'`.
+- `pdb_search` hits and `pdb_lookup` report `source` (and `formula` when there is one).
+
 ## 0.3.6
 
 - The MX Agents landing page tells people to install the space-group agents locally and point a client at `127.0.0.1`, instead of linking to the public Muse and MCP hosts.

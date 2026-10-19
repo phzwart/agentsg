@@ -33,7 +33,7 @@
 Every statement in the main paper that can be verified by computation or simulation carries a mark $^{[\mathrm{S}n]}$ pointing to an entry below. Each entry states what is claimed, how to check it, and what result counts as confirmation. Function names refer to the accompanying implementation (\texttt{agentsg.cell}); the pseudo-code is enough to re-implement each check independently. Checks are of three kinds: \emph{exhaustive} (finite enumerations that settle the claim), \emph{symbolic} (polynomial identities), and \emph{empirical} (measurements on the data of the paper or on random samples, which confirm reported numbers but do not prove generic statements). Section, table, lemma and appendix numbers refer to the main paper.
 
 \sitem{z:reduction-step}{The Selling move and termination (symbolic + random)}
-Claim (Appendix A): the move $u_i=-v_i,\,u_j=v_j,\,u_k=v_i+v_k,\,u_l=v_i+v_l$ preserves the zero sum, permutes six vonorms, decreases $u_{ij}^2$ by $4\varepsilon$ with $\varepsilon=v_i\cdot v_j$, updates conorms by $q_{ij}=\varepsilon$, $q_{jk}=p_{jk}-\varepsilon$, $q_{jl}=p_{jl}-\varepsilon$, $q_{ik}=p_{il}-\varepsilon$, $q_{il}=p_{ik}-\varepsilon$, $q_{kl}=p_{kl}+\varepsilon$, so $\sum p$ drops by $\varepsilon$; and reduction terminates.
+Claim (Section 2.1; Appendix A): the move $u_i=-v_i,\,u_j=v_j,\,u_k=v_i+v_k,\,u_l=v_i+v_l$ preserves the zero sum, permutes six vonorms, decreases $u_{ij}^2$ by $4\varepsilon$ with $\varepsilon=v_i\cdot v_j$, updates conorms by $q_{ij}=\varepsilon$, $q_{jk}=p_{jk}-\varepsilon$, $q_{jl}=p_{jl}-\varepsilon$, $q_{ik}=p_{il}-\varepsilon$, $q_{il}=p_{ik}-\varepsilon$, $q_{kl}=p_{kl}+\varepsilon$, so $\sum p$ drops by $\varepsilon$; and reduction terminates.
 \begin{footnotesize}\begin{verbatim}
 symbolic: with sympy, declare v0..v3 as symbolic 3-vectors, impose v0=-(v1+v2+v3),
           form u as above, expand each q_ij - stated_expression -> must be 0.
@@ -45,7 +45,7 @@ random:   for 3000 random bases B: superbase V=[-(sum B), B0, B1, B2]
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:closure-count}{Closure sizes and class counts by Voronoi type (exhaustive)}
-Claim (Section 2.1, Table 1, Appendix A): 2/4/6/12/32 obtuse superbases in 1/2/3/3/4 classes for V1--V5; \texttt{selling\_superbase\_closure} reproduces the exhaustive set; the hexagonal lattice has one class.
+Claim (Section 2.2; Appendix A): 2/4/6/12/32 obtuse superbases in 1/2/3/3/4 classes for V1--V5; \texttt{selling\_superbase\_closure} reproduces the exhaustive set; the hexagonal lattice has one class.
 \begin{footnotesize}\begin{verbatim}
 for each type: pick conorms p (e.g. V1:(1,2,3,4,5,6); set the type's zeros),
     G = Gram from p, B = cholesky(G)
@@ -58,7 +58,7 @@ hexagonal (41.8,41.8,233,90,90,120): assert closure_class_count == 1, |closure| 
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:type-rule}{Voronoi type from the zero pattern (exhaustive)}
-Claim (Appendix A): 0 zeros $\to$ V1; 1 $\to$ V2; 2 on opposite edges $\to$ V3; 2 sharing a vertex $\to$ V4; 3 $\to$ V5, and other three-zero patterns cannot occur.
+Claim (Section 2.2; Appendix A): 0 zeros $\to$ V1; 1 $\to$ V2; 2 on opposite edges $\to$ V3; 2 sharing a vertex $\to$ V4; 3 $\to$ V5, and other three-zero patterns cannot occur.
 \begin{footnotesize}\begin{verbatim}
 for each type's test lattice: assert voronoi_type(cell) matches S2's class counts.
 impossibility: for the 3-zero patterns not of cuboid form (e.g. p01=p02=p03=0),
@@ -67,7 +67,7 @@ impossibility: for the 3-zero patterns not of cuboid form (e.g. p01=p02=p03=0),
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:pdb-types}{Which lattice types are common (empirical, PDB)}
-Claim (Section 2.1): monoclinic P is V4, orthorhombic P is V5, and V2--V5 cells are a large fraction of the PDB.
+Claim (Section 2.2): monoclinic P is V4, orthorhombic P is V5, and V2--V5 cells are a large fraction of the PDB.
 \begin{footnotesize}\begin{verbatim}
 construct monoclinic P (a,b,c,90,beta,90) and orthorhombic P cells: assert types 4 and 5.
 for all PDB cells: reduce, count zero conorms with a tolerance at the symmetry-
@@ -76,7 +76,7 @@ for all PDB cells: reduce, count zero conorms with a tolerance at the symmetry-
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:one-key}{One sorted key per lattice (exhaustive per lattice)}
-Claim (Section 2.2, Appendix B): every obtuse superbase of a lattice has the same sorted key, for all five types.
+Claim (Sections 3.5, 4.4; Appendix D): every obtuse superbase of a lattice has the same sorted key, for all five types.
 \begin{footnotesize}\begin{verbatim}
 for each test lattice of S2: keys = { sort(sqrt(conorms(C))) : C in brute closure }
     assert len(keys) == 1
@@ -85,7 +85,7 @@ also: cuboid given in odd basis (3,4,5,90,90,90) and even basis {v1,v3,v2-v1}:
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:trajectory}{Representative jumps, key does not (empirical, synthetic)}
-Claim (Sections 1, 2.2, 3.1; Appendix B): along the monoclinic series $a=120$, $b=189.1$, $\beta=91.2^\circ$, $c:150\to100$, the closure stays at 12 superbases. In the equal-perturbation test about $a=b$, reference $(40,40,60,90,91,90)$ against $\pm0.001$\,\Ang\ in $b$, the raw reduced distances are 0.080 and 118.5 and the sorted-key distances to the reference are both 0.0010. The earlier raw figure 83.7 is not the current result.
+Claim (Sections 1, 4.4; Appendix D): along the monoclinic series $a=120$, $b=189.1$, $\beta=91.2^\circ$, $c:150\to100$, the closure stays at 12 superbases. In the equal-perturbation test about $a=b$, reference $(40,40,60,90,91,90)$ against $\pm0.001$\,\Ang\ in $b$, the raw reduced distances are 0.080 and 118.5 and the sorted-key distances to the reference are both 0.0010. The earlier raw figure 83.7 is not the current result.
 \begin{footnotesize}\begin{verbatim}
 cells = [(120,189.1,c,90,91.2,90) for c in linspace(150,100,N)]
 for consecutive pairs: dS6 = |S6(cell_k) - S6(cell_k+1)|  (raw reduced scalars, fixed order)
@@ -96,7 +96,7 @@ Note: at c ~ a the Hoelder rate applies; report dkey/step there separately.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:lowerbound}{Lemma 1 (proof + random check)}
-Claim (Section 2.2, Appendix B): $\|\operatorname{sort}x-\operatorname{sort}y\|=\min_{S_6}\|x-\sigma y\|\le\min_{G}\|x-\sigma y\|$ for $G$ the image of $S_4$.
+Claim (Section 3.5; Appendix D): $\|\operatorname{sort}x-\operatorname{sort}y\|=\min_{S_6}\|x-\sigma y\|\le\min_{G}\|x-\sigma y\|$ for $G$ the image of $S_4$.
 \begin{footnotesize}\begin{verbatim}
 proof: rearrangement inequality (Appendix B).
 random: for 10^4 pairs x,y in R^6_{>=0}:
@@ -105,7 +105,7 @@ random: for 10^4 pairs x,y in R^6_{>=0}:
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:euclid}{The key metric is Euclidean; the $S_4$-orbit metric is not (random, Schoenberg)}
-Claim (Section 2.2, Appendix B): the key distance is the restriction of $\ell_2$ to a convex cone; the physically exact orbit metric cannot be isometrically embedded in any Euclidean space.
+Claim (Section 3.5; Appendix D): the key distance is the restriction of $\ell_2$ to a convex cone; the physically exact orbit metric cannot be isometrically embedded in any Euclidean space.
 \begin{footnotesize}\begin{verbatim}
 Schoenberg criterion: a finite metric (d_ij) embeds isometrically in some R^m iff
     K = -1/2 J D2 J is positive semidefinite, D2_ij = d_ij^2, J = I - 11^T/n.
@@ -119,7 +119,7 @@ observed: -2e-14 and -3.7 (against eigmax 80) respectively.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:fibre}{Collision multiplicities 30/15/1/4/1 and the explicit colliding pair (exhaustive)}
-Claim (Section 2.2, Table 1, Appendix B).
+Claim (Section 3.5; Appendix D).
 \begin{footnotesize}\begin{verbatim}
 for 300 random 6-tuples of distinct values (V1):
     arrangements = all 720 placements into the 2x3 coform
@@ -131,7 +131,7 @@ explicit pair: coforms [[1,2,3],[4,5,6]] and [[1,2,3],[4,6,5]]:
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:d7}{Sorted $D_7$ separates the generic fibre (empirical, random)}
-Claim (Appendix B).
+Claim (Appendix D).
 \begin{footnotesize}\begin{verbatim}
 for 300 random V1 coforms: for each of the 30 classes of S9 compute the 7 vonorms
     (v_i^2 = sum of the three conorms at vertex i; v_ij^2 = sum of the other four),
@@ -142,7 +142,7 @@ Also reproduce Kurlin Ex. 6.5: coforms (5,3,4,1,1,4) and (6,3,3,2,1,3) share the
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:noise}{Angular noise is linear in conorms and $\sqrt{\cdot}$-amplified on zero slots (empirical, simulation)}
-Claim (Section 2.3, Appendix C): $\sigma_{p_{ij}}\approx|v_i||v_j|\sigma_\theta$; a $0.01^\circ$ error moves the $P6_3$ key by $\approx1.4$--$1.6$\,\Ang\ versus $\approx0.03$\,\Ang\ for a generic cell.
+Claim (Section 3.5; Appendices B, D): $\sigma_{p_{ij}}\approx|v_i||v_j|\sigma_\theta$; a $0.01^\circ$ error moves the $P6_3$ key by $\approx1.4$--$1.6$\,\Ang\ versus $\approx0.03$\,\Ang\ for a generic cell.
 \begin{footnotesize}\begin{verbatim}
 cell = (41.8,41.8,233,90,90,120); r0 = sorted_root_key(cell)
 for sigma in (0.01,0.05,0.1) deg, 300 draws: perturb the three angles by N(0,sigma);
@@ -152,7 +152,7 @@ repeat for triclinic (41.8,55.2,73.1,81,97,112): expect ~0.3 A at 0.1 deg.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:stabilise}{Noise reduction by the three stabilised keys (empirical, simulation)}
-Claim (Section 2.3, Appendix C, Table 4).
+Claim (Appendix B).
 \begin{footnotesize}\begin{verbatim}
 as S11, with key in { sqrt(p), sqrt(p+s)-sqrt(s), sqrt(max(p-2s,0)), p/sqrt(T) },
     s = sigma_theta(rad) * T,  T = sum of conorms  (noise_floor(cell, sigma))
@@ -160,7 +160,7 @@ report the 3x4 table of median shifts; expect the ordering and magnitudes of Tab
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:floor-invariance}{$T$ is closure-invariant; per-pair floors are not (exhaustive per lattice)}
-Claim (Appendix C).
+Claim (Appendix B).
 \begin{footnotesize}\begin{verbatim}
 cuboid A=(3,4,5,90,90,90), even basis B={v1,v3,v2-v1}:
     assert sum(conorms(A)) == sum(conorms(B)) (=50)
@@ -170,7 +170,7 @@ cuboid A=(3,4,5,90,90,90), even basis B={v1,v3,v2-v1}:
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:coset}{Full-closure matching recovers the automorphism coset (exhaustive per lattice)}
-Claim (Sections 3.5, 3.7): oP vs itself $\to$ 8 operators (2 with class representatives); $P6_3$ cell vs itself $\to$ 24 (4 with representatives); oP odd vs even basis $\to$ 8 (0 with 24 relabellings only); every returned $\Pop$ is integer with $\det\pm1$ and satisfies the metric identity.
+Claim (Sections 3.2, 4.1; Appendix A): oP vs itself $\to$ 8 operators (2 with class representatives); $P6_3$ cell vs itself $\to$ 24 (4 with representatives); oP odd vs even basis $\to$ 8 (0 with 24 relabellings only); every returned $\Pop$ is integer with $\det\pm1$ and satisfies the metric identity.
 \begin{footnotesize}\begin{verbatim}
 ops = reindexing_via_canonical(cell_A, cell_B, boundary_rel=0)
 assert len(ops) == expected; for P in ops: assert P integer, |det P|=1, P^T G_A P == G_B
@@ -180,7 +180,7 @@ independent check: enumerate all integer P with |entries|<=2, keep those with
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:reindex-proc}{End-to-end reindexing to a reference recovers an arbitrary resetting (exhaustive + random)}
-Claim (Section 3.5): for a reference $R$ and $N$ = the same lattice in a random unimodular basis (with and without noise, with and without centering), the procedure of Section 2.4 returns a set of operators equal to $\Mop\cdot\mathrm{Aut}(R)$.
+Claim (Sections 3.3, 4.2): for a reference $R$ and $N$ = the same lattice in a random unimodular basis (with and without noise, with and without centering), the procedure of Section 2.4 returns a set of operators equal to $\Mop\cdot\mathrm{Aut}(R)$.
 \begin{footnotesize}\begin{verbatim}
 for R in {triclinic, monoclinic P, C-centred monoclinic, orthorhombic P, I-centred
           orthorhombic, tetragonal, hexagonal, cubic F} (exact cells):
@@ -199,7 +199,7 @@ Le Page comparison: repeat the Table 3 check --- for the monoclinic family with
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:coset-reps}{Which cosets $H/L$ contain a twofold (exhaustive over crystallographic point groups)}
-Claim (Appendix D): for index-2 pairs the non-trivial coset always contains an order-2 rotation; for higher index some cosets contain none.
+Claim (Section 3.3; Appendix C): for index-2 pairs the non-trivial coset always contains an order-2 rotation; for higher index some cosets contain none.
 \begin{footnotesize}\begin{verbatim}
 build the proper rotation groups 1,2,222,4,422,3,32,6,622,23,432 as integer matrices
 for each lattice group H in {222,422,622,432} and each subgroup G < H:
@@ -211,7 +211,7 @@ observed: 0 for every index-2 pair (222/2, 422/4, 422/222, 622/6, 622/32, 432/23
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:pseudo}{Pseudo-symmetry as cosets between closures (exhaustive per lattice + synthetic families)}
-Claim (Sections 2.5, 3.6; Appendix D): projecting $R$ onto a nearby stratum and self-matching over the closure gives $H^*\supseteq H$ exactly; the quotient reproduces the expected pseudo-symmetry with residual linear in the distance.
+Claim (Sections 3.2, 4.1; Appendix C): projecting $R$ onto a nearby stratum and self-matching over the closure gives $H^*\supseteq H$ exactly; the quotient reproduces the expected pseudo-symmetry with residual linear in the distance.
 \begin{footnotesize}\begin{verbatim}
 monoclinic family (120, 189.1, 120+d, 90, 91.2, 90), d in (0, 0.5, 1, 2, 4, 10):
     H  <- self-match(R)               -> order 4 (2/m incl. -I) for d > 0
@@ -228,7 +228,7 @@ in all cases: assert every P in H* is integer, |det|=1, and P maps the closure o
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:verify-tol}{Verification tolerance selects coset members under noise (empirical, simulation)}
-Claim (Section 3.7).
+Claim (Section 4.1).
 \begin{footnotesize}\begin{verbatim}
 two P6_3 frames with 0.05 deg angular noise (fixed seed):
     for verify_rel in (1e-6,1e-4,1e-3,1e-2): n = len(reindexing_via_canonical(A,B,...))
@@ -236,7 +236,7 @@ two P6_3 frames with 0.05 deg angular noise (fixed seed):
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:noisy-frames}{Noisy $P6_3$ frames are classified V4 and give the full coset with the angular tolerance (empirical, simulation)}
-Claim (Section 3.7).
+Claim (Section 4.1).
 \begin{footnotesize}\begin{verbatim}
 for sigma in (0.01,0.05) deg: A,B = independently perturbed frames
     assert voronoi_type(A, angle_sigma=sigma) == 4
@@ -244,7 +244,7 @@ for sigma in (0.01,0.05) deg: A,B = independently perturbed frames
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:lepage}{Table 3: Le Page gate drops the exchange, closure recovers it (empirical, synthetic)}
-Claim (Sections 2.4, 3.6; Table 3).
+Claim (Sections 3.2, 4.1).
 \begin{footnotesize}\begin{verbatim}
 family: monoclinic (a, b, c=a+d, 90, beta, 90) for d in (0,1,2,2.85,4,5,10)
 setting 2 = axes a<->c exchanged (exact integer relation P0 = [[0,0,1],[0,1,0],[1,0,0]] up to sign)
@@ -255,7 +255,7 @@ setting 2 = axes a<->c exchanged (exact integer relation P0 = [[0,0,1],[0,1,0],[
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:reindex-bench}{6960-matrix brute force vs a cached coset on 200 frames (empirical, benchmark)}
-Claim (Sections 2.4, 3.5): the reference closure is enumerated once. A rerun gives median 15\,ms per frame for the 6960-matrix baseline and median 75\,ms per frame for the cached procedure. The earlier figures 0.07\,ms and 330-fold are not this measurement.
+Claim (Sections 3.3, 4.2): the reference closure is enumerated once. A rerun gives median 15\,ms per frame for the 6960-matrix baseline and median 75\,ms per frame for the cached procedure. The earlier figures 0.07\,ms and 330-fold are not this measurement.
 \begin{footnotesize}\begin{verbatim}
 200 perturbed monoclinic frames straddling the reduction flip (fixed seed, stored):
     brute: for each frame, test all unimodular 3x3 with entries in {-1,0,1} (6960)
@@ -266,7 +266,7 @@ Claim (Sections 2.4, 3.5): the reference closure is enumerated once. A rerun giv
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:brute-complete}{When a $\{-1,0,1\}$ unimodular search is complete (stratum-wide machine proof + random + adversarial + implementation check)}
-Claim (Sections 2.2, 2.3, 4.3; Appendix D): (i) most random resettings need entries of magnitude 2 and are missed on unreduced input; (ii) between Niggli cells of one lattice every relating operator has entries in $\{-1,0,1\}$ (exact and noisy, eight lattice types, plus adversarial anisotropic and near-degenerate cases); (iii) proposition, machine-checked per Voronoi type and valid for every lattice: the closure in one superbase's integer coordinates is stratum-fixed (1/2/3/6/16 classes) and obtuse on the whole open stratum; between any two Selling-reduced settings some relating operator has entries in $\{-1,0,1\}$; the full coset escapes --- V4 self-cosets reach entry 2 (18/24 bases), V5 reach 2 (60/64) and cross-class pairs reach 3 --- while V1--V3 cosets never do (an earlier draft placed the escape in V3; that construction's counterpart cell was not reduced, and the corrected enumeration retires it); (iv) the Niggli reducer's change-of-basis must satisfy the metric identity; (v) between different lattices the radius-one truncation fails where the certificate radius exceeds 2.
+Claim (Sections 2.2, 3.1, 3.3, 4.2; Appendices A, C, E): (i) most random resettings need entries of magnitude 2 and are missed on unreduced input; (ii) between Niggli cells of one lattice every relating operator has entries in $\{-1,0,1\}$ (exact and noisy, eight lattice types, plus adversarial anisotropic and near-degenerate cases); (iii) proposition, machine-checked per Voronoi type and valid for every lattice: the closure in one superbase's integer coordinates is stratum-fixed (1/2/3/6/16 classes) and obtuse on the whole open stratum; between any two Selling-reduced settings some relating operator has entries in $\{-1,0,1\}$; the full coset escapes --- V4 self-cosets reach entry 2 (18/24 bases), V5 reach 2 (60/64) and cross-class pairs reach 3 --- while V1--V3 cosets never do (an earlier draft placed the escape in V3; that construction's counterpart cell was not reduced, and the corrected enumeration retires it); (iv) the Niggli reducer's change-of-basis must satisfy the metric identity; (v) between different lattices the radius-one truncation fails where the certificate radius exceeds 2.
 \begin{footnotesize}\begin{verbatim}
 (i)   200 random unimodular M with entries in [-2,2]: count max|entry| > 1  (observed 192/200)
 (ii)  for R in {oF(3,4,5), oI(3,4,5), cF, cI, hP(3,3,5), mP(120,189.1,120.3,90,91.2,90),
@@ -309,7 +309,7 @@ Claim (Sections 2.2, 2.3, 4.3; Appendix D): (i) most random resettings need entr
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:timing}{KD tree on 206\,214 PDB keys returns planted neighbours (empirical, benchmark)}
-Claim (Section 3.2): on the precomputed keys, cKDTree build is 0.044\,s and the median $k=10$ query is 0.010\,ms (Python 3.12, NumPy 2.5.3, SciPy 1.18.1). Earlier figures of 0.28\,s and 0.04\,ms are not this measurement. A radius query returns a planted neighbour.
+Claim (Section 4.4): on the precomputed keys, cKDTree build is 0.044\,s and the median $k=10$ query is 0.010\,ms (Python 3.12, NumPy 2.5.3, SciPy 1.18.1). Earlier figures of 0.28\,s and 0.04\,ms are not this measurement. A radius query returns a planted neighbour.
 \begin{footnotesize}\begin{verbatim}
 keys = [sorted_root_key(cell) for cell in PDB]   (report which key variant, exactly)
 tree = cKDTree(keys)                             # 206214 six-vectors
@@ -318,7 +318,7 @@ on a 3000-cell subset, plant a neighbour inside the query radius;
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:embedding}{Crystal systems occupy the predicted regions of the SVD key display (empirical, PDB)}
-Claim (Section 4.1, Fig.~2): the display is the leading three singular directions of the volume-normalised key matrix (a deterministic linear projection; no graph, optimiser or seed); crystal-system labels, unused in the construction, occupy coherent regions; the population's branches and junctions coincide with the exact Bravais skeleton overlaid in the same projection.
+Claim (Section 4.4): the display is the leading three singular directions of the volume-normalised key matrix (a deterministic linear projection; no graph, optimiser or seed); crystal-system labels, unused in the construction, occupy coherent regions; the population's branches and junctions coincide with the exact Bravais skeleton overlaid in the same projection.
 \begin{footnotesize}\begin{verbatim}
 X = keys / V^(1/3) for the archive; U S Vt = svd(X); display = X @ Vt.T[:, :3]
     (deterministic; distances in the display never exceed key distances)
@@ -333,7 +333,7 @@ script: manuscript/figures_src/make_fig_pdb.py (runs against the PDB snapshot)
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:audit}{Certified edges for selection embeddings (empirical, PDB selections)}
-Claim (Section 4.1): a selection's local picture is an Isomap of pairwise widened-closure distances in which every graph edge is checked by the interior-margin certificate, so the embedded distances are provably the ideal on certified edges; edges that fail the certificate are recomputed with the widened closure before use.
+Claim (Section 4.4): a selection's local picture is an Isomap of pairwise widened-closure distances in which every graph edge is checked by the interior-margin certificate, so the embedded distances are provably the ideal on certified edges; edges that fail the certificate are recomputed with the widened closure before use.
 \begin{footnotesize}\begin{verbatim}
 for the selection: D[i,j] = widened closure distance (boundary_rel at the
     noise scale); Isomap on D
@@ -356,7 +356,7 @@ low-rank filaments sit near one; higher-rank neighbourhoods approach six.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:lysozyme}{Lysozyme census numbers and the shrinkage coordinate (empirical, PDB)}
-Claim (Sections 2.6, 3.3): 1372 entries / 1361 with cells; 1152 $P4_32_12$, 100 $P2_12_12_1$, 59 $P2_1$, 41 $P1$; 1113 native-volume tetragonal cells spanning 26\% in volume; leading intrinsic coordinate vs shrinkage $|r|=0.92$; $a\in[76.8,80.0]$; $c$ steps near 37/38.
+Claim (Section 4.4): 1372 entries / 1361 with cells; 1152 $P4_32_12$, 100 $P2_12_12_1$, 59 $P2_1$, 41 $P1$; 1113 native-volume tetragonal cells spanning 26\% in volume; leading intrinsic coordinate vs shrinkage $|r|=0.92$; $a\in[76.8,80.0]$; $c$ steps near 37/38.
 \begin{footnotesize}\begin{verbatim}
 entries = PDB search UniProt P00698 (record the date); count cells and space groups.
 tetragonal subset: V = a^2 c; native-volume filter as stated; (max V - min V)/median V.
@@ -366,7 +366,7 @@ scatter a and c against the coordinate; report ranges and the c-value histogram.
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:xfel}{CXIDB 83 stream statistics and the orientation diagnostic (empirical)}
-Claim (Section 3.4): 14\,445 patterns, 12\,474 crystals, $P6_3$; $c$ median $233.3$, MAD $0.13$, maximum $245$\,\Ang. Beam within $10^\circ$ of $c^*$ ($n=141$): $c$ MAD $0.22$\,\Ang. Beam angle above $80^\circ$ ($n=2866$): $c$ MAD $0.083$\,\Ang. Ratio 2.6. The earlier scatters 1.53\,\Ang\ and 0.5\,\Ang\ are not this binning.
+Claim (Section 4.4): 14\,445 patterns, 12\,474 crystals, $P6_3$; $c$ median $233.3$, MAD $0.13$, maximum $245$\,\Ang. Beam within $10^\circ$ of $c^*$ ($n=141$): $c$ MAD $0.22$\,\Ang. Beam angle above $80^\circ$ ($n=2866$): $c$ MAD $0.083$\,\Ang. Ratio 2.6. The earlier scatters 1.53\,\Ang\ and 0.5\,\Ang\ are not this binning.
 \begin{footnotesize}\begin{verbatim}
 parse stream: count chunks and 'Cell parameters' records; read per-crystal cell and
     orientation matrix (astar,bstar,cstar).
@@ -377,7 +377,7 @@ theta = angle between beam direction and cstar; bins: theta<10 deg vs theta>80 d
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:linear-key}{The linear archive key: invariance, scaling, Lipschitz, rearrangement bound, pseudo-symmetric fidelity (exhaustive per lattice + synthetic + deposited pairs)}
-Claim (Sections 2.2, 2.3; Appendix C): one key per lattice over the full closure; $\mathrm{sort}(p/\sqrt{T})$ scales as length with the cube identity; Lipschitz where the square-root key is H\"older-$\tfrac12$; the sorted distance lower-bounds the aligned distance over the 24 relabellings; between pseudo-symmetric lattices the linear distance scales as $\delta$ where the square-root distance scales as $\sqrt\delta$; on the Scotty pairs the linear key reproduces NCDist's ranking and the square-root key reverses it --- NCDist values carry an arbitrary internal scale factor and are used only ordinally (cells and NCDist values from McCoy \emph{et al.}, 2026, Tables 1--5).
+Claim (Section 3.5): one key per lattice over the full closure; $\mathrm{sort}(p/\sqrt{T})$ scales as length with the cube identity; Lipschitz where the square-root key is H\"older-$\tfrac12$; the sorted distance lower-bounds the aligned distance over the 24 relabellings; between pseudo-symmetric lattices the linear distance scales as $\delta$ where the square-root distance scales as $\sqrt\delta$; on the Scotty pairs the linear key reproduces NCDist's ranking and the square-root key reverses it --- NCDist values carry an arbitrary internal scale factor and are used only ordinally (cells and NCDist values from McCoy \emph{et al.}, 2026, Tables 1--5).
 \begin{footnotesize}\begin{verbatim}
 closure invariance: for each V1-V5 test lattice, every member of the brute-force
     closure gives the same sort(p/sqrt(T))            (one key, all five types)
@@ -396,7 +396,7 @@ Scotty cells: 1fe5->1u4j 2.72, 1fe5->1g2x 2.87, 4nl7->2yht 5.43 A
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:skeleton}{The Bravais skeleton of the normalised key space: points, nexus, seams (exhaustive per structure + coarse scan)}
-Claim (Section 4.1, Table 5): the three cubic lattices are fixed points; cP is a quintuple nexus; hR meets tI at exactly cI and cF, fed by oI and oF respectively; hP runs beside hR under the 3:1 aspect pairing and tP beside tI under the 2:1 pairing; the tetragonal curves are farthest apart near the cubic points.
+Claim (Section 4.4): the three cubic lattices are fixed points; cP is a quintuple nexus; hR meets tI at exactly cI and cF, fed by oI and oF respectively; hP runs beside hR under the 3:1 aspect pairing and tP beside tI under the 2:1 pairing; the tetragonal curves are farthest apart near the cubic points.
 \begin{footnotesize}\begin{verbatim}
 normalised key: k = sort(p / sqrt(T)) / V^(1/3),  T = sum of conorms
 fixed points: cP = (0,0,0,0.5774 x3); cI = (0.2572 x6); cF = (0,0,0.3969 x4)
@@ -416,7 +416,7 @@ separations: d(cP, tI curve) = 0.50; d(cI, tP curve) = 0.71
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:closure-metric}{The closure minimum is a congruence statistic, not a similarity metric (random + constructed + deposited pairs)}
-Claim (Sections 2.2, 2.4; Appendix D): the key lower-bounds the closure-aligned minimum; between different lattices that minimum is a face-discontinuous upper bound; widened matches are not bounded by the key; the interior margin condition certifies exactness.
+Claim (Section 3.1; Appendix C): the key lower-bounds the closure-aligned minimum; between different lattices that minimum is a face-discontinuous upper bound; widened matches are not bounded by the key; the interior margin condition certifies exactness.
 \begin{footnotesize}\begin{verbatim}
 random pairs (N = 120, seeded): sorted key <= closure minimum in every case
     (0 violations); equality in 1 of 120; ratio median 1.14, max 4.9
@@ -434,7 +434,7 @@ interior pairs (N = 40): widening improved the minimum in 3 cases; assert
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:guarantee}{Guarantee under the noise model: retrieval, coverage, coset, soundness (all five Voronoi types + failure onset)}
-Claim (Sections 2.4; Appendix D): with radius, zero tolerance and residual at stated multiples of one conorm noise scale, two noisy measurements of one lattice are retrieved and yield the full exact coset; setting a tolerance below its multiple produces the partial-coset failure.
+Claim (Section 3.3; Appendix B): with radius, zero tolerance and residual at stated multiples of one conorm noise scale, two noisy measurements of one lattice are retrieved and yield the full exact coset; setting a tolerance below its multiple produces the partial-coset failure.
 \begin{footnotesize}\begin{verbatim}
 for each Voronoi type V1..V5 test cell, angular noise sigma = 0.02 deg,
     fixed seed, two independently noised copies:
@@ -450,7 +450,7 @@ failure onset (P6_3 cell, sigma = 0.05 deg): operator counts at
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:deformation}{The ideal: certified, symmetrised deformation distance (constructed + deposited pairs + random ladder check)}
-Claim (Section 2.2, Table 6): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; the minimiser is nearly obtuse --- at value $D$ its frame's superbase conorms in the anchor's reduced coordinates are $\ge-\sqrt3 D$, which collapses the $\mathrm{GL}(3,\mathbb Z)$ minimisation into the widened closure; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
+Claim (Sections 3.1, 3.4; Appendix C): the minimum-norm deformation to congruence is attained and certified by the data-sized integer ball; the minimiser is nearly obtuse --- at value $D$ its frame's superbase conorms in the anchor's reduced coordinates are $\ge-\sqrt3 D$, which collapses the $\mathrm{GL}(3,\mathbb Z)$ minimisation into the widened closure; it is continuous through Selling faces; the directed values are asymmetric and the report symmetrises them; every ladder rung upper-bounds it.
 \begin{footnotesize}\begin{verbatim}
 implementation: agentsg.cell.deformation.deformation_distance
 ball counts: entries <= 1 -> 6 960 unimodular of 19 683 candidates;
@@ -476,7 +476,7 @@ near-obtuseness lemma: random reduced pairs (seeded; anchors verified
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:declared-error}{Relating reduced cells under a declared error radius (Scotty bases + seeded sweeps)}
-Claim (Sections 2.2, 4.4, Table 7): with the error model $\Gmet'=\Gmet_{\rm Niggli}+D\,E$, $E$ random symmetric with $\|E\|_F=1$ (the ideal's norm, so $D$, $\sqrt3 D$ and $R(D)$ are commensurate), the Niggli basis jumps chambers in more than half of directions already at $D=20$\,\Ang$^2$ on 2yht; the radius-one ball and the widened closure both recover a value $\le D$ in every run; the ball's certificate $R(D)<2$ is the anisotropy budget $D_{\max}=4\lambda_{\min}-\lambda_{\max}$, negative for 7 of the 17 Scotty bases (both lysozyme cells, 5wey, and all four GabD cells), on which it certifies nothing at any error level; the widening certificate at $\sqrt3 D$ is anisotropy-independent.
+Claim (Sections 3.3, 3.4, 4.3; Appendix C): with the error model $\Gmet'=\Gmet_{\rm Niggli}+D\,E$, $E$ random symmetric with $\|E\|_F=1$ (the ideal's norm, so $D$, $\sqrt3 D$ and $R(D)$ are commensurate), the Niggli basis jumps chambers in more than half of directions already at $D=20$\,\Ang$^2$ on 2yht; the radius-one ball and the widened closure both recover a value $\le D$ in every run; the ball's certificate $R(D)<2$ is the anisotropy budget $D_{\max}=4\lambda_{\min}-\lambda_{\max}$, negative for 7 of the 17 Scotty bases (both lysozyme cells, 5wey, and all four GabD cells), on which it certifies nothing at any error level; the widening certificate at $\sqrt3 D$ is anisotropy-independent.
 \begin{footnotesize}\begin{verbatim}
 budgets: for each Scotty base (primitive, Niggli-reduced): D_max = 4 lmin - lmax
     of the Niggli Gram; assert the negative set is exactly
@@ -500,7 +500,7 @@ anisotropic column search (P6_3 needle (41.8, 41.8, 233, 90, 90, 120) vs
 \end{verbatim}\end{footnotesize}
 
 \sitem{z:ca-benchmark}{Carbonic anhydrase II: one protein, one deformed family (1065 deposited cells)}
-Claim (Section 4.5): the 1065-entry carbonic anhydrase list is retrieved by one sorted-key ball of radius 2.5\,\Ang\ around 1CA2; it is a single continuously deformed crystal form (1062 $P2_1$ + 3 $P1$, one component at radius 0.5\,\Ang); the medoid 4L5V has positive anisotropy budget ($\approx1155$\,\Ang$^2$); on seeded pairs the radius-one ideal is certified and the interior margin makes the closure minimum exactly the ideal; strains run from $\sim$1\% (median) to 10.3\% (6BBS, certified at 639\,\Ang$^2$).
+Claim (Section 4.3): the 1065-entry carbonic anhydrase list is retrieved by one sorted-key ball of radius 2.5\,\Ang\ around 1CA2; it is a single continuously deformed crystal form (1062 $P2_1$ + 3 $P1$, one component at radius 0.5\,\Ang); the medoid 4L5V has positive anisotropy budget ($\approx1155$\,\Ang$^2$); on seeded pairs the radius-one ideal is certified and the interior margin makes the closure minimum exactly the ideal; strains run from $\sim$1\% (median) to 10.3\% (6BBS, certified at 639\,\Ang$^2$).
 \begin{footnotesize}\begin{verbatim}
 data: agentsg/tests/data/ca_cells.csv -- pdb, sg, cell for the user-supplied
     1065 codes; cells and space groups from the PDB snapshot
@@ -531,6 +531,181 @@ strain mode (same subsample): PCA of the 6-component strain tensors vs the
     medoid has first-mode share > 0.6 (full set 0.79/0.10/0.06); MDS of
     certified ideal distances on a stratified n=112 subsample puts 84% of
     variance on one axis [Figure: fig_ca].
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:overlap}{Coverage and clipping: the exact shift identity, its frame dependence, and the coverage bound}
+Claim (Section 2.4; Appendix B): a conorm shifts by exactly $-u_i^{\sf T}\Delta\Gmet\,u_j$, at most $c_{ij}\eta$ with $c_{ij}=\|\mathrm{sym}(u_iu_j^{\sf T})\|_F$; every exact member is a widened member of the perturbed lattice iff $\tau\ge\tau_{\rm cov}$; $\tau=3\eta$ suffices except in six of the sixteen labelled cuboid frames ($2\sqrt3$); frame-free, $\tau=\sqrt2\,\eta^*$; every widened frame is an exact obtuse superbase of the clipped lattice within $2\sqrt6\,\tau$.
+\begin{footnotesize}\begin{verbatim}
+identity: Delta p_ij = -u_i^T dG u_j exactly, for every member, slot and
+    random symmetric dG
+wall constants over every zero pattern and labelled frame (0 to 3 zeros):
+    <= sqrt 5, except cuboid frames whose zeros form a path with
+    v0 = -(v1+v2+v3) interior: 2 sqrt 3 = 3.46; member vectors carry
+    entries up to 3 (the stratum proposition bounds coset operators,
+    not member vectors)
+adversarial dG of norm eta along sym(u_i u_j^T) in such a frame: a member
+    falls to -3.46 eta, outside tau = 3 eta; tau_cov read off the
+    closure covers it and 20 random dG per pattern
+frame-free: with eta* = max over members and labellings of ||U^T dG U||_F,
+    every shift <= sqrt 2 eta* (standard superbase constant); eta* is
+    median 2.8x and up to 17x the reduced-frame eta
+random overlap: for each type V1..V5 (seeded cells, random symmetric E,
+    eps = 1% of ||G||): every parent closure member has daughter
+    conorms >= -3 eps (observed worst 0.93 eps over 20 cases)
+clipping: near-wall cell (two small conorms): for every widened member with
+    a negative conorm, clip negatives to zero in the member frame; the
+    standard superbase is exactly obtuse under the clipped Gram, the Gram
+    is positive definite, and the move is <= 2*sqrt(6) * (2*tau)
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:align-coset}{Alignment ambiguity is one coset of the $\varepsilon$-automorphisms (pseudo-symmetric self-match)}
+Claim (Section 3.2; Appendix C): alignments within $\varepsilon$ of optimal form the coset $\Pop_0\,\mathrm{Aut}_{2\varepsilon}$; uniqueness iff $2\varepsilon$ is below the pseudo-symmetry margin $s(B)$, which scales linearly with the distance to the stratum; the returned band is group-closed.
+\begin{footnotesize}\begin{verbatim}
+B = (50, 70, 60, 90, 90 + delta, 90), matched against itself:
+    tight band: |ops| = 4 (exact 2/m), residuals < 1e-6
+    band past the margin (boundary_rel 0.05, verify_rel 2e-2): |ops| = 8
+    (pseudo-mmm); margin = extra operators' residual, linear in delta:
+    296 A^2 at delta = 2 deg, 29.6 at 0.2 deg (assert in (250,350)/(25,35))
+    group closure: max over pairs of ||(Pi^-1 Pj)^T G (Pi^-1 Pj) - G||
+    <= 2 x the accepted band
+    uniqueness criterion: at delta = 2, a band below the margin still
+    returns exactly 4
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:isometry}{On one-chamber families the key is exact, not a bound (serial-data regime)}
+Claim (Sections 3.5, 4.4; Appendix D): if every member's conorms deviate from a reference's by less than $\delta < \min(m,g)/2$ (margin $m$, smallest conorm gap $g$), the key distance equals the exact aligned distance for every pair, the fibre is trivial on the family, and the margin certificate holds pairwise; violating only the gap condition leaves a bounded underestimate, never an overestimate.
+\begin{footnotesize}\begin{verbatim}
+exact case: reference conorms (10, 14, 18, 22, 26, 30) (margin 10, gap 4),
+    delta = 1.5, 25-member family (seeded): for sampled pairs,
+    |key distance - aligned distance| < 1e-9; closure value below every
+    positive normalised conorm of both cells (margin certificate holds)
+gap violation: reference (10, 14, 18, 21, 21.5, 30) (gap 0.5 < 2 delta):
+    over 60 seeded pairs the key never exceeds the aligned distance;
+    swaps occur; worst slack < 4 delta / sqrt(sum p)
+consequence: N cells in one chamber need N reductions and vector
+    arithmetic for their entire pairwise geometry; near-tied conorms are
+    repaired at the same O(N) cost by aligning once to the cached
+    reference and using Euclidean distances on aligned vectors
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:transport}{Alignment is whole-set: COB transport and the band-dependent candidate spectrum}
+Claim (Sections 2.3, 2.5, 3.1; Appendix A): an operator accepted by the closure match aligns the entire closure, inducing a bijection $\sigma$ of members that conjugates the internal change-of-basis web, $W'_{\sigma(i)\sigma(j)}=P\,W_{ij}\,P^{-1}$; the member-pair residual spectrum shows the distance and the bulk, and the pseudo-symmetry margin $s(B)$ appears once the band crosses the pseudo-wall.
+\begin{footnotesize}\begin{verbatim}
+cells: parent (30, 40, 50, 90, 92, 90) (on two Selling walls; exact
+    closure 6 members mod S4 x +-, all coordinates in {-1, 0, 1});
+    daughter (30.02, 39.97, 50.03, 90.25, 92.05, 89.80):
+    eps = ||dG||_F = 14.4 A^2, tau = 3 eps = 43.2 A^2
+widening (by definition, all conorms >= -tau): daughter exact closure
+    has 1 member; widened closure at tau = 43.2 has exactly the six
+    parent members at the same integer coordinates; 6 members up to
+    tau = 44.9, 7 at 45.1 (first frame across the pseudo-wall,
+    depth 49.54 - 4.54 = 45.0), 14 at tau = 60
+spectrum at tau = 43.2: 6 x 6 pairs, canonical S4 x +- labelling, one
+    operator P per pair, residual ||P^T G_D P - G_P||_F: twelve pairs
+    at 14.4 (= eps; 4 distinct operators, the exact 2/m coset),
+    nothing below 1378
+spectrum at tau = 60: 6 x 14 pairs: twelve at 14.4, ten at 150.7
+    (= s(B): pseudo-mmm, proposed only via the non-parent members),
+    remainder >= 992
+transport: the twofold along b permutes the six members as
+    (1 2)(3 4)(5 6) and W'_{s(i)s(j)} = P W_ij P^{-1} holds for every
+    member pair; the COB linking members 1->3 equals that linking 2->4
+worked-example table: all six parent members carry the conorm multiset
+    (0, 0, 52.35, 847.65, 1600, 2447.65) and the one sorted linear key
+    (0, 0, 0.744, 12.051, 22.747, 34.798)
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:sym-profile}{The self-spectrum is a symmetry-distance profile (rung = twice the symmetrisation price)}
+Claim (Section 3.2; Appendix C): every rung of the ideal self-spectrum sits at twice the minimum-norm symmetrisation cost onto the stratum where that operator becomes exact (exactly for involutions, by the reflection identity); wall strata give the reduction-setting ("Selling jump") operators and tie strata the pseudo-symmetry operators, so one ladder covers both.
+\begin{footnotesize}\begin{verbatim}
+daughter (30.02, 39.97, 50.03, 90.25, 92.05, 89.80) vs itself:
+    tight band: 2 ops (1, -1), residual 0
+    next band: 4 ops, new rung 27.4 = 2 x 13.7 (constrained cost of
+        zeroing G12, G23: the monoclinic wall stratum) within 2%
+    wide band: 8 ops, new rungs 152.4-153.9 = 2 x 77.2 (cost of
+        zeroing all off-diagonals: mmm) within 2%
+involution identity: for every accepted non-trivial operator,
+    residual = 2 x ||G - (G + Q^T G Q)/2|| to machine precision
+parent (30, 40, 50, 90, 92, 90): the single constraint p13 = 0 costs
+    sqrt(2) x 52.349 = 74.03 = s(B)/2 (s(B) = 148.1 from the pseudo
+    band), lands exactly on (30, 40, 50, 90, 90, 90), all eight mmm
+    operators exact afterwards, closure grows 6 -> 16 members
+conorm patterns: reduced sorted conorms of mP (30,40,50,90,92,90),
+    oP, tP, hP (c = 50), cP, cF, cI (edge 30) reproduce the table of
+    zero and tie patterns to 0.05 A^2
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:nexus}{The Bravais skeleton from stacked conorm constraint lists}
+Claim (Sections 3.2, 4.4; Appendix C): each Bravais family is the solution set of a list of linear constraints on the conorms (zeros and ties, on whole relabelling orbits); two families meet where their stacked lists have a common solution, positive-definite at a nexus and only singular at a seam.
+\begin{footnotesize}\begin{verbatim}
+constraint lists read off generic reduced cells of cP, cI, cF, tP, tI,
+    hP, hR, oP, oI, oF, oC (several parameter draws per family, deduplicated
+    under S4); solution sets in the obtuse cone by linear programming
+family dimensions: cubic 1, tetragonal / hexagonal / rhombohedral 2,
+    orthorhombic 3 -- every reduced pattern of every family
+nexus: tP + hR -> exactly one positive-definite ray, the cP point
+    (0, 0, 0, 0.577 x3); tI + hR -> exactly two, cI (0.257 x6) and cF
+    (0, 0, 0.397 x4) -- volume-normalised key coordinates
+seams: hP + hR and tP + tI -> no positive-definite common solution,
+    common solutions only where det G = 0 (infinite axial ratio)
+edges: oC + tP, oI + tI, oF + tI -> common two-dimensional faces
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:s6dist}{How an S6 distance relates to closure matching (CS6Dist)}
+Claim (Appendix A): one boundary transformation per zero face reaches every closure orbit; a one-sided search over an exact closure fails where two-sided matching or a widened one-sided search succeeds; CS6Dist is two-sided and near-face, never exceeds the exact-closure straight-segment bound, and is a partial widening.
+\begin{footnotesize}\begin{verbatim}
+orbit reach (pure Python): V2, V3, V4, V5 test lattices have 2, 3, 3, 4
+    relabelling orbits; one Selling move at each zero face of the reduced
+    superbase, with the 24 relabellings, reaches all of them
+one-sided trap, worked pair (30,40,50,90,92,90) vs its nudge (eta 14.4):
+    parent's reduced cell vs daughter's exact closure 1126.7; both exact
+    closures 13.4; parent's reduced cell vs daughter's widened closure 14.5
+CS6Dist (compiled from github.com/yayahjb/ncdist; runs when NCDIST_DIR is
+    set, skipped otherwise): worked pair 13.35; relabelled self 0;
+    S6MS on-face mirrors orthogonal; S6MSX unreductions max singular
+    value phi^2 = 2.618
+bracket, 960 trials (cP oP tP hP mP aP cF cI x noise 1e-4, 1e-3, 5e-3
+    x 40 noisy reindexed copies): CS6Dist never exceeds the straight
+    segment between exact closure points; often below the reduced key
+    bound (its unreduction reaches unreduced presentations)
+partial widening: against the full widened chord minimum, median ratio
+    1.0-1.7 and maximum about 3.4 near two or three walls; bounded, no jumps
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:single-frame}{A new cell needs no closure: one reduced frame against the cached reference, coset copied}
+Claim (Section 3.3; Appendix E): against a reference whose widened closure is cached (one frame per labelling class), one Selling-reduced frame of a new cell recovers the setting; the coset is copied from the reference's self-match as Aut(R) P0 and equals full two-sided matching.
+\begin{footnotesize}\begin{verbatim}
+cache: widened closures of oP (30,40,50) and cP (30) hold 384 labelled
+    frames, 16 labelling classes
+setting recovery: references mP (30,40,50,90,92,90), oP, P6_3 needle,
+    cP, generic aP; 12 noisy (eta = 1e-3 ||G||), reindexed (entries
+    up to 2) new cells each: the best candidate from the single reduced
+    frame has residual <= that of the true operator in every trial
+coset copy: reference (50,70,60,90,90.2,90), cached self-match = 8
+    operators (2/m exact + pseudo-mmm at 29.6 A^2); 12 noisy reindexed
+    cells: {h P0 : h in cache} equals the full two-sided matching
+    result in every trial
+\end{verbatim}\end{footnotesize}
+
+\sitem{z:widened-complete}{The widened closure is generated by one exact stratum (Theorem B1)}
+Claim (Section 2.4; Appendix B): if $\lambda_1>32\tau$, zeroing every conorm of one reduced frame that is at most $4\tau$ gives a lattice whose exact closure, filtered at $-\tau$ in the measured metric, is the widened closure exactly. The two integer constants of the proof are exact, and the threshold $4\tau$ is needed.
+\begin{footnotesize}\begin{verbatim}
+constants (Lemma B5), every connected slot set L on K4, every N
+    disjoint from L, all 14 partial sums: max sum_N gamma with gamma = 0
+    on L is 4; sup sum_N gamma / sum_L gamma is 8 (exhaustive |k| <= 15;
+    outside, generalized eigenvalue <= 3 + 2 sqrt 2 keeps it below 8)
+inequalities on brute-force frames: every frame with conorms >= -tau
+    has every class excess <= 16 tau; every such frame outside the
+    stratum closure has a class excess >= 4 m*
+theorem vs brute force (all superbases with entries in [-2, 2], 135,408
+    unimodular), mP, oP, cP, hP, cI, aP, plate, needle; walls moved to
+    random values in [0, 6 tau], other conorms jittered; tau = 0.1,
+    0.5, 0.99 x lambda1/32: generated set = brute-force set in every case
+grey zone: oP, cP, plate with walls at 1.2 tau and 0.5 tau: brute force
+    7 members; zeroing at tau gives 6 (misses the two-flip member at
+    -0.7 tau); zeroing at 4 tau gives 7
+worked pair beyond the hypothesis (tau = 43.2 and 60 > lambda1/32 = 28.2):
+    still exact (6 and 14 members)
 \end{verbatim}\end{footnotesize}
 
 \end{document}
