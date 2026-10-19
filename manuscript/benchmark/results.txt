@@ -29,3 +29,10 @@ specialisation   walk-tau     660   660/660    654/660        0
 specialisation   walk-2tau    660   660/660    660/660        0
 specialisation   closure      660   660/660    660/660        0
 specialisation   slot         660   660/660    660/660        0
+
+family               n   other basis, same cell  other cell  of which type flip
+shapes              75                        6           4                   4
+specialisation     660                      119          39                   9
+hidden              20                        0           0                   0
+anisotropy          16                        0           0                   0
+boundary             9                        0           2                   1

@@ -38,3 +38,21 @@ the case carries an angular error). Results are in `results.txt`.
 Reproduce: `PYTHONPATH=agentsg/src python manuscript/benchmark/make_benchmark.py`
 (seed 2026), then `evaluate.py`. The generator imports the check files in
 `manuscript/appendix_z`.
+
+## The Niggli cell across the benchmark
+
+`python evaluate.py --niggli` compares the Niggli cell of each measured cell
+with the Niggli cell of its reference. In 170 of the 780 cases the measured
+Niggli basis is a different basis of the lattice (not a signed permutation of
+the reference's); in 125 of those the cell parameters agree up to relabelling
+(a tie between Niggli's special conditions decided the other way), and in 45
+the Niggli cell is a different cell: a type I / type II flip or a different
+lattice character. Those 45 are concentrated on the body-centred orthorhombic
+boundary sort O3 and the lattices one condition away from it (oI O1B, mC M2B
+and M3, cF), and on the mC M1B/M3 boundary --- the known instability of the
+Niggli cell (Gruber 1973; Andrews & Bernstein 1988), here with the sorts that
+carry it. A conventional cell derived from the measured Niggli cell through
+its lattice character then starts from a cell the reference's route never
+produced; the two Niggli cells are two shapes of one closure, related by a
+flip and by no symmetry, and the operator between them is in the closure's
+candidate set in every one of these cases (`reindex ok` above).

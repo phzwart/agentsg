@@ -153,5 +153,43 @@ def main():
             print(f"{f:16s} {m:10s} {r['n']:5d} {r['reindex']:5d}/{r['n']:<5d} {s:>8s} {r['flagged']:8d}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--niggli" not in sys.argv:
     main()
+
+
+def niggli_report(path):
+    """Where the Niggli cell of the measured cell is a different basis of the
+    lattice from the Niggli cell of the reference: same cell parameters up to
+    relabelling (a tie between Niggli's special conditions) or different ones
+    (a different lattice character, e.g. a type I / type II flip)."""
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.reduction import niggli_gk
+    SP = [np.diag(s) @ np.eye(3)[list(p)] for p in itertools.permutations(range(3))
+          for s in itertools.product((1, -1), repeat=3)]
+
+    def typ(cell):
+        return "II" if all(x >= 90 - 1e-6 for x in cell[3:]) else "I"
+
+    out = {}
+    for line in open(path):
+        c = json.loads(line)
+        nr, NR = niggli_gk(tuple(c["reference_cell"]))
+        NR = np.array(NR, float)
+        MN = np.array(c["true_operator"], float) @ np.array(c["niggli_from_measured"], float)
+        same_basis = any(np.allclose(MN, NR @ P) for P in SP)
+        Gr = np.array(UnitCell(*nr).metric_tensor())
+        Gm = np.array(UnitCell(*c["measured_niggli_cell"]).metric_tensor())
+        same_cell = min(np.linalg.norm(P.T @ Gr @ P - Gm) for P in SP) <= 5 * c["eta"] + 1e-6
+        r = out.setdefault(c["family"], {"n": 0, "other basis, same cell": 0, "other cell": 0, "type flip": 0})
+        r["n"] += 1
+        if not same_basis:
+            r["other basis, same cell" if same_cell else "other cell"] += 1
+            r["type flip"] += typ(nr) != typ(c["measured_niggli_cell"]) and not same_cell
+    return out
+
+
+if __name__ == "__main__" and "--niggli" in sys.argv:
+    rep = niggli_report(os.path.join(HERE, "benchmark.jsonl"))
+    print(f"\n{'family':16s} {'n':>5s} {'other basis, same cell':>24s} {'other cell':>11s} {'of which type flip':>19s}")
+    for f, r in rep.items():
+        print(f"{f:16s} {r['n']:5d} {r['other basis, same cell']:24d} {r['other cell']:11d} {r['type flip']:19d}")
