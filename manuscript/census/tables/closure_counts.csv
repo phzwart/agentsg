@@ -1,0 +1,17 @@
+source,system,tau_kind,n,n_1,n_2,n_3,n_6,n_16,n_other
+cod,triclinic,esd,124500,120674,3469,31,151,26,84
+cod,monoclinic,esd,2242,255,293,3,1652,32,4
+cod,orthorhombic,esd,575,29,3,0,29,512,1
+cod,tetragonal,esd,115,36,21,0,0,58,0
+cod,trigonal,esd,286,113,0,104,66,1,1
+cod,hexagonal,esd,32,0,0,0,32,0,0
+cod,cubic,esd,29,9,0,5,0,15,0
+cod,unknown,esd,3,3,0,0,0,0,0
+cod,triclinic,nominal,3303,2429,500,25,159,140,19
+cod,monoclinic,nominal,247307,22838,30828,1316,176710,12300,350
+cod,orthorhombic,nominal,87056,3191,1661,53,6212,74639,4
+cod,tetragonal,nominal,19467,4738,4391,126,1,10058,0
+cod,trigonal,nominal,15606,4300,12,6109,4886,74,44
+cod,hexagonal,nominal,9536,0,0,0,9222,3,0
+cod,cubic,nominal,18075,3418,1,9882,0,4774,0
+cod,unknown,nominal,307,45,11,9,63,169,0

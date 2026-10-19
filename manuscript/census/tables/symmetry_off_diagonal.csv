@@ -1,0 +1,11 @@
+reported,visible,n
+monoclinic,triclinic,206685
+orthorhombic,triclinic,67119
+orthorhombic,monoclinic,15631
+trigonal,monoclinic,10919
+tetragonal,monoclinic,9938
+cubic,tetragonal,9888
+hexagonal,monoclinic,9256
+cubic,rhombohedral,4788
+trigonal,rhombohedral,4384
+tetragonal,orthorhombic,4328

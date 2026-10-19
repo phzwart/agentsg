@@ -1,0 +1,9 @@
+source,system,n,z0,z1,z2,z3,zmore
+cod,triclinic,127803,125779,1659,233,132,0
+cod,monoclinic,249549,25527,31742,191091,1189,0
+cod,orthorhombic,87631,3391,1633,6582,76025,0
+cod,tetragonal,19582,4848,4472,47,10215,0
+cod,trigonal,15892,4444,13,11396,39,0
+cod,hexagonal,9568,1,0,9564,3,0
+cod,cubic,18104,3428,1,9886,4789,0
+cod,unknown,310,50,12,99,149,0

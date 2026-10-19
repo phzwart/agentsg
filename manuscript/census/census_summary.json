@@ -1,0 +1,1143 @@
+{
+  "db": "/home/sparksvc/Projects/agentsg/data/cod_cells.duckdb",
+  "seed": 0,
+  "sample": null,
+  "n": 528439,
+  "closure_mode": "full",
+  "closure_n": 528439,
+  "cells_per_second": 3420.4818696710654,
+  "extrapolated_full_seconds": 154.492559859941,
+  "device": "cuda",
+  "workers": 20,
+  "inventory": [
+    {
+      "source": "cod",
+      "n": 528439,
+      "with_esd": 127782,
+      "null_sg": 310,
+      "non_P": 102906,
+      "not_obtuse": 0
+    }
+  ],
+  "by_system": [
+    {
+      "source": "cod",
+      "system": "cubic",
+      "n": 18104
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "n": 9568
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "n": 249549
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "n": 87631
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "n": 19582
+    },
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "n": 127803
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "n": 15892
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "n": 310
+    }
+  ],
+  "wall": [
+    {
+      "source": "cod",
+      "n": 528439,
+      "r=0": 358829,
+      "<-6": 13,
+      "[-6.0,-5.5)": 14,
+      "[-5.5,-5.0)": 19,
+      "[-5.0,-4.5)": 55,
+      "[-4.5,-4.0)": 189,
+      "[-4.0,-3.5)": 522,
+      "[-3.5,-3.0)": 1330,
+      "[-3.0,-2.5)": 3423,
+      "[-2.5,-2.0)": 8903,
+      "[-2.0,-1.5)": 23400,
+      "[-1.5,-1.0)": 53611,
+      "[-1.0,-0.5)": 71520,
+      "[-0.5,0.0)": 6611,
+      ">=0": 0,
+      "r<1e-02": 373297,
+      "frac_r<1e-02": 0.7064145530515348,
+      "r<1e-03": 360971,
+      "frac_r<1e-03": 0.6830892496579548,
+      "r<1e-04": 359119,
+      "frac_r<1e-04": 0.6795845878142983,
+      "r<1e-05": 358875,
+      "frac_r<1e-05": 0.6791228505087626
+    }
+  ],
+  "near_zeros": [
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "n": 127803,
+      "z0": 125779,
+      "z1": 1659,
+      "z2": 233,
+      "z3": 132,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "n": 249549,
+      "z0": 25527,
+      "z1": 31742,
+      "z2": 191091,
+      "z3": 1189,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "n": 87631,
+      "z0": 3391,
+      "z1": 1633,
+      "z2": 6582,
+      "z3": 76025,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "n": 19582,
+      "z0": 4848,
+      "z1": 4472,
+      "z2": 47,
+      "z3": 10215,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "n": 15892,
+      "z0": 4444,
+      "z1": 13,
+      "z2": 11396,
+      "z3": 39,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "n": 9568,
+      "z0": 1,
+      "z1": 0,
+      "z2": 9564,
+      "z3": 3,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "cubic",
+      "n": 18104,
+      "z0": 3428,
+      "z1": 1,
+      "z2": 9886,
+      "z3": 4789,
+      "zmore": 0
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "n": 310,
+      "z0": 50,
+      "z1": 12,
+      "z2": 99,
+      "z3": 149,
+      "zmore": 0
+    }
+  ],
+  "closure_esd": [
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "tau_kind": "esd",
+      "n": 124500,
+      "n_1": 120674,
+      "n_2": 3469,
+      "n_3": 31,
+      "n_6": 151,
+      "n_16": 26,
+      "n_other": 84
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "tau_kind": "esd",
+      "n": 2242,
+      "n_1": 255,
+      "n_2": 293,
+      "n_3": 3,
+      "n_6": 1652,
+      "n_16": 32,
+      "n_other": 4
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "tau_kind": "esd",
+      "n": 575,
+      "n_1": 29,
+      "n_2": 3,
+      "n_3": 0,
+      "n_6": 29,
+      "n_16": 512,
+      "n_other": 1
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "tau_kind": "esd",
+      "n": 115,
+      "n_1": 36,
+      "n_2": 21,
+      "n_3": 0,
+      "n_6": 0,
+      "n_16": 58,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "tau_kind": "esd",
+      "n": 286,
+      "n_1": 113,
+      "n_2": 0,
+      "n_3": 104,
+      "n_6": 66,
+      "n_16": 1,
+      "n_other": 1
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "tau_kind": "esd",
+      "n": 32,
+      "n_1": 0,
+      "n_2": 0,
+      "n_3": 0,
+      "n_6": 32,
+      "n_16": 0,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "cubic",
+      "tau_kind": "esd",
+      "n": 29,
+      "n_1": 9,
+      "n_2": 0,
+      "n_3": 5,
+      "n_6": 0,
+      "n_16": 15,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "tau_kind": "esd",
+      "n": 3,
+      "n_1": 3,
+      "n_2": 0,
+      "n_3": 0,
+      "n_6": 0,
+      "n_16": 0,
+      "n_other": 0
+    }
+  ],
+  "closure_nominal": [
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "tau_kind": "nominal",
+      "n": 3303,
+      "n_1": 2429,
+      "n_2": 500,
+      "n_3": 25,
+      "n_6": 159,
+      "n_16": 140,
+      "n_other": 19
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "tau_kind": "nominal",
+      "n": 247307,
+      "n_1": 22838,
+      "n_2": 30828,
+      "n_3": 1316,
+      "n_6": 176710,
+      "n_16": 12300,
+      "n_other": 350
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "tau_kind": "nominal",
+      "n": 87056,
+      "n_1": 3191,
+      "n_2": 1661,
+      "n_3": 53,
+      "n_6": 6212,
+      "n_16": 74639,
+      "n_other": 4
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "tau_kind": "nominal",
+      "n": 19467,
+      "n_1": 4738,
+      "n_2": 4391,
+      "n_3": 126,
+      "n_6": 1,
+      "n_16": 10058,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "tau_kind": "nominal",
+      "n": 15606,
+      "n_1": 4300,
+      "n_2": 12,
+      "n_3": 6109,
+      "n_6": 4886,
+      "n_16": 74,
+      "n_other": 44
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "tau_kind": "nominal",
+      "n": 9536,
+      "n_1": 0,
+      "n_2": 0,
+      "n_3": 0,
+      "n_6": 9222,
+      "n_16": 3,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "cubic",
+      "tau_kind": "nominal",
+      "n": 18075,
+      "n_1": 3418,
+      "n_2": 1,
+      "n_3": 9882,
+      "n_6": 0,
+      "n_16": 4774,
+      "n_other": 0
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "tau_kind": "nominal",
+      "n": 307,
+      "n_1": 45,
+      "n_2": 11,
+      "n_3": 9,
+      "n_6": 63,
+      "n_16": 169,
+      "n_other": 0
+    }
+  ],
+  "flags_esd": [
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "tau_kind": "esd",
+      "n": 124500,
+      "walk_misses": 79,
+      "walk2_misses": 1,
+      "step2_singular": 65,
+      "beyond_theorem": 809,
+      "frac_walk_misses": 0.0006345381526104418,
+      "frac_walk2_misses": 8.032128514056226e-06,
+      "frac_singular": 0.0005220883534136547,
+      "frac_beyond": 0.006497991967871486
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "tau_kind": "esd",
+      "n": 2242,
+      "walk_misses": 5,
+      "walk2_misses": 1,
+      "step2_singular": 3,
+      "beyond_theorem": 76,
+      "frac_walk_misses": 0.0022301516503122213,
+      "frac_walk2_misses": 0.00044603033006244426,
+      "frac_singular": 0.0013380909901873326,
+      "frac_beyond": 0.03389830508474576
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "tau_kind": "esd",
+      "n": 575,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 1,
+      "beyond_theorem": 13,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0017391304347826088,
+      "frac_beyond": 0.022608695652173914
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "tau_kind": "esd",
+      "n": 115,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 0,
+      "beyond_theorem": 1,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0,
+      "frac_beyond": 0.008695652173913044
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "tau_kind": "esd",
+      "n": 286,
+      "walk_misses": 1,
+      "walk2_misses": 0,
+      "step2_singular": 1,
+      "beyond_theorem": 6,
+      "frac_walk_misses": 0.0034965034965034965,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0034965034965034965,
+      "frac_beyond": 0.02097902097902098
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "tau_kind": "esd",
+      "n": 32,
+      "walk_misses": 1,
+      "walk2_misses": 1,
+      "step2_singular": 0,
+      "beyond_theorem": 0,
+      "frac_walk_misses": 0.03125,
+      "frac_walk2_misses": 0.03125,
+      "frac_singular": 0.0,
+      "frac_beyond": 0.0
+    },
+    {
+      "source": "cod",
+      "system": "cubic",
+      "tau_kind": "esd",
+      "n": 29,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 0,
+      "beyond_theorem": 0,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0,
+      "frac_beyond": 0.0
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "tau_kind": "esd",
+      "n": 3,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 0,
+      "beyond_theorem": 0,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0,
+      "frac_beyond": 0.0
+    }
+  ],
+  "flags_nominal": [
+    {
+      "source": "cod",
+      "system": "triclinic",
+      "tau_kind": "nominal",
+      "n": 3303,
+      "walk_misses": 17,
+      "walk2_misses": 0,
+      "step2_singular": 31,
+      "beyond_theorem": 373,
+      "frac_walk_misses": 0.0051468362095065095,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.009385407205570693,
+      "frac_beyond": 0.11292764153799577
+    },
+    {
+      "source": "cod",
+      "system": "monoclinic",
+      "tau_kind": "nominal",
+      "n": 247307,
+      "walk_misses": 369,
+      "walk2_misses": 2,
+      "step2_singular": 2965,
+      "beyond_theorem": 72897,
+      "frac_walk_misses": 0.0014920726061130498,
+      "frac_walk2_misses": 8.087114396276693e-06,
+      "frac_singular": 0.011989147092480197,
+      "frac_beyond": 0.294763189072691
+    },
+    {
+      "source": "cod",
+      "system": "orthorhombic",
+      "tau_kind": "nominal",
+      "n": 87056,
+      "walk_misses": 4,
+      "walk2_misses": 0,
+      "step2_singular": 1296,
+      "beyond_theorem": 38235,
+      "frac_walk_misses": 4.594743613306377e-05,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.014886969307112663,
+      "frac_beyond": 0.43920005513692334
+    },
+    {
+      "source": "cod",
+      "system": "tetragonal",
+      "tau_kind": "nominal",
+      "n": 19467,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 153,
+      "beyond_theorem": 3401,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.00785945446139621,
+      "frac_beyond": 0.17470591256999024
+    },
+    {
+      "source": "cod",
+      "system": "trigonal",
+      "tau_kind": "nominal",
+      "n": 15606,
+      "walk_misses": 44,
+      "walk2_misses": 0,
+      "step2_singular": 181,
+      "beyond_theorem": 1285,
+      "frac_walk_misses": 0.002819428424964757,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.011598103293605024,
+      "frac_beyond": 0.08234012559272075
+    },
+    {
+      "source": "cod",
+      "system": "hexagonal",
+      "tau_kind": "nominal",
+      "n": 9536,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 311,
+      "beyond_theorem": 2050,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.03261325503355705,
+      "frac_beyond": 0.2149748322147651
+    },
+    {
+      "source": "cod",
+      "system": "cubic",
+      "tau_kind": "nominal",
+      "n": 18075,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 0,
+      "beyond_theorem": 1,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.0,
+      "frac_beyond": 5.532503457814661e-05
+    },
+    {
+      "source": "cod",
+      "system": "unknown",
+      "tau_kind": "nominal",
+      "n": 307,
+      "walk_misses": 0,
+      "walk2_misses": 0,
+      "step2_singular": 10,
+      "beyond_theorem": 68,
+      "frac_walk_misses": 0.0,
+      "frac_walk2_misses": 0.0,
+      "frac_singular": 0.03257328990228013,
+      "frac_beyond": 0.22149837133550487
+    }
+  ],
+  "symmetry": [
+    {
+      "source": "cod",
+      "n": 523422,
+      "metric_above_reported": 4991,
+      "reported_above_visible": 12
+    }
+  ],
+  "off_diagonal": [
+    {
+      "reported": "monoclinic",
+      "visible": "triclinic",
+      "n": 206685
+    },
+    {
+      "reported": "orthorhombic",
+      "visible": "triclinic",
+      "n": 67119
+    },
+    {
+      "reported": "orthorhombic",
+      "visible": "monoclinic",
+      "n": 15631
+    },
+    {
+      "reported": "trigonal",
+      "visible": "monoclinic",
+      "n": 10919
+    },
+    {
+      "reported": "tetragonal",
+      "visible": "monoclinic",
+      "n": 9938
+    },
+    {
+      "reported": "cubic",
+      "visible": "tetragonal",
+      "n": 9888
+    },
+    {
+      "reported": "hexagonal",
+      "visible": "monoclinic",
+      "n": 9256
+    },
+    {
+      "reported": "cubic",
+      "visible": "rhombohedral",
+      "n": 4788
+    },
+    {
+      "reported": "trigonal",
+      "visible": "rhombohedral",
+      "n": 4384
+    },
+    {
+      "reported": "tetragonal",
+      "visible": "orthorhombic",
+      "n": 4328
+    }
+  ],
+  "cross": [
+    {
+      "source": "cod",
+      "reported": "cubic",
+      "visible": "cubic",
+      "n": 3427
+    },
+    {
+      "source": "cod",
+      "reported": "cubic",
+      "visible": "rhombohedral",
+      "n": 4788
+    },
+    {
+      "source": "cod",
+      "reported": "cubic",
+      "visible": "tetragonal",
+      "n": 9888
+    },
+    {
+      "source": "cod",
+      "reported": "cubic",
+      "visible": "triclinic",
+      "n": 1
+    },
+    {
+      "source": "cod",
+      "reported": "hexagonal",
+      "visible": "monoclinic",
+      "n": 9256
+    },
+    {
+      "source": "cod",
+      "reported": "hexagonal",
+      "visible": "triclinic",
+      "n": 1
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "cubic",
+      "n": 11
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "monoclinic",
+      "n": 37065
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "orthorhombic",
+      "n": 2616
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "rhombohedral",
+      "n": 64
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "tetragonal",
+      "n": 140
+    },
+    {
+      "source": "cod",
+      "reported": "monoclinic",
+      "visible": "triclinic",
+      "n": 206685
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "cubic",
+      "n": 19
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "monoclinic",
+      "n": 15631
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "orthorhombic",
+      "n": 3266
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "rhombohedral",
+      "n": 107
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "tetragonal",
+      "n": 192
+    },
+    {
+      "source": "cod",
+      "reported": "orthorhombic",
+      "visible": "triclinic",
+      "n": 67119
+    },
+    {
+      "source": "cod",
+      "reported": "tetragonal",
+      "visible": "cubic",
+      "n": 111
+    },
+    {
+      "source": "cod",
+      "reported": "tetragonal",
+      "visible": "monoclinic",
+      "n": 9938
+    },
+    {
+      "source": "cod",
+      "reported": "tetragonal",
+      "visible": "orthorhombic",
+      "n": 4328
+    },
+    {
+      "source": "cod",
+      "reported": "tetragonal",
+      "visible": "rhombohedral",
+      "n": 179
+    },
+    {
+      "source": "cod",
+      "reported": "tetragonal",
+      "visible": "tetragonal",
+      "n": 4873
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "cubic",
+      "n": 12
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "monoclinic",
+      "n": 891
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "orthorhombic",
+      "n": 79
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "rhombohedral",
+      "n": 34
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "tetragonal",
+      "n": 21
+    },
+    {
+      "source": "cod",
+      "reported": "triclinic",
+      "visible": "triclinic",
+      "n": 126670
+    },
+    {
+      "source": "cod",
+      "reported": "trigonal",
+      "visible": "cubic",
+      "n": 67
+    },
+    {
+      "source": "cod",
+      "reported": "trigonal",
+      "visible": "monoclinic",
+      "n": 10919
+    },
+    {
+      "source": "cod",
+      "reported": "trigonal",
+      "visible": "rhombohedral",
+      "n": 4384
+    },
+    {
+      "source": "cod",
+      "reported": "trigonal",
+      "visible": "tetragonal",
+      "n": 327
+    },
+    {
+      "source": "cod",
+      "reported": "trigonal",
+      "visible": "triclinic",
+      "n": 13
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "cubic",
+      "n": 17
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "monoclinic",
+      "n": 88
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "orthorhombic",
+      "n": 12
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "rhombohedral",
+      "n": 73
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "tetragonal",
+      "n": 8
+    },
+    {
+      "source": "cod",
+      "reported": "unknown",
+      "visible": "triclinic",
+      "n": 102
+    }
+  ],
+  "traps": [
+    {
+      "monoclinic_repeat_centred": 34086,
+      "monoclinic_repeat_primitive": 189401,
+      "orthorhombic_closure_gt1": 83114,
+      "walk_misses": 520,
+      "walk_misses_in_traps": 378,
+      "frac_walk_misses_in_traps": 0.7269230769230769
+    }
+  ],
+  "niggli": [
+    {
+      "source": "cod",
+      "n_closure_gt1": 361344,
+      "niggli_differs": 0
+    }
+  ],
+  "ambiguous": [
+    {
+      "source": "cod",
+      "sort_exact": "A1",
+      "n": 127523,
+      "ambiguous_esd": 39422,
+      "frac": 0.309136391082393
+    },
+    {
+      "source": "cod",
+      "sort_exact": "A2",
+      "n": 105,
+      "ambiguous_esd": 51,
+      "frac": 0.4857142857142857
+    },
+    {
+      "source": "cod",
+      "sort_exact": "C1",
+      "n": 3435,
+      "ambiguous_esd": 0,
+      "frac": 0.0
+    },
+    {
+      "source": "cod",
+      "sort_exact": "C3",
+      "n": 9881,
+      "ambiguous_esd": 0,
+      "frac": 0.0
+    },
+    {
+      "source": "cod",
+      "sort_exact": "C5",
+      "n": 4899,
+      "ambiguous_esd": 0,
+      "frac": 0.0
+    },
+    {
+      "source": "cod",
+      "sort_exact": "H4",
+      "n": 14656,
+      "ambiguous_esd": 0,
+      "frac": 0.0
+    },
+    {
+      "source": "cod",
+      "sort_exact": "M1A",
+      "n": 12904,
+      "ambiguous_esd": 5152,
+      "frac": 0.3992560446373218
+    },
+    {
+      "source": "cod",
+      "sort_exact": "M1B",
+      "n": 12964,
+      "ambiguous_esd": 4355,
+      "frac": 0.335930268435668
+    },
+    {
+      "source": "cod",
+      "sort_exact": "M2A",
+      "n": 31773,
+      "ambiguous_esd": 3056,
+      "frac": 0.09618229314197589
+    },
+    {
+      "source": "cod",
+      "sort_exact": "M4",
+      "n": 191550,
+      "ambiguous_esd": 94217,
+      "frac": 0.49186635343252416
+    },
+    {
+      "source": "cod",
+      "sort_exact": "O1A",
+      "n": 2795,
+      "ambiguous_esd": 1167,
+      "frac": 0.41753130590339893
+    },
+    {
+      "source": "cod",
+      "sort_exact": "O1B",
+      "n": 637,
+      "ambiguous_esd": 637,
+      "frac": 1.0
+    },
+    {
+      "source": "cod",
+      "sort_exact": "O2",
+      "n": 1612,
+      "ambiguous_esd": 485,
+      "frac": 0.3008684863523573
+    },
+    {
+      "source": "cod",
+      "sort_exact": "O4",
+      "n": 4641,
+      "ambiguous_esd": 2217,
+      "frac": 0.4776987718164189
+    },
+    {
+      "source": "cod",
+      "sort_exact": "O5",
+      "n": 76329,
+      "ambiguous_esd": 56845,
+      "frac": 0.7447366007677292
+    },
+    {
+      "source": "cod",
+      "sort_exact": "R1",
+      "n": 4463,
+      "ambiguous_esd": 1945,
+      "frac": 0.4358055119874524
+    },
+    {
+      "source": "cod",
+      "sort_exact": "R3",
+      "n": 6292,
+      "ambiguous_esd": 2681,
+      "frac": 0.4260966306420852
+    },
+    {
+      "source": "cod",
+      "sort_exact": "T1",
+      "n": 4868,
+      "ambiguous_esd": 2075,
+      "frac": 0.426253081347576
+    },
+    {
+      "source": "cod",
+      "sort_exact": "T2",
+      "n": 4516,
+      "ambiguous_esd": 2030,
+      "frac": 0.44951284322409213
+    },
+    {
+      "source": "cod",
+      "sort_exact": "T5",
+      "n": 10412,
+      "ambiguous_esd": 3624,
+      "frac": 0.34805993084902037
+    },
+    {
+      "source": "cod",
+      "sort_exact": "unlisted",
+      "n": 2184,
+      "ambiguous_esd": 614,
+      "frac": 0.28113553113553114
+    }
+  ],
+  "issues": [
+    {
+      "name": "triclinic-with-three-near-zeros",
+      "n": 132,
+      "ids": [
+        "COD1008070",
+        "COD1010618",
+        "COD1101054",
+        "COD1507446",
+        "COD1508808"
+      ],
+      "detail": "Triclinic-reported cells with at least three conorms below 1e-3 lam1."
+    },
+    {
+      "name": "walk-misses-with-esd",
+      "n": 86,
+      "ids": [
+        "COD1007093",
+        "COD1504291",
+        "COD1505444",
+        "COD1505700",
+        "COD1507213"
+      ],
+      "detail": "Flip walk at tau missed a closure member on a cell whose band came from the reported esds."
+    },
+    {
+      "name": "beyond-theorem",
+      "n": 119215,
+      "ids": [
+        "COD1008817",
+        "COD1008856",
+        "COD1502380",
+        "COD1502400",
+        "COD1502525"
+      ],
+      "detail": "lam1 is not greater than 32 tau, so the widened-closure theorem's hypothesis fails. The construction was still run."
+    },
+    {
+      "name": "step2-singular",
+      "n": 5017,
+      "ids": [
+        "COD1518871",
+        "COD1550148",
+        "COD2000630",
+        "COD2100164",
+        "COD2225510"
+      ],
+      "detail": "The idealised lattice at 4 tau was singular, so members_by('closure') returned None."
+    },
+    {
+      "name": "unlisted-sort",
+      "n": 2184,
+      "ids": [
+        "COD1000031",
+        "COD1000073",
+        "COD1000074",
+        "COD1000103",
+        "COD1000200"
+      ],
+      "detail": "A closed (zeros, equality classes) set matched none of the 24 Table 4 patterns."
+    },
+    {
+      "name": "non-codimension-one-jump",
+      "n": 8495,
+      "ids": [
+        "COD1000038",
+        "COD1000042",
+        "COD1000103",
+        "COD1000191",
+        "COD1000192"
+      ],
+      "detail": "A sort change was not one of the 37 codimension-one edges of Table C2."
+    }
+  ],
+  "wall_seconds": 122.540884335991,
+  "spot_text": "- COD9000001: `COD9000001` (cod), formula `- Pb S -`, sg 225 F m -3 m, cell 5.93 5.93 5.93 90.0 90.0 90.0. lam1=17.5825 tau=0.0527474 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- alpha-quartz: `COD1011097` (cod), formula `- O2 Si -`, sg 152 P 31 2 1, cell 4.913 4.913 5.404 90.0 90.0 120.0. lam1=24.1376 tau=0.184879 (nominal) visible=4 sort=H4 n_closure=6 n_walk_tau=6 n_walk_2tau=6\n- NaCl: `COD1000041` (cod), formula `- Cl Na -`, sg 225 F m -3 m, cell 5.62 5.62 5.62 90.0 90.0 90.0. lam1=15.7922 tau=0.0473766 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- Si: `COD1526655` (cod), formula `- Si -`, sg 227 F d -3 m :1, cell 5.381 5.381 5.381 90.0 90.0 90.0. lam1=14.4776 tau=0.0434327 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- albite: `COD1521704` (cod), formula `- Al Na O8 Si3 -`, sg 12 C 1 2/m 1, cell 8.126 12.996 7.164 90.0 116.65 90.0. lam1=51.3229 tau=0.254666 (nominal) visible=4 sort=M1A n_closure=1 n_walk_tau=1 n_walk_2tau=1\n- diopside: `COD1000007` (cod), formula `- Ca Mg O6 Si2 -`, sg 15 C 1 2/c 1, cell 9.7397 8.9174 5.2503 90.0 105.866 90.0. lam1=27.5657 tau=0.223636 (nominal) visible=4 sort=M1B n_closure=1 n_walk_tau=1 n_walk_2tau=1\n- AMCSD feldspar: not in this database.\n- 193L: not in this database.\n- 1LYZ: not in this database.\n- 2HHB: not in this database."
+}
