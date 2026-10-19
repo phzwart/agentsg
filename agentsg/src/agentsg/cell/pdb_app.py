@@ -28,6 +28,12 @@ Query the k nearest lattices to a cell::
 The ``backfill-*`` commands repeat one annotation step on a database that
 already has cells. ``build`` runs them itself.
 
+``add-cod`` inserts Crystallography Open Database cells (a COD table export,
+one CIF, or a directory of CIFs) next to the PDB rows, keyed ``COD<id>`` with
+``source = 'cod'``::
+
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv
+
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
 """
@@ -290,6 +296,15 @@ def _cli(argv=None):
         print(f"backfilled {n:,} deposition groups in {argv[1]}")
         db.close()
         return 0
+    if cmd == "add-cod":
+        if len(argv) < 3:
+            print("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
+            return 2
+        db = CellDatabase(argv[1])
+        n_ok, n_skip = db.add_cod(argv[2], progress=True)
+        print(f"added {n_ok:,} COD cells to {argv[1]} ({n_skip:,} skipped)")
+        db.close()
+        return 0
     if cmd == "query":
         # query <db> --cell a b c al be ga [-k K] [--sg N]
         db_path = argv[1]
@@ -318,7 +333,7 @@ def _cli(argv=None):
     print(
         f"unknown command: {cmd!r} "
         "(use build | backfill-similarity | backfill-linear | backfill-selling | "
-        "backfill-uniprot | backfill-deposit-group | query)"
+        "backfill-uniprot | backfill-deposit-group | add-cod | query)"
     )
     return 2
 

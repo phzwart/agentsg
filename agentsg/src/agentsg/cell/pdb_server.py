@@ -146,6 +146,9 @@ def search_compatible(
             rec["sg_number"] = info["sg_number"]
             rec["sg_hm"] = info["sg_hm"]
             rec["cell"] = info["cell"]
+            rec["source"] = info.get("source")
+            if info.get("formula"):
+                rec["formula"] = info["formula"]
         enriched.append(rec)
     if return_cob:
         from .selling_cob import (

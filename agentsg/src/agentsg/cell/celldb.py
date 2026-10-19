@@ -29,6 +29,12 @@ Two layers:
     computes the root invariant, and inserts. Only cell + symmetry + id are
     fetched -- nothing else.
 
+  * COD ingestion -- :meth:`CellDatabase.add_cod` reads a Crystallography Open
+    Database table export (CSV/TSV) or a tree of COD CIFs
+    (:mod:`agentsg.cell.cod`) and inserts the cells as ``COD<id>`` with
+    ``source = 'cod'``, their esds and chemical formula. PDB rows carry
+    ``source = 'pdb'``.
+
 A published snapshot of the built table (206,214 cells) is
 https://doi.org/10.5281/zenodo.22986222.
 
@@ -46,8 +52,9 @@ from .primitive import primitive_cell
 from ..tolerances import COMPARE_ANGLE_TOL_DEG, COMPARE_LENGTH_TOL_PCT, VOLUME_FRAC
 
 SEARCH_KEY = "sorted_linear_key"
-SCHEMA_VERSION = "3"
+SCHEMA_VERSION = "4"
 _LINEAR_COLS = tuple(f"l{i}" for i in range(6))
+_ESD_COLS = ("sig_a", "sig_b", "sig_c", "sig_alpha", "sig_beta", "sig_gamma")
 
 
 def _hm_setting_variants(hm: str) -> list[str]:
@@ -157,7 +164,11 @@ CREATE TABLE IF NOT EXISTS cells (
     cob10 VARCHAR, cob11 VARCHAR, cob12 VARCHAR,
     cob20 VARCHAR, cob21 VARCHAR, cob22 VARCHAR,
     uniprots STRUCT(acc VARCHAR, name VARCHAR, n_res INTEGER)[],
-    deposit_group VARCHAR
+    deposit_group VARCHAR,
+    source VARCHAR,
+    sig_a DOUBLE, sig_b DOUBLE, sig_c DOUBLE,
+    sig_alpha DOUBLE, sig_beta DOUBLE, sig_gamma DOUBLE,
+    formula VARCHAR
 );
 """
 
@@ -226,6 +237,15 @@ class CellDatabase:
             )
         if "deposit_group" not in cols:
             self._db.execute("ALTER TABLE cells ADD COLUMN deposit_group VARCHAR")
+        if "source" not in cols:
+            # every row of a pre-COD database came from the PDB
+            self._db.execute("ALTER TABLE cells ADD COLUMN source VARCHAR")
+            self._db.execute("UPDATE cells SET source = 'pdb' WHERE source IS NULL")
+        for name in _ESD_COLS:
+            if name not in cols:
+                self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
+        if "formula" not in cols:
+            self._db.execute("ALTER TABLE cells ADD COLUMN formula VARCHAR")
         self._db.execute(
             "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
@@ -265,7 +285,8 @@ class CellDatabase:
             )
 
     # -- ingestion --
-    def add_cell(self, pdb_id, cell, sg_number=None, sg_hm=None):
+    def add_cell(self, pdb_id, cell, sg_number=None, sg_hm=None, *,
+                 centring=None, source="pdb"):
         """Insert/replace one cell; computes volume + root invariant.
 
         The root invariant is computed on the *primitive* cell derived from the
@@ -277,14 +298,20 @@ class CellDatabase:
         Kurlin's square-root key, both on the primitive lattice. ``red_*`` is
         one obtuse-basis cell and ``cob*`` is ``P`` with ``P^T G P`` equal to
         that cell. The Selling orbit is not stored.
+
+        ``centring`` is the symbol whose lattice letter describes the deposited
+        cell when that differs from ``sg_hm`` (COD's ``R 3 m :R`` is a primitive
+        rhombohedral cell: pass ``"P"``). ``source`` names the origin of the row
+        (``'pdb'``, ``'cod'``).
         """
+        letter_sym = sg_hm if centring is None else centring
         try:
             vol = UnitCell(*cell).volume()
-            prim = _primitive_for_roots(cell, sg_hm)
+            prim = _primitive_for_roots(cell, letter_sym)
             ri = sorted_root_key(prim, stabilize="sqrt")
             lk = sorted_linear_key(prim)
             si = similarity_invariant(prim)
-            red, cob = deposited_to_reduced(cell, sg_hm)
+            red, cob = deposited_to_reduced(cell, letter_sym)
             cob_vals = cob_column_values(cob)
         except Exception:
             return False
@@ -293,17 +320,59 @@ class CellDatabase:
             "(pdb_id, a, b, c, alpha, beta, gamma, volume, sg_number, sg_hm, "
             "r0, r1, r2, r3, r4, r5, l0, l1, l2, l3, l4, l5, "
             "s0, s1, s2, s3, s4, s5, "
-            "red_a, red_b, red_c, red_alpha, red_beta, red_gamma, "
+            "red_a, red_b, red_c, red_alpha, red_beta, red_gamma, source, "
             + ", ".join(COB_COLUMNS) + ") "
-            "VALUES (" + ",".join("?" * (34 + len(COB_COLUMNS))) + ")",
+            "VALUES (" + ",".join("?" * (35 + len(COB_COLUMNS))) + ")",
             [pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
              vol, sg_number, sg_hm,
              ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
              lk[0], lk[1], lk[2], lk[3], lk[4], lk[5],
              si[0], si[1], si[2], si[3], si[4], si[5],
-             red[0], red[1], red[2], red[3], red[4], red[5],
+             red[0], red[1], red[2], red[3], red[4], red[5], source,
              *cob_vals])
         return True
+
+    def add_cod(self, path, *, progress=False, source_label=None):
+        """Insert Crystallography Open Database cells from ``path``.
+
+        ``path`` is a COD table export (CSV/TSV with ``file, a, siga, ...``
+        columns), one CIF, or a directory of CIFs (:func:`agentsg.cell.cod.iter_cod_cells`).
+        Rows are keyed ``COD<id>`` with ``source = 'cod'``; the cell esds go to
+        ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT number is
+        resolved from the H-M symbol (falling back to the file's number, then
+        None). Returns ``(inserted, skipped)``; ``schema_meta.cod_source`` records
+        where the cells came from.
+        """
+        from ..space_groups import space_group
+        from .cod import centring_symbol, iter_cod_cells
+        n_ok = n_skip = 0
+        for i, rec in enumerate(iter_cod_cells(path), 1):
+            sg_hm = rec["sg_hm"] or rec["sg_hall"]
+            number = rec["sg_number"]
+            if rec["sg_hm"]:
+                try:
+                    number = space_group(rec["sg_hm"]).number
+                except Exception:
+                    pass
+            ok = self.add_cell(f"COD{rec['cod_id']}", rec["cell"], number, sg_hm,
+                               centring=centring_symbol(rec["sg_hm"], rec["sg_hall"]),
+                               source="cod")
+            if not ok:
+                n_skip += 1
+                continue
+            n_ok += 1
+            self._db.execute(
+                "UPDATE cells SET sig_a=?, sig_b=?, sig_c=?, sig_alpha=?, sig_beta=?, "
+                "sig_gamma=?, formula=? WHERE pdb_id=?",
+                [*rec["esd"], rec["formula"], f"COD{rec['cod_id']}"])
+            if progress and i % 10_000 == 0:
+                print(f"  {i} COD records read, {n_ok} inserted", flush=True)
+        self._db.execute(
+            "INSERT INTO schema_meta (key, value) VALUES ('cod_source', ?) "
+            "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            [source_label or str(path)],
+        )
+        return n_ok, n_skip
 
     def backfill_linear_keys(self, *, progress=False, batch=5_000):
         """Fill ``l0``..``l5`` with :func:`sorted_linear_key` and mark the index.
@@ -841,18 +910,19 @@ class CellDatabase:
         return out
 
     def lookup_cells(self, pdb_ids):
-        """Return {pdb_id: {sg_number, sg_hm, cell, volume}} for the given ids."""
+        """Return {pdb_id: {sg_number, sg_hm, cell, volume, source, formula}} for the ids."""
         if not pdb_ids:
             return {}
         placeholders = ",".join("?" * len(pdb_ids))
         rows = self._db.execute(
-            f"SELECT pdb_id, sg_number, sg_hm, a,b,c,alpha,beta,gamma, volume "
-            f"FROM cells WHERE pdb_id IN ({placeholders})",
+            f"SELECT pdb_id, sg_number, sg_hm, a,b,c,alpha,beta,gamma, volume, "
+            f"source, formula FROM cells WHERE pdb_id IN ({placeholders})",
             list(pdb_ids)).fetchall()
         return {
             r[0]: {
                 "sg_number": r[1], "sg_hm": r[2],
                 "cell": list(r[3:9]), "volume": r[9],
+                "source": r[10], "formula": r[11],
             }
             for r in rows
         }

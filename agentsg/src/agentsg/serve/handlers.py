@@ -937,7 +937,10 @@ def pdb_search(state, data: dict[str, Any]) -> dict[str, Any]:
             info = meta.get(pid)
             if info is not None:
                 rec_h.update({"sg_number": info["sg_number"],
-                              "sg_hm": info["sg_hm"], "cell": info["cell"]})
+                              "sg_hm": info["sg_hm"], "cell": info["cell"],
+                              "source": info.get("source")})
+                if info.get("formula"):
+                    rec_h["formula"] = info["formula"]
             enriched.append(rec_h)
         prim = primitive_cell(cell, rec.hermann_mauguin)
         result = {

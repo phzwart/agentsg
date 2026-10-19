@@ -463,3 +463,99 @@ P00720\tEndolysin
         ("P00720", "Endolysin", 50),
     ]
     db.close()
+
+
+# ---- COD ingestion ----------------------------------------------------------
+_COD_TABLE = """file,a,siga,b,sigb,c,sigc,alpha,sigalpha,beta,sigbeta,gamma,siggamma,vol,sigvol,sg,sgHall,formula
+1000041,5.4310,0.0002,5.4310,0.0002,5.4310,0.0002,90,,90,,90,,160.19,,F d -3 m,-F 4vw 2vw 3,- Si8 -
+2000001,9.1710,0.0030,12.4830,0.0040,8.0190,0.0030,90,,103.1200,0.0300,90,,894.1,,P 1 21/c 1,-P 2ybc,- C12 H10 N2 O -
+9000001,5.0400,,5.0400,,5.0400,,55.3300,,55.3300,,55.3300,,78.7,,R -3 m :R,-R 3 2",- Al2 O3 -
+9000002,4.7589,0.0001,4.7589,0.0001,12.9910,0.0003,90,,90,,120,,254.8,,R -3 c :H,-R 3 2"c,- Al2 O3 -
+7000001,10,,11,,12,,90,,90,,90,,1320,,X 2 2 2,,- Xx -
+7000002,10,,11,,,,90,,90,,90,,1320,,P 2 2 2,,- broken -
+"""
+
+_COD_CIF = """data_1510001
+_cod_database_code 1510001
+_chemical_formula_sum 'Na Cl'
+_symmetry_space_group_name_H-M 'F m -3 m'
+_space_group_IT_number 225
+_cell_length_a 5.6402(5)
+_cell_length_b 5.6402(5)
+_cell_length_c 5.6402(5)
+_cell_angle_alpha 90
+_cell_angle_beta 90
+_cell_angle_gamma 90
+loop_
+_symmetry_equiv_pos_as_xyz
+x,y,z
+-x,-y,-z
+_cell_formula_units_Z 4
+"""
+
+
+def test_cod_table_parsing(tmp_path):
+    from agentsg.cell.cod import centring_symbol, cod_cells_from_table, parse_cif_number
+    assert parse_cif_number("5.4310(2)") == (5.431, 0.0002)
+    assert parse_cif_number("90") == (90.0, None)
+    assert parse_cif_number("?") == (None, None)
+    assert centring_symbol("R -3 m :R") == "P"
+    assert centring_symbol("R -3 c :H") == "R -3 c"
+    assert centring_symbol(None, "-P 2ybc") == "-P 2ybc"
+    f = tmp_path / "cod.csv"
+    f.write_text(_COD_TABLE)
+    recs = list(cod_cells_from_table(str(f)))
+    assert [r["cod_id"] for r in recs] == ["1000041", "2000001", "9000001", "9000002", "7000001"]
+    assert recs[0]["esd"] == (0.0002, 0.0002, 0.0002, None, None, None)
+    assert recs[1]["sg_hm"] == "P 1 21/c 1" and recs[1]["formula"] == "- C12 H10 N2 O -"
+
+
+def test_add_cod_from_table_and_cif(tmp_path):
+    f = tmp_path / "cod.csv"
+    f.write_text(_COD_TABLE)
+    cif = tmp_path / "1510001.cif"
+    cif.write_text(_COD_CIF)
+    db = CellDatabase(":memory:")
+    db.add_cell("LYZ1", (79.1, 79.1, 37.9, 90, 90, 90), 96, "P 43 21 2")
+    n_ok, n_skip = db.add_cod(str(f))
+    assert (n_ok, n_skip) == (5, 0)
+    assert db.add_cod(str(cif)) == (1, 0)
+    assert len(db) == 7
+    rows = {r[0]: r for r in db.sql(
+        "SELECT pdb_id, source, sg_number, sig_a, sig_beta, formula FROM cells")}
+    assert rows["LYZ1"][1] == "pdb" and rows["COD1000041"][1] == "cod"
+    assert rows["COD1000041"][2] == 227 and rows["COD1000041"][3] == 0.0002
+    assert rows["COD2000001"][2] == 14 and rows["COD2000001"][4] == 0.03
+    assert rows["COD9000001"][2] == 166 and rows["COD9000002"][2] == 167
+    assert rows["COD7000001"][2] is None                 # unknown symbol: number None, cell kept
+    assert rows["COD1510001"][2] == 225 and rows["COD1510001"][5] == "Na Cl"
+    # the :R cell is primitive: its reduced cell is the cell itself, not a third of it
+    from agentsg.cell.metric import UnitCell
+    red = db.sql("SELECT volume, red_a, red_b, red_c, red_alpha, red_beta, red_gamma "
+                 "FROM cells WHERE pdb_id='COD9000001'")[0]
+    assert abs(UnitCell(*red[1:]).volume() - red[0]) < 1e-3
+    # the :H cell is R-centred: the primitive volume is a third of the hexagonal one
+    vol_h = db.sql("SELECT volume, red_a, red_b, red_c, red_alpha, red_beta, red_gamma "
+                   "FROM cells WHERE pdb_id='COD9000002'")[0]
+    assert abs(UnitCell(*vol_h[1:]).volume() * 3 - vol_h[0]) < 1e-3
+    # corundum on both settings is one lattice: nearest neighbour of either is the other
+    res = db.nearest((5.04, 5.04, 5.04, 55.33, 55.33, 55.33), k=2, sg_hm="P")
+    assert {pid for pid, _ in res} == {"COD9000001", "COD9000002"}
+    meta = db.lookup_cells(["COD1510001"])["COD1510001"]
+    assert meta["source"] == "cod" and meta["formula"] == "Na Cl"
+    assert db.sql("SELECT value FROM schema_meta WHERE key='cod_source'")[0][0] == str(cif)
+    db.close()
+
+
+def test_source_migration_marks_old_rows_pdb(tmp_path):
+    path = str(tmp_path / "old.duckdb")
+    con = duckdb.connect(path)
+    con.execute("CREATE TABLE cells (pdb_id VARCHAR PRIMARY KEY, a DOUBLE, b DOUBLE, c DOUBLE, "
+                "alpha DOUBLE, beta DOUBLE, gamma DOUBLE, volume DOUBLE, sg_number INTEGER, "
+                "sg_hm VARCHAR, r0 DOUBLE, r1 DOUBLE, r2 DOUBLE, r3 DOUBLE, r4 DOUBLE, r5 DOUBLE)")
+    con.execute("INSERT INTO cells (pdb_id, a, b, c, alpha, beta, gamma, sg_number, sg_hm) "
+                "VALUES ('1ABC', 79, 79, 38, 90, 90, 90, 96, 'P 43 21 2')")
+    con.close()
+    db = CellDatabase(path)
+    assert db.sql("SELECT source FROM cells WHERE pdb_id='1ABC'")[0][0] == "pdb"
+    db.close()

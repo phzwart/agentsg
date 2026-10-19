@@ -370,6 +370,21 @@ python -m agentsg.cell.pdb_app query pdb_cells.duckdb \
     --cell 79 79 38 90 90 90 -k 5
 ```
 
+The same table takes small-molecule and inorganic cells from the
+[Crystallography Open Database](https://www.crystallography.net/cod/) (COD, the
+open counterpart of the ICSD/CSD). Export the COD cell table as CSV/TSV from
+the COD search page or its MySQL dump (columns `file, a, siga, …, sg, sgHall,
+formula`), or check out COD CIFs by svn/rsync, then
+
+```bash
+python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv   # or a .cif, or a directory of CIFs
+```
+
+Rows are keyed `COD<id>` with `source = 'cod'`, their cell esds in
+`sig_a … sig_gamma` and the chemical formula; PDB rows carry `source = 'pdb'`.
+Rhombohedral-axes cells (`R 3 m :R`) are primitive and are keyed as such, so
+corundum on hexagonal and on rhombohedral axes lands on the same lattice point.
+
 ```python
 from agentsg.cell import CellDatabase
 
@@ -586,6 +601,7 @@ agentsg/
     primitive.py    conventional -> primitive cell for centred lattices
                     (A/B/C/I/F/R/H); the sorted key is a lattice (not cell) key
     celldb.py       DuckDB-backed cell database + RootIndex (needs agentsg[db])
+    cod.py          Crystallography Open Database table/CIF cell reader
     pdb_app.py      resumable full-PDB downloader/builder + query CLI
     crystfel_stream.py  parse CrystFEL .stream per-crystal cells + orientation
     manifold.py     deformation graph / landmarks / symmetry junctions
