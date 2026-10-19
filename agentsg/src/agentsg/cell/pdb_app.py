@@ -33,6 +33,7 @@ one CIF, or a directory of CIFs) next to the PDB rows, keyed ``COD<id>`` with
 ``source = 'cod'``::
 
     python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb amcsd_cifs.txt --prefix AMCSD --source amcsd
 
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
@@ -297,12 +298,25 @@ def _cli(argv=None):
         db.close()
         return 0
     if cmd == "add-cod":
+        usage = ("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir> "
+                 "[--prefix COD] [--source cod]")
         if len(argv) < 3:
-            print("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
+            print(usage)
             return 2
+        prefix, source = "COD", "cod"
+        rest = argv[3:]
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--prefix" and i + 1 < len(rest):
+                prefix = rest[i + 1]; i += 2
+            elif rest[i] == "--source" and i + 1 < len(rest):
+                source = rest[i + 1]; i += 2
+            else:
+                print(usage)
+                return 2
         db = CellDatabase(argv[1])
-        n_ok, n_skip = db.add_cod(argv[2], progress=True)
-        print(f"added {n_ok:,} COD cells to {argv[1]} ({n_skip:,} skipped)")
+        n_ok, n_skip = db.add_cod(argv[2], progress=True, prefix=prefix, source=source)
+        print(f"added {n_ok:,} {source} cells to {argv[1]} ({n_skip:,} skipped)")
         db.close()
         return 0
     if cmd == "query":

@@ -382,6 +382,10 @@ python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv   # or a .
 
 Rows are keyed `COD<id>` with `source = 'cod'`, their cell esds in
 `sig_a … sig_gamma` and the chemical formula; PDB rows carry `source = 'pdb'`.
+Any other CIF collection loads the same way under its own prefix — the
+[AMCSD](https://www.rruff.net/about/download-data/) bulk file (all mineral
+records concatenated in one `.txt`) with
+`add-cod pdb_cells.duckdb amcsd_cifs.txt --prefix AMCSD --source amcsd`.
 Rhombohedral-axes cells (`R 3 m :R`) are primitive and are keyed as such, so
 corundum on hexagonal and on rhombohedral axes lands on the same lattice point.
 

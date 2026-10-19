@@ -2,7 +2,7 @@
 
 ## 0.3.7
 
-- The cell database takes Crystallography Open Database entries next to the PDB ones: `CellDatabase.add_cod(path)` reads a COD table export (CSV/TSV) or a tree of COD CIFs and stores each cell as `COD<id>` with `source = 'cod'`, its esds (`sig_a` … `sig_gamma`) and chemical formula; rhombohedral-axes cells (`:R`) are treated as primitive. Existing rows are marked `source = 'pdb'`.
+- The cell database takes Crystallography Open Database entries next to the PDB ones: `CellDatabase.add_cod(path)` reads a COD table export (CSV/TSV) or a tree of COD CIFs and stores each cell as `COD<id>` with `source = 'cod'`, its esds (`sig_a` … `sig_gamma`) and chemical formula; rhombohedral-axes cells (`:R`) are treated as primitive. Existing rows are marked `source = 'pdb'`. The same loader takes any CIF collection under its own prefix and source label (`--prefix AMCSD --source amcsd` for the American Mineralogist Crystal Structure Database bulk file).
 - `pdb_search` hits and `pdb_lookup` report `source` (and `formula` when there is one).
 
 ## 0.3.6

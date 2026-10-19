@@ -9,7 +9,11 @@ are CIFs, one per COD id, obtainable by svn/rsync or per-file download.
 
 This module reads either shape into plain records that
 :meth:`agentsg.cell.celldb.CellDatabase.add_cod` inserts next to the PDB
-cells. Standard library only; no network.
+cells. Standard library only; no network. The CIF reader also takes other
+CIF collections -- the American Mineralogist Crystal Structure Database
+(AMCSD) ships every record concatenated in one ``.txt`` file, with
+``_database_code_amcsd`` as the id -- so ``add_cod`` with another prefix and
+source label loads those too.
 
 A record is a dict with ``cod_id`` (the numeric COD id as a string), ``cell``
 (a, b, c, alpha, beta, gamma), ``esd`` (six values or None where the file gives
@@ -30,7 +34,8 @@ _HM_TAGS = ("_space_group_name_H-M_alt", "_symmetry_space_group_name_H-M")
 _HALL_TAGS = ("_space_group_name_Hall", "_symmetry_space_group_name_Hall")
 _NUMBER_TAGS = ("_space_group_IT_number", "_symmetry_Int_Tables_number")
 _FORMULA_TAGS = ("_chemical_formula_sum",)
-_ID_TAGS = ("_cod_database_code",)
+_ID_TAGS = ("_cod_database_code", "_database_code_amcsd", "_database_code_icsd",
+            "_database_code_csd", "_database_code_depnum_ccdc_archive")
 
 # column aliases in COD table exports (case-insensitive)
 _TABLE_COLUMNS = {
@@ -238,27 +243,42 @@ def cod_cells_from_cif(path, *, encoding="utf-8"):
 
 
 # ---- dispatch --------------------------------------------------------------
-def iter_cod_cells(path):
-    """Yield records from a table export, a CIF, or a directory of CIFs.
+def _looks_like_cif(path, encoding="utf-8"):
+    """True when the file's first non-blank lines are CIF (``data_`` or a tag)."""
+    with open(path, "r", encoding=encoding, errors="replace") as fh:
+        for _ in range(50):
+            line = fh.readline()
+            if not line:
+                break
+            s = line.strip()
+            if not s or s.startswith("#"):
+                continue
+            return s.lower().startswith("data_") or s.startswith("_") or s.lower().startswith("loop_")
+    return False
 
-    A directory is walked recursively; ``.cif`` files are read as CIFs and
-    ``.csv``/``.tsv``/``.txt`` files as table exports.
+
+def _read_one(path):
+    ext = os.path.splitext(path)[1].lower()
+    if ext == ".cif" or (ext in (".txt", "") and _looks_like_cif(path)):
+        yield from cod_cells_from_cif(path)
+    elif ext in (".csv", ".tsv", ".txt", ""):
+        yield from cod_cells_from_table(path)
+
+
+def iter_cod_cells(path):
+    """Yield records from a table export, a CIF, or a directory of such files.
+
+    A directory is walked recursively. ``.cif`` files are read as CIFs,
+    ``.csv``/``.tsv`` as table exports, and ``.txt`` as whichever its first
+    lines look like (AMCSD's bulk file is CIF records in a ``.txt``).
     """
     if os.path.isdir(path):
         for root, _, files in os.walk(path):
             for f in sorted(files):
-                p = os.path.join(root, f)
-                ext = os.path.splitext(f)[1].lower()
-                if ext == ".cif":
-                    yield from cod_cells_from_cif(p)
-                elif ext in (".csv", ".tsv", ".txt"):
-                    yield from cod_cells_from_table(p)
+                if os.path.splitext(f)[1].lower() in (".cif", ".csv", ".tsv", ".txt"):
+                    yield from _read_one(os.path.join(root, f))
         return
-    ext = os.path.splitext(path)[1].lower()
-    if ext == ".cif":
-        yield from cod_cells_from_cif(path)
-    else:
-        yield from cod_cells_from_table(path)
+    yield from _read_one(path)
 
 
 def centring_symbol(sg_hm, sg_hall=None):

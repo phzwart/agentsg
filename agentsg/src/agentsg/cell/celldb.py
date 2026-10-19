@@ -332,16 +332,20 @@ class CellDatabase:
              *cob_vals])
         return True
 
-    def add_cod(self, path, *, progress=False, source_label=None):
+    def add_cod(self, path, *, progress=False, source_label=None,
+                prefix="COD", source="cod"):
         """Insert Crystallography Open Database cells from ``path``.
 
         ``path`` is a COD table export (CSV/TSV with ``file, a, siga, ...``
         columns), one CIF, or a directory of CIFs (:func:`agentsg.cell.cod.iter_cod_cells`).
-        Rows are keyed ``COD<id>`` with ``source = 'cod'``; the cell esds go to
-        ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT number is
-        resolved from the H-M symbol (falling back to the file's number, then
-        None). Returns ``(inserted, skipped)``; ``schema_meta.cod_source`` records
-        where the cells came from.
+        Rows are keyed ``<prefix><id>`` with the given ``source``; the cell esds
+        go to ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT
+        number is resolved from the H-M symbol (falling back to the file's
+        number, then None). Returns ``(inserted, skipped)``;
+        ``schema_meta.<source>_source`` records where the cells came from.
+
+        Any CIF collection loads the same way: the AMCSD bulk file with
+        ``prefix="AMCSD", source="amcsd"``, for instance.
         """
         from ..space_groups import space_group
         from .cod import centring_symbol, iter_cod_cells
@@ -354,9 +358,10 @@ class CellDatabase:
                     number = space_group(rec["sg_hm"]).number
                 except Exception:
                     pass
-            ok = self.add_cell(f"COD{rec['cod_id']}", rec["cell"], number, sg_hm,
+            key = f"{prefix}{rec['cod_id']}"
+            ok = self.add_cell(key, rec["cell"], number, sg_hm,
                                centring=centring_symbol(rec["sg_hm"], rec["sg_hall"]),
-                               source="cod")
+                               source=source)
             if not ok:
                 n_skip += 1
                 continue
@@ -364,13 +369,13 @@ class CellDatabase:
             self._db.execute(
                 "UPDATE cells SET sig_a=?, sig_b=?, sig_c=?, sig_alpha=?, sig_beta=?, "
                 "sig_gamma=?, formula=? WHERE pdb_id=?",
-                [*rec["esd"], rec["formula"], f"COD{rec['cod_id']}"])
+                [*rec["esd"], rec["formula"], key])
             if progress and i % 10_000 == 0:
-                print(f"  {i} COD records read, {n_ok} inserted", flush=True)
+                print(f"  {i} {source} records read, {n_ok} inserted", flush=True)
         self._db.execute(
-            "INSERT INTO schema_meta (key, value) VALUES ('cod_source', ?) "
+            "INSERT INTO schema_meta (key, value) VALUES (?, ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
-            [source_label or str(path)],
+            [f"{source}_source", source_label or str(path)],
         )
         return n_ok, n_skip
 
