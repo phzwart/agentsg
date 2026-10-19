@@ -8,6 +8,7 @@ can see it.
 """
 from __future__ import annotations
 
+import signal
 import csv
 import itertools
 import json
@@ -38,7 +39,7 @@ from test_z54_table_from_operators import S6_TO_SLOT, TABLE, _sella_partition  #
 
 from agentsg.cell.celldb import CellDatabase  # noqa: E402
 from agentsg.cell.cod import centring_symbol  # noqa: E402
-from agentsg.cell.metric import UnitCell, metric_tensor, params_from_metric  # noqa: E402
+from agentsg.cell.metric import params_from_metric  # noqa: E402
 from agentsg.cell.reduction import niggli_gk  # noqa: E402
 from agentsg.cell.selling_cob import COB_COLUMNS, parse_cob_columns  # noqa: E402
 
@@ -232,7 +233,56 @@ def _xp():
     return np, "cpu"
 
 
-def prepare_metrics(red, deposited, cob, sigma, have_esd):
+def _free_sigma(cells, sigma, systems):
+    """Errors of the parameters the reported system leaves free.
+
+    A fixed angle or a length equated to another gets σ = 0. The shared edge
+    takes the esd present on either copy. ``esd_ok`` requires every free
+    parameter to have an esd and at least one of those esds to be positive.
+    """
+    n = len(cells)
+    chosen = np.zeros((n, 6), dtype=np.float64)
+    esd_ok = np.zeros(n, dtype=bool)
+    for i in range(n):
+        system = systems[i]
+        a, b, c, alpha, beta, gamma = cells[i]
+        sig = sigma[i]
+        free = [True] * 6
+        pick = np.array(sig, dtype=np.float64)
+        if system == "monoclinic":
+            free = [True, True, True, abs(alpha - 90) > 0.5, abs(beta - 90) > 0.5, abs(gamma - 90) > 0.5]
+        elif system == "orthorhombic":
+            free = [True, True, True, False, False, False]
+        elif system in ("tetragonal", "hexagonal"):
+            free = [True, False, True, False, False, False]
+            if not np.isfinite(pick[0]) and np.isfinite(pick[1]):
+                pick[0] = pick[1]
+        elif system == "trigonal" and abs(gamma - 120.0) < 1.0:
+            free = [True, False, True, False, False, False]
+            if not np.isfinite(pick[0]) and np.isfinite(pick[1]):
+                pick[0] = pick[1]
+        elif system == "trigonal":
+            free = [True, False, False, True, False, False]
+            for src in (1, 2):
+                if not np.isfinite(pick[0]) and np.isfinite(sig[src]):
+                    pick[0] = sig[src]
+            for src in (4, 5):
+                if not np.isfinite(pick[3]) and np.isfinite(sig[src]):
+                    pick[3] = sig[src]
+        elif system == "cubic":
+            free = [True, False, False, False, False, False]
+            pick[0] = next((sig[src] for src in (0, 1, 2) if np.isfinite(sig[src])), np.nan)
+        for k in range(6):
+            if not free[k]:
+                pick[k] = 0.0
+        chosen[i] = pick
+        present = all((not free[k]) or np.isfinite(pick[k]) for k in range(6))
+        positive = any(free[k] and np.isfinite(pick[k]) and pick[k] > 0 for k in range(6))
+        esd_ok[i] = present and positive
+    return chosen, esd_ok
+
+
+def prepare_metrics(red, deposited, cob, sigma, systems):
     """Vectorised conorms of the stored reduced cell, and tau from the Jacobian.
 
     ``cob`` is (N, 3, 3). Rows with a failed change of basis use the reduced
@@ -288,11 +338,13 @@ def prepare_metrics(red, deposited, cob, sigma, have_esd):
         0.001 * np.abs(red_m[:, 0]), 0.001 * np.abs(red_m[:, 1]), 0.001 * np.abs(red_m[:, 2]),
         np.full(n, 0.03), np.full(n, 0.03), np.full(n, 0.03),
     ])
-    esd_ok = have_esd & use & np.isfinite(sig_m).all(axis=1)
-    used = np.where(esd_ok[:, None], sig_m, nominal)
+    esd_param, esd_free = _free_sigma(dep_m, sig_m, systems)
+    esd_ok = esd_free & use
+    used = np.where(esd_ok[:, None], esd_param, nominal)
     sig_p = np.sqrt(np.sum(jac ** 2 * used[:, None, :] ** 2, axis=2))
     tau = 3.0 * np.max(sig_p, axis=1)
-    tau = np.where(np.isfinite(tau) & (tau > 0), tau, 0.0)
+    tau = np.where(np.isfinite(tau), tau, 0.0)
+    tau = np.maximum(tau, 1e-9 * np.maximum(gmax, 0.0))
     kind = np.where(esd_ok, "esd", "nominal")
     return {
         "p": p, "lengths": lengths, "gmax": gmax, "lam1": _lam1_many(p),
@@ -339,9 +391,66 @@ def _pattern(zero, parent):
     return zs, frozenset(frozenset(v) for v in groups.values())
 
 
-def _sort_name(zero, parent):
+_CLOSE_CACHE = {}
+_BY_ZEROS = {}
+for _pattern_key in SORT_OF:
+    _BY_ZEROS.setdefault(_pattern_key[0], []).append(_pattern_key)
+
+
+def _close_to_sort(zero, parent):
+    """Finest Table-4 pattern containing the imposed zeros and ties.
+
+    Those patterns are the closed sets Fix(Sym(V)). The raw partition is only
+    the constraint set; it is not itself the sort.
+    """
     key = _pattern(zero, parent)
-    return SORT_OF.get(key, "unlisted"), SORT_PERM.get(key, 0)
+    cached = _CLOSE_CACHE.get(key)
+    if cached is not None:
+        return cached
+    if key in SORT_OF:
+        found = (SORT_OF[key], SORT_PERM[key])
+        _CLOSE_CACHE[key] = found
+        return found
+    raw_zs, raw_part = key
+    best_name, best_perm, best_cost = "unlisted", 0, None
+    candidates = []
+    for extra in range(0, 7 - len(raw_zs)):
+        for added in itertools.combinations(sorted(set(range(6)) - raw_zs), extra):
+            candidates.extend(_BY_ZEROS.get(raw_zs.union(added), ()))
+    for pattern in candidates:
+        zs, part = pattern
+        fits = True
+        for group in raw_part:
+            remain = [slot for slot in group if slot not in zs]
+            if len(remain) <= 1:
+                continue
+            host = next((cl for cl in part if remain[0] in cl), None)
+            if host is None or any(slot not in host for slot in remain):
+                fits = False
+                break
+        if not fits:
+            continue
+        cost = len(zs) + sum(len(cl) - 1 for cl in part)
+        if best_cost is None or cost < best_cost:
+            best_cost = cost
+            best_name = SORT_OF[pattern]
+            best_perm = SORT_PERM[pattern]
+    found = (best_name, best_perm)
+    _CLOSE_CACHE[key] = found
+    return found
+
+
+def _step_band(t_lo, t_hi, zero_d, eq_d, sig_p, pair):
+    """Cosine band of the constraints imposed on this step."""
+    vals = []
+    for i in range(6):
+        if t_lo - 1e-15 <= zero_d[i] <= t_hi + 1e-15:
+            vals.append(3.0 * float(sig_p[i]) / pair[i])
+    for i, j in itertools.combinations(range(6), 2):
+        if t_lo - 1e-15 <= eq_d[i, j] <= t_hi + 1e-15:
+            scale = np.sqrt(pair[i] * pair[j])
+            vals.append(3.0 * np.sqrt(float(sig_p[i]) ** 2 + float(sig_p[j]) ** 2) / scale)
+    return float(min(vals)) if vals else float("inf")
 
 
 def visible_order(p, tau):
@@ -385,9 +494,10 @@ def _edge_name(before, after, old_zero, new_zero, old_ids, new_ids, perm_index):
 
 def path_one(item):
     """Monotone sort path and the visible order. ``item`` is a tuple."""
-    index, p, lengths, gmax, tau, reported_order = item
+    index, p, lengths, gmax, tau, reported_order, sig_p = item
     p = np.asarray(p, np.float64)
     lengths = np.asarray(lengths, np.float64)
+    sig_p = np.asarray(sig_p, np.float64)
     pair = np.maximum(lengths[np.array(SL)[:, 0]] * lengths[np.array(SL)[:, 1]], 1e-30)
     zero_d = np.maximum(p, 0.0) / pair
     diff = np.abs(p[:, None] - p[None, :])
@@ -410,18 +520,27 @@ def path_one(item):
             ra, rb = find(a), find(b)
             if ra != rb:
                 parent[rb] = ra
-    sort, perm = _sort_name(zero, parent)
+    sort, perm = _close_to_sort(zero, parent)
     sort_exact = sort
     exact_ids = np.empty(6, dtype=np.int64)
     exact_ids[zero] = -1
     for i in alive:
         exact_ids[i] = find(i)
-    candidates = sorted({float(x) for x in zero_d if x > tol} | {float(eq_d[i, j]) for i in range(6) for j in range(i + 1, 6) if eq_d[i, j] > tol})
-    steps_t, steps_s, steps_e = [], [], []
+    raw = sorted(
+        {float(x) for x in zero_d if x > tol}
+        | {float(eq_d[i, j]) for i in range(6) for j in range(i + 1, 6) if eq_d[i, j] > tol}
+    )
+    groups = []
+    for value in raw:
+        if groups and value - groups[-1][1] <= 1e-12:
+            groups[-1][1] = value
+        else:
+            groups.append([value, value])
+    steps_t, steps_s, steps_e, steps_b = [], [], [], []
     jumps = 0
     prev_zero, prev_ids = zero.copy(), exact_ids
-    for t in candidates:
-        zero = (p <= tol) | (zero_d <= t)
+    for t_lo, t_hi in groups:
+        zero = (p <= tol) | (zero_d <= t_hi)
         parent = list(range(6))
 
         def find(i, parent=parent):
@@ -432,11 +551,11 @@ def path_one(item):
 
         alive = [i for i in range(6) if not zero[i]]
         for a, b in itertools.combinations(alive, 2):
-            if eq_d[a, b] <= t or abs(p[a] - p[b]) <= tol:
+            if eq_d[a, b] <= t_hi or abs(p[a] - p[b]) <= tol:
                 ra, rb = find(a), find(b)
                 if ra != rb:
                     parent[rb] = ra
-        name, name_perm = _sort_name(zero, parent)
+        name, name_perm = _close_to_sort(zero, parent)
         if name == "unlisted":
             break
         ids = np.empty(6, dtype=np.int64)
@@ -445,16 +564,17 @@ def path_one(item):
             ids[i] = find(i)
         if name != sort:
             edge = _edge_name(sort, name, prev_zero, zero, prev_ids, ids, perm)
-            if ">" in edge and ":" not in edge:
+            if (sort, name) not in EDGE_OF and (t_hi - t_lo) > 1e-12:
                 jumps += 1
-            steps_t.append(t)
+            steps_t.append(t_hi)
             steps_s.append(name)
             steps_e.append(edge)
+            steps_b.append(_step_band(t_lo, t_hi, zero_d, eq_d, sig_p, pair))
             sort, perm = name, name_perm
             if len(steps_t) == 6:
                 break
         prev_zero, prev_ids = zero, ids
-    overflow = len(candidates) > 0 and len(steps_t) == 6 and steps_t[-1] < candidates[-1] and sort != "C5"
+    overflow = bool(groups) and len(steps_t) == 6 and steps_t[-1] < groups[-1][1] and sort != "C5"
     order = visible_order(p, float(tau))
     zero4 = p <= 4.0 * float(tau)
     forced = np.zeros(6, dtype=bool)
@@ -463,32 +583,44 @@ def path_one(item):
         for src in PERM_SRC:
             if not np.array_equal(ids4[src], ids4):
                 continue
-            # image of slot s is the n with src[n] == s
             image = np.empty(6, dtype=np.int64)
-            for n, s in enumerate(src):
-                image[s] = n
+            for nslot, slot in enumerate(src):
+                image[slot] = nslot
             zero4 = zero4 & (p[image] <= 4.0 * float(tau))
         forced = zero4 & (p <= 4.0 * float(tau))
     cos = p / pair
+    ambiguous = bool(steps_t) and steps_t[0] <= steps_b[0]
     return {
         "i": index, "sort_exact": sort_exact, "t": steps_t, "sorts": steps_s,
-        "edges": steps_e, "overflow": overflow, "jumps": jumps,
-        "visible": order, "forced": forced, "cos": cos, "unlisted": sort_exact == "unlisted" or "unlisted" in steps_s,
+        "edges": steps_e, "bands": steps_b, "overflow": overflow, "jumps": jumps,
+        "visible": order, "forced": forced, "cos": cos, "ambiguous": ambiguous,
+        "unlisted": sort_exact == "unlisted" or "unlisted" in steps_s,
     }
 
 
-def _member_cell(superbase, gram):
-    basis = np.asarray(superbase[1:4], float)
-    return params_from_metric(basis @ gram @ basis.T)
+def _niggli_setting_differs(red, p, tau, gmax):
+    """True when the idealised cell's Niggli basis is a different setting.
 
-
-def _niggli_differs(cell_a, cell_b, scale):
-    left, _m = niggli_gk(tuple(float(x) for x in cell_a))
-    right, _n = niggli_gk(tuple(float(x) for x in cell_b))
-    ga = np.asarray(metric_tensor(left), float)
-    gb = np.asarray(metric_tensor(right), float)
-    mixed = np.einsum("pia,ij,pjb->pab", SP, ga, SP)
-    return float(np.linalg.norm(mixed - gb, axis=(1, 2)).min()) > 1e-9 * scale
+    Both matrices are expressed in the reduced cell's frame. They describe the
+    same setting when a signed axis permutation carries one onto the other.
+    """
+    ideal = np.array(p, float).copy()
+    ideal[ideal <= 4.0 * float(tau)] = 0.0
+    gram = z44._gram(ideal)
+    if np.linalg.eigvalsh(gram).min() <= 1e-9 * max(float(gmax), 0.0):
+        return False
+    try:
+        cell = params_from_metric(gram)
+        _left, measured = niggli_gk(tuple(float(x) for x in red))
+        _right, idealised = niggli_gk(tuple(float(x) for x in cell))
+    except (ValueError, RuntimeError, ZeroDivisionError):
+        return False
+    measured = np.asarray(measured, float)
+    idealised = np.asarray(idealised, float)
+    for perm in SP:
+        if np.allclose(measured, idealised @ perm, atol=1e-5, rtol=0.0):
+            return False
+    return True
 
 
 def closure_one(item):
@@ -501,9 +633,26 @@ def closure_one(item):
         "niggli_diff": False, "mono_repeat": False,
     }
     try:
-        closed = members_by("closure", p, tau)
-        walked = members_by("walk-tau", p, tau)
-        walked2 = members_by("walk-2tau", p, tau)
+        def _run():
+            return (
+                members_by("closure", p, tau),
+                members_by("walk-tau", p, tau),
+                members_by("walk-2tau", p, tau),
+            )
+        def _alarm(signum, frame):
+            raise TimeoutError("closure search exceeded 5s")
+        previous = signal.signal(signal.SIGALRM, _alarm)
+        signal.alarm(5)
+        try:
+            closed, walked, walked2 = _run()
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, previous)
+    except TimeoutError as exc:
+        out["ok"] = False
+        out["singular"] = True
+        out["error"] = str(exc)
+        return out
     except Exception as exc:
         out["ok"] = False
         out["error"] = f"{type(exc).__name__}: {exc}"
@@ -514,25 +663,18 @@ def closure_one(item):
     out["n_closure"] = len(closed)
     out["n_walk_tau"] = len(walked) if walked is not None else None
     out["n_walk_2tau"] = len(walked2) if walked2 is not None else None
+    try:
+        out["niggli_diff"] = _niggli_setting_differs(red, p, tau, gmax)
+    except Exception as exc:
+        out["error"] = f"niggli {type(exc).__name__}: {exc}"
     if len(closed) > 1:
         gram = z44._gram(p)
         orders = []
-        differ = False
         for superbase in closed:
             try:
                 orders.append(visible_order(z44._cn(superbase, gram), tau))
             except Exception:
                 orders.append(-1)
-            if z44._key(superbase) == z44._key(S0):
-                continue
-            try:
-                other = _member_cell(superbase, gram)
-                if _niggli_differs(red, other, gmax):
-                    differ = True
-            except Exception as exc:
-                differ = True
-                out["error"] = f"niggli {type(exc).__name__}"
-        out["niggli_diff"] = differ
         out["mono_repeat"] = any(v >= 2 for v in Counter(orders).values())
     return out
 
@@ -643,6 +785,19 @@ def sort_at(level, sort_exact, times, names):
     return current
 
 
+def sort_within_bands(path):
+    """Sort after every transition that falls inside its own cosine band."""
+    current = path["sort_exact"]
+    for t, name, band in zip(path["t"], path["sorts"], path.get("bands", [])):
+        if not name or not math.isfinite(t):
+            break
+        if t <= band:
+            current = name
+        else:
+            break
+    return current
+
+
 def write_table(path, rows, fields):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as handle:
@@ -682,8 +837,9 @@ def main(argv=None):
     if not rows:
         raise SystemExit("the database has no cells")
     print(f"loaded {len(rows):,} cells", flush=True)
-    red, dep, sig, have_esd, cob, cob_fail = rows_to_arrays(rows)
-    prepared = prepare_metrics(red, dep, cob, sig, have_esd)
+    systems = [reported_system(row.get("sg_number")) for row in rows]
+    red, dep, sig, _have_file_esd, cob, cob_fail = rows_to_arrays(rows)
+    prepared = prepare_metrics(red, dep, cob, sig, systems)
     device = prepared["device"]
     print(f"metrics on {device}", flush=True)
     p = prepared["p"]
@@ -694,13 +850,12 @@ def main(argv=None):
     kind = prepared["kind"]
     n = len(rows)
     obtuse = (p.min(axis=1) >= -1e-9 * np.maximum(gmax, 1e-30)) & np.isfinite(p).all(axis=1) & np.isfinite(lam1) & (lam1 > 0)
-    systems = [reported_system(row.get("sg_number")) for row in rows]
     sources = [row.get("source") or "" for row in rows]
     orders = [SYSTEM_ORDER[system] for system in systems]
     letters = [lattice_letter(row.get("sg_hm") or "") for row in rows]
 
     path_items = [
-        (i, p[i].tolist(), lengths[i].tolist(), float(gmax[i]), float(tau[i]), int(orders[i]))
+        (i, p[i].tolist(), lengths[i].tolist(), float(gmax[i]), float(tau[i]), int(orders[i]), prepared["sig_p"][i].tolist())
         for i in range(n) if obtuse[i]
     ]
     print(f"sort paths for {len(path_items):,} obtuse cells on {workers} workers", flush=True)
@@ -767,7 +922,7 @@ def main(argv=None):
 
     summary, tables, flagged, conorm = assemble(
         rows, p, lengths, lam1, tau, kind, prepared["sig_p"], gmax, obtuse,
-        systems, sources, letters, have_esd, paths, closures, cob_fail,
+        systems, sources, letters, paths, closures, cob_fail,
         closure_mode, closure_idx, rate, extrapolated, device, workers, args, started, meta_rows,
     )
     summary["spot_text"] = spot_text(args.db, rows, p, lam1, tau, kind, paths, closures, systems)
@@ -776,7 +931,7 @@ def main(argv=None):
 
 
 def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, sources,
-             letters, have_esd, paths, closures, cob_fail, closure_mode, closure_idx,
+             letters, paths, closures, cob_fail, closure_mode, closure_idx,
              rate, extrapolated, device, workers, args, started, meta_rows):
     n = len(rows)
     closure_set = set(closures)
@@ -796,7 +951,8 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         mask = [i for i in range(n) if sources[i] == source]
         inv_rows.append({
             "source": source, "n": count,
-            "with_esd": int(sum(have_esd[i] for i in mask)),
+            "with_esd": int(sum(kind[i] == "esd" for i in mask)),
+            "nominal": int(sum(kind[i] == "nominal" for i in mask)),
             "null_sg": int(sum(systems[i] == "unknown" for i in mask)),
             "non_P": int(sum(letters[i] not in ("", "P") for i in mask)),
             "not_obtuse": int(sum(not obtuse[i] for i in mask)),
@@ -978,15 +1134,23 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
     if beyond_n:
         issues.append({"name": "beyond-theorem", "n": beyond_n, "ids": beyond_ids,
                        "detail": "lam1 is not greater than 32 tau, so the widened-closure theorem's hypothesis fails. The construction was still run."})
+    if singular_n:
         issues.append({"name": "step2-singular", "n": singular_n, "ids": singular_ids,
-                       "detail": "The idealised lattice at 4 tau was singular, so members_by('closure') returned None."})
+                       "detail": "The idealised lattice at 4 tau was singular, so members_by('closure') returned None, or the flip search exceeded 5 seconds."})
 
-    niggli_rows = []
-    for source in sorted(by_source):
-        group = [i for i, rec in closures.items() if sources[i] == source and rec.get("n_closure") not in (None, 0, 1) and not rec.get("singular")]
-        multi = [i for i in group if rec_n(closures[i]) > 1]
-        differ = sum(1 for i in multi if closures[i].get("niggli_diff"))
-        niggli_rows.append({"source": source, "n_closure_gt1": len(multi), "niggli_differs": differ})
+    niggli_n = Counter()
+    niggli_diff = Counter()
+    for i, rec in closures.items():
+        if rec.get("singular") or rec.get("n_closure") is None:
+            continue
+        key = (sources[i], paths.get(i, {}).get("sort_exact", ""))
+        niggli_n[key] += 1
+        if rec.get("niggli_diff"):
+            niggli_diff[key] += 1
+    niggli_rows = [{
+        "source": source, "sort": sort_name, "n": count,
+        "niggli_setting_differs": niggli_diff[(source, sort_name)],
+    } for (source, sort_name), count in sorted(niggli_n.items())]
 
     # Sort aggregates over every obtuse cell that has a path.
     edge_hist = defaultdict(Counter)
@@ -1010,7 +1174,7 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
             if len(overflow_ids) < 5:
                 overflow_ids.append(rows[i]["pdb_id"])
         ambiguous[(source, path["sort_exact"])][1] += 1
-        if path["t"] and path["t"][0] < 4.0 * tau[i]:
+        if path.get("ambiguous"):
             ambiguous[(source, path["sort_exact"])][0] += 1
         for t, edge in zip(path["t"], path["edges"]):
             edge_hist[(source, edge)][log_bin(t)] += 1
@@ -1018,7 +1182,7 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         times = path["t"]
         for level in POP_LEVELS:
             pop[(source, sort_at(level, path["sort_exact"], times, names), level)]["n"] += 1
-        at_levels[(source, sort_at(4.0 * tau[i], path["sort_exact"], times, names), "4tau")]["n"] += 1
+        at_levels[(source, sort_within_bands(path), "4tau")]["n"] += 1
         for level, label in ((1e-2, "1e-2"), (1e-3, "1e-3"), (1e-4, "1e-4")):
             at_levels[(source, sort_at(level, path["sort_exact"], times, names), label)]["n"] += 1
     if unlisted_n:
@@ -1094,7 +1258,7 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         "wall_seconds": time.perf_counter() - started,
     }
     tables = {
-        "inventory.csv": (inv_rows, ["source", "n", "with_esd", "null_sg", "non_P", "not_obtuse"]),
+        "inventory.csv": (inv_rows, ["source", "n", "with_esd", "nominal", "null_sg", "non_P", "not_obtuse"]),
         "inventory_system.csv": (sys_rows, ["source", "system", "n"]),
         "wall_histogram.csv": (wall_rows, list(wall_rows[0].keys()) if wall_rows else ["source"]),
         "near_zeros.csv": (zero_rows, ["source", "system", "n", "z0", "z1", "z2", "z3", "zmore"]),
@@ -1104,7 +1268,7 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         "symmetry_cross.csv": (cross_rows, ["source", "reported", "visible", "n"]),
         "symmetry_off_diagonal.csv": (off_rows, ["reported", "visible", "n"]),
         "traps.csv": (trap_rows, list(trap_rows[0].keys())),
-        "niggli.csv": (niggli_rows, ["source", "n_closure_gt1", "niggli_differs"]),
+        "niggli.csv": (niggli_rows, ["source", "sort", "n", "niggli_setting_differs"]),
         "edge_transitions.csv": (edge_rows, list(edge_rows[0].keys()) if edge_rows else ["source", "edge", "n"]),
         "sort_population.csv": (pop_rows, ["source", "sort", "t", "n"]),
         "sorts_by_source.csv": (level_rows, ["source", "sort", "tolerance", "n"]),
@@ -1147,6 +1311,7 @@ def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, pat
     cos = p / pair
     sort_codes = {name: i for i, name in enumerate(["", *SORT_NAMES, "unlisted"])}
     t_path = np.full((n, 6), np.nan, np.float32)
+    band_path = np.full((n, 6), np.nan, np.float32)
     sort_path = np.full((n, 6), -1, np.int16)
     exact = np.full(n, -1, np.int16)
     forced = np.zeros((n, 6), dtype=bool)
@@ -1158,8 +1323,10 @@ def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, pat
                 break
             t_path[i, k] = t
             sort_path[i, k] = sort_codes.get(name, sort_codes["unlisted"])
+            if k < len(path.get("bands", [])):
+                band_path[i, k] = path["bands"][k]
         forced[i] = path["forced"]
-        amb[i] = bool(path["t"] and path["t"][0] < 4.0 * tau[i])
+        amb[i] = bool(path.get("ambiguous"))
     sig = np.array(sig_p, np.float32)
     sig[kind != "esd"] = np.nan
     return {
@@ -1172,7 +1339,8 @@ def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, pat
         "tau_kind": np.array(kind),
         "p": p.astype(np.float32), "cos": cos.astype(np.float32), "sig": sig,
         "forced": forced, "sort_exact": exact, "t_path": t_path, "sort_path": sort_path,
-        "ambiguous_esd": amb, "sort_codes": np.array(list(sort_codes.keys())),
+        "ambiguous_esd": amb, "band_path": band_path,
+        "sort_codes": np.array(list(sort_codes.keys())),
     }
 
 
@@ -1294,6 +1462,7 @@ def write_conorms(out, conorm):
         columns["sort_exact"] = conorm["sort_exact"]
         for k in range(6):
             columns[f"t_{k+1}"] = conorm["t_path"][:, k]
+            columns[f"band_{k+1}"] = conorm["band_path"][:, k]
             columns[f"sort_{k+1}"] = conorm["sort_path"][:, k]
         columns["ambiguous_esd"] = conorm["ambiguous_esd"]
         table = pyarrow.table(columns)
@@ -1352,10 +1521,11 @@ def render_readme(summary, tables, conorm_path, env):
         f"({summary['cells_per_second']:.2f} closure cells/s). "
         f"A full closure pass would take {summary['extrapolated_full_seconds'] / 3600:.2f} h.",
         "",
-        "The reduced superbase is built from the stored Selling cell. `tau` is three times the largest conorm standard deviation. "
-        "Where all six esds are present that deviation comes from a numerical Jacobian through the stored change of basis (`tau_kind = esd`); "
-        "otherwise the nominal errors are `0.001 * length` and `0.03` degrees (`tau_kind = nominal`). "
-        "A sort path imposes cosine-scaled zeros and ties in order and closes them under transitivity, so the sort only moves up the specialisation diagram.",
+        "The reduced superbase is built from the stored Selling cell. `tau` is three times the largest conorm standard deviation, and never smaller than `1e-9 max|G|`. "
+        "A parameter fixed by the reported crystal system (a 90° or 120° angle, or a length the system equates to another) has σ = 0. "
+        "`tau_kind = esd` when every free parameter has an esd and at least one of those esds is positive; otherwise the nominal errors are `0.001 * length` and `0.03` degrees. "
+        "A sort path imposes cosine-scaled zeros and ties in order. Each constraint set is replaced by the finest closed Table 4 pattern that contains it. "
+        "A transition is inside the measurement when its cosine is within `3 σ(p)` of that slot, scaled by the edge lengths.",
         "",
         "## Inventory",
         "",
@@ -1403,7 +1573,7 @@ def render_readme(summary, tables, conorm_path, env):
         "",
         "## Specialisation",
         "",
-        "Populations at each cell's own `4 tau` and at cosine tolerances `1e-2`, `1e-3`, `1e-4`.",
+        "Populations at the measurement band (every transition inside its own cosine band) and at cosine tolerances `1e-2`, `1e-3`, `1e-4`.",
         "",
         _top_levels(tables["sorts_by_source.csv"][0]),
         "",
@@ -1415,7 +1585,7 @@ def render_readme(summary, tables, conorm_path, env):
         "",
         _top_population(tables["sort_population.csv"][0]),
         "",
-        "Fraction of cells whose exact sort does not survive `4 tau` (`ambiguous_esd`).",
+        "Fraction of cells whose first specialisation falls inside the cosine band of that edge (`ambiguous_esd`).",
         "",
         md_table(*tables["ambiguous_esd.csv"]) if tables["ambiguous_esd.csv"][0] else "",
         "",
