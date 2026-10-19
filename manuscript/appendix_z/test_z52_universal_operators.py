@@ -142,6 +142,10 @@ def test_universal_operator_set():
         ok = face_ok(L, Z)
         occurs[name] = sorted(set(int(dist[i]) for i in np.where(ok)[0]))
     assert occurs == {"one": [0, 1], "disjoint": [0, 1], "path": [0, 1, 2, 3], "triangle": [0, 1, 2, 3, 4]}
+    # U is closed under inversion, and every element has a labelling whose three
+    # basis vectors have entries in [-2,2] (the brute-force window of the paper)
+    assert all(tuple(np.round(np.linalg.inv(w)).astype(int).ravel()) in keys for w in W)
+    assert all(any(np.abs(s @ w).max() <= 2 or np.abs(w @ s).max() <= 2 for s in sw) for w in W)
     # universality: every operator between members of every sort's closure is in U
     rnd = np.random.default_rng(52)
     for name, bt, pat in SORTS:

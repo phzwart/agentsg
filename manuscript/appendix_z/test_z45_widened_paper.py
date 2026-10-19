@@ -123,7 +123,7 @@ def test_depth_ladder_of_the_worked_pair(superbases):
     assert len(depth) == 16
     assert np.allclose(depth, [0, 4.19, 4.54, 4.54, 8.73, 8.73, 45.0, 49.54, 49.54,
                                53.73, 53.73, 53.73, 53.73, 57.91, 62.45, 62.45], atol=0.02)
-    for tau, n in ((43.2, 6), (44.9, 6), (45.1, 7), (50.0, 9), (60.0, 14)):
+    for tau, n in ((20.0, 6), (43.2, 6), (44.9, 6), (45.1, 7), (50.0, 9), (60.0, 14)):   # 20 is within lambda_1 > 32 tau
         truth, _ = _brute(superbases, Gf, tau)
         assert sum(d <= tau for d in depth) == len(truth) == n
 
