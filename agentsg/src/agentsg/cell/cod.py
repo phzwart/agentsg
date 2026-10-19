@@ -110,9 +110,19 @@ def _sniff_delimiter(header_line):
 
 
 def cod_cells_from_table(path, *, encoding="utf-8"):
-    """Yield records from a COD CSV/TSV export (header row required)."""
+    """Yield records from a COD CSV/TSV export (header row required).
+
+    Leading blank lines and ``#`` comments are skipped. The COD web export
+    starts with a comment block before the column names.
+    """
     with open(path, "r", encoding=encoding, errors="replace", newline="") as fh:
-        first = fh.readline()
+        first = ""
+        for line in fh:
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
+                continue
+            first = line
+            break
         if not first:
             return
         delim = _sniff_delimiter(first)

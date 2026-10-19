@@ -14,7 +14,7 @@ from ..tolerances import (
     METRIC_LENGTH_TOL_PCT,
 )
 
-API_VERSION = "0.3.7"
+API_VERSION = "0.3.8"
 _BASE_TOKEN = "{{BASE_URL}}"
 _NAME_TOKEN = "{{API_NAME}}"
 _AUTH = '-H "Authorization: Bearer $AGENTSG_TOKEN"'

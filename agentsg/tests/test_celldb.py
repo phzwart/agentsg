@@ -503,7 +503,7 @@ def test_cod_table_parsing(tmp_path):
     assert centring_symbol("R -3 c :H") == "R -3 c"
     assert centring_symbol(None, "-P 2ybc") == "-P 2ybc"
     f = tmp_path / "cod.csv"
-    f.write_text(_COD_TABLE)
+    f.write_text("# Search results of SQL query\n# Date\n" + _COD_TABLE)
     recs = list(cod_cells_from_table(str(f)))
     assert [r["cod_id"] for r in recs] == ["1000041", "2000001", "9000001", "9000002", "7000001"]
     assert recs[0]["esd"] == (0.0002, 0.0002, 0.0002, None, None, None)

@@ -193,3 +193,30 @@ def test_construct_sample_fills_derived_columns(tmp_path, monkeypatch):
     row = db.sql("SELECT l0, s0, red_a, cob00 FROM cells")[0]
     assert all(value is not None for value in row)
     db.close()
+
+
+def test_build_cod_database_is_separate(tmp_path):
+    src = tmp_path / "cod.csv"
+    src.write_text(
+        "file,a,b,c,alpha,beta,gamma,sg,formula\n"
+        "1000041,5.431,5.431,5.431,90,90,90,F d -3 m,- Si8 -\n"
+    )
+    dbp = str(tmp_path / "cod_cells.duckdb")
+    summary = pdb_app.build_cod_database(dbp, str(src), log=lambda *_a, **_k: None)
+    assert summary["inserted"] == 1
+    assert summary["skipped"] == 0
+    db = CellDatabase(dbp)
+    row = db.sql("SELECT pdb_id, source, formula FROM cells")[0]
+    assert row == ("COD1000041", "cod", "- Si8 -")
+    columns = {item[0] for item in db.sql("DESCRIBE cells")}
+    assert "uniprots" not in columns
+    assert "deposit_group" not in columns
+    db.close()
+    reopened = CellDatabase(dbp)
+    columns = {item[0] for item in reopened.sql("DESCRIBE cells")}
+    assert "uniprots" not in columns and "deposit_group" not in columns
+    with pytest.raises(RuntimeError):
+        reopened.backfill_uniprot(chain_uniprot="", names="")
+    with pytest.raises(RuntimeError):
+        reopened.backfill_deposit_group(groups={})
+    reopened.close()

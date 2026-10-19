@@ -370,20 +370,35 @@ python -m agentsg.cell.pdb_app query pdb_cells.duckdb \
     --cell 79 79 38 90 90 90 -k 5
 ```
 
-The same table takes small-molecule and inorganic cells from the
+The same table shape is used for a second database of small-molecule and
+inorganic cells from the
 [Crystallography Open Database](https://www.crystallography.net/cod/) (COD, the
 open counterpart of the ICSD/CSD). Export the COD cell table as CSV/TSV from
 the COD search page or its MySQL dump (columns `file, a, siga, …, sg, sgHall,
 formula`), or check out COD CIFs by svn/rsync, then
 
 ```bash
-python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv   # or a .cif, or a directory of CIFs
+python -m agentsg.cell.pdb_app build-cod cod_cells.duckdb cod_cells.csv
+python -m agentsg.cell.pdb_app query cod_cells.duckdb \
+    --cell 5.43 5.43 5.43 90 90 90 -k 5
 ```
 
-Rows are keyed `COD<id>` with `source = 'cod'`, their cell esds in
-`sig_a … sig_gamma` and the chemical formula; PDB rows carry `source = 'pdb'`.
-Rhombohedral-axes cells (`R 3 m :R`) are primitive and are keyed as such, so
-corundum on hexagonal and on rhombohedral axes lands on the same lattice point.
+The path may be one `.cif` or a directory of them. Rows are keyed `COD<id>`
+with `source = 'cod'`, their cell esds in `sig_a … sig_gamma` and the chemical
+formula. The COD file has no UniProt list and no deposition-group id.
+
+```bash
+python -m agentsg.cell.cod_explorer cod_cells.duckdb
+```
+
+opens the cells in the three principal components of the volume-normalised
+sorted linear key at `http://127.0.0.1:8053`. Each key is divided by the cube
+root of the primitive-cell volume, so the axes are shape. The lower right
+panel turns that cloud in 3D. Colour is crystal system or centring. A click
+shows the deposited cell, the Selling cell, and the formula, with a link to
+the COD entry.
+Rhombohedral-axes cells (`R 3 m :R`) are primitive. `add-cod` is the same
+insert into a database that already exists, including `pdb_cells.duckdb`.
 
 ```python
 from agentsg.cell import CellDatabase

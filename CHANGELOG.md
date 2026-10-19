@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.8
+
+- `pdb_app build-cod` writes a second cell database that holds only Crystallography Open Database entries. That file has no UniProt or deposition-group columns. `add-cod` still inserts those rows into an existing database.
+- `python -m agentsg.cell.cod_explorer` opens that archive as three principal-component views of the volume-normalised sorted linear key, with a rotatable 3D panel. Each key is divided by the cube root of the primitive-cell volume. A click shows the deposited cell, the Selling cell, and the chemical formula. The explorer does not read UniProt or deposition-group columns.
+
 ## 0.3.7
 
 - The cell database takes Crystallography Open Database entries next to the PDB ones: `CellDatabase.add_cod(path)` reads a COD table export (CSV/TSV) or a tree of COD CIFs and stores each cell as `COD<id>` with `source = 'cod'`, its esds (`sig_a` … `sig_gamma`) and chemical formula; rhombohedral-axes cells (`:R`) are treated as primitive. Existing rows are marked `source = 'pdb'`.

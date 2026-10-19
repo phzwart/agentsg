@@ -28,11 +28,16 @@ Query the k nearest lattices to a cell::
 The ``backfill-*`` commands repeat one annotation step on a database that
 already has cells. ``build`` runs them itself.
 
-``add-cod`` inserts Crystallography Open Database cells (a COD table export,
-one CIF, or a directory of CIFs) next to the PDB rows, keyed ``COD<id>`` with
-``source = 'cod'``::
+``add-cod`` inserts Crystallography Open Database cells into an existing
+database. ``build-cod`` makes a second database that holds only those cells::
 
-    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv
+    python -m agentsg.cell.pdb_app build-cod cod_cells.duckdb cod_cells.csv
+    python -m agentsg.cell.pdb_app query cod_cells.duckdb \\
+        --cell 5.43 5.43 5.43 90 90 90 -k 5
+    python -m agentsg.cell.cod_explorer cod_cells.duckdb
+
+``source`` is a COD table export, one CIF, or a directory of CIFs. Rows are
+keyed ``COD<id>`` with ``source = 'cod'``.
 
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
@@ -44,6 +49,21 @@ import time
 import urllib.error
 
 from .celldb import CellDatabase, list_pdb_ids, fetch_pdb_cells
+
+
+def build_cod_database(db_path, source, *, log=print):
+    """Create or extend a COD cell database, separate from the PDB file.
+
+    ``source`` is a COD table export, one CIF, or a directory of CIFs.
+    ``db_path`` is the second database, for example ``cod_cells.duckdb``.
+    """
+    db = CellDatabase(db_path, archive="cod")
+    try:
+        inserted, skipped = db.add_cod(source, progress=True)
+    finally:
+        db.close()
+    log(f"COD database {db_path}: {inserted:,} inserted, {skipped:,} skipped")
+    return {"path": db_path, "inserted": inserted, "skipped": skipped}
 
 
 def sample_ids(ids, n, seed=0):
@@ -296,6 +316,12 @@ def _cli(argv=None):
         print(f"backfilled {n:,} deposition groups in {argv[1]}")
         db.close()
         return 0
+    if cmd == "build-cod":
+        if len(argv) < 3:
+            print("usage: pdb_app build-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
+            return 2
+        build_cod_database(argv[1], argv[2])
+        return 0
     if cmd == "add-cod":
         if len(argv) < 3:
             print("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
@@ -333,7 +359,7 @@ def _cli(argv=None):
     print(
         f"unknown command: {cmd!r} "
         "(use build | backfill-similarity | backfill-linear | backfill-selling | "
-        "backfill-uniprot | backfill-deposit-group | add-cod | query)"
+        "backfill-uniprot | backfill-deposit-group | build-cod | add-cod | query)"
     )
     return 2
 

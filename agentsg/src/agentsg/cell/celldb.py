@@ -180,6 +180,56 @@ CREATE TABLE IF NOT EXISTS schema_meta (
 """
 
 
+def cell_insert_values(pdb_id, cell, sg_number=None, sg_hm=None, *,
+                       centring=None, source="pdb"):
+    """Row values for one cell, or None when the reduction fails.
+
+    The linear key and the Selling cell are computed on the primitive lattice.
+    """
+    letter_sym = sg_hm if centring is None else centring
+    try:
+        vol = UnitCell(*cell).volume()
+        prim = _primitive_for_roots(cell, letter_sym)
+        ri = sorted_root_key(prim, stabilize="sqrt")
+        lk = sorted_linear_key(prim)
+        si = similarity_invariant(prim)
+        red, cob = deposited_to_reduced(cell, letter_sym)
+        cob_vals = cob_column_values(cob)
+    except Exception:
+        return None
+    return [
+        pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
+        vol, sg_number, sg_hm,
+        ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
+        lk[0], lk[1], lk[2], lk[3], lk[4], lk[5],
+        si[0], si[1], si[2], si[3], si[4], si[5],
+        red[0], red[1], red[2], red[3], red[4], red[5], source,
+        *cob_vals,
+    ]
+
+
+def prepare_cod_insert(rec):
+    """One COD record as insert values, or None when the cell cannot be reduced."""
+    from ..space_groups import space_group
+    from .cod import centring_symbol
+
+    sg_hm = rec["sg_hm"] or rec["sg_hall"]
+    number = rec["sg_number"]
+    if rec["sg_hm"]:
+        try:
+            number = space_group(rec["sg_hm"]).number
+        except Exception:
+            pass
+    values = cell_insert_values(
+        f"COD{rec['cod_id']}", rec["cell"], number, sg_hm,
+        centring=centring_symbol(rec["sg_hm"], rec["sg_hall"]),
+        source="cod",
+    )
+    if values is None:
+        return None
+    return values, list(rec["esd"]), rec["formula"]
+
+
 class CellDatabase:
     """A DuckDB-backed lattice database keyed on the root invariant.
 
@@ -192,7 +242,7 @@ class CellDatabase:
     not need it.
     """
 
-    def __init__(self, path=":memory:", *, read_only: bool = False):
+    def __init__(self, path=":memory:", *, read_only: bool = False, archive=None):
         try:
             import duckdb
         except ImportError as exc:                       # pragma: no cover
@@ -204,6 +254,8 @@ class CellDatabase:
         if not read_only:
             self._db.execute(_SCHEMA)
             self._db.execute(_META_SCHEMA)
+            if archive is not None:
+                self._set_meta("archive", archive)
             self._migrate_schema()
 
     def _migrate_schema(self):
@@ -230,13 +282,6 @@ class CellDatabase:
         for name in COB_COLUMNS:
             if name not in cols:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} VARCHAR")
-        if "uniprots" not in cols:
-            self._db.execute(
-                "ALTER TABLE cells ADD COLUMN uniprots "
-                "STRUCT(acc VARCHAR, name VARCHAR, n_res INTEGER)[]"
-            )
-        if "deposit_group" not in cols:
-            self._db.execute("ALTER TABLE cells ADD COLUMN deposit_group VARCHAR")
         if "source" not in cols:
             # every row of a pre-COD database came from the PDB
             self._db.execute("ALTER TABLE cells ADD COLUMN source VARCHAR")
@@ -246,6 +291,18 @@ class CellDatabase:
                 self._db.execute(f"ALTER TABLE cells ADD COLUMN {name} DOUBLE")
         if "formula" not in cols:
             self._db.execute("ALTER TABLE cells ADD COLUMN formula VARCHAR")
+        if self._meta_value("archive") == "cod":
+            for name in ("uniprots", "deposit_group"):
+                if name in cols:
+                    self._db.execute(f"ALTER TABLE cells DROP COLUMN {name}")
+        else:
+            if "uniprots" not in cols:
+                self._db.execute(
+                    "ALTER TABLE cells ADD COLUMN uniprots "
+                    "STRUCT(acc VARCHAR, name VARCHAR, n_res INTEGER)[]"
+                )
+            if "deposit_group" not in cols:
+                self._db.execute("ALTER TABLE cells ADD COLUMN deposit_group VARCHAR")
         self._db.execute(
             "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
@@ -256,6 +313,19 @@ class CellDatabase:
         ).fetchone()[0]
         if pending == 0:
             self._set_search_key()
+
+    def _meta_value(self, key):
+        row = self._db.execute(
+            "SELECT value FROM schema_meta WHERE key = ?", [key],
+        ).fetchone()
+        return None if row is None else row[0]
+
+    def _set_meta(self, key, value):
+        self._db.execute(
+            "INSERT INTO schema_meta (key, value) VALUES (?, ?) "
+            "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            [key, value],
+        )
 
     def _search_key(self):
         """Stored search-key name, or None when the database has not been marked."""
@@ -305,15 +375,10 @@ class CellDatabase:
         (``'pdb'``, ``'cod'``).
         """
         letter_sym = sg_hm if centring is None else centring
-        try:
-            vol = UnitCell(*cell).volume()
-            prim = _primitive_for_roots(cell, letter_sym)
-            ri = sorted_root_key(prim, stabilize="sqrt")
-            lk = sorted_linear_key(prim)
-            si = similarity_invariant(prim)
-            red, cob = deposited_to_reduced(cell, letter_sym)
-            cob_vals = cob_column_values(cob)
-        except Exception:
+        values = cell_insert_values(
+            pdb_id, cell, sg_number, sg_hm, centring=letter_sym, source=source,
+        )
+        if values is None:
             return False
         self._db.execute(
             "INSERT OR REPLACE INTO cells "
@@ -323,13 +388,7 @@ class CellDatabase:
             "red_a, red_b, red_c, red_alpha, red_beta, red_gamma, source, "
             + ", ".join(COB_COLUMNS) + ") "
             "VALUES (" + ",".join("?" * (35 + len(COB_COLUMNS))) + ")",
-            [pdb_id, cell[0], cell[1], cell[2], cell[3], cell[4], cell[5],
-             vol, sg_number, sg_hm,
-             ri[0], ri[1], ri[2], ri[3], ri[4], ri[5],
-             lk[0], lk[1], lk[2], lk[3], lk[4], lk[5],
-             si[0], si[1], si[2], si[3], si[4], si[5],
-             red[0], red[1], red[2], red[3], red[4], red[5], source,
-             *cob_vals])
+            values)
         return True
 
     def add_cod(self, path, *, progress=False, source_label=None):
@@ -340,33 +399,113 @@ class CellDatabase:
         Rows are keyed ``COD<id>`` with ``source = 'cod'``; the cell esds go to
         ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT number is
         resolved from the H-M symbol (falling back to the file's number, then
-        None). Returns ``(inserted, skipped)``; ``schema_meta.cod_source`` records
-        where the cells came from.
+        None). Reduction of each cell runs in a process pool. Ids already
+        stored are left in place, so an interrupted load resumes. Returns
+        ``(inserted, skipped)``; ``schema_meta.cod_source`` records where the
+        cells came from.
         """
-        from ..space_groups import space_group
-        from .cod import centring_symbol, iter_cod_cells
-        n_ok = n_skip = 0
-        for i, rec in enumerate(iter_cod_cells(path), 1):
-            sg_hm = rec["sg_hm"] or rec["sg_hall"]
-            number = rec["sg_number"]
-            if rec["sg_hm"]:
-                try:
-                    number = space_group(rec["sg_hm"]).number
-                except Exception:
-                    pass
-            ok = self.add_cell(f"COD{rec['cod_id']}", rec["cell"], number, sg_hm,
-                               centring=centring_symbol(rec["sg_hm"], rec["sg_hall"]),
-                               source="cod")
-            if not ok:
-                n_skip += 1
-                continue
-            n_ok += 1
-            self._db.execute(
-                "UPDATE cells SET sig_a=?, sig_b=?, sig_c=?, sig_alpha=?, sig_beta=?, "
-                "sig_gamma=?, formula=? WHERE pdb_id=?",
-                [*rec["esd"], rec["formula"], f"COD{rec['cod_id']}"])
-            if progress and i % 10_000 == 0:
-                print(f"  {i} COD records read, {n_ok} inserted", flush=True)
+        import os
+        from concurrent.futures import ProcessPoolExecutor
+        from multiprocessing import get_context
+
+        import numpy as np
+
+        from .cod import iter_cod_cells
+
+        present = {
+            row[0] for row in self._db.execute(
+                "SELECT pdb_id FROM cells WHERE pdb_id LIKE 'COD%'"
+            ).fetchall()
+        }
+        workers = min(16, os.cpu_count() or 1)
+        batch = []
+        n_ok = n_skip = n_seen = 0
+        insert_columns = (
+            ["pdb_id", "a", "b", "c", "alpha", "beta", "gamma", "volume", "sg_number", "sg_hm"]
+            + [f"r{i}" for i in range(6)]
+            + [f"l{i}" for i in range(6)]
+            + [f"s{i}" for i in range(6)]
+            + ["red_a", "red_b", "red_c", "red_alpha", "red_beta", "red_gamma", "source"]
+            + list(COB_COLUMNS)
+            + ["sig_a", "sig_b", "sig_c", "sig_alpha", "sig_beta", "sig_gamma", "formula"]
+        )
+        float_columns = {
+            "a", "b", "c", "alpha", "beta", "gamma", "volume",
+            *(f"r{i}" for i in range(6)),
+            *(f"l{i}" for i in range(6)),
+            *(f"s{i}" for i in range(6)),
+            "red_a", "red_b", "red_c", "red_alpha", "red_beta", "red_gamma",
+            "sig_a", "sig_b", "sig_c", "sig_alpha", "sig_beta", "sig_gamma",
+        }
+        # Object arrays make DuckDB's scan parse every value in Python.
+        # Float columns stay float64; NaN is written back as NULL.
+        null_sql = ", ".join(
+            f"CASE WHEN isnan({name}) THEN NULL ELSE {name} END AS {name}"
+            for name in ("sig_a", "sig_b", "sig_c", "sig_alpha", "sig_beta", "sig_gamma")
+        )
+        insert_sql = (
+            "INSERT INTO cells BY NAME SELECT * REPLACE ("
+            + null_sql
+            + ") FROM columns"
+        )
+
+        def flush(pool):
+            nonlocal n_ok, n_skip
+            if not batch:
+                return
+            if pool is None:
+                prepared_rows = map(prepare_cod_insert, batch)
+            else:
+                prepared_rows = pool.map(prepare_cod_insert, batch, chunksize=64)
+            buckets = [[] for _ in insert_columns]
+            kept = 0
+            for prepared in prepared_rows:
+                if prepared is None:
+                    n_skip += 1
+                    continue
+                values, esd, formula = prepared
+                row = (*values, *esd, formula)
+                for i, value in enumerate(row):
+                    buckets[i].append(value)
+                kept += 1
+            if kept:
+                columns = {}
+                for name, values in zip(insert_columns, buckets):
+                    if name in float_columns:
+                        columns[name] = np.asarray(
+                            [np.nan if value is None else value for value in values],
+                            dtype=np.float64,
+                        )
+                    else:
+                        columns[name] = np.asarray(values, dtype=object)
+                self._db.execute(insert_sql)
+                n_ok += kept
+            batch.clear()
+
+        def consume(pool):
+            for rec in iter_cod_cells(path):
+                nonlocal n_seen
+                n_seen += 1
+                if f"COD{rec['cod_id']}" in present:
+                    continue
+                batch.append(rec)
+                if len(batch) >= 8000:
+                    flush(pool)
+                if progress and n_seen % 10_000 == 0:
+                    print(
+                        f"  {n_seen} COD records read, {n_ok} inserted, "
+                        f"{len(present)} already stored",
+                        flush=True,
+                    )
+            flush(pool)
+
+        if progress and workers > 1:
+            with ProcessPoolExecutor(
+                max_workers=workers, mp_context=get_context("spawn")
+            ) as pool:
+                consume(pool)
+        else:
+            consume(None)
         self._db.execute(
             "INSERT INTO schema_meta (key, value) VALUES ('cod_source', ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
@@ -523,6 +662,8 @@ class CellDatabase:
         """
         from .uniprot import assemble_uniprot_lists, fetch_uniprot_tables, uniprot_list_type
 
+        if self._meta_value("archive") == "cod":
+            raise RuntimeError("a COD database has no UniProt column")
         if refresh:
             pending = self._db.execute("SELECT pdb_id FROM cells").fetchall()
         else:
@@ -591,6 +732,8 @@ class CellDatabase:
         """
         from .deposit_group import fetch_deposit_groups
 
+        if self._meta_value("archive") == "cod":
+            raise RuntimeError("a COD database has no deposition-group column")
         where = "TRUE" if refresh else "deposit_group IS NULL"
         pending = [
             row[0] for row in self._db.execute(

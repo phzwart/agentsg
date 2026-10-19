@@ -41,6 +41,7 @@ agentsg = [
   "kg/out/neo4j/*",
   "serve/*.md",
   "serve/*.html",
+  "cell/*.html",
 ]
 
 [tool.pytest.ini_options]
