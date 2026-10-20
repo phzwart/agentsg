@@ -50,7 +50,7 @@ add to $Z$ every surviving slot $kl$ of $F_0$ that feeds that conorm, i.e. with 
 
 At the fixpoint, **in every member frame every surviving conorm exceeds four times the band of the slot it is read in** — the frame-covariant form of the uniform theorem's "$m^*>4\tau$".
 
-**Checked** (`z57`): on the needle it adds $ab$ at round 2 and returns 12 of 12 at every $\sigma$ tried. On 240 random cells (needles, plates, isotropic, monoclinic; $\delta=0.1$–$3^\circ$) it is never wrong: exact in 124, refused in 116 (plates and large $\delta$, where $S_\sigma$ has up to 86 members and is not a sub-closure of any single lattice); construction B is wrong in 9 of the 240.
+**Checked** (`z57`; all re-checked against brute force over coordinates in $[-3,3]$): on the needle it adds $ab$ at round 2 and returns 12 of 12 at every $\sigma$ tried. On 240 random cells (needles, plates, isotropic, monoclinic; $\delta=0.1$–$3^\circ$) it is never wrong: exact in 124, refused in 116 (plates and large $\delta$, where $S_\sigma$ has up to 86 members and is not a sub-closure of any single lattice); construction B is wrong in 9 of the 240.
 
 **Conjecture A6″.** If the fixpoint terminates with $\Lambda^*_Z$ positive definite and $\lambda_1>32\,\sigma\max_{kl\in Z}\ell_k\ell_l$, the consistent construction is exact. (48/48 cases with the condition satisfied were exact; 76 further cases were exact beyond it; no failure.)
 
@@ -76,3 +76,10 @@ for a suitable member $F'$ and the slot $kl$ of $F'$ that $F$ violates — a com
 1. Appendix B must state construction B's status correctly: a sample of exact cases, with the needle above as the counterexample, and point to the consistent construction.
 2. The pipeline (`members_by('slot', …)` in the benchmark, item 7 of the census fixes) should use the consistent idealisation. It refuses more often than B, but it is never wrong in any case tried, which is the property the paper claims.
 3. Theorem A6′ (Section 3) can go into Appendix A as proved; Conjecture A6″ is stated as checked, with `z57`.
+
+## 7. Window and the 3° rule
+
+* At a 3° idealisation ($\sigma=\sin3^\circ/4$) on 300 random cells: exact on every cell up to 3:1; refused on 25 of 56 at 5:1 and 37 of 41 at 10:1; never wrong (`z57`).
+* Against $[-3,3]$ brute force, the 362 non-refused cases of both sets were exact; one needed a coordinate of 3.
+* The $[-2,2]$ window is complete for exact closures (Lemma A0) and within the hypothesis of Theorem A6, but not beyond it: a refused 7.73 × 47.54 × 77.30 Å cell with β = 87.0° has 11 δ-obtuse superbases in $[-2,2]$ and 12 in $[-3,3]$ (`z57`).
+* Ties never change membership (Proposition A9); they enter at selection, $|\Delta p|\le2\varepsilon\max(p)$ on exchanged slots.

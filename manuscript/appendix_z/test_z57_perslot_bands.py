@@ -171,3 +171,73 @@ def test_consistent_construction_is_never_wrong(superbases):
             got, _ = _construct_rel(G, sigma)
             n_wrong_B += got is not None and got != true
     assert (n_exact, n_refused, n_wrong_B) == (124, 116, 9)
+
+
+def delta_obtuse(G, sigma, K):
+    """every superbase with basis coordinates in [-K, K] whose six conorms are at least
+    -sigma |u_i||u_j| (built from pairs of admissible vectors, completed by the fourth)."""
+    import itertools
+    r = np.arange(-K, K + 1)
+    R = np.array([v for v in itertools.product(r, repeat=3) if any(v)], float)
+    n = np.sqrt(np.einsum("ia,ab,ib->i", R, G, R))
+    ok = -(R @ G @ R.T) >= -sigma * np.outer(n, n) - 1e-9 * abs(G).max()
+    idx = {tuple(v.astype(int)): i for i, v in enumerate(R)}
+    found, maxent = set(), 0
+    for a in range(len(R)):
+        bs = np.where(ok[a])[0]
+        bs = bs[bs > a]
+        for b in bs:
+            for c in bs[(bs > b) & ok[b, bs]]:
+                d = -(R[a] + R[b] + R[c])
+                j = idx.get(tuple(d.astype(int)))
+                if j is None or not (ok[j, a] and ok[j, b] and ok[j, c]):
+                    continue
+                Bm = np.array([R[a], R[b], R[c]])
+                if abs(round(np.linalg.det(Bm))) != 1:
+                    continue
+                S = np.vstack([d, Bm])
+                found.add(t._key(S))
+                maxent = max(maxent, int(abs(S).max()))
+    return found, maxent
+
+
+def test_window_beyond_the_hypothesis():
+    """a 7.73 x 47.54 x 77.30 A cell, beta = 87.0 deg, at a 3 deg idealisation (sigma = sin 3/4):
+    the idealisation is refused, and the widened set needs a basis coordinate of 3."""
+    p0 = np.array([0.0, 28.4690554, 5943.77198, 2260.08703, 0.0, 31.2814792])
+    G = t._gram(p0)
+    sigma = np.sin(np.radians(3.0)) / 4
+    out, _, _, _ = consistent_construct(G, sigma)
+    assert out is None
+    f2, _ = delta_obtuse(G, sigma, 2)
+    f3, m3 = delta_obtuse(G, sigma, 3)
+    assert len(f2) == 11 and len(f3) == 12 and m3 == 3
+
+
+def test_three_degree_idealisation_by_aspect_ratio(superbases):
+    """sigma = sin(3 deg)/4 (idealise at 3 deg, filter at about 0.75 deg) on 300 random cells:
+    exact up to 3:1, refused on 25 of 56 cells at 5:1 and 37 of 41 at 10:1, never wrong."""
+    from agentsg.cell.metric import metric_tensor
+    from agentsg.cell.selling_cob import selling_matrix
+    import collections
+    sigma = np.sin(np.radians(3.0)) / 4
+    rng = np.random.default_rng(7)
+    tally = collections.Counter()
+    for _ in range(300):
+        ratio = rng.choice([1.0, 1.5, 2.0, 3.0, 5.0, 10.0])
+        s = rng.uniform(5, 15)
+        dims = np.array([s, s * rng.uniform(1, ratio), s * ratio])
+        rng.shuffle(dims)
+        ang = 90 + rng.uniform(-4, 4, 3) * rng.choice([0, 1], 3, p=[0.6, 0.4])
+        cell = (*dims, *ang)
+        Gc = np.array(metric_tensor(cell), float)
+        P = np.array([[float(x) for x in row] for row in selling_matrix(cell).rows], float)
+        p0 = t._cn(np.array(t.S0, float), P.T @ Gc @ P)
+        if p0.min() < -1e-9 * abs(Gc).max():
+            continue
+        G = t._gram(np.maximum(p0, 0))
+        out, _, _, _ = consistent_construct(G, sigma)
+        res = "refused" if out is None else ("exact" if out == brute(superbases, G, sigma) else "wrong")
+        tally[(float(ratio), res)] += 1
+    assert tally == {(1.0, "exact"): 57, (1.5, "exact"): 51, (2.0, "exact"): 48, (3.0, "exact"): 47,
+                     (5.0, "exact"): 31, (5.0, "refused"): 25, (10.0, "exact"): 4, (10.0, "refused"): 37}
