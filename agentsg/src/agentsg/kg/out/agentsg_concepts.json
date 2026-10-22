@@ -4,7 +4,7 @@
  "source_repository": "https://github.com/phzwart/agentsg",
  "snapshot": {
   "repository": "https://github.com/phzwart/agentsg",
-  "commit": "848c5ab15261cdf2c4f79275ed10b3971ebe3950",
+  "commit": "4198a1d4d38fa6e3fbe8e9b6793b861086ddf8ca",
   "dirty": false
  },
  "concepts": [
@@ -6239,7 +6239,7 @@
      "line": 211,
      "quote": "G' = P^T G P for an integer matrix P (float G).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/metric.py",
@@ -6945,10 +6945,10 @@
      "module": "agentsg/cell/celldb.py",
      "symbol": "_primitive_for_roots",
      "kind": "FunctionDef",
-     "line": 74,
+     "line": 83,
      "quote": "Primitive cell for root-invariant computation.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "d488d35c701aed927d42db62b9c0680e2c7496629d368369b59d56159634d3fc"
+     "sha256": "a7b52caed5c3af3576421d338727b5854bcc0be547c11a2715e645cc69c6ca78"
     },
     {
      "module": "agentsg/cell/symmetry_elements.py",
@@ -7718,7 +7718,7 @@
      "line": 1,
      "quote": "Bet-free reindexing via the typed Selling-superbase closure (main_v5 / Kurlin).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
@@ -7736,7 +7736,7 @@
      "line": 106,
      "quote": "Optional noise expander: obtuse superbases near the reduced one.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -7745,7 +7745,7 @@
      "line": 257,
      "quote": "Full typed Selling-superbase closure, plus optional noise variants.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/selling_closure.py",
@@ -7975,7 +7975,7 @@
      "line": 219,
      "quote": "Root-product matrix r_ij = sqrt(max(p_ij, 0)) -- linear in Angstrom, so a length-scaled tolerance is meaningful (conorms are quadratic in length).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -7984,7 +7984,7 @@
      "line": 246,
      "quote": "Do A's root products match B's under label permutation ``perm`` within ``tol`` (Angstrom)?",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -8125,16 +8125,16 @@
      "line": 501,
      "quote": "Aligned linear distance of the best Selling-closure match.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/celldb.py",
      "symbol": "backfill_linear_keys",
      "kind": "FunctionDef",
-     "line": 298,
+     "line": 517,
      "quote": "Fill ``l0``..``l5`` with :func:`sorted_linear_key` and mark the index.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "d488d35c701aed927d42db62b9c0680e2c7496629d368369b59d56159634d3fc"
+     "sha256": "a7b52caed5c3af3576421d338727b5854bcc0be547c11a2715e645cc69c6ca78"
     }
    ],
    "references": [
@@ -8891,10 +8891,10 @@
      "module": "agentsg/cell/celldb.py",
      "symbol": "CellDatabase",
      "kind": "ClassDef",
-     "line": 169,
+     "line": 234,
      "quote": "A DuckDB-backed lattice database keyed on the root invariant.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "d488d35c701aed927d42db62b9c0680e2c7496629d368369b59d56159634d3fc"
+     "sha256": "a7b52caed5c3af3576421d338727b5854bcc0be547c11a2715e645cc69c6ca78"
     }
    ],
    "references": [
@@ -9301,7 +9301,7 @@
      "line": 290,
      "quote": "Reindexing operators A -> B via Selling-superbase closure matching.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/selling_cob.py",
@@ -9346,7 +9346,7 @@
      "line": 62,
      "quote": "Delaunay/Selling-reduce ``cell`` to an obtuse superbase, tracked in INTEGER lattice coordinates.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -9355,7 +9355,7 @@
      "line": 376,
      "quote": "One reindexing operator A -> B via canonical superbase, or None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -9364,25 +9364,25 @@
      "line": 447,
      "quote": "Best canonical reindexing operator A -> B.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "_reindex_coset",
      "kind": "FunctionDef",
-     "line": 515,
+     "line": 521,
      "quote": "Integer operators within the metric-residual band of the minimum.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
      "symbol": "reindex",
      "kind": "FunctionDef",
-     "line": 578,
+     "line": 584,
      "quote": "Reindex ``cell_A`` onto ``cell_B``, gated by the sorted linear distance.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -9391,7 +9391,7 @@
      "line": 382,
      "quote": "Derive a data-driven ``verify_abs`` residual threshold from a baseline.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/reindex.py",
@@ -10016,7 +10016,7 @@
      "line": 1,
      "quote": "celldb: a persistent unit-cell / symmetry database keyed on the linear key.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "d488d35c701aed927d42db62b9c0680e2c7496629d368369b59d56159634d3fc"
+     "sha256": "a7b52caed5c3af3576421d338727b5854bcc0be547c11a2715e645cc69c6ca78"
     },
     {
      "module": "agentsg/cell/rootindex.py",
@@ -10562,10 +10562,10 @@
      "module": "agentsg/serve/handlers.py",
      "symbol": "_attach_root_plot",
      "kind": "FunctionDef",
-     "line": 994,
+     "line": 997,
      "quote": "SVD the hit-set linear keys and attach a PC1–PC2 scatter.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
+     "sha256": "3b200f84e2274e9eb7d727c0ea2a07fcc9b76bbd405d6eef66ad18f7f54ae29f"
     },
     {
      "module": "agentsg/serve/scatter.py",
@@ -11470,7 +11470,7 @@
      "line": 182,
      "quote": "Exact INTEGER inverse of a unimodular (det = +-1) integer matrix.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -11479,7 +11479,7 @@
      "line": 149,
      "quote": "If a 3x3 Fraction matrix is integral, return it as int tuple; else None.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/canonical.py",
@@ -11488,7 +11488,7 @@
      "line": 162,
      "quote": "Exact inverse of a 3x3 integer matrix as Fractions (or None if singular).",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/cell/reindex.py",
@@ -12181,7 +12181,7 @@
      "line": 446,
      "quote": "Project a monoclinic group along its unique axis, else along c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
+     "sha256": "3b200f84e2274e9eb7d727c0ea2a07fcc9b76bbd405d6eef66ad18f7f54ae29f"
     },
     {
      "module": "agentsg/serve/handlers.py",
@@ -12190,7 +12190,7 @@
      "line": 458,
      "quote": "Cell axis of the monoclinic 2-fold, or None when it is not along a, b, c.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/serve/handlers.py",
-     "sha256": "77da1f0cb5967ab57cacf61cdca8d45a57aac90afb5927dfc41808ba3cc7fcd4"
+     "sha256": "3b200f84e2274e9eb7d727c0ea2a07fcc9b76bbd405d6eef66ad18f7f54ae29f"
     }
    ],
    "references": [
@@ -13317,7 +13317,7 @@
      "line": 382,
      "quote": "Derive a data-driven ``verify_abs`` residual threshold from a baseline.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/canonical.py",
-     "sha256": "b58c68e2f86f849acbba0f86fb4a8638e95eb7ea4dae0719f588d399e531b105"
+     "sha256": "4b19d0cc9546cd5e13d985c26de988a03ab0c87fcf27da8fb3d61f49d310556b"
     },
     {
      "module": "agentsg/tolerances.py",
@@ -14025,7 +14025,7 @@
      "line": 1,
      "quote": "HTTP API for PDB lattice-similarity search.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
-     "sha256": "062a5b812ca3a614f4e5a545d65501aac7c535ea7caccb449c983c39c7825bf0"
+     "sha256": "e1876219e929948cc19f9fbd3be7711fd6ea6b213c40a8f8790bb287fb26b758"
     },
     {
      "module": "agentsg/cell/celldb.py",
@@ -14034,7 +14034,7 @@
      "line": 1,
      "quote": "celldb: a persistent unit-cell / symmetry database keyed on the linear key.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/celldb.py",
-     "sha256": "d488d35c701aed927d42db62b9c0680e2c7496629d368369b59d56159634d3fc"
+     "sha256": "a7b52caed5c3af3576421d338727b5854bcc0be547c11a2715e645cc69c6ca78"
     },
     {
      "module": "agentsg/cell/rootindex.py",
@@ -14052,7 +14052,7 @@
      "line": 119,
      "quote": "Return PDB ids within ``cutoff`` Å (root distance) of ``cell``.",
      "uri": "https://github.com/phzwart/agentsg/blob/main/agentsg/src/agentsg/cell/pdb_server.py",
-     "sha256": "062a5b812ca3a614f4e5a545d65501aac7c535ea7caccb449c983c39c7825bf0"
+     "sha256": "e1876219e929948cc19f9fbd3be7711fd6ea6b213c40a8f8790bb287fb26b758"
     }
    ],
    "references": [
