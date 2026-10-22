@@ -71,3 +71,27 @@ def test_sort_spectrum():
     assert spec["O5"] < 1e-9 and abs(spec["T5"] - 0.01057) < 2e-5
     spec = sort_spectrum((100.0, 100.2, 99.9, 90, 90, 90), "F 2 2 2")
     assert abs(spec["C3"] - 0.00432) < 2e-5
+
+
+def test_indexing_classes_reproduce_the_merohedral_ambiguities():
+    from agentsg.cell.strain_closure import indexing_classes
+
+    def relabel(cell):
+        G = np.array(UnitCell(*cell).metric_tensor(), float)
+        P = np.array([[0, 1, 0], [1, 0, 0], [0, 0, -1]])
+        return params_from_metric((P.T @ G @ P * 1.002).tolist())
+
+    expected = {   # (|H_eps|, |Laue|, number of distinct indexings)
+        ((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (16, 16, 1),
+        ((40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"): (16, 8, 2),     # pseudo-tetragonal
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (24, 6, 4),
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"): (24, 12, 2),
+        ((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"): (48, 24, 2),
+        (WORKED, "P 1"): (4, 2, 2),
+    }
+    for (cell, sg), (h, l, n) in expected.items():
+        r = indexing_classes(widened_closure(cell, sg), relabel(cell), sg)
+        assert (r.symmetry_order, r.laue_order, len(r.classes)) == (h, l, n), (sg, r)
+        assert r.closed and r.laue_in_symmetry
+        assert all(c.size == l for c in r.classes)
+        assert r.classes[0].representative.price < 1e-6

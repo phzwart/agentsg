@@ -2,7 +2,7 @@
 
 ## Unreleased (library)
 
-- `agentsg.cell.strain_closure` computes the widened Selling closure of a measured cell in the strain norm ‖G^-1/2 ΔG G^-1/2‖_F, which is the same in every basis. `widened_closure(cell, sg_hm, eps)` enumerates it exactly (the finite ball of Lemma A12) and reports the tier that holds it: 1 for the 127 superbases of the first adjacency layer, 2 for the 2755 of the second. The default band is Le Page-style, one cell angle changed by 3°, a strain of 0.074. `reindex(reference, new_cell)` returns every candidate operator within the band, exact and ranked by strain price. `sort_spectrum(cell)` gives the strain distance to each of Delone's 24 sorts. Needs numpy and scipy. No HTTP or MCP change.
+- `agentsg.cell.strain_closure` computes the widened Selling closure of a measured cell in the strain norm ‖G^-1/2 ΔG G^-1/2‖_F, which is the same in every basis. `widened_closure(cell, sg_hm, eps)` enumerates it exactly (the finite ball of Lemma A12) and reports the tier that holds it: 1 for the 127 superbases of the first adjacency layer, 2 for the 2755 of the second. The default band is Le Page-style, one cell angle changed by 3°, a strain of 0.074. `reindex(reference, new_cell)` returns every candidate operator within the band, exact and ranked by strain price. `sort_spectrum(cell)` gives the strain distance to each of Delone's 24 sorts. `indexing_classes(reference, new_cell, space_group)` groups the candidates into the classes of the reference's Laue group inside the band's (pseudo-)symmetry group, one priced representative per physically distinct indexing (4 for P3, 2 for P3₁21 and P2₁3, 2 for a pseudo-tetragonal P2₁2₁2₁ cell, 1 for P4₃2₁2). Needs numpy and scipy. No HTTP or MCP change.
 
 ## 0.3.8
 

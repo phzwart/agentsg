@@ -371,6 +371,8 @@ The enumeration is exact (a finite ball of lattice vectors). `tier` records the
 smallest adjacency layer that holds the whole set: 1 for ordinary cells, 2 for
 needles and plates at a 3° band. Candidates come in cosets of the lattice
 symmetry; choosing within a coset is a matter for the intensities.
+`indexing_classes(ref, new_cell, "P 3")` groups them by the reference's Laue group:
+one priced representative per distinct indexing (four for P3).
 
 ## Full-PDB unit-cell database (root-invariant search)
 

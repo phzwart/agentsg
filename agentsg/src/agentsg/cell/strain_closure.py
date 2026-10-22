@@ -339,6 +339,74 @@ def reindex(reference, new_cell, new_sg_hm=None, eps=LEPAGE_STRAIN, accept=None,
     return out, ref.tier
 
 
+# ---- indexing classes: the coset structure ---------------------------------------
+@dataclass
+class IndexingClass:
+    representative: Candidate    # the cheapest operator of the class
+    operators: list              # every candidate operator in the class (exact)
+    size: int
+
+
+@dataclass
+class IndexingResult:
+    classes: list                # one IndexingClass per coset of the Laue group, cheapest first
+    tier: int
+    symmetry_order: int          # |H_eps|: operators mapping the reference onto itself within the band
+    laue_order: int              # |L| of the reference's space group
+    closed: bool                 # H_eps is closed under composition (a group) at this band
+    laue_in_symmetry: bool       # every Laue operator maps the reference onto itself within the band
+
+
+def _laue_matrices(space_group_key):
+    from ..group import point_group
+    from ..space_groups import space_group
+    rot = []
+    for W in point_group(space_group(space_group_key).operations()):
+        R = Matrix3([[Fraction(x) for x in row] for row in W.rows])
+        rot.append(R)
+        rot.append(Matrix3([[-x for x in row] for row in R.rows]))
+    out, seen = [], set()
+    for R in rot:
+        if R.rows not in seen:
+            seen.add(R.rows)
+            out.append(R)
+    return out
+
+
+def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, eps=LEPAGE_STRAIN, accept=None):
+    """Candidate operators from the reference to a new cell, grouped into the classes that
+    are physically distinct for a crystal of the reference's space group.
+
+    The candidates are one coset P0.H_eps of the band's (pseudo-)symmetry group H_eps
+    (the reference reindexed onto itself). Two candidates differing by an element of the
+    reference's Laue group L on the left, P2 = l.P1, index the crystal the same way, so the
+    distinct answers are the classes of L in that coset, [H_eps : L] of them; choosing
+    between them is a question for the intensities (indexing ambiguity, twinning).
+    ``space_group_key`` is the reference's space group in its input setting."""
+    accept = eps if accept is None else accept
+    ref = reference
+    cands, tier = reindex(ref, new_cell, new_sg_hm, eps=eps, accept=accept)
+    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, eps=eps, accept=accept)
+    H = {c.operator.rows for c in selfc}
+    closed = all((a.operator @ b.operator).rows in H for a in selfc for b in selfc)
+    L = _laue_matrices(space_group_key)
+    laue_in = all(l.rows in H for l in L)
+    by_op = {c.operator.rows: c for c in cands}
+    classes, covered = [], set()
+    for c in cands:                                   # cheapest first
+        if c.operator.rows in covered:
+            continue
+        orbit = []
+        for l in L:
+            q = (l @ c.operator).rows
+            if q in by_op and q not in covered:
+                covered.add(q)
+                orbit.append(by_op[q])
+        orbit.sort(key=lambda x: x.price)
+        classes.append(IndexingClass(orbit[0], [x.operator for x in orbit], len(orbit)))
+    return IndexingResult(classes, tier, len(H), len(L), closed, laue_in)
+
+
 # ---- distances to the 24 Delone sorts --------------------------------------------
 _SORT_PATTERNS = {
     "C1": "rrrrrr", "C3": "rr0rr0", "C5": "000rrr", "H4": "00rrrs", "T1": "rrsrrs", "T2": "rr0rrs",
@@ -408,5 +476,5 @@ def sort_spectrum(cell, sg_hm=None):
 __all__ = [
     "LEPAGE_STRAIN", "BRAVAIS", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
     "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex",
-    "sort_spectrum",
+    "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum",
 ]
