@@ -42,6 +42,7 @@ agentsg = [
   "serve/*.md",
   "serve/*.html",
   "cell/*.html",
+  "cell/data/*.json",
 ]
 
 [tool.pytest.ini_options]
