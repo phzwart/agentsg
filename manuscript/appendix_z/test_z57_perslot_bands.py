@@ -117,6 +117,136 @@ def consistent_construct(G, sigma):
     return out, Z, status, rounds
 
 
+def closure_construct(G, sigma):
+    """(set or None, Z): idealise while enumerating the closure.
+
+    Flip at the zeros of the current idealised lattice; at every member reached,
+    any slot with 0 < p_ij(member; Lambda*) <= 4 sigma |u_i||u_j| (the member's own
+    band) zeroes, at once, the surviving F0 slots that feed it and are below the
+    same threshold; Lambda* is updated and every member found so far is queued
+    again, since it may now have new zeros to flip at. By Lemma A8 a member found
+    under fewer zeros stays a member. Refuse when Lambda* becomes singular.
+    Filter per slot under the measured metric at the end."""
+    s0 = np.array(t.S0, float)
+    p0 = t._cn(s0, G)
+    tol = 1e-9 * np.abs(G).max()
+    L0 = np.sqrt(np.einsum("ia,ab,ib->i", s0, G, s0))
+    Z = {n for n, (i, j) in enumerate(SL) if p0[n] <= 4 * sigma * L0[i] * L0[j]}
+
+    def ideal(Z):
+        Gs = t._gram(np.where([n in Z for n in range(6)], 0.0, p0))
+        return None if np.linalg.eigvalsh(Gs).min() <= tol else Gs
+
+    Gs = ideal(Z)
+    if Gs is None:
+        return None, Z
+    seen, front = {t._key(s0): s0}, [s0]
+    while front:
+        S = front.pop()
+        p = t._cn(S, Gs)
+        L = np.sqrt(np.einsum("ia,ab,ib->i", S, G, S))
+        added = set()
+        for n, (i, j) in enumerate(SL):
+            band = sigma * L[i] * L[j]
+            if tol < p[n] <= 4 * band:
+                cu, cv = np.array([0.0, *S[i]]), np.array([0.0, *S[j]])
+                for m, (k, l) in enumerate(SL):
+                    if m not in Z and (cu[k] - cu[l]) * (cv[k] - cv[l]) != 0 and p0[m] <= 4 * band:
+                        added.add(m)
+        if added:
+            Z |= added
+            Gs = ideal(Z)
+            if Gs is None:
+                return None, Z
+            front = list(seen.values())            # re-examine every member under the new zeros
+            continue
+        for n, (i, j) in enumerate(SL):
+            if abs(p[n]) < tol:
+                U = t._flip(S, i, j)
+                k = t._key(U)
+                if k not in seen and t._cn(U, Gs).min() >= -tol:
+                    seen[k] = U
+                    front.append(U)
+    out = set()
+    for k, S in seen.items():
+        L = np.sqrt(np.einsum("ia,ab,ib->i", S, G, S))
+        band = np.array([sigma * L[i] * L[j] for i, j in SL])
+        if (t._cn(S, G) >= -band - tol).all():
+            out.add(k)
+    return out, Z
+
+
+def zero_filtration(G):
+    """The zeroing as a filtration on the closure, in cosine units t.
+
+    At level t a slot of F0 is zero when p0_kl <= t l_k l_l, and a member slot with
+    0 < p_ij(member; Lambda*) <= t |u_i||u_j| zeroes the surviving F0 slots that feed
+    it and lie below the same level. Events are processed in increasing t, so the
+    sequence is canonical. Returns (levels, limit): levels is a list of
+    (t, Z, members) at each event, members the closure of Lambda* at that level as
+    {key: superbase}; limit is the level at which Lambda* would become singular
+    (the geometric limit), or inf when every level is non-singular."""
+    s0 = np.array(t.S0, float)
+    p0 = t._cn(s0, G)
+    tol = 1e-9 * np.abs(G).max()
+
+    def ideal(Z):
+        Gs = t._gram(np.where([n in Z for n in range(6)], 0.0, p0))
+        return None if np.linalg.eigvalsh(Gs).min() <= tol else Gs
+
+    def candidates(Z, mem, Gs):
+        """(level, slots to zero) for every pending event."""
+        ev = []
+        L0 = np.sqrt(np.einsum("ia,ab,ib->i", s0, G, s0))
+        for m, (k, l) in enumerate(SL):
+            if m not in Z:
+                ev.append((p0[m] / (L0[k] * L0[l]), {m}))
+        for S in mem.values():
+            p = t._cn(S, Gs)
+            L = np.sqrt(np.einsum("ia,ab,ib->i", S, G, S))
+            for n, (i, j) in enumerate(SL):
+                if p[n] > tol:
+                    lev = p[n] / (L[i] * L[j])
+                    cu, cv = np.array([0.0, *S[i]]), np.array([0.0, *S[j]])
+                    feed = {m for m, (k, l) in enumerate(SL)
+                            if m not in Z and (cu[k] - cu[l]) * (cv[k] - cv[l]) != 0
+                            and p0[m] <= lev * L[i] * L[j] + tol}
+                    if feed:
+                        ev.append((lev, feed))
+        return ev
+
+    Z = {m for m in range(6) if p0[m] <= tol}
+    Gs = ideal(Z)
+    mem = closure_members(Gs, tol)
+    levels = [(0.0, set(Z), dict(mem))]
+    while True:
+        ev = candidates(Z, mem, Gs)
+        if not ev:
+            return levels, np.inf
+        lev = min(e[0] for e in ev)
+        add = set().union(*(e[1] for e in ev if e[0] <= lev * (1 + 1e-12) + 1e-15))
+        Z2 = Z | add
+        Gs2 = ideal(Z2)
+        if Gs2 is None:
+            return levels, lev
+        Z, Gs = Z2, Gs2
+        mem = closure_members(Gs, tol)
+        levels.append((lev, set(Z), dict(mem)))
+
+
+def filtration_select(levels, G, sigma, t_stop):
+    """members enumerated at the last level <= t_stop, filtered per slot at sigma."""
+    tol = 1e-9 * np.abs(G).max()
+    mem = [m for (lev, Z, m) in levels if lev <= t_stop][-1]
+    out = set()
+    for k, S in mem.items():
+        L = np.sqrt(np.einsum("ia,ab,ib->i", S, G, S))
+        band = np.array([sigma * L[i] * L[j] for i, j in SL])
+        if (t._cn(S, G) >= -band - tol).all():
+            out.add(k)
+    return out
+
+
 def test_needle_counterexample_to_construction_B(superbases):
     G = t._gram(NEEDLE)
     s0 = np.array(t.S0, float)
@@ -241,3 +371,52 @@ def test_three_degree_idealisation_by_aspect_ratio(superbases):
         tally[(float(ratio), res)] += 1
     assert tally == {(1.0, "exact"): 57, (1.5, "exact"): 51, (2.0, "exact"): 48, (3.0, "exact"): 47,
                      (5.0, "exact"): 31, (5.0, "refused"): 25, (10.0, "exact"): 4, (10.0, "refused"): 37}
+
+
+def _random_cells():
+    from agentsg.cell.metric import metric_tensor
+    from agentsg.cell.selling_cob import selling_matrix
+    rng = np.random.default_rng(1)
+    for _ in range(60):
+        kind = rng.choice(["needle", "plate", "iso", "mono"])
+        if kind == "needle":
+            a, b, c = 5 * rng.uniform(0.8, 1.2), 5 * rng.uniform(0.8, 1.2), rng.uniform(20, 150)
+        elif kind == "plate":
+            a, b, c = rng.uniform(40, 150), rng.uniform(40, 150), 5 * rng.uniform(0.8, 1.2)
+        elif kind == "iso":
+            a, b, c = rng.uniform(5, 50, 3)
+        else:
+            a, b, c = rng.uniform(5, 30), rng.uniform(5, 30), rng.uniform(5, 60)
+        al, be, ga = 90 + rng.normal(0, 3, 3) * rng.choice([0, 1], 3)
+        cell = (a, b, c, al, be, ga)
+        Gc = np.array(metric_tensor(cell), float)
+        P = np.array([[float(x) for x in row] for row in selling_matrix(cell).rows], float)
+        p0 = t._cn(np.array(t.S0, float), P.T @ Gc @ P)
+        if p0.min() < -1e-9 * abs(Gc).max():
+            continue
+        yield t._gram(np.maximum(p0, 0))
+
+
+def test_zeroing_on_the_closure_and_its_filtration(superbases):
+    """Zeroing while enumerating the closure gives the same sets as the rounds; as a
+    filtration in cosine units it is canonical, never wrong when stopped at 4 sigma,
+    and one enumeration up to the geometric limit answers every band 4 sigma below it."""
+    import collections
+    tally = collections.Counter()
+    for G in _random_cells():
+        levels, limit = zero_filtration(G)
+        assert np.isfinite(limit)
+        for deg in (0.1, 0.5, 1.0, 3.0):
+            sigma = np.sin(np.radians(deg))
+            truth = brute(superbases, G, sigma)
+            rounds, *_ = consistent_construct(G, sigma)
+            onfly, _ = closure_construct(G, sigma)
+            assert (rounds is None) == (onfly is None) and (rounds is None or rounds == onfly)
+            if 4 * sigma < limit:
+                assert filtration_select(levels, G, sigma, 4 * sigma) == truth
+                assert filtration_select(levels, G, sigma, np.inf) == truth
+                tally["answered"] += 1
+            else:
+                tally["beyond limit"] += 1
+                tally["closure exact beyond limit"] += onfly is not None
+    assert dict(tally) == {"answered": 118, "beyond limit": 122, "closure exact beyond limit": 6}

@@ -83,3 +83,27 @@ for a suitable member $F'$ and the slot $kl$ of $F'$ that $F$ violates — a com
 * Against $[-3,3]$ brute force, the 362 non-refused cases of both sets were exact; one needed a coordinate of 3.
 * The $[-2,2]$ window is complete for exact closures (Lemma A0) and within the hypothesis of Theorem A6, but not beyond it: a refused 7.73 × 47.54 × 77.30 Å cell with β = 87.0° has 11 δ-obtuse superbases in $[-2,2]$ and 12 in $[-3,3]$ (`z57`).
 * Ties never change membership (Proposition A9); they enter at selection, $|\Delta p|\le2\varepsilon\max(p)$ on exchanged slots.
+
+## 8. Zeroing on the closure, and the zeroing filtration
+
+The fixpoint of Section 4 is now done during the enumeration
+(`closure_construct` in `z57`): at every member reached, a slot with
+$0<p_{ij}(F;\Lambda^*)\le4\sigma|u_i||u_j|$ zeroes the surviving $F_0$ slots that
+feed it; $\Lambda^*$ is updated and the members found so far are examined again.
+By Lemma A8 nothing found under fewer zeros is lost. On 543 cells it returns the
+same sets as the rounds (Z differed only in two refused cases).
+
+In cosine units the threshold is one number $t$ for every frame, so the zeroing is
+a filtration (`zero_filtration`): events in increasing $t$, the closure constant
+between them, up to the **geometric limit** at which $\Lambda^*$ would become
+singular. Results on the 240 random cells of z57:
+
+* stopped at $t=4\sigma$, never wrong; the canonical order refuses 6 cases that
+  the unordered version answers (order dependence through the subtraction);
+* enumerated once up to the limit and filtered at $\sigma$: equal to brute force
+  at every band with $4\sigma$ below the limit;
+* beyond the limit, filtering the top of the filtration misses members in 79 of
+  178 refused cases (checked against $[-3,3]$), so the limit is a real refusal
+  boundary, not a conservative one;
+* geometric limit over the 543 cells: tenth percentile $0.3^\circ$, median
+  $6.4^\circ$, ninetieth percentile $26^\circ$.
