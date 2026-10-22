@@ -215,3 +215,74 @@ def test_random_cells_against_the_2_window():
             assert got is not None and got == brute(G, eps, SB=SB)
             n += 1
     assert n == 240
+
+
+# ---- distance to each Delone sort ---------------------------------------------
+def _sort_patterns():
+    from test_z54_table_from_operators import TABLE, S6_TO_SLOT
+    out = {}
+    for name, v in TABLE.items():
+        zeros, cls = [], {}
+        for n, ch in enumerate(v[0]):
+            m = S6_TO_SLOT[n]
+            if ch == "0":
+                zeros.append(m)
+            else:
+                cls.setdefault(ch, []).append(m)
+        out[name] = (zeros, list(cls.values()))
+    return out
+
+
+def _project_to_sort(q, M, classes):
+    """nearest point, in the metric M, with the given equality classes (others zero) and x >= 0."""
+    active = list(classes)
+    while True:
+        A = np.zeros((6, len(active)))
+        for c, cl in enumerate(active):
+            A[cl, c] = 1
+        y = np.linalg.solve(A.T @ M @ A, A.T @ M @ q) if active else np.zeros(0)
+        if (y >= -1e-12).all():
+            break
+        active.pop(int(np.argmin(y)))
+    x = A @ y if active else np.zeros(6)
+    r = x - q
+    return float(np.sqrt(max(r @ M @ r, 0.0)))
+
+
+def sort_spectrum(G):
+    """{sort: strain distance} from the measured reduced cell G to each of the 24 sorts,
+    minimised over the 6096 frames of the universal operator set."""
+    p0 = t._cn(np.array(t.S0, float), G)
+    Q = L_ALL @ p0
+    M = metric_M(np.stack([t._gram(q) for q in Q]))
+    out = {}
+    for name, (zeros, classes) in _sort_patterns().items():
+        out[name] = min(_project_to_sort(Q[k], M[k], classes) for k in range(len(Q)))
+    return out
+
+
+def test_sort_spectrum_examples():
+    from agentsg.cell.primitive import primitive_cell
+    cases = {
+        "tP from oP 40 x 40.3 x 80": ((40.0, 40.3, 80.0, 90, 90, 90), None, "T5", 0.01057),
+        "hP from C2 50 x 86.8 x 40, beta 90.4": ((50.0, 86.8, 40.0, 90, 90.4, 90), "C 1 2 1", "H4", 0.01041),
+        "cF from oF 100 x 100.2 x 99.9": ((100.0, 100.2, 99.9, 90, 90, 90), "F 2 2 2", "C3", 0.00432),
+        "oP from the needle, gamma 91.12": ((5.583, 5.21, 131.965, 90, 90, 91.118), None, "O5", 0.02759),
+    }
+    for name, (cell, sg, sort, d) in cases.items():
+        G = _reduced(primitive_cell(cell, sg) if sg else cell)
+        spec = sort_spectrum(G)
+        assert abs(spec[sort] - d) < 2e-5, (name, spec[sort])
+        assert spec["A1"] < 1e-12
+
+
+def test_sort_spectrum_is_monotone_along_the_specialisations():
+    """a more special sort is never nearer: d(S') >= d(S) along every edge S -> S' of Table C2."""
+    from test_z50_specialisations import EXPECTED
+    from test_z57_perslot_bands import _random_cells
+    for n, G in enumerate(_random_cells()):
+        if n % 6:
+            continue
+        spec = sort_spectrum(G)
+        for (a, b) in EXPECTED:
+            assert spec[b] >= spec[a] - 1e-9, (n, a, b, spec[a], spec[b])
