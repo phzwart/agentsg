@@ -67,7 +67,7 @@ def ball_vectors(G, eps):
     bound = np.floor(np.sqrt(R2 * np.diag(Gi))).astype(int)
     rng = [np.arange(-b, b + 1) for b in bound]
     V = np.array(np.meshgrid(*rng, indexing="ij")).reshape(3, -1).T.astype(float)
-    V = V[np.any(V != 0, 1)]
+    V = V[np.any(V.astype(int) % 2 != 0, 1)]            # the doubled class holds no superbase vector
     n2 = np.einsum("ia,ab,ib->i", V, G, V)
     lim = np.array([f * mu[tuple(int(x) % 2 for x in v)] for v in V])
     return V[n2 <= lim * (1 + 1e-12)]
