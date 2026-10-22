@@ -21,11 +21,18 @@ projected onto, at distance <= eps, and F is the base superbase of that
 projection's closure. delta(G) is computed exactly from the ball of Lemma A12
 at eps = 1/4.
 
-Checked here: the ball bound on every member found; delta for needles, plates
-and isotropic cells (delta ~ sqrt2 x shortest/longest edge); for eps below
-delta the filtered U.F0 equals the ball-enumerated S_eps and equals the
-procedure's output; above delta the procedure can still be exact (the plates
-at 3 degrees) but U.F0 is not.
+Layers. L_1 = U.F0 (127 superbases up to relabelling), L_k = U.L_(k-1)
+(L_2 has 2755); delta_k(G) is the distance to the nearest superbase outside
+L_k, and the same argument gives: if eps < min(delta_k, 1/4), S_eps(G) is the
+filtered L_k. The number of steps a band needs is the least k with
+delta_k > eps.
+
+Checked here: the ball bound on every member found; delta_1 and delta_2 for
+needles, plates and isotropic cells (delta_1 ~ sqrt2 x shortest/longest edge;
+isotropic cells reach the 0.25 search cap at both layers); for eps below
+delta_1 the filtered U.F0 equals the ball-enumerated S_eps and equals the
+procedure's output; for the plates at 3 degrees, between delta_1 and delta_2,
+U.F0 misses members, L_2 contains them all, and the procedure is exact.
 """
 from __future__ import annotations
 
@@ -152,21 +159,24 @@ def filtered_U(G, eps):
     return out
 
 
-CELLS = {
-    "needle 5.6x5.2x132": (lambda: t._gram(NEEDLE), 0.0557),
-    "plate 100x100.1x5": (lambda: _reduced((100.0, 100.1, 5.0, 90.03, 89.98, 90.05)), 0.0501),
-    "plate 150x120x4.8": (lambda: _reduced((150.0, 120.0, 4.8, 90.0, 90.4, 90.0)), 0.0430),
-    "92deg cell 30x40x50": (lambda: _reduced((30.02, 39.97, 50.03, 90.25, 92.05, 89.80)), 0.25),
-    "needle 10x10x100": (lambda: _reduced((10.0, 10.0, 100.0, 90, 90, 90)), 0.1393),
-    "needle 10x10x30": (lambda: _reduced((10.0, 10.0, 30.0, 90, 90, 90)), 0.25),
+CELLS = {                                        # (cell, delta_1, delta_2); 0.25 = the search cap
+    "needle 5.6x5.2x132": (lambda: t._gram(NEEDLE), 0.0557, 0.1110),
+    "plate 100x100.1x5": (lambda: _reduced((100.0, 100.1, 5.0, 90.03, 89.98, 90.05)), 0.0501, 0.1405),
+    "plate 150x120x4.8": (lambda: _reduced((150.0, 120.0, 4.8, 90.0, 90.4, 90.0)), 0.0430, 0.0999),
+    "92deg cell 30x40x50": (lambda: _reduced((30.02, 39.97, 50.03, 90.25, 92.05, 89.80)), 0.25, 0.25),
+    "needle 10x10x100": (lambda: _reduced((10.0, 10.0, 100.0, 90, 90, 90)), 0.1393, 0.25),
+    "needle 10x10x30": (lambda: _reduced((10.0, 10.0, 30.0, 90, 90, 90)), 0.25, 0.25),
 }
 
 
-def test_ball_lemma_and_adjacency_radius():
-    for name, (make, delta_expected) in CELLS.items():
+def test_ball_lemma_and_adjacency_radii():
+    L = layers(2)
+    assert [len(x) for x in L] == [127, 2755]
+    for name, (make, d1, d2) in CELLS.items():
         G = make()
-        delta, _ = adjacency_radius(G)
-        assert abs(delta - delta_expected) < 2e-4, (name, delta)
+        delta1, _ = adjacency_radius(G)
+        delta2, _ = adjacency_radius(G, layer=L[1])
+        assert abs(delta1 - d1) < 2e-4 and abs(delta2 - d2) < 2e-4, (name, delta1, delta2)
         mu = class_minima(G)
         for eps in (0.01, 0.05):
             mem = superbases_within(G, eps)
@@ -177,19 +187,20 @@ def test_ball_lemma_and_adjacency_radius():
 
 
 def test_adjacency_theorem_below_delta_and_its_failure_above():
-    for name, (make, _) in CELLS.items():
+    for name, (make, delta, _) in CELLS.items():
         G = make()
-        delta, _ = adjacency_radius(G)
         for eps in (0.6 * delta, 0.9 * delta):
             truth = set(superbases_within(G, eps))
             assert filtered_U(G, eps) == truth, (name, eps)
             got, _ = construct_union(G, eps)
             assert got == truth, (name, eps)
     # above delta the filtered U.F0 misses members, the projection does not (the plates at 3 deg)
+    L2 = layers(2)[1]
     for name in ("plate 100x100.1x5", "plate 150x120x4.8"):
         G = CELLS[name][0]()
-        eps = np.sin(np.radians(3.0))
+        eps = np.sin(np.radians(3.0))                 # between delta_1 and delta_2 for both plates
         truth = set(superbases_within(G, eps))
         assert not filtered_U(G, eps) >= truth
+        assert truth <= L2                            # layer 2 contains the widened set, as Theorem A12 says
         got, _ = construct_union(G, eps)
         assert got == truth
