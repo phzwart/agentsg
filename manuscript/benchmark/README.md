@@ -56,3 +56,15 @@ its lattice character then starts from a cell the reference's route never
 produced; the two Niggli cells are two shapes of one closure, related by a
 flip and by no symmetry, and the operator between them is in the closure's
 candidate set in every one of these cases (`reindex ok` above).
+
+## The strain-norm procedure
+
+`evaluate_strain.py` scores `agentsg.cell.strain_closure` (the procedure of the
+restructured paper): the reference is widened in the strain norm and the
+measured cell reduced once. At Le Page's band (one angle changed by 3 degrees,
+strain 0.074) the true operator is among the candidates in 780 of 780 cases;
+at three times each case's own error strain in 779 of the 779 cases where
+that band is below 1/4. The 16 anisotropic cases fall in tier 2 (12) and
+tier 1 (4); none is refused. Results are in `results_strain.txt`.
+
+    PYTHONPATH=agentsg/src python manuscript/benchmark/evaluate_strain.py

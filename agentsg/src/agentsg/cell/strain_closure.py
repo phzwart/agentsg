@@ -9,14 +9,14 @@ metric G' with ||G' - G||_G <= eps makes F obtuse (all six conorms >= 0); the
 distance is a non-negative least-squares problem in the six conorms of F. The
 *widened closure* S_eps(G) is the set of such superbases (manuscript, Section 3.2).
 
-Tiers (manuscript, Section 3.3 and Theorem A12):
+Tiers (manuscript, Section 4.3 and Theorem A7):
 
 * tier 1 -- filter the first adjacency layer L1 = U.F0 (127 superbases up to
   relabelling). Proved complete when no superbase outside L1 is within eps, which
   :func:`widened_closure` certifies by an exact search of the finite ball of
-  Lemma A12. For cells of ordinary shape this holds up to eps = 0.25.
+  Lemma A6. For cells of ordinary shape this holds up to eps = 0.25.
 * tier 2 -- filter the second layer L2 (2755 superbases), certified the same way;
-  if that certificate also fails, enumerate the ball of Lemma A12 exactly.
+  if that certificate also fails, enumerate the ball of Lemma A6 exactly.
 
 The default band is Le Page-style: one cell angle changed by 3 degrees, a strain of
 sqrt(2) sin 3 deg = 0.074 (:data:`LEPAGE_STRAIN`).
@@ -144,7 +144,7 @@ def reduce_cell(cell, sg_hm=None) -> ReducedCell:
     return ReducedCell(cell, sg_hm, B, G)
 
 
-# ---- Lemma A12: the finite ball and the certificate ----------------------------
+# ---- Lemma A6: the finite ball and the certificate ----------------------------
 def _class_minima(G):
     np = _np()
     S0 = np.array(_S0, float)
@@ -170,11 +170,11 @@ def _ball_vectors(G, eps):
 
 
 def _ball_superbases(G, eps):
-    """every superbase within eps of obtuse (exact, Lemma A12): yields (key, S, distance)."""
+    """every superbase within eps of obtuse (exact, Lemma A6): yields (key, S, distance)."""
     np = _np()
     V = _ball_vectors(G, eps)
     n = np.sqrt(np.einsum("ia,ab,ib->i", V, G, V))
-    ok = -(V @ G @ V.T) >= -eps * np.outer(n, n) - 1e-9 * abs(G).max()   # Prop. A11 prefilter
+    ok = -(V @ G @ V.T) >= -eps * np.outer(n, n) - 1e-9 * abs(G).max()   # Prop. A4 prefilter
     idx = {tuple(v.astype(int)): i for i, v in enumerate(V)}
     seen = set()
     for a in range(len(V)):
@@ -204,7 +204,7 @@ def _ball_superbases(G, eps):
 
 def adjacency_radius(G, layer=1, cap=0.25):
     """delta_layer(G): strain distance to the nearest superbase outside the layer (exact
-    search in the ball of Lemma A12 at ``cap``); returns ``cap`` when none is closer."""
+    search in the ball of Lemma A6 at ``cap``); returns ``cap`` when none is closer."""
     _, _, _, K1, K2 = _data()
     keys = K1 if layer == 1 else K2
     best = cap
@@ -235,7 +235,7 @@ class WidenedClosure:
 def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> WidenedClosure:
     """S_eps of the cell, and the tier that answers it.
 
-    eps must be below 1/4. With ``certify`` (default) the ball of Lemma A12 is searched,
+    eps must be below 1/4. With ``certify`` (default) the ball of Lemma A6 is searched,
     which is exact; ``tier`` then records the smallest adjacency layer that contains the
     whole set (1: the 127 superbases of L1, 2: the 2755 of L2, 3: neither), i.e. how far
     a layer filter alone would have been complete. Without ``certify`` only L1 is

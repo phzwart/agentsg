@@ -1,14 +1,14 @@
 """z:adjacency — completeness of project--enumerate--filter in the strain norm,
 proved up to the adjacency radius of the measured cell.
 
-Lemma A12 (ball). If F is within eps < 1 of obtuse for G, every vector of F in
+Lemma A6 (ball). If F is within eps < 1 of obtuse for G, every vector of F in
 class c has |u|^2_G <= (1+eps)/(1-eps) mu_c(G), mu_c the squared length of F0's
-partial sum in that class. (Prop. A11 with u = v gives (1-eps)|u|^2_G <=
+partial sum in that class. (Prop. A4 with u = v gives (1-eps)|u|^2_G <=
 |u|^2_G' <= (1+eps)|u|^2_G for the metric G' within eps that makes F obtuse;
 F's vectors are shortest in their classes for G', and F0's are for G.)
 So S_eps(G) is a finite set, enumerable over the lattice vectors in that ball.
 
-Theorem A12 (adjacency). Call F adjacent to F0 when some positive definite
+Theorem A7 (adjacency). Call F adjacent to F0 when some positive definite
 metric makes both obtuse; then F = W F0 with W in the universal set U (Appendix
 D), since both are members of that lattice's closure. Let delta(G) be the
 smallest strain distance from G to a superbase not adjacent to F0. If
@@ -18,7 +18,7 @@ no projection within 4 eps < 1 is singular (a singular metric differs from G
 by strain >= 1 along its null vector), so project--enumerate--filter returns
 S_eps(G): F's own frame and zero pattern are among the (frame, face) pairs
 projected onto, at distance <= eps, and F is the base superbase of that
-projection's closure. delta(G) is computed exactly from the ball of Lemma A12
+projection's closure. delta(G) is computed exactly from the ball of Lemma A6
 at eps = 1/4.
 
 Layers. L_1 = U.F0 (127 superbases up to relabelling), L_k = U.L_(k-1)
@@ -66,7 +66,7 @@ def class_minima(G):
 
 def ball_vectors(G, eps):
     """lattice vectors u with |u|^2 <= (1+eps)/(1-eps) mu_c(G) in their own class c
-    (Lemma A12), as integer rows in F0 coordinates."""
+    (Lemma A6), as integer rows in F0 coordinates."""
     mu = class_minima(G)
     f = (1 + eps) / (1 - eps)
     R2 = f * max(mu.values())
@@ -82,7 +82,7 @@ def ball_vectors(G, eps):
 
 def _near_obtuse_superbases(G, eps, V):
     """(key, superbase, distance) for every superbase with vectors in V whose conorms
-    pass the Prop. A11 prefilter and whose strain distance to obtuse is <= eps."""
+    pass the Prop. A4 prefilter and whose strain distance to obtuse is <= eps."""
     n = np.sqrt(np.einsum("ia,ab,ib->i", V, G, V))
     ok = -(V @ G @ V.T) >= -eps * np.outer(n, n) - 1e-9 * abs(G).max()
     idx = {tuple(v.astype(int)): i for i, v in enumerate(V)}
@@ -113,13 +113,13 @@ def _near_obtuse_superbases(G, eps, V):
 
 
 def superbases_within(G, eps):
-    """{key: superbase}: the exact S_eps(G), by Lemma A12."""
+    """{key: superbase}: the exact S_eps(G), by Lemma A6."""
     return {k: S for k, S, _ in _near_obtuse_superbases(G, eps, ball_vectors(G, eps))}
 
 
 def adjacency_radius(G, cap=0.25, layer=None):
     """delta_k(G): smallest strain distance to a superbase outside the given layer
-    (default U.F0), searched exactly in the ball of Lemma A12 at eps = cap;
+    (default U.F0), searched exactly in the ball of Lemma A6 at eps = cap;
     (delta, superbase), delta = cap when none is closer."""
     layer = UF0 if layer is None else layer
     best = (cap, None)
@@ -201,6 +201,6 @@ def test_adjacency_theorem_below_delta_and_its_failure_above():
         eps = np.sin(np.radians(3.0))                 # between delta_1 and delta_2 for both plates
         truth = set(superbases_within(G, eps))
         assert not filtered_U(G, eps) >= truth
-        assert truth <= L2                            # layer 2 contains the widened set, as Theorem A12 says
+        assert truth <= L2                            # layer 2 contains the widened set, as Theorem A7 says
         got, _ = construct_union(G, eps)
         assert got == truth
