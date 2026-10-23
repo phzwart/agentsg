@@ -164,7 +164,8 @@ def test_centred_references_in_conventional_settings():
             X *= rng.uniform(0.002, 0.03) / np.linalg.norm(X)
             new = params_from_metric((Gh @ (np.eye(3) + X) @ Gh).tolist())
             cands, _ = reindex(ref, new, accept=LEPAGE_STRAIN)
-            truth = [[Fraction(x).limit_denominator(12) for x in row] for row in P]
+            Pt = P if np.linalg.det(P) > 0 else -P                  # proper operators only
+            truth = [[Fraction(x).limit_denominator(12) for x in row] for row in Pt]
             assert any([list(r) for r in c.operator.rows] == truth for c in cands), (sg, len(cands))
 
 

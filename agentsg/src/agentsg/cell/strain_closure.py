@@ -340,7 +340,8 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
     ``accept``; each P maps the reference's input basis to the new cell's input basis,
     ``h_N = P^T h_R``. The default ``accept`` is the largest band the reference
     certifies, ``ref.eps / (1 + ref.eps)`` (Lemma A8; see :func:`band_for`).
-    ``proper=True`` (default) keeps only candidates of determinant +1: two right-handed
+    ``proper=True`` (default) keeps only candidates of positive determinant (+1, or +1/k from a
+    centred reference's conventional basis): two right-handed
     bases are related by a proper operator, and a left-handed basis is never valid
     output. ``proper=None`` keeps both signs, ``False`` only the improper ones (for
     analysing hand inversions). ``eps`` is a deprecated alias of ``accept``. A fitted
@@ -364,7 +365,7 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
             if Mt.det() not in (1, -1):
                 continue
             P = ref.reduced.basis @ Mt @ BN_inv
-            det = int(P.det())
+            det = 1 if P.det() > 0 else -1          # rational (det +-1/k) for a centred reference
             if proper is True and det != 1:
                 continue
             if proper is False and det != -1:
