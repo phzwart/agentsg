@@ -73,7 +73,7 @@ def lepage_delta(G, btype):
     out = None
     for g in lattice_symmetry.metric_subgroups(input_symmetry=cs, max_delta=12.0).result_groups:
         bt = str(bravais_types.bravais_lattice(group=g["ref_subsym"].space_group()))
-        if bt == btype:
+        if bt == {"oS": "oC"}.get(btype, btype):          # cctbx writes oC for oS
             d = g["max_angular_difference"]
             out = d if out is None else min(out, d)
     return out
@@ -100,12 +100,12 @@ def order(P):
     return 0
 
 
-def run(n_per=20, target=3.0, seed=3):
+def run(n_per=20, target=3.0, seed=3, only=None):
     rng = np.random.default_rng(seed)
     rows = []
     for name, pat in sc._SORT_PATTERNS.items():
         bt = sc.BRAVAIS[name]
-        if bt == "aP":
+        if bt == "aP" or (only and name not in only):
             continue
         for _ in range(n_per):
             G = exact_cell(pat, rng)
@@ -130,7 +130,10 @@ def run(n_per=20, target=3.0, seed=3):
                              prices={str(k): max(v) for k, v in prices.items()},
                              max_price=max(max(v) for v in prices.values()) if prices else None, n_ops=len(ops)))
         print(name, len([r for r in rows if r["sort"] == name]), flush=True)
-    with open(os.path.join(HERE, "lepage_calibration.jsonl"), "w") as f:
+    path = os.path.join(HERE, "lepage_calibration.jsonl")
+    if only and os.path.exists(path):                 # replace the rows of the sorts rerun
+        rows = [r for r in map(json.loads, open(path)) if r["sort"] not in only] + rows
+    with open(path, "w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
     table(rows, target)
@@ -154,4 +157,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--table":
         table([json.loads(l) for l in open(os.path.join(HERE, "lepage_calibration.jsonl"))])
     else:
-        run(int(sys.argv[1]) if len(sys.argv) > 1 else 20, float(sys.argv[2]) if len(sys.argv) > 2 else 3.0)
+        run(int(sys.argv[1]) if len(sys.argv) > 1 else 20, float(sys.argv[2]) if len(sys.argv) > 2 else 3.0,
+            only=sys.argv[3].split(",") if len(sys.argv) > 3 else None)
