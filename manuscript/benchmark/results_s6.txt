@@ -1,0 +1,7 @@
+library of 697 distinct references, 780 measured cells
+  (first three: the nearest reference is the true one)
+  CS6Dist                                  524/780
+  NCDist                                   516/780
+  closure                                  536/780
+  true in 10 nearest by CS6Dist            778/780
+  true reference accepted by the closure   778/780
