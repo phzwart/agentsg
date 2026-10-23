@@ -101,14 +101,19 @@ def reindex_test(rows, rng):
         print(f"{name:11s} {sum(a['ok']):4d}/{len(a['ok']):<4d} {q[0]:6d}/{q[1]:<7d} {sum(a['rank1']):6d}/{sum(a['ok']):<6d}")
 
 
+def _spectrum(r):
+    return sort_spectrum(tuple(r["cell"]), r["sg_hm"] if r["sg_hm"][0] in "PABCIFR" else None)
+
+
 def symmetry_test(rows):
+    from concurrent.futures import ProcessPoolExecutor
     tally = collections.Counter()
     disagree = collections.Counter()
-    for r in rows:
+    rows = [r for r in rows if reported_bravais(r) is not None]
+    with ProcessPoolExecutor(max(1, (os.cpu_count() or 2) - 1)) as ex:
+        spectra = list(ex.map(_spectrum, rows, chunksize=4))
+    for r, sp in zip(rows, spectra):
         rb = reported_bravais(r)
-        if rb is None:
-            continue
-        sp = sort_spectrum(tuple(r["cell"]), r["sg_hm"] if r["sg_hm"][0] in "PABCIFR" else None)
         by = {}
         for s, d in sp.items():
             by[BRAVAIS[s]] = min(by.get(BRAVAIS[s], 9), d)
