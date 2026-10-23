@@ -136,9 +136,25 @@ hR R3 & cF C3 & $r=s$ & 1 & $\alpha=60^\circ$ \\
 \end{footnotesize}
 \end{table}
 
-\section{The benchmark}
+\begin{table}
+\caption{Four walks on the measured metric, and the construction of Appendix~B of the main text, against brute force on 80 cells with zero conorms at awkward positions (orthorhombic, cubic, plate, monoclinic and hexagonal zero patterns), with a band $\tau$ on the conorms at $0.1$ and $0.5$ of $\lambda_1/32$.\chk{z45}}
+\label{tab:walks}
+\begin{tabular}{lc}
+\toprule
+procedure & cells with a wrong set \\
+\midrule
+flip wherever $|p|\le\tau$, keep only cells within the band & 13 \\
+flip wherever $|p|\le\tau$, filter at the end & 13 \\
+flip wherever $|p|\le2\tau$, keep only cells within the band & 13 \\
+flip wherever $|p|\le2\tau$, filter at the end & 2 \\
+idealise at $4\tau$, enumerate the exact closure, filter & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Walks on the measured metric, and the benchmark}
 \label{si:bench}
-The repository directory \texttt{manuscript/benchmark} holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case also carries its Niggli cell. \texttt{evaluate.py} scores the methods of the first version (Appendix~B) and \texttt{evaluate\_strain.py} the strain-norm procedure, by whether the true operator is proposed from one reduction of the measured cell; the results are in \texttt{results.txt} and \texttt{results\_strain.txt}.
+The repository directory \texttt{manuscript/benchmark} holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case also carries its Niggli cell. \texttt{evaluate.py} scores the conorm-band methods of Appendix~B of the main text and \texttt{evaluate\_strain.py} the strain-norm procedure, by whether the true operator is proposed from one reduction of the measured cell; the results are in \texttt{results.txt} and \texttt{results\_strain.txt}.
 
 %==============================================================================
 \section{The operators alone}
@@ -175,7 +191,7 @@ kind & matrices & flips & occurs with \\
 \section{Computational checks}
 %==============================================================================
 
-Each mark [z$nn$] refers to \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository; the library procedure is tested in \texttt{agentsg/tests/test\_strain\_closure.py}.
+The mark [lib] refers to \texttt{agentsg/tests/test\_strain\_closure.py}; each mark [z$nn$] refers to \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository; the library procedure is tested in \texttt{agentsg/tests/test\_strain\_closure.py}.
 
 \begin{footnotesize}
 \begin{tabular}{lp{0.82\textwidth}}
@@ -184,7 +200,7 @@ mark & what is checked \\
 \midrule
 z36 & conorm shift identity; constants by zero pattern and frame (Appendix~B) \\
 z44 & the constants 4 and 8; class gap and excess; Theorem~B5 against brute force; the difference-wall configuration \\
-z45 & reduction with a widened boundary from random starts; the walks of Table~7 of the main text; the worked cell at $\tau=20$; the conorms of Table~6 of the main text \\
+z45 & reduction with a widened boundary from random starts; the walks of Table~\ref{tab:walks}; the worked cell at $\tau=20$; the conorms of Table~6 of the main text \\
 z46 & the monoclinic example; closures of the 24 sorts; shapes = orbits; twofolds generate; difference-wall members; idealising at $2\tau$; nesting \\
 z47 & reindexing under a declared error with the conorm band: membership, true operator, guarantee (Appendix~B) \\
 z49 & the cell shapes of Table~\ref{tab:shapes} \\
@@ -196,7 +212,7 @@ z55 & the conorm-band construction at bands from $\lambda_1/32$ to $\lambda_1/6$
 z56 & Lemma~A1: the obtuse superbases of every zero pattern inside the window \\
 z57 & bands per slot: the needle on which idealisation in the frame of the reduced cell fails \\
 z58 & the strain norm: projection, enumeration and filter on the needle, two plates and 240 random cells against brute force; distances to the sorts and their monotonicity along Table~\ref{tab:special} \\
-z59 & Lemma~A6 and Theorem~A7: the ball bound, the adjacency radii of Table~8 of the main text, the layers of 127 and 2755, the filtered first layer below $\delta_1$, the plates between $\delta_1$ and $\delta_2$ \\
+z59 & Lemma~A6 and Theorem~A7: the ball bound, the adjacency radii of Table~7 of the main text, the layers of 127 and 2755, the filtered first layer below $\delta_1$, the plates between $\delta_1$ and $\delta_2$ \\
 z60 & the strain depths of Table~6 of the main text and the growth of the widened set; the sort spectra of Fig.~2 of the main text; Table~5 of the main text; the prices of the second indexing classes in Fig.~4 of the main text; the single projection against the union on the needle \\
 \bottomrule
 \end{tabular}
@@ -212,7 +228,7 @@ z60 & the strain depths of Table~6 of the main text and the growth of the widene
 \begin{references}
 \reference{Andrews, L. C. \& Bernstein, H. J. (1988). \emph{Acta Cryst.} A\textbf{44}, 1009--1018.}
 \reference{Andrews, L. C. \& Bernstein, H. J. (2014). \emph{J. Appl. Cryst.} \textbf{47}, 346--359.}
-\reference{Andrews, L. C. \& Bernstein, H. J. (2023b). \emph{Acta Cryst.} A\textbf{79}, 499--503.}
+\reference{Andrews, L. C. \& Bernstein, H. J. (2023). \emph{Acta Cryst.} A\textbf{79}, 499--503.}
 \reference{Andrews, L. C., Bernstein, H. J. \& Pelletier, G. A. (1980). \emph{Acta Cryst.} A\textbf{36}, 248--252.}
 \reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2019a). \emph{Acta Cryst.} A\textbf{75}, 593--599.}
 \reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2019b). \emph{Acta Cryst.} A\textbf{75}, 115--120.}
@@ -237,7 +253,6 @@ z60 & the strain depths of Table~6 of the main text and the growth of the widene
 \reference{Higgins, P. J. (1971). \emph{Notes on Categories and Groupoids.} London: Van Nostrand Reinhold.}
 \reference{Himes, V. L. \& Mighell, A. D. (1987). \emph{Acta Cryst.} A\textbf{43}, 375--384.}
 \reference{K\v{r}iv\'y, I. \& Gruber, B. (1976). \emph{Acta Cryst.} A\textbf{32}, 297--298.}
-\reference{Kabsch, W. (1993). \emph{J. Appl. Cryst.} \textbf{26}, 795--800.}
 \reference{Kabsch, W. (2010). \emph{Acta Cryst.} D\textbf{66}, 125--132.}
 \reference{Kurlin, V. (2022). \emph{A complete isometry classification of 3-dimensional lattices.} arXiv:2201.10543; revised manuscript, April 2026, https://kurlin.org/projects/lattice-geometry/lattices3Dmaths.pdf. Lemma numbers refer to the revised manuscript.}
 \reference{Le Page, Y. (1982). \emph{J. Appl. Cryst.} \textbf{15}, 255--259.}
