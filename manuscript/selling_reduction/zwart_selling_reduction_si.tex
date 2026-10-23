@@ -21,7 +21,7 @@
 \newcommand{\Lay}{\mathcal{N}}
 \newcommand{\sym}{\operatorname{sym}}
 % every checkable statement carries \chk{zNN}: the test file
-% manuscript/appendix_z/test_zNN_*.py that verifies it (Appendix E)
+% manuscript/appendix_z/test_zNN_*.py that verifies it (Section S4)
 \newcommand{\chk}[1]{\textsuperscript{[#1]}}
 
 \begin{document}
@@ -191,7 +191,7 @@ kind & matrices & flips & occurs with \\
 \section{Computational checks}
 %==============================================================================
 
-The mark [lib] refers to \texttt{agentsg/tests/test\_strain\_closure.py}; each mark [z$nn$] refers to \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository; the library procedure is tested in \texttt{agentsg/tests/test\_strain\_closure.py}.
+The mark [lib] refers to \texttt{agentsg/tests/test\_strain\_closure.py}; each mark [z$nn$] refers to \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository.
 
 \begin{footnotesize}
 \begin{tabular}{lp{0.82\textwidth}}
@@ -199,12 +199,14 @@ The mark [lib] refers to \texttt{agentsg/tests/test\_strain\_closure.py}; each m
 mark & what is checked \\
 \midrule
 z36 & conorm shift identity; constants by zero pattern and frame (Appendix~B) \\
+z42 & the $S^6$ distance (CS6Dist) on the worked pair, where it agrees with the closure \\
 z44 & the constants 4 and 8; class gap and excess; Theorem~B5 against brute force; the difference-wall configuration \\
 z45 & reduction with a widened boundary from random starts; the walks of Table~\ref{tab:walks}; the worked cell at $\tau=20$; the conorms of Table~6 of the main text \\
 z46 & the monoclinic example; closures of the 24 sorts; shapes = orbits; twofolds generate; difference-wall members; idealising at $2\tau$; nesting \\
 z47 & reindexing under a declared error with the conorm band: membership, true operator, guarantee (Appendix~B) \\
 z49 & the cell shapes of Table~\ref{tab:shapes} \\
 z50 & the codimension-one specialisations between the 36 pairs of sorts and the shapes that carry them (Table~\ref{tab:special}) \\
+z51 & the seven BLDConograph sample cells and the program's distances (Table~5 of the main text) \\
 z52 & the operator sets of the faces from the matrices alone; the universal set $\mathcal U$, its inversion closure and window; the nine kinds (Table~\ref{tab:kinds}); generation by flips \\
 z53 & the 24 sorts as the closed sets of equalities of Proposition~A5, with their symmetry orders \\
 z54 & every column of Table~4 of the main text computed from the operators alone \\
@@ -213,7 +215,8 @@ z56 & Lemma~A1: the obtuse superbases of every zero pattern inside the window \\
 z57 & bands per slot: the needle on which idealisation in the frame of the reduced cell fails \\
 z58 & the strain norm: projection, enumeration and filter on the needle, two plates and 240 random cells against brute force; distances to the sorts and their monotonicity along Table~\ref{tab:special} \\
 z59 & Lemma~A6 and Theorem~A7: the ball bound, the adjacency radii of Table~7 of the main text, the layers of 127 and 2755, the filtered first layer below $\delta_1$, the plates between $\delta_1$ and $\delta_2$ \\
-z60 & the strain depths of Table~6 of the main text and the growth of the widened set; the sort spectra of Fig.~2 of the main text; Table~5 of the main text; the prices of the second indexing classes in Fig.~4 of the main text; the single projection against the union on the needle \\
+z60 & the strain depths of Table~6 of the main text and the growth of the widened set; the sort spectra of Fig.~2 of the main text; Table~5 of the main text; the prices of the second indexing classes in Fig.~4 of the main text and the $\beta$ scan; centred references in conventional settings; the $\epsilon/(1-\epsilon)$ bound of Corollary~A8; $\delta_1$ at the cap for the spectrum cells; the single projection against the union on the needle \\
+lib & the library: layers and sizes, the adjacency radius, reindexing with and without the chirality filter, the scale fit, the indexing classes of Table~8 of the main text with the anomalous and chiral counts, the price spectrum of the worked cell \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}

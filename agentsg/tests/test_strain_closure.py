@@ -108,20 +108,27 @@ def test_indexing_classes_reproduce_the_merohedral_ambiguities():
         (WORKED, "P 1"): (4, 2, 2),
     }
     for (cell, sg), (h, l, n) in expected.items():
-        r = indexing_classes(widened_closure(cell, sg), relabel(cell), sg)
+        W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))      # widened at 0.080, accepted at 0.074
+        r = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN)
         assert (r.symmetry_order, r.group_order, len(r.classes)) == (h, l, n), (sg, r)
         assert r.closed and r.group_in_symmetry
         assert all(c.size == l for c in r.classes)
         assert r.classes[0].representative.price < 1e-6
-    # anomalous data: the point group replaces the Laue group, so P 43 21 2 (point group 422, order 8)
-    # has 2 classes (the inversion is now a different indexing) and P 3 (order 3) has 8
-    for (cell, sg), n in ({((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): 2,
-                           ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): 8}).items():
-        r = indexing_classes(widened_closure(cell, sg), relabel(cell), sg, anomalous=True)
-        assert len(r.classes) == n and r.anomalous
+    # anomalous data: the point group replaces the Laue group. For a chiral group the improper
+    # candidates are dropped (proper=True) and the count does not change; for an acentric
+    # non-chiral group the inversion separates indexings and the count doubles.
+    cases = {((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (True, 1, 1),
+             ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (True, 4, 4),
+             ((40.0, 40.0, 70.0, 90, 90, 90), "P 4 m m"): (None, 1, 2),
+             ((50.0, 50.0, 80.0, 90, 90, 120), "P 3 1 m"): (None, 2, 4)}
+    for (cell, sg), (proper, n_merge, n_anom) in cases.items():
+        W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))
+        r0 = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN, proper=proper)
+        r1 = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN, proper=proper, anomalous=True)
+        assert (len(r0.classes), len(r1.classes)) == (n_merge, n_anom) and r1.anomalous, sg
     # chiral: improper candidates are dropped, which halves H and leaves the class count
-    r = indexing_classes(widened_closure((50.0, 50.0, 80.0, 90, 90, 120), "P 3"), relabel((50.0, 50.0, 80.0, 90, 90, 120)),
-                         "P 3", proper=True)
+    W = widened_closure((50.0, 50.0, 80.0, 90, 90, 120), "P 3", eps=band_for(LEPAGE_STRAIN))
+    r = indexing_classes(W, relabel((50.0, 50.0, 80.0, 90, 90, 120)), "P 3", accept=LEPAGE_STRAIN, proper=True)
     assert r.symmetry_order == 12 and len(r.classes) == 4
 
 

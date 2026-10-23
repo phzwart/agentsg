@@ -93,7 +93,7 @@ def test_conograph_samples_in_strain():
 
 
 def test_twofold_price_is_twice_the_sort_distance():
-    """Figure 4 (e), (f): the second indexing class costs the pseudo-symmetry, about
+    """Table 8 and Fig. 4 (c): the second indexing class costs the pseudo-symmetry, about
     twice the distance to the sort that the twofold fixes."""
     from agentsg.cell.metric import UnitCell, params_from_metric
     from agentsg.cell.strain_closure import indexing_classes
@@ -189,7 +189,8 @@ def test_twofold_price_is_twice_the_distance_to_its_fixed_space():
 def test_overlap_band_eps_over_one_minus_eps():
     """Corollary A8 as implemented: a price of eps measured at the new cell's metric is at
     most eps/(1-eps) at the predicted metric, so the reference widened at band_for(eps)
-    holds the new cell's reduced superbase; the bound is attained for a pure scale."""
+    holds the new cell's reduced superbase; the bound is attained when the error has a single
+    non-zero eigenvalue, not for a pure scale."""
     from agentsg.cell.strain_closure import _strain
     for eps in (0.05, 0.1, 0.2):
         G = np.eye(3)
@@ -198,3 +199,36 @@ def test_overlap_band_eps_over_one_minus_eps():
         p_at_Gp, _ = _strain(Gp, G, fit_scale=False)
         assert abs(p_at_G - eps) < 1e-12 and p_at_Gp <= eps / (1 - eps) + 1e-12
         assert p_at_Gp > eps                                 # the two distances differ at second order
+        G1 = np.diag([1 - eps, 1.0, 1.0])                    # one eigenvalue: the bound is attained
+        assert abs(_strain(G, G1, fit_scale=False)[0] - eps) < 1e-12
+        assert abs(_strain(G1, G, fit_scale=False)[0] - eps / (1 - eps)) < 1e-12
+
+
+CONOGRAPH_AND_LYSO = [c for _, c, *_ in CONOGRAPH] + [LYSO_P1, WORKED]
+
+
+def test_adjacency_radius_reaches_the_cap_for_the_spectrum_cells():
+    """Section 5.2: for the seven BLDConograph cells, the lysozyme cell and the worked cell
+    delta_1 reaches the quarter cap, so a sort distance reported as '>25 %' is a lower
+    bound (no superbase outside the first layer is within 0.25) as well as an upper bound
+    over the frames of U."""
+    from agentsg.cell.strain_closure import adjacency_radius, reduce_cell
+    for cell in CONOGRAPH_AND_LYSO:
+        assert adjacency_radius(reduce_cell(cell).G) == 0.25, cell
+
+
+def test_conograph_ladders():
+    """Table 5: the types up to the program's, with their strain distances (%)."""
+    want = {"HERMES_Sr327_250K": [("mC", 0.31), ("oI", 0.74), ("oF", 0.83), ("tI", 0.84)],
+            "1339prbasrcuo_bs1": [("mP", 0.11), ("mC", 0.14), ("oS", 0.17), ("oP", 0.18), ("tP", 0.22)],
+            "sample3": [("mC", 0.23), ("hR", 0.39), ("oF", 0.39), ("oI", 0.49), ("tI", 0.49), ("cI", 0.58)],
+            "CeO2_matsushita": [("mC", 0.09), ("oI", 0.17), ("oF", 0.17), ("tI", 0.18), ("hR", 0.26), ("cF", 0.30)],
+            "M402-pf-119673": [("mC", 0.99), ("mP", 2.24), ("oS", 2.37), ("hP", 2.94)],
+            "Acrinol-B-D8CuKa1": [("mC", 0.31)],
+            "Alumina676": [("mC", 0.43), ("hR", 3.58)]}
+    for name, cell, *_ in CONOGRAPH:
+        lad = [(k, round(100 * v, 2)) for k, v in _type_ladder(cell) if k != "aP"]
+        got = lad[:len(want[name])]
+        assert {k for k, _ in got} == {k for k, _ in want[name]}, name
+        d = dict(got)
+        assert all(abs(d[k] - v) < 0.006 for k, v in want[name]), (name, got)

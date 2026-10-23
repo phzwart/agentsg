@@ -12,7 +12,7 @@ vertices, and with k_0 = 0 every |k_i| <= 3. The vectors of F are therefore
 partial sums of F0 with superbase coordinates s_i + 2 k_i, s in {0,1}^4,
 |k_i| <= 3: a finite window. Enumerating all superbases of such vectors
 whose six pairwise products are non-positive on the whole face (the sign
-test of Appendix D) gives 1, 2, 3, 6 and 16 members for the five kinds of
+test of the supporting information (Section S3)) gives 1, 2, 3, 6 and 16 members for the five kinds of
 zero pattern, all with basis entries in {-1, 0, 1}.
 """
 from __future__ import annotations
