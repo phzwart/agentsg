@@ -41,7 +41,7 @@ def op_symbol(h):
     g = np.gcd.reduce(np.abs(v[v != 0])) if np.any(v) else 1
     v = v // g
     if v[np.nonzero(v)[0][0]] < 0: v = -v
-    return f"{n} [{''.join(str(x) if x >= 0 else chr(773)[:0] + '-' + str(-x) for x in v)}]"
+    return f"{n} [{''.join(str(x) if x >= 0 else str(-x) + chr(0x0305) for x in v)}]"
 
 def simplest_twin(ci, cj):
     """the reference-frame operator h with Pj = h Pi, choosing within the classes the simplest proper one."""
@@ -55,25 +55,23 @@ def simplest_twin(ci, cj):
             if best is None or key < best[0]: best = (key, h)
     return op_symbol(best[1])
 
-cases = [("P 4₃2₁2, lysozyme 79.1 × 79.1 × 37.9", (79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"),
-         ("P 3, a = b = 50, c = 80", (50.0, 50.0, 80.0, 90, 90, 120), "P 3"),
-         ("P 3₁21, a = b = 50, c = 80", (50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"),
-         ("P 2₁3, a = 60", (60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"),
-         ("P 2₁2₁2₁, 40.0 × 40.3 × 80 (pseudo-tetragonal)", (40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"),
-         ("P 1, worked cell 30 × 40 × 50, β 92°", (30.02, 39.97, 50.03, 90.25, 92.05, 89.80), "P 1")]
-fig, axes = plt.subplots(2, 3, figsize=(15, 10.5), dpi=160); fig.patch.set_facecolor(SURF)
+cases = [("P 3, a = b = 50, c = 80 Å", (50.0, 50.0, 80.0, 90, 90, 120), "P 3"),
+         ("P 2₁3, a = 60 Å", (60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"),
+         ("P 1, worked cell", (30.02, 39.97, 50.03, 90.25, 92.05, 89.80), "P 1")]
+fig, axes = plt.subplots(1, 3, figsize=(10.5, 4.2), dpi=160); fig.patch.set_facecolor(SURF)
 for ax, (title, cell, sg) in zip(axes.ravel(), cases):
-    ref = widened_closure(cell, sg)
+    from agentsg.cell.strain_closure import LEPAGE_STRAIN, band_for
+    ref = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))
     G = np.array(UnitCell(*cell).metric_tensor(), float)
-    new = params_from_metric((G * 1.002).tolist())          # the reference measured again, 0.2 % scale error
-    r = indexing_classes(ref, new, sg)
+    new = params_from_metric((G * 1.002).tolist())          # the reference measured again, 0.1 % error in the length scale
+    r = indexing_classes(ref, new, sg, accept=LEPAGE_STRAIN)
     def simplest(c):
         """display operator: the one nearest the identity (proper first, then fewest changes)."""
         return min(c.operators, key=lambda P: (round(np.linalg.det(arr(P))) != 1, float(np.abs(arr(P) - np.eye(3)).sum())))
     C = sorted(r.classes, key=lambda c: (round(c.representative.price, 6), float(np.abs(arr(simplest(c)) - np.eye(3)).sum())))
     n = len(C)
     ang = np.pi / 2 + 2 * np.pi * np.arange(n) / max(n, 1)
-    rad = 0 if n == 1 else 1.0
+    rad = 0 if n == 1 else (1.35 if n == 4 else 1.0)
     pos = [(rad * np.cos(a), rad * np.sin(a)) for a in ang]
     for i in range(n):
         for j in range(i + 1, n):
@@ -81,19 +79,21 @@ for ax, (title, cell, sg) in zip(axes.ravel(), cases):
             ax.plot([x1, x2], [y1, y2], color=INK, lw=1.6, zorder=1)
             lab = simplest_twin(C[i], C[j])
             diag = n == 4 and abs(i - j) == 2
-            t = 0.5 if not diag else (0.3 if i == 0 else 0.7)
-            ax.text(x1 + t * (x2 - x1), y1 + t * (y2 - y1), lab, fontsize=8.5, ha="center", va="center", color=INK,
+            t = 0.5 if not diag else (0.28 if i == 0 else 0.72)
+            if n == 4 and not diag:
+                t = 0.62 if (i == 0 or j == 2) else 0.5
+            ax.text(x1 + t * (x2 - x1), y1 + t * (y2 - y1), lab, fontsize=7, ha="center", va="center", color=INK,
                     bbox=dict(boxstyle="round,pad=0.2", fc=SURF, ec="#d7d5cf"), zorder=3)
     for k, ((x, y), c) in enumerate(zip(pos, C)):
         v = 100 * c.representative.price
-        ax.scatter([x], [y], s=2600, color=cmap(norm(v)), edgecolors=SURF, linewidths=2, zorder=2)
-        ax.text(x, y + 0.03, f"{k + 1}", ha="center", va="center", fontsize=12, weight="bold",
+        ax.scatter([x], [y], s=1500, color=cmap(norm(v)), edgecolors=SURF, linewidths=2, zorder=2)
+        ax.text(x, y + 0.03, f"{k + 1}", ha="center", va="center", fontsize=10, weight="bold",
                 color="#ffffff" if norm(v) > 0.5 else INK, zorder=4)
-        ax.text(x, y - 0.33, f"({basis_label(simplest(c))})\n{v:.2f}% · {c.size} ops",
-                ha="center", va="top", fontsize=7.8, color=INK, zorder=4, bbox=dict(boxstyle="round,pad=0.15", fc=SURF, ec="none"))
-    ax.set_title(f"({'abcdef'[cases.index((title, cell, sg))]}) {title}\n|H_ε| = {r.symmetry_order}, |L| = {r.laue_order}: {n} distinct indexing{'s' if n > 1 else ''}",
-                 fontsize=9.5, color=INK, loc="left")
-    ax.set_xlim(-1.75, 1.75); ax.set_ylim(-1.75, 1.55); ax.set_aspect("equal"); ax.axis("off")
+        ax.text(x, y - 0.3, f"({basis_label(simplest(c))})\n{v:.2f}% · {c.size} ops",
+                ha="center", va="top", fontsize=6.8, color=INK, zorder=4, bbox=dict(boxstyle="round,pad=0.15", fc=SURF, ec="none"))
+    ax.set_title(f"({'abc'[cases.index((title, cell, sg))]}) {title}\n|H$_ε$| = {r.symmetry_order}, |$\\mathcal{{L}}$| = {r.group_order}: {n} distinct indexing{'s' if n > 1 else ''}",
+                 fontsize=8, color=INK, loc="left")
+    ax.set_xlim(-2.1, 2.1); ax.set_ylim(-2.05, 1.75); ax.set_aspect("equal"); ax.axis("off")
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 fig.tight_layout()

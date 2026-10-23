@@ -60,11 +60,15 @@ candidate set in every one of these cases (`reindex ok` above).
 ## The strain-norm procedure
 
 `evaluate_strain.py` scores `agentsg.cell.strain_closure` (the procedure of the
-restructured paper): the reference is widened in the strain norm and the
-measured cell reduced once. At Le Page's band (one angle changed by 3 degrees,
-strain 0.074) the true operator is among the candidates in 780 of 780 cases;
-at three times each case's own error strain in 779 of the 779 cases where
-that band is below 1/4. The 16 anisotropic cases fall in tier 2 (12) and
-tier 1 (4); none is refused. Results are in `results_strain.txt`.
+paper) and a small-matrix baseline. The reference is widened at `band_for(accept)`
+in the strain norm and the measured cell reduced once; the baseline Selling-reduces
+both cells and tries the 6960 unimodular matrices with entries in {-1, 0, 1} between
+the reduced bases, priced in the same norm. At `accept` = 0.074 (one angle changed by
+3 degrees) the closure has the true operator among the candidates in 780 of 780
+cases and the baseline in 778 (two triclinic cells near mP whose operator between
+the reduced bases has an entry of 2); at three times each case's own error strain,
+778 of 778 and 776 of 778 (two cases exceed the proved range at that multiple).
+The 16 anisotropic cases fall in layer 2 (12) and layer 1 (4); none is refused.
+Results, with candidate-count percentiles, are in `results_strain.txt`.
 
     PYTHONPATH=agentsg/src python manuscript/benchmark/evaluate_strain.py

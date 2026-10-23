@@ -20,6 +20,6 @@ for s in ("top", "right", "left"):
     ax.spines[s].set_visible(False)
 from matplotlib.patches import Patch
 ax.legend(handles=[Patch(color=COL[0], label="the six members of the ring"),
-                   Patch(color=COL[2], label="added by the orthorhombic idealisation")], fontsize=6.5, frameon=False, loc="upper left", bbox_to_anchor=(0.3, 1.0))
+                   Patch(color=COL[2], label="the other ten members of the nearby oP lattice")], fontsize=6.5, frameon=False, loc="upper left", bbox_to_anchor=(0.3, 1.0))
 fig.savefig(os.path.join(OUT, "fig2_depths.pdf"), bbox_inches="tight")
 fig.savefig(os.path.join(OUT, "fig2_depths.png"), bbox_inches="tight", dpi=200)

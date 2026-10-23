@@ -355,24 +355,30 @@ on the manifold, prefer the root invariant (`rootform`) over raw G6/S6. See
 
 `agentsg.cell.strain_closure` (needs numpy and scipy) stores a reference cell as its
 widened Selling closure and pairs a new cell's single reduced superbase with it. The
-band is a strain, the same in every basis; the default is one cell angle changed by
-3° (Le Page-style, 0.074).
+band is a strain, the same in every basis. `LEPAGE_STRAIN` = 0.074 is one cell angle
+changed by 3°; a reference widened at `band_for(0.074)` = 0.080 holds every operator
+whose price at the new cell is at most 0.074.
 
 ```python
-from agentsg.cell.strain_closure import widened_closure, reindex, sort_spectrum
+from agentsg.cell.strain_closure import LEPAGE_STRAIN, band_for, widened_closure, reindex, sort_spectrum
 
-ref = widened_closure((30.02, 39.97, 50.03, 90.25, 92.05, 89.80))   # tier 1, 16 members
-cands, tier = reindex(ref, (39.97, 30.02, 50.03, 92.05, 90.25, 89.80))   # a and b exchanged
+ref = widened_closure((30.02, 39.97, 50.03, 90.25, 92.05, 89.80), eps=band_for(LEPAGE_STRAIN))   # layer 1, 16 members
+cands, layer = reindex(ref, (39.97, 30.02, 50.03, 92.05, 90.25, 89.80), accept=LEPAGE_STRAIN)   # a and b exchanged
 P = cands[0].operator           # exact; (a_N b_N c_N) = (a_R b_R c_R) P, h_N = P^T h_R
 sort_spectrum((40.0, 40.3, 80.0, 90, 90, 90))["T5"]                 # 0.0106: 1.06 % strain from tP
 ```
 
-The enumeration is exact (a finite ball of lattice vectors). `tier` records the
+The enumeration is exact (a finite ball of lattice vectors). `layer` records the
 smallest adjacency layer that holds the whole set: 1 for ordinary cells, 2 for
-needles and plates at a 3° band. Candidates come in cosets of the lattice
-symmetry; choosing within a coset is a matter for the intensities.
-`indexing_classes(ref, new_cell, "P 3")` groups them by the reference's Laue group:
-one priced representative per distinct indexing (four for P3).
+needles and plates at a 3° band. Prices are measured at the new cell after the
+best common scale, fitted in the same norm. `proper=True` drops improper candidates
+for a chiral crystal. Within a gap of the reference's price spectrum
+(`price_spectrum(ref)`) the candidates are one coset of the band's self-maps;
+`indexing_classes(ref, new_cell, "P 3")` groups them by the reference's Laue group,
+one priced representative per distinct indexing (four for P3), or by the point group
+with `anomalous=True` (eight). A pseudo-twofold is offered when its price, twice its
+distance to the lattice it would fix, is within the band: 0.074 admits obliquities up
+to 1.5°, `LEPAGE_PRICE` = 0.148 up to Le Page's 3°.
 
 ## Full-PDB unit-cell database (root-invariant search)
 

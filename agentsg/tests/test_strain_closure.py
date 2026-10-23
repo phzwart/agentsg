@@ -1,4 +1,4 @@
-"""strain_closure: widened Selling closure in the strain norm, tiers, reindexing, sort spectrum."""
+"""strain_closure: widened Selling closure in the strain norm, layers, reindexing, sort spectrum."""
 import numpy as np
 import pytest
 
@@ -8,7 +8,8 @@ from fractions import Fraction
 
 from agentsg.cell.metric import UnitCell, params_from_metric
 from agentsg.cell.strain_closure import (
-    LEPAGE_STRAIN, _data, adjacency_radius, reduce_cell, reindex, sort_spectrum, widened_closure,
+    LEPAGE_PRICE, LEPAGE_STRAIN, _data, adjacency_radius, band_for, price_spectrum, reduce_cell, reindex,
+    sort_spectrum, widened_closure,
 )
 
 WORKED = (30.02, 39.97, 50.03, 90.25, 92.05, 89.80)
@@ -24,17 +25,19 @@ def test_shipped_operator_data():
 
 def test_lepage_band():
     assert abs(LEPAGE_STRAIN - np.sqrt(2) * np.sin(np.radians(3))) < 1e-15
+    assert LEPAGE_PRICE == 2 * LEPAGE_STRAIN
+    assert abs(band_for(0.074) - 0.074 / 0.926) < 1e-12
 
 
-def test_tiers_and_sizes():
+def test_layers_and_sizes():
     W = widened_closure(WORKED)
-    assert W.tier == 1 and len(W) == 16
-    assert widened_closure((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2").tier == 1
+    assert W.layer == 1 and W.tier == 1 and len(W) == 16
+    assert widened_closure((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2").layer == 1
     Wn = widened_closure(NEEDLE)
-    assert Wn.tier == 2 and len(Wn) == 56
+    assert Wn.layer == 2 and len(Wn) == 56
     Wp = widened_closure(PLATE)
-    assert Wp.tier == 2 and len(Wp) == 52
-    # the uncertified L1 filter is the tier-1 answer where tier 1 holds, and misses members where it does not
+    assert Wp.layer == 2 and len(Wp) == 52
+    # the uncertified L1 filter is the layer-1 answer where layer 1 holds, and misses members where it does not
     assert {tuple(map(tuple, m.superbase)) for m in widened_closure(WORKED, certify=False).members} == \
            {tuple(map(tuple, m.superbase)) for m in W.members}
     assert len(widened_closure(NEEDLE, certify=False)) < len(Wn)
@@ -48,7 +51,7 @@ def test_adjacency_radius():
 def test_reindex_recovers_the_true_operator():
     rng = np.random.default_rng(3)
     for cell in (WORKED, NEEDLE, PLATE, (40.0, 40.3, 80.0, 90, 90, 90)):
-        W = widened_closure(cell)
+        W = widened_closure(cell, eps=band_for(LEPAGE_STRAIN))
         GR = np.array(UnitCell(*cell).metric_tensor(), float)
         for _ in range(4):
             while True:
@@ -61,9 +64,24 @@ def test_reindex_recovers_the_true_operator():
             X = rng.normal(size=(3, 3))
             X = (X + X.T) / 2
             X *= rng.uniform(0.005, 0.06) / np.linalg.norm(X)
-            cands, _ = reindex(W, params_from_metric((Gh @ (np.eye(3) + X) @ Gh).tolist()))
+            new = params_from_metric((Gh @ (np.eye(3) + X) @ Gh).tolist())
+            cands, _ = reindex(W, new, accept=LEPAGE_STRAIN)
             truth = [[Fraction(int(x)) for x in row] for row in P]
             assert any([list(r) for r in c.operator.rows] == truth for c in cands)
+            det = int(round(np.linalg.det(P)))
+            proper, _ = reindex(W, new, accept=LEPAGE_STRAIN, proper=True)
+            assert all(c.determinant == 1 for c in proper)
+            assert (any([list(r) for r in c.operator.rows] == truth for c in proper)) == (det == 1)
+    with pytest.raises(ValueError):
+        reindex(widened_closure(WORKED), WORKED, accept=0.09)            # needs a wider reference
+
+
+def test_scale_fit_and_scale_invariance():
+    W = widened_closure(WORKED)
+    G = np.array(UnitCell(*WORKED).metric_tensor(), float)
+    cands, _ = reindex(W, params_from_metric((1.02 * G).tolist()))      # a 1 % error in the length scale
+    assert cands[0].price < 1e-9 and abs(cands[0].scale - 1.02) < 1e-9  # removed by the scale fit
+    assert len(widened_closure(tuple(1.3 * x for x in WORKED[:3]) + WORKED[3:])) == len(W)   # S_eps(sG) = S_eps(G)
 
 
 def test_sort_spectrum():
@@ -91,7 +109,26 @@ def test_indexing_classes_reproduce_the_merohedral_ambiguities():
     }
     for (cell, sg), (h, l, n) in expected.items():
         r = indexing_classes(widened_closure(cell, sg), relabel(cell), sg)
-        assert (r.symmetry_order, r.laue_order, len(r.classes)) == (h, l, n), (sg, r)
-        assert r.closed and r.laue_in_symmetry
+        assert (r.symmetry_order, r.group_order, len(r.classes)) == (h, l, n), (sg, r)
+        assert r.closed and r.group_in_symmetry
         assert all(c.size == l for c in r.classes)
         assert r.classes[0].representative.price < 1e-6
+    # anomalous data: the point group replaces the Laue group, so P 43 21 2 (point group 422, order 8)
+    # has 2 classes (the inversion is now a different indexing) and P 3 (order 3) has 8
+    for (cell, sg), n in ({((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): 2,
+                           ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): 8}).items():
+        r = indexing_classes(widened_closure(cell, sg), relabel(cell), sg, anomalous=True)
+        assert len(r.classes) == n and r.anomalous
+    # chiral: improper candidates are dropped, which halves H and leaves the class count
+    r = indexing_classes(widened_closure((50.0, 50.0, 80.0, 90, 90, 120), "P 3"), relabel((50.0, 50.0, 80.0, 90, 90, 120)),
+                         "P 3", proper=True)
+    assert r.symmetry_order == 12 and len(r.classes) == 4
+
+
+def test_price_spectrum_and_the_twofold_rule():
+    """a pseudo-twofold's price is twice its sort distance (Proposition A9); the price
+    spectrum of the worked cell has its gap between the pseudo-mP and pseudo-oP twofolds."""
+    spec = price_spectrum(widened_closure(WORKED, eps=0.2))
+    assert max(spec[:2]) < 1e-12                                           # +-I
+    assert abs(spec[2] - 2 * sort_spectrum(WORKED)["M4"]) < 1e-4 and abs(spec[2] - spec[3]) < 1e-12
+    assert abs(spec[4] - 2 * sort_spectrum(WORKED)["O5"]) < 2e-3            # the pseudo-oP twofolds

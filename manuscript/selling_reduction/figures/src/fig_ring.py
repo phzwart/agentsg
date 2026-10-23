@@ -10,16 +10,17 @@ LAB = ["30, 40, 50 Å, β = 100°", "30, 40, 53.7 Å, β = 113.4°", "50, 40, 53
 ring = ["M0", "M1", "M5", "M4", "M3", "M2"]                      # the ring M0-M1-M5-M4-M3-M2-M0
 ang = {m: np.pi / 2 - k * np.pi / 3 for k, m in enumerate(ring)}
 pos = {m: (np.cos(a), np.sin(a)) for m, a in ang.items()}
-path = {("M0", "M1"): "ab", ("M1", "M5"): "bc", ("M5", "M4"): "db"}
+path = {("M0", "M1"): "ab", ("M1", "M5"): "bc", ("M5", "M4"): "ab"}
+other = {("M4", "M3"): "bc", ("M3", "M2"): "db", ("M2", "M0"): "bc"}
 fig, ax = plt.subplots(figsize=(3.4, 3.6))
 for i, m in enumerate(ring):
     n = ring[(i + 1) % 6]
     on = (m, n) in path
     (x1, y1), (x2, y2) = pos[m], pos[n]
     ax.plot([x1, x2], [y1, y2], color=ACC if on else "#9a9893", lw=2.2 if on else 1.0, zorder=1)
-    if on:
-        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-        ax.text(mx * 1.18, my * 1.18, path[(m, n)], fontsize=8, style="italic", color=ACC, ha="center", va="center")
+    mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+    lab = path.get((m, n)) or other.get((m, n))
+    ax.text(mx * 1.18, my * 1.18, lab, fontsize=8, style="italic", color=ACC if on else MUTED, ha="center", va="center")
 (x0, y0), (x4, y4) = pos["M0"], pos["M4"]
 ax.annotate("", xy=(x4, y4 + 0.17), xytext=(x0, y0 - 0.17),
             arrowprops=dict(arrowstyle="-|>", color=ACC, lw=1.2, ls=(0, (4, 2))))

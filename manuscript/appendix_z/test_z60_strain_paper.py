@@ -129,3 +129,72 @@ def test_alumina_gap_below_hR():
     lad = _type_ladder((4.7428, 4.7802, 5.1093, 116.89, 90.170, 119.69))
     d = dict(lad)
     assert abs(100 * d["mC"] - 0.43) < 0.006 and abs(100 * d["hR"] - 3.58) < 0.006
+
+
+def test_centred_references_in_conventional_settings():
+    """Reindexing with centred references given in their conventional settings: the
+    reference is widened as (cell, space group), the new cell is a random primitive
+    basis of the same lattice with a random metric error, and the true (rational)
+    operator from the conventional basis to the new basis is among the candidates."""
+    from fractions import Fraction
+    from agentsg.cell.metric import UnitCell, params_from_metric
+    from agentsg.cell.strain_closure import band_for, primitive_matrix, reduce_cell, reindex
+    rng = np.random.default_rng(7)
+    refs = [((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1"), ((30.0, 40.0, 50.0, 90, 90, 90), "I 2 2 2"),
+            ((60.0, 60.0, 90.0, 90, 90, 120), "R 3 :H"), ((80.0, 80.0, 80.0, 90, 90, 90), "F 2 3"),
+            ((40.0, 40.0, 70.0, 90, 90, 90), "I 41"), ((30.0, 50.0, 80.0, 90, 90, 90), "F d d d")]
+    for cell, sg in refs:
+        ref = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))
+        Gc = np.array(UnitCell(*cell).metric_tensor(), float)
+        C = np.array([[float(x) for x in row] for row in primitive_matrix(sg).rows])   # primitive basis in conventional
+        for _ in range(4):
+            while True:
+                U = rng.integers(-2, 3, (3, 3))
+                if round(abs(np.linalg.det(U))) == 1:
+                    break
+            P = C @ U                                                  # conventional -> new primitive basis
+            G = P.T @ Gc @ P
+            w, V = np.linalg.eigh(G)
+            Gh = V @ np.diag(w ** .5) @ V.T
+            X = rng.normal(size=(3, 3)); X = (X + X.T) / 2
+            X *= rng.uniform(0.002, 0.03) / np.linalg.norm(X)
+            new = params_from_metric((Gh @ (np.eye(3) + X) @ Gh).tolist())
+            cands, _ = reindex(ref, new, accept=LEPAGE_STRAIN)
+            truth = [[Fraction(x).limit_denominator(12) for x in row] for row in P]
+            assert any([list(r) for r in c.operator.rows] == truth for c in cands), (sg, len(cands))
+
+
+def test_twofold_price_is_twice_the_distance_to_its_fixed_space():
+    """Proposition A9 on a beta scan: for a P 1 2 1 cell 30 x 40 x 50 A the pseudo-oP
+    twofold's price is 2 sqrt2 sin(beta - 90) to first order, twice the distance to the
+    mP->oP wall, so a price band of 0.074 offers it up to beta = 91.5 deg and the band
+    LEPAGE_PRICE = 0.148 up to 93 deg."""
+    from agentsg.cell.metric import UnitCell, params_from_metric
+    from agentsg.cell.strain_closure import LEPAGE_PRICE, band_for, indexing_classes
+    for beta in (91.0, 91.4, 91.6, 92.5, 93.5):
+        cell = (30.0, 40.0, 50.0, 90, beta, 90)
+        d_oP = sort_spectrum(cell)["O5"]
+        expect = np.sqrt(2) * np.sin(np.radians(beta - 90))
+        assert abs(d_oP - expect) < 0.002 * expect + 1e-5
+        for accept in (LEPAGE_STRAIN, LEPAGE_PRICE):
+            ref = widened_closure(cell, "P 1 2 1", eps=band_for(accept))
+            G = np.array(UnitCell(*cell).metric_tensor(), float)
+            r = indexing_classes(ref, params_from_metric((G * 1.001).tolist()), "P 1 2 1", accept=accept)
+            offered = len(r.classes) == 2
+            assert offered == (2 * d_oP <= accept * (1 + 0.02)), (beta, accept, len(r.classes))
+            if offered:
+                assert abs(r.classes[1].representative.price - 2 * d_oP) < 0.03 * 2 * d_oP
+
+
+def test_overlap_band_eps_over_one_minus_eps():
+    """Corollary A8 as implemented: a price of eps measured at the new cell's metric is at
+    most eps/(1-eps) at the predicted metric, so the reference widened at band_for(eps)
+    holds the new cell's reduced superbase; the bound is attained for a pure scale."""
+    from agentsg.cell.strain_closure import _strain
+    for eps in (0.05, 0.1, 0.2):
+        G = np.eye(3)
+        Gp = G * (1 - eps / np.sqrt(3))                     # price eps at G
+        p_at_G, _ = _strain(G, Gp, fit_scale=False)
+        p_at_Gp, _ = _strain(Gp, G, fit_scale=False)
+        assert abs(p_at_G - eps) < 1e-12 and p_at_Gp <= eps / (1 - eps) + 1e-12
+        assert p_at_Gp > eps                                 # the two distances differ at second order

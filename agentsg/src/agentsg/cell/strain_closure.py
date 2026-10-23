@@ -1,30 +1,39 @@
-"""Widened Selling closure in the strain norm, with tiered completeness guarantees.
+"""Widened Selling closure in the strain norm, enumerated exactly.
 
 The strain norm of a metric perturbation dG at G is
 
     ||dG||_G = || G^(-1/2) dG G^(-1/2) ||_F ,
 
-the same in every basis. A superbase F is *within eps of obtuse* for G when some
-metric G' with ||G' - G||_G <= eps makes F obtuse (all six conorms >= 0); the
-distance is a non-negative least-squares problem in the six conorms of F. The
-*widened closure* S_eps(G) is the set of such superbases (manuscript, Section 3.2).
+the same in every basis (the linearised affine-invariant metric). A superbase F is
+*within eps of obtuse* for G when some metric G' with ||G' - G||_G <= eps makes F
+obtuse (all six conorms >= 0); the distance is a non-negative least-squares problem
+in the six conorms of F. The *widened closure* S_eps(G) is the set of such
+superbases (manuscript, Section 4.2).
 
-Tiers (manuscript, Section 4.3 and Theorem A7):
+:func:`widened_closure` enumerates S_eps exactly from the finite ball of Lemma A6
+(every vector of a member has squared length at most (1+eps)/(1-eps) times the
+shortest vector of its parity class). It also reports the *layer* of the result
+(manuscript, Theorem A7): 1 when every member lies in L1 = U.F0, the 127 superbases
+adjacent to the reduced cell; 2 when every member lies in L2 = U.L1 (2755); 3
+otherwise. The layer describes how far from the reduced cell the set reaches; it is
+not needed for completeness, which the ball enumeration provides for every eps < 1/4.
 
-* tier 1 -- filter the first adjacency layer L1 = U.F0 (127 superbases up to
-  relabelling). Proved complete when no superbase outside L1 is within eps, which
-  :func:`widened_closure` certifies by an exact search of the finite ball of
-  Lemma A6. For cells of ordinary shape this holds up to eps = 0.25.
-* tier 2 -- filter the second layer L2 (2755 superbases), certified the same way;
-  if that certificate also fails, enumerate the ball of Lemma A6 exactly.
-
-The default band is Le Page-style: one cell angle changed by 3 degrees, a strain of
-sqrt(2) sin 3 deg = 0.074 (:data:`LEPAGE_STRAIN`).
+Bands. :data:`LEPAGE_STRAIN` = sqrt(2) sin 3 deg = 0.074 is the strain of one cell
+angle changed by 3 degrees, the distance at which a pseudo-twofold with Le Page's
+obliquity of 3 degrees sits from the sort it would fix. A twofold's *price* (its
+strain as a self-map of the cell) is twice that distance (manuscript, Proposition
+A9), so a reindexing band of 0.074 on prices admits pseudo-twofolds of obliquity up
+to 1.5 degrees; :data:`LEPAGE_PRICE` = 0.148 admits those up to 3 degrees.
 
 Reindexing (:func:`reindex`) pairs the new cell's single reduced superbase with every
-member of the reference's widened closure and every relabelling; by the overlap
-corollary the true operator is among the candidates whenever the two metrics differ
-by at most the band. Candidates are ranked by their strain price.
+member of the reference's widened closure and every relabelling, and prices each
+candidate at the new cell's metric after the best common scale. If the true operator
+has price at most ``accept`` there, it is among the candidates provided the reference
+was widened at ``accept / (1 - accept)`` (manuscript, Corollary A8); :func:`band_for`
+gives that number. Candidates with determinant -1 are dropped for a chiral crystal
+(``proper=True``), and :func:`indexing_classes` groups the candidates by the
+reference's Laue group (merging without anomalous signal) or point group (anomalous
+data).
 
 Needs numpy and scipy (``pip install agentsg[db]``).
 """
@@ -43,7 +52,20 @@ from .metric import UnitCell
 from .selling_cob import _primitive_or_self, primitive_matrix, selling_matrix
 
 LEPAGE_STRAIN = math.sqrt(2.0) * math.sin(math.radians(3.0))
-"""Strain of one cell angle changed by 3 degrees (Le Page-style tier-1 band)."""
+"""Strain of one cell angle changed by 3 degrees: the sort distance of a pseudo-twofold
+with Le Page's obliquity of 3 degrees."""
+
+LEPAGE_PRICE = 2.0 * LEPAGE_STRAIN
+"""Price of a twofold of obliquity 3 degrees (twice its sort distance, Proposition A9)."""
+
+
+def band_for(accept):
+    """The band at which to widen a reference so that every operator of price at most
+    ``accept``, measured at the new cell's metric, is among the candidates
+    (Corollary A8): accept / (1 - accept)."""
+    if not 0 <= accept < 1:
+        raise ValueError("accept must be in [0, 1)")
+    return accept / (1.0 - accept)
 
 _SL = ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3))      # slots da, db, dc, ab, ac, bc
 _S0 = ((-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1))
@@ -225,22 +247,26 @@ class Member:
 class WidenedClosure:
     reduced: ReducedCell
     eps: float
-    tier: int                # 1 or 2: smallest layer holding the whole set; 3: neither; 0: uncertified L1 filter
+    layer: int               # 1 or 2: smallest adjacency layer holding the whole set; 3: neither; 0: uncertified L1 filter
     members: list = field(default_factory=list)
 
     def __len__(self):
         return len(self.members)
 
+    @property
+    def tier(self):          # deprecated name, one release
+        return self.layer
+
 
 def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> WidenedClosure:
-    """S_eps of the cell, and the tier that answers it.
+    """S_eps of the cell, exactly, and the adjacency layer that holds it.
 
-    eps must be below 1/4. With ``certify`` (default) the ball of Lemma A6 is searched,
-    which is exact; ``tier`` then records the smallest adjacency layer that contains the
-    whole set (1: the 127 superbases of L1, 2: the 2755 of L2, 3: neither), i.e. how far
-    a layer filter alone would have been complete. Without ``certify`` only L1 is
-    filtered (fast, 127 candidates) and ``tier`` is 0: complete only if eps is below the
-    cell's adjacency radius, which is not checked."""
+    eps must be below 1/4. With ``certify`` (default) the ball of Lemma A6 is
+    enumerated, which is exact for every such eps; ``layer`` then records the smallest
+    adjacency layer that contains the whole set (1: the 127 superbases of L1, 2: the 2755
+    of L2, 3: neither). Without ``certify`` only L1 is filtered (fast, 127 depths) and
+    ``layer`` is 0: complete only if eps is below the cell's adjacency radius delta_1,
+    which is not checked (Theorem A7)."""
     if not 0 <= eps < 0.25:
         raise ValueError("eps must be in [0, 0.25)")
     red = cell if isinstance(cell, ReducedCell) else reduce_cell(cell, sg_hm)
@@ -258,9 +284,9 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
         outside2 |= k not in K2
     tier = 1 if not outside1 else (2 if not outside2 else 3)
     if tier < 3:
-        layer = L1 if tier == 1 else L2
+        lay = L1 if tier == 1 else L2
         members = []
-        for S in layer:
+        for S in lay:
             d = distance_to_obtuse(G, S)
             if d <= eps * (1 + 1e-9):
                 members.append(Member(S, d))
@@ -277,7 +303,7 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
 class Candidate:
     operator: Matrix3        # P with (a_N b_N c_N) = (a_R b_R c_R) P, exact
     price: float             # strain || G_N^-1/2 (s P^T G_R P - G_N) G_N^-1/2 ||_F after the best scale s
-    scale: float
+    scale: float             # s minimising the price (fitted in the strain norm)
     depth: float             # the member's depth in the reference's widened closure
     determinant: int
 
@@ -293,24 +319,36 @@ def _relabellings(S):
             yield -B
 
 
-def _strain(G_new, G_pred):
+def _strain(G_new, G_pred, fit_scale=True):
+    """price of G_pred against G_new, || G_new^-1/2 (s G_pred - G_new) G_new^-1/2 ||_F,
+    with s the scale minimising it (in the same norm) when ``fit_scale``; returns
+    (price, s)."""
     np = _np()
     w, V = np.linalg.eigh(G_new)
     Gm = V @ np.diag(w ** -0.5) @ V.T
-    X = Gm @ (G_pred - G_new) @ Gm
-    return float(np.linalg.norm(X))
+    Y = Gm @ G_pred @ Gm
+    s = float(np.trace(Y) / np.sum(Y * Y)) if fit_scale else 1.0
+    return float(np.linalg.norm(s * Y - np.eye(3))), s
 
 
-def reindex(reference, new_cell, new_sg_hm=None, eps=LEPAGE_STRAIN, accept=None, fit_scale=True):
+def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=None, fit_scale=True, eps=None):
     """Candidate operators from the reference to a new cell, ranked by strain price.
 
     ``reference`` is a :class:`WidenedClosure` (from :func:`widened_closure`). The new
-    cell is reduced once. Returns (candidates, tier): every candidate whose price is
-    at most ``accept`` (default ``eps``), each P mapping the reference's input basis to
-    the new cell's input basis, ``h_N = P^T h_R``."""
+    cell is reduced once. Returns (candidates, layer): every candidate whose price,
+    measured at the new cell's metric after the best common scale, is at most
+    ``accept``; each P maps the reference's input basis to the new cell's input basis,
+    ``h_N = P^T h_R``. The default ``accept`` is the largest band the reference
+    certifies, ``ref.eps / (1 + ref.eps)`` (Corollary A8; see :func:`band_for`).
+    ``proper=True`` keeps only candidates of determinant +1 (a chiral crystal);
+    ``None`` keeps both signs. ``eps`` is a deprecated alias of ``accept``."""
     np = _np()
-    accept = eps if accept is None else accept
     ref = reference
+    if accept is None:
+        accept = eps if eps is not None else ref.eps / (1.0 + ref.eps)
+    if accept > ref.eps / (1.0 + ref.eps) * (1 + 1e-9):
+        raise ValueError(f"accept={accept:.4f} needs the reference widened at band_for(accept)="
+                         f"{band_for(accept):.4f}; it was widened at {ref.eps:.4f}")
     new = reduce_cell(new_cell, new_sg_hm)
     G_R_in = np.array(UnitCell(*ref.reduced.cell).metric_tensor(), float)
     G_N_in = np.array(UnitCell(*new.cell).metric_tensor(), float)
@@ -322,21 +360,32 @@ def reindex(reference, new_cell, new_sg_hm=None, eps=LEPAGE_STRAIN, accept=None,
             if Mt.det() not in (1, -1):
                 continue
             P = ref.reduced.basis @ Mt @ BN_inv
+            det = int(P.det())
+            if proper is True and det != 1:
+                continue
+            if proper is False and det != -1:
+                continue
             Pf = np.array([[float(x) for x in row] for row in P.rows])
             G_pred = Pf.T @ G_R_in @ Pf
-            s = 1.0
-            if fit_scale:
-                s = float(np.sum(G_pred * G_N_in) / np.sum(G_pred * G_pred))
-            price = _strain(G_N_in, s * G_pred)
+            price, s = _strain(G_N_in, G_pred, fit_scale)
             if price > accept:
                 continue
             k = tuple(P.rows)
             if k in seen:
                 continue
             seen.add(k)
-            out.append(Candidate(P, price, s, m.depth, int(P.det())))
+            out.append(Candidate(P, price, s, m.depth, det))
     out.sort(key=lambda c: c.price)
-    return out, ref.tier
+    return out, ref.layer
+
+
+def price_spectrum(reference, proper=None):
+    """Prices of every self-map of the reference within its band (the operators H_eps
+    that carry the reference onto itself), sorted; the gaps in this list are where a
+    band gives a group (Proposition A10)."""
+    ref = reference
+    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, proper=proper)
+    return sorted(c.price for c in selfc)
 
 
 # ---- indexing classes: the coset structure ---------------------------------------
@@ -349,22 +398,38 @@ class IndexingClass:
 
 @dataclass
 class IndexingResult:
-    classes: list                # one IndexingClass per coset of the Laue group, cheapest first
-    tier: int
+    classes: list                # one IndexingClass per class of the symmetry group, cheapest first
+    layer: int
     symmetry_order: int          # |H_eps|: operators mapping the reference onto itself within the band
-    laue_order: int              # |L| of the reference's space group
+    group_order: int             # |L|: order of the reference's Laue group (or point group, anomalous=True)
     closed: bool                 # H_eps is closed under composition (a group) at this band
-    laue_in_symmetry: bool       # every Laue operator maps the reference onto itself within the band
+    group_in_symmetry: bool      # every operator of L maps the reference onto itself within the band
+    anomalous: bool = False
+
+    @property
+    def tier(self):              # deprecated names, one release
+        return self.layer
+
+    @property
+    def laue_order(self):
+        return self.group_order
+
+    @property
+    def laue_in_symmetry(self):
+        return self.group_in_symmetry
 
 
-def _laue_matrices(space_group_key):
+def _symmetry_matrices(space_group_key, anomalous=False):
+    """the point group of the space group (anomalous=True) or its Laue group (default), as
+    exact 3x3 matrices in the input setting."""
     from ..group import point_group
     from ..space_groups import space_group
     rot = []
     for W in point_group(space_group(space_group_key).operations()):
         R = Matrix3([[Fraction(x) for x in row] for row in W.rows])
         rot.append(R)
-        rot.append(Matrix3([[-x for x in row] for row in R.rows]))
+        if not anomalous:
+            rot.append(Matrix3([[-x for x in row] for row in R.rows]))
     out, seen = [], set()
     for R in rot:
         if R.rows not in seen:
@@ -373,23 +438,34 @@ def _laue_matrices(space_group_key):
     return out
 
 
-def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, eps=LEPAGE_STRAIN, accept=None):
+def _laue_matrices(space_group_key):
+    return _symmetry_matrices(space_group_key, anomalous=False)
+
+
+def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accept=None,
+                     proper=None, anomalous=False, eps=None):
     """Candidate operators from the reference to a new cell, grouped into the classes that
     are physically distinct for a crystal of the reference's space group.
 
-    The candidates are one coset P0.H_eps of the band's (pseudo-)symmetry group H_eps
-    (the reference reindexed onto itself). Two candidates differing by an element of the
-    reference's Laue group L on the left, P2 = l.P1, index the crystal the same way, so the
-    distinct answers are the classes of L in that coset, [H_eps : L] of them; choosing
-    between them is a question for the intensities (indexing ambiguity, twinning).
-    ``space_group_key`` is the reference's space group in its input setting."""
-    accept = eps if accept is None else accept
+    Within a gap of the reference's price spectrum the candidates are one coset
+    H_eps.P0 of the band's (pseudo-)symmetry group H_eps, the operators that carry the
+    reference onto itself within the band (Proposition A10; ``closed`` reports whether
+    H_eps is closed under composition at this band). Two candidates that differ on the
+    left by an element of the reference's Laue group L, P2 = l.P1, index the crystal the
+    same way, so the distinct answers are the classes of L in the candidate set,
+    [H_eps : L] of them when the coset statement holds; choosing between them is a
+    question for the intensities (indexing ambiguity, twinning). With ``anomalous=True``
+    the point group replaces the Laue group, since the inversion then changes the
+    indexing. ``space_group_key`` is the reference's space group in its input setting.
+    ``proper=True`` drops improper candidates (a chiral crystal)."""
     ref = reference
-    cands, tier = reindex(ref, new_cell, new_sg_hm, eps=eps, accept=accept)
-    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, eps=eps, accept=accept)
+    if accept is None:
+        accept = eps if eps is not None else ref.eps / (1.0 + ref.eps)
+    cands, tier = reindex(ref, new_cell, new_sg_hm, accept=accept, proper=proper)
+    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, accept=accept, proper=proper)
     H = {c.operator.rows for c in selfc}
     closed = all((a.operator @ b.operator).rows in H for a in selfc for b in selfc)
-    L = _laue_matrices(space_group_key)
+    L = _symmetry_matrices(space_group_key, anomalous)
     laue_in = all(l.rows in H for l in L)
     by_op = {c.operator.rows: c for c in cands}
     classes, covered = [], set()
@@ -404,7 +480,7 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, eps=L
                 orbit.append(by_op[q])
         orbit.sort(key=lambda x: x.price)
         classes.append(IndexingClass(orbit[0], [x.operator for x in orbit], len(orbit)))
-    return IndexingResult(classes, tier, len(H), len(L), closed, laue_in)
+    return IndexingResult(classes, tier, len(H), len(L), closed, laue_in, anomalous)
 
 
 # ---- distances to the 24 Delone sorts --------------------------------------------

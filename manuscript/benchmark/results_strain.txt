@@ -1,7 +1,11 @@
-family              n   ok 3deg   ok 3err   tier1/2/3  median cands  median eps_err
-shapes             75   75/75     75/75    75/0/0              8        2.13e-03
-specialisation    660  660/660   660/660  660/0/0              8        9.53e-04
-hidden             20   20/20     19/19    20/0/0             18        2.64e-02  (1 with 3 eps_err >= 1/4)
-anisotropy         16   16/16     16/16     4/12/0             60        2.72e-03
-boundary            9    9/9       9/9      9/0/0              4        1.85e-03
-all               780  780/780   779/780    (131 s)
+family             n | closure 3deg small 3deg | closure 3err small 3err | layer 1/2/3  cands q10/50/90 median err
+shapes            75 |    75/75       75/75    |    75/75       75/75    |  75/0/0       4/8/16        2.13e-03
+specialisation   660 |   660/660     658/660   |   660/660     658/660   | 660/0/0       4/8/48        9.53e-04
+hidden            20 |    20/20       20/20    |    18/18       18/18    |  20/0/0       8/21/48        2.64e-02
+anisotropy        16 |    16/16       16/16    |    16/16       16/16    |   4/12/0      24/60/80        2.72e-03
+boundary           9 |     9/9         9/9     |     9/9         9/9     |   9/0/0       4/4/8         1.85e-03
+all              780 |   780/780     778/780   |   778/778     776/778     (971 s)
+   miss ('special-A2-M4-t=0-1-0.5', '3deg', {'ok': True, 'layer': 1, 'n': 8, 'members': 6, 'small_ok': False, 'small_n': 4})
+   miss ('special-A2-M4-t=0-1-0.5', '3err', {'ok': True, 'layer': 1, 'n': 4, 'members': 6, 'small_ok': False, 'small_n': 2})
+   miss ('special-A2-M4-t=0-1-1', '3deg', {'ok': True, 'layer': 1, 'n': 8, 'members': 6, 'small_ok': False, 'small_n': 4})
+   miss ('special-A2-M4-t=0-1-1', '3err', {'ok': True, 'layer': 1, 'n': 4, 'members': 6, 'small_ok': False, 'small_n': 2})

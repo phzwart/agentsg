@@ -21,6 +21,8 @@ cmap = LinearSegmentedColormap.from_list("blue", ramp); norm = LogNorm(0.01, 100
 INK, MUTED, SURF, OFF = "#1f1f1d", "#6b6a66", "#ffffff", "#c9c7c1"
 
 def fmt(v):
+    if v > 25:
+        return ">25"
     return "0" if v < 0.0005 else (f"{v:.3f}" if v < 0.1 else f"{v:.2f}" if v < 1 else (f"{v:.1f}" if v < 10 else f"{v:.0f}"))
 
 def panel(ax, path, label):
@@ -54,11 +56,13 @@ def panel(ax, path, label):
     ax.set_xlim(-1.9, 6.6); ax.set_ylim(0.8, 8.9); ax.axis("off")
 
 plt.rcParams["font.family"] = "DejaVu Sans"
-fig, axs = plt.subplots(2, 1, figsize=(6.7, 9.6))
-panel(axs[0], H + "steps_worked.json", "(a) worked cell")
-panel(axs[1], H + "steps_lysozyme.json", "(b) lysozyme indexed in P1:")
-sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
-cb = fig.colorbar(sm, ax=axs, fraction=0.025, pad=0.01, shrink=0.5)
-cb.set_label("distance to the sort (% strain)", fontsize=7, color=MUTED); cb.ax.tick_params(labelsize=6, colors=MUTED); cb.outline.set_visible(False)
-for ext in ("pdf", "png"):
-    fig.savefig(os.path.join(HERE, "..", f"fig3_sort_graph.{ext}"), bbox_inches="tight", dpi=200)
+for name, src, label in (("fig3_sort_graph", "steps_worked.json", "worked cell"),
+                         ("figS1_sort_graph_lysozyme", "steps_lysozyme.json", "lysozyme indexed in P1:")):
+    fig, ax = plt.subplots(1, 1, figsize=(6.7, 4.9))
+    panel(ax, H + src, label)
+    sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+    cb = fig.colorbar(sm, ax=ax, fraction=0.025, pad=0.01, shrink=0.7)
+    cb.set_label("distance to the sort (% strain)", fontsize=7, color=MUTED); cb.ax.tick_params(labelsize=6, colors=MUTED); cb.outline.set_visible(False)
+    for ext in ("pdf", "png"):
+        fig.savefig(os.path.join(HERE, "..", f"{name}.{ext}"), bbox_inches="tight", dpi=200)
+    plt.close(fig)

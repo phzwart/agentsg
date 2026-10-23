@@ -1,0 +1,257 @@
+%------------------------------------------------------------------------------
+% Manuscript for Acta Crystallographica Section A, prepared with the IUCr
+% LaTeX macro package (iucr.cls).  Compile with pdflatex.
+%------------------------------------------------------------------------------
+\documentclass[preprint,pdf]{iucr}          % DO NOT DELETE THIS LINE
+\journalcode{A}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+
+\newcommand{\Ang}{\text{\AA}}
+\newcommand{\Gmet}{\mathbf{G}}
+\newcommand{\Pop}{\mathbf{P}}
+\newcommand{\Wop}{\mathbf{W}}
+\newcommand{\Sw}{\mathcal{S}_\tau}
+\newcommand{\Se}{\mathcal{S}_\epsilon}
+\newcommand{\Cl}{\mathcal{C}}
+\newcommand{\Laue}{\mathcal{L}}
+\newcommand{\Lay}{\mathcal{N}}
+\newcommand{\sym}{\operatorname{sym}}
+% every checkable statement carries \chk{zNN}: the test file
+% manuscript/appendix_z/test_zNN_*.py that verifies it (Appendix E)
+\newcommand{\chk}[1]{\textsuperscript{[#1]}}
+
+\begin{document}
+
+\title{Supporting information for \emph{The Selling closure: complete reindexing of measured lattices}}
+\shorttitle{The Selling closure: supporting information}
+\cauthor{Petrus H.}{Zwart}{phzwart@lbl.gov}{}
+\aff{Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, \country{USA}}
+\shortauthor{Zwart}
+\maketitle
+
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{table}{0}
+
+Table and section numbers of the main text are cited as there; equations of the main text are cited by number. The marks [z$nn$] name the check files of Section~S4.
+
+%==============================================================================
+\section{Catalogues of shapes and specialisations}
+\label{app:catalogues}
+%==============================================================================
+
+\emph{Cell shapes.} Table~\ref{tab:shapes} lists the shapes of the ten sorts with more than one, each as the cell with the most right angles and no acute angle. The three shapes of a primitive monoclinic lattice are the three cell choices of \emph{International Tables} (Hahn, 2006, Section~2.2.16); the extra shapes of primitive orthorhombic, tetragonal and cubic lattices are monoclinic-looking cells with two right angles; C-centred orthorhombic has two primitive shapes; the boundary sorts of body-centred orthorhombic, C-centred monoclinic and triclinic have two or three cells with a single right angle each, for triclinic the known instability of the reduced cell when an angle is near $90^\circ$ (Andrews \emph{et al.}, 1980).\chk{z49}
+
+\begin{table}
+\caption{The cell shapes of the sorts with more than one, for the cells named; each shape is given as the cell with the most right angles and all angles $\ge90^\circ$, shortest edges first when several qualify and $b$ unique for the monoclinic-looking ones, with the number $n$ of members (up to swaps) that have it. Centred cells are given by their primitive cells; the boundary sorts are specified by their conorms in the $S^6$ slot order of Table~4 of the main text, in \Ang$^2$.\chk{z49}}
+\label{tab:shapes}
+\begin{footnotesize}
+\begin{tabular}{llrl}
+\toprule
+sort & lattice & $n$ & shape \\
+\midrule
+cP & $30$\,\Ang & 4 & $30$, $30$, $30$; $90$, $90$, $90$ \\
+   &            & 12 & $30$, $30$, $42.4$; $90$, $135$, $90$ \\
+tP & $30$, $30$, $50$\,\Ang & 4 & $30$, $30$, $50$; $90$, $90$, $90$ \\
+   &            & 4 & $30$, $30$, $58.3$; $90$, $121.0$, $90$ \\
+   &            & 8 & $30$, $50$, $42.4$; $90$, $135$, $90$ \\
+oP & $30$, $40$, $55$\,\Ang & 4 & $30$, $40$, $55$; $90$, $90$, $90$ \\
+   &            & 4 & $30$, $40$, $62.6$; $90$, $118.6$, $90$ \\
+   &            & 4 & $30$, $55$, $50$; $90$, $126.9$, $90$ \\
+   &            & 4 & $40$, $55$, $50$; $90$, $143.1$, $90$ \\
+oS & C $30$, $40$, $50$\,\Ang & 2 & $25$, $50$, $25$; $90$, $106.3$, $90$ \\
+   &            & 4 & $25$, $50$, $30$; $90$, $126.9$, $90$ \\
+mP & $30$, $40$, $50$\,\Ang, $100^\circ$ & 2 & $30$, $40$, $50$; $90$, $100$, $90$ \\
+   &            & 2 & $30$, $40$, $53.7$; $90$, $113.4$, $90$ \\
+   &            & 2 & $50$, $40$, $53.7$; $90$, $146.6$, $90$ \\
+oI (O3) & $900$, $1600$, $0$, $900$, $1600$, $0$ & 1 & $50$, $50$, $50$; $111.1$, $129.8$, $90$ \\
+   &            & 2 & $42.4$, $50$, $50$; $90$, $115.1$, $115.1$ \\
+mC (M2B) & $900$, $1600$, $0$, $900$, $1600$, $2500$ & 1 & $50$, $50$, $70.7$; $104.7$, $116.9$, $90$ \\
+   &            & 1 & $50$, $50$, $65.6$; $105.9$, $105.9$, $90$ \\
+mC (M3) & $900$, $1600$, $0$, $2500$, $1600$, $0$ & 1 & $50$, $50$, $64.0$; $120$, $90$, $111.1$ \\
+   &            & 2 & $50$, $56.6$, $58.3$; $90$, $108.0$, $124.4$ \\
+aP (A2) & $900$, $1600$, $0$, $2500$, $400$, $1200$ & 1 & $36.1$, $60.8$, $64.0$; $114.3$, $90$, $114.2$ \\
+   &            & 1 & $36.1$, $56.6$, $64.0$; $116.2$, $90$, $101.3$ \\
+aP (A3) & $900$, $1600$, $0$, $2500$, $400$, $0$ & 1 & $36.1$, $50$, $53.9$; $90$, $101.9$, $119.9$ \\
+   &            & 1 & $44.7$, $50$, $53.9$; $90$, $99.6$, $135.7$ \\
+   &            & 1 & $36.1$, $44.7$, $58.3$; $90$, $115.3$, $104.4$ \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\emph{Specialisations.} The conorms of any member, in any labelling, are integer combinations of the reduced cell's conorms, hence linear in the free parameters of the sort (the letters of Table~4 of the main text); imposing another sort's zeros and equalities on one member is a homogeneous linear system in those parameters, and a solution with non-negative parameters, a non-singular lattice and a resulting lattice of the target sort and no higher is a specialisation. Table~\ref{tab:special} lists the conditions of codimension one, on 36 pairs of sorts.\chk{z50} Each is a parameter vanishing or two parameters becoming equal. The classical values appear: body-centred tetragonal is face-centred cubic at $c/a=\sqrt2$ and body-centred cubic at $c/a=1$; C-centred orthorhombic is hexagonal at $b=\sqrt3\,a$ and tetragonal at $b=a$; rhombohedral is cubic at $\alpha=60^\circ$, $90^\circ$ and $109.47^\circ$. The monoclinic conditions come in threes, one per shape: with unique axis $c$ and plane lattice $a,b$, the lattice is C-centred orthorhombic when $|a|=|b|$, $|a|=|a+b|$ or $|b|=|a+b|$, and primitive orthorhombic when $a\perp b$, $a\perp(a+b)$ or $b\perp(a+b)$ --- the textbook condition $a=c$ read in each of the three cell choices. The table also shows which sorts are one condition from a much higher symmetry: C-centred monoclinic from tetragonal, body-centred tetragonal and rhombohedral; the body-centred orthorhombic boundary sort from face-centred cubic; triclinic on a wall from C-centred monoclinic.
+
+\begin{table}
+\caption{All specialisations of codimension one between the 24 sorts. Conditions are on the letters of the sort's pattern in Table~4 of the main text; ``shapes'' is the number of distinct cell shapes of the starting sort through which the conditions are reached, and the last column reads the condition in the cell of the conventional description where that is short.\chk{z50}}
+\label{tab:special}
+\begin{footnotesize}
+\begin{tabular}{llllp{4.6cm}}
+\toprule
+from & to & conditions & shapes & reading \\
+\midrule
+aP A1 & aP A2 & any letter $=0$ & 1 & a right angle appears \\
+aP A2 & aP A3 & $v=0$ & 1 & a second right angle \\
+aP A2 & mC M2A & $s=t$, $r=u$ & 1 & \\
+aP A2 & mP M4 & $r,s,t$ or $u=0$ & 1 & \\
+aP A3 & mC M3 & any two letters equal & 3 & one per shape \\
+mP M4 & oP O5 & $r=0$, $s=0$, $t=0$ & 3 & $a\perp b$, $a\perp(a+b)$, $b\perp(a+b)$ \\
+mP M4 & oS O4 & $s=t$, $r=t$, $r=s$ & 3 & $|a|=|b|$, $|a|=|a+b|$, $|b|=|a+b|$ \\
+mC M1A & oF O1A & $r=t$ & 1 & \\
+mC M1A & oI O2 & $u=0$ & 1 & \\
+mC M1A & oS O4 & $r=0$, $t=0$ & 1 & \\
+mC M1B & mC M2B & $t=0$, $u=0$ & 1 & boundary sort \\
+mC M1B & mC M3 & $r=0$, $s=0$ & 1 & boundary sort \\
+mC M1B & oF O1A & $r=s$ & 1 & \\
+mC M1B & oI O1B & $t=u$ & 1 & \\
+mC M2A & oI O2 & $r=t$ & 1 & \\
+mC M2B & oI O3 & $t=0$ & 1 & \\
+mC M2B & tI T2 & $r=s$ & 1 & one step to tI \\
+mC M2B & tP T5 & $r=0$, $s=0$ & 1 & one step to tP \\
+mC M3 & oI O3 & $r=t$ & 1 & \\
+mC M3 & hR R3 & $r=s$, $s=t$ & 1 & one step to hR \\
+oP O5 & tP T5 & $r=s$, $r=t$, $s=t$ & 1 & $a=b$, $a=c$, $b=c$ \\
+oS O4 & tP T5 & $r=0$ & 1 & $b=a$ \\
+oS O4 & hP H4 & $r=s$ & 1 & $b=\sqrt3\,a$ \\
+oI O1B & oI O3 & $r,s$ or $t=0$ & 1 & boundary sort \\
+oI O1B & tI T1 & $r=s$, $r=t$, $s=t$ & 1 & two edges equal \\
+oI O2 & tI T2 & $r=s$ & 1 & \\
+oI O3 & cF C3 & $r=s$ & 1 & one step to cF \\
+oF O1A & tI T1 & $s=t$ & 1 & \\
+oF O1A & tI T2 & $s=0$, $t=0$ & 1 & \\
+tP T5 & cP C5 & $r=s$ & 1 & $c=a$ \\
+tI T1 & cI C1 & $r=s$ & 1 & $c/a=1$ \\
+tI T1 & cF C3 & $s=0$ & 1 & $c/a=\sqrt2$ from below \\
+tI T2 & cF C3 & $s=0$ & 1 & $c/a=\sqrt2$ from above \\
+hR R1 & cP C5 & $r=0$ & 1 & $\alpha=90^\circ$ \\
+hR R1 & cI C1 & $r=s$ & 1 & $\alpha=109.47^\circ$ \\
+hR R3 & cF C3 & $r=s$ & 1 & $\alpha=60^\circ$ \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\section{The benchmark}
+\label{si:bench}
+The repository directory \texttt{manuscript/benchmark} holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case also carries its Niggli cell. \texttt{evaluate.py} scores the methods of the first version (Appendix~B) and \texttt{evaluate\_strain.py} the strain-norm procedure, by whether the true operator is proposed from one reduction of the measured cell; the results are in \texttt{results.txt} and \texttt{results\_strain.txt}.
+
+%==============================================================================
+\section{The operators alone}
+\label{app:operators}
+%==============================================================================
+
+The closure can be described without any lattice. An operator $\Wop$, written as the new basis in the coordinates of the reduced cell, acts on the six conorms by a fixed integer $6\times6$ matrix $\mathbf A_{\Wop}$, since every conorm of $\Wop F_0$ is an integer combination of the conorms of $F_0$. The reduced cells are the points of the orthant $\{p\ge0\}$ in conorm space; Selling (1874) showed that every lattice has a conorm vector in this orthant, and it is unique up to the 48 swaps except on the faces (Delaunay, 1933; Conway \& Sloane, 1992), and the closure of a lattice is the set of points of its orbit that lie in the orthant: one in the interior, several on the faces. So $\Wop$ is an operator of the closure of every lattice with zero pattern $Z$ exactly when $\mathbf A_{\Wop}$ maps the face $\{p\ge0,\ p_Z=0\}$ into the orthant, which is a sign condition on the entries of $\mathbf A_{\Wop}$ and nothing else. Enumerating integer matrices under that condition gives the operator set of each face without a lattice: $48\times1$, $2$, $3$, $6$ and $16$ matrices for no zero, one zero, two zeros on disjoint edges, two zeros on a path and three zeros, and their union, over all placements of the faces, is a set $\mathcal U$ of $6096=48\times127$ integer matrices with entries in $\{-3,\dots,3\}$. $\mathcal U$ is closed under inversion, every element has a labelling whose basis vectors have entries in $\{-2,\dots,2\}$, and $\mathcal U$ contains every operator between two reduced cells of one lattice, whatever the lattice: an operator out of any member is an operator out of a reduced cell of that member's zero pattern, Lemma~A1 of the main text confines the members of a closure to superbase coordinates of modulus at most 7 relative to that cell, and the exhaustive enumeration of that window finds only members with coordinates in $\{-1,0,1\}$, so every such operator has entries in $\{-1,0,1\}$ in the labelling of its source and lies within the window enumerated.\chk{z52,z56} The three-zero face enumerated is the triangle; its path placement gives the same operators relabelled. Up to relabelling at both ends $\mathcal U$ has nine kinds of element, of flip length $0$ to $4$ (Table~\ref{tab:kinds}).
+
+\begin{table}
+\caption{The nine kinds of operator between Selling-reduced cells, up to relabelling at both ends; ``matrices'' counts the integer matrices of the kind in $\mathcal U$, ``flips'' its length as a flip word, and the last column the zero patterns in whose closures it occurs.\chk{z52}}
+\label{tab:kinds}
+\begin{footnotesize}
+\begin{tabular}{rrrl}
+\toprule
+kind & matrices & flips & occurs with \\
+\midrule
+1 & 48 & 0 & every pattern (the swaps) \\
+2 & 288 & 1 & every pattern with a zero \\
+3 & 1152 & 2 & two zeros on a path; three zeros \\
+4 & 1152 & 3 & three zeros \\
+5 & 1152 & 3 & three zeros \\
+6 & 576 & 3 & two zeros on a path; three zeros \\
+7 & 576 & 4 & three zeros \\
+8 & 576 & 4 & three zeros \\
+9 & 576 & 4 & three zeros \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\emph{Why four.} For a lattice with $a\perp b\perp c$ the sixteen members are four orthogonal superbases, differing by the sign of one axis, and twelve with a face diagonal. A flip from an orthogonal cell always gives a cell with a face diagonal, so changing the sign of one axis takes three flips, out, across and in, and the diagonal cells attached only to the far orthogonal cell take one more: from $(a,b,c)$ the members lie at flip distances $0,1,2,3,4$ in numbers $1,3,6,3,3$, and four is the diameter of the largest face.\chk{z46}
+
+%==============================================================================
+\section{Computational checks}
+%==============================================================================
+
+Each mark [z$nn$] refers to \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository; the library procedure is tested in \texttt{agentsg/tests/test\_strain\_closure.py}.
+
+\begin{footnotesize}
+\begin{tabular}{lp{0.82\textwidth}}
+\toprule
+mark & what is checked \\
+\midrule
+z36 & conorm shift identity; constants by zero pattern and frame (Appendix~B) \\
+z44 & the constants 4 and 8; class gap and excess; Theorem~B5 against brute force; the difference-wall configuration \\
+z45 & reduction with a widened boundary from random starts; the walks of Table~7 of the main text; the worked cell at $\tau=20$; the conorms of Table~6 of the main text \\
+z46 & the monoclinic example; closures of the 24 sorts; shapes = orbits; twofolds generate; difference-wall members; idealising at $2\tau$; nesting \\
+z47 & reindexing under a declared error with the conorm band: membership, true operator, guarantee (Appendix~B) \\
+z49 & the cell shapes of Table~\ref{tab:shapes} \\
+z50 & the codimension-one specialisations between the 36 pairs of sorts and the shapes that carry them (Table~\ref{tab:special}) \\
+z52 & the operator sets of the faces from the matrices alone; the universal set $\mathcal U$, its inversion closure and window; the nine kinds (Table~\ref{tab:kinds}); generation by flips \\
+z53 & the 24 sorts as the closed sets of equalities of Proposition~A5, with their symmetry orders \\
+z54 & every column of Table~4 of the main text computed from the operators alone \\
+z55 & the conorm-band construction at bands from $\lambda_1/32$ to $\lambda_1/6$ \\
+z56 & Lemma~A1: the obtuse superbases of every zero pattern inside the window \\
+z57 & bands per slot: the needle on which idealisation in the frame of the reduced cell fails \\
+z58 & the strain norm: projection, enumeration and filter on the needle, two plates and 240 random cells against brute force; distances to the sorts and their monotonicity along Table~\ref{tab:special} \\
+z59 & Lemma~A6 and Theorem~A7: the ball bound, the adjacency radii of Table~8 of the main text, the layers of 127 and 2755, the filtered first layer below $\delta_1$, the plates between $\delta_1$ and $\delta_2$ \\
+z60 & the strain depths of Table~6 of the main text and the growth of the widened set; the sort spectra of Fig.~2 of the main text; Table~5 of the main text; the prices of the second indexing classes in Fig.~4 of the main text; the single projection against the union on the needle \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+
+
+\begin{figure}
+\includegraphics[width=0.9\textwidth]{figures/figS1_sort_graph_lysozyme.pdf}
+\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~2 of the main text. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is more than $25\%$ away.\chk{z60}}
+\label{fig:lyso}
+\end{figure}
+
+\begin{references}
+\reference{Andrews, L. C. \& Bernstein, H. J. (1988). \emph{Acta Cryst.} A\textbf{44}, 1009--1018.}
+\reference{Andrews, L. C. \& Bernstein, H. J. (2014). \emph{J. Appl. Cryst.} \textbf{47}, 346--359.}
+\reference{Andrews, L. C. \& Bernstein, H. J. (2023b). \emph{Acta Cryst.} A\textbf{79}, 499--503.}
+\reference{Andrews, L. C., Bernstein, H. J. \& Pelletier, G. A. (1980). \emph{Acta Cryst.} A\textbf{36}, 248--252.}
+\reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2019a). \emph{Acta Cryst.} A\textbf{75}, 593--599.}
+\reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2019b). \emph{Acta Cryst.} A\textbf{75}, 115--120.}
+\reference{Andrews, L. C., Bernstein, H. J. \& Sauter, N. K. (2023). SELLA -- a program for determining Bravais lattice types. arXiv:2303.03122.}
+\reference{Brandt, H. (1927). \emph{Math. Ann.} \textbf{96}, 360--366.}
+\reference{Brehm, W. \& Diederichs, K. (2014). \emph{Acta Cryst.} D\textbf{70}, 101--109.}
+\reference{Buerger, M. J. (1960). \emph{Z. Kristallogr.} \textbf{113}, 52--56.}
+\reference{Burzlaff, H. \& Zimmermann, H. (1985). \emph{Z. Kristallogr.} \textbf{170}, 247--262.}
+\reference{Burzlaff, H. \& Zimmermann, H. (2006). \emph{International Tables for Crystallography}, Vol. A, 5th ed., edited by Th. Hahn, ch. 9.1, pp. 742--749. Dordrecht: Springer.}
+\reference{Conway, J. H. \& Sloane, N. J. A. (1992). \emph{Proc. R. Soc. London Ser. A}, \textbf{436}, 55--68.}
+\reference{Dauter, Z. (2003). \emph{Acta Cryst.} D\textbf{59}, 2004--2016.}
+\reference{de Wolff, P. M. \& Gruber, B. (1991). \emph{Acta Cryst.} A\textbf{47}, 29--36.}
+\reference{Delaunay, B. (1933). \emph{Z. Kristallogr.} \textbf{84}, 109--149.}
+\reference{Delone, B. N., Galiulin, R. V. \& Shtogrin, M. I. (1975). \emph{J. Sov. Math.} \textbf{4}, 79--156.}
+\reference{Evans, P. (2006). \emph{Acta Cryst.} D\textbf{62}, 72--82.}
+\reference{Evans, P. R. (2011). \emph{Acta Cryst.} D\textbf{67}, 282--292.}
+\reference{Flack, H. D. (1987). \emph{Acta Cryst.} A\textbf{43}, 564--568.}
+\reference{Gildea, R. J. \& Winter, G. (2018). \emph{Acta Cryst.} D\textbf{74}, 405--410.}
+\reference{Grosse-Kunstleve, R. W., Sauter, N. K. \& Adams, P. D. (2004). \emph{Acta Cryst.} A\textbf{60}, 1--6.}
+\reference{Gruber, B. (1973). \emph{Acta Cryst.} A\textbf{29}, 433--440.}
+\reference{Hahn, Th. (2006). Editor. \emph{International Tables for Crystallography}, Vol. A, 5th ed. Dordrecht: Springer.}
+\reference{Higgins, P. J. (1971). \emph{Notes on Categories and Groupoids.} London: Van Nostrand Reinhold.}
+\reference{Himes, V. L. \& Mighell, A. D. (1987). \emph{Acta Cryst.} A\textbf{43}, 375--384.}
+\reference{K\v{r}iv\'y, I. \& Gruber, B. (1976). \emph{Acta Cryst.} A\textbf{32}, 297--298.}
+\reference{Kabsch, W. (1993). \emph{J. Appl. Cryst.} \textbf{26}, 795--800.}
+\reference{Kabsch, W. (2010). \emph{Acta Cryst.} D\textbf{66}, 125--132.}
+\reference{Kurlin, V. (2022). \emph{A complete isometry classification of 3-dimensional lattices.} arXiv:2201.10543; revised manuscript, April 2026, https://kurlin.org/projects/lattice-geometry/lattices3Dmaths.pdf. Lemma numbers refer to the revised manuscript.}
+\reference{Le Page, Y. (1982). \emph{J. Appl. Cryst.} \textbf{15}, 255--259.}
+\reference{Lebedev, A. A., Vagin, A. A. \& Murshudov, G. N. (2006). \emph{Acta Cryst.} D\textbf{62}, 83--95.}
+\reference{Niggli, P. (1928). \emph{Kristallographische und strukturtheoretische Grundbegriffe.} Handbuch der Experimentalphysik, Vol. 7, Part 1. Leipzig: Akademische Verlagsgesellschaft.}
+\reference{Oishi-Tomiyasu, R. (2012). \emph{Acta Cryst.} A\textbf{68}, 525--535.}
+\reference{Oishi-Tomiyasu, R. (2024). \emph{Acta Cryst.} A\textbf{80}, 339--350.}
+\reference{Patterson, A. L. \& Love, W. E. (1957). \emph{Acta Cryst.} \textbf{10}, 111--116.}
+\reference{Pennec, X., Fillard, P. \& Ayache, N. (2006). \emph{Int. J. Comput. Vis.} \textbf{66}, 41--66.}
+\reference{Sauter, N. K., Grosse-Kunstleve, R. W. \& Adams, P. D. (2004). \emph{J. Appl. Cryst.} \textbf{37}, 399--409.}
+\reference{Sauter, N. K., Grosse-Kunstleve, R. W. \& Adams, P. D. (2006). \emph{J. Appl. Cryst.} \textbf{39}, 158--168.}
+\reference{Selling, E. (1874). \emph{J. Reine Angew. Math.} \textbf{77}, 143--229.}
+\reference{Voronoi, G. (1908). \emph{J. Reine Angew. Math.} \textbf{134}, 198--287.}
+\reference{Yeates, T. O. (1997). \emph{Methods Enzymol.} \textbf{276}, 344--358.}
+\end{references}
+
+\end{document}
