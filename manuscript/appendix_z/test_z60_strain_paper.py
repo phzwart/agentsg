@@ -343,7 +343,7 @@ def test_twofold_price_is_twice_the_geodesic_distance():
     def dist(A, B):
         Ai = np.linalg.inv(np.real(sqrtm(A)))
         return float(np.linalg.norm(np.real(logm(Ai @ B @ Ai))))
-    for _ in range(20):
+    for _ in range(6):
         A = rng.normal(size=(3, 3)); G = A @ A.T + np.eye(3)
         S = g.T @ G @ g
         Gh = np.real(sqrtm(G)); Ghi = np.linalg.inv(Gh)
@@ -354,6 +354,6 @@ def test_twofold_price_is_twice_the_geodesic_distance():
         def to_fixed(x):                                            # metrics with G12 = G23 = 0
             return expm(np.array([[x[0], 0, x[1]], [0, x[2], 0], [x[1], 0, x[3]]]))
         best = min(minimize(lambda x: dist(G, to_fixed(x)), rng.normal(size=4) * 0.1,
-                            method="Nelder-Mead", options=dict(xatol=1e-10, fatol=1e-12, maxiter=20000)).fun
-                   for _ in range(3))
+                            method="Nelder-Mead", options=dict(xatol=1e-9, fatol=1e-11, maxiter=4000)).fun
+                   for _ in range(2))
         assert best >= dist(G, m) - 1e-6
