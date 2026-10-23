@@ -1,0 +1,29 @@
+780 cases
+
+misses by family
+family              n  CS6Dist   NCDist  closure
+anisotropy         16        0        0        1
+boundary            9        0        0        0
+hidden             20       17       14       14
+shapes             75        0        0        0
+specialisation    660      239      250      229
+all               780      256      264      244
+
+overlap of misses (C = CS6Dist, N = NCDist, X = closure)
+  ...  441
+  CNX  181
+  .N.  60
+  C.X  40
+  C..  24
+  .NX  12
+  ..X  11
+  CN.  11
+
+for each method's misses: strain distance between the chosen and the true reference
+  CS6Dist   256 misses; distance median 0.063%, 90th 0.246%, max 2.357%; within the case's own error: 255; no operator within 10%: 0
+  NCDist    264 misses; distance median 0.068%, 90th 0.224%, max 1.062%; within the case's own error: 263; no operator within 10%: 0
+  closure   244 misses; distance median 0.066%, 90th 0.197%, max 2.139%; within the case's own error: 244; no operator within 10%: 0
+
+closure misses: true reference accepted in 242/244; price excess of the true reference over the chosen one: median 0.014%, max 0.619%; median case error 0.133%
+closure misses by sort: [('A1', 24), ('A3', 24), ('M4', 24), ('A2', 23), ('O1B', 20), ('M1B', 18), ('O5', 18), ('M1A', 15), ('M2B', 14), ('O1A', 9)]
+CS6Dist misses: rank of the true reference by CS6Dist: [(2, 124), (3, 64), (4, 31), (5, 21), (6, 6), (7, 3), (8, 3), (11, 2), (9, 1), (10, 1)]
