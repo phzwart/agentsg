@@ -1,0 +1,53 @@
+0
+20000
+40000
+60000
+80000
+100000
+120000
+140000
+160000
+180000
+200000
+206214 entries, 42 not analysed
+
+reported Bravais type (rows) against the highest type Le Page finds at 3 deg (columns)
+          aP     mP     mC     oP     oS     oI     oF     tP     tI     hR     hP     cP     cI     cF       n  higher
+aP      4857    582   2122    180    293     93     57     73     44     96     64     42     12      7    8522    3665
+mP         0  19130      0   4580   9530      0      0   1600      0      0    498     26      0      0   35364   16234
+mC         0      0  17008      0   1856   1316   1069     71    407    393    269      9     24     30   22452    5444
+oP         0      0      0  45538      0      0      0  12187      0      0      0    298      0      0   58023   12485
+oS         0      0      0      0   8584      0      0    886      0      0   1177     21      0      0   10668    2084
+oI         0      0      0      0      0   3793      0      0   1176      0      0      0     42     33    5044    1251
+oF         0      0      0      0      0      0    178      0     79      0      0      0      3     20     280     102
+tP         0      0      0      0      0      0      0  19886      0      0      0    724      0      0   20610     724
+tI         0      0      0      0      0      0      0      0   3468      0      0      0    296    264    4028     560
+hR         0      0      0      0      0      0      0      0      0   4774      0    259    216    208    5457     683
+hP         0      0      0      0      0      0      0      0      0      0  31536      0      0      0   31536       0
+cP         0      0      0      0      0      0      0      0      0      0      0   1699      0      0    1699       0
+cI         0      0      0      0      0      0      0      0      0      0      0      0   1732      0    1732       0
+cF         0      0      0      0      0      0      0      0      0      0      0      0      0    757     757       0
+
+pseudo-symmetric entries (Le Page higher than reported): 43232
+by the Delone sort of the Le Page lattice: entries; obliquity (deg) and the largest and smallest
+price (%) of the pseudo-symmetry operators, quantiles 10/50/90; median largest price by order
+C1    cI      593  delta   0.14/1.64/2.73  largest    0.69/8.09/13.53  smallest     0.00/0.00/8.94  2: 8.09, 3: 7.95, 4: 8.09
+C3    cF      562  delta   0.19/1.72/2.76  largest    0.95/8.50/13.55  smallest    0.00/5.34/12.99  2: 8.50, 3: 8.46, 4: 8.49
+C5    cP     1379  delta   0.23/1.66/2.72  largest    1.15/8.21/13.38  smallest    0.00/3.68/12.11  2: 8.20, 3: 8.01, 4: 8.21
+H4    hP     2008  delta   0.08/1.40/2.70  largest    0.40/6.90/13.27  smallest    0.11/4.03/12.65  2: 6.90, 3: 6.74, 6: 6.45
+T1    tI     1376  delta   0.06/1.32/2.67  largest    0.28/6.59/13.28  smallest    0.17/5.55/12.55  2: 6.53, 4: 6.56
+T2    tI      330  delta   0.05/1.48/2.69  largest    0.24/7.29/13.38  smallest    0.11/4.97/12.40  2: 7.29, 4: 7.23
+T5    tP    14817  delta   0.22/1.47/2.69  largest    1.07/7.27/13.38  smallest    0.70/6.55/12.93  2: 7.23, 4: 7.25
+R1    hR       96  delta   0.04/1.55/2.76  largest    0.22/7.63/13.82  smallest    0.13/2.98/13.08  2: 7.63, 3: 7.44
+R3    hR      393  delta   0.07/1.82/2.81  largest    0.37/9.07/13.80  smallest    0.29/7.63/13.66  2: 8.98, 3: 8.91
+O1A   oF     1126  delta   0.23/1.51/2.70  largest    1.12/7.44/13.28  smallest    1.02/7.04/13.12  2: 7.44
+O1B   oI      331  delta   0.10/1.58/2.78  largest    0.49/7.79/13.67  smallest    0.36/7.62/13.67  2: 7.79
+O2    oI     1078  delta   0.14/1.40/2.73  largest    0.70/6.91/13.44  smallest    0.48/6.33/13.30  2: 6.91
+O4    oS    11679  delta   0.14/1.49/2.74  largest    0.67/7.35/13.50  smallest    0.62/7.15/13.46  2: 7.35
+O5    oP     4760  delta   0.03/1.08/2.59  largest    0.17/5.33/12.74  smallest    0.15/5.13/12.65  2: 5.33
+M1A   mC      867  delta   0.72/2.09/2.83  largest   3.53/10.31/13.92  smallest   3.53/10.31/13.92  2: 10.31
+M1B   mC      398  delta   0.12/1.80/2.72  largest    0.57/8.89/13.36  smallest    0.57/8.89/13.36  2: 8.89
+M2A   mC      854  delta   0.13/1.75/2.77  largest    0.66/8.63/13.60  smallest    0.66/8.63/13.60  2: 8.63
+M2B   mC        2  delta   0.61/0.95/1.29  largest     3.02/4.69/6.37  smallest     3.02/4.69/6.37  2: 4.69
+M3    mC        1  delta   2.39/2.39/2.39  largest  11.76/11.76/11.76  smallest  11.76/11.76/11.76  2: 11.76
+M4    mP      582  delta   0.10/1.40/2.65  largest    0.47/6.88/13.02  smallest    0.47/6.88/13.02  2: 6.88
