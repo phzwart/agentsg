@@ -6,8 +6,12 @@ measured worked cell, their depths (strain distance to obtuse) under the measure
 metric, and the size of the widened set as the band grows.
 (ii) Sort spectra: the worked cell, and tetragonal lysozyme indexed in P1; the
 Bravais type is the last sort before the widest gap.
-(iii) The seven BLDConograph samples (z51): strain distance to the program's
+(iii) The seven BLDConograph samples (z51; Table S5): strain distance to the program's
 Bravais type, the next type, and where the widest gap lies.
+(iv) Propositions A9 and A10 and Lemma A8: prices of symmetries of order 2, 3, 4 and 6,
+the twofold rule in the geodesic distance, the exact product and coset bounds, the
+overlap bound; Le Page's obliquity against prices and sort distances; null
+distributions of prices under noise; centred references.
 """
 from __future__ import annotations
 
@@ -93,7 +97,7 @@ def test_conograph_samples_in_strain():
 
 
 def test_twofold_price_is_twice_the_sort_distance():
-    """Table 8 and Fig. 4 (c): the second indexing class costs the pseudo-symmetry, about
+    """Table 8 and Fig. 3 (c): the second indexing class costs the pseudo-symmetry, about
     twice the distance to the sort that the twofold fixes."""
     from agentsg.cell.metric import UnitCell, params_from_metric
     from agentsg.cell.strain_closure import indexing_classes
@@ -187,7 +191,7 @@ def test_twofold_price_is_twice_the_distance_to_its_fixed_space():
 
 
 def test_overlap_band_eps_over_one_minus_eps():
-    """Corollary A8 as implemented: a price of eps measured at the new cell's metric is at
+    """Lemma A8 as implemented: a price of eps measured at the new cell's metric is at
     most eps/(1-eps) at the predicted metric, so the reference widened at band_for(eps)
     holds the new cell's reduced superbase; the bound is attained when the error has a single
     non-zero eigenvalue, not for a pure scale."""
@@ -218,7 +222,7 @@ def test_adjacency_radius_reaches_the_cap_for_the_spectrum_cells():
 
 
 def test_conograph_ladders():
-    """Table 5: the types up to the program's, with their strain distances (%)."""
+    """Table S5 (supporting information): the types up to the program's, with their strain distances (%)."""
     want = {"HERMES_Sr327_250K": [("mC", 0.31), ("oI", 0.74), ("oF", 0.83), ("tI", 0.84)],
             "1339prbasrcuo_bs1": [("mP", 0.11), ("mC", 0.14), ("oS", 0.17), ("oP", 0.18), ("tP", 0.22)],
             "sample3": [("mC", 0.23), ("hR", 0.39), ("oF", 0.39), ("oI", 0.49), ("tI", 0.49), ("cI", 0.58)],
@@ -232,3 +236,124 @@ def test_conograph_ladders():
         assert {k for k, _ in got} == {k for k, _ in want[name]}, name
         d = dict(got)
         assert all(abs(d[k] - v) < 0.006 for k, v in want[name]), (name, got)
+
+
+def test_price_of_an_order_n_symmetry():
+    """Proposition A9 for rotations of order n: the price of g is |lambda - 1| times the
+    distance to V_g on each eigenspace of X -> g^T X g, so the ratio is 2 for a twofold,
+    sqrt3 for a threefold, between sqrt2 and 2 for a fourfold, and between 1 and sqrt3 for
+    a sixfold (norm at a metric G* that g preserves)."""
+    from agentsg.cell.metric import UnitCell
+    rng = np.random.default_rng(1)
+    hexG = np.array(UnitCell(50, 50, 80, 90, 90, 120).metric_tensor())
+    cubG = np.array(UnitCell(40, 40, 40, 90, 90, 90).metric_tensor())
+    cases = {"2": (hexG, np.diag([-1, -1, 1]), 2.0, 2.0), "3": (hexG, np.array([[0, -1, 0], [1, -1, 0], [0, 0, 1]]), 3 ** .5, 3 ** .5),
+             "4": (cubG, np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1]]), 2 ** .5, 2.0),
+             "6": (hexG, np.array([[1, -1, 0], [1, 0, 0], [0, 0, 1]]), 1.0, 3 ** .5)}
+    for name, (Gs, g, lo, hi) in cases.items():
+        assert np.allclose(g.T @ Gs @ g, Gs)
+        Gi = np.linalg.inv(Gs)
+        ip = lambda X, Y: np.trace(Gi @ X @ Gi @ Y)
+        n = next(k for k in range(1, 7) if np.allclose(np.linalg.matrix_power(g, k), np.eye(3)))
+        rs = []
+        for _ in range(500):
+            A = rng.normal(size=(3, 3)); X = (A + A.T) / 2
+            Xf = sum(np.linalg.matrix_power(g, k).T @ X @ np.linalg.matrix_power(g, k) for k in range(n)) / n
+            D = g.T @ X @ g - X
+            rs.append(np.sqrt(ip(D, D)) / np.sqrt(ip(X - Xf, X - Xf)))
+        assert lo - 1e-9 <= min(rs) and max(rs) <= hi + 1e-9 and max(rs) - min(rs) <= hi - lo + 1e-9, name
+        assert min(rs) < lo + 0.05 and max(rs) > hi - 0.05
+
+
+def test_lepage_obliquity_against_prices_and_sort_distance():
+    """30 x 40 x 50 A, alpha = beta = gamma = 92 deg: each axis has Le Page obliquity 2.88 deg,
+    each twofold a price 0.1426 (2 sqrt2 sin 2.88 deg = 0.1421), within 0.148; the oP sort
+    distance, which combines the three, is 0.0885, above 0.074; the mP distance 0.0711."""
+    import math
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.strain_closure import _strain
+    cell = (30, 40, 50, 92, 92, 92)
+    G = np.array(UnitCell(*cell).metric_tensor()); Gi = np.linalg.inv(G)
+    for i in range(3):
+        e = np.eye(3)[i]; v = Gi @ e
+        delta = math.degrees(math.acos((e @ G @ v) / math.sqrt(e @ G @ e) / math.sqrt(v @ G @ v)))
+        g = -np.eye(3); g[i, i] = 1
+        price, _ = _strain(G, g.T @ G @ g, fit_scale=False)
+        assert abs(delta - 2.88) < 0.005 and abs(price - 0.1426) < 5e-4 and price < 2 * LEPAGE_STRAIN
+    sp = sort_spectrum(cell)
+    assert abs(sp["O5"] - 0.0885) < 5e-4 and sp["O5"] > LEPAGE_STRAIN and abs(sp["M4"] - 0.0711) < 5e-4
+
+
+def test_null_distributions_of_prices():
+    """Two independent measurements of an exact monoclinic lattice, each with isotropic strain
+    noise of rms sigma: the true operator's price (after the scale fit) has median 1.2 sigma
+    and 99th percentile 2.2 sigma; the price of the exact twofold in one measurement has
+    median 1.0 sigma and 99th percentile 2.5 sigma."""
+    from agentsg.cell.metric import UnitCell
+    from agentsg.cell.strain_closure import _strain
+    rng = np.random.default_rng(0)
+    G = np.array(UnitCell(30, 40, 50, 90, 92, 90).metric_tensor()); w, V = np.linalg.eigh(G)
+    Gh = V @ np.diag(w ** .5) @ V.T
+    g = np.diag([-1, 1, -1]); s = 0.005
+
+    def sym():
+        A = rng.normal(size=(3, 3)); return (A + A.T) / 2 * s / np.sqrt(6)
+    tp, sp = [], []
+    for _ in range(8000):
+        G1 = Gh @ (np.eye(3) + sym()) @ Gh; G2 = Gh @ (np.eye(3) + sym()) @ Gh
+        tp.append(_strain(G2, G1)[0] / s); sp.append(_strain(G1, g.T @ G1 @ g)[0] / s)
+    assert abs(np.median(tp) - 1.2) < 0.05 and abs(np.percentile(tp, 99) - 2.2) < 0.1
+    assert abs(np.median(sp) - 1.0) < 0.05 and abs(np.percentile(sp, 99) - 2.5) < 0.12
+
+
+def test_exact_product_and_coset_bounds():
+    """Proposition A10, exact (prices without the scale fit): price(h1 h2) <= p1 + p2 + p1 p2,
+    and the price of h P0 at G_N lies in [(1 - p0) price(h) - p0, (1 + p0) price(h) + p0]."""
+    from agentsg.cell.strain_closure import _strain
+    rng = np.random.default_rng(3)
+
+    def price(G, h):
+        return _strain(G, h.T @ G @ h, fit_scale=False)[0]
+    for _ in range(400):
+        A = rng.normal(size=(3, 3)); G = A @ A.T + 0.5 * np.eye(3)
+        h1 = np.eye(3) + 0.15 * rng.normal(size=(3, 3)); h2 = np.eye(3) + 0.15 * rng.normal(size=(3, 3))
+        p1, p2 = price(G, h1), price(G, h2)
+        assert price(G, h1 @ h2) <= p1 + p2 + p1 * p2 + 1e-12
+        P0 = np.eye(3) + 0.1 * rng.normal(size=(3, 3))
+        X = rng.normal(size=(3, 3)); X = (X + X.T) / 2
+        B = P0.T @ G @ P0
+        w, V = np.linalg.eigh(B); Bh = V @ np.diag(w ** .5) @ V.T
+        GN = Bh @ (np.eye(3) + rng.uniform(0.001, 0.2) * X / np.linalg.norm(X)) @ Bh
+        p0 = _strain(GN, B, fit_scale=False)[0]
+        if p0 >= 1:
+            continue
+        ph = price(G, h1)
+        q = _strain(GN, (h1 @ P0).T @ G @ (h1 @ P0), fit_scale=False)[0]
+        assert (1 - p0) * ph - p0 - 1e-12 <= q <= (1 + p0) * ph + p0 + 1e-12
+
+
+def test_twofold_price_is_twice_the_geodesic_distance():
+    """Proposition A9 (ii): in the affine-invariant geodesic distance the geodesic midpoint of
+    G and g^T G g is fixed by the twofold g, and no metric fixed by g is closer to G."""
+    from scipy.linalg import expm, logm, sqrtm
+    from scipy.optimize import minimize
+    rng = np.random.default_rng(4)
+    g = np.diag([-1.0, 1.0, -1.0])                                 # twofold along b
+
+    def dist(A, B):
+        Ai = np.linalg.inv(np.real(sqrtm(A)))
+        return float(np.linalg.norm(np.real(logm(Ai @ B @ Ai))))
+    for _ in range(20):
+        A = rng.normal(size=(3, 3)); G = A @ A.T + np.eye(3)
+        S = g.T @ G @ g
+        Gh = np.real(sqrtm(G)); Ghi = np.linalg.inv(Gh)
+        m = Gh @ np.real(sqrtm(Ghi @ S @ Ghi)) @ Gh                 # geodesic midpoint
+        assert np.allclose(g.T @ m @ g, m, atol=1e-9)
+        assert abs(dist(G, m) - dist(G, S) / 2) < 1e-9
+
+        def to_fixed(x):                                            # metrics with G12 = G23 = 0
+            return expm(np.array([[x[0], 0, x[1]], [0, x[2], 0], [x[1], 0, x[3]]]))
+        best = min(minimize(lambda x: dist(G, to_fixed(x)), rng.normal(size=4) * 0.1,
+                            method="Nelder-Mead", options=dict(xatol=1e-10, fatol=1e-12, maxiter=20000)).fun
+                   for _ in range(3))
+        assert best >= dist(G, m) - 1e-6

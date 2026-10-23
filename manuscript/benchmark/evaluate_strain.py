@@ -3,7 +3,8 @@ against a small-matrix baseline.
 
 For each case the reference is widened at band_for(accept) in the strain norm, the
 measured cell is reduced once and paired with the members (reindex); success when the
-true operator, or its negative, is among the candidates. Two acceptance bands: 0.074
+true operator, made proper (-M when det M = -1, which differs by the inversion), is
+itself among the proper candidates. Two acceptance bands: 0.074
 (one cell angle changed by 3 degrees) and 3 x the strain of the case's own metric
 error (eps_err = || G^-1/2 E G^-1/2 ||_F, E in the reference's reduced frame), floored
 at 1e-4 and skipped above 0.2.
@@ -65,12 +66,13 @@ def small_baseline(ref_cell, new_cell, accept):
         P = GR @ m @ BNi
         price, _ = _strain(G_N_in, P.T @ G_R_in @ P)
         if price <= accept:
-            out.append(np.round(P).astype(int))
+            P = np.round(P).astype(int)
+            out.append(P if round(np.linalg.det(P)) == 1 else -P)
     return out
 
 
 def has(ops, M):
-    return any(np.array_equal(o, s * M) for o in ops for s in (1, -1))
+    return any(np.array_equal(o, M) for o in ops)
 
 
 def main(path):
@@ -79,6 +81,7 @@ def main(path):
     for line in open(path):
         c = json.loads(line)
         M = np.array(c["true_operator"], int)
+        M = -M if round(np.linalg.det(M)) == -1 else M
         GR, GN = G_of(c["reference_cell"]), G_of(c["measured_cell"])
         Mi = np.linalg.inv(M)
         E = Mi.T @ GN @ Mi - GR

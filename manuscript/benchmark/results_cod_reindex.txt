@@ -1,0 +1,8 @@
+(1) reindexing, 210 COD cells with esd-derived errors; band = 2.5 x rms strain, median 0.0088, range 0.0010-0.1881
+method          found  cands q50/q90  true cheapest
+closure      210/210       2/8          208/210   
+small1       210/210       2/8          208/210   
+small2       210/210       2/8          208/210   
+cctbx_sim1   210/210       2/8          208/210   
+cctbx_sim2   210/210       2/8          208/210   
+pipeline     210/210       2/8          208/210   

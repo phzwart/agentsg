@@ -1,0 +1,10 @@
+family                          n  found  true coset cheapest  >1 coset mean cosets
+benchmark shapes               75     75                   75        15        1.36
+benchmark all                 780    780                  742       585        2.65
+benchmark specialisation      660    660                  642       538        2.40
+benchmark hidden               20     20                    0        20       13.65
+benchmark anisotropy           16     16                   16        12        6.12
+benchmark boundary              9      9                    9         0        1.00
+stress t=0.5                   60     60                   38        52        3.08
+stress all                    120    120                   67        95        2.86
+stress t=0.9                   60     60                   29        43        2.63

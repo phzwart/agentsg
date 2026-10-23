@@ -10,7 +10,9 @@ the count of operators reaches the order of each holohedry is the band at
 which that pseudo-symmetry is offered. BLDConograph's minimal distance to a
 cell of the sample's Bravais type (its output.py) is listed for comparison;
 the two are different measures, so only the order of the ladder and the
-rough size are compared.
+rough size are compared. This is the absolute conorm band of Section S4 of the
+supporting information; Table S5 of the paper gives the strain distances of the sort
+spectrum for the same cells, checked in z60.
 """
 from __future__ import annotations
 

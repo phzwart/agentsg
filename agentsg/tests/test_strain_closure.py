@@ -52,6 +52,7 @@ def test_reindex_recovers_the_true_operator():
     rng = np.random.default_rng(3)
     for cell in (WORKED, NEEDLE, PLATE, (40.0, 40.3, 80.0, 90, 90, 90)):
         W = widened_closure(cell, eps=band_for(LEPAGE_STRAIN))
+        assert all(c.determinant == 1 for c in reindex(W, cell, accept=LEPAGE_STRAIN)[0])   # proper by default
         GR = np.array(UnitCell(*cell).metric_tensor(), float)
         for _ in range(4):
             while True:
@@ -65,7 +66,7 @@ def test_reindex_recovers_the_true_operator():
             X = (X + X.T) / 2
             X *= rng.uniform(0.005, 0.06) / np.linalg.norm(X)
             new = params_from_metric((Gh @ (np.eye(3) + X) @ Gh).tolist())
-            cands, _ = reindex(W, new, accept=LEPAGE_STRAIN)
+            cands, _ = reindex(W, new, accept=LEPAGE_STRAIN, proper=None)
             truth = [[Fraction(int(x)) for x in row] for row in P]
             assert any([list(r) for r in c.operator.rows] == truth for c in cands)
             det = int(round(np.linalg.det(P)))
@@ -99,28 +100,29 @@ def test_indexing_classes_reproduce_the_merohedral_ambiguities():
         P = np.array([[0, 1, 0], [1, 0, 0], [0, 0, -1]])
         return params_from_metric((P.T @ G @ P * 1.002).tolist())
 
-    expected = {   # (|H_eps|, |Laue|, number of distinct indexings)
-        ((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (16, 16, 1),
-        ((40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"): (16, 8, 2),     # pseudo-tetragonal
-        ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (24, 6, 4),
-        ((50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"): (24, 12, 2),
-        ((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"): (48, 24, 2),
-        (WORKED, "P 1"): (4, 2, 2),
+    expected = {   # (|H_eps| proper, |Laue|, number of distinct indexings)
+        ((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (8, 16, 1),
+        ((40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"): (8, 8, 2),     # pseudo-tetragonal
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (12, 6, 4),
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"): (12, 12, 2),
+        ((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"): (24, 24, 2),
+        (WORKED, "P 1"): (2, 2, 2),
     }
     for (cell, sg), (h, l, n) in expected.items():
         W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))      # widened at 0.080, accepted at 0.074
         r = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN)
         assert (r.symmetry_order, r.group_order, len(r.classes)) == (h, l, n), (sg, r)
         assert r.closed and r.group_in_symmetry
-        assert all(c.size == l for c in r.classes)
+        assert all(c.size == l // 2 for c in r.classes)                 # the proper half of each class
+        assert all(c.representative.determinant == 1 for c in r.classes)
         assert r.classes[0].representative.price < 1e-6
-    # anomalous data: the point group replaces the Laue group. For a chiral group the improper
-    # candidates are dropped (proper=True) and the count does not change; for an acentric
+    # anomalous data: the point group replaces the Laue group. Only proper operators are
+    # returned (the default); for a chiral group the count does not change, for an acentric
     # non-chiral group the inversion separates indexings and the count doubles.
     cases = {((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (True, 1, 1),
              ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (True, 4, 4),
-             ((40.0, 40.0, 70.0, 90, 90, 90), "P 4 m m"): (None, 1, 2),
-             ((50.0, 50.0, 80.0, 90, 90, 120), "P 3 1 m"): (None, 2, 4)}
+             ((40.0, 40.0, 70.0, 90, 90, 90), "P 4 m m"): (True, 1, 2),
+             ((50.0, 50.0, 80.0, 90, 90, 120), "P 3 1 m"): (True, 2, 4)}
     for (cell, sg), (proper, n_merge, n_anom) in cases.items():
         W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))
         r0 = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN, proper=proper)
@@ -135,7 +137,18 @@ def test_indexing_classes_reproduce_the_merohedral_ambiguities():
 def test_price_spectrum_and_the_twofold_rule():
     """a pseudo-twofold's price is twice its sort distance (Proposition A9); the price
     spectrum of the worked cell has its gap between the pseudo-mP and pseudo-oP twofolds."""
-    spec = price_spectrum(widened_closure(WORKED, eps=0.2))
+    spec = price_spectrum(widened_closure(WORKED, eps=0.2), proper=None)
     assert max(spec[:2]) < 1e-12                                           # +-I
     assert abs(spec[2] - 2 * sort_spectrum(WORKED)["M4"]) < 1e-4 and abs(spec[2] - spec[3]) < 1e-12
     assert abs(spec[4] - 2 * sort_spectrum(WORKED)["O5"]) < 2e-3            # the pseudo-oP twofolds
+    proper = price_spectrum(widened_closure(WORKED, eps=0.2))
+    assert len(proper) == len(spec) // 2 and max(proper[:1]) < 1e-12
+
+
+def test_strain_from_esds_and_certified_spectrum():
+    from agentsg.cell.strain_closure import certified_sort_spectrum, strain_from_esds
+    # 0.1 % on each edge and 0.05 degrees on each angle of a 30 x 40 x 50 A cell
+    r = strain_from_esds(WORKED, (0.03, 0.04, 0.05, 0.05, 0.05, 0.05))
+    assert abs(r - 0.00407) < 1e-4                  # sqrt(3 x 0.002^2 + 3 x (sqrt2 x 0.05 deg)^2)
+    spec, d1 = certified_sort_spectrum(NEEDLE)
+    assert abs(d1 - 0.0557) < 2e-4

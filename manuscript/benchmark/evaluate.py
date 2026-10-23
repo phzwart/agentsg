@@ -180,11 +180,12 @@ def niggli_report(path):
         Gr = np.array(UnitCell(*nr).metric_tensor())
         Gm = np.array(UnitCell(*c["measured_niggli_cell"]).metric_tensor())
         same_cell = min(np.linalg.norm(P.T @ Gr @ P - Gm) for P in SP) <= 5 * c["eta"] + 1e-6
-        r = out.setdefault(c["family"], {"n": 0, "other basis, same cell": 0, "other cell": 0, "type flip": 0})
-        r["n"] += 1
-        if not same_basis:
-            r["other basis, same cell" if same_cell else "other cell"] += 1
-            r["type flip"] += typ(nr) != typ(c["measured_niggli_cell"]) and not same_cell
+        for key in (c["family"], "sort " + c["sort"]):
+            r = out.setdefault(key, {"n": 0, "other basis, same cell": 0, "other cell": 0, "type flip": 0})
+            r["n"] += 1
+            if not same_basis:
+                r["other basis, same cell" if same_cell else "other cell"] += 1
+                r["type flip"] += typ(nr) != typ(c["measured_niggli_cell"]) and not same_cell
     return out
 
 

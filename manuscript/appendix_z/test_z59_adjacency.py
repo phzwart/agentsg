@@ -8,7 +8,7 @@ partial sum in that class. (Prop. A4 with u = v gives (1-eps)|u|^2_G <=
 F's vectors are shortest in their classes for G', and F0's are for G.)
 So S_eps(G) is a finite set, enumerable over the lattice vectors in that ball.
 
-Theorem A7 (adjacency). Call F adjacent to F0 when some positive definite
+Remark A7 (adjacency). Call F adjacent to F0 when some positive definite
 metric makes both obtuse; then F = W F0 with W in the universal set U (Appendix
 D), since both are members of that lattice's closure. Let delta(G) be the
 smallest strain distance from G to a superbase not adjacent to F0. If
@@ -201,6 +201,6 @@ def test_adjacency_theorem_below_delta_and_its_failure_above():
         eps = np.sin(np.radians(3.0))                 # between delta_1 and delta_2 for both plates
         truth = set(superbases_within(G, eps))
         assert not filtered_U(G, eps) >= truth
-        assert truth <= L2                            # layer 2 contains the widened set, as Theorem A7 says
+        assert truth <= L2                            # layer 2 contains the widened set, as Remark A7 says
         got, _ = construct_union(G, eps)
         assert got == truth

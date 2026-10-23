@@ -47,15 +47,13 @@ Niggli basis is a different basis of the lattice (not a signed permutation of
 the reference's); in 125 of those the cell parameters agree up to relabelling
 (a tie between Niggli's special conditions decided the other way), and in 45
 the Niggli cell is a different cell: a type I / type II flip or a different
-lattice character. Those 45 are concentrated on the body-centred orthorhombic
-boundary sort O3 and the lattices one condition away from it (oI O1B, mC M2B
-and M3, cF), and on the mC M1B/M3 boundary --- the known instability of the
-Niggli cell (Gruber 1973; Andrews & Bernstein 1988), here with the sorts that
-carry it. A conventional cell derived from the measured Niggli cell through
-its lattice character then starts from a cell the reference's route never
-produced; the two Niggli cells are two shapes of one closure, related by a
-flip and by no symmetry, and the operator between them is in the closure's
-candidate set in every one of these cases (`reindex ok` above).
+lattice character (14 of the 45 are a type I / type II change). By sort, the 45
+are O1B 23, O3 12, M1B 6 and one each at M2B, M3, R3 and T2; the 125 ties are O1B 25,
+M1A 15, O1A 15, T1 15, M1B 13, O4 9, O2 7, R1 7, M2A 6, T2 6, O3 5, A2 1 and A3 1
+(`results_niggli.txt`). The benchmark was built near Selling zero conorms, so
+Niggli-specific boundaries are under-sampled. A tie changes the reindexing operator as a
+different cell does; in every one of these cases the operator between the two Niggli
+cells is in the closure's candidate set.
 
 ## The strain-norm procedure
 
@@ -72,3 +70,25 @@ The 16 anisotropic cases fall in layer 2 (12) and layer 1 (4); none is refused.
 Results, with candidate-count percentiles, are in `results_strain.txt`.
 
     PYTHONPATH=agentsg/src python manuscript/benchmark/evaluate_strain.py
+
+Since the paper's round-2 revision only proper operators are scored: the true operator
+is made proper (-M when det M = -1) and must itself be among the proper candidates.
+
+## Comparisons
+
+* `compare_methods.py` scores six methods on the benchmark (`results_compare.txt`) and,
+  with `--stress`, on 240 cases with independent errors on both cells at 0.5, 0.9, 1.1
+  and 1.5 times the band (`results_stress.txt`): the closure, the {-1,0,1} and
+  {-2,...,2} searches between Selling-reduced cells, cctbx
+  `unit_cell.similarity_transformations` (generator range 1 and 2) between Niggli
+  cells, and a cctbx `lattice_symmetry` pipeline (highest lattice group of each cell,
+  every operation between the two standard settings). Needs cctbx.
+* `coset_rank.py`: how often the closure's cheapest candidate lies in the true
+  operator's coset of the exact lattice symmetries (`results_coset.txt`).
+* `cod_real_cells.py`: the 210 COD census cells with deposited esds, reindexed under
+  their own error model at a band of 2.5 times their rms strain, and the reported
+  Bravais types against the sort spectrum (`results_cod.txt`).
+* `compare_sella.py` (SELLA_BIN=CmdSella from LatticeRepLib) and `compare_s6.py`
+  (NCDIST_DIR with libcs6dist.so and libncdist.so): sort rankings against SELLA, and
+  nearest-reference matching with CS6Dist and NCDist (`results_sella.txt`,
+  `results_s6.txt`).

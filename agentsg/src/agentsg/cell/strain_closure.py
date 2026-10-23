@@ -13,7 +13,7 @@ superbases (manuscript, Section 4.2).
 :func:`widened_closure` enumerates S_eps exactly from the finite ball of Lemma A6
 (every vector of a member has squared length at most (1+eps)/(1-eps) times the
 shortest vector of its parity class). It also reports the *layer* of the result
-(manuscript, Theorem A7): 1 when every member lies in L1 = U.F0, the 127 superbases
+(manuscript, Remark A7): 1 when every member lies in L1 = U.F0, the 127 superbases
 adjacent to the reduced cell; 2 when every member lies in L2 = U.L1 (2755); 3
 otherwise. The layer describes how far from the reduced cell the set reaches; it is
 not needed for completeness, which the ball enumeration provides for every eps < 1/4.
@@ -29,7 +29,7 @@ Reindexing (:func:`reindex`) pairs the new cell's single reduced superbase with 
 member of the reference's widened closure and every relabelling, and prices each
 candidate at the new cell's metric after the best common scale. If the true operator
 has price at most ``accept`` there, it is among the candidates provided the reference
-was widened at ``accept / (1 - accept)`` (manuscript, Corollary A8); :func:`band_for`
+was widened at ``accept / (1 - accept)`` (manuscript, Lemma A8); :func:`band_for`
 gives that number. Candidates with determinant -1 are dropped for a chiral crystal
 (``proper=True``), and :func:`indexing_classes` groups the candidates by the
 reference's Laue group (merging without anomalous signal) or point group (anomalous
@@ -62,7 +62,7 @@ LEPAGE_PRICE = 2.0 * LEPAGE_STRAIN
 def band_for(accept):
     """The band at which to widen a reference so that every operator of price at most
     ``accept``, measured at the new cell's metric, is among the candidates
-    (Corollary A8): accept / (1 - accept)."""
+    (Lemma A8): accept / (1 - accept)."""
     if not 0 <= accept < 1:
         raise ValueError("accept must be in [0, 1)")
     return accept / (1.0 - accept)
@@ -266,7 +266,7 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
     adjacency layer that contains the whole set (1: the 127 superbases of L1, 2: the 2755
     of L2, 3: neither). Without ``certify`` only L1 is filtered (fast, 127 depths) and
     ``layer`` is 0: complete only if eps is below the cell's adjacency radius delta_1,
-    which is not checked (Theorem A7)."""
+    which is not checked (Remark A7)."""
     if not 0 <= eps < 0.25:
         raise ValueError("eps must be in [0, 0.25)")
     red = cell if isinstance(cell, ReducedCell) else reduce_cell(cell, sg_hm)
@@ -331,7 +331,7 @@ def _strain(G_new, G_pred, fit_scale=True):
     return float(np.linalg.norm(s * Y - np.eye(3))), s
 
 
-def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=None, fit_scale=True, eps=None):
+def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_scale=True, eps=None):
     """Candidate operators from the reference to a new cell, ranked by strain price.
 
     ``reference`` is a :class:`WidenedClosure` (from :func:`widened_closure`). The new
@@ -339,9 +339,13 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=None, fit_s
     measured at the new cell's metric after the best common scale, is at most
     ``accept``; each P maps the reference's input basis to the new cell's input basis,
     ``h_N = P^T h_R``. The default ``accept`` is the largest band the reference
-    certifies, ``ref.eps / (1 + ref.eps)`` (Corollary A8; see :func:`band_for`).
-    ``proper=True`` keeps only candidates of determinant +1 (a chiral crystal);
-    ``None`` keeps both signs. ``eps`` is a deprecated alias of ``accept``."""
+    certifies, ``ref.eps / (1 + ref.eps)`` (Lemma A8; see :func:`band_for`).
+    ``proper=True`` (default) keeps only candidates of determinant +1: two right-handed
+    bases are related by a proper operator, and a left-handed basis is never valid
+    output. ``proper=None`` keeps both signs, ``False`` only the improper ones (for
+    analysing hand inversions). ``eps`` is a deprecated alias of ``accept``. A fitted
+    ``scale`` far from 1 (more than a few per cent) signals a wavelength or distance
+    error, or a wrong match, and is worth reporting."""
     np = _np()
     ref = reference
     if accept is None:
@@ -379,7 +383,7 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=None, fit_s
     return out, ref.layer
 
 
-def price_spectrum(reference, proper=None):
+def price_spectrum(reference, proper=True):
     """Prices of every self-map of the reference within its band (the operators H_eps
     that carry the reference onto itself), sorted; the gaps in this list are where a
     band gives a group (Proposition A10)."""
@@ -443,7 +447,7 @@ def _laue_matrices(space_group_key):
 
 
 def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accept=None,
-                     proper=None, anomalous=False, eps=None):
+                     proper=True, anomalous=False, eps=None):
     """Candidate operators from the reference to a new cell, grouped into the classes that
     are physically distinct for a crystal of the reference's space group.
 
@@ -456,8 +460,9 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     [H_eps : L] of them when the coset statement holds; choosing between them is a
     question for the intensities (indexing ambiguity, twinning). With ``anomalous=True``
     the point group replaces the Laue group, since the inversion then changes the
-    indexing. ``space_group_key`` is the reference's space group in its input setting.
-    ``proper=True`` drops improper candidates (a chiral crystal)."""
+    indexing (an acentric, non-chiral group; for a chiral group, with proper operators,
+    the count does not change). ``space_group_key`` is the reference's space group in its
+    input setting. Only proper candidates are used by default (``proper=True``)."""
     ref = reference
     if accept is None:
         accept = eps if eps is not None else ref.eps / (1.0 + ref.eps)
@@ -466,7 +471,7 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     H = {c.operator.rows for c in selfc}
     closed = all((a.operator @ b.operator).rows in H for a in selfc for b in selfc)
     L = _symmetry_matrices(space_group_key, anomalous)
-    laue_in = all(l.rows in H for l in L)
+    laue_in = all(l.rows in H for l in L if proper is not True or l.det() == 1)
     by_op = {c.operator.rows: c for c in cands}
     classes, covered = [], set()
     for c in cands:                                   # cheapest first
@@ -518,9 +523,37 @@ def _L_all():
     return np.round(L)
 
 
+def strain_from_esds(cell, esds, sg_hm=None):
+    """root-mean-square strain (norm of equation (2)) of a cell's metric implied by
+    independent standard uncertainties ``esds`` = (sa, sb, sc, salpha, sbeta, sgamma), in
+    A and degrees, propagated to first order through G(a, b, c, alpha, beta, gamma).
+    For two independent measurements with this rms strain sigma each, the true
+    operator's price has a 99th percentile of about 2.2 sigma and an exact symmetry's
+    about 2.5 sigma (manuscript, 'Choosing the band'), so a band of 2.5 sigma covers the
+    measurement error; an allowance for non-isomorphism is added to it."""
+    np = _np()
+    cell = [float(x) for x in cell]
+    p0 = np.array(cell)
+    G0 = np.array(UnitCell(*cell).metric_tensor(), float)
+    w, V = np.linalg.eigh(G0)
+    Gm = V @ np.diag(w ** -0.5) @ V.T
+    var = 0.0
+    for k, sk in enumerate(esds):
+        h = 1e-6 * (1.0 if k < 3 else 1.0)
+        p = p0.copy(); p[k] += h
+        dG = (np.array(UnitCell(*p).metric_tensor(), float) - G0) / h
+        X = Gm @ dG @ Gm
+        var += float(np.sum(X * X)) * float(sk) ** 2
+    return math.sqrt(var)
+
+
 def sort_spectrum(cell, sg_hm=None):
     """{sort: strain distance} from the cell to each of Delone's 24 sorts, minimised over the
-    frames of the universal operator set (manuscript, 'Distance to each sort')."""
+    frames of the universal operator set (manuscript, 'Distance to each sort').
+
+    A distance below the cell's adjacency radius delta_1 (:func:`adjacency_radius`) is
+    exact; one above it is an upper bound over the frames used, and the true distance is
+    at least delta_1. :func:`certified_sort_spectrum` returns delta_1 with the spectrum."""
     np = _np()
     red = cell if isinstance(cell, ReducedCell) else reduce_cell(cell, sg_hm)
     Q = _L_all() @ conorms(np.array(_S0, float), red.G)
@@ -554,3 +587,11 @@ __all__ = [
     "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex",
     "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum",
 ]
+
+
+def certified_sort_spectrum(cell, sg_hm=None):
+    """(spectrum, delta_1): the sort spectrum and the radius below which its values are
+    exact. A sort with distance d > delta_1 is reported as an upper bound; its true
+    distance lies in [delta_1, d]."""
+    red = cell if isinstance(cell, ReducedCell) else reduce_cell(cell, sg_hm)
+    return sort_spectrum(red), adjacency_radius(red.G)

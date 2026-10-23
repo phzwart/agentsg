@@ -1,4 +1,4 @@
-"""Figure 3. Generate the inputs with sort_steps.py <cell> steps_worked.json / steps_lysozyme.json.
+"""Figure 4 (and Fig. S1). Generate the inputs with sort_steps.py <cell> steps_worked.json / steps_lysozyme.json.
 Two-panel Delone sort graph for the manuscript: worked 92-degree cell and lysozyme (P1 indexing)."""
 import sys, json, numpy as np, matplotlib
 matplotlib.use("Agg")
@@ -25,14 +25,20 @@ def fmt(v):
         return ">25"
     return "0" if v < 0.0005 else (f"{v:.3f}" if v < 0.1 else f"{v:.2f}" if v < 1 else (f"{v:.1f}" if v < 10 else f"{v:.0f}"))
 
+FAR, FARFILL = 25.0, "#ebeae6"          # sorts at least 25 % away: grey, no number
+
+
 def panel(ax, path, label):
     D = json.load(open(path)); R = D["rows"]; d0 = R["measured"]; placed = []
     for (a, b) in EXPECTED:
         step = 100 * R[a][b]; da, db = 100 * d0[a], 100 * d0[b]
         on = abs(np.hypot(da, step) - db) <= 0.03 * max(db, 0.05) and db < 10
         (x1, y1), (x2, y2) = pos[a], pos[b]
-        ax.plot([x1, x2], [y1, y2], color=INK if on else OFF, lw=1.4 if on else 0.8, zorder=1,
+        far = db > FAR
+        ax.plot([x1, x2], [y1, y2], color=INK if on else ("#e2e0db" if far else OFF), lw=1.4 if on else 0.8, zorder=1,
                 ls=(0, (3, 2)) if BR[a] == BR[b] else "-")
+        if far or step > FAR:
+            continue
         for t in (0.5, 0.36, 0.64, 0.28, 0.72):
             px, py = x1 + t * (x2 - x1), y1 + t * (y2 - y1)
             if all(np.hypot(px - qx, py - qy) > 0.42 for qx, qy in placed):
@@ -42,11 +48,11 @@ def panel(ax, path, label):
                 bbox=dict(boxstyle="round,pad=0.1", fc=SURF, ec="none"))
     for s, (x, y) in pos.items():
         v = 100 * d0[s]
-        fc = cmap(norm(max(v, 0.01))) if v > 0.0005 else "#f4f3f0"
+        fc = FARFILL if v > FAR else (cmap(norm(max(v, 0.01))) if v > 0.0005 else "#f4f3f0")
         ax.scatter([x], [y], s=330, color=fc, edgecolors=INK, linewidths=0.4, zorder=2)
         ax.text(x, y, s, ha="center", va="center", fontsize=6, weight="bold", zorder=4,
-                color="#ffffff" if v > 0.0005 and norm(v) > 0.55 else INK)
-        ax.text(x, y - 0.36, f"{BR[s]} {fmt(v)}", ha="center", va="center", fontsize=5.5, color=INK, zorder=4,
+                color="#ffffff" if FAR >= v > 0.0005 and norm(v) > 0.55 else (MUTED if v > FAR else INK))
+        ax.text(x, y - 0.36, BR[s] if v > FAR else f"{BR[s]} {fmt(v)}", ha="center", va="center", fontsize=5.5, color=INK, zorder=4,
                 bbox=dict(boxstyle="round,pad=0.08", fc=SURF, ec="none"))
     for k in rows:
         ax.text(-1.3, k * 1.35, str(k), ha="center", va="center", fontsize=7, color=MUTED)
@@ -56,13 +62,13 @@ def panel(ax, path, label):
     ax.set_xlim(-1.9, 6.6); ax.set_ylim(0.8, 8.9); ax.axis("off")
 
 plt.rcParams["font.family"] = "DejaVu Sans"
-for name, src, label in (("fig3_sort_graph", "steps_worked.json", "worked cell"),
+for name, src, label in (("fig4_sort_graph", "steps_worked.json", "worked cell"),
                          ("figS1_sort_graph_lysozyme", "steps_lysozyme.json", "lysozyme indexed in P1:")):
     fig, ax = plt.subplots(1, 1, figsize=(6.7, 4.9))
     panel(ax, H + src, label)
     sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
     cb = fig.colorbar(sm, ax=ax, fraction=0.025, pad=0.01, shrink=0.7)
-    cb.set_label("distance to the sort (% strain)", fontsize=7, color=MUTED); cb.ax.tick_params(labelsize=6, colors=MUTED); cb.outline.set_visible(False)
+    cb.set_label("distance to the sort (% strain); grey: at least 25 %", fontsize=7, color=MUTED); cb.ax.tick_params(labelsize=6, colors=MUTED); cb.outline.set_visible(False)
     for ext in ("pdf", "png"):
         fig.savefig(os.path.join(HERE, "..", f"{name}.{ext}"), bbox_inches="tight", dpi=200)
     plt.close(fig)

@@ -13,7 +13,11 @@ partial sums of F0 with superbase coordinates s_i + 2 k_i, s in {0,1}^4,
 |k_i| <= 3: a finite window. Enumerating all superbases of such vectors
 whose six pairwise products are non-positive on the whole face (the sign
 test of the supporting information (Section S3)) gives 1, 2, 3, 6 and 16 members for the five kinds of
-zero pattern, all with basis entries in {-1, 0, 1}.
+zero pattern. Over all 38 faces (every set of zero slots whose complement connects the
+four vectors) the members have basis entries in {-1,0,1} when the zeros avoid d, and up
+to 2 or 3 in the basis (a, b, c) of F0 for the faces whose zeros touch d -- the path
+placement of three zeros needs 3; e.g. conorms (0,0,3,2,0,5) have the obtuse basis
+(-3a-2b-c, a, a+b). Each member has a labelling whose basis lies in [-2,2] (z52).
 """
 from __future__ import annotations
 
@@ -78,3 +82,63 @@ def test_counts_from_the_window_lemma():
         counts[name] = len(mem)
         assert max(abs(x) for m in mem for r in m for x in r) == 1       # the window is far from tight
     assert counts == {"none": 1, "one": 2, "disjoint": 3, "path": 6, "triangle": 16}
+
+
+def _connected(free):
+    adj = {v: set() for v in range(4)}
+    for m in free:
+        a, b = SL[m]
+        adj[a].add(b)
+        adj[b].add(a)
+    seen, st = {0}, [0]
+    while st:
+        x = st.pop()
+        for y in adj[x] - seen:
+            seen.add(y)
+            st.append(y)
+    return len(seen) == 4
+
+
+def test_all_38_faces():
+    faces = [Z for r in range(4) for Z in itertools.combinations(range(6), r)
+             if _connected([m for m in range(6) if m not in Z])]
+    assert len(faces) == 38
+    cands = window_vectors(3)
+    by_kind = {}
+    for Z in faces:
+        verts = {v for m in Z for v in SL[m]}
+        kind = {0: "none", 1: "one"}.get(len(Z)) or (
+            ("share" if len(verts) == 3 else "disjoint") if len(Z) == 2 else ("triangle" if len(verts) == 3 else "path"))
+        mem = members_in_window(list(Z), cands)
+        mx = max(abs(x) for m in mem for r in m for x in r)
+        by_kind.setdefault(kind, set()).add((len(mem), mx))
+        if 0 not in verts:                                   # zeros avoid d: entries in {-1, 0, 1}
+            assert mx == 1, Z
+    assert {k: {n for n, _ in v} for k, v in by_kind.items()} == {
+        "none": {1}, "one": {2}, "disjoint": {3}, "share": {6}, "triangle": {16}, "path": {16}}
+    assert max(mx for v in by_kind.values() for _, mx in v) == 3
+    # the referee's example: conorms (0,0,3,2,0,5), basis (-3a-2b-c, a, a+b) is obtuse
+    G = t._gram(np.array([0, 0, 3, 2, 0, 5], float))
+    B = np.array([[-3, -2, -1], [1, 0, 0], [1, 1, 0]], float)
+    S = np.vstack([-(B.sum(0)), B])
+    assert (-(S @ G @ S.T))[np.triu_indices(4, 1)].min() >= -1e-12 and abs(round(np.linalg.det(B))) == 1
+
+
+def test_window_members_lie_in_the_universal_set():
+    """Completeness of U (z52) from Lemma A1 alone: every member of every one of the 38 faces,
+    found in the full window |k_i| <= 3 with no entry bound, is in U in all 48 labellings."""
+    import test_z52_universal_operators as u
+    W, *_ = u.universal_set()
+    keys = {tuple(w.ravel()) for w in W}
+    faces = [Z for r in range(4) for Z in itertools.combinations(range(6), r)
+             if _connected([m for m in range(6) if m not in Z])]
+    cands = window_vectors(3)
+    n = 0
+    for Z in faces:
+        for mem in members_in_window(list(Z), cands):
+            S = np.array(mem)
+            for pm in itertools.permutations(range(4)):
+                for sg in (1, -1):
+                    assert tuple((sg * S[list(pm)])[1:4].ravel()) in keys, (Z, mem)
+            n += 1
+    assert n == sum(len(members_in_window(list(Z), cands)) for Z in faces)

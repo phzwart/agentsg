@@ -58,7 +58,7 @@ def simplest_twin(ci, cj):
 cases = [("P 3, a = b = 50, c = 80 Å", (50.0, 50.0, 80.0, 90, 90, 120), "P 3"),
          ("P 2₁3, a = 60 Å", (60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"),
          ("P 1, worked cell", (30.02, 39.97, 50.03, 90.25, 92.05, 89.80), "P 1")]
-fig, axes = plt.subplots(1, 3, figsize=(10.5, 4.2), dpi=160); fig.patch.set_facecolor(SURF)
+fig, axes = plt.subplots(1, 3, figsize=(10.5, 3.5), dpi=160); fig.patch.set_facecolor(SURF)
 for ax, (title, cell, sg) in zip(axes.ravel(), cases):
     from agentsg.cell.strain_closure import LEPAGE_STRAIN, band_for
     ref = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))
@@ -89,13 +89,16 @@ for ax, (title, cell, sg) in zip(axes.ravel(), cases):
         ax.scatter([x], [y], s=1500, color=cmap(norm(v)), edgecolors=SURF, linewidths=2, zorder=2)
         ax.text(x, y + 0.03, f"{k + 1}", ha="center", va="center", fontsize=10, weight="bold",
                 color="#ffffff" if norm(v) > 0.5 else INK, zorder=4)
-        ax.text(x, y - 0.3, f"({basis_label(simplest(c))})\n{v:.2f}% · {c.size} ops",
+        ax.text(x, y - 0.3, f"({basis_label(simplest(c))})\n{v:.2f}% · {c.size} op{'s' if c.size > 1 else ''}",
                 ha="center", va="top", fontsize=6.8, color=INK, zorder=4, bbox=dict(boxstyle="round,pad=0.15", fc=SURF, ec="none"))
-    ax.set_title(f"({'abc'[cases.index((title, cell, sg))]}) {title}\n|H$_ε$| = {r.symmetry_order}, |$\\mathcal{{L}}$| = {r.group_order}: {n} distinct indexing{'s' if n > 1 else ''}",
+    ax.set_title(f"({'abc'[cases.index((title, cell, sg))]}) {title}\n|H$_ε$| = {r.symmetry_order}, |$\\mathcal{{L}}^+$| = {r.group_order // 2}: {n} distinct indexing{'s' if n > 1 else ''}",
                  fontsize=8, color=INK, loc="left")
-    ax.set_xlim(-2.1, 2.1); ax.set_ylim(-2.05, 1.75); ax.set_aspect("equal"); ax.axis("off")
+    ax.set_xlim(-2.0, 2.0); ax.set_ylim(-2.0 if n == 4 else -1.55, 1.75 if n == 4 else 1.35); ax.set_aspect("equal"); ax.axis("off")
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-fig.tight_layout()
+fig.tight_layout(rect=(0, 0, 0.965, 1), w_pad=0.2)
+cax = fig.add_axes((0.955, 0.2, 0.01, 0.55))
+cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), cax=cax)
+cb.set_label("class price (% strain)", fontsize=7, color=INK); cb.ax.tick_params(labelsize=6); cb.outline.set_visible(False)
 for ext in ("pdf", "png"):
-    fig.savefig(os.path.join(OUT, f"fig4_indexing_classes.{ext}"), facecolor=SURF, bbox_inches="tight")
+    fig.savefig(os.path.join(OUT, f"fig3_indexing_classes.{ext}"), facecolor=SURF, bbox_inches="tight")
