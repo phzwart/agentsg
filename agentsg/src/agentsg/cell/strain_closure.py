@@ -199,8 +199,10 @@ def _check_cell(cell):
         raise ValueError(f"cell edges must be positive; got {cell[:3]}")
     if not all(0 < x < 180 for x in cell[3:]):
         raise ValueError(f"cell angles must lie strictly between 0 and 180 degrees; got {cell[3:]}")
-    if max(cell[3:]) < 2 * math.pi:
-        raise ValueError(f"cell angles {cell[3:]} look like radians; give them in degrees")
+    if max(cell[3:]) < 2 * math.pi:                      # legal (a very oblique basis) but suspicious
+        import warnings
+        warnings.warn(f"cell angles {cell[3:]} are all below 2 pi degrees: if they are radians, give them in degrees",
+                      stacklevel=3)
     ca, cb, cg = (math.cos(math.radians(x)) for x in cell[3:])
     if 1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg <= 0:
         raise ValueError(f"the angles {cell[3:]} do not form a cell (the metric is not positive definite)")

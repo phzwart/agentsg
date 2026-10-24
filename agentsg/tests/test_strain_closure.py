@@ -191,10 +191,12 @@ def test_centring_and_input_checks():
     assert abs(v_h / v_r - 1) < 1e-6
     W = widened_closure(hexa, "R 3 :H")
     assert reindex(W, rcell, "R 3 :R")[0]
-    for bad in [(10, 20, 30, 90, 90), (-10, 20, 30, 90, 90, 90), (10, 20, 30, 1.57, 1.57, 1.57),
+    for bad in [(10, 20, 30, 90, 90), (-10, 20, 30, 90, 90, 90),
                 (10, 20, 30, 90, 90, 190), (10, 20, 30, 10, 10, 170)]:
         with pytest.raises(ValueError):
             reduce_cell(bad)
+    with pytest.warns(UserWarning, match="radians"):
+        reduce_cell((10, 20, 30, 1.57, 1.57, 1.57))
     with pytest.raises(ValueError, match="centring"):
         reduce_cell((10, 20, 30, 90, 90, 90), "Q 2")
     Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
