@@ -105,6 +105,15 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
   face, as reduction returns it and in its best labelling (`results_face_labellings.txt`).
 * `lookup_benchmark.py`: the lookup of the 6096 matrices on the benchmark and stress
   families, with the references whose r_1 does not certify it (`results_lookup.txt`).
+* `niggli_presentation.py`: where Selling reduction puts the near-zero conorms of measured
+  near-oP cells started from the Niggli form and from random bases
+  (`results_niggli_presentation.txt`).
+* `lookup_plate_case.py`: the plate case in which an uncertified lookup misses an operator
+  (`results_lookup_plate_case.txt`).
+* `cmdlm_tree_vs_U.py` with `cmdlm_dumptree.cpp` (compiled against LatticeRepLib): the lattice
+  matcher's depth-2 tree against the S6 actions of U (`results_cmdlm_tree.txt`).
+* `export_universal_operators.py`: U as column operators with determinants
+  (`universal_operators_columns.json`).
 * `adjacency_radii.py`: r_1 for the benchmark references and 2000 PDB cells, and the time
   to widen and reindex (`results_adjacency_radii.txt`).
 * `niggli_types.py`: Selling reduction from the Niggli cell of near-monoclinic cells and
@@ -117,8 +126,11 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
   identical cells, block weighting and Bravais type; shares of entries within the band;
   how often the cell ranks a wrong indexing first on same-form pairs
   (`results_pdb_band_controls.txt`).
-* `pdb_lepage_null.py`: the Le Page 3 degree rate of real cells against cells with
-  parameters shuffled within a space group (`results_pdb_lepage_null.txt`).
+* `pdb_lepage_null.py`: real cells against cells with parameters shuffled within a space
+  group (and within volume classes): the Le Page 3 degree rate and the shares with a
+  priced alternative within 1 % and 4.2 % (`results_pdb_lepage_null.txt`).
+* `pdb_lepage.py --redo-zero` recomputes the entries with a zero-price extra operator after
+  the reported lattice's own holohedry is excluded.
 * `lepage_calibration.py`: the strain distance to each sort and the operator prices at
   exactly 3 degrees of obliquity (`results_lepage_calibration.txt`).
 

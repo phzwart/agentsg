@@ -71,7 +71,7 @@ def main():
         x, y = ecdf(100 * data)
         ax.plot(x, y, color=col, lw=2, label=lab)
     ax.set_xscale("log"); ax.set_xlim(0.05, 20); ax.set_ylim(0, 1)
-    ax.set_xlabel("price (% strain)", color=INK); ax.set_ylabel("cumulative fraction", color=INK)
+    ax.set_xlabel("price (%)", color=INK); ax.set_ylabel("cumulative fraction", color=INK)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
     for s in ("left", "bottom"):
@@ -81,7 +81,7 @@ def main():
     ax.legend(frameon=False, loc="upper left", fontsize=7, labelcolor=INK)
     fig.tight_layout()
     for ext in ("pdf", "png"):
-        fig.savefig(os.path.join(HERE, "..", f"fig4_pdb_prices.{ext}"), dpi=200, bbox_inches="tight")
+        fig.savefig(os.path.join(HERE, "..", f"fig3_pdb_prices.{ext}"), dpi=200, bbox_inches="tight")
 
 
 if __name__ == "__main__":

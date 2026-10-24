@@ -1,0 +1,2 @@
+depth 2 (default): matcher tree: 45876 matrices; U: 3048 distinct S6 actions; in the tree: 3048; inverses in the tree: 3048
+depth 1: matcher tree: 1566 matrices; U: 3048 distinct S6 actions; in the tree: 958; inverses in the tree: 958

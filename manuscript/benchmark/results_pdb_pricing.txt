@@ -1,4 +1,4 @@
-206172 entries; 43232 pseudo-symmetric at 3 deg; 1189 with an exact extra lattice symmetry (price 0); 42043 priced only
+206172 entries; 43232 pseudo-symmetric at 3 deg; 591 with an exact extra lattice symmetry (price 0); 42641 priced only
 largest price / (2 sqrt2 artanh sin delta), delta > 0.05 deg: median 1.000, 10-90 % 1.000-1.000
 
 cheapest pseudo-symmetric alternative, priced cases, by transition (reported -> Le Page)
@@ -14,14 +14,14 @@ oS->hP         1169   7.34%    10%     26%     45%
 oI->tI         1165   6.25%    19%     38%     52%
 mC->oF         1067   7.29%     8%     29%     46%
 oS->tP          880   7.42%    14%     32%     46%
-tP->cP          620   7.06%     7%     27%     47%
+tP->cP          724   7.10%     7%     28%     47%
 aP->mP          571   6.97%    15%     30%     48%
 mP->hP          479   0.71%    61%     91%    100%
 mC->hR          391   8.92%    19%     29%     37%
 mC->tI          391   4.56%    23%     46%     64%
-all           42043   6.67%    15%     35%     50%
+all           42641   6.69%    14%     35%     50%
 
-of all entries: priced alternative within 4.2 %: 7.2 %, within 6.7 %: 10.2 %; exact extra lattice symmetry: 0.6 %
+of all entries: priced alternative within 4.2 %: 7.3 %, within 6.7 %: 10.3 %; exact extra lattice symmetry: 0.3 %
 
 by reported type: entries with a pseudo-symmetric alternative <= 4.2 % (exact included)
   aP:   16 % of 8522
@@ -32,5 +32,5 @@ by reported type: entries with a pseudo-symmetric alternative <= 4.2 % (exact in
   oI:   10 % of 5044
   oF:   20 % of 280
   tP:    1 % of 20610
-  tI:    7 % of 4028
-  hR:    8 % of 5457
+  tI:    3 % of 4028
+  hR:    4 % of 5457

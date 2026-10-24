@@ -13,7 +13,7 @@ for i, (w, d, k) in enumerate(ROWS[::-1]):
     ax.barh(i, max(d, 0.02), color=COL[k], height=0.72)
     ax.text(max(d, 0.02) + 0.06, i, w, va="center", fontsize=6.5, family="monospace")
 ax.axvline(7.4, color="#b2342b", lw=1, ls=(0, (4, 2)))
-ax.text(7.3, 15.6, "3° (0.074)", color="#b2342b", fontsize=7, ha="right", va="bottom")
+ax.text(7.3, 15.6, "7.4 % strain", color="#b2342b", fontsize=7, ha="right", va="bottom")
 ax.set_yticks([]); ax.set_xlim(0, 8); ax.set_xlabel("depth under the measured metric (% strain)", fontsize=8)
 ax.tick_params(labelsize=7)
 for s in ("top", "right", "left"):

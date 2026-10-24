@@ -10,6 +10,8 @@ alone ranks a wrong indexing first.
 3. Misranking: for a random sample of same-form pairs (cut 20 %), the second cell is
    reindexed against the first with indexing_classes (band 7.4 %, the first cell's space
    group); counted are pairs where a wrong class is strictly cheaper than the identity's
+   (split by margin, and by whether that class contains a relabelling of axes, which a
+   different setting convention for the two deposits would explain)
    (the cell ranks a wrong indexing first), pairs with a wrong class at the identity's
    price (an exact lattice symmetry outside the Laue group: merohedry, which no cell can
    resolve), and pairs with a priced wrong class within the band (the cell alone does not
@@ -32,6 +34,27 @@ from agentsg.cell import strain_closure as sc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "..", "data", "pdb_cells.duckdb")
+
+
+def _signed_permutation(o):
+    M = np.array([[float(x) for x in row] for row in o.rows])
+    return bool(np.all(np.isin(M, (-1, 0, 1))) and np.all(np.abs(M).sum(0) == 1) and np.all(np.abs(M).sum(1) == 1))
+
+
+def best_price(c1, c2):
+    """the cheapest proper operator between two cells: the identity, or the lookup of U
+    between the two Selling-reduced cells (exact below r_1, Remark A7)."""
+    U = sc.universal_operators().astype(float)
+    r1, r2 = sc.reduce_cell(c1), sc.reduce_cell(c2)
+    B1 = np.array([[float(x) for x in r] for r in r1.basis.rows]); B2 = np.array([[float(x) for x in r] for r in r2.basis.rows])
+    sgn = np.sign(np.linalg.det(B1) * np.linalg.det(B2))
+    Ws = U[np.round(np.linalg.det(U)) == sgn]
+    Ps = np.einsum("ij,njk,kl->nil", B1, Ws, np.linalg.inv(B2))
+    G1 = np.array(metric_tensor(tuple(c1)), float); G2 = np.array(metric_tensor(tuple(c2)), float)
+    w, V = np.linalg.eigh(G2); Gm = V @ np.diag(w ** -0.5) @ V.T
+    Y = np.einsum("ij,nkj,kl,nlm,mp->nip", Gm, Ps, G1, Ps, Gm)
+    lv = np.log(np.linalg.eigvalsh(Y))
+    return float(np.linalg.norm(lv - lv.mean(1, keepdims=True), axis=1).min())
 
 
 def wq(x, w, q):
@@ -86,6 +109,12 @@ def main(n_rank=3000):
             continue
         q = np.percentile(fit[mb], [50, 90, 95]); band_bt[bt] = q[1:]
         print(f"    {bt}  n={mb.sum():6d}  " + "/".join(f"{100 * x:.2f}" for x in q))
+    print("  with the cheapest operator instead of the identity (lookup of U), by reported type (cut 20 %):")
+    for bt in ["aP", "mP", "mC", "oP"]:
+        mb = np.where(m & np.array([p["bt"] == bt for p in P]))[0]
+        best = np.array([min(fit[i], best_price(P[i]["c1"], P[i]["c2"])) for i in mb])
+        print(f"    {bt}  n={len(mb):6d}  " + "/".join(f"{100 * x:.2f}" for x in np.percentile(best, [50, 90, 95]))
+              + f"   (identity: " + "/".join(f"{100 * x:.2f}" for x in np.percentile(fit[mb], [50, 90, 95])) + ")")
     N90, N95 = np.percentile(fit[m], [90, 95])
 
     print("\n2. entries whose cheapest pseudo-symmetric alternative lies within the band")
@@ -120,18 +149,30 @@ def main(n_rank=3000):
         idc = [k for k in res.classes if any(key(o) == eye for o in k.operators)]
         if not idc:
             c["identity beyond the band"] += 1
+            if res.classes:
+                c["  of which a wrong class within the band"] += 1
             continue
         p_id = min(x.price for x in [res.classes[res.classes.index(idc[0])].representative])
         others = [k.representative.price for k in res.classes if k is not idc[0]]
         if others and min(others) < p_id - 1e-6:
             c["wrong class strictly cheaper"] += 1
+            k0 = min((k for k in res.classes if k is not idc[0]), key=lambda k: k.representative.price)
+            if p_id - k0.representative.price <= 5e-4:
+                c["  by at most 0.05 points (below the precision of a deposited cell)"] += 1
+            elif any(_signed_permutation(o) for o in k0.operators):
+                c["  by more, through a relabelling of axes (a setting convention)"] += 1
+            else:
+                c["  by more, otherwise"] += 1
         if any(abs(x - p_id) <= 1e-6 for x in others):
             c["a wrong class at the same price (exact lattice symmetry)"] += 1
         if any(x > p_id + 1e-6 for x in others):
             c["a priced wrong class within the band"] += 1
     n = c["n"]
-    for k in ("wrong class strictly cheaper", "a wrong class at the same price (exact lattice symmetry)",
-              "a priced wrong class within the band", "identity beyond the band"):
+    for k in ("wrong class strictly cheaper", "  by at most 0.05 points (below the precision of a deposited cell)",
+              "  by more, through a relabelling of axes (a setting convention)", "  by more, otherwise",
+              "a wrong class at the same price (exact lattice symmetry)",
+              "a priced wrong class within the band", "identity beyond the band",
+              "  of which a wrong class within the band"):
         print(f"  {k}: {c[k]} ({100 * c[k] / n:.2f} %)")
     print(f"  pairs scored {n}, refused {c['refused']}")
 

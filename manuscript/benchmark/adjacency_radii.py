@@ -47,6 +47,19 @@ def main(n_pdb=2000):
     con = duckdb.connect(os.path.join(ROOT, "data", "pdb_cells.duckdb"), read_only=True)
     pdb = con.execute(f"select a, b, c, alpha, beta, gamma, sg_hm from cells using sample {n_pdb} rows (reservoir, 7)").fetchall()
     radii([(tuple(p[:6]), p[6] or None) for p in pdb], f"PDB sample")
+    for pid in ("3HR2", "3HQV", "6BZP", "1CGM"):                    # the thin tail of the archive
+        p = con.execute("select a, b, c, alpha, beta, gamma, sg_hm from cells where pdb_id = ?", [pid]).fetchone()
+        try:
+            r1 = sc.adjacency_radius(sc.reduce_cell(tuple(p[:6]), p[6] or None).G)
+            print(f"{pid} {tuple(round(x, 2) for x in p[:6])} {p[6]}: r_1 {100 * r1:.2f} %")
+        except ValueError as e:
+            print(f"{pid} {tuple(round(x, 2) for x in p[:6])} {p[6]}: refused ({e})")
+    sys.path.insert(0, HERE)
+    import pdb_band_controls as bc
+    t0 = time.perf_counter()
+    for r in rows[:50]:
+        bc.best_price(r["reference_cell"], r["measured_cell"])
+    print(f"vectorised lookup of U for one new cell, reductions included: {(time.perf_counter() - t0) / 50:.3f} s on average")
     t = []
     for r in rows[::10]:
         t0 = time.perf_counter()

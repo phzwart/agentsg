@@ -1,3 +1,8 @@
-benchmark references: 697 cells (0 refused); r_1 % quantiles 1/5/10/50: 25.0/25.0/25.0/25.0; at the 25 % cap: 99.4 %; above 7.7 %: 99.6 %; median time 5 ms
-PDB sample: 2000 cells (0 refused); r_1 % quantiles 1/5/10/50: 23.5/25.0/25.0/25.0; at the 25 % cap: 98.6 %; above 7.7 %: 100.0 %; median time 13 ms
-benchmark, every 10th case (78): widening the reference median 0.02 s (90th 0.04); reindexing one new cell median 0.03 s (90th 0.17)
+benchmark references: 697 cells (0 refused); r_1 % quantiles 1/5/10/50: 25.0/25.0/25.0/25.0; at the 25 % cap: 99.4 %; above 7.7 %: 99.6 %; median time 4 ms
+PDB sample: 2000 cells (0 refused); r_1 % quantiles 1/5/10/50: 23.5/25.0/25.0/25.0; at the 25 % cap: 98.6 %; above 7.7 %: 100.0 %; median time 11 ms
+3HR2 (39.97, 26.95, 677.9, 89.24, 94.59, 105.58) P 1: r_1 5.99 %
+3HQV (39.97, 26.95, 677.9, 89.24, 94.59, 105.58) P 1: r_1 5.99 %
+6BZP (13.79, 4.93, 101.9, 90.0, 90.0, 90.0) P 21 21 21: r_1 6.76 %
+1CGM (1.0, 1.0, 70.8, 90.0, 90.0, 90.0) P 1: refused (the ball of Lemma A6 holds 21010 lattice vectors at strain 0.250 (limit 5000): the cell is too anisotropic for the exact enumeration at this band; use a smaller band, or pass max_ball=None and expect a long run)
+vectorised lookup of U for one new cell, reductions included: 0.039 s on average
+benchmark, every 10th case (78): widening the reference median 0.01 s (90th 0.02); reindexing one new cell median 0.02 s (90th 0.11)

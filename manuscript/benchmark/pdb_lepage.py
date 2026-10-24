@@ -4,7 +4,9 @@ data/pdb_cells.duckdb), and the strain price of the pseudo-symmetries it finds.
 For each entry: the reported Bravais type (from the space group); the highest lattice
 symmetry that the cctbx lattice-symmetry analysis (Le Page, maximal obliquity 3 deg) finds
 for the primitive Niggli cell, with its obliquity; the proper operators of that group that
-are not symmetries of the reported space group (the pseudo-symmetries), each priced in the
+are not symmetries of the reported space group, nor of the reported lattice's own exact
+holohedry (a merohedral space group's lattice symmetries outside its point group price at 0
+and are not pseudo-symmetries; they are counted as "merohedral"), each priced in the
 strain norm after the scale fit at the deposited metric, by rotation order; and the Delone
 sort of the idealised lattice of the top group. Writes pdb_lepage.jsonl (one line per entry)
 and prints the tables.
@@ -115,8 +117,17 @@ def one(row):
         top = groups[0]
         tb = btype(top["best_subsym"].space_group())     # type from the standard setting; ops from subsym
         G = G_of(nig.unit_cell())
+        exact = lattice_symmetry.metric_subgroups(input_symmetry=p1, max_delta=0.02).result_groups[0]
+        if btype(exact["best_subsym"].space_group()) == rep:          # the reported lattice's own holohedry
+            hol = exact["best_subsym"].change_basis(exact["cb_op_inp_best"].inverse())
+            mero = {tuple(int(round(x)) for x in op.r().as_double()) for op in hol.space_group().all_ops()} - rep_rot
+            rep_rot |= mero
+        else:
+            mero = set()
         inp = top["best_subsym"].change_basis(top["cb_op_inp_best"].inverse())   # idealised, in the Niggli basis
         out = dict(id=pid, sg=sg, reported=rep, lepage=tb, delta=round(top["max_angular_difference"], 4))
+        if mero:
+            out["merohedral"] = len(mero)
         if HOLO[tb] > HOLO[rep]:
             prices = collections.defaultdict(list)
             for op in inp.space_group().all_ops():
@@ -178,8 +189,28 @@ def table():
         print(f"(sort not classified: {unk})")
 
 
+def redo_zero():
+    """Recompute, with the current one(), every entry whose cheapest extra price is 0 (the
+    only entries the exclusion of the reported holohedry can change), and rewrite OUT."""
+    import duckdb
+    R = [json.loads(l) for l in open(OUT)]
+    ids = {r["id"] for r in R if r.get("extra") and min(x for v in r["extra"].values() for x in v) < 1e-4}
+    con = duckdb.connect(DB, read_only=True)
+    rows = [r for r in con.execute("select pdb_id, a, b, c, alpha, beta, gamma, sg_hm from cells").fetchall()
+            if r[0] in ids]
+    with ProcessPoolExecutor(max(1, os.cpu_count() or 1)) as ex:
+        new = {r["id"]: r for r in ex.map(one, rows, chunksize=20)}
+    with open(OUT, "w") as f:
+        for r in R:
+            f.write(json.dumps(new.get(r["id"], r)) + "\n")
+    print(f"recomputed {len(new)} entries")
+    table()
+
+
 if __name__ == "__main__":
     if "--table" in sys.argv:
         table()
+    elif "--redo-zero" in sys.argv:
+        redo_zero()
     else:
         run()

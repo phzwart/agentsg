@@ -1,0 +1,5 @@
+Niggli type, presentation: reductions with a near-zero conorm on d / all
+  type I  Niggli form     67 / 67
+  type I  random basis   402 / 402
+  type II Niggli form      0 / 83
+  type II random basis   370 / 498

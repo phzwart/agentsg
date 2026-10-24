@@ -1,6 +1,11 @@
-Le Page 3 deg: share of entries with a higher lattice symmetry, real cells against shuffled (2000 each)
-  P 1         (aP, 8472 entries): real  42.3 %  shuffled  39.5 %  excess  +2.8 points
-  P 1 21 1    (mP, 34889 entries): real  44.4 %  shuffled  44.8 %  excess  -0.4 points
-  C 1 2 1     (mC, 21471 entries): real  24.4 %  shuffled  26.0 %  excess  -1.6 points
-  P 21 21 21  (oP, 46527 entries): real  22.6 %  shuffled  15.2 %  excess  +7.4 points
-  P 21 21 2   (oP, 8993 entries): real  15.1 %  shuffled  16.1 %  excess  -1.1 points
+share of entries (%, with 95 % interval) with a higher lattice at 3 deg / cheapest alternative <= 1 % / <= 4.2 %; 1500 cells per arm
+  P 1         seed 1: real 42.3±2.5 / 9.9±1.5 / 15.7±1.8;  shuffled 37.0±2.4 / 3.1±0.9 / 10.1±1.5;  shuffled within volume 33.0±2.4 / 2.7±0.8 / 7.5±1.3
+  P 1         seed 2: real 44.5±2.5 / 10.7±1.6 / 16.3±1.9;  shuffled 41.2±2.5 / 4.3±1.0 / 10.3±1.5;  shuffled within volume 30.4±2.3 / 1.8±0.7 / 6.5±1.2
+  P 1 21 1    seed 1: real 46.5±2.5 / 8.9±1.4 / 18.1±1.9;  shuffled 43.5±2.5 / 5.3±1.1 / 15.7±1.8;  shuffled within volume 39.0±2.5 / 4.8±1.1 / 12.6±1.7
+  P 1 21 1    seed 2: real 45.9±2.5 / 9.5±1.5 / 18.5±2.0;  shuffled 44.4±2.5 / 5.9±1.2 / 17.5±1.9;  shuffled within volume 40.1±2.5 / 5.4±1.1 / 14.0±1.8
+  C 1 2 1     seed 1: real 25.1±2.2 / 5.5±1.2 / 10.1±1.5;  shuffled 25.3±2.2 / 2.7±0.8 / 7.9±1.4;  shuffled within volume 21.5±2.1 / 2.3±0.8 / 7.5±1.3
+  C 1 2 1     seed 2: real 22.7±2.1 / 3.9±1.0 / 8.4±1.4;  shuffled 24.7±2.2 / 2.9±0.8 / 8.2±1.4;  shuffled within volume 21.1±2.1 / 1.9±0.7 / 6.1±1.2
+  P 21 21 21  seed 1: real 23.3±2.1 / 2.0±0.7 / 6.9±1.3;  shuffled 17.1±1.9 / 1.3±0.6 / 5.1±1.1;  shuffled within volume 13.3±1.7 / 1.1±0.5 / 4.3±1.0
+  P 21 21 21  seed 2: real 24.1±2.2 / 2.6±0.8 / 8.7±1.4;  shuffled 14.1±1.8 / 1.5±0.6 / 5.1±1.1;  shuffled within volume 15.8±1.8 / 1.1±0.5 / 3.7±1.0
+  P 21 21 2   seed 1: real 16.3±1.9 / 1.5±0.6 / 5.2±1.1;  shuffled 15.2±1.8 / 1.5±0.6 / 4.6±1.1;  shuffled within volume 17.7±1.9 / 1.7±0.6 / 5.3±1.1
+  P 21 21 2   seed 2: real 17.4±1.9 / 1.9±0.7 / 6.1±1.2;  shuffled 16.1±1.9 / 1.2±0.6 / 5.3±1.1;  shuffled within volume 17.4±1.9 / 1.5±0.6 / 5.1±1.1

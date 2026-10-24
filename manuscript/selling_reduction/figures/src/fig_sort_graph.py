@@ -62,8 +62,8 @@ def panel(ax, path, label):
     ax.set_xlim(-1.9, 6.6); ax.set_ylim(0.8, 8.9); ax.axis("off")
 
 plt.rcParams["font.family"] = "DejaVu Sans"
-for name, src, label in (("figB1_sort_graph", "steps_worked.json", "worked cell"),
-                         ("figS1_sort_graph_lysozyme", "steps_lysozyme.json", "lysozyme indexed in P1:")):
+for name, src, label in (("figS1_sort_graph", "steps_worked.json", "worked cell"),
+                         ("figS2_sort_graph_lysozyme", "steps_lysozyme.json", "lysozyme indexed in P1:")):
     fig, ax = plt.subplots(1, 1, figsize=(6.7, 4.9))
     panel(ax, H + src, label)
     sm = plt.cm.ScalarMappable(norm=norm, cmap=cmap)

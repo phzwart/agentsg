@@ -34,7 +34,7 @@
 \renewcommand{\thefigure}{S\arabic{figure}}
 \setcounter{table}{0}
 
-Table, section and equation numbers of the main text are cited as there. Conorm vectors are written in the slot order $da,db,dc,ab,ac,bc$ of the main text, and strains in per cent. Section~S6 lists, for every section, table and figure, the check that reproduces its numbers.
+Table, section and equation numbers of the main text are cited as there. Conorm vectors are written in the slot order $da,db,dc,ab,ac,bc$ of the main text, and strains in per cent. Section~S7 lists, for every section, table and figure, the check that reproduces its numbers.
 
 %==============================================================================
 \section{Catalogues of shapes and specialisations}
@@ -139,9 +139,9 @@ hR R3 & cF C3 & $r=s$ & 1 & $\alpha=60^\circ$ \\
 
 \emph{The benchmark.} The directory \texttt{manuscript/benchmark} of the repository holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case carries its Niggli cell. The errors are isotropic in the metric tensor, of median strain $0.1\%$. A case counts as found when the true proper operator itself is among the candidates. \texttt{evaluate\_strain.py} scores the closure and the $\{-1,0,1\}$ search at the band and at three times each case's error (\texttt{results\_strain.txt}); \texttt{evaluate.py --niggli} tallies the Niggli cells by family and sort (\texttt{results\_niggli.txt}). The measured Niggli cell is a different cell from the reference's in 45 cases (O1B 23, O3 12, M1B 6, one each at M2B, M3, R3 and T2; 14 of them a change between type~I and type~II), and the same cell in another basis in 125 (O1B 25, M1A 15, O1A 15, T1 15, M1B 13, O4 9, O2 7, R1 7, M2A 6, T2 6, O3 5, A2 1, A3 1).
 
-\emph{The comparisons.} \texttt{compare\_methods.py} runs the methods of Table~9 of the main text on the benchmark (\texttt{results\_compare.txt}) and, with \texttt{--stress}, on the stress family (\texttt{results\_stress.txt}): 60 references drawn from the benchmark, each with independent traceless errors on the reference and the new cell, scaled so that the true operator's price is $t$ times the band, $t=0.5$, $0.9$, $1.1$ and $1.5$, and a random proper reindexing with entries in $\{-2,\dots,2\}$. Each method's candidates are made proper, priced by the geodesic distance after the best scale, and kept within the band; at $t=1.1$ and $1.5$ no method found the true operator, as by construction none should. \texttt{window\_failures.py} builds the window family (\texttt{results\_window\_failures.txt}): 300 lattices of the sorts M4, O4, H4, O5, T5 and C5 with random parameters, each measured twice with an error of $0.1$ to $2\%$, the new cell in a random proper basis and the reference given as its Niggli cell, classified by the Niggli type of the reference and by the kind of face (with an exact reference in the labelling of the sort's pattern the zeros never sit on $d$ and no window fails); the same 300 lattices, drawn again, with the reference in a random proper basis; and 60 lattices on random two- and three-zero faces whose closure has a member needing an entry of $3$, measured in that member. \texttt{coset\_rank.py} groups the closure's candidates by the exact symmetries of the underlying lattice (\texttt{results\_coset.txt}). \texttt{niggli\_types.py} reduces near-monoclinic cells from their Niggli cells and records where the near-zero conorms land (\texttt{results\_niggli\_types.txt}). \texttt{face\_labellings.py} gives, for every face, the largest entry of the operators out of the reduced cell as reduction returns it and in its best labelling (\texttt{results\_face\_labellings.txt}). \texttt{lookup\_benchmark.py} runs the lookup of $\mathcal U$ on the benchmark and the stress family and counts the references whose $r_1$ does not certify it (\texttt{results\_lookup.txt}). \texttt{adjacency\_radii.py} computes $r_1$ for the benchmark references and for 2000 PDB cells drawn at random, and times the widening and the reindexing (\texttt{results\_adjacency\_radii.txt}).
+{\sloppy \emph{The comparisons.} \texttt{compare\_methods.py} runs the methods of Table~10 of the main text on the benchmark (\texttt{results\_compare.txt}) and, with \texttt{--stress}, on the stress family (\texttt{results\_stress.txt}): 60 references drawn from the benchmark, each with independent traceless errors on the reference and the new cell, scaled so that the true operator's price is $t$ times the band, $t=0.5$, $0.9$, $1.1$ and $1.5$, and a random proper reindexing with entries in $\{-2,\dots,2\}$. Each method's candidates are made proper, priced by the geodesic distance after the best scale, and kept within the band; at $t=1.1$ and $1.5$ no method found the true operator, as by construction none should. \texttt{window\_failures.py} builds the window family (\texttt{results\_window\_failures.txt}): 300 lattices of the sorts M4, O4, H4, O5, T5 and C5 with random parameters, each measured twice with an error of $0.1$ to $2\%$, the new cell in a random proper basis and the reference given as its Niggli cell, classified by the Niggli type of the reference and by the kind of face (with an exact reference in the labelling of the sort's pattern the zeros never sit on $d$ and no window fails); the same 300 lattices, drawn again, with the reference in a random proper basis; and 60 lattices on random two- and three-zero faces whose closure has a member needing an entry of $3$, measured in that member. \texttt{coset\_rank.py} groups the closure's candidates by the exact symmetries of the underlying lattice (\texttt{results\_coset.txt}). \texttt{niggli\_types.py} reduces near-monoclinic cells from their Niggli cells and records where the near-zero conorms land (\texttt{results\_niggli\_types.txt}). \texttt{face\_labellings.py} gives, for every face, the largest entry of the operators out of the reduced cell as reduction returns it and in its best labelling (\texttt{results\_face\_labellings.txt}). \texttt{lookup\_benchmark.py} runs the lookup of $\mathcal U$ on the benchmark and the stress family and counts the references whose $r_1$ does not certify it (\texttt{results\_lookup.txt}). \texttt{benchmark\_misses.py} lists the benchmark cases that the $\{-1,0,1\}$ window and the pipeline miss (\texttt{results\_benchmark\_misses.txt}). \texttt{niggli\_presentation.py} reduces measured near-oP cells from their Niggli form and from random bases and records where the near-zero conorms land (\texttt{results\_niggli\_presentation.txt}). \texttt{lookup\_plate\_case.py} builds the plate case in which an uncertified lookup misses an operator (\texttt{results\_lookup\_plate\_case.txt}). \texttt{cmdlm\_tree\_vs\_U.py}, with \texttt{cmdlm\_dumptree.cpp} compiled against LatticeRepLib, checks that the lattice matcher's depth-two tree contains the $S^6$ actions of $\mathcal U$ (\texttt{results\_cmdlm\_tree.txt}). \texttt{export\_universal\_operators.py} writes $\mathcal U$ as column operators with their determinants (\texttt{universal\_operators\_columns.json}). \texttt{adjacency\_radii.py} computes $r_1$ for the benchmark references and for 2000 PDB cells drawn at random, and times the widening and the reindexing (\texttt{results\_adjacency\_radii.txt}).\par}
 
-{\sloppy\emph{The PDB.} \texttt{pdb\_nonisomorphism.py} measures the price between entries of one crystal form (\texttt{results\_pdb\_nonisomorphism.txt}). \texttt{pdb\_lepage.py} runs the cctbx lattice-symmetry analysis at $3^\circ$ on every entry and prices the pseudo-symmetries (\texttt{pdb\_lepage.jsonl}, \texttt{results\_pdb\_lepage.txt}); \texttt{pdb\_pricing\_summary.py} gives the transitions and the fractions within the non-isomorphism band (\texttt{results\_pdb\_pricing.txt}). \texttt{pdb\_band\_controls.py} varies the cut between crystal forms, drops identical cells, weights deposition blocks equally, splits the band by Bravais type, and counts on 3000 same-form pairs how often a wrong class is cheaper than the identity's (\texttt{results\_pdb\_band\_controls.txt}). \texttt{pdb\_lepage\_null.py} compares the Le Page rate of real cells with that of cells whose parameters are shuffled within a space group (\texttt{results\_pdb\_lepage\_null.txt}). Table~\ref{tab:pdbsort} lists the prices by the Delone sort of the Le Page lattice and Table~10 of the main text by transition from the reported type.\par}
+{\sloppy\emph{The PDB.} \texttt{pdb\_nonisomorphism.py} measures the price between entries of one crystal form (\texttt{results\_pdb\_nonisomorphism.txt}). \texttt{pdb\_lepage.py} runs the cctbx lattice-symmetry analysis at $3^\circ$ on every entry and prices the pseudo-symmetries (\texttt{pdb\_lepage.jsonl}, \texttt{results\_pdb\_lepage.txt}); \texttt{pdb\_pricing\_summary.py} gives the transitions and the fractions within the non-isomorphism band (\texttt{results\_pdb\_pricing.txt}). \texttt{pdb\_band\_controls.py} varies the cut between crystal forms, drops identical cells, weights deposition blocks equally, splits the band by Bravais type, and counts on 3000 same-form pairs how often a wrong class is cheaper than the identity's (\texttt{results\_pdb\_band\_controls.txt}). \texttt{pdb\_lepage\_null.py} compares the Le Page rate of real cells with that of cells whose parameters are shuffled within a space group (\texttt{results\_pdb\_lepage\_null.txt}). Table~\ref{tab:pdbsort} lists the prices by the Delone sort of the Le Page lattice and Table~\ref{tab:pdbtrans} by transition from the reported type.\par}
 
 \emph{Walks.} Table~\ref{tab:walks} compares four walks on the measured metric, with a band $\tau$ on the conorms, and the construction of Section~S4 against brute force.
 
@@ -168,7 +168,7 @@ idealise at $4\tau$, enumerate the exact closure, filter & 0 \\
 
 The closure can be described without any lattice. An operator $\Wop$, written as the new basis in the coordinates of the reduced cell, acts on the six conorms by a fixed integer $6\times6$ matrix $\mathbf A_{\Wop}$, since every conorm of $\Wop F_0$ is an integer combination of the conorms of $F_0$. The reduced cells are the points of the orthant $\{p\ge0\}$ in conorm space. Selling (1874) showed that every lattice has a conorm vector in this orthant, unique up to the 48 swaps except on the faces (Delaunay, 1933; Conway \& Sloane, 1992), and the closure of a lattice is the set of points of its orbit that lie in the orthant: one in the interior, several on the faces. So $\Wop$ is an operator of the closure of every lattice on the face of $Z$ exactly when $\mathbf A_{\Wop}$ maps the face $\{p\ge0,\ p_Z=0\}$ into the orthant, a sign condition on the entries of $\mathbf A_{\Wop}$ and nothing else.
 
-Enumerating integer matrices with entries in $[-2,2]$ under that condition, over all 38 faces, and closing the result under relabelling at both ends, gives a set $\mathcal U$ of $6096=48\times127$ integer matrices with entries in $\{-3,\dots,3\}$; per face there are $48\times1$, $2$, $3$, $6$ and $16$ matrices for no zero, one zero, two zeros on disjoint pairs, two zeros sharing a vector and three zeros. Both placements of three zeros, the triangle and the path, were enumerated; they describe the same lattices read from an orthogonal cell or from a cell with a face diagonal, each has 16 members, and no swap carries one placement into the other. $\mathcal U$ is closed under inversion, and every element has a labelling whose basis vectors have entries in $[-2,2]$. That $\mathcal U$ contains every operator between two reduced cells of one lattice, whatever the lattice, does not rest on that window: Lemma~A1 of the main text confines the members of every closure to superbase coordinates $s+2k$ with $|k_i|\le3$ relative to a reduced cell, and the enumeration of that whole window, over all 38 faces, finds only members that lie in $\mathcal U$ in each of their 48 labellings. In the basis of the reduced cell their entries are in $\{-1,0,1\}$ when the zero conorms avoid $d$, and up to $3$ otherwise (Table~6 of the main text). Up to relabelling at both ends $\mathcal U$ has nine kinds of element, of flip length $0$ to $4$ (Table~\ref{tab:kinds}).
+Enumerating integer matrices with entries in $[-2,2]$ under that condition, over all 38 faces, and closing the result under relabelling at both ends, gives a set $\mathcal U$ of $6096=48\times127$ integer matrices with entries in $\{-3,\dots,3\}$; per face there are $48\times1$, $2$, $3$, $6$ and $16$ matrices for no zero, one zero, two zeros on disjoint pairs, two zeros sharing a vector and three zeros. Both placements of three zeros, the triangle and the path, were enumerated; they describe the same lattices read from an orthogonal cell or from a cell with a face diagonal, each has 16 members, and no swap carries one placement into the other. $\mathcal U$ is closed under inversion, and every element has a labelling whose basis vectors have entries in $[-2,2]$. That $\mathcal U$ contains every operator between two reduced cells of one lattice, whatever the lattice, does not rest on that window: Lemma~A1 of the main text confines the members of every closure to superbase coordinates $s+2k$ with $|k_i|\le3$ relative to a reduced cell, and the enumeration of that whole window, over all 38 faces, finds only members that lie in $\mathcal U$ in each of their 48 labellings. In the basis of the reduced cell their entries are in $\{-1,0,1\}$ when the zero conorms avoid $d$, and up to $3$ otherwise (Table~7 of the main text). Up to relabelling at both ends $\mathcal U$ has nine kinds of element, of flip length $0$ to $4$ (Table~\ref{tab:kinds}).
 
 \begin{table}
 \caption{The nine kinds of operator between Selling-reduced cells, up to relabelling at both ends; ``matrices'' counts the integer matrices of the kind in $\mathcal U$, ``flips'' its length as a flip word, and the last column the zero patterns in whose closures it occurs.}
@@ -229,8 +229,6 @@ For a superbase $F$ and two metrics, $\kappa_F(\Gmet,\Gmet')$ is the largest cha
 %==============================================================================
 \section{Further tables}
 %==============================================================================
-
-\emph{Against BLDConograph and SELLA} (Appendix~B of the main text). On the seven sample cells that Oishi-Tomiyasu (2024) distributes with BLDConograph, the highest Bravais type within $7.4\%$ is the program's type in all seven, with the next type at least $14.9\%$ away (Table~\ref{tab:conograph}). SELLA was run on the worked cell, the lysozyme cell, a pseudo-tetragonal cell, a cell with all angles $92^\circ$, a needle, two plates and the seven BLDConograph cells. The two rankings of the 24 sorts agree closely, with Spearman's rank correlation $0.77$ to $0.97$. The two scales are not proportional: SELLA's distance divided by the cell's mean squared edge is a median $0.71$ times the strain distance, with a wide spread between cells. With SELLA's band set by that median ratio, which is calibrated on the same 14 cells and so flatters the agreement, the Bravais types within the band agree in 11 of the 14 cells. They differ on the needle and the two plates, where an absolute band weighs the long edges differently: SELLA admits hP, hR, oF, tI and tP for the needle, which are far in strain, and the strain band admits oF (and tI) for the plates, which SELLA's does not. For these thin cells $r_1$ is $4$ to $6\%$, so their strain distances above it are bounds and are flagged.
 
 \begin{table}
 \caption{The seven sample cells of BLDConograph (Oishi-Tomiyasu, 2024): the program's Bravais type and its minimal distance to that type (\Ang$^2$), and the same divided by the mean squared edge (\%); the Bravais types of the sort spectrum in increasing strain distance (\%), aP omitted, up to and including the program's type; and the next type with its distance. For all seven cells $r_1$ reaches the cap, so ``$>25$'' is a lower bound on the distance as well as the outcome of the minimum over the frames of $\mathcal U$. A band of $7.4\%$ selects the program's type in all seven; the largest ratio between consecutive distances follows it in six, and for the alumina cell lies between mC and hR.}
@@ -309,16 +307,16 @@ O1B & rstrst & rsttsr & A1 & rstuvw & uvwtsr \\
 \end{table}
 
 \begin{table}
-\caption{Pseudo-symmetric PDB entries (Le Page lattice above the reported type at $3^\circ$) by the Delone sort of the Le Page lattice: number of entries, and the 10th/50th/90th percentiles of the largest obliquity $\delta$ (degrees) and of the largest and smallest price (\% strain) among the pseudo-symmetry operators of each entry. Sorts with no entries are omitted. The transitions from the reported type are in Table~10 of the main text. From \texttt{results\_pdb\_lepage.txt}.}
+\caption{Pseudo-symmetric PDB entries (Le Page lattice above the reported type at $3^\circ$) by the Delone sort of the Le Page lattice, operators of the reported lattice's own holohedry excluded: number of entries, and the 10th/50th/90th percentiles of the largest obliquity $\delta$ (degrees) and of the largest and smallest price (\% strain) among the pseudo-symmetry operators of each entry. Sorts with no entries are omitted. The transitions from the reported type are in Table~\ref{tab:pdbtrans}. From \texttt{results\_pdb\_lepage.txt}.}
 \label{tab:pdbsort}
 \begin{footnotesize}
 \begin{tabular}{llrccc}
 \toprule
 sort & type & entries & $\delta$ ($^\circ$) & largest price (\%) & smallest price (\%) \\
 \midrule
-C1 & cI & 593 & 0.14/1.64/2.73 & 0.69/8.10/13.58 & 0.00/0.00/8.96 \\
-C3 & cF & 562 & 0.19/1.72/2.76 & 0.95/8.51/13.61 & 0.00/5.34/13.04 \\
-C5 & cP & 1\,379 & 0.23/1.66/2.72 & 1.15/8.23/13.44 & 0.00/3.68/12.15 \\
+C1 & cI & 593 & 0.14/1.64/2.73 & 0.69/8.10/13.58 & 0.32/7.13/13.18 \\
+C3 & cF & 562 & 0.19/1.72/2.76 & 0.95/8.51/13.61 & 0.50/7.68/13.41 \\
+C5 & cP & 1\,379 & 0.23/1.66/2.72 & 1.15/8.23/13.44 & 0.33/5.29/12.56 \\
 H4 & hP & 2\,008 & 0.08/1.40/2.70 & 0.40/6.91/13.32 & 0.11/4.03/12.70 \\
 T1 & tI & 1\,376 & 0.06/1.32/2.67 & 0.28/6.60/13.33 & 0.17/5.55/12.60 \\
 T2 & tI & 330 & 0.05/1.48/2.69 & 0.24/7.30/13.43 & 0.11/4.98/12.44 \\
@@ -341,7 +339,42 @@ M4 & mP & 582 & 0.10/1.40/2.65 & 0.47/6.89/13.07 & 0.47/6.89/13.07 \\
 \end{footnotesize}
 \end{table}
 
+\begin{table}
+\caption{The cheapest pseudo-symmetric alternative of PDB entries (operators of the reported lattice's own holohedry excluded), by transition from the reported Bravais type to the one Le Page's $3^\circ$ finds: entries with priced alternatives, the median price (\%), and the share within $1\%$, within the 90th percentile of non-isomorphism ($4.2\%$) and within its 95th ($6.7\%$). The sixteen most frequent transitions.}
+\label{tab:pdbtrans}
+\begin{footnotesize}
+\begin{tabular}{lrrrrr}
+\toprule
+transition & entries & median & $\le1\%$ & $\le4.2\%$ & $\le6.7\%$ \\
+\midrule
+oP$\to$tP & 12\,120 & 6.98 & 9 & 31 & 48 \\
+mP$\to$oS & 9\,474 & 7.38 & 12 & 33 & 46 \\
+mP$\to$oP & 4\,417 & 5.78 & 20 & 42 & 55 \\
+aP$\to$mC & 2\,113 & 9.49 & 9 & 19 & 30 \\
+mC$\to$oS & 1\,831 & 7.41 & 12 & 33 & 45 \\
+mP$\to$tP & 1\,542 & 3.66 & 27 & 54 & 69 \\
+mC$\to$oI & 1\,308 & 7.13 & 11 & 30 & 48 \\
+oS$\to$hP & 1\,169 & 7.34 & 10 & 26 & 45 \\
+oI$\to$tI & 1\,165 & 6.25 & 19 & 38 & 52 \\
+mC$\to$oF & 1\,067 & 7.29 & 8 & 29 & 46 \\
+oS$\to$tP & 880 & 7.42 & 14 & 32 & 46 \\
+tP$\to$cP & 724 & 7.10 & 7 & 28 & 47 \\
+aP$\to$mP & 571 & 6.97 & 15 & 30 & 48 \\
+mP$\to$hP & 479 & 0.71 & 61 & 91 & 100 \\
+mC$\to$hR & 391 & 8.92 & 19 & 29 & 37 \\
+mC$\to$tI & 391 & 4.56 & 23 & 46 & 64 \\
+\midrule
+all & 42\,641 & 6.69 & 14 & 35 & 50 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
 Over the sorts with more than two entries, the median largest price lies between $5.3\%$ (O5, oP) and $10.3\%$ (M1A); the median largest obliquity between $1.1^\circ$ and $2.1^\circ$. Within a sort the median largest price of the operators of order 3, 4 or 6 is within half a percentage point of that of the twofolds (\texttt{results\_pdb\_lepage.txt}).
+
+\emph{The closures of the 24 sorts.}\label{si:sorts} For each face the arrows are the operators of $\mathcal U$ that map the face into the cone; on the face every arrow permutes the six conorm slots, so each fixes a subspace of conorm vectors, and the sorts are the closed sets of equalities obtained by intersecting those subspaces (Definition~A5 of the main text). For a sort, the point group is the set of arrows that fix the sort's subspace pointwise, the visible symmetries are those that are swaps of the reduced cell, and two superbases have the same shape when their conorms agree up to a slot permutation induced by a swap. Table~\ref{tab:sorts} is the resulting catalogue; every entry is the result of this linear algebra on integer matrices. In every sort the number of symmetries out of each labelled superbase is the order of the holohedry, and the twofolds, with the inversion, generate the group.
+
+\emph{Symmetry visible in one cell.} In the sorts with zero conorms the symmetries that relabel the reduced cell are a minority: 2 of 8 for primitive orthorhombic, 4 of 16 for primitive tetragonal, 12 of 48 for primitive cubic, 4 of 24 for hexagonal. None of the three twofolds of a primitive orthorhombic lattice relabels its reduced cell, nor the one twofold of primitive monoclinic. The orbit of the reduced cell under the point group has $|$group$|/$visible superbases, all of its shape: for oP the orthogonal cell and three monoclinic-looking cells with two right angles, one for each axis traded for a face diagonal. Reduction of a measured orthorhombic cell stops at whichever of the sixteen superbases its errors favour; an orthogonal superbase is always one flip away, but the one in the reference's labelling can be four flips away, and no twofold of the lattice reaches it. The catalogues of shapes and of the conditions under which one sort becomes another are Tables~\ref{tab:shapes} and \ref{tab:special}.
 
 \begin{table}
 \caption{The Selling closure of each Delone sort, computed from the operators alone. Patterns are conorms in the slot order $da,db,dc,ab,ac,bc$; equal letters denote equal values and $0$ a zero; they are the patterns of Andrews \& Bernstein (2023) read in this order (Table~\ref{tab:corr}). Superbases are counted up to swaps. ``Visible'' is the number of symmetries that relabel the reduced superbase written in the pattern shown; another superbase of the same lattice can show a different number. ``Shapes'' is the number of distinct cell shapes among the superbases, equal in every case to the number of orbits of superbases under the symmetries.}
@@ -381,10 +414,64 @@ A3 & aP & tu00sr & 2 & 3 & 2 & 2 & 3 \\
 \end{table}
 
 %==============================================================================
+\section{Distances to the 24 sorts}
+\label{si:spectrum}
+%==============================================================================
+
+The same computation gives the distance from a measured cell to each of the 24 sorts. In each of the 6096 frames of $\mathcal U$ the cell's conorms are projected, in the strain, onto the sort's subspace (its zeros and equalities, Definition~A5 of the main text, the other conorms non-negative), and the smallest distance is taken. This is the computation of SELLA (Andrews \emph{et al.}, 2023), which projects the boundary images of a cell in $S^6$ onto the same subspaces, and of Oishi-Tomiyasu (2012) in Selling coordinates; projection onto Bravais-lattice subspaces goes back to Andrews \& Bernstein (1988). What changes is the norm, which is the same in every frame, and the set of frames, which is $\mathcal U$. We call the 24 distances the \emph{sort spectrum} of the cell. A distance below the adjacency radius $r_1$ is exact, since the frames of $\mathcal U$ then contain the frame of the nearest lattice of the sort; a minimum above $r_1$ is an upper bound over the frames used, the true distance being at least $r_1$, and the implementation flags it (\texttt{certified\_sort\_spectrum}). Along every specialisation of Table~\ref{tab:special} the distance cannot decrease, since the lower sort's subspace lies inside the upper one's.
+
+Fig.~\ref{fig:sortgraph} draws the spectrum of the worked cell on the graph of specialisations. The nearest sorts are A2 at $0.28\%$, M4 (mP) at $0.78\%$, A3 at $3.8\%$ and O5 (oP) at $5.1\%$, and every other sort is at least $25\%$ away, a bound that holds because $r_1$ reaches the cap for this cell. For a tetragonal lysozyme cell indexed in $P1$ the twelve sorts from aP to tP all lie within $0.22\%$ (Fig.~\ref{fig:lyso}).
+
+\begin{figure}
+\includegraphics[width=0.9\textwidth]{figures/figS1_sort_graph.pdf}
+\caption{The 24 Delone sorts as a graph for the measured worked cell. Rows are the number of free conorm values. Each node gives the Bravais type and the strain distance (\%) from the cell to the sort, its colour the same distance on a log scale; sorts at least $25\%$ away are grey. Edges are the specialisations of Table~\ref{tab:special}, labelled with the distance from the cell idealised onto the upper sort to the lower one. Dark edges are routes on which these steps add in quadrature to the lower sort's distance within $3\%$, drawn where that distance is below $10\%$. Dashed edges keep the Bravais type.}
+\label{fig:sortgraph}
+\end{figure}
+
+\emph{Le Page's $3^\circ$ by sort.} The distance to a sort at Le Page's boundary depends on the sort, while the price of each operator does not. For exact lattices of each sort perturbed in random directions until Le Page's obliquity for the sort's Bravais group is exactly $3^\circ$, the median largest twofold price is $14.8\%$ in every sort, which Proposition~A9 makes true by construction and the table confirms numerically (larger only in the monoclinic tails, up to $40$--$55\%$, where Le Page's group is another C-centred group), while the median distance to the sort is $7.4$--$7.7\%$ for the orthorhombic and monoclinic sorts other than O3, M2B and M3, $7.9$--$8.1\%$ for tP, tI, hP and hR, and $8.3$--$8.5\%$ for the cubic sorts, with longer tails for the boundary sorts O3, M2B and M3 (Table~\ref{tab:lepage}). A single band on the distance to a sort therefore tests each sort at a different level, which is why the reindexing in this paper is decided on the prices of operators.
+
+\begin{table}
+\caption{Le Page's $3^\circ$ by Delone sort: for exact lattices of each sort, each perturbed in a random direction until the obliquity of the sort's Bravais group is $3^\circ$, the strain distance to the sort (median, and 10th--90th percentiles) and the median of the largest price of the lattice's twofolds and of its other rotations, by order, in \%. In the monoclinic sorts some perturbations reach the boundary through a different C-centred group, whose own twofold costs $14.8\%$ while the exact lattice's costs more. Of 25 directions per sort, those that never reach an obliquity of $3^\circ$ are dropped, hence $n<25$ in seven sorts; with $n\le25$ the percentiles are indicative.}
+\label{tab:lepage}
+\begin{footnotesize}
+\begin{tabular}{llrlrl}
+\toprule
+sort & type & $n$ & distance to sort & twofold price & other orders \\
+\midrule
+C1 & cI & 25 & 8.3 (7.6--9.0) & 14.8 & 3: 14.1, 4: 15.0 \\
+C3 & cF & 25 & 8.3 (7.7--9.2) & 14.8 & 3: 14.3, 4: 14.5 \\
+C5 & cP & 25 & 8.5 (7.6--9.3) & 14.8 & 3: 14.2, 4: 14.7 \\
+H4 & hP & 25 & 7.9 (7.5--8.5) & 14.8 & 3: 13.7, 6: 11.3 \\
+T1 & tI & 25 & 7.9 (7.5--9.1) & 14.8 & 4: 14.0 \\
+T2 & tI & 25 & 8.0 (7.6--8.8) & 14.8 & 4: 14.4 \\
+T5 & tP & 25 & 8.0 (7.4--8.9) & 14.8 & 4: 14.1 \\
+R1 & hR & 25 & 8.0 (7.5--8.6) & 14.8 & 3: 14.4 \\
+R3 & hR & 25 & 8.1 (7.5--8.8) & 14.8 & 3: 14.5 \\
+O1A & oF & 24 & 7.5 (7.4--7.8) & 14.8 & --- \\
+O1B & oI & 25 & 7.6 (7.4--8.1) & 14.8 & --- \\
+O2 & oI & 25 & 7.6 (7.4--8.2) & 14.8 & --- \\
+O3 & oI & 25 & 8.6 (7.6--13.6) & 14.8 & --- \\
+O4 & oS & 25 & 7.7 (7.4--8.2) & 14.8 & --- \\
+O5 & oP & 25 & 7.5 (7.4--8.3) & 14.8 & --- \\
+M1A & mC & 20 & 7.4 (7.4--9.1) & 14.8 & --- \\
+M1B & mC & 15 & 7.4 (7.4--7.4) & 14.8 & --- \\
+M2A & mC & 18 & 7.4 (7.4--8.5) & 14.8 & --- \\
+M2B & mC & 17 & 9.3 (7.5--19.9) & 14.8 & --- \\
+M3 & mC & 23 & 8.9 (7.5--16.1) & 14.8 & --- \\
+M4 & mP & 23 & 7.4 (7.4--7.4) & 14.8 & --- \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\emph{Against BLDConograph and SELLA.} On the seven sample cells that Oishi-Tomiyasu (2024) distributes with BLDConograph, the highest Bravais type within $7.4\%$ is the program's type in all seven, with the next type at least $14.9\%$ away (Table~\ref{tab:conograph}). SELLA was run on the worked cell, the lysozyme cell, a pseudo-tetragonal cell, a cell with all angles $92^\circ$, a needle, two plates and the seven BLDConograph cells. The two rankings of the 24 sorts agree closely, with Spearman's rank correlation $0.77$ to $0.97$. The two scales are not proportional: SELLA's distance divided by the cell's mean squared edge is a median $0.71$ times the strain distance, with a wide spread between cells. With SELLA's band set by that median ratio, which is calibrated on the same 14 cells and so flatters the agreement, the Bravais types within the band agree in 11 of the 14 cells. They differ on the needle and the two plates, where an absolute band weighs the long edges differently: SELLA admits hP, hR, oF, tI and tP for the needle, which are far in strain, and the strain band admits oF (and tI) for the plates, which SELLA's does not. For these thin cells $r_1$ is $4$ to $6\%$, so their strain distances above it are bounds and are flagged.
+
+
+%==============================================================================
 \section{Computational checks}
 %==============================================================================
 
-{\sloppy Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3 and SciPy 1.18.1, and the comparisons with cctbx, SELLA (LatticeRepLib) and the NCDist/CS6Dist libraries; the checks z24, z25 and z42 are skipped when their external data are absent, and none of the numbers of the paper rests on them; the PDB scripts need the Zenodo snapshot (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222) in \texttt{data/}.\par}
+{\sloppy Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3, SciPy 1.18.1 and cctbx-base 2025.11, and the comparisons with cctbx, SELLA (LatticeRepLib) and the NCDist/CS6Dist libraries; the checks z24, z25 and z42 are skipped when their external data are absent, and none of the numbers of the paper rests on them; the PDB scripts need the Zenodo snapshot (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222) in \texttt{data/}.\par}
 
 \begin{table}
 \caption{The checks behind each part of the main text.}
@@ -397,27 +484,27 @@ main text & checks \\
 \S2.1 faces; \S2.2 Table~1 & z52, z56 (the 38 faces); z46 (flip matrices) \\
 \S3.1 counts of superbases and objects & z54, z56 \\
 \S3.2, Table~3, Fig.~1 & z46 (the ring, the action of $2/m$, the word $ab.bc.db$) \\
-\S3.3 $\mathcal U$ & z52 (6096, inversion, window, nine kinds), z56 (every window member in $\mathcal U$; about 25\,min) \\
+\S3.3 $\mathcal U$ & z52 (6096, inversion, window, nine kinds), z56 (every window member in $\mathcal U$; about 25\,min); bench: \texttt{export\_universal\_operators.py} \\
 \S4.1, Table~4 & z60 (twofold price from obliquity, the $92^\circ$ cell) \\
-\S4.2--4.3 & z59 (balls, layers of 127 and 2755, filtered layer), z60 (Lemma~A8); z44, z45 (difference-wall members, walks) \\
-\S4.3--4.5 & lib (reindexing, scale bound, volume check, centring and input checks, the column form of $\mathcal U$, classes), z60 (Proposition~A10) \\
-\S4.7, Table~5 & z52, z56 ($[-2,2]$ labelling), z58, z59 (brute force); bench: \texttt{face\_labellings.py} \\
-\S5.1, Table~\ref{tab:sorts} & z53, z54, z46, z49 (Table~S1), z50 (Table~S2) \\
-\S5.2, Table~6 & z56 (entries by zero pattern), z60 (the Niggli type decides zeros on $d$ near oP); bench: \texttt{niggli\_types.py}, \texttt{window\_failures.py} \\
-\S5.3, Fig.~2, Table~7 & z60 (depths, growth of the set), z57, z58, z59; bench: \texttt{adjacency\_radii.py} \\
-\S5.4, Tables~8--9, Fig.~3 & lib, z60 (classes, prices, centred references); bench: \texttt{evaluate\_strain.py}, \texttt{compare\_methods.py}, \texttt{lookup\_benchmark.py}, \texttt{window\_failures.py}, \texttt{coset\_rank.py} \\
-\S5.5, Fig.~4, Table~10, Table~S8 & bench: \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_band\_controls.py}, \texttt{pdb\_lepage.py}, \texttt{pdb\_lepage\_null.py}, \texttt{pdb\_pricing\_summary.py} (need the Zenodo snapshot) \\
-Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9, A10) \\
-Appendix~B, Fig.~B1, Table~B1, Fig.~S1, Table~S5 & z58, z60, z51; bench: \texttt{lepage\_calibration.py}, \texttt{compare\_sella.py} \\
+\S4.2--4.3, Table~5 & z59 (balls, layers of 127 and 2755, filtered layer), z60 (Lemma~A8); z44, z45 (difference-wall members, walks); bench: \texttt{lookup\_plate\_case.py}, \texttt{cmdlm\_tree\_vs\_U.py} \\
+\S4.4--4.5 & lib (reindexing, scale bound, volume check, centring and input checks, the column form of $\mathcal U$, classes), z60 (Proposition~A10) \\
+\S4.7, Table~6 & z52, z56 ($[-2,2]$ labelling), z58, z59 (brute force); bench: \texttt{face\_labellings.py} \\
+\S5.1, Table~7 & z56 (entries by zero pattern), z60 (Proposition~A11 near oP); bench: \texttt{face\_labellings.py}, \texttt{niggli\_types.py}, \texttt{niggli\_presentation.py} \\
+\S5.2, Fig.~2, Table~8 & z60 (depths, growth of the set), z57, z58, z59; bench: \texttt{adjacency\_radii.py} \\
+\S5.3, Tables~9--10 & lib, z60 (classes, prices, centred references); bench: \texttt{evaluate\_strain.py}, \texttt{compare\_methods.py}, \texttt{lookup\_benchmark.py}, \texttt{benchmark\_misses.py}, \texttt{window\_failures.py}, \texttt{coset\_rank.py} \\
+\S5.4, Fig.~3, Tables~\ref{tab:pdbsort}, \ref{tab:pdbtrans} & bench: \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_band\_controls.py}, \texttt{pdb\_lepage.py}, \texttt{pdb\_lepage\_null.py}, \texttt{pdb\_pricing\_summary.py} (need the Zenodo snapshot) \\
+Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9, A10, A11) \\
+\S\ref{si:spectrum}, Figs~\ref{fig:sortgraph}, \ref{fig:lyso}, Tables~\ref{tab:lepage}, \ref{tab:conograph} & z58, z60, z51; bench: \texttt{lepage\_calibration.py}, \texttt{compare\_sella.py} \\
 \S S4 & z36, z44 (Lemma~S4.4), z45, z46, z47, z55, z57 \\
+\S\ref{si:sorts}, Table~\ref{tab:sorts} & z53, z54, z46, z49 (Table~\ref{tab:shapes}), z50 (Table~\ref{tab:special}) \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}
 \end{table}
 
 \begin{figure}
-\includegraphics[width=0.9\textwidth]{figures/figS1_sort_graph_lysozyme.pdf}
-\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~B1 of the main text. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
+\includegraphics[width=0.9\textwidth]{figures/figS2_sort_graph_lysozyme.pdf}
+\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~\ref{fig:sortgraph}. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
 \label{fig:lyso}
 \end{figure}
 

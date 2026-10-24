@@ -1,14 +1,4 @@
-0
-20000
-40000
-60000
-80000
-100000
-120000
-140000
-160000
-180000
-200000
+recomputed the 1189 entries with a zero-price operator (holohedry of the reported lattice now excluded)
 206214 entries, 42 not analysed
 
 reported Bravais type (rows) against the highest type Le Page finds at 3 deg (columns)
@@ -31,9 +21,9 @@ cF         0      0      0      0      0      0      0      0      0      0     
 pseudo-symmetric entries (Le Page higher than reported): 43232
 by the Delone sort of the Le Page lattice: entries; obliquity (deg) and the largest and smallest
 price (%) of the pseudo-symmetry operators, quantiles 10/50/90; median largest price by order
-C1    cI      593  delta   0.14/1.64/2.73  largest    0.69/8.10/13.58  smallest     0.00/0.00/8.96  2: 8.10, 3: 7.95, 4: 8.10
-C3    cF      562  delta   0.19/1.72/2.76  largest    0.95/8.51/13.61  smallest    0.00/5.34/13.04  2: 8.51, 3: 8.48, 4: 8.50
-C5    cP     1379  delta   0.23/1.66/2.72  largest    1.15/8.23/13.44  smallest    0.00/3.68/12.15  2: 8.21, 3: 8.00, 4: 8.23
+C1    cI      593  delta   0.14/1.64/2.73  largest    0.69/8.10/13.58  smallest    0.32/7.13/13.18  2: 8.10, 3: 7.95, 4: 8.10
+C3    cF      562  delta   0.19/1.72/2.76  largest    0.95/8.51/13.61  smallest    0.50/7.68/13.41  2: 8.51, 3: 8.48, 4: 8.50
+C5    cP     1379  delta   0.23/1.66/2.72  largest    1.15/8.23/13.44  smallest    0.33/5.29/12.56  2: 8.21, 3: 8.00, 4: 8.23
 H4    hP     2008  delta   0.08/1.40/2.70  largest    0.40/6.91/13.32  smallest    0.11/4.03/12.70  2: 6.91, 3: 6.74, 6: 6.46
 T1    tI     1376  delta   0.06/1.32/2.67  largest    0.28/6.60/13.33  smallest    0.17/5.55/12.60  2: 6.54, 4: 6.57
 T2    tI      330  delta   0.05/1.48/2.69  largest    0.24/7.30/13.43  smallest    0.11/4.98/12.44  2: 7.30, 4: 7.24
