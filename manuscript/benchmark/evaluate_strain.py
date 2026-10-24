@@ -33,7 +33,7 @@ import numpy as np
 
 from agentsg.cell.metric import metric_tensor
 from agentsg.cell.strain_closure import (
-    LEPAGE_STRAIN, _strain, band_for, reduce_cell, reindex, widened_closure,
+    LEPAGE_STRAIN, _price, band_for, reduce_cell, reindex, widened_closure,
 )
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -64,7 +64,7 @@ def small_baseline(ref_cell, new_cell, accept):
     BNi = np.linalg.inv(BN)
     for m in SMALL:
         P = GR @ m @ BNi
-        price, _ = _strain(G_N_in, P.T @ G_R_in @ P)
+        price, _ = _price(G_N_in, P.T @ G_R_in @ P)
         if price <= accept:
             P = np.round(P).astype(int)
             out.append(P if round(np.linalg.det(P)) == 1 else -P)

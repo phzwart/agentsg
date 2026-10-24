@@ -125,7 +125,7 @@ def run(n_per=20, target=3.0, seed=3, only=None):
             Gp = Gh @ (np.eye(3) + lo * X) @ Gh
             prices = collections.defaultdict(list)
             for P in ops:
-                prices[order(P)].append(sc._strain(Gp, P.T @ Gp @ P)[0])
+                prices[order(P)].append(sc._price(Gp, P.T @ Gp @ P)[0])
             rows.append(dict(sort=name, bravais=bt, delta=lepage_delta(Gp, bt), dist=sort_distance(Gp, name),
                              prices={str(k): max(v) for k, v in prices.items()},
                              max_price=max(max(v) for v in prices.values()) if prices else None, n_ops=len(ops)))

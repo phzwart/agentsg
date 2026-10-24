@@ -2,7 +2,7 @@
 on benchmark.jsonl and on a stress family with errors near and above the band.
 
 Methods (each returns proper candidate operators P, reference input basis -> new input
-basis, G_N ~ P^T G_R P, priced at G_N after the best scale; accepted at price <= band):
+basis, G_N ~ P^T G_R P, priced by the geodesic distance after the best scale; accepted at price <= band):
 
   closure     agentsg.cell.strain_closure.reindex (reference widened at band/(1-band))
   small1      Selling-reduce both cells; every unimodular matrix with entries in {-1,0,1}
@@ -52,14 +52,12 @@ def _whiten(GN):
 
 
 def prices(Ps, GR, GN):
-    """strain price after the best scale, for a stack of operators (n,3,3)."""
+    """geodesic price after the best scale (as agentsg.cell.strain_closure._price), for a
+    stack of operators (n,3,3)."""
     Gm = _whiten(GN)
     Y = np.einsum("ij,njk,kl,nlm,mp->nip", Gm, np.transpose(Ps, (0, 2, 1)), GR, Ps, Gm)
-    tr = np.trace(Y, axis1=1, axis2=2)
-    yy = np.einsum("nij,nij->n", Y, Y)
-    s = tr / yy
-    R = s[:, None, None] * Y - np.eye(3)[None]
-    return np.sqrt(np.einsum("nij,nij->n", R, R))
+    lv = np.log(np.linalg.eigvalsh(Y))
+    return np.linalg.norm(lv - lv.mean(1, keepdims=True), axis=1)
 
 
 def _unimodular(k):

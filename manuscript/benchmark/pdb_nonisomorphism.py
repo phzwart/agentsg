@@ -17,7 +17,7 @@ import duckdb
 import numpy as np
 
 from agentsg.cell.metric import metric_tensor
-from agentsg.cell.strain_closure import _strain
+from agentsg.cell.strain_closure import _price as _strain   # geodesic price
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "..", "data", "pdb_cells.duckdb")

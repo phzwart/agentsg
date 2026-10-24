@@ -125,7 +125,7 @@ def one(row):
                 if np.linalg.det(R) < 0 or key in rep_rot:
                     continue
                 n = next(k for k in range(1, 7) if np.allclose(np.linalg.matrix_power(R, k), np.eye(3)))
-                prices[str(n)].append(sc._strain(G, R.T @ G @ R)[0])
+                prices[str(n)].append(sc._price(G, R.T @ G @ R)[0])
             out["extra"] = {k: [round(x, 5) for x in sorted(v)] for k, v in prices.items()}
             out["sort"] = classify(G_of(inp.unit_cell()))
         return out

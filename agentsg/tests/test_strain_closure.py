@@ -25,8 +25,8 @@ def test_shipped_operator_data():
 
 def test_lepage_band():
     assert abs(LEPAGE_STRAIN - np.sqrt(2) * np.sin(np.radians(3))) < 1e-15
-    assert LEPAGE_PRICE == 2 * LEPAGE_STRAIN
-    assert abs(band_for(0.074) - 0.074 / 0.926) < 1e-12
+    assert abs(LEPAGE_PRICE - 2 * np.sqrt(2) * np.arctanh(np.sin(np.radians(3)))) < 1e-15
+    assert abs(band_for(0.074) - np.expm1(0.074)) < 1e-15
 
 
 def test_layers_and_sizes():
@@ -139,8 +139,8 @@ def test_price_spectrum_and_the_twofold_rule():
     spectrum of the worked cell has its gap between the pseudo-mP and pseudo-oP twofolds."""
     spec = price_spectrum(widened_closure(WORKED, eps=0.2), proper=None)
     assert max(spec[:2]) < 1e-12                                           # +-I
-    assert abs(spec[2] - 2 * sort_spectrum(WORKED)["M4"]) < 1e-4 and abs(spec[2] - spec[3]) < 1e-12
-    assert abs(spec[4] - 2 * sort_spectrum(WORKED)["O5"]) < 2e-3            # the pseudo-oP twofolds
+    assert abs(spec[2] / (2 * sort_spectrum(WORKED)["M4"]) - 1) < 0.01 and abs(spec[2] - spec[3]) < 1e-12
+    assert abs(spec[4] / (2 * sort_spectrum(WORKED)["O5"]) - 1) < 0.03      # the pseudo-oP twofolds (geodesic vs linearised)
     proper = price_spectrum(widened_closure(WORKED, eps=0.2))
     assert len(proper) == len(spec) // 2 and max(proper[:1]) < 1e-12
 
@@ -152,3 +152,24 @@ def test_strain_from_esds_and_certified_spectrum():
     assert abs(r - 0.00407) < 1e-4                  # sqrt(3 x 0.002^2 + 3 x (sqrt2 x 0.05 deg)^2)
     spec, d1 = certified_sort_spectrum(NEEDLE)
     assert abs(d1 - 0.0557) < 2e-4
+
+
+def test_scale_bound_and_volume_check():
+    """a doubled cell is not a reindexing: the fitted scale is bounded, and primitive cells of
+    different volume are refused with an explanation (a wrong centring symbol)."""
+    W = widened_closure((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3")
+    with pytest.raises(ValueError, match="volume"):
+        reindex(W, (120.0, 120.0, 120.0, 90, 90, 90))                    # a superlattice
+    G = np.array(UnitCell(60.0, 60.0, 60.0, 90, 90, 90).metric_tensor(), float)
+    big = params_from_metric((1.15 ** 2 * G).tolist())                     # 15 % longer edges, same shape
+    assert reindex(W, big, max_scale_change=None)[0] and not reindex(W, big)[0]
+    Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
+    with pytest.raises(ValueError, match="centring"):
+        reindex(Wc, (50.0, 30.0, 40.0, 90, 105, 90))                      # the C cell read as primitive
+
+
+def test_proper_group_order():
+    from agentsg.cell.strain_closure import indexing_classes
+    W = widened_closure((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2")
+    r = indexing_classes(W, (79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2")
+    assert (r.group_order, r.proper_group_order, r.symmetry_order) == (16, 8, 8)

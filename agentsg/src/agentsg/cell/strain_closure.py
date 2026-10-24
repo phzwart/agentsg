@@ -18,22 +18,31 @@ adjacent to the reduced cell; 2 when every member lies in L2 = U.L1 (2755); 3
 otherwise. The layer describes how far from the reduced cell the set reaches; it is
 not needed for completeness, which the ball enumeration provides for every eps < 1/4.
 
-Bands. :data:`LEPAGE_STRAIN` = sqrt(2) sin 3 deg = 0.074 is the strain of one cell
-angle changed by 3 degrees, the distance at which a pseudo-twofold with Le Page's
-obliquity of 3 degrees sits from the sort it would fix. A twofold's *price* (its
-strain as a self-map of the cell) is twice that distance (manuscript, Proposition
-A9), so a reindexing band of 0.074 on prices admits pseudo-twofolds of obliquity up
-to 1.5 degrees; :data:`LEPAGE_PRICE` = 0.148 admits those up to 3 degrees.
+Prices. An operator P from a reference to a new cell is priced by the affine-invariant
+(geodesic) distance between the new metric and the predicted one, after the best common
+scale: with l the logarithms of the eigenvalues of G_N^-1/2 P^T G_R P G_N^-1/2, the price
+is || l - mean(l) ||. This is a true distance on cell shapes, the same in every basis
+and symmetric in the two cells, so prices of products and cosets obey the triangle
+inequality exactly (manuscript, Proposition A10). To first order it equals the strain
+norm above.
+
+Bands. :data:`LEPAGE_STRAIN` = sqrt(2) sin 3 deg = 0.074 is the strain distance at which
+a pseudo-twofold with Le Page's obliquity of 3 degrees sits from the metrics it would fix.
+A twofold's price is exactly twice its geodesic distance to those metrics (Proposition
+A9): :data:`LEPAGE_PRICE` = 2 sqrt(2) artanh(sin 3 deg) = 0.148 is the price of a twofold
+of obliquity 3 degrees. For reindexing data sets of one crystal form the band is set by
+non-isomorphism (in the PDB the strain between cells of one crystal form after the scale
+fit has a 90th percentile near 0.04 and a 95th near 0.07), not by the cell esds.
 
 Reindexing (:func:`reindex`) pairs the new cell's single reduced superbase with every
 member of the reference's widened closure and every relabelling, and prices each
-candidate at the new cell's metric after the best common scale. If the true operator
-has price at most ``accept`` there, it is among the candidates provided the reference
-was widened at ``accept / (1 - accept)`` (manuscript, Lemma A8); :func:`band_for`
-gives that number. Candidates with determinant -1 are dropped for a chiral crystal
-(``proper=True``), and :func:`indexing_classes` groups the candidates by the
-reference's Laue group (merging without anomalous signal) or point group (anomalous
-data).
+candidate. If the true operator has price at most ``accept``, it is among the candidates
+provided the reference was widened at ``exp(accept) - 1`` (manuscript, Lemma A8);
+:func:`band_for` gives that number. Only proper operators are returned by default, and
+a fitted scale that changes the edge lengths by more than ``max_scale_change`` is
+rejected (a doubled cell is not a reindexing). :func:`indexing_classes` groups the
+candidates by the reference's Laue group (merging without anomalous signal) or point
+group (anomalous data).
 
 Needs numpy and scipy (``pip install agentsg[db]``).
 """
@@ -55,17 +64,22 @@ LEPAGE_STRAIN = math.sqrt(2.0) * math.sin(math.radians(3.0))
 """Strain of one cell angle changed by 3 degrees: the sort distance of a pseudo-twofold
 with Le Page's obliquity of 3 degrees."""
 
-LEPAGE_PRICE = 2.0 * LEPAGE_STRAIN
-"""Price of a twofold of obliquity 3 degrees (twice its sort distance, Proposition A9)."""
+LEPAGE_PRICE = 2.0 * math.sqrt(2.0) * math.atanh(math.sin(math.radians(3.0)))
+"""Price of a twofold of obliquity 3 degrees: twice its geodesic distance to the metrics
+it fixes (Proposition A9), 2 sqrt(2) artanh(sin 3 deg) = 0.148."""
 
 
 def band_for(accept):
     """The band at which to widen a reference so that every operator of price at most
-    ``accept``, measured at the new cell's metric, is among the candidates
-    (Lemma A8): accept / (1 - accept)."""
-    if not 0 <= accept < 1:
-        raise ValueError("accept must be in [0, 1)")
-    return accept / (1.0 - accept)
+    ``accept`` is among the candidates (Lemma A8): exp(accept) - 1."""
+    if not 0 <= accept < math.log(1.25):
+        raise ValueError("accept must be in [0, log(1.25)); the widened set is computed below a strain of 0.25")
+    return math.expm1(accept)
+
+
+def accept_for(eps):
+    """The largest price band that a reference widened at ``eps`` certifies: log(1 + eps)."""
+    return math.log1p(eps)
 
 _SL = ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3))      # slots da, db, dc, ab, ac, bc
 _S0 = ((-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1))
@@ -302,8 +316,8 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
 @dataclass
 class Candidate:
     operator: Matrix3        # P with (a_N b_N c_N) = (a_R b_R c_R) P, exact
-    price: float             # strain || G_N^-1/2 (s P^T G_R P - G_N) G_N^-1/2 ||_F after the best scale s
-    scale: float             # s minimising the price (fitted in the strain norm)
+    price: float             # geodesic distance between G_N and s P^T G_R P after the best scale s
+    scale: float             # s minimising the price; sqrt(s) is the fitted change of edge lengths
     depth: float             # the member's depth in the reference's widened closure
     determinant: int
 
@@ -320,9 +334,9 @@ def _relabellings(S):
 
 
 def _strain(G_new, G_pred, fit_scale=True):
-    """price of G_pred against G_new, || G_new^-1/2 (s G_pred - G_new) G_new^-1/2 ||_F,
-    with s the scale minimising it (in the same norm) when ``fit_scale``; returns
-    (price, s)."""
+    """linearised mismatch, || G_new^-1/2 (s G_pred - G_new) G_new^-1/2 ||_F, with s the
+    scale minimising it when ``fit_scale``; returns (value, s). The strain norm of a metric
+    perturbation; prices use :func:`_price`."""
     np = _np()
     w, V = np.linalg.eigh(G_new)
     Gm = V @ np.diag(w ** -0.5) @ V.T
@@ -331,30 +345,54 @@ def _strain(G_new, G_pred, fit_scale=True):
     return float(np.linalg.norm(s * Y - np.eye(3))), s
 
 
-def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_scale=True, eps=None):
+def _price(G_new, G_pred, fit_scale=True):
+    """geodesic price of G_pred against G_new: with l the logs of the eigenvalues of
+    G_new^-1/2 G_pred G_new^-1/2, ||l - mean(l)|| (``fit_scale``) or ||l||; returns
+    (price, s) with s G_pred the scaled prediction, s = exp(-mean(l))."""
+    np = _np()
+    w, V = np.linalg.eigh(G_new)
+    Gm = V @ np.diag(w ** -0.5) @ V.T
+    lam = np.linalg.eigvalsh(Gm @ G_pred @ Gm)
+    lv = np.log(lam)
+    m = float(lv.mean()) if fit_scale else 0.0
+    return float(np.linalg.norm(lv - m)), math.exp(-m)
+
+
+def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_scale=True, eps=None,
+            max_scale_change=0.1):
     """Candidate operators from the reference to a new cell, ranked by strain price.
 
     ``reference`` is a :class:`WidenedClosure` (from :func:`widened_closure`). The new
     cell is reduced once. Returns (candidates, layer): every candidate whose price,
     measured at the new cell's metric after the best common scale, is at most
     ``accept``; each P maps the reference's input basis to the new cell's input basis,
-    ``h_N = P^T h_R``. The default ``accept`` is the largest band the reference
-    certifies, ``ref.eps / (1 + ref.eps)`` (Lemma A8; see :func:`band_for`).
+    ``h_N = P^T h_R``. The price is the geodesic distance between the new metric and
+    the predicted one after the best common scale (:func:`_price`). The default
+    ``accept`` is the largest band the reference certifies, ``log(1 + ref.eps)``
+    (Lemma A8; see :func:`band_for` and :func:`accept_for`). A candidate whose fitted
+    scale changes the edge lengths by more than ``max_scale_change`` (default 10 %) is
+    rejected; ``None`` keeps every scale. If the two primitive cells differ in volume by
+    a factor of 1.6 or more, no unimodular operator relates them and a ValueError names
+    the likely cause (a wrong centring symbol, or a sub- or superlattice).
     ``proper=True`` (default) keeps only candidates of positive determinant (+1, or +1/k from a
     centred reference's conventional basis): two right-handed
     bases are related by a proper operator, and a left-handed basis is never valid
-    output. ``proper=None`` keeps both signs, ``False`` only the improper ones (for
-    analysing hand inversions). ``eps`` is a deprecated alias of ``accept``. A fitted
-    ``scale`` far from 1 (more than a few per cent) signals a wavelength or distance
-    error, or a wrong match, and is worth reporting."""
+    output. The choice is a convention: cell parameters carry no hand, so an inverted
+    geometry has to be caught before the cell reaches this function. ``proper=None``
+    keeps both signs, ``False`` only the improper ones (for analysing hand inversions).
+    ``eps`` is a deprecated alias of ``accept``."""
     np = _np()
     ref = reference
     if accept is None:
-        accept = eps if eps is not None else ref.eps / (1.0 + ref.eps)
-    if accept > ref.eps / (1.0 + ref.eps) * (1 + 1e-9):
+        accept = eps if eps is not None else accept_for(ref.eps)
+    if accept > accept_for(ref.eps) * (1 + 1e-9):
         raise ValueError(f"accept={accept:.4f} needs the reference widened at band_for(accept)="
                          f"{band_for(accept):.4f}; it was widened at {ref.eps:.4f}")
     new = reduce_cell(new_cell, new_sg_hm)
+    ratio = math.sqrt(float(np.linalg.det(new.G)) / float(np.linalg.det(ref.reduced.G)))
+    if not 1 / 1.6 < ratio < 1.6:
+        raise ValueError(f"the primitive cells differ in volume by a factor {ratio:.2f}: no unimodular operator "
+                         "relates them; check the centring symbols, or look for a sub- or superlattice")
     G_R_in = np.array(UnitCell(*ref.reduced.cell).metric_tensor(), float)
     G_N_in = np.array(UnitCell(*new.cell).metric_tensor(), float)
     BN_inv = new.basis.inverse()
@@ -372,8 +410,10 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
                 continue
             Pf = np.array([[float(x) for x in row] for row in P.rows])
             G_pred = Pf.T @ G_R_in @ Pf
-            price, s = _strain(G_N_in, G_pred, fit_scale)
+            price, s = _price(G_N_in, G_pred, fit_scale)
             if price > accept:
+                continue
+            if max_scale_change is not None and abs(math.sqrt(s) - 1) > max_scale_change:
                 continue
             k = tuple(P.rows)
             if k in seen:
@@ -410,6 +450,7 @@ class IndexingResult:
     closed: bool                 # H_eps is closed under composition (a group) at this band
     group_in_symmetry: bool      # every operator of L maps the reference onto itself within the band
     anomalous: bool = False
+    proper_group_order: int = 0  # |L+|: the proper rotations of L, the group acting when proper=True
 
     @property
     def tier(self):              # deprecated names, one release
@@ -466,7 +507,7 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     input setting. Only proper candidates are used by default (``proper=True``)."""
     ref = reference
     if accept is None:
-        accept = eps if eps is not None else ref.eps / (1.0 + ref.eps)
+        accept = eps if eps is not None else accept_for(ref.eps)
     cands, tier = reindex(ref, new_cell, new_sg_hm, accept=accept, proper=proper)
     selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, accept=accept, proper=proper)
     H = {c.operator.rows for c in selfc}
@@ -486,7 +527,8 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
                 orbit.append(by_op[q])
         orbit.sort(key=lambda x: x.price)
         classes.append(IndexingClass(orbit[0], [x.operator for x in orbit], len(orbit)))
-    return IndexingResult(classes, tier, len(H), len(L), closed, laue_in, anomalous)
+    return IndexingResult(classes, tier, len(H), len(L), closed, laue_in, anomalous,
+                          sum(1 for l in L if l.det() == 1))
 
 
 # ---- distances to the 24 Delone sorts --------------------------------------------
@@ -528,10 +570,9 @@ def strain_from_esds(cell, esds, sg_hm=None):
     """root-mean-square strain (norm of equation (2)) of a cell's metric implied by
     independent standard uncertainties ``esds`` = (sa, sb, sc, salpha, sbeta, sgamma), in
     A and degrees, propagated to first order through G(a, b, c, alpha, beta, gamma).
-    For two independent measurements with this rms strain sigma each, the true
-    operator's price has a 99th percentile of about 2.2 sigma and an exact symmetry's
-    about 2.5 sigma (manuscript, 'Choosing the band'), so a band of 2.5 sigma covers the
-    measurement error; an allowance for non-isomorphism is added to it."""
+    This is the measurement error alone. For macromolecular crystals the mismatch
+    between data sets of one crystal form is dominated by non-isomorphism (a few per cent
+    in strain), which sets the reindexing band; the esd route suits small-molecule cells."""
     np = _np()
     cell = [float(x) for x in cell]
     p0 = np.array(cell)
@@ -565,26 +606,24 @@ def sort_spectrum(cell, sg_hm=None):
         A = np.zeros((6, len(classes)))
         for c, cl in enumerate(classes):
             A[cl, c] = 1
-        AMA = np.einsum("ka,nkl,lb->nab", A, M, A)
-        AMq = np.einsum("ka,nkl,nl->na", A, M, Q)
-        y = np.linalg.solve(AMA, AMq[..., None])[..., 0]
-        X = y @ A.T
-        for k in np.where((y < -1e-12).any(1))[0]:
-            active = list(range(len(classes)))
-            while True:
-                Aa = A[:, active]
-                yy = np.linalg.solve(Aa.T @ M[k] @ Aa, Aa.T @ M[k] @ Q[k]) if active else np.zeros(0)
-                if (yy >= -1e-12).all():
-                    break
-                active.pop(int(np.argmin(yy)))
-            X[k] = Aa @ yy if active else 0.0
-        R = X - Q
-        out[name] = float(np.sqrt(np.maximum(np.einsum("nk,nkl,nl->n", R, M, R), 0)).min())
+        # exact constrained projection (non-negative letters): the optimum is the smallest
+        # residual over the active sets whose unconstrained solution is feasible
+        best = np.sqrt(np.maximum(np.einsum("nk,nkl,nl->n", Q, M, Q), 0))
+        for r in range(1, len(classes) + 1):
+            for act in itertools.combinations(range(len(classes)), r):
+                Aa = A[:, list(act)]
+                y = np.linalg.solve(np.einsum("ka,nkl,lb->nab", Aa, M, Aa),
+                                    np.einsum("ka,nkl,nl->na", Aa, M, Q)[..., None])[..., 0]
+                Rr = y @ Aa.T - Q
+                res = np.sqrt(np.maximum(np.einsum("nk,nkl,nl->n", Rr, M, Rr), 0))
+                best = np.where((y >= -1e-12).all(1), np.minimum(best, res), best)
+        out[name] = float(best.min())
     return out
 
 
 __all__ = [
-    "LEPAGE_STRAIN", "BRAVAIS", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
+    "LEPAGE_STRAIN", "LEPAGE_PRICE", "BRAVAIS", "band_for", "accept_for", "price_spectrum", "strain_from_esds",
+    "certified_sort_spectrum", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
     "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex",
     "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum",
 ]

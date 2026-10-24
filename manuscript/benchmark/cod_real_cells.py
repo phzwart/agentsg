@@ -28,7 +28,7 @@ import compare_methods as cm                                       # noqa: E402 
 import numpy as np                                                 # noqa: E402
 
 from agentsg.cell.metric import params_from_metric                 # noqa: E402
-from agentsg.cell.strain_closure import BRAVAIS, _gram, _strain, sort_spectrum  # noqa: E402
+from agentsg.cell.strain_closure import BRAVAIS, _gram, _price, sort_spectrum  # noqa: E402
 
 ORDER = ["aP", "mP", "mC", "oP", "oS", "oI", "oF", "tP", "tI", "hR", "hP", "cP", "cI", "cF"]
 HOLO = {"aP": 2, "mP": 4, "mC": 4, "oP": 8, "oS": 8, "oI": 8, "oF": 8, "tP": 16, "tI": 16, "hR": 12, "hP": 24,
@@ -68,7 +68,7 @@ def reindex_test(rows, rng):
         for _ in range(200):
             G1 = _gram(np.maximum(p, 0) + rng.normal(size=6) * sig)
             if np.linalg.eigvalsh(G1).min() > 0:
-                draws.append(_strain(G, G1, fit_scale=False)[0])
+                draws.append(_price(G, G1, fit_scale=False)[0])
         sigma = float(np.sqrt(np.mean(np.square(draws))))
         band = min(max(2.5 * sigma, 1e-3), 0.2)
         bands.append(band)
