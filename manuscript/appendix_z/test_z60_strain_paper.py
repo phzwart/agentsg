@@ -142,7 +142,8 @@ def test_centred_references_in_conventional_settings():
     operator from the conventional basis to the new basis is among the candidates."""
     from fractions import Fraction
     from agentsg.cell.metric import UnitCell, params_from_metric
-    from agentsg.cell.strain_closure import band_for, primitive_matrix, reduce_cell, reindex
+    from agentsg.cell.strain_closure import band_for, reduce_cell, reindex
+    from agentsg.cell.selling_cob import primitive_matrix
     rng = np.random.default_rng(7)
     refs = [((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1"), ((30.0, 40.0, 50.0, 90, 90, 90), "I 2 2 2"),
             ((60.0, 60.0, 90.0, 90, 90, 120), "R 3 :H"), ((80.0, 80.0, 80.0, 90, 90, 90), "F 2 3"),

@@ -60,7 +60,7 @@ cells is in the closure's candidate set.
 `evaluate_strain.py` scores `agentsg.cell.strain_closure` (the procedure of the
 paper) and a small-matrix baseline. The reference is widened at `band_for(accept)`
 in the strain norm and the measured cell reduced once; the baseline Selling-reduces
-both cells and tries the 6960 unimodular matrices with entries in {-1, 0, 1} between
+both cells and tries the 6960 matrices of determinant ±1 (3480 proper) with entries in {-1, 0, 1} between
 the reduced bases, priced in the same norm. At `accept` = 0.074 (one angle changed by
 3 degrees) the closure has the true operator among the candidates in 780 of 780
 cases and the baseline in 778 (two triclinic cells near mP whose operator between
@@ -96,15 +96,29 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
 ## Window failures, Niggli types and the PDB
 
 * `window_failures.py` (LM_BIN = LatticeRepLib CmdLM, optional): lattices whose closure
-  needs an operator entry of 3, and near-mP / near-orthogonal lattices measured with a
-  type I or type II Niggli cell; the closure, the lookup of the 6096 matrices, the
-  small-matrix and cctbx searches, the pipeline and CmdLM (`results_window_failures.txt`).
+  needs an operator entry of 3, and near-mP / near-orthogonal lattices measured twice,
+  the reference given as its Niggli cell (rows by Niggli type) or in a random basis; the
+  closure, the lookup of the 6096 matrices, the small-matrix searches between Selling and
+  between Niggli cells, the cctbx searches, the pipeline and CmdLM
+  (`results_window_failures.txt`).
+* `face_labellings.py`: the largest entry of the operators out of a reduced cell, per
+  face, as reduction returns it and in its best labelling (`results_face_labellings.txt`).
+* `lookup_benchmark.py`: the lookup of the 6096 matrices on the benchmark and stress
+  families, with the references whose r_1 does not certify it (`results_lookup.txt`).
+* `adjacency_radii.py`: r_1 for the benchmark references and 2000 PDB cells, and the time
+  to widen and reindex (`results_adjacency_radii.txt`).
 * `niggli_types.py`: Selling reduction from the Niggli cell of near-monoclinic cells and
   where the near-zero conorms land (`results_niggli_types.txt`).
 * `pdb_nonisomorphism.py`, `pdb_lepage.py`, `pdb_pricing_summary.py` need the Zenodo
   snapshot in `data/pdb_cells.duckdb`: the price between entries of one crystal form, and
   Le Page's 3 degrees on every entry with the prices of the pseudo-symmetries
   (`results_pdb_*.txt`, `pdb_lepage.jsonl`).
+* `pdb_band_controls.py`: the non-isomorphism band against the crystal-form cut,
+  identical cells, block weighting and Bravais type; shares of entries within the band;
+  how often the cell ranks a wrong indexing first on same-form pairs
+  (`results_pdb_band_controls.txt`).
+* `pdb_lepage_null.py`: the Le Page 3 degree rate of real cells against cells with
+  parameters shuffled within a space group (`results_pdb_lepage_null.txt`).
 * `lepage_calibration.py`: the strain distance to each sort and the operator prices at
   exactly 3 degrees of obliquity (`results_lepage_calibration.txt`).
 

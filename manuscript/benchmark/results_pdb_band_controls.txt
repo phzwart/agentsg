@@ -1,0 +1,37 @@
+62359 id-adjacent pairs with the same space group
+
+1. band (fitted price, %) against the choices: 50th / 90th / 95th percentile
+  cut    5 %  n= 39581  0.82/2.50/3.13
+  cut   10 %  n= 43398  0.92/3.38/4.71
+  cut   20 %  n= 45222  0.98/4.21/6.72
+  cut   50 %  n= 46938  1.03/5.59/11.92
+  cut 20 %, identical cells dropped  n= 43758  1.02/4.31/6.89
+  cut 20 %, each block weighted equally (20206 blocks, largest 35 pairs)  1.12/4.97/7.97
+  by reported Bravais type (cut 20 %):
+    aP  n=   911  2.04/7.59/11.66
+    mP  n=  7077  1.27/5.38/9.02
+    mC  n=  4932  1.49/5.06/8.40
+    oP  n= 13615  1.11/4.70/7.43
+    oS  n=  2271  1.01/3.57/5.50
+    oI  n=  1353  1.22/5.12/7.91
+    oF  n=    31  1.99/5.87/7.54
+    tP  n=  5174  0.52/2.59/4.00
+    tI  n=   805  0.65/2.76/4.91
+    hR  n=  1270  0.68/3.54/5.86
+    hP  n=  6817  0.57/2.87/4.56
+    cP  n=   363  0.00/0.00/0.00
+    cI  n=   385  0.00/0.00/0.00
+    cF  n=   211  0.00/0.00/0.00
+
+2. entries whose cheapest pseudo-symmetric alternative lies within the band
+  one band, 90th percentile 4.2 %: priced 7.2 %, with the 1189 exact cases 7.8 % of 206172
+  one band, 95th percentile 6.7 %: priced 10.3 %, with the 1189 exact cases 10.8 % of 206172
+  band of the entry's own Bravais type, 90th percentile: 8.9 % (exact cases included)
+  band of the entry's own Bravais type, 95th percentile: 12.7 % (exact cases included)
+
+3. misranking on 3000 same-form pairs (cut 20 %), band 7.4 %
+  wrong class strictly cheaper: 36 (1.20 %)
+  a wrong class at the same price (exact lattice symmetry): 520 (17.33 %)
+  a priced wrong class within the band: 238 (7.93 %)
+  identity beyond the band: 125 (4.17 %)
+  pairs scored 3000, refused 0

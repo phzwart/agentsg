@@ -6,8 +6,11 @@ basis, G_N ~ P^T G_R P, priced by the geodesic distance after the best scale; ac
 
   closure     agentsg.cell.strain_closure.reindex (reference widened at band/(1-band))
   small1      Selling-reduce both cells; every unimodular matrix with entries in {-1,0,1}
-              between the reduced bases (6960)
+              between the reduced bases (3480 of determinant +1; the sign is fixed by the
+              hands of the two bases)
   small2      the same with entries in {-2,...,2}
+  niggli1     Niggli-reduce both cells (cctbx); every matrix with entries in {-1,0,1}
+              between the two Niggli bases
   cctbx_sim1  cctbx: Niggli-reduce both cells, unit_cell.similarity_transformations with
               unimodular_generator_range=1 (relative length 0.05, angle 3 deg)
   cctbx_sim2  the same with unimodular_generator_range=2
@@ -147,6 +150,20 @@ def pipeline(ref_cell, new_cell, band):
     return np.round(Ps[keep]).astype(int), p[keep]
 
 
+def niggli_small(ref_cell, new_cell, k, band):
+    """every unimodular matrix with entries in {-k..k} between the two Niggli cells."""
+    if k not in SMALL:
+        SMALL[k] = _unimodular(k)
+    _, XR = _niggli(ref_cell)
+    _, XN = _niggli(new_cell)
+    Ps = np.einsum("ij,njk,kl->nil", XR, SMALL[k], np.linalg.inv(XN))
+    if round(np.linalg.det(XR) * np.linalg.det(XN)) < 0:
+        Ps = -Ps
+    p = prices(Ps, G_of(ref_cell), G_of(new_cell))
+    keep = p <= band
+    return np.round(Ps[keep]).astype(int), p[keep]
+
+
 def closure(ref_cell, new_cell, band):
     ref = widened_closure(ref_cell, eps=band_for(band))
     cands, _ = reindex(ref, new_cell, accept=band)
@@ -158,6 +175,7 @@ METHODS = {
     "closure": closure,
     "small1": lambda r, n, b: small_search(r, n, 1, b),
     "small2": lambda r, n, b: small_search(r, n, 2, b),
+    "niggli1": lambda r, n, b: niggli_small(r, n, 1, b),
     "cctbx_sim1": lambda r, n, b: cctbx_similarity(r, n, 1, b),
     "cctbx_sim2": lambda r, n, b: cctbx_similarity(r, n, 2, b),
     "pipeline": pipeline,

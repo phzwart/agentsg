@@ -4,31 +4,36 @@ family           method          found  cands q50/q90  true cheapest
 t=0.5            closure       60/60        4/24          24/60    
 t=0.5            small1        58/60        4/20          24/58    
 t=0.5            small2        59/60        4/24          24/59    
+t=0.5            niggli1       60/60        4/24          24/60    
 t=0.5            cctbx_sim1    60/60        4/24          24/60    
 t=0.5            cctbx_sim2    60/60        4/24          24/60    
 t=0.5            pipeline      56/60        4/24          23/56    
 t=0.9            closure       60/60        4/17          16/60    
 t=0.9            small1        52/60        3/15          16/52    
 t=0.9            small2        60/60        4/17          16/60    
+t=0.9            niggli1       60/60        4/17          16/60    
 t=0.9            cctbx_sim1    60/60        4/17          16/60    
 t=0.9            cctbx_sim2    60/60        4/17          16/60    
 t=0.9            pipeline      54/60        3/12          13/54    
 t=1.1            closure        0/60        1/6            0/0     
 t=1.1            small1         0/60        1/6            0/0     
 t=1.1            small2         0/60        1/6            0/0     
+t=1.1            niggli1        0/60        1/6            0/0     
 t=1.1            cctbx_sim1     0/60        1/6            0/0     
 t=1.1            cctbx_sim2     0/60        1/6            0/0     
 t=1.1            pipeline       0/60        0/6            0/0     
 t=1.5            closure        0/60        0/4            0/0     
 t=1.5            small1         0/60        0/3            0/0     
 t=1.5            small2         0/60        0/4            0/0     
+t=1.5            niggli1        0/60        0/4            0/0     
 t=1.5            cctbx_sim1     0/60        0/4            0/0     
 t=1.5            cctbx_sim2     0/60        0/4            0/0     
 t=1.5            pipeline       0/60        0/3            0/0     
 all              closure      120/240       2/12          40/120   
 all              small1       110/240       2/12          40/110   
 all              small2       119/240       2/12          40/119   
+all              niggli1      120/240       2/12          40/120   
 all              cctbx_sim1   120/240       2/12          40/120   
 all              cctbx_sim2   120/240       2/12          40/120   
 all              pipeline     110/240       2/10          36/110   
-seconds per case: closure 0.13, small1 0.05, small2 1.00, cctbx_sim1 0.00, cctbx_sim2 0.03, pipeline 0.03
+seconds per case: closure 0.11, small1 0.05, small2 0.93, niggli1 0.05, cctbx_sim1 0.00, cctbx_sim2 0.03, pipeline 0.03

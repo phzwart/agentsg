@@ -14,6 +14,8 @@ proper basis with a metric error drawn at the size of non-isomorphism, 0.1-2 % s
           d, and then an operator can need an entry of 2. Rows are split by the reference's
           Niggli type. (With an exact reference in the labelling of its sort's pattern, the
           zeros are never on d and no window fails.)
+  random  the same lattices with the reference in a random proper basis (not its Niggli
+          cell); rows by the Niggli type of the reference's Niggli cell.
   entry3  lattices on random two- and three-zero faces whose closure has a member needing
           an entry of 3 in the basis of the reduced cell; the new cell is that member.
 
@@ -76,7 +78,7 @@ def random_proper(rng):
             return U
 
 
-def typeI_cases(n, rng):
+def typeI_cases(n, rng, present="niggli"):
     out = []
     sorts = ["M4", "O4", "H4", "O5", "T5", "C5"]
     for k in range(n):
@@ -90,12 +92,18 @@ def typeI_cases(n, rng):
             if np.linalg.eigvalsh(G).min() > 1:
                 break
         U = random_proper(rng).astype(float)
-        cs = crystal.symmetry(unit_cell=params_from_metric(perturb(G, rng).tolist()), space_group_symbol="P1")
-        cb = cs.change_of_basis_op_to_niggli_cell()
-        X = np.linalg.inv(np.array(cb.c().r().as_double()).reshape(3, 3))   # Niggli basis in the lattice basis
+        Gm = perturb(G, rng)
+        if present == "niggli":
+            cs = crystal.symmetry(unit_cell=params_from_metric(Gm.tolist()), space_group_symbol="P1")
+            cb = cs.change_of_basis_op_to_niggli_cell()
+            X = np.linalg.inv(np.array(cb.c().r().as_double()).reshape(3, 3))   # Niggli basis in the lattice basis
+            ref_cell = cs.change_basis(cb).unit_cell().parameters()
+        else:                                                  # the reference in a random proper basis
+            X = random_proper(rng).astype(float)
+            ref_cell = params_from_metric((X.T @ Gm @ X).tolist())
         M = np.round(np.linalg.inv(X) @ U).astype(int)
         M = M if round(np.linalg.det(M)) == 1 else -M
-        out.append(dict(family="typeI", sort=name, reference_cell=cs.change_basis(cb).unit_cell().parameters(),
+        out.append(dict(family="typeI" if present == "niggli" else "random", sort=name, reference_cell=ref_cell,
                         measured_cell=params_from_metric(perturb(U.T @ G @ U, rng).tolist()), true_operator=M.tolist()))
     return out
 
@@ -135,12 +143,12 @@ def cmdlm(ref, new, binary):
 
 def main(n=300, n3=60):
     rng = np.random.default_rng(2026)
-    cases = typeI_cases(n, rng) + entry3_cases(n3, rng)
+    cases = typeI_cases(n, rng) + entry3_cases(n3, rng) + typeI_cases(n, np.random.default_rng(2027), "random")
     lm = os.environ.get("LM_BIN")
     agg = collections.defaultdict(lambda: collections.Counter())
     for c in cases:
         M = np.array(c["true_operator"], int)
-        if c["family"] == "typeI":
+        if c["family"] in ("typeI", "random"):
             t = niggli_type(c["reference_cell"])
             keys = [(c["family"], t), (c["family"], t + ("/2z" if c["sort"] in ("M4", "O4", "H4") else "/3z"))]
         else:

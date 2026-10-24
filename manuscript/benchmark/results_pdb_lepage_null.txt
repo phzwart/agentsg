@@ -1,0 +1,6 @@
+Le Page 3 deg: share of entries with a higher lattice symmetry, real cells against shuffled (2000 each)
+  P 1         (aP, 8472 entries): real  42.3 %  shuffled  39.5 %  excess  +2.8 points
+  P 1 21 1    (mP, 34889 entries): real  44.4 %  shuffled  44.8 %  excess  -0.4 points
+  C 1 2 1     (mC, 21471 entries): real  24.4 %  shuffled  26.0 %  excess  -1.6 points
+  P 21 21 21  (oP, 46527 entries): real  22.6 %  shuffled  15.2 %  excess  +7.4 points
+  P 21 21 2   (oP, 8993 entries): real  15.1 %  shuffled  16.1 %  excess  -1.1 points
