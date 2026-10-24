@@ -223,12 +223,19 @@ def _centring(sg_hm, cell=None):
         letter = lattice_letter(s)
     except ValueError as exc:
         raise ValueError(f"cannot read a lattice centring from the space-group symbol {sg_hm!r}") from exc
-    if letter == "R" and cell is not None and ":" not in s and not (
-            abs(cell[3] - 90) < 0.5 and abs(cell[4] - 90) < 0.5 and abs(cell[5] - 120) < 0.5):
-        import warnings
-        warnings.warn(f"{sg_hm!r} on a cell that is not hexagonal-shaped: read on rhombohedral axes "
-                      "(give 'R ... :R' or ':H' to be explicit)", stacklevel=3)
-        return "P"
+    if letter == "R" and cell is not None and ":" not in s:
+        a, b, c, al, be, ga = cell
+        hexa = abs(al - 90) < 5 and abs(be - 90) < 5 and abs(ga - 120) < 5 and abs(a / b - 1) < 0.05
+        rhombo = (max(a, b, c) / min(a, b, c) < 1.05 and max(al, be, ga) - min(al, be, ga) < 2
+                  and abs(al - 90) > 1)
+        if rhombo and not hexa:
+            import warnings
+            warnings.warn(f"{sg_hm!r} on a rhombohedral-shaped cell: read on rhombohedral axes "
+                          "(give 'R ... :R' or ':H' to be explicit)", stacklevel=3)
+            return "P"
+        if not hexa:
+            raise ValueError(f"{sg_hm!r} on a cell {cell} that is neither hexagonal- nor rhombohedral-shaped: "
+                             "give the setting explicitly ('R ... :H' or 'R ... :R')")
     return letter
 
 
@@ -513,6 +520,10 @@ def reindex(reference, new_cell, new_sg_hm="reference", accept=None, proper=True
                 continue
             seen.add(k)
             out.append(Candidate(P, price, s, m.depth, det))
+    if not out:
+        import warnings
+        warnings.warn("no candidate within the band: the cells may belong to different lattices, or a centring "
+                      "symbol may be wrong (a C cell read as I, or the reverse, has the same volume)", stacklevel=2)
     eye = Matrix3([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     out.sort(key=lambda c: (round(c.price, 12), sum(abs(float(x - y)) for r1, r2 in zip(c.operator.rows, eye.rows)
                                                     for x, y in zip(r1, r2))))    # ties: nearest the identity first
@@ -589,7 +600,7 @@ def _laue_matrices(space_group_key):
     return _symmetry_matrices(space_group_key, anomalous=False)
 
 
-def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accept=None,
+def indexing_classes(reference, new_cell, space_group_key, new_sg_hm="reference", accept=None,
                      proper=True, anomalous=False, eps=None):
     """Candidate operators from the reference to a new cell, grouped into the classes that
     are physically distinct for a crystal of the reference's space group.
@@ -605,7 +616,8 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     the point group replaces the Laue group, since the inversion then changes the
     indexing (an acentric, non-chiral group; for a chiral group, with proper operators,
     the count does not change). ``space_group_key`` is the reference's space group in its
-    input setting; the new cell is read with the reference's centring unless ``new_sg_hm`` is given.
+    input setting; the new cell is read with the reference's centring unless ``new_sg_hm`` is given
+    (``None`` for primitive), as in :func:`reindex`.
     Only proper candidates are used by default (``proper=True``)."""
     ref = reference
     if eps is not None:
@@ -615,7 +627,7 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     if accept is None:
         accept = eps if eps is not None else accept_for(ref.eps)
     L = _symmetry_matrices(space_group_key, anomalous)          # validate the group first
-    if new_sg_hm is None:
+    if new_sg_hm == "reference":
         new_sg_hm = ref.reduced.sg_hm
     cands, tier = reindex(ref, new_cell, new_sg_hm, accept=accept, proper=proper)
     selfc = _self_maps(ref, accept, proper)

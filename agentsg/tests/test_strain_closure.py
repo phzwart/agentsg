@@ -249,3 +249,19 @@ def test_rhombohedral_axes_ties_and_scale_bounds():
     Wc = widened_closure((60.0, 60.0, 60.0, 90, 90, 90))
     small = params_from_metric((0.905 ** 2 * G).tolist())
     assert reindex(Wc, small)[0]                                         # edges 0.905: within 10 %
+
+
+def test_round6_api():
+    """None means primitive in both reindex and indexing_classes; an R symbol on a cell of neither
+    shape raises; an empty result warns."""
+    from agentsg.cell.strain_closure import indexing_classes, reduce_cell
+    Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
+    with pytest.raises(ValueError, match="volume"):
+        indexing_classes(Wc, (50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1", None)
+    assert indexing_classes(Wc, (50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1").classes
+    assert np.linalg.det(reduce_cell((80.0, 80.0, 120.0, 90, 90, 119.4), "R 3").G) > 0   # near-hexagonal: hexagonal axes
+    with pytest.raises(ValueError, match="neither hexagonal"):
+        reduce_cell((50.0, 60.0, 70.0, 80, 85, 100), "R 3")
+    Wi = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
+    with pytest.warns(UserWarning, match="no candidate"):
+        reindex(Wi, (50.0, 30.0, 40.0, 90, 105, 90), "I 1 2 1")
