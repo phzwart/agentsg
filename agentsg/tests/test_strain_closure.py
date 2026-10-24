@@ -162,7 +162,9 @@ def test_scale_bound_and_volume_check():
         reindex(W, (120.0, 120.0, 120.0, 90, 90, 90))                    # a superlattice
     G = np.array(UnitCell(60.0, 60.0, 60.0, 90, 90, 90).metric_tensor(), float)
     big = params_from_metric((1.15 ** 2 * G).tolist())                     # 15 % longer edges, same shape
-    assert reindex(W, big, max_scale_change=None)[0] and not reindex(W, big)[0]
+    assert reindex(W, big, max_scale_change=None)[0]
+    with pytest.raises(ValueError, match="volume"):
+        reindex(W, big)                                                    # beyond the 10 % scale limit
     Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
     with pytest.raises(ValueError, match="centring"):
         reindex(Wc, (50.0, 30.0, 40.0, 90, 105, 90))                      # the C cell read as primitive
@@ -173,3 +175,53 @@ def test_proper_group_order():
     W = widened_closure((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2")
     r = indexing_classes(W, (79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2")
     assert (r.group_order, r.proper_group_order, r.symmetry_order) == (16, 8, 8)
+
+
+def test_centring_and_input_checks():
+    """R 3 :R is primitive; R 3 :R and R 3 :H settings of one lattice reindex; unreadable
+    symbols and malformed cells raise; the new cell inherits the reference's centring."""
+    from agentsg.cell.strain_closure import indexing_classes, reduce_cell
+    from agentsg.cell.selling_cob import _PRIM_EXACT
+    hexa = (80.0, 80.0, 120.0, 90, 90, 120)
+    T = np.array([[float(x) for x in r] for r in _PRIM_EXACT["R"]])
+    Gh = np.array(UnitCell(*hexa).metric_tensor(), float)
+    rcell = params_from_metric((T.T @ Gh @ T).tolist())                    # the rhombohedral axes
+    v_h = np.sqrt(np.linalg.det(reduce_cell(hexa, "R 3 :H").G))
+    v_r = np.sqrt(np.linalg.det(reduce_cell(rcell, "R 3 :R").G))
+    assert abs(v_h / v_r - 1) < 1e-6
+    W = widened_closure(hexa, "R 3 :H")
+    assert reindex(W, rcell, "R 3 :R")[0]
+    for bad in [(10, 20, 30, 90, 90), (-10, 20, 30, 90, 90, 90), (10, 20, 30, 1.57, 1.57, 1.57),
+                (10, 20, 30, 90, 90, 190), (10, 20, 30, 10, 10, 170)]:
+        with pytest.raises(ValueError):
+            reduce_cell(bad)
+    with pytest.raises(ValueError, match="centring"):
+        reduce_cell((10, 20, 30, 90, 90, 90), "Q 2")
+    Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
+    r = indexing_classes(Wc, (50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
+    assert len(r.classes) == 1
+
+
+def test_ball_guard_and_universal_operators():
+    """a thin needle at a large band is refused quickly; the 6096 column operators of U,
+    used as B_R W B_N^-1, contain the true operator between two reduced cells."""
+    from agentsg.cell.strain_closure import universal_operators, reduce_cell
+    with pytest.raises(ValueError, match="anisotropic"):
+        widened_closure((3.0, 3.0, 800.0, 90, 90, 90), eps=0.2)
+    U = universal_operators()
+    assert U.shape == (6096, 3, 3) and np.abs(U).max() == 3
+    rng = np.random.default_rng(3)
+    cell = (30.0, 40.0, 50.0, 90, 100, 90)
+    G = np.array(UnitCell(*cell).metric_tensor(), float)
+    for _ in range(20):
+        while True:
+            M = rng.integers(-2, 3, (3, 3))
+            if round(np.linalg.det(M)) == 1:
+                break
+        new = params_from_metric((M.T @ G @ M).tolist())
+        BR = np.array([[float(x) for x in r] for r in reduce_cell(cell).basis.rows])
+        BN = np.array([[float(x) for x in r] for r in reduce_cell(new).basis.rows])
+        Ps = np.round(np.einsum("ij,njk,kl->nil", BR, U, np.linalg.inv(BN))).astype(int)
+        Gn = M.T @ G @ M
+        ok = [P for P in Ps if np.allclose(P.T @ G @ P, Gn, rtol=1e-6, atol=1e-6)]
+        assert ok                                    # some lattice symmetry composed with M

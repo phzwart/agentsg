@@ -58,7 +58,8 @@ from functools import lru_cache
 
 from ..linalg import Matrix3
 from .metric import UnitCell
-from .selling_cob import _primitive_or_self, primitive_matrix, selling_matrix
+from .primitive import lattice_letter
+from .selling_cob import _PRIM_EXACT, selling_matrix
 
 LEPAGE_STRAIN = math.sqrt(2.0) * math.sin(math.radians(3.0))
 """Strain of one cell angle changed by 3 degrees: the sort distance of a pseudo-twofold
@@ -67,6 +68,16 @@ with Le Page's obliquity of 3 degrees."""
 LEPAGE_PRICE = 2.0 * math.sqrt(2.0) * math.atanh(math.sin(math.radians(3.0)))
 """Price of a twofold of obliquity 3 degrees: twice its geodesic distance to the metrics
 it fixes (Proposition A9), 2 sqrt(2) artanh(sin 3 deg) = 0.148."""
+
+
+DEFAULT_ACCEPT = 0.074
+"""Default price band of :func:`reindex` and :func:`indexing_classes` (7.4 %), the band of the
+paper's tables; the PDB non-isomorphism quantiles (90th 4.2 %, 95th 6.7 %) bound it from below."""
+
+MAX_BALL = 5000
+"""Largest number of lattice vectors in the ball of Lemma A6 that the exact enumeration
+accepts; above it a ValueError is raised instead of running for minutes (thin needles at
+large bands). Pass ``max_ball=None`` to :func:`widened_closure` to lift it."""
 
 
 def band_for(accept):
@@ -103,6 +114,15 @@ def _data():
     L1 = np.array(raw["L1"], dtype=float)
     L2 = np.array(raw["L2"], dtype=float)
     return U, L1, L2, {_key(S) for S in L1}, {_key(S) for S in L2}
+
+
+def universal_operators():
+    """The 6096 matrices of U as integer column operators W (3x3), for a lookup between two
+    Selling-reduced cells: with B_R, B_N the reduced bases (columns, in each cell's input
+    basis), the candidates are P = B_R W B_N^-1 (Remark A7). The stored data hold each
+    element as superbase rows; W is their transpose."""
+    np = _np()
+    return np.round(_data()[0]).astype(int).transpose(0, 2, 1)
 
 
 def _key(S):
@@ -167,11 +187,51 @@ class ReducedCell:
     G: object                                           # numpy (3,3)
 
 
+def _check_cell(cell):
+    """Six finite cell parameters, edges > 0, angles in degrees, positive-definite metric."""
+    try:
+        cell = tuple(float(x) for x in cell)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"a cell is six numbers a, b, c, alpha, beta, gamma; got {cell!r}") from exc
+    if len(cell) != 6 or not all(math.isfinite(x) for x in cell):
+        raise ValueError(f"a cell is six finite numbers a, b, c, alpha, beta, gamma; got {cell!r}")
+    if min(cell[:3]) <= 0:
+        raise ValueError(f"cell edges must be positive; got {cell[:3]}")
+    if not all(0 < x < 180 for x in cell[3:]):
+        raise ValueError(f"cell angles must lie strictly between 0 and 180 degrees; got {cell[3:]}")
+    if max(cell[3:]) < 2 * math.pi:
+        raise ValueError(f"cell angles {cell[3:]} look like radians; give them in degrees")
+    ca, cb, cg = (math.cos(math.radians(x)) for x in cell[3:])
+    if 1 - ca * ca - cb * cb - cg * cg + 2 * ca * cb * cg <= 0:
+        raise ValueError(f"the angles {cell[3:]} do not form a cell (the metric is not positive definite)")
+    return cell
+
+
+def _centring(sg_hm):
+    """Lattice letter of a space-group symbol: P for none, P for a rhombohedral setting
+    (':R'), raising on a symbol whose lattice letter is not recognised."""
+    if not sg_hm:
+        return "P"
+    s = str(sg_hm).strip()
+    if s.replace(" ", "").upper().endswith(":R"):
+        return "P"                                      # rhombohedral axes: already primitive
+    try:
+        return lattice_letter(s)
+    except ValueError as exc:
+        raise ValueError(f"cannot read a lattice centring from the space-group symbol {sg_hm!r}") from exc
+
+
 def reduce_cell(cell, sg_hm=None) -> ReducedCell:
+    """The cell's primitive Selling-reduced basis and metric. ``sg_hm`` gives the centring
+    (P, A, B, C, I, F, R; 'R ... :R' is primitive); an unreadable symbol raises."""
     np = _np()
-    cell = tuple(float(x) for x in cell)
-    prim = _primitive_or_self(cell, sg_hm)
-    B = primitive_matrix(sg_hm) @ selling_matrix(prim)
+    cell = _check_cell(cell)
+    T = Matrix3(_PRIM_EXACT[_centring(sg_hm)])
+    Tf = np.array([[float(x) for x in row] for row in T.rows])
+    G0 = np.array(UnitCell(*cell).metric_tensor(), float)
+    from .metric import params_from_metric
+    prim = tuple(params_from_metric((Tf.T @ G0 @ Tf).tolist()))
+    B = T @ selling_matrix(prim)
     Bf = np.array([[float(x) for x in row] for row in B.rows])
     Gin = np.array(UnitCell(*cell).metric_tensor(), float)
     G = Bf.T @ Gin @ Bf
@@ -205,10 +265,14 @@ def _ball_vectors(G, eps):
     return V[n2 <= lim * (1 + 1e-12)]
 
 
-def _ball_superbases(G, eps):
+def _ball_superbases(G, eps, max_ball=MAX_BALL):
     """every superbase within eps of obtuse (exact, Lemma A6): yields (key, S, distance)."""
     np = _np()
     V = _ball_vectors(G, eps)
+    if max_ball is not None and len(V) > max_ball:
+        raise ValueError(f"the ball of Lemma A6 holds {len(V)} lattice vectors at strain {eps:.3f} (limit "
+                         f"{max_ball}): the cell is too anisotropic for the exact enumeration at this band; "
+                         "use a smaller band, or pass max_ball=None and expect a long run")
     n = np.sqrt(np.einsum("ia,ab,ib->i", V, G, V))
     ok = -(V @ G @ V.T) >= -eps * np.outer(n, n) - 1e-9 * abs(G).max()   # Prop. A4 prefilter
     idx = {tuple(v.astype(int)): i for i, v in enumerate(V)}
@@ -263,6 +327,7 @@ class WidenedClosure:
     eps: float
     layer: int               # 1 or 2: smallest adjacency layer holding the whole set; 3: neither; 0: uncertified L1 filter
     members: list = field(default_factory=list)
+    _selfmaps: dict = field(default_factory=dict, repr=False)   # (accept, proper) -> self-map candidates
 
     def __len__(self):
         return len(self.members)
@@ -272,7 +337,7 @@ class WidenedClosure:
         return self.layer
 
 
-def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> WidenedClosure:
+def widened_closure(cell, sg_hm=None, eps=None, certify=True, max_ball=MAX_BALL) -> WidenedClosure:
     """S_eps of the cell, exactly, and the adjacency layer that holds it.
 
     eps must be below 1/4. With ``certify`` (default) the ball of Lemma A6 is
@@ -280,7 +345,11 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
     adjacency layer that contains the whole set (1: the 127 superbases of L1, 2: the 2755
     of L2, 3: neither). Without ``certify`` only L1 is filtered (fast, 127 depths) and
     ``layer`` is 0: complete only if eps is below the cell's adjacency radius delta_1,
-    which is not checked (Remark A7)."""
+    which is not checked (Remark A7). The default ``eps`` is ``band_for(DEFAULT_ACCEPT)``,
+    which certifies the default price band of :func:`reindex`. ``max_ball`` caps the ball
+    of Lemma A6 (see :data:`MAX_BALL`)."""
+    if eps is None:
+        eps = band_for(DEFAULT_ACCEPT)
     if not 0 <= eps < 0.25:
         raise ValueError("eps must be in [0, 0.25)")
     red = cell if isinstance(cell, ReducedCell) else reduce_cell(cell, sg_hm)
@@ -292,7 +361,7 @@ def widened_closure(cell, sg_hm=None, eps=LEPAGE_STRAIN, certify=True) -> Widene
         return WidenedClosure(red, eps, 0, members)
     outside1 = outside2 = False
     exact = {}
-    for k, S, d in _ball_superbases(G, eps):
+    for k, S, d in _ball_superbases(G, eps, max_ball):
         exact[k] = (S, d)
         outside1 |= k not in K1
         outside2 |= k not in K2
@@ -372,8 +441,9 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
     (Lemma A8; see :func:`band_for` and :func:`accept_for`). A candidate whose fitted
     scale changes the edge lengths by more than ``max_scale_change`` (default 10 %) is
     rejected; ``None`` keeps every scale. If the two primitive cells differ in volume by
-    a factor of 1.6 or more, no unimodular operator relates them and a ValueError names
-    the likely cause (a wrong centring symbol, or a sub- or superlattice).
+    more than that scale limit allows ((1 + max_scale_change)^3, or 1.6 without a limit),
+    a ValueError names the likely cause (a wrong centring symbol, or a sub- or
+    superlattice). An obverse/reverse relation keeps the volume and is not detected.
     ``proper=True`` (default) keeps only candidates of positive determinant (+1, or +1/k from a
     centred reference's conventional basis): two right-handed
     bases are related by a proper operator, and a left-handed basis is never valid
@@ -383,6 +453,10 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
     ``eps`` is a deprecated alias of ``accept``."""
     np = _np()
     ref = reference
+    if eps is not None:
+        import warnings
+        warnings.warn("reindex(eps=...) is a deprecated alias of accept= (a price, not the widening strain)",
+                      DeprecationWarning, stacklevel=2)
     if accept is None:
         accept = eps if eps is not None else accept_for(ref.eps)
     if accept > accept_for(ref.eps) * (1 + 1e-9):
@@ -390,9 +464,12 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
                          f"{band_for(accept):.4f}; it was widened at {ref.eps:.4f}")
     new = reduce_cell(new_cell, new_sg_hm)
     ratio = math.sqrt(float(np.linalg.det(new.G)) / float(np.linalg.det(ref.reduced.G)))
-    if not 1 / 1.6 < ratio < 1.6:
-        raise ValueError(f"the primitive cells differ in volume by a factor {ratio:.2f}: no unimodular operator "
-                         "relates them; check the centring symbols, or look for a sub- or superlattice")
+    vmax = 1.6 if max_scale_change is None else (1 + max_scale_change) ** 3
+    if not 1 / vmax < ratio < vmax:
+        raise ValueError(f"the primitive cells differ in volume by a factor {ratio:.2f} (allowed {vmax:.2f}): "
+                         "no operator within the scale limit relates them; check the centring symbols, "
+                         "or look for a sub- or superlattice (an obverse/reverse relation of rhombohedral "
+                         "lattices keeps the volume and is not detected from cell parameters)")
     G_R_in = np.array(UnitCell(*ref.reduced.cell).metric_tensor(), float)
     G_N_in = np.array(UnitCell(*new.cell).metric_tensor(), float)
     BN_inv = new.basis.inverse()
@@ -428,9 +505,15 @@ def price_spectrum(reference, proper=True):
     """Prices of every self-map of the reference within its band (the operators H_eps
     that carry the reference onto itself), sorted; the gaps in this list are where a
     band gives a group (Proposition A10)."""
-    ref = reference
-    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, proper=proper)
-    return sorted(c.price for c in selfc)
+    return sorted(c.price for c in _self_maps(reference, accept_for(reference.eps), proper))
+
+
+def _self_maps(ref, accept, proper):
+    """The reference's self-maps within ``accept`` (cached on the widened closure)."""
+    key = (round(accept, 12), proper)
+    if key not in ref._selfmaps:
+        ref._selfmaps[key] = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, accept=accept, proper=proper)[0]
+    return ref._selfmaps[key]
 
 
 # ---- indexing classes: the coset structure ---------------------------------------
@@ -504,15 +587,22 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     the point group replaces the Laue group, since the inversion then changes the
     indexing (an acentric, non-chiral group; for a chiral group, with proper operators,
     the count does not change). ``space_group_key`` is the reference's space group in its
-    input setting. Only proper candidates are used by default (``proper=True``)."""
+    input setting; the new cell is read with the reference's centring unless ``new_sg_hm`` is given.
+    Only proper candidates are used by default (``proper=True``)."""
     ref = reference
+    if eps is not None:
+        import warnings
+        warnings.warn("indexing_classes(eps=...) is a deprecated alias of accept= (a price)",
+                      DeprecationWarning, stacklevel=2)
     if accept is None:
         accept = eps if eps is not None else accept_for(ref.eps)
+    L = _symmetry_matrices(space_group_key, anomalous)          # validate the group first
+    if new_sg_hm is None:
+        new_sg_hm = ref.reduced.sg_hm
     cands, tier = reindex(ref, new_cell, new_sg_hm, accept=accept, proper=proper)
-    selfc, _ = reindex(ref, ref.reduced.cell, ref.reduced.sg_hm, accept=accept, proper=proper)
+    selfc = _self_maps(ref, accept, proper)
     H = {c.operator.rows for c in selfc}
     closed = all((a.operator @ b.operator).rows in H for a in selfc for b in selfc)
-    L = _symmetry_matrices(space_group_key, anomalous)
     laue_in = all(l.rows in H for l in L if proper is not True or l.det() == 1)
     by_op = {c.operator.rows: c for c in cands}
     classes, covered = [], set()
@@ -625,7 +715,8 @@ __all__ = [
     "LEPAGE_STRAIN", "LEPAGE_PRICE", "BRAVAIS", "band_for", "accept_for", "price_spectrum", "strain_from_esds",
     "certified_sort_spectrum", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
     "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex",
-    "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum",
+    "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum", "universal_operators",
+    "DEFAULT_ACCEPT", "MAX_BALL",
 ]
 
 
