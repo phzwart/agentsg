@@ -340,3 +340,33 @@ def test_exact_triangle_bounds():
         q = _price(GN, (h1 @ P0).T @ G @ (h1 @ P0))[0]
         assert abs(q - pr(h1)) <= p0 + 1e-9
 
+
+
+def test_niggli_type_decides_zeros_on_d_near_orthorhombic():
+    """Section 5.2: near a three-zero face (oP, tP, cP), a measured reference given in its
+    Niggli form reduces with its near-zero conorms off d when the form is type II (all three
+    dot products <= 0) and with them on d when it is type I (all three > 0): the orthogonal
+    cells are obtuse only if all three products are <= 0, and sign changes cannot alter the
+    sign of their product."""
+    import itertools
+    from agentsg.cell.metric import params_from_metric
+    from agentsg.cell.strain_closure import reduce_cell, conorms, _S0
+    rng = np.random.default_rng(5)
+    seen = {"I": 0, "II": 0}
+    for _ in range(200):
+        G = np.diag(rng.uniform(20, 80, 3) ** 2)
+        w, V = np.linalg.eigh(G); Gh = V @ np.diag(w ** .5) @ V.T
+        X = rng.normal(size=(3, 3)); X = (X + X.T) / 2; X *= rng.uniform(0.001, 0.02) / np.linalg.norm(X)
+        Gm = Gh @ (np.eye(3) + X) @ Gh
+        t = "I" if Gm[0, 1] * Gm[0, 2] * Gm[1, 2] > 0 else "II"
+        for sg in itertools.product((1, -1), repeat=3):            # the Niggli sign convention
+            S = np.diag(sg); H = S @ Gm @ S
+            off = [H[0, 1], H[0, 2], H[1, 2]]
+            if (t == "I" and min(off) > 0) or (t == "II" and max(off) <= 0):
+                break
+        r = reduce_cell(params_from_metric(H.tolist()))
+        p = conorms(np.array(_S0, float), r.G)
+        on_d = any(k < 3 for k in np.argsort(p)[:3])                # slots da, db, dc come first
+        assert on_d == (t == "I"), (t, p)
+        seen[t] += 1
+    assert min(seen.values()) > 50

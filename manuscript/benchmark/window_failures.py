@@ -4,10 +4,16 @@ Two families, each a reference lattice (exact) and a new cell (the same lattice 
 proper basis with a metric error drawn at the size of non-isomorphism, 0.1-2 % strain):
 
   typeI   lattices on the faces with two zeros sharing a vector or three zeros (sorts M4,
-          O4, H4, O5, T5, C5), random parameters; the new cell's Niggli type (I: three
-          acute angles) is recorded, since a type I Niggli cell puts the near-zero conorms
-          of the Selling base on d slots and can need a matrix entry of 2 between the two
-          reduced cells in their fixed labellings.
+          O4, H4, O5, T5, C5), random parameters. The reference is measured too (the same
+          error model) and given, as data processing reports it, as its Niggli cell; the
+          true operator is taken from that basis. The size of the entries is decided in the
+          reference's frame: a type II Niggli cell (no acute angle) is already an obtuse
+          superbase and keeps the near-zero conorms off the slots of d, so every operator to
+          the new cell has entries in {-1,0,1}; a type I Niggli cell (three acute angles) is
+          reduced across the near-zero walls, which can put a near-zero conorm on a slot of
+          d, and then an operator can need an entry of 2. Rows are split by the reference's
+          Niggli type. (With an exact reference in the labelling of its sort's pattern, the
+          zeros are never on d and no window fails.)
   entry3  lattices on random two- and three-zero faces whose closure has a member needing
           an entry of 3 in the basis of the reduced cell; the new cell is that member.
 
@@ -18,7 +24,7 @@ lattice-symmetry pipeline; plus LatticeRepLib CmdLM (Andrews & Bernstein's latti
 matcher, LM_BIN), scored by whether the cell it returns lies within the band of the
 reference (it returns a cell, not an operator). Band 7.4 %.
 
-    LM_BIN=/path/to/CmdLM PYTHONPATH=agentsg/src python manuscript/benchmark/window_failures.py [n]
+    LM_BIN=/path/to/CmdLM PYTHONPATH=agentsg/src python manuscript/benchmark/window_failures.py [n_typeI n_entry3]
 """
 from __future__ import annotations
 
@@ -83,9 +89,14 @@ def typeI_cases(n, rng):
             G = sc._gram(np.array([s6[SLOT_FROM_S6[i]] for i in range(6)]))
             if np.linalg.eigvalsh(G).min() > 1:
                 break
-        U = random_proper(rng)
-        out.append(dict(family="typeI", sort=name, reference_cell=params_from_metric(G.tolist()),
-                        measured_cell=params_from_metric(perturb(U.T @ G @ U, rng).tolist()), true_operator=U.tolist()))
+        U = random_proper(rng).astype(float)
+        cs = crystal.symmetry(unit_cell=params_from_metric(perturb(G, rng).tolist()), space_group_symbol="P1")
+        cb = cs.change_of_basis_op_to_niggli_cell()
+        X = np.linalg.inv(np.array(cb.c().r().as_double()).reshape(3, 3))   # Niggli basis in the lattice basis
+        M = np.round(np.linalg.inv(X) @ U).astype(int)
+        M = M if round(np.linalg.det(M)) == 1 else -M
+        out.append(dict(family="typeI", sort=name, reference_cell=cs.change_basis(cb).unit_cell().parameters(),
+                        measured_cell=params_from_metric(perturb(U.T @ G @ U, rng).tolist()), true_operator=M.tolist()))
     return out
 
 
@@ -122,15 +133,20 @@ def cmdlm(ref, new, binary):
     return sc._price(cm.G_of(ref), cm.G_of(cell))[0]
 
 
-def main(n=60):
+def main(n=300, n3=60):
     rng = np.random.default_rng(2026)
-    cases = typeI_cases(n, rng) + entry3_cases(n // 2, rng)
+    cases = typeI_cases(n, rng) + entry3_cases(n3, rng)
     lm = os.environ.get("LM_BIN")
     agg = collections.defaultdict(lambda: collections.Counter())
     for c in cases:
         M = np.array(c["true_operator"], int)
-        key = (c["family"], niggli_type(c["measured_cell"]) if c["family"] == "typeI" else "-")
-        for k in (key, (c["family"], "all")):
+        if c["family"] == "typeI":
+            t = niggli_type(c["reference_cell"])
+            keys = [(c["family"], t), (c["family"], t + ("/2z" if c["sort"] in ("M4", "O4", "H4") else "/3z"))]
+        else:
+            keys = [(c["family"], "-")]
+        keys.append((c["family"], "all"))
+        for k in keys:
             agg[k]["n"] += 1
         for name, f in METHODS.items():
             try:
@@ -138,14 +154,14 @@ def main(n=60):
             except (RuntimeError, ValueError):
                 Ps, ps = np.zeros((0, 3, 3), int), np.zeros(0)
             ok = cm.score(Ps, ps, M)[0]
-            for k in (key, (c["family"], "all")):
+            for k in keys:
                 agg[k][name] += ok
         if lm:
             p = cmdlm(c["reference_cell"], c["measured_cell"], lm)
-            for k in (key, (c["family"], "all")):
+            for k in keys:
                 agg[k]["CmdLM"] += p is not None and p <= BAND
     names = list(METHODS) + (["CmdLM"] if lm else [])
-    print(f"band {BAND}; errors 0.1-2 % strain on the new cell; true operator found (CmdLM: cell within band)")
+    print(f"band {BAND}; errors 0.1-2 % strain (typeI: on both cells, reference as its Niggli cell, rows by its Niggli type); true operator found (CmdLM: cell within band)")
     print(f"{'family':8s} {'Niggli':6s} {'n':>4s} " + " ".join(f"{m:>10s}" for m in names))
     for k in sorted(agg):
         a = agg[k]
@@ -153,4 +169,4 @@ def main(n=60):
 
 
 if __name__ == "__main__":
-    main(int(sys.argv[1]) if len(sys.argv) > 1 else 60)
+    main(*(int(x) for x in sys.argv[1:]))
