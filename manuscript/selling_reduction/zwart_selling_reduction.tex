@@ -286,13 +286,13 @@ so that $(a_N\,b_N\,c_N)=(a_R\,b_R\,c_R)\Pop$, $\Gmet_N\approx\Pop^{\mathsf T}\G
 \label{sec:pricing}
 A symmetry $g$ of a nearby lattice enters $H_\epsilon$ when its price is at most $\epsilon$. For a twofold the price is exactly twice the geodesic distance from the measured metric to the metrics $V_g$ that $g$ leaves invariant; for a rotation of order $n$ the price is at most twice that distance, and at a metric of $V_g$ the ratio is $\sqrt3$ for a threefold, between $\sqrt2$ and $2$ for a fourfold and between $1$ and $\sqrt3$ for a sixfold (Proposition~A9). One threshold on the price of each operator therefore serves every sort, and Le Page's $3^\circ$ is a price of $14.8\%$ for each twofold.
 
-The band is a tolerance on how much two measurements of one crystal may differ. For macromolecular crystals that difference is dominated by non-isomorphism, not by the standard uncertainties of the cells, which give strains of $0.01$ to $0.1\%$. We measure non-isomorphism in the PDB (Section~\ref{sec:design}) and set the band from its upper percentiles. A candidate's price is then reported as a percentile of that distribution, which reads directly: a class priced at the median non-isomorphism is as close to the reference as a typical second crystal of the same form, and the metric cannot exclude it. For small-molecule data, whose cells are measured precisely and rarely non-isomorphous, a band of a few times the strain implied by the esds is used instead (\texttt{strain\_from\_esds} in the implementation).
+The band is a tolerance on how much two measurements of one crystal may differ. For macromolecular crystals that difference is dominated by non-isomorphism, not by the measurement error that the standard uncertainties of a cell describe. We measure non-isomorphism in the PDB (Section~\ref{sec:design}) and set the band from its upper percentiles. A candidate's price is then reported as a percentile of that distribution, which reads directly: a class priced at the median non-isomorphism is as close to the reference as a typical second crystal of the same form, and the metric cannot exclude it. For small-molecule data, whose cells are measured precisely and rarely non-isomorphous, a band of a few times the strain implied by the esds is used instead (\texttt{strain\_from\_esds} in the implementation).
 
 \subsection{Tests}
 \label{sec:design}
 \emph{Constructed cases.} The benchmark (supporting information, Section~S2) has 780 primitive cells with a random metric error and a random proper reindexing, built where the closure predicts trouble: 75 measured in another shape of the same lattice, 660 a small distance from a specialisation, 20 whose only reduced superbase is a difference-wall member, 16 needles and plates and 9 of the boundary sorts. Its errors are small (median strain $0.1\%$). The stress family puts independent errors on both cells of 60 references, scaled so that the true operator's price is $0.5$ and $0.9$ times the band. The window family probes the mechanisms of Section~\ref{sec:operators-results}: 120 lattices with two right angles sharing a vector or three right angles, measured again in a random basis with an error of $0.1$ to $2\%$, and 60 lattices whose closure has a member needing an entry of $3$, measured in that member. Seven methods are scored: the closure; the lookup of $\mathcal U$; searches over every unimodular matrix with entries in $\{-1,0,1\}$ (6960 matrices) and $\{-2,\dots,2\}$ between the two Selling-reduced cells; cctbx \texttt{similarity\_\allowbreak transformations} between the two Niggli cells (Grosse-Kunstleve \emph{et al.}, 2002) with generator ranges 1 and 2; and a pipeline that runs the cctbx lattice-symmetry analysis (Sauter \emph{et al.}, 2004) on both cells and returns every operation of the reference's highest lattice group between the two standard settings. Every method's candidates are priced the same way and kept within the band. On the window family the LatticeRepLib lattice matcher (\texttt{CmdLM}; Andrews \& Bernstein, 2026) is run as well; it returns the presentation of the new cell nearest to the reference, not an operator, and is scored by whether that presentation lies within the band.
 
-\emph{The PDB.} The snapshot of 206\,214 deposited cells (Zenodo, doi:10.5281/zenodo.22986222) is used twice. Non-isomorphism is measured between entries of one crystal form, taken as entries with the same space group whose identifiers are adjacent and share their first three characters, so that most pairs come from one deposition series; both cells are in the standard setting of the space group, so the identity is the operator, and pairs above $20\%$ are counted as different forms. Pseudo-symmetry is measured by running the cctbx lattice-symmetry analysis at $3^\circ$ on the primitive Niggli cell of every entry, recording the highest lattice group, its obliquity and the Delone sort of the idealised lattice, and pricing every proper operator of that group that is not a symmetry of the reported space group. Deposited cells are refined in the reported space group, so they satisfy its symmetry exactly; what the analysis measures is how far real crystals lie from a higher lattice, not measurement error.
+\emph{The PDB.} The snapshot of 206\,214 deposited cells (Zenodo record 22986222; see Data availability) is used twice. Non-isomorphism is measured between entries of one crystal form, taken as entries with the same space group whose identifiers are adjacent and share their first three characters, so that most pairs come from one deposition series; both cells are in the standard setting of the space group, so the identity is the operator, and pairs above $20\%$ are counted as different forms. Pseudo-symmetry is measured by running the cctbx lattice-symmetry analysis at $3^\circ$ on the primitive Niggli cell of every entry, recording the highest lattice group, its obliquity and the Delone sort of the idealised lattice, and pricing every proper operator of that group that is not a symmetry of the reported space group. Deposited cells are refined in the reported space group, so they satisfy its symmetry exactly; what the analysis measures is how far real crystals lie from a higher lattice, not measurement error.
 
 \subsection{What is proved}
 \label{sec:verification}
@@ -408,7 +408,7 @@ When does reduction put a zero on $d$? For a lattice near primitive monoclinic, 
 
 \emph{Needles and plates.} The exact enumeration and the projection construction agree on a needle $5.58\times5.21\times131.97$\,\Ang, $\gamma=91.12^\circ$, at strains from $0.05$ to $5.2\%$, on a $100\times100.1\times5$\,\Ang\ and a $150\times120\times4.8$\,\Ang\ plate at $5.2\%$, where the widened sets have 20 and 28 members, and on 240 random needles, plates, isotropic and monoclinic cells, against brute force. Bands per slot applied in the frame of the reduced cell are not exact on the needle (supporting information, Section~S4).
 
-\emph{Adjacency radii.} Table~\ref{tab:radii} gives the adjacency radii. For the worked cell and a $10\times10\times30$\,\Ang\ needle no superbase outside the first layer comes within $25\%$, so the lookup of $\mathcal U$ is complete at every band in use. For needles and plates $r_1$ falls with the ratio of the shortest to the longest edge, to $4$--$6\%$ for the thinnest cells, and the second layer roughly doubles it; there the lookup is complete only for bands below $r_1$, and the exact enumeration is needed beyond. For the BLDConograph sample cells and a lysozyme cell (Appendix~B) $r_1$ reaches the cap. Widening a reference took TIMEWIDEN, reindexing one new cell TIMEREINDEX.
+\emph{Adjacency radii.} Table~\ref{tab:radii} gives the adjacency radii. For the worked cell and a $10\times10\times30$\,\Ang\ needle no superbase outside the first layer comes within $25\%$, so the lookup of $\mathcal U$ is complete at every band in use. For needles and plates $r_1$ falls with the ratio of the shortest to the longest edge, to $4$--$6\%$ for the thinnest cells, and the second layer roughly doubles it; there the lookup is complete only for bands below $r_1$, and the exact enumeration is needed beyond. For the BLDConograph sample cells and a lysozyme cell (Appendix~B) $r_1$ reaches the cap. On the benchmark, widening a reference and reindexing one new cell took $0.10$\,s per case on average; at a band of $14.8\%$ a thin plate has 258 members in the third layer and takes tens of seconds.
 
 \begin{table}
 \caption{Adjacency radii in strain (\%): $r_1$, the smallest strain at which a superbase outside the first layer becomes obtuse, and $r_2$ for the second layer, computed up to $25\%$.}
@@ -456,19 +456,75 @@ worked cell & $P1$ & 2 & 1 & 2 & 0, 1.55 \\
 \label{fig:classes}
 \end{figure}
 
-\emph{Methods compared.} BENCHPARA
+\emph{Methods compared.} Table~\ref{tab:bench} scores the methods of Section~\ref{sec:design} on the four families. The closure found the true operator in every case, as Lemma~A8 guarantees, and so did the lookup of $\mathcal U$ where it was run. On the benchmark the $\{-2,\dots,2\}$ search and both cctbx similarity searches also found every operator; the $\{-1,0,1\}$ search missed the two triclinic cells near mP whose type~I Niggli cells put the operator's entry at $2$, and the pipeline missed one needle, $5\times5\times100$\,\Ang\ with $\beta=92^\circ$, whose reference and measured cell idealise at $3^\circ$ to different lattices (Cmmm and P4/mmm). In the stress cases, with errors at half the band and just below it, the $\{-1,0,1\}$ search lost 10 of 120 and the pipeline 10. The window family separates the methods: on the 60 cells measured in a member that needs an entry of $3$, the $\{-1,0,1\}$ search found 21 and the $\{-2,\dots,2\}$ search 48, while the closure, the lookup, both similarity searches and the lattice matcher found all 60. On the 120 near-mP and near-orthogonal cells, of either Niggli type, every method found every operator but the pipeline, which missed one. Per benchmark case the closure took $0.10$\,s including the widening of the reference, the $\{-2,\dots,2\}$ search $0.9$\,s and the cctbx methods $0.03$\,s or less.
 
-BENCHTABLE
+\begin{table}
+\caption{The true operator among the candidates, by method and family; candidates priced by the geodesic distance after the best scale and kept within a band of $7.4\%$ (the reference widened at $7.7\%$ for the closure and the lookup). For the lattice matcher, which returns a cell, a hit is a presentation within the band. Window family: cells measured in a member that needs an entry of $3$, and near-mP and near-orthogonal cells measured with an error of $0.1$ to $2\%$. A dash: not run. Results in \texttt{manuscript/\allowbreak benchmark/}.}
+\label{tab:bench}
+\begin{footnotesize}
+\begin{tabular}{lrrrrr}
+\toprule
+method & benchmark & stress $0.5\epsilon$ & stress $0.9\epsilon$ & entry $3$ & near-mP/oP \\
+\midrule
+closure & 780/780 & 60/60 & 60/60 & 60/60 & 120/120 \\
+lookup of $\mathcal U$ & --- & --- & --- & 60/60 & 120/120 \\
+entries in $\{-1,0,1\}$ & 778/780 & 58/60 & 52/60 & 21/60 & 120/120 \\
+entries in $\{-2,\dots,2\}$ & 780/780 & 59/60 & 60/60 & 48/60 & 120/120 \\
+cctbx similarity, range 1 & 780/780 & 60/60 & 60/60 & 60/60 & 120/120 \\
+cctbx similarity, range 2 & 780/780 & 60/60 & 60/60 & 60/60 & 120/120 \\
+lattice-symmetry pipeline & 779/780 & 56/60 & 54/60 & 60/60 & 119/120 \\
+lattice matcher (\texttt{CmdLM}) & --- & --- & --- & 60/60 & 120/120 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
 
-\emph{What the metric does not decide.} COSETPARA
+\emph{What the metric does not decide.} The cheapest candidate lies in the true operator's coset of the exact lattice symmetries in 742 of the 780 benchmark cases. All 20 difference-wall cases fail this test: there the cheapest candidate is the true operator composed with a pseudo-symmetry of the nearby orthorhombic corner, which costs less than the true operator at that error. In the stress cases the cheapest candidate is in the true coset in 68 of 120. When a pseudo-symmetry costs less than the error, the price orders the candidates but cannot pick the true one; how often that happens in real crystals is the subject of the next section.
 
 \subsection{Pseudo-symmetry in the PDB}
 \label{sec:pdb}
-PDBPARA
+\emph{Non-isomorphism.} Between deposited cells of one crystal form (45\,222 pairs) the price after the scale fit has a median of $0.98\%$, a 90th percentile of $4.2\%$ and a 95th of $6.7\%$; without the scale fit the median is $1.6\%$. This is the scale a reindexing band has to cover for macromolecular data: about $4\%$ covers nine pairs in ten and $7\%$ nineteen in twenty. The standard uncertainties of a single cell describe its measurement error alone and do not reach this scale.
 
-PDBFIG
+\emph{Pseudo-symmetry.} Le Page's analysis at $3^\circ$ finds a higher lattice symmetry than the reported one for 43\,232 of the 206\,172 entries analysed ($21\%$); for 1\,189 ($0.6\%$) the extra symmetry is exact, the metric of a merohedral crystal. For the other 42\,043 every pseudo-symmetry operator costs exactly $2\sqrt2\,\mathrm{artanh}(\sin\delta)$ for its obliquity $\delta$, the relation of Proposition~A9, and the cheapest one has a median price of $6.7\%$. Fig.~\ref{fig:pdb} sets this distribution against non-isomorphism: the cheapest alternative lies within the 90th percentile of non-isomorphism for $35\%$ of the pseudo-symmetric entries and within the 95th for $50\%$. Over all entries, $7.2\%$ have a priced alternative within $4.2\%$ and $10.2\%$ within $6.7\%$. For those the alternative indexing is as close to the reference as a second crystal of the same form, and only the intensities can exclude it.
 
-PDBTABLE
+\emph{Where.} The share depends on the reported type and on the transition (Table~\ref{tab:pdb}). Monoclinic and triclinic entries carry most of it: $18\%$ of the 35\,364 mP entries and $16\%$ of the 8\,522 aP entries have an alternative within $4.2\%$, against $7\%$ of oP and $1\%$ of tP entries. Among the transitions, mP to hP is nearly always undecidable from the cell (median price $0.71\%$, $91\%$ within $4.2\%$): these are hexagonal metrics reported in a monoclinic group, the classic pseudo-merohedral twinning case. The median price of the cheapest alternative is $6$--$7.5\%$ for most transitions, so the sort decides how often a pseudo-symmetry occurs, not what it costs (supporting information, Table~S8).
+
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{figures/fig4_pdb_prices.pdf}
+\caption{Non-isomorphism against pseudo-symmetry in the PDB: cumulative distributions of the price between deposited cells of one crystal form (blue) and of the price of the cheapest pseudo-symmetric alternative of each entry for which Le Page's $3^\circ$ finds a higher lattice (orange). Vertical lines: the 90th and 95th percentiles of non-isomorphism, $4.2$ and $6.7\%$, and the price of a twofold at Le Page's $3^\circ$, $14.8\%$.}
+\label{fig:pdb}
+\end{figure}
+
+\begin{table}
+\caption{The cheapest pseudo-symmetric alternative of PDB entries, by transition from the reported Bravais type to the one Le Page's $3^\circ$ finds: entries with priced alternatives, the median price (\%), and the share within $1\%$, within the 90th percentile of non-isomorphism ($4.2\%$) and within its 95th ($6.7\%$). The sixteen most frequent transitions.}
+\label{tab:pdb}
+\begin{footnotesize}
+\begin{tabular}{lrrrrr}
+\toprule
+transition & entries & median & $\le1\%$ & $\le4.2\%$ & $\le6.7\%$ \\
+\midrule
+oP$\to$tP & 12\,120 & 6.98 & 9 & 31 & 48 \\
+mP$\to$oS & 9\,474 & 7.38 & 12 & 33 & 46 \\
+mP$\to$oP & 4\,417 & 5.78 & 20 & 42 & 55 \\
+aP$\to$mC & 2\,113 & 9.49 & 9 & 19 & 30 \\
+mC$\to$oS & 1\,831 & 7.41 & 12 & 33 & 45 \\
+mP$\to$tP & 1\,542 & 3.66 & 27 & 54 & 69 \\
+mC$\to$oI & 1\,308 & 7.13 & 11 & 30 & 48 \\
+oS$\to$hP & 1\,169 & 7.34 & 10 & 26 & 45 \\
+oI$\to$tI & 1\,165 & 6.25 & 19 & 38 & 52 \\
+mC$\to$oF & 1\,067 & 7.29 & 8 & 29 & 46 \\
+oS$\to$tP & 880 & 7.42 & 14 & 32 & 46 \\
+tP$\to$cP & 620 & 7.06 & 7 & 27 & 47 \\
+aP$\to$mP & 571 & 6.97 & 15 & 30 & 48 \\
+mP$\to$hP & 479 & 0.71 & 61 & 91 & 100 \\
+mC$\to$hR & 391 & 8.92 & 19 & 29 & 37 \\
+mC$\to$tI & 391 & 4.56 & 23 & 46 & 64 \\
+\midrule
+all & 42\,043 & 6.67 & 15 & 35 & 50 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
 
 %==============================================================================
 \section{Discussion}
@@ -491,8 +547,7 @@ PDBTABLE
 
 Every integer matrix between two Selling-reduced cells of any lattice lies in one set of 6096 matrices with entries up to $\pm3$. For a measured cell the reduced cells within a strain tolerance are finite and enumerated exactly, and below a radius computed for each cell a lookup of those 6096 matrices between the two reduced cells is a complete search. Smaller fixed windows fail in configurations that can be named: a near-monoclinic or near-orthorhombic cell measured on the acute side of its right angles, and paths of three zeros. Prices of candidate operators are geodesic distances, so their coset structure holds exactly, and a pseudo-symmetric alternative costs twice its distance to the lattice it would make exact, about $5\%$ per degree of Le Page obliquity. In practice: store each reference as its widened closure; Selling-reduce each new data set once; keep the proper candidates within a band set by non-isomorphism, about $4$--$7\%$ for macromolecular crystals; group them by the Laue group; and report each class's price against the non-isomorphism distribution. For about one PDB entry in ten the alternative indexing is then as close as a second crystal of the same form, and the intensities have to decide.
 
-\section*{Data availability}
-The implementation is the module \texttt{agentsg.cell.strain\_closure} of the \texttt{agentsg} repository (\texttt{github.com/\allowbreak phzwart/\allowbreak agentsg}), with \texttt{widened\_\allowbreak closure}, \texttt{reindex}, \texttt{indexing\_\allowbreak classes}, \texttt{price\_\allowbreak spectrum}, \texttt{sort\_\allowbreak spectrum}, \texttt{certified\_\allowbreak sort\_\allowbreak spectrum}, \texttt{band\_\allowbreak for} and \texttt{strain\_\allowbreak from\_\allowbreak esds}. The PDB cell snapshot is on Zenodo (doi:10.5281/zenodo.22986222). Every number in this paper is reproduced by a test in \texttt{manuscript/\allowbreak appendix\_z}, by \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py} or by a script in \texttt{manuscript/\allowbreak benchmark}; the supporting information lists them by section, table and figure (Table~S9), with the versions of the software used.
+\paragraph{Data availability.}\sloppy The implementation is the module \texttt{agentsg.\allowbreak cell.\allowbreak strain\_closure} of the \texttt{agentsg} repository (\texttt{github.com/\allowbreak phzwart/\allowbreak agentsg}). Its main functions are \texttt{widened\_\allowbreak closure}, \texttt{reindex} and \texttt{indexing\_\allowbreak classes}, with \texttt{sort\_\allowbreak spectrum} for Appendix~B. The PDB cell snapshot is on Zenodo (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222). Every number in this paper is reproduced by a test in \texttt{manuscript/\allowbreak appendix\_z}, by \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py} or by a script in \texttt{manuscript/\allowbreak benchmark}; the supporting information lists them by section, table and figure (Table~S9), with the versions of the software used.\par\fussy
 
 %==============================================================================
 \appendix
@@ -548,7 +603,39 @@ Fig.~\ref{fig:sortgraph} draws the spectrum of the worked cell on the graph of s
 
 \emph{Le Page's $3^\circ$ by sort.} The distance to a sort at Le Page's boundary depends on the sort, while the price of each operator does not. For exact lattices of each sort perturbed in random directions until Le Page's obliquity for the sort's Bravais group is exactly $3^\circ$, the largest twofold price is $14.8\%$ in every sort, as Proposition~A9 requires, while the median distance to the sort is $7.4$--$7.5\%$ for the sorts reached by one twofold (mP, oP, oS, oF and the mC sorts M1A, M1B), $7.9$--$8.1\%$ for tP, tI, hP and hR, and $8.3$--$8.5\%$ for the cubic sorts, with longer tails for the boundary sorts O3, M2B and M3 (Table~\ref{tab:lepage}). A single band on the distance to a sort therefore tests each sort at a different level, which is why the reindexing in this paper is decided on the prices of operators.
 
-LEPAGETABLE
+\begin{table}
+\caption{Le Page's $3^\circ$ by Delone sort: for exact lattices of each sort, each perturbed in a random direction until the obliquity of the sort's Bravais group is $3^\circ$, the strain distance to the sort (median, and 10th--90th percentiles) and the median of the largest price of the lattice's twofolds and of its other rotations, by order, in \%. In the monoclinic sorts some perturbations reach the boundary through a different C-centred group, whose own twofold costs $14.8\%$ while the exact lattice's costs more.}
+\label{tab:lepage}
+\begin{footnotesize}
+\begin{tabular}{llrlrl}
+\toprule
+sort & type & $n$ & distance to sort & twofold price & other orders \\
+\midrule
+C1 & cI & 25 & 8.3 (7.6--9.0) & 14.8 & 3: 14.1, 4: 15.0 \\
+C3 & cF & 25 & 8.3 (7.7--9.2) & 14.8 & 3: 14.3, 4: 14.5 \\
+C5 & cP & 25 & 8.5 (7.6--9.3) & 14.8 & 3: 14.2, 4: 14.7 \\
+H4 & hP & 25 & 7.9 (7.5--8.5) & 14.8 & 3: 13.7, 6: 11.3 \\
+T1 & tI & 25 & 7.9 (7.5--9.1) & 14.8 & 4: 14.0 \\
+T2 & tI & 25 & 8.0 (7.6--8.8) & 14.8 & 4: 14.4 \\
+T5 & tP & 25 & 8.0 (7.4--8.9) & 14.8 & 4: 14.1 \\
+R1 & hR & 25 & 8.0 (7.5--8.6) & 14.8 & 3: 14.4 \\
+R3 & hR & 25 & 8.1 (7.5--8.8) & 14.8 & 3: 14.5 \\
+O1A & oF & 24 & 7.5 (7.4--7.8) & 14.8 & --- \\
+O1B & oI & 25 & 7.6 (7.4--8.1) & 14.8 & --- \\
+O2 & oI & 25 & 7.6 (7.4--8.2) & 14.8 & --- \\
+O3 & oI & 25 & 8.6 (7.6--13.6) & 14.8 & --- \\
+O4 & oS & 25 & 7.7 (7.4--8.2) & 14.8 & --- \\
+O5 & oP & 25 & 7.5 (7.4--8.3) & 14.8 & --- \\
+M1A & mC & 20 & 7.4 (7.4--9.1) & 14.8 & --- \\
+M1B & mC & 15 & 7.4 (7.4--7.4) & 14.8 & --- \\
+M2A & mC & 18 & 7.4 (7.4--8.5) & 14.8 & --- \\
+M2B & mC & 17 & 9.3 (7.5--19.9) & 14.8 & --- \\
+M3 & mC & 23 & 8.9 (7.5--16.1) & 14.8 & --- \\
+M4 & mP & 23 & 7.4 (7.4--7.4) & 14.8 & --- \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
 
 \emph{Against BLDConograph and SELLA.} On the seven sample cells that Oishi-Tomiyasu (2024) distributes with BLDConograph, the highest Bravais type within $7.4\%$ is the program's type in all seven, with the next type at least $14.9\%$ away (supporting information, Table~S5). SELLA was run on the worked cell, the lysozyme cell, a pseudo-tetragonal cell, a cell with all angles $92^\circ$, a needle, two plates and the seven BLDConograph cells. The two rankings of the 24 sorts agree closely, with Spearman's rank correlation $0.77$ to $0.97$. The two scales are not proportional: SELLA's distance divided by the cell's mean squared edge is a median $0.71$ times the strain distance, with a wide spread between cells. With SELLA's band set by that median ratio, the Bravais types within the band agree in 11 of the 14 cells. They differ on the needle and the two plates, where an absolute band weighs the long edges differently: SELLA admits hP, hR, oF, tI and tP for the needle, which are far in strain, and the strain band admits oF (and tI) for the plates, which SELLA's does not. For these thin cells $r_1$ is $4$ to $6\%$, so their strain distances above it are bounds and are flagged.
 

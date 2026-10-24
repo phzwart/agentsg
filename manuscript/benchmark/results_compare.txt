@@ -37,4 +37,4 @@ all              small2       780/780       4/24         742/780
 all              cctbx_sim1   780/780       4/24         742/780   
 all              cctbx_sim2   780/780       4/24         742/780   
 all              pipeline     779/780       4/24         741/779   
-seconds per case: closure 0.15, small1 0.09, small2 1.76, cctbx_sim1 0.00, cctbx_sim2 0.04, pipeline 0.05
+seconds per case: closure 0.10, small1 0.05, small2 0.93, cctbx_sim1 0.00, cctbx_sim2 0.03, pipeline 0.03

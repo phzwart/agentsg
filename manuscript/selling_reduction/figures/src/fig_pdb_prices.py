@@ -33,9 +33,10 @@ def nonisomorphism():
     out = []
     for r1, r2 in zip(rows, rows[1:]):
         if r1[0][:3] == r2[0][:3] and r1[7] == r2[7]:
-            p = _price(np.array(metric_tensor(tuple(r2[1:7])), float), np.array(metric_tensor(tuple(r1[1:7])), float))[0]
-            if p < 0.2:
-                out.append(p)
+            G1 = np.array(metric_tensor(tuple(r1[1:7])), float)
+            G2 = np.array(metric_tensor(tuple(r2[1:7])), float)
+            if _price(G2, G1, fit_scale=False)[0] < 0.2:                       # one crystal form, as in
+                out.append(_price(G2, G1)[0])                                   # pdb_nonisomorphism.py
     return np.array(out)
 
 

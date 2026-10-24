@@ -92,3 +92,21 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
   (NCDIST_DIR with libcs6dist.so and libncdist.so): sort rankings against SELLA, and
   nearest-reference matching with CS6Dist and NCDist (`results_sella.txt`,
   `results_s6.txt`).
+
+## Window failures, Niggli types and the PDB
+
+* `window_failures.py` (LM_BIN = LatticeRepLib CmdLM, optional): lattices whose closure
+  needs an operator entry of 3, and near-mP / near-orthogonal lattices measured with a
+  type I or type II Niggli cell; the closure, the lookup of the 6096 matrices, the
+  small-matrix and cctbx searches, the pipeline and CmdLM (`results_window_failures.txt`).
+* `niggli_types.py`: Selling reduction from the Niggli cell of near-monoclinic cells and
+  where the near-zero conorms land (`results_niggli_types.txt`).
+* `pdb_nonisomorphism.py`, `pdb_lepage.py`, `pdb_pricing_summary.py` need the Zenodo
+  snapshot in `data/pdb_cells.duckdb`: the price between entries of one crystal form, and
+  Le Page's 3 degrees on every entry with the prices of the pseudo-symmetries
+  (`results_pdb_*.txt`, `pdb_lepage.jsonl`).
+* `lepage_calibration.py`: the strain distance to each sort and the operator prices at
+  exactly 3 degrees of obliquity (`results_lepage_calibration.txt`).
+
+Since the geodesic price (agentsg CHANGELOG), every script prices candidates by the
+affine-invariant distance after the best scale.

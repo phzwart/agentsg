@@ -5,6 +5,6 @@ benchmark specialisation      660    660                  642       538        2
 benchmark hidden               20     20                    0        20       13.65
 benchmark anisotropy           16     16                   16        12        6.12
 benchmark boundary              9      9                    9         0        1.00
-stress t=0.5                   60     60                   38        52        3.08
-stress all                    120    120                   67        95        2.86
-stress t=0.9                   60     60                   29        43        2.63
+stress t=0.5                   60     60                   39        52        3.08
+stress all                    120    120                   68        94        2.86
+stress t=0.9                   60     60                   29        42        2.63

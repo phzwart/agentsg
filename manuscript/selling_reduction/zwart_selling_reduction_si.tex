@@ -22,7 +22,7 @@
 
 \begin{document}
 
-\title{Supporting information for \emph{The Selling closure: reindexing measured lattices with a completeness guarantee}}
+\title{Supporting information for \emph{The Selling closure: a complete operator set for reindexing, and the price of pseudo-symmetry}}
 \shorttitle{The Selling closure: supporting information}
 \cauthor{Petrus H.}{Zwart}{phzwart@lbl.gov}{}
 \aff{Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, \country{USA}}
@@ -137,9 +137,11 @@ hR R3 & cF C3 & $r=s$ & 1 & $\alpha=60^\circ$ \\
 \label{si:bench}
 %==============================================================================
 
-\emph{The benchmark.} The directory \texttt{manuscript/benchmark} of the repository holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case carries its Niggli cell. The errors are isotropic in the metric tensor, of median strain $0.1\%$. \texttt{evaluate\_strain.py} scores the strain-norm procedure (\texttt{results\_strain.txt}), and \texttt{evaluate.py --niggli} tallies the Niggli cells by family and sort (\texttt{results\_niggli.txt}). A case counts as found when the true proper operator itself is among the candidates.
+\emph{The benchmark.} The directory \texttt{manuscript/benchmark} of the repository holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case carries its Niggli cell. The errors are isotropic in the metric tensor, of median strain $0.1\%$. A case counts as found when the true proper operator itself is among the candidates. \texttt{evaluate\_strain.py} scores the closure and the $\{-1,0,1\}$ search at the band and at three times each case's error (\texttt{results\_strain.txt}); \texttt{evaluate.py --niggli} tallies the Niggli cells by family and sort (\texttt{results\_niggli.txt}). The measured Niggli cell is a different cell from the reference's in 45 cases (O1B 23, O3 12, M1B 6, one each at M2B, M3, R3 and T2; 14 of them a change between type~I and type~II), and the same cell in another basis in 125 (O1B 25, M1A 15, O1A 15, T1 15, M1B 13, O4 9, O2 7, R1 7, M2A 6, T2 6, O3 5, A2 1, A3 1).
 
-\emph{The comparisons.} \texttt{compare\_methods.py} runs the six methods of Table~9 of the main text on the benchmark (\texttt{results\_compare.txt}) and, with \texttt{--stress}, on the stress family (\texttt{results\_stress.txt}): 60 references drawn from the benchmark, each with independent traceless errors on the reference and the new cell, scaled so that the true operator's price is $t$ times the band, for $t=0.5$, $0.9$, $1.1$ and $1.5$, and a random proper reindexing with entries in $\{-2,\dots,2\}$. Each method's candidates are made proper, priced in the strain norm after the best scale, and kept at price $\le$ band. At $t=1.1$ and $1.5$ no method found the true operator, as none should. Per case, the closure took $0.28$\,s including the widening of the reference, the $\{-1,0,1\}$ search $0.11$\,s, the $\{-2,\dots,2\}$ search $2.2$\,s, the cctbx similarity searches $0.01$ and $0.05$\,s, and the lattice-symmetry pipeline $0.06$\,s. \texttt{coset\_rank.py} groups the closure's candidates by the exact symmetries of the underlying lattice (\texttt{results\_coset.txt}). \texttt{cod\_real\_cells.py} uses the 500 entries of the Crystallography Open Database flagged by the census in \texttt{manuscript/census}: for the 210 whose uncertainties come from deposited standard uncertainties, a second measurement is drawn by perturbing each conorm of the reduced cell by its propagated standard deviation, relabelled by a random proper unimodular matrix, and scored at a band of $2.5$ times the cell's root-mean-square strain from 200 such draws, floored at $0.1\%$ (median $0.88\%$, range $0.1$ to $18.8\%$); all six methods found the true operator in all 210, with a median of 2 candidates. The same script compares each reported Bravais type with the sort spectrum (\texttt{results\_cod.txt}). \texttt{compare\_sella.py} runs SELLA (LatticeRepLib, \texttt{CmdSella}) on the cells of Section~5.4 of the main text (\texttt{results\_sella.txt}), and \texttt{compare\_s6.py} matches each measured cell against the library of benchmark references by CS6Dist, NCDist and the closure (\texttt{results\_s6.txt}). In that matching, against a library of 697 distinct references many of which are near-duplicates by construction, the nearest reference is the true one for 524 of 780 cells by CS6Dist, 516 by NCDist (on Niggli-reduced cells) and 536 by the closure's cheapest price; the misses are references within the error of each other. The true reference is among the 10 nearest by CS6Dist for 778 of 780, and the closure accepts it, with the true operator, in every one of those 778.
+\emph{The comparisons.} \texttt{compare\_methods.py} runs the methods of Table~10 of the main text on the benchmark (\texttt{results\_compare.txt}) and, with \texttt{--stress}, on the stress family (\texttt{results\_stress.txt}): 60 references drawn from the benchmark, each with independent traceless errors on the reference and the new cell, scaled so that the true operator's price is $t$ times the band, $t=0.5$, $0.9$, $1.1$ and $1.5$, and a random proper reindexing with entries in $\{-2,\dots,2\}$. Each method's candidates are made proper, priced by the geodesic distance after the best scale, and kept within the band; at $t=1.1$ and $1.5$ no method found the true operator, as by construction none should. \texttt{window\_failures.py} builds the window family (\texttt{results\_window\_failures.txt}): 120 lattices of the sorts M4, O4, H4, O5, T5 and C5 with random parameters, measured in a random proper basis with an error of $0.1$ to $2\%$ and classified by the Niggli type of the measured cell, and 60 lattices on random two- and three-zero faces whose closure has a member needing an entry of $3$, measured in that member. \texttt{coset\_rank.py} groups the closure's candidates by the exact symmetries of the underlying lattice (\texttt{results\_coset.txt}). \texttt{niggli\_types.py} reduces near-monoclinic cells from their Niggli cells and records where the near-zero conorms land (\texttt{results\_niggli\_types.txt}).
+
+{\sloppy\emph{The PDB.} \texttt{pdb\_nonisomorphism.py} measures the price between entries of one crystal form (\texttt{results\_pdb\_nonisomorphism.txt}). \texttt{pdb\_lepage.py} runs the cctbx lattice-symmetry analysis at $3^\circ$ on every entry and prices the pseudo-symmetries (\texttt{pdb\_lepage.jsonl}, \texttt{results\_pdb\_lepage.txt}); \texttt{pdb\_pricing\_summary.py} gives the transitions and the fractions within the non-isomorphism band (\texttt{results\_pdb\_pricing.txt}). Table~\ref{tab:pdbsort} lists the prices by the Delone sort of the Le Page lattice and Table~11 of the main text by transition from the reported type.\par}
 
 \emph{Walks.} Table~\ref{tab:walks} compares four walks on the measured metric, with a band $\tau$ on the conorms, and the construction of Section~S4 against brute force.
 
@@ -302,11 +304,46 @@ O1B & rstrst & rsttsr & A1 & rstuvw & uvwtsr \\
 \end{footnotesize}
 \end{table}
 
+\begin{table}
+\caption{Pseudo-symmetric PDB entries (Le Page lattice above the reported type at $3^\circ$) by the Delone sort of the Le Page lattice: number of entries, and the 10th/50th/90th percentiles of the largest obliquity $\delta$ (degrees) and of the largest and smallest price (\% strain) among the pseudo-symmetry operators of each entry. Sorts with no entries are omitted. The transitions from the reported type are in Table~11 of the main text. From \texttt{results\_pdb\_lepage.txt}.}
+\label{tab:pdbsort}
+\begin{footnotesize}
+\begin{tabular}{llrccc}
+\toprule
+sort & type & entries & $\delta$ ($^\circ$) & largest price (\%) & smallest price (\%) \\
+\midrule
+C1 & cI & 593 & 0.14/1.64/2.73 & 0.69/8.10/13.58 & 0.00/0.00/8.96 \\
+C3 & cF & 562 & 0.19/1.72/2.76 & 0.95/8.51/13.61 & 0.00/5.34/13.04 \\
+C5 & cP & 1\,379 & 0.23/1.66/2.72 & 1.15/8.23/13.44 & 0.00/3.68/12.15 \\
+H4 & hP & 2\,008 & 0.08/1.40/2.70 & 0.40/6.91/13.32 & 0.11/4.03/12.70 \\
+T1 & tI & 1\,376 & 0.06/1.32/2.67 & 0.28/6.60/13.33 & 0.17/5.55/12.60 \\
+T2 & tI & 330 & 0.05/1.48/2.69 & 0.24/7.30/13.43 & 0.11/4.98/12.44 \\
+T5 & tP & 14\,817 & 0.22/1.47/2.69 & 1.07/7.27/13.43 & 0.70/6.56/12.98 \\
+R1 & hR & 96 & 0.04/1.55/2.76 & 0.22/7.64/13.78 & 0.13/2.98/13.13 \\
+R3 & hR & 393 & 0.07/1.82/2.81 & 0.37/9.09/13.86 & 0.29/7.64/13.72 \\
+O1A & oF & 1\,126 & 0.23/1.51/2.70 & 1.12/7.45/13.33 & 1.02/7.05/13.17 \\
+O1B & oI & 331 & 0.10/1.58/2.78 & 0.49/7.80/13.73 & 0.36/7.63/13.73 \\
+O2 & oI & 1\,078 & 0.14/1.40/2.73 & 0.70/6.92/13.50 & 0.48/6.33/13.36 \\
+O4 & oS & 11\,679 & 0.14/1.49/2.74 & 0.67/7.36/13.56 & 0.62/7.15/13.51 \\
+O5 & oP & 4\,760 & 0.03/1.08/2.59 & 0.17/5.33/12.79 & 0.15/5.13/12.69 \\
+M1A & mC & 867 & 0.72/2.09/2.83 & 3.53/10.33/13.98 & 3.53/10.33/13.98 \\
+M1B & mC & 398 & 0.12/1.80/2.72 & 0.57/8.91/13.41 & 0.57/8.91/13.41 \\
+M2A & mC & 854 & 0.13/1.75/2.77 & 0.66/8.64/13.66 & 0.66/8.64/13.66 \\
+M2B & mC & 2 & 0.61/0.95/1.29 & 3.02/4.70/6.38 & 3.02/4.70/6.38 \\
+M3 & mC & 1 & 2.39/2.39/2.39 & 11.80/11.80/11.80 & 11.80/11.80/11.80 \\
+M4 & mP & 582 & 0.10/1.40/2.65 & 0.47/6.89/13.07 & 0.47/6.89/13.07 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+The median largest price by sort lies between $5.3\%$ (O5, oP) and $10.3\%$ (M1A); the median largest obliquity between $1.1^\circ$ and $2.1^\circ$. Within a sort the median largest price of the operators of order 3, 4 or 6 is within half a percentage point of that of the twofolds (\texttt{results\_pdb\_lepage.txt}).
+
 %==============================================================================
 \section{Computational checks}
 %==============================================================================
 
-Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3 and SciPy 1.18.1, and the comparisons with cctbx, SELLA (LatticeRepLib) and the NCDist/CS6Dist libraries; the census checks z24 (PDB cells, from a local DuckDB snapshot), z25 (CXIDB entry 83) and z42 (an NCDist checkout) are skipped when those data are absent, and none of the numbers of the paper rests on them.
+{\sloppy Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3 and SciPy 1.18.1, and the comparisons with cctbx, SELLA (LatticeRepLib) and the NCDist/CS6Dist libraries; the checks z24, z25 and z42 are skipped when their external data are absent, and none of the numbers of the paper rests on them; the PDB scripts need the Zenodo snapshot (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222) in \texttt{data/}.\par}
 
 \begin{table}
 \caption{The checks behind each part of the main text.}
@@ -319,20 +356,19 @@ main text & checks \\
 \S2.1 faces; \S2.2 Table~1 & z52, z56 (the 38 faces); z46 (flip matrices) \\
 \S3.1 counts of superbases and objects & z54, z56 \\
 \S3.2, Table~3, Fig.~1 & z46 (the ring, the action of $2/m$, the word $ab.bc.db$) \\
-\S3.3 $\mathcal U$ & z52 (6096, inversion, window, nine kinds), z56 (every window member in $\mathcal U$) \\
-\S4.1, Table~4 & z60 (obliquity of the $92^\circ$ cell, prices, oP and mP distances) \\
-\S4.2 Lemma~A6; \S4.3 layers & z59 (balls, layers of 127 and 2755, filtered layer); z44, z45 (difference-wall members, walks) \\
-\S4.5 band recipe & z60 (null distributions); lib (\texttt{strain\_from\_esds}, closure of $H_\epsilon$) \\
-\S4.6 windows, worked cell & z52, z56 ($[-2,2]$ labelling), z58, z59 (brute force), z60 \\
-\S5.1, Table~6 & z53 (Definition~A5), z54 (every column), z46 (visible counts, twofolds generate), z49 (Table~S1), z50 (Table~S2) \\
-\S5.2, Fig.~2, Table~S6 & z60 (depths, growth of the set), z45 (Table~S3) \\
-\S5.2 needles and plates & z57 (bands per slot), z58 (projection on the needle, plates, 240 cells), z60 (single projection) \\
-\S5.2 Table~7 & z59 \\
-\S5.3 Table~8, Fig.~3 & lib (classes, anomalous and chiral counts), z60 (prices, $\beta$ scan, centred references) \\
-\S5.3 Table~9 & bench: \texttt{evaluate\_strain.py}, \texttt{compare\_methods.py}, \texttt{cod\_real\_cells.py}, \texttt{coset\_rank.py}; \texttt{evaluate.py --niggli} \\
-\S5.4, Fig.~4, Fig.~S1, Table~S5 & z58 (monotonicity), z60 (spectra, Conograph ladders, $\delta_1$ at the cap), z51; bench: \texttt{compare\_sella.py}, \texttt{cod\_real\_cells.py}, \texttt{compare\_s6.py} \\
-Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9 for orders 2, 3, 4, 6), lib (A10) \\
-\S S4 & z36, z44 (Lemma~S4.4), z45, z46, z47 (Proposition~S4.7), z55 \\
+\S3.3 $\mathcal U$ & z52 (6096, inversion, window, nine kinds), z56 (every window member in $\mathcal U$; about 25\,min) \\
+\S4.1, Table~4 & z60 (twofold price from obliquity, the $92^\circ$ cell) \\
+\S4.2--4.3 & z59 (balls, layers of 127 and 2755, filtered layer), z60 (Lemma~A8); z44, z45 (difference-wall members, walks) \\
+\S4.4--4.5 & lib (reindexing, scale bound, volume check, classes), z60 (Proposition~A10) \\
+\S4.7 windows & z52, z56 ($[-2,2]$ labelling), z58, z59 (brute force) \\
+\S5.1, Table~6 & z53, z54, z46, z49 (Table~S1), z50 (Table~S2) \\
+\S5.2, Table~7 & z56 (entries by zero pattern); bench: \texttt{niggli\_types.py} \\
+\S5.3, Fig.~2, Table~8 & z60 (depths, growth of the set), z57, z58, z59 \\
+\S5.4, Tables~9--10, Fig.~3 & lib, z60 (classes, prices, centred references); bench: \texttt{evaluate\_strain.py}, \texttt{compare\_methods.py}, \texttt{window\_failures.py}, \texttt{coset\_rank.py} \\
+\S5.5, Fig.~4, Table~11, Table~S8 & bench: \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_lepage.py}, \texttt{pdb\_pricing\_summary.py} (need the Zenodo snapshot) \\
+Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9, A10) \\
+Appendix~B, Fig.~B1, Table~B1, Fig.~S1, Table~S5 & z58, z60, z51; bench: \texttt{lepage\_calibration.py}, \texttt{compare\_sella.py} \\
+\S S4 & z36, z44 (Lemma~S4.4), z45, z46, z47, z55, z57 \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}
@@ -340,7 +376,7 @@ Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9 for orders 
 
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{figures/figS1_sort_graph_lysozyme.pdf}
-\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~4 of the main text. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
+\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~B1 of the main text. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
 \label{fig:lyso}
 \end{figure}
 

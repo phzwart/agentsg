@@ -1,15 +1,15 @@
-62359 id-adjacent pairs with the same space group; 45214 below 20 % strain (one crystal form)
+62359 id-adjacent pairs with the same space group; 45222 below 20 % strain (one crystal form)
  quantile  strain, no scale fit  after scale fit  largest edge change
       10%                 0.37%            0.11%                0.14%
       25%                 0.80%            0.40%                0.30%
       50%                 1.57%            0.98%                0.60%
       75%                 3.03%            2.05%                1.17%
-      90%                 5.75%            4.21%                2.25%
-      95%                 8.86%            6.71%                3.54%
-      99%                16.08%           13.44%                6.75%
+      90%                 5.78%            4.21%                2.25%
+      95%                 8.90%            6.72%                3.54%
+      99%                16.23%           13.55%                6.75%
   pairs within  0.5 %:  14.1 % (no fit),  29.7 % (fit)
-  pairs within  1.0 %:  32.0 % (no fit),  50.9 % (fit)
-  pairs within  2.0 %:  60.2 % (no fit),  74.4 % (fit)
+  pairs within  1.0 %:  32.0 % (no fit),  50.8 % (fit)
+  pairs within  2.0 %:  60.2 % (no fit),  74.3 % (fit)
   pairs within  4.0 %:  82.8 % (no fit),  89.2 % (fit)
-  pairs within  7.4 %:  93.3 % (no fit),  95.7 % (fit)
+  pairs within  7.4 %:  93.2 % (no fit),  95.7 % (fit)
   exactly identical cells: 1464

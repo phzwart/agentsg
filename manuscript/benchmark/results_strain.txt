@@ -4,7 +4,7 @@ specialisation   660 |   660/660     658/660   |   660/660     658/660   | 660/0
 hidden            20 |    20/20       20/20    |    18/18       18/18    |  20/0/0       4/10/24        2.64e-02
 anisotropy        16 |    16/16       16/16    |    16/16       16/16    |   4/12/0      12/30/40        2.72e-03
 boundary           9 |     9/9         9/9     |     9/9         9/9     |   9/0/0       2/2/4         1.85e-03
-all              780 |   780/780     778/780   |   778/778     776/778     (958 s)
+all              780 |   780/780     778/780   |   778/778     776/778     (960 s)
    miss ('special-A2-M4-t=0-1-0.5', '3deg', {'ok': True, 'layer': 1, 'n': 4, 'members': 6, 'small_ok': False, 'small_n': 4})
    miss ('special-A2-M4-t=0-1-0.5', '3err', {'ok': True, 'layer': 1, 'n': 2, 'members': 6, 'small_ok': False, 'small_n': 2})
    miss ('special-A2-M4-t=0-1-1', '3deg', {'ok': True, 'layer': 1, 'n': 4, 'members': 6, 'small_ok': False, 'small_n': 4})

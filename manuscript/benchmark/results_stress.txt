@@ -1,17 +1,17 @@
 
 stress: errors on both cells, true price ~ t x band: band 0.074, 240 cases
 family           method          found  cands q50/q90  true cheapest
-t=0.5            closure       60/60        4/24          23/60    
-t=0.5            small1        58/60        4/20          23/58    
-t=0.5            small2        59/60        4/24          23/59    
-t=0.5            cctbx_sim1    60/60        4/24          23/60    
-t=0.5            cctbx_sim2    60/60        4/24          23/60    
-t=0.5            pipeline      56/60        4/24          22/56    
-t=0.9            closure       60/60        4/18          16/60    
-t=0.9            small1        52/60        3/14          16/52    
-t=0.9            small2        60/60        4/18          16/60    
-t=0.9            cctbx_sim1    60/60        4/18          16/60    
-t=0.9            cctbx_sim2    60/60        4/18          16/60    
+t=0.5            closure       60/60        4/24          24/60    
+t=0.5            small1        58/60        4/20          24/58    
+t=0.5            small2        59/60        4/24          24/59    
+t=0.5            cctbx_sim1    60/60        4/24          24/60    
+t=0.5            cctbx_sim2    60/60        4/24          24/60    
+t=0.5            pipeline      56/60        4/24          23/56    
+t=0.9            closure       60/60        4/17          16/60    
+t=0.9            small1        52/60        3/15          16/52    
+t=0.9            small2        60/60        4/17          16/60    
+t=0.9            cctbx_sim1    60/60        4/17          16/60    
+t=0.9            cctbx_sim2    60/60        4/17          16/60    
 t=0.9            pipeline      54/60        3/12          13/54    
 t=1.1            closure        0/60        1/6            0/0     
 t=1.1            small1         0/60        1/6            0/0     
@@ -25,10 +25,10 @@ t=1.5            small2         0/60        0/4            0/0
 t=1.5            cctbx_sim1     0/60        0/4            0/0     
 t=1.5            cctbx_sim2     0/60        0/4            0/0     
 t=1.5            pipeline       0/60        0/3            0/0     
-all              closure      120/240       2/12          39/120   
-all              small1       110/240       2/12          39/110   
-all              small2       119/240       2/12          39/119   
-all              cctbx_sim1   120/240       2/12          39/120   
-all              cctbx_sim2   120/240       2/12          39/120   
-all              pipeline     110/240       2/10          35/110   
-seconds per case: closure 0.28, small1 0.11, small2 2.23, cctbx_sim1 0.01, cctbx_sim2 0.05, pipeline 0.06
+all              closure      120/240       2/12          40/120   
+all              small1       110/240       2/12          40/110   
+all              small2       119/240       2/12          40/119   
+all              cctbx_sim1   120/240       2/12          40/120   
+all              cctbx_sim2   120/240       2/12          40/120   
+all              pipeline     110/240       2/10          36/110   
+seconds per case: closure 0.13, small1 0.05, small2 1.00, cctbx_sim1 0.00, cctbx_sim2 0.03, pipeline 0.03

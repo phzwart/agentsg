@@ -1,25 +1,25 @@
 206172 entries; 43232 pseudo-symmetric at 3 deg; 1189 with an exact extra lattice symmetry (price 0); 42043 priced only
-largest price / (2 sqrt2 sin delta): median 0.999, 10-90 % 0.997-1.000
+largest price / (2 sqrt2 sin delta): median 1.000, 10-90 % 1.000-1.001
 
 cheapest pseudo-symmetric alternative, priced cases, by transition (reported -> Le Page)
 transition        n  median   <=1%  <=4.2%  <=6.7%
-oP->tP        12120   6.97%     9%     31%     48%
-mP->oS         9474   7.37%    12%     33%     46%
-mP->oP         4417   5.77%    20%     42%     55%
-aP->mC         2113   9.47%     9%     19%     31%
-mC->oS         1831   7.40%    12%     33%     45%
+oP->tP        12120   6.98%     9%     31%     48%
+mP->oS         9474   7.38%    12%     33%     46%
+mP->oP         4417   5.78%    20%     42%     55%
+aP->mC         2113   9.49%     9%     19%     30%
+mC->oS         1831   7.41%    12%     33%     45%
 mP->tP         1542   3.66%    27%     54%     69%
-mC->oI         1308   7.12%    11%     30%     48%
-oS->hP         1169   7.33%    10%     26%     45%
-oI->tI         1165   6.24%    19%     38%     52%
-mC->oF         1067   7.28%     8%     29%     46%
-oS->tP          880   7.41%    14%     32%     46%
-tP->cP          620   7.05%     7%     27%     47%
-aP->mP          571   6.96%    15%     30%     48%
+mC->oI         1308   7.13%    11%     30%     48%
+oS->hP         1169   7.34%    10%     26%     45%
+oI->tI         1165   6.25%    19%     38%     52%
+mC->oF         1067   7.29%     8%     29%     46%
+oS->tP          880   7.42%    14%     32%     46%
+tP->cP          620   7.06%     7%     27%     47%
+aP->mP          571   6.97%    15%     30%     48%
 mP->hP          479   0.71%    61%     91%    100%
-mC->hR          391   8.91%    19%     29%     37%
-mC->tI          391   4.55%    23%     46%     64%
-all           42043   6.66%    15%     35%     50%
+mC->hR          391   8.92%    19%     29%     37%
+mC->tI          391   4.56%    23%     46%     64%
+all           42043   6.67%    15%     35%     50%
 
 of all entries: priced alternative within 4.2 %: 7.2 %, within 6.7 %: 10.2 %; exact extra lattice symmetry: 0.6 %
 

@@ -1,12 +1,13 @@
-cell                         rho delta1  nearest types, strain (%) | SELLA (A^2)
+SELLA distance / mean squared edge, against the strain distance: median 0.707 (10-90 % 0.050-26.036)
+cell                         rho    r_1  nearest types, strain (%) | SELLA (A^2)
 worked cell                 0.93  0.250  mP 0.78, oP 5.11, mC 30.60*, oS 30.73* | mP 6.17, oP 49.9, mC 525, tP 527
                            types within band: strain ['mP', 'oP']  SELLA ['mP', 'oP']   same
 lysozyme in P1              0.86  0.250  mP 0.12, mC 0.13, oP 0.17, oS 0.18 | mP 1.66, oP 4.23, mC 8.22, oS 8.36
                            types within band: strain ['mC', 'mP', 'oP', 'oS', 'tP']  SELLA ['mC', 'mP', 'oP', 'oS', 'tP']   same
-oP 40 x 40.3 x 80           0.74  0.250  oP 0.00, mP 0.00, mC 1.06, tP 1.06 | oP 0, mP 0, tP 17, oS 17
+oP 40 x 40.3 x 80           0.77  0.250  oP 0.00, mP 0.00, mC 1.06, tP 1.06 | oP 0, mP 0, tP 17, oS 17
                            types within band: strain ['mC', 'mP', 'oP', 'oS', 'tP']  SELLA ['mC', 'mP', 'oP', 'oS', 'tP']   same
 all angles 92               0.85  0.250  mP 7.10, oP 8.85, mC 30.35*, oS 31.12* | mP 67, oP 96.8, mC 483, oS 490
-                           types within band: strain ['mP']  SELLA ['mP', 'oP']   differ: ['oP']
+                           types within band: strain ['mP']  SELLA ['mP']   same
 needle 5.58 x 5.21 x 132    0.92  0.056  mP 0.00, oP 2.76, mC 2.79, oS 3.92 | mP 0, oP 0.568, oS 2.85, mC 2.85
                            types within band: strain ['mC', 'mP', 'oI', 'oP', 'oS']  SELLA ['hP', 'hR', 'mC', 'mP', 'oF', 'oI', 'oP', 'oS', 'tI', 'tP']   differ: ['hP', 'hR', 'oF', 'tI', 'tP']
 plate 100 x 100.1 x 5       0.86  0.050  mP 0.09, mC 0.14, oP 0.15, oS 0.17 | mP 0.195, oP 8.56, mC 14.1, oS 14.1
@@ -27,4 +28,5 @@ Acrinol-B-D8CuKa1           0.88  0.250  mC 0.31, oF 20.61, mP 26.23*, oS 26.23*
                            types within band: strain ['mC']  SELLA ['mC']   same
 Alumina676                  0.96  0.250  mC 0.43, hR 3.58, oI 14.91, oF 17.57 | mC 0.0764, hR 0.595, oI 2.68, oF 3.32
                            types within band: strain ['hR', 'mC']  SELLA ['hR', 'mC']   same
-* above the cell's adjacency radius delta_1: an upper bound over the frames used (true distance >= delta_1)
+same types within band in 11 of 14 cells
+* above the cell's adjacency radius r_1: an upper bound over the frames used (true distance >= r_1)
