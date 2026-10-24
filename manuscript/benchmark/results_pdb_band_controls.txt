@@ -8,7 +8,7 @@
   cut 20 %, identical cells dropped  n= 43758  1.02/4.31/6.89
   cut 20 %, each block weighted equally (20206 blocks, largest 35 pairs)  1.12/4.97/7.97
   by reported Bravais type (cut 20 %):
-    aP  n=   911  2.04/7.59/11.66
+    aP  n=   902  2.06/7.66/11.68
     mP  n=  7077  1.27/5.38/9.02
     mC  n=  4932  1.49/5.06/8.40
     oP  n= 13615  1.11/4.70/7.43
@@ -23,14 +23,14 @@
     cI  n=   385  0.00/0.00/0.00
     cF  n=   211  0.00/0.00/0.00
   with the cheapest operator instead of the identity (lookup of U), by reported type (cut 20 %):
-    aP  n=   911  1.91/6.12/9.83   (identity: 2.04/7.59/11.66)
+    aP  n=   902  1.94/6.14/9.89   (identity: 2.06/7.66/11.68)
     mP  n=  7077  1.26/5.29/8.80   (identity: 1.27/5.38/9.02)
     mC  n=  4932  1.48/4.82/7.90   (identity: 1.49/5.06/8.40)
     oP  n= 13615  1.10/4.65/7.39   (identity: 1.11/4.70/7.43)
 
 2. entries whose cheapest pseudo-symmetric alternative lies within the band
-  one band, 90th percentile 4.2 %: priced 7.3 %, with the 591 exact cases 7.6 % of 206172
-  one band, 95th percentile 6.7 %: priced 10.4 %, with the 591 exact cases 10.7 % of 206172
+  one band, 90th percentile 4.2 %: priced 7.3 %, with the 545 exact cases 7.5 % of 206141
+  one band, 95th percentile 6.7 %: priced 10.4 %, with the 545 exact cases 10.6 % of 206141
   band of the entry's own Bravais type, 90th percentile: 8.6 % (exact cases included)
   band of the entry's own Bravais type, 95th percentile: 12.5 % (exact cases included)
 
@@ -44,3 +44,4 @@
   identity beyond the band: 125 (4.17 %)
     of which a wrong class within the band: 9 (0.30 %)
   pairs scored 3000, refused 0
+  block-bootstrap 95 % intervals (2527 blocks): strictly cheaper 0.80-1.63 %, by more and not a relabelling 0.03-0.27 %

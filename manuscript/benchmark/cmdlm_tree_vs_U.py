@@ -4,7 +4,7 @@
 line (row j col i at position 6j+i):
 
     ./dumptree 2 > lm_tree.txt
-    PYTHONPATH=agentsg/src python manuscript/benchmark/cmdlm_tree_vs_U.py lm_tree.txt
+    PYTHONPATH=agentsg/src python manuscript/benchmark/cmdlm_tree_vs_U.py lm_tree.txt [--layer2]
 
 Each W of U is mapped to its action on S6 = (b.c, a.c, a.b, a.d, b.d, c.d); the script
 counts the distinct actions and how many are in the tree, with their inverses.
@@ -39,3 +39,12 @@ if __name__ == "__main__":
     inv = {tuple(np.round(np.linalg.inv(np.array(k).reshape(6, 6))).astype(int).ravel()) for k in acts}
     print(f"matcher tree: {len(tree)} matrices; U: {len(acts)} distinct S6 actions; "
           f"in the tree: {len(acts & tree)}; inverses in the tree: {len(inv & tree)}")
+    if "--layer2" in sys.argv:                        # the products U.U (second layer)
+        U = sc.universal_operators().astype(np.int64)
+        seen = set()
+        for i in range(0, len(U), 200):
+            Pm = np.unique(np.einsum("aij,bjk->abik", U[i:i + 200], U).reshape(-1, 9), axis=0)
+            seen.update(map(bytes, Pm.astype(np.int64)))
+        acts2 = {action(np.frombuffer(b, dtype=np.int64).reshape(3, 3)) for b in seen}
+        print(f"U.U: {len(acts2)} distinct S6 actions; in the tree: {len(acts2 & tree)} "
+              f"({100 * len(acts2 & tree) / len(acts2):.0f} %)")

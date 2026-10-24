@@ -54,6 +54,13 @@ def main(n_pdb=2000):
             print(f"{pid} {tuple(round(x, 2) for x in p[:6])} {p[6]}: r_1 {100 * r1:.2f} %")
         except ValueError as e:
             print(f"{pid} {tuple(round(x, 2) for x in p[:6])} {p[6]}: refused ({e})")
+    for cell in ((300.0, 300.0, 3.0, 90, 90, 90), (5.0, 5.0, 200.0, 90, 90, 90), (150.0, 120.0, 4.8, 90, 90.4, 90)):
+        t0 = time.perf_counter(); W = sc.widened_closure(cell); t1 = time.perf_counter()
+        try:
+            r1 = sc.adjacency_radius(sc.reduce_cell(cell).G); t2 = time.perf_counter()
+            print(f"thin cell {cell}: widening {t1 - t0:.1f} s (layer {W.layer}), r_1 {100 * r1:.1f} % in {t2 - t1:.1f} s")
+        except ValueError:
+            print(f"thin cell {cell}: widening {t1 - t0:.1f} s (layer {W.layer}); r_1 refused (ball above the cap at 25 %)")
     sys.path.insert(0, HERE)
     import pdb_band_controls as bc
     t0 = time.perf_counter()

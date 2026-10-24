@@ -4,5 +4,8 @@ PDB sample: 2000 cells (0 refused); r_1 % quantiles 1/5/10/50: 23.5/25.0/25.0/25
 3HQV (39.97, 26.95, 677.9, 89.24, 94.59, 105.58) P 1: r_1 5.99 %
 6BZP (13.79, 4.93, 101.9, 90.0, 90.0, 90.0) P 21 21 21: r_1 6.76 %
 1CGM (1.0, 1.0, 70.8, 90.0, 90.0, 90.0) P 1: refused (the ball of Lemma A6 holds 21010 lattice vectors at strain 0.250 (limit 5000): the cell is too anisotropic for the exact enumeration at this band; use a smaller band, or pass max_ball=None and expect a long run)
-vectorised lookup of U for one new cell, reductions included: 0.039 s on average
-benchmark, every 10th case (78): widening the reference median 0.01 s (90th 0.02); reindexing one new cell median 0.02 s (90th 0.11)
+thin cell (300.0, 300.0, 3.0, 90, 90, 90): widening 50.2 s (layer 3), r_1 1.0 % in 425.6 s
+thin cell (5.0, 5.0, 200.0, 90, 90, 90): widening 9.3 s (layer 3); r_1 refused (ball above the cap at 25 %)
+thin cell (150.0, 120.0, 4.8, 90, 90.4, 90): widening 0.9 s (layer 2), r_1 4.3 % in 10.7 s
+vectorised lookup of U for one new cell, reductions included: 0.044 s on average
+benchmark, every 10th case (78): widening the reference median 0.02 s (90th 0.03); reindexing one new cell median 0.03 s (90th 0.12)

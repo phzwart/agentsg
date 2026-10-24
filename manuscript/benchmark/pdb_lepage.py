@@ -16,6 +16,7 @@ and prints the tables.
 from __future__ import annotations
 
 from cctbx import crystal                                           # noqa: E402 (before numpy users)
+from cctbx import sgtbx                                             # noqa: E402
 from cctbx.sgtbx import bravais_types, lattice_symmetry             # noqa: E402
 import collections                                                  # noqa: E402
 import itertools                                                    # noqa: E402
@@ -36,6 +37,10 @@ CCTBX = {"oC": "oS"}
 ORDER = ["aP", "mP", "mC", "oP", "oS", "oI", "oF", "tP", "tI", "hR", "hP", "cP", "cI", "cF"]
 HOLO = {"aP": 2, "mP": 4, "mC": 4, "oP": 8, "oS": 8, "oI": 8, "oF": 8, "tP": 16, "tI": 16, "hR": 12, "hP": 24,
         "cP": 48, "cI": 48, "cF": 48}
+HOLOSYM = {"aP": "P -1", "mP": "P 1 2/m 1", "mC": "C 1 2/m 1", "oP": "P m m m", "oS": "C m m m", "oI": "I m m m",
+           "oF": "F m m m", "tP": "P 4/m m m", "tI": "I 4/m m m", "hR": "R -3 m :H", "hP": "P 6/m m m",
+           "cP": "P m -3 m", "cI": "I m -3 m", "cF": "F m -3 m"}
+PLACEHOLDER_EDGE = 2.0          # deposited cells with an edge below 2 A are placeholders, not crystals
 SL = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
 SLOT_FROM_S6 = (3, 4, 5, 2, 1, 0)
 PATTERNS = {name: "".join(pat[SLOT_FROM_S6[k]] for k in range(6)) for name, pat in sc._SORT_PATTERNS.items()}
@@ -106,24 +111,29 @@ def classify(G):
 def one(row):
     pid, a, b, c, al, be, ga, sg = row
     try:
+        if min(a, b, c) < PLACEHOLDER_EDGE:
+            return dict(id=pid, sg=sg, error="placeholder")
         cs = crystal.symmetry(unit_cell=(a, b, c, al, be, ga), space_group_symbol=sg)
         rep = btype(cs.space_group())
-        prim = cs.primitive_setting()
-        cb = prim.change_of_basis_op_to_niggli_cell()
-        nig = prim.change_basis(cb)
+        cb1 = cs.change_of_basis_op_to_primitive_setting()
+        prim = cs.change_basis(cb1)
+        cb2 = prim.change_of_basis_op_to_niggli_cell()
+        nig = prim.change_basis(cb2)
         rep_rot = {tuple(int(round(x)) for x in op.r().as_double()) for op in nig.space_group().all_ops()}
+        # the reported lattice's own holohedry, from its Bravais type: its operators outside the
+        # reported point group are merohedral, not pseudo-symmetries
+        cbr = cs.space_group_info().change_of_basis_op_to_reference_setting()
+        hol = sgtbx.space_group_info(HOLOSYM[rep]).group().change_basis(cbr.inverse()).change_basis(cb1).change_basis(cb2)
+        hol_rot = {tuple(int(round(x)) for x in op.r().as_double()) for op in hol.all_ops()}
+        if not (rep_rot <= hol_rot and len(hol_rot) == HOLO[rep]):
+            return dict(id=pid, sg=sg, error="holohedry")
+        mero = hol_rot - rep_rot
+        rep_rot |= mero
         p1 = crystal.symmetry(unit_cell=nig.unit_cell(), space_group_symbol="P1")
         groups = lattice_symmetry.metric_subgroups(input_symmetry=p1, max_delta=3.0).result_groups
         top = groups[0]
         tb = btype(top["best_subsym"].space_group())     # type from the standard setting; ops from subsym
         G = G_of(nig.unit_cell())
-        exact = lattice_symmetry.metric_subgroups(input_symmetry=p1, max_delta=0.02).result_groups[0]
-        if btype(exact["best_subsym"].space_group()) == rep:          # the reported lattice's own holohedry
-            hol = exact["best_subsym"].change_basis(exact["cb_op_inp_best"].inverse())
-            mero = {tuple(int(round(x)) for x in op.r().as_double()) for op in hol.space_group().all_ops()} - rep_rot
-            rep_rot |= mero
-        else:
-            mero = set()
         inp = top["best_subsym"].change_basis(top["cb_op_inp_best"].inverse())   # idealised, in the Niggli basis
         out = dict(id=pid, sg=sg, reported=rep, lepage=tb, delta=round(top["max_angular_difference"], 4))
         if mero:

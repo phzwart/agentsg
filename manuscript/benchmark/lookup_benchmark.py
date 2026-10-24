@@ -33,11 +33,11 @@ def main():
             r1 = sc.adjacency_radius(sc.reduce_cell(c["reference_cell"]).G)
             for k in (fam, "all"):
                 agg[k]["n"] += 1; agg[k]["found"] += ok; agg[k]["uncertified"] += r1 <= need
-                agg[k]["missed, certified"] += (not ok) and r1 > need
+                agg[k]["missed, certified"] += (not ok) and r1 > need and not fam.startswith("t=1")
         print(f"{label}: lookup of U, band {cm.BAND}")
         for k, a in sorted(agg.items()):
             print(f"  {k:16s} found {a['found']}/{a['n']}  references with r_1 <= {100 * need:.1f} %: {a['uncertified']}  "
-                  f"missed with a certified reference: {a['missed, certified']}")
+                  f"missed with a certified reference (true price within the band): {a['missed, certified']}")
 
 
 if __name__ == "__main__":

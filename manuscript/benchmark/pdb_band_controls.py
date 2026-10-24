@@ -135,6 +135,7 @@ def main(n_rank=3000):
     rng = np.random.default_rng(4)
     idx = rng.choice(np.where(m)[0], min(n_rank, m.sum()), replace=False)
     c = collections.Counter()
+    rec = []                                     # (block, strictly cheaper, cheaper otherwise) per scored pair
     eye = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
     for i in idx:
         p = P[i]
@@ -145,6 +146,7 @@ def main(n_rank=3000):
             c["refused"] += 1
             continue
         c["n"] += 1
+        rec.append([P[i]["block"], 0, 0])
         key = lambda o: tuple(tuple(int(x) for x in row) for row in o.rows)      # noqa: E731
         idc = [k for k in res.classes if any(key(o) == eye for o in k.operators)]
         if not idc:
@@ -156,6 +158,7 @@ def main(n_rank=3000):
         others = [k.representative.price for k in res.classes if k is not idc[0]]
         if others and min(others) < p_id - 1e-6:
             c["wrong class strictly cheaper"] += 1
+            rec[-1][1] = 1
             k0 = min((k for k in res.classes if k is not idc[0]), key=lambda k: k.representative.price)
             if p_id - k0.representative.price <= 5e-4:
                 c["  by at most 0.05 points (below the precision of a deposited cell)"] += 1
@@ -163,6 +166,7 @@ def main(n_rank=3000):
                 c["  by more, through a relabelling of axes (a setting convention)"] += 1
             else:
                 c["  by more, otherwise"] += 1
+                rec[-1][2] = 1
         if any(abs(x - p_id) <= 1e-6 for x in others):
             c["a wrong class at the same price (exact lattice symmetry)"] += 1
         if any(x > p_id + 1e-6 for x in others):
@@ -175,6 +179,20 @@ def main(n_rank=3000):
               "  of which a wrong class within the band"):
         print(f"  {k}: {c[k]} ({100 * c[k] / n:.2f} %)")
     print(f"  pairs scored {n}, refused {c['refused']}")
+    blocks = collections.defaultdict(list)
+    for b, x, y in rec:
+        blocks[b].append((x, y))
+    keys = list(blocks)
+    brng = np.random.default_rng(9)
+    boots = []
+    for _ in range(2000):                        # resample deposition blocks
+        pick = brng.choice(len(keys), len(keys))
+        v = [t for k in pick for t in blocks[keys[k]]]
+        boots.append((np.mean([t[0] for t in v]), np.mean([t[1] for t in v])))
+    boots = np.array(boots)
+    lo, hi = np.percentile(boots, [2.5, 97.5], axis=0)
+    print(f"  block-bootstrap 95 % intervals ({len(keys)} blocks): strictly cheaper {100 * lo[0]:.2f}-{100 * hi[0]:.2f} %, "
+          f"by more and not a relabelling {100 * lo[1]:.2f}-{100 * hi[1]:.2f} %")
 
 
 if __name__ == "__main__":

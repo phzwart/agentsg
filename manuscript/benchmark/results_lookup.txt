@@ -1,17 +1,19 @@
 benchmark: lookup of U, band 0.074
-  all              found 780/780  references with r_1 <= 7.7 %: 12  missed with a certified reference: 0
-  anisotropy       found 16/16  references with r_1 <= 7.7 %: 12  missed with a certified reference: 0
-  boundary         found 9/9  references with r_1 <= 7.7 %: 0  missed with a certified reference: 0
-  hidden           found 20/20  references with r_1 <= 7.7 %: 0  missed with a certified reference: 0
-  shapes           found 75/75  references with r_1 <= 7.7 %: 0  missed with a certified reference: 0
-  specialisation   found 660/660  references with r_1 <= 7.7 %: 0  missed with a certified reference: 0
-/home/claude/agentsg/agentsg/src/agentsg/cell/strain_closure.py:467: UserWarning: cell angles (1.4201058729287368, 3.1626519462653766, 1.995914310175682) are all below 2 pi degrees: if they are radians, give them in degrees
+  all              found 780/780  references with r_1 <= 7.7 %: 12  missed with a certified reference (true price within the band): 0
+  anisotropy       found 16/16  references with r_1 <= 7.7 %: 12  missed with a certified reference (true price within the band): 0
+  boundary         found 9/9  references with r_1 <= 7.7 %: 0  missed with a certified reference (true price within the band): 0
+  hidden           found 20/20  references with r_1 <= 7.7 %: 0  missed with a certified reference (true price within the band): 0
+  shapes           found 75/75  references with r_1 <= 7.7 %: 0  missed with a certified reference (true price within the band): 0
+  specialisation   found 660/660  references with r_1 <= 7.7 %: 0  missed with a certified reference (true price within the band): 0
+/home/claude/agentsg/agentsg/src/agentsg/cell/strain_closure.py:487: UserWarning: cell angles (1.4201058729287368, 3.1626519462653766, 1.995914310175682) are all below 2 pi degrees: if they are radians, give them in degrees
   new = reduce_cell(new_cell, new_sg_hm)
-/home/claude/agentsg/agentsg/src/agentsg/cell/strain_closure.py:467: UserWarning: cell angles (1.4030150688544394, 3.2302112579473965, 2.0775461222653027) are all below 2 pi degrees: if they are radians, give them in degrees
+/home/claude/agentsg/manuscript/benchmark/window_failures.py:55: UserWarning: no candidate within the band: the cells may belong to different lattices, or a centring symbol may be wrong (a C cell read as I, or the reverse, has the same volume)
+  cands, _ = sc.reindex(ref, new_cell, accept=band)
+/home/claude/agentsg/agentsg/src/agentsg/cell/strain_closure.py:487: UserWarning: cell angles (1.4030150688544394, 3.2302112579473965, 2.0775461222653027) are all below 2 pi degrees: if they are radians, give them in degrees
   new = reduce_cell(new_cell, new_sg_hm)
 stress: lookup of U, band 0.074
-  all              found 120/240  references with r_1 <= 7.7 %: 4  missed with a certified reference: 119
-  t=0.5            found 60/60  references with r_1 <= 7.7 %: 2  missed with a certified reference: 0
-  t=0.9            found 60/60  references with r_1 <= 7.7 %: 1  missed with a certified reference: 0
-  t=1.1            found 0/60  references with r_1 <= 7.7 %: 1  missed with a certified reference: 59
-  t=1.5            found 0/60  references with r_1 <= 7.7 %: 0  missed with a certified reference: 60
+  all              found 120/240  references with r_1 <= 7.7 %: 4  missed with a certified reference (true price within the band): 0
+  t=0.5            found 60/60  references with r_1 <= 7.7 %: 2  missed with a certified reference (true price within the band): 0
+  t=0.9            found 60/60  references with r_1 <= 7.7 %: 1  missed with a certified reference (true price within the band): 0
+  t=1.1            found 0/60  references with r_1 <= 7.7 %: 1  missed with a certified reference (true price within the band): 0
+  t=1.5            found 0/60  references with r_1 <= 7.7 %: 0  missed with a certified reference (true price within the band): 0
