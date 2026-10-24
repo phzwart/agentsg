@@ -2,14 +2,15 @@
 % Manuscript for Acta Crystallographica Section A, prepared with the IUCr
 % LaTeX macro package (iucr.cls).  Compile with pdflatex.
 %------------------------------------------------------------------------------
-\documentclass[preprint,pdf]{iucr}          % DO NOT DELETE THIS LINE
+% Two-column Acta A layout; for the single-column submission format use
+% \documentclass[preprint,pdf]{iucr} and add \linenumbers after \begin{document}.
+\documentclass[a,pdf]{iucr}          % DO NOT DELETE THIS LINE
 \journalcode{A}
 
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{graphicx}
-\usepackage{lineno}
 
 \newcommand{\Ang}{\text{\AA}}
 \newcommand{\Gmet}{\mathbf{G}}
@@ -22,7 +23,7 @@
 \newcommand{\dist}{D}
 
 \begin{document}                  % DO NOT DELETE THIS LINE
-\linenumbers
+\emergencystretch=2em
 
 \title{The Selling closure: a complete operator set for reindexing, and the price of pseudo-symmetry}
 \shorttitle{The Selling closure}
@@ -70,7 +71,10 @@ Section~\ref{sec:background} collects the classical definitions. Section~\ref{se
 \label{sec:defs}
 Selling reduction works with four vectors: the cell vectors $a$, $b$, $c$ and $d=-a-b-c$. The four form a \emph{superbase}, and any three of them are a basis of the lattice. The six negated pair products
 \[
-p_{da}=-d\cdot a,\quad p_{db}=-d\cdot b,\quad p_{dc}=-d\cdot c,\quad p_{ab}=-a\cdot b,\quad p_{ac}=-a\cdot c,\quad p_{bc}=-b\cdot c
+p_{da}=-d\cdot a,\quad p_{db}=-d\cdot b,\quad p_{dc}=-d\cdot c,
+\]
+\[
+p_{ab}=-a\cdot b,\quad p_{ac}=-a\cdot c,\quad p_{bc}=-b\cdot c
 \]
 are the \emph{conorms} (Selling, 1874; Conway \& Sloane, 1992). Conorm vectors are always written in this slot order, $da,db,dc,ab,ac,bc$; the Selling parameters of $S^6$ are the same numbers with the opposite sign, in another order. A superbase is \emph{obtuse}, which is to say Selling-reduced, when all six conorms are non-negative. The metric tensor in the basis $(a,b,c)$ is linear in the conorms,
 \begin{equation}
@@ -119,11 +123,12 @@ All obtuse superbases of a lattice carry the same six conorm values as a multise
 \subsection{Terms}
 Table~\ref{tab:terms} collects the terms used in the rest of the paper, with the section in which each is defined. Strains and prices are given in per cent throughout; a band of $7.4\%$ is $0.074$ in the formulas. A strain measures a change of metric and a price a distance between two metrics (Section~\ref{sec:strain}); $\epsilon$ is a strain in $\Se$, Lemma~A6 and Remark~A7, and a price band elsewhere, the two being linked by Lemma~A8.
 
+\onecolumn
 \begin{table}
 \caption{Terms and symbols.}
 \label{tab:terms}
 \begin{footnotesize}
-\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{8.4cm}l}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{12.3cm}l}
 \toprule
 term & meaning & defined \\
 \midrule
@@ -157,6 +162,7 @@ non-isomorphism & the price between two crystals of one form & \ref{sec:band} \\
 \end{tabular}
 \end{footnotesize}
 \end{table}
+\twocolumn
 
 %==============================================================================
 %==============================================================================
@@ -172,7 +178,10 @@ A lattice has no single preferred reduced cell. It has a finite set of obtuse su
 \label{sec:example}
 Take $a=30$, $b=40$, $c=50$\,\Ang, $\beta=100^\circ$. Its reduced superbase is $M_0=(d,a,b,c)$ with conorms
 \[
-p_{da}=639.5,\quad p_{db}=1600.0,\quad p_{dc}=2239.5,\quad p_{ab}=0,\quad p_{ac}=260.5,\quad p_{bc}=0\ \Ang^2 .
+p_{da}=639.5,\quad p_{db}=1600.0,\quad p_{dc}=2239.5,
+\]
+\[
+p_{ab}=0,\quad p_{ac}=260.5,\quad p_{bc}=0\ \Ang^2 .
 \]
 The two zeros are the right angles $\alpha$ and $\gamma$ at the twofold axis $b$, present in every primitive monoclinic lattice. The closure has six superbases (Table~\ref{tab:mono}). Each has two zero conorms, each flip at a zero leads to a neighbour, and the six form a ring $M_0$--$M_1$--$M_5$--$M_4$--$M_3$--$M_2$--$M_0$ (Fig.~\ref{fig:ring}). They fall into three shapes. $\{M_0,M_4\}$ is $30$, $40$, $50$\,\Ang, $\beta=100^\circ$; $\{M_1,M_3\}$ is $30$, $40$, $53.7$\,\Ang, $\beta=113.4^\circ$, the cell on $a$ and $a+c$; $\{M_2,M_5\}$ is the third cell choice, on $c$ and $a+c$. These are the three cell choices of \emph{International Tables} (Hahn, 2006, Section~2.2.16).
 
@@ -194,7 +203,7 @@ $M_5$ & $a-b,\ c,\ b,\ -a-c$ & $M_1$, $M_4$ & \\
 \end{table}
 
 \begin{figure}
-\includegraphics[width=0.45\textwidth]{figures/fig1_ring.pdf}
+\includegraphics[width=\columnwidth]{figures/fig1_ring.pdf}
 \caption{The closure of the $100^\circ$ cell: six superbases on a ring, joined by flips at the two zero conorms and coloured by cell shape. The red path is the flip word $ab.bc.db$ from $M_0$ to $M_4$, each flip read in the labelling current at that step. The twofold and the mirror carry the vectors of $M_0$ to those of $M_4$ along this path, followed by a swap; they relabel no superbase on the way, so they are invisible in the reduced cell.}
 \label{fig:ring}
 \end{figure}
@@ -211,9 +220,9 @@ The arrows of a closure depend only on the zero pattern of the reduced cell: a s
 \caption{The largest entry of an operator from a reduced cell to another reduced cell of the same lattice, in the basis of the first, by kind of face and by whether a zero conorm sits on a slot of $d$; over all 38 faces.}
 \label{tab:entries}
 \begin{footnotesize}
-\begin{tabular}{lcc}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.9cm}cc}
 \toprule
-zero conorms & zeros avoid $d$ & a zero on $d$ \\
+zero conorms & \shortstack{zeros\\avoid $d$} & \shortstack{a zero\\on $d$} \\
 \midrule
 none, or one & 1 & 1 \\
 two on disjoint pairs (O3, cF, R3, M3, A3) & --- & 1 \\
@@ -243,11 +252,12 @@ with $\lambda_i$ the eigenvalues of $\Gmet_1^{-1/2}\Gmet_2\Gmet_1^{-1/2}$, the a
 
 Table~\ref{tab:tol} converts the classical tolerances. For Le Page's twofold criterion (Le Page, 1982) the conversion is exact: a twofold whose obliquity, the angle between a lattice row and the nearest reciprocal row, is $\delta$ sits at a geodesic distance $\sqrt2\,\mathrm{artanh}(\sin\delta)$ from the metrics it would leave invariant, and its price is twice that (Proposition~A9). One degree of obliquity is a price of $4.9\%$, and Le Page's $3^\circ$ a price of $14.8\%$, for every twofold separately.
 
+\onecolumn
 \begin{table}
 \caption{Classical tolerances as strains and prices. The first two rows give, to first order, the smallest strain of such a change, reached for an orthogonal pair (first row) or an axis normal to the other two (second row); the last two rows are exact for a twofold along a lattice row, in every cell (Proposition~A9).}
 \label{tab:tol}
 \begin{footnotesize}
-\begin{tabular}{>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{4.6cm}l}
+\begin{tabular}{>{\raggedright\arraybackslash}p{8.0cm}>{\raggedright\arraybackslash}p{6.5cm}l}
 \toprule
 tolerance & strain or price & value \\
 \midrule
@@ -259,12 +269,14 @@ twofold of obliquity $\delta$: its price & $2\sqrt2\,\mathrm{artanh}(\sin\delta)
 \end{tabular}
 \end{footnotesize}
 \end{table}
+\twocolumn
 
 \emph{The widened set.}\label{sec:widened} The \emph{widened closure} of a metric $\Gmet$ at strain $\epsilon$ is
-\begin{equation}
-\Se(\Gmet)=\bigl\{\,F\;:\;F\ \text{is obtuse for some metric within strain}\ \epsilon\ \text{of}\ \Gmet\,\bigr\}.
+\begin{multline}
+\Se(\Gmet)=\bigl\{\,F\;:\;F\ \text{is obtuse for some metric}\bigr.\\
+\bigl.\text{within strain}\ \epsilon\ \text{of}\ \Gmet\,\bigr\}.
 \label{eq:def}
-\end{equation}
+\end{multline}
 Its superbases are the reduced cells of every lattice consistent with the measurement at that tolerance. Each superbase has a \emph{depth}, the strain from $\Gmet$ to the nearest metric that makes it obtuse, and belongs to $\Se(\Gmet)$ when its depth is at most $\epsilon$. Equation~(\ref{eq:def}) names no starting cell, order of operations or frame, so $\Se(\Gmet)$ is the same whoever computes it. Each operator $\Pop$ from a metric $\Gmet_1$ to a metric $\Gmet_2$ has a \emph{price}, the geodesic distance between $\Gmet_2$ and $s\Pop^{\mathsf T}\Gmet_1\Pop$ minimised over a common scale $s$, which removes the trace of the logarithm in equation~(\ref{eq:geo}). The price is zero for every arrow of an exact closure, and for a unimodular self-map the scale changes nothing.
 
 \emph{It is finite.} The lattice vectors modulo twice the lattice fall into eight \emph{parity classes}, seven of which do not contain the zero vector; the seven partial sums of an obtuse superbase are shortest vectors of those classes. With $\mu_c$ the squared length of the shortest vector of class $c$, every vector of a superbase in $\Se(\Gmet)$ lies in a ball of squared radius $\frac{1+\epsilon}{1-\epsilon}\mu_c$ (Lemma~A6), so $\Se(\Gmet)$ is enumerated exactly, with no window of coordinates to assume.
@@ -283,11 +295,12 @@ Its superbases are the reduced cells of every lattice consistent with the measur
 \label{sec:verification}
 Table~\ref{tab:proved} separates what is proved from what rests on an exhaustive computation and what is checked. The proofs rest on Selling's identity, the characterisation of obtuse superbases by Voronoi vectors (Conway \& Sloane, 1992; at a zero conorm a partial sum is a Voronoi vector that is not strict) and Selling reduction. Exact closures and the closures of the 24 sorts were checked against brute force over bases with entries in $[-2,2]$, a window that contains a labelling of every member of every exact closure (by the enumeration that completes Lemma~A1), and widened sets against the ball enumeration of Lemma~A6.
 
+\onecolumn
 \begin{table}
 \caption{What is proved, what rests on an exhaustive computation, and what is checked or refuted.}
 \label{tab:proved}
 \begin{footnotesize}
-\begin{tabular}{>{\raggedright\arraybackslash}p{7.4cm}>{\raggedright\arraybackslash}p{5.4cm}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{9.6cm}>{\raggedright\arraybackslash}p{8.0cm}}
 \toprule
 statement & status \\
 \midrule
@@ -308,6 +321,7 @@ the layers of 127 and 2755 superbases; the adjacency radii; the largest entries 
 \end{tabular}
 \end{footnotesize}
 \end{table}
+\twocolumn
 
 %==============================================================================
 \section{Methods}
@@ -331,11 +345,12 @@ A reference $R$ is stored as its widened closure, the operators $\Wop_k$ from it
 \end{equation}
 so that $(a_N\,b_N\,c_N)=(a_R\,b_R\,c_R)\Pop$, $\Gmet_N\approx\Pop^{\mathsf T}\Gmet_R\Pop$, and Miller indices transform as $h_N=\Pop^{\mathsf T}h_R$. Candidates of price at most the band $\epsilon$ are returned; the reference is widened at $e^\epsilon-1$, so the true operator is among them whenever its price is at most $\epsilon$ (Lemma~A8). Three conventions complete the procedure. Only operators of positive determinant are returned: cell parameters carry no hand, so the convention is that both bases are right-handed, and an inverted geometry must be caught before the cell reaches this step. A fitted scale that changes the edge lengths by more than $10\%$ is rejected, and two primitive cells whose volumes differ by more than that allows, outside $0.9^3$ to $1.1^3$, are refused with a message; a wrong centring symbol or a doubled axis lands here. An obverse--reverse relation between two rhombohedral lattices keeps the volume and the hexagonal cell, so no cell-based test sees it; it is a matter for the intensities. A centred reference is first taken to a primitive cell (a rhombohedral cell on rhombohedral axes is already primitive) and the centring matrix composed with the operator found, which is then rational in the conventional basis. When the reference's widened set lies in $\Lay_1$ the candidates can come from $\mathcal U$ directly (Table~\ref{tab:algorithm}, step~3), and two conventions then matter: $\Wop$ is a column operator, $\Pop=B_R\Wop B_N^{-1}$, and only 768 of the 6096 transposes lie in $\mathcal U$; and Selling reduction may return a left-handed basis, so a proper $\Pop$ needs the 3048 matrices with $\det\Wop=\det B_R\det B_N$.
 
+\onecolumn
 \begin{table}
 \caption{Reindexing a new cell against a reference within a price band $\epsilon$.}
 \label{tab:algorithm}
 \begin{footnotesize}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.5cm}>{\raggedright\arraybackslash}p{12.4cm}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.6cm}>{\raggedright\arraybackslash}p{16.6cm}}
 \toprule
 step & action \\
 \midrule
@@ -348,6 +363,7 @@ step & action \\
 \end{tabular}
 \end{footnotesize}
 \end{table}
+\twocolumn
 
 \subsection{Choosing the band}
 \label{sec:band}
@@ -373,7 +389,7 @@ When does reduction put a zero on $d$? The entries are read in the basis of the 
 \emph{The worked cell.} The measured cell $30.02$, $39.97$, $50.03$\,\Ang, $90.25^\circ$, $92.05^\circ$, $89.80^\circ$ is the $100^\circ$ cell of Section~\ref{sec:example} with $\beta$ moved to $92^\circ$, perturbed by a metric error of strain $0.82\%$. Its widened closure grows with the strain: one member at $0.1\%$, two at $0.3\%$, three at $0.6\%$, the six of the ring from $1\%$, and sixteen at $7.4\%$ (Fig.~\ref{fig:depths}; the members, as flip words with their conorms and depths, are in Table~S6). The six members of the ring enter below $0.8\%$; the other ten members of the closure of the nearby orthorhombic lattice enter between $3.8$ and $5.1\%$.
 
 \begin{figure}
-\includegraphics[width=0.6\textwidth]{figures/fig2_depths.pdf}
+\includegraphics[width=\columnwidth]{figures/fig2_depths.pdf}
 \caption{The sixteen members of the widened closure of the measured worked cell by depth: the six of the ring enter below $0.8\%$ strain, the other ten members of the nearby orthorhombic lattice's closure between $3.8$ and $5.1\%$.}
 \label{fig:depths}
 \end{figure}
@@ -409,6 +425,7 @@ plate $150\times120\times4.8$\,\Ang, $\beta=90.4^\circ$ & $4.3$ & $10.0$ \\
 \caption{Distinct indexings of six references at a band of $7.4\%$ (the reference widened at $7.7\%$): the order of the band's group of proper self-maps $H_\epsilon$ and of the proper rotations $\Laue^+$ of the Laue group, the number of classes among the candidates, and the price of each class. The new cell is the reference with a $0.1\%$ scale error, which the scale fit absorbs, relabelled.}
 \label{tab:classes}
 \begin{footnotesize}
+\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{llrrrl}
 \toprule
 reference & space group & $|H_\epsilon|$ & $|\Laue^+|$ & classes & prices (\%) \\
@@ -466,7 +483,7 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 \emph{Where.} The share depends on the reported type and on the transition (supporting information, Table~S9). Monoclinic and triclinic entries carry most of it: $18\%$ of the 35\,364 mP entries and $16\%$ of the 8\,491 aP entries have an alternative within $4.2\%$, against $7\%$ of oP and $1\%$ of tP entries. Among the transitions, mP to hP is nearly always undecidable from the cell (median price $0.71\%$, $91\%$ within $4.2\%$): hexagonal metrics reported in a monoclinic group, the configuration in which pseudo-merohedral twinning is possible. The median price of the cheapest alternative is $6$--$7.5\%$ for most transitions, so the sort decides how often a pseudo-symmetry occurs, not what it costs (supporting information, Tables~S8 and S9).
 
 \begin{figure}
-\includegraphics[width=0.7\textwidth]{figures/fig3_pdb_prices.pdf}
+\includegraphics[width=\columnwidth]{figures/fig3_pdb_prices.pdf}
 \caption{Non-isomorphism against pseudo-symmetry in the PDB: cumulative distributions of the price between deposited cells of one crystal form (blue; one value per pair) and of the price of the cheapest pseudo-symmetric alternative of each entry for which Le Page's $3^\circ$ finds a higher lattice that is not exact (orange; one value per entry). The orange curve ends near $14.8\%$ by construction, since an obliquity of at most $3^\circ$ prices a twofold at most so. Vertical lines: the 90th and 95th percentiles of non-isomorphism, $4.2$ and $6.7\%$, and the price of a twofold at Le Page's $3^\circ$, $14.8\%$.}
 \label{fig:pdb}
 \end{figure}
@@ -505,6 +522,7 @@ Every integer matrix between two Selling-reduced cells of any lattice lies in on
 \renewcommand{\thetable}{\thesection\arabic{table}}
 \renewcommand{\thefigure}{\thesection\arabic{figure}}
 \section{Proofs}
+\sloppy
 %==============================================================================
 
 \emph{Terms.} Write a lattice vector in any basis, $x=n_1v_1+n_2v_2+n_3v_3$ with integer $n_i$, and record whether each coordinate is even or odd. This sorts the lattice into eight \emph{parity classes}, the classes of $\Lambda/2\Lambda$; two vectors are in the same class exactly when their difference is twice a lattice vector, so the classes do not depend on the basis. One class is the doubled vectors; the other seven are used here. A \emph{partial sum} of a superbase is the sum of some of its four vectors; there are seven up to sign, one in each of the seven classes. A superbase is obtuse exactly when each of its partial sums is a shortest vector of its parity class, that is, a Voronoi vector of the lattice (Voronoi, 1908; Conway \& Sloane, 1992; Kurlin, 2022); at a zero conorm the partial sums are Voronoi vectors that are not strict. The \emph{excess} $e_c(F)=|v_c(F)|^2-\mu_c$ of a superbase $F$ in class $c$ is the squared length of its partial sum in that class minus the squared length $\mu_c$ of the shortest vector of the class. A partial sum is written $w=\sum s_iv_i$ with $s\in\{0,1\}^4$; a vector of the same class has coordinates $s+2k$ with $k$ integer. Every lattice vector $x=\sum c_iv_i$ satisfies Selling's identity
@@ -522,7 +540,7 @@ whatever the signs of the conorms, because the four vectors sum to zero.
 
 \emph{Proposition A4 (the strain norm bounds every dot product).} If $\|\Gmet^{-1/2}\Delta\Gmet\,\Gmet^{-1/2}\|_F\le\epsilon$, then $|u^{\mathsf T}\Delta\Gmet\,v|\le\epsilon\,|u|\,|v|$ for all vectors $u,v$, lengths in $\Gmet$; in particular every conorm of every superbase changes by at most $\epsilon|u_i||u_j|$. \emph{Proof.} With $X=\Gmet^{-1/2}\Delta\Gmet\,\Gmet^{-1/2}$, $u^{\mathsf T}\Delta\Gmet\,v=(\Gmet^{1/2}u)^{\mathsf T}X(\Gmet^{1/2}v)$, at most $\|X\|_2|u||v|\le\|X\|_F|u||v|$.\hfill$\square$
 
-\emph{Definition and enumeration A5 (sorts as closed sets of equalities).} Fix a zero pattern $Z$, let $O_Z$ be the arrows of its closure and, for $\Wop\in O_Z$, let $\mathbf A_\Wop$ be its linear action on conorm vectors (supporting information, Section~S3), which on the face $\{p\ge0,\ p_Z=0\}$ is a permutation of the slots. For a subspace $V$ of the face put $\mathrm{Sym}(V)=\{\Wop\in O_Z: \mathbf A_\Wop=\mathrm{id}\ \text{on}\ V\}$ and $\mathrm{Fix}(H)=\{p: \mathbf A_\Wop p=p\ \forall\,\Wop\in H\}$. A lattice with conorm vector $p$ on the face has point group $\mathrm{Sym}(\{p\})$, every symmetry being in $O_Z$ by Lemma~A3. We take as the definition of a sort a maximal set of lattices with the same kind of closure and the same symmetry operators; then the sorts of kind $Z$ are the generic points of the closed subspaces $V=\mathrm{Fix}(\mathrm{Sym}(V))$ that meet the interior of the face, modulo the arrows that map the face onto itself. This is the classical construction, the fixed subspace of a point group in the space of forms (Delone \emph{et al.}, 1975), written in conorm coordinates; SELLA uses the same subspaces. $\mathrm{Sym}$ and $\mathrm{Fix}$ are a Galois connection, so the closed subspaces are the intersections of the finitely many subspaces $\mathrm{Fix}(\Wop)$; since $\mathbf A_\Wop$ permutes the slots on the face, each is a set of equalities among conorms. Enumerating the intersections gives 8, 5, 3, 5 and 3 closed subspaces for no zero, one zero, two sharing a vector, two disjoint and three zeros, with symmetry orders $2,4,4,8,8,12,16,48$; $2,4,4,8,16$; $4,8,24$; $2,4,8,12,48$; $8,16,48$. A generic point of a closed subspace, one in the interior of the face and in none of the finitely many smaller closed subspaces it contains, has exactly the symmetries $\mathrm{Sym}(V)$; points on its boundary belong to another zero pattern. Matched pattern by pattern, by computation, these are Delone's 24 sorts (supporting information, Table~S10).
+\emph{Definition and enumeration A5 (sorts as closed sets of equalities).} Fix a zero pattern $Z$, let $O_Z$ be the arrows of its closure and, for $\Wop\in O_Z$, let $\mathbf A_{\Wop}$ be its linear action on conorm vectors (supporting information, Section~S3), which on the face $\{p\ge0,\ p_Z=0\}$ is a permutation of the slots. For a subspace $V$ of the face put $\mathrm{Sym}(V)=\{\Wop\in O_Z: \mathbf A_{\Wop}=\mathrm{id}\ \text{on}\ V\}$ and $\mathrm{Fix}(H)=\{p: \mathbf A_{\Wop} p=p\ \forall\,\Wop\in H\}$. A lattice with conorm vector $p$ on the face has point group $\mathrm{Sym}(\{p\})$, every symmetry being in $O_Z$ by Lemma~A3. We take as the definition of a sort a maximal set of lattices with the same kind of closure and the same symmetry operators; then the sorts of kind $Z$ are the generic points of the closed subspaces $V=\mathrm{Fix}(\mathrm{Sym}(V))$ that meet the interior of the face, modulo the arrows that map the face onto itself. This is the classical construction, the fixed subspace of a point group in the space of forms (Delone \emph{et al.}, 1975), written in conorm coordinates; SELLA uses the same subspaces. $\mathrm{Sym}$ and $\mathrm{Fix}$ are a Galois connection, so the closed subspaces are the intersections of the finitely many subspaces $\mathrm{Fix}(\Wop)$; since $\mathbf A_{\Wop}$ permutes the slots on the face, each is a set of equalities among conorms. Enumerating the intersections gives 8, 5, 3, 5 and 3 closed subspaces for no zero, one zero, two sharing a vector, two disjoint and three zeros, with symmetry orders $2,4,4,8,\allowbreak 8,12,16,48$; $2,4,4,8,16$; $4,8,24$; $2,4,8,\allowbreak 12,48$; $8,16,48$. A generic point of a closed subspace, one in the interior of the face and in none of the finitely many smaller closed subspaces it contains, has exactly the symmetries $\mathrm{Sym}(V)$; points on its boundary belong to another zero pattern. Matched pattern by pattern, by computation, these are Delone's 24 sorts (supporting information, Table~S10).
 
 \emph{Lemma A6 (the widened set is finite).} If $F$ is within strain $\epsilon<1$ of obtuse for $\Gmet$, every vector $u$ of $F$ satisfies $|u|^2_{\Gmet}\le\frac{1+\epsilon}{1-\epsilon}\,\mu_c(\Gmet)$, with $\mu_c$ the squared length of the shortest vector of the parity class of $u$, which is that of $F_0$'s partial sum in the class. \emph{Proof.} Let $\Gmet'$ within $\epsilon$ make $F$ obtuse. By Proposition~A4 with $u=v$, $(1-\epsilon)|u|^2_{\Gmet}\le|u|^2_{\Gmet'}\le(1+\epsilon)|u|^2_{\Gmet}$ for every lattice vector. The vectors of $F$ are shortest in their classes for $\Gmet'$, and those of $F_0$ for $\Gmet$, so $|u|^2_{\Gmet'}\le|v^0_c|^2_{\Gmet'}\le(1+\epsilon)\mu_c(\Gmet)$ and $|u|^2_{\Gmet}\le|u|^2_{\Gmet'}/(1-\epsilon)$.\hfill$\square$ The lattice vectors in these seven balls are finitely many and computable from $\Gmet$, so $\Se(\Gmet)$ is enumerated exactly.
 
@@ -533,7 +551,7 @@ whatever the signs of the conorms, because the four vectors sum to zero.
 
 \emph{Proposition A9 (the price of a symmetry).} Let $g$ be an integer matrix of finite order $n$ and $V_g=\{\Gmet:g^{\mathsf T}\Gmet g=\Gmet\}$ the metrics for which $g$ is a symmetry. (i) $\dist(\Gmet,g^{\mathsf T}\Gmet g)\le2\dist(\Gmet,V_g)$, with equality when $g$ is a twofold. (ii) If $g$ is a twofold along a lattice row of obliquity $\delta$ in $\Gmet$ (the angle between the row and the normal to the lattice plane that $g$ negates), then $\dist(\Gmet,g^{\mathsf T}\Gmet g)=2\sqrt2\,\mathrm{artanh}(\sin\delta)$. (iii) For a metric $\Gmet^*\in V_g$ and the strain at $\Gmet^*$, $\|g^{\mathsf T}\Gmet g-\Gmet\|_{\Gmet^*}$ lies between $\rho_{\min}$ and $\rho_{\max}$ times the distance from $\Gmet$ to $V_g$ in that norm, with $\rho=|e^{i\theta}-1|$ over the rotation angles $\theta\ne0$ of $X\mapsto g^{\mathsf T}Xg$: $\rho=2$ for a twofold, $\sqrt3$ for a threefold, $\{\sqrt2,2\}$ for a fourfold and $\{1,\sqrt3\}$ for a sixfold. The scale fit leaves these prices unchanged, since $\det g^{\mathsf T}\Gmet g=\det\Gmet$. \emph{Proof.} (i) $\Gmet\mapsto g^{\mathsf T}\Gmet g$ is an isometry of $\dist$. For any $\Gmet'\in V_g$, $\dist(\Gmet,g^{\mathsf T}\Gmet g)\le\dist(\Gmet,\Gmet')+\dist(\Gmet',g^{\mathsf T}\Gmet g)=2\dist(\Gmet,\Gmet')$. For a twofold, the geodesic midpoint $m$ of $\Gmet$ and $g^{\mathsf T}\Gmet g$ is unique, the space of positive definite matrices with this distance being complete and of non-positive curvature (Bhatia, 2007, Chapter~6), and $g$ exchanges the two ends, so $m\in V_g$ and $\dist(\Gmet,V_g)\le\frac12\dist(\Gmet,g^{\mathsf T}\Gmet g)$. (ii) In Cartesian coordinates for $\Gmet$, $g$ becomes $T=\Gmet^{1/2}g\Gmet^{-1/2}$, an involution fixing the line $\ell$ of the row and negating the plane $\Pi$; it is $2\mathbf E-I$ with $\mathbf E$ the projection onto $\ell$ along $\Pi$, and the angle between $\ell$ and the normal of $\Pi$ is $\delta$. The price is $\|\ln(T^{\mathsf T}T)\|_F$. $T^{\mathsf T}T$ is the identity on the line of $\Pi$ normal to $\ell$, and on the plane spanned by $\ell$ and the normal of $\Pi$ it has eigenvalues $(1\pm\sin\delta)/(1\mp\sin\delta)$, whose logarithms are $\pm2\,\mathrm{artanh}(\sin\delta)$. (iii) $\sigma:X\mapsto g^{\mathsf T}Xg$ is an isometry of the inner product $\mathrm{tr}(\Gmet^{*-1}X\Gmet^{*-1}Y)$ of order $n$, so the space of symmetric matrices splits orthogonally into its fixed space, which is $V_g-\Gmet^*$, and planes and lines on which it rotates by $\theta=2\pi k/n$. With $\Gmet-\Gmet^*=X_0+X_\perp$, $X_0$ fixed, the distance to $V_g$ is $\|X_\perp\|$ and $g^{\mathsf T}\Gmet g-\Gmet=(\sigma-1)X_\perp$. The rotation angles are those of the products $\lambda_i\lambda_j$, $i\le j$, of the eigenvalues of $g$, squares included; the squares give the angle $\pi$ of a fourfold and $2\pi/3$ of a sixfold.\hfill$\square$ Part (iii) is exact for the strain at $\Gmet^*$; for the price it holds to first order in the distance to $V_g$. No exact relation to Le Page's obliquity holds for orders 3, 4 and 6: at Le Page's boundary the fourfolds of a body-centred cubic lattice cost a median $15.0\%$, more than its twofolds (supporting information, Table~S11). The metrics of a sort to which $g$ belongs lie inside $V_g$ (read in the frame in which the sort's distance is attained), so, to first order in the error, where the strain of a sort distance and the geodesic distance agree, a twofold's price is at most twice the distance to that sort, with equality when $V_g$ is the sort's subspace, as for the twofold of a primitive monoclinic lattice.
 
-\emph{Proposition A10 (candidates and cosets).} Let $\Pop_0$ be the true operator from a reference $R$ to a new cell $N$, of price $p_0$; let $H_\epsilon$ be the proper unimodular $h$ with $\pi(h)=\dist(\Gmet_R,h^{\mathsf T}\Gmet_Rh)\le\epsilon$, a finite set; and let $C_\epsilon$ be the candidates, the proper unimodular operators of price at most $\epsilon$. Then (i) $\pi(h_1h_2)\le\pi(h_1)+\pi(h_2)$; (ii) $H_{\epsilon-p_0}\Pop_0\subseteq C_\epsilon\subseteq H_{\epsilon+p_0}\Pop_0$; (iii) if no self-map of $R$ has price in $(\epsilon,2\epsilon]$, $H_\epsilon$ is a group; (iv) if none has price in $(\epsilon-p_0,\epsilon+p_0]$, then $C_\epsilon=H_\epsilon\Pop_0$; (v) if $\Gmet_0$ is any metric at distance $\delta$ from $\Gmet_R$, after normalisation to unit determinant, and $\mathrm{Aut}(\Gmet_0)$ its point group, then $\mathrm{Aut}(\Gmet_0)\subseteq H^{\pm}_{2\delta}(\Gmet_R)$ and $H^{\pm}_{\epsilon}(\Gmet_R)\subseteq H^{\pm}_{\epsilon+2\delta}(\Gmet_0)$, where $H^{\pm}$ admits improper self-maps; in particular, if $\Gmet_0$ has no self-map outside its point group of price at most $\epsilon+2\delta$, and $\epsilon\ge2\delta$, then $H^{\pm}_\epsilon(\Gmet_R)=\mathrm{Aut}(\Gmet_0)$. \emph{Proof.} The price is the geodesic distance between metrics normalised to unit determinant, and unimodular matrices act on those by isometries. (i) $\dist(\Gmet_R,(h_1h_2)^{\mathsf T}\Gmet_Rh_1h_2)\le\dist(\Gmet_R,h_2^{\mathsf T}\Gmet_Rh_2)+\dist(h_2^{\mathsf T}\Gmet_Rh_2,h_2^{\mathsf T}h_1^{\mathsf T}\Gmet_Rh_1h_2)=\pi(h_2)+\pi(h_1)$. (ii) By the triangle inequality the price of $h\Pop_0$ differs from $\dist(\Pop_0^{\mathsf T}\Gmet_R\Pop_0,\Pop_0^{\mathsf T}h^{\mathsf T}\Gmet_Rh\Pop_0)=\pi(h)$ by at most $p_0$, and every unimodular $\Pop$ is $h\Pop_0$ with $h=\Pop\Pop_0^{-1}$. (iii) By (i) a product of two elements of $H_\epsilon$ has price at most $2\epsilon$, hence at most $\epsilon$; a finite set of matrices closed under products is a group. (iv) The two sets of (ii) then coincide. (v) For $g\in\mathrm{Aut}(\Gmet_0)$, $\dist(\Gmet_R,g^{\mathsf T}\Gmet_Rg)\le\dist(\Gmet_R,\Gmet_0)+\dist(\Gmet_0,g^{\mathsf T}\Gmet_0g)+\dist(g^{\mathsf T}\Gmet_0g,g^{\mathsf T}\Gmet_Rg)=2\delta$; for $h\in H^{\pm}_\epsilon(\Gmet_R)$, in the same way, $\dist(\Gmet_0,h^{\mathsf T}\Gmet_0h)\le\delta+\epsilon+\delta$. The last statement combines the two inclusions.\hfill$\square$ The conditions are sufficient, not necessary: the worked cell at $\epsilon=7.4\%$ has self-maps of price $0$, $1.55\%$ and $10.2\%$, so the condition of (iii) fails, yet $H_\epsilon=\{\mathbf I,2_y\}$ is a group, which the implementation checks directly.
+\emph{Proposition A10 (candidates and cosets).} Let $\Pop_0$ be the true operator from a reference $R$ to a new cell $N$, of price $p_0$; let $H_\epsilon$ be the proper unimodular $h$ with $\pi(h)=\dist(\Gmet_R,h^{\mathsf T}\Gmet_Rh)\le\epsilon$, a finite set; and let $C_\epsilon$ be the candidates, the proper unimodular operators of price at most $\epsilon$. Then (i) $\pi(h_1h_2)\le\pi(h_1)+\pi(h_2)$; (ii) $H_{\epsilon-p_0}\Pop_0\subseteq C_\epsilon\subseteq H_{\epsilon+p_0}\Pop_0$; (iii) if no self-map of $R$ has price in $(\epsilon,2\epsilon]$, $H_\epsilon$ is a group; (iv) if none has price in $(\epsilon-p_0,\epsilon+p_0]$, then $C_\epsilon=H_\epsilon\Pop_0$; (v) if $\Gmet_0$ is any metric at distance $\delta$ from $\Gmet_R$, after normalisation to unit determinant, and $\mathrm{Aut}(\Gmet_0)$ its point group, then $\mathrm{Aut}(\Gmet_0)\subseteq H^{\pm}_{2\delta}(\Gmet_R)$ and $H^{\pm}_{\epsilon}(\Gmet_R)\subseteq H^{\pm}_{\epsilon+2\delta}(\Gmet_0)$, where $H^{\pm}$ admits improper self-maps; in particular, if $\Gmet_0$ has no self-map outside its point group of price at most $\epsilon+2\delta$, and $\epsilon\ge2\delta$, then $H^{\pm}_\epsilon(\Gmet_R)=\mathrm{Aut}(\Gmet_0)$. \emph{Proof.} The price is the geodesic distance between metrics normalised to unit determinant, and unimodular matrices act on those by isometries. (i) \begin{multline*}\dist(\Gmet_R,(h_1h_2)^{\mathsf T}\Gmet_Rh_1h_2)\le\dist(\Gmet_R,h_2^{\mathsf T}\Gmet_Rh_2)\\+\dist(h_2^{\mathsf T}\Gmet_Rh_2,h_2^{\mathsf T}h_1^{\mathsf T}\Gmet_Rh_1h_2)=\pi(h_2)+\pi(h_1).\end{multline*} (ii) By the triangle inequality the price of $h\Pop_0$ differs from $\dist(\Pop_0^{\mathsf T}\Gmet_R\Pop_0,\Pop_0^{\mathsf T}h^{\mathsf T}\Gmet_Rh\Pop_0)=\pi(h)$ by at most $p_0$, and every unimodular $\Pop$ is $h\Pop_0$ with $h=\Pop\Pop_0^{-1}$. (iii) By (i) a product of two elements of $H_\epsilon$ has price at most $2\epsilon$, hence at most $\epsilon$; a finite set of matrices closed under products is a group. (iv) The two sets of (ii) then coincide. (v) For $g\in\mathrm{Aut}(\Gmet_0)$, \begin{multline*}\dist(\Gmet_R,g^{\mathsf T}\Gmet_Rg)\le\dist(\Gmet_R,\Gmet_0)+\dist(\Gmet_0,g^{\mathsf T}\Gmet_0g)\\+\dist(g^{\mathsf T}\Gmet_0g,g^{\mathsf T}\Gmet_Rg)=2\delta;\end{multline*} for $h\in H^{\pm}_\epsilon(\Gmet_R)$, in the same way, $\dist(\Gmet_0,h^{\mathsf T}\Gmet_0h)\le\delta+\epsilon+\delta$. The last statement combines the two inclusions.\hfill$\square$ The conditions are sufficient, not necessary: the worked cell at $\epsilon=7.4\%$ has self-maps of price $0$, $1.55\%$ and $10.2\%$, so the condition of (iii) fails, yet $H_\epsilon=\{\mathbf I,2_y\}$ is a group, which the implementation checks directly.
 
 \emph{Proposition A11 (Niggli type and the zeros on $d$).} Let $(a,b,c)$ be a Niggli cell, $a\cdot a\le b\cdot b\le c\cdot c$, with Niggli's conditions $|2a\cdot b|\le a\cdot a$, $|2a\cdot c|\le a\cdot a$, $|2b\cdot c|\le b\cdot b$. (i) If it is of type~II ($a\cdot b$, $a\cdot c$, $b\cdot c\le0$), the superbase $(d,a,b,c)$ is obtuse (a known relation between the two reductions; Andrews \emph{et al.}, 2019\emph{a}), and the conorm of $d$ with each vector $x$ is at least $\frac12x\cdot x$ minus the smaller of $|x\cdot y|$ and $|x\cdot z|$; so if at most one of $|a\cdot b|$, $|a\cdot c|$, $|b\cdot c|$ exceeds $\tau$ and $\tau<\frac14a\cdot a$, every conorm on $d$ exceeds every conorm off $d$ that is at most $\tau$. (ii) If it is of type~I (all three products positive), none of the four orthogonal superbases $\{\pm a,\pm b,\pm c,\ \mp a\mp b\mp c\}$ is obtuse. (iii) Let $\Gmet^*$ be a lattice with three mutually perpendicular shortest vectors $e_1,e_2,e_3$, and $\Gmet$ a metric within strain $\epsilon$ of it, small enough that every superbase obtuse for $\Gmet$ belongs to the closure of $\Gmet^*$; the largest such $\epsilon$ is the strain at which a superbase outside that closure first becomes obtuse near $\Gmet^*$, which the ball enumeration of Lemma~A6 computes. If $(e_1\cdot e_2)(e_1\cdot e_3)(e_2\cdot e_3)>0$ under $\Gmet$, which for the near-orthogonal Niggli cell $(\pm e_1,\pm e_2,\pm e_3)$ is Niggli's type~I, the reduced superbase of $\Gmet$, from any starting basis, is a face-diagonal cell, whose three zeros under $\Gmet^*$ form a path through $d$. \emph{Proof.} (i) $p_{ab}$, $p_{ac}$, $p_{bc}\ge0$ by the signs; $p_{dx}=x\cdot x+\sum_{y\ne x}x\cdot y\ge x\cdot x-|x\cdot y|-|x\cdot z|$, and the larger of the two is at most $\frac12x\cdot x$ by Niggli's conditions and the ordering of the lengths, which gives the bound; if at most one product exceeds $\tau$, the smaller product of $x$ is at most $\tau$, so $p_{dx}\ge\frac12x\cdot x-\tau>\tau$ when $\tau<\frac14a\cdot a\le\frac14x\cdot x$. (ii) An orthogonal superbase is obtuse only if its three basis products are non-positive, so their product is non-positive; changing the signs of basis vectors leaves $(a\cdot b)(a\cdot c)(b\cdot c)$ unchanged, and it is positive. (iii) A superbase obtuse for $\Gmet$ is in the closure of $\Gmet^*$ by hypothesis. That closure has sixteen superbases, the four orthogonal ones, whose zeros form a triangle, and twelve face-diagonal ones, whose zeros form a path that touches every vector and so $d$ in every labelling; by (ii), applied to the orthogonal triple, only the latter can be obtuse.\hfill$\square$
 
