@@ -209,18 +209,27 @@ def _check_cell(cell):
     return cell
 
 
-def _centring(sg_hm):
+def _centring(sg_hm, cell=None):
     """Lattice letter of a space-group symbol: P for none, P for a rhombohedral setting
-    (':R'), raising on a symbol whose lattice letter is not recognised."""
+    (':R'), raising on a symbol whose lattice letter is not recognised. An R symbol without a
+    setting suffix on a cell that is not hexagonal-shaped (alpha = beta = 90, gamma = 120
+    degrees) is read on rhombohedral axes, with a warning."""
     if not sg_hm:
         return "P"
     s = str(sg_hm).strip()
     if s.replace(" ", "").upper().endswith(":R"):
         return "P"                                      # rhombohedral axes: already primitive
     try:
-        return lattice_letter(s)
+        letter = lattice_letter(s)
     except ValueError as exc:
         raise ValueError(f"cannot read a lattice centring from the space-group symbol {sg_hm!r}") from exc
+    if letter == "R" and cell is not None and ":" not in s and not (
+            abs(cell[3] - 90) < 0.5 and abs(cell[4] - 90) < 0.5 and abs(cell[5] - 120) < 0.5):
+        import warnings
+        warnings.warn(f"{sg_hm!r} on a cell that is not hexagonal-shaped: read on rhombohedral axes "
+                      "(give 'R ... :R' or ':H' to be explicit)", stacklevel=3)
+        return "P"
+    return letter
 
 
 def reduce_cell(cell, sg_hm=None) -> ReducedCell:
@@ -228,7 +237,7 @@ def reduce_cell(cell, sg_hm=None) -> ReducedCell:
     (P, A, B, C, I, F, R; 'R ... :R' is primitive); an unreadable symbol raises."""
     np = _np()
     cell = _check_cell(cell)
-    T = Matrix3(_PRIM_EXACT[_centring(sg_hm)])
+    T = Matrix3(_PRIM_EXACT[_centring(sg_hm, cell)])
     Tf = np.array([[float(x) for x in row] for row in T.rows])
     G0 = np.array(UnitCell(*cell).metric_tensor(), float)
     from .metric import params_from_metric
@@ -429,7 +438,7 @@ def _price(G_new, G_pred, fit_scale=True):
     return float(np.linalg.norm(lv - m)), math.exp(-m)
 
 
-def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_scale=True, eps=None,
+def reindex(reference, new_cell, new_sg_hm="reference", accept=None, proper=True, fit_scale=True, eps=None,
             max_scale_change=0.1):
     """Candidate operators from the reference to a new cell, ranked by strain price.
 
@@ -445,7 +454,9 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
     rejected; ``None`` keeps every scale. If the two primitive cells differ in volume by
     more than that scale limit allows ((1 + max_scale_change)^3, or 1.6 without a limit),
     a ValueError names the likely cause (a wrong centring symbol, or a sub- or
-    superlattice). An obverse/reverse relation keeps the volume and is not detected.
+    superlattice). An obverse/reverse relation keeps the volume and is not detected. The new cell is read with
+    the reference's centring unless ``new_sg_hm`` is given (``None`` for primitive). Candidates of equal
+    price are listed nearest the identity first.
     ``proper=True`` (default) keeps only candidates of positive determinant (+1, or +1/k from a
     centred reference's conventional basis): two right-handed
     bases are related by a proper operator, and a left-handed basis is never valid
@@ -464,10 +475,13 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
     if accept > accept_for(ref.eps) * (1 + 1e-9):
         raise ValueError(f"accept={accept:.4f} needs the reference widened at band_for(accept)="
                          f"{band_for(accept):.4f}; it was widened at {ref.eps:.4f}")
+    if new_sg_hm == "reference":
+        new_sg_hm = ref.reduced.sg_hm
     new = reduce_cell(new_cell, new_sg_hm)
     ratio = math.sqrt(float(np.linalg.det(new.G)) / float(np.linalg.det(ref.reduced.G)))
     vmax = 1.6 if max_scale_change is None else (1 + max_scale_change) ** 3
-    if not 1 / vmax < ratio < vmax:
+    vmin = 1 / 1.6 if max_scale_change is None else (1 - max_scale_change) ** 3
+    if not vmin < ratio < vmax:
         raise ValueError(f"the primitive cells differ in volume by a factor {ratio:.2f} (allowed {vmax:.2f}): "
                          "no operator within the scale limit relates them; check the centring symbols, "
                          "or look for a sub- or superlattice (an obverse/reverse relation of rhombohedral "
@@ -499,7 +513,9 @@ def reindex(reference, new_cell, new_sg_hm=None, accept=None, proper=True, fit_s
                 continue
             seen.add(k)
             out.append(Candidate(P, price, s, m.depth, det))
-    out.sort(key=lambda c: c.price)
+    eye = Matrix3([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    out.sort(key=lambda c: (round(c.price, 12), sum(abs(float(x - y)) for r1, r2 in zip(c.operator.rows, eye.rows)
+                                                    for x, y in zip(r1, r2))))    # ties: nearest the identity first
     return out, ref.layer
 
 
@@ -606,6 +622,10 @@ def indexing_classes(reference, new_cell, space_group_key, new_sg_hm=None, accep
     H = {c.operator.rows for c in selfc}
     closed = all((a.operator @ b.operator).rows in H for a in selfc for b in selfc)
     laue_in = all(l.rows in H for l in L if proper is not True or l.det() == 1)
+    if not laue_in:
+        import warnings
+        warnings.warn(f"the reference cell does not have the lattice symmetry of {space_group_key!r} within the "
+                      "band: check the space group", stacklevel=2)
     by_op = {c.operator.rows: c for c in cands}
     classes, covered = [], set()
     for c in cands:                                   # cheapest first

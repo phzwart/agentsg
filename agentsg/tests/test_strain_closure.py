@@ -167,7 +167,8 @@ def test_scale_bound_and_volume_check():
         reindex(W, big)                                                    # beyond the 10 % scale limit
     Wc = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
     with pytest.raises(ValueError, match="centring"):
-        reindex(Wc, (50.0, 30.0, 40.0, 90, 105, 90))                      # the C cell read as primitive
+        reindex(Wc, (50.0, 30.0, 40.0, 90, 105, 90), None)                # the C cell read as primitive
+    assert reindex(Wc, (50.0, 30.0, 40.0, 90, 105, 90))[0]               # default: the reference's centring
 
 
 def test_proper_group_order():
@@ -227,3 +228,24 @@ def test_ball_guard_and_universal_operators():
         Gn = M.T @ G @ M
         ok = [P for P in Ps if np.allclose(P.T @ G @ P, Gn, rtol=1e-6, atol=1e-6)]
         assert ok                                    # some lattice symmetry composed with M
+
+
+def test_rhombohedral_axes_ties_and_scale_bounds():
+    """'R 3' on a rhombohedral-axes cell is read on those axes (with a warning); equal-price
+    candidates come nearest the identity first; the volume check matches the edge-scale limit
+    in both directions."""
+    from agentsg.cell.strain_closure import reduce_cell
+    from agentsg.cell.selling_cob import _PRIM_EXACT
+    hexa = (80.0, 80.0, 120.0, 90, 90, 120)
+    T = np.array([[float(x) for x in r] for r in _PRIM_EXACT["R"]])
+    rcell = params_from_metric((T.T @ np.array(UnitCell(*hexa).metric_tensor(), float) @ T).tolist())
+    with pytest.warns(UserWarning, match="rhombohedral axes"):
+        v1 = np.linalg.det(reduce_cell(rcell, "R 3").G)
+    assert abs(v1 / np.linalg.det(reduce_cell(hexa, "R 3 :H").G) - 1) < 1e-6
+    W = widened_closure((50.0, 50.0, 80.0, 90, 90, 120), "P 3")
+    c, _ = reindex(W, (50.0, 50.0, 80.0, 90, 90, 120))
+    assert [[int(x) for x in r] for r in c[0].operator.rows] == [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    G = np.array(UnitCell(60.0, 60.0, 60.0, 90, 90, 90).metric_tensor(), float)
+    Wc = widened_closure((60.0, 60.0, 60.0, 90, 90, 90))
+    small = params_from_metric((0.905 ** 2 * G).tolist())
+    assert reindex(Wc, small)[0]                                         # edges 0.905: within 10 %
