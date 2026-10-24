@@ -192,12 +192,12 @@ def test_twofold_price_is_twice_the_distance_to_its_fixed_space():
 
 
 def test_adjacency_radius_reaches_the_cap_for_the_spectrum_cells():
-    """Section 5.2: for the seven BLDConograph cells, the lysozyme cell and the worked cell
-    delta_1 reaches the quarter cap, so a sort distance reported as '>25 %' is a lower
+    """Section 5.3: for the seven BLDConograph cells, the lysozyme cell and the worked cell
+    r_1 reaches the quarter cap, so a sort distance reported as '>25 %' is a lower
     bound (no superbase outside the first layer is within 0.25) as well as an upper bound
     over the frames of U."""
     from agentsg.cell.strain_closure import adjacency_radius, reduce_cell
-    for cell in CONOGRAPH_AND_LYSO:
+    for cell in [c for _, c, *_ in CONOGRAPH] + [LYSO_P1]:
         assert adjacency_radius(reduce_cell(cell).G) == 0.25, cell
 
 

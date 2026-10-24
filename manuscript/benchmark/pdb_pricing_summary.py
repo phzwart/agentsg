@@ -23,8 +23,8 @@ pr = [r for r in ps if mn(r) >= 1e-4]
 print(f"{len(ok)} entries; {len(ps)} pseudo-symmetric at 3 deg; {len(ex)} with an exact extra lattice symmetry "
       f"(price 0); {len(pr)} priced only")
 d = np.array([r["delta"] for r in pr]); p = np.array([mx(r) for r in pr]); m = d > 0.05
-q = np.percentile(p[m] / (2 * np.sqrt(2) * np.sin(np.radians(d[m]))), [50, 10, 90])
-print(f"largest price / (2 sqrt2 sin delta): median {q[0]:.3f}, 10-90 % {q[1]:.3f}-{q[2]:.3f}")
+q = np.percentile(p[m] / (2 * np.sqrt(2) * np.arctanh(np.sin(np.radians(d[m])))), [50, 10, 90])
+print(f"largest price / (2 sqrt2 artanh sin delta), delta > 0.05 deg: median {q[0]:.3f}, 10-90 % {q[1]:.3f}-{q[2]:.3f}")
 print("\ncheapest pseudo-symmetric alternative, priced cases, by transition (reported -> Le Page)")
 print(f"{'transition':12s} {'n':>6s} {'median':>7s} {'<=1%':>6s} {'<=4.2%':>7s} {'<=6.7%':>7s}")
 tr = collections.defaultdict(list)

@@ -1,5 +1,5 @@
 206172 entries; 43232 pseudo-symmetric at 3 deg; 1189 with an exact extra lattice symmetry (price 0); 42043 priced only
-largest price / (2 sqrt2 sin delta): median 1.000, 10-90 % 1.000-1.001
+largest price / (2 sqrt2 artanh sin delta), delta > 0.05 deg: median 1.000, 10-90 % 1.000-1.000
 
 cheapest pseudo-symmetric alternative, priced cases, by transition (reported -> Le Page)
 transition        n  median   <=1%  <=4.2%  <=6.7%
