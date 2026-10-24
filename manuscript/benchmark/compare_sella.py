@@ -3,8 +3,10 @@
 same cells. SELLA is run from the LatticeRepLib checkout given by SELLA_BIN (the
 CmdSella executable). For each cell: both rankings of the 24 sorts, Spearman's rank
 correlation, each method's nearest sort of every Bravais type, and the sorts that each
-method places within its own small band (strain 0.074; SELLA 0.074 x the mean squared
-edge, the same relative size).
+method places within its own small band. The two scales are related first: over all
+(cell, sort) pairs with a strain distance between 0.01 % and 25 %, the median ratio r of
+SELLA's distance divided by the cell's mean squared edge to the strain distance; SELLA's
+band is then 0.074 x r x the mean squared edge.
 
     SELLA_BIN=/path/to/CmdSella PYTHONPATH=agentsg/src python manuscript/benchmark/compare_sella.py
 """
@@ -55,29 +57,39 @@ def spearman(a, b):
 
 def main():
     binary = os.environ["SELLA_BIN"]
-    print(f"{'cell':26s} {'rho':>5s} {'delta1':>6s}  nearest types, strain (%) | SELLA (A^2)")
+    runs = {}
+    ratios = []
     for name, (letter, cell) in CELLS.items():
         sp = sort_spectrum(cell)
         se = sella(letter, cell, binary)
+        red = reduce_cell(cell)
+        scale = float(np.mean(np.diag(red.G)))
+        runs[name] = (sp, se, red, scale)
+        ratios += [se[s] / scale / sp[s] for s in sp if s in se and 1e-4 < sp[s] < 0.25]
+    r = float(np.median(ratios))
+    q = np.percentile(ratios, [10, 90])
+    print(f"SELLA distance / mean squared edge, against the strain distance: median {r:.3f} (10-90 % {q[0]:.3f}-{q[1]:.3f})")
+    print(f"{'cell':26s} {'rho':>5s} {'r_1':>6s}  nearest types, strain (%) | SELLA (A^2)")
+    same = 0
+    for name, (sp, se, red, scale) in runs.items():
         sorts = [s for s in sp if s in se]
         rho = spearman([sp[s] for s in sorts], [se[s] for s in sorts])
-        red = reduce_cell(cell)
         d1 = adjacency_radius(red.G)
-        scale = float(np.mean(np.diag(red.G)))
         by_s, by_e = {}, {}
         for s in sorts:
             b = BRAVAIS[s]
             by_s[b] = min(by_s.get(b, 9), sp[s]); by_e[b] = min(by_e.get(b, 1e9), se[s])
-        in_s = sorted((b for b in by_s if b != "aP" and by_s[b] <= 0.074), key=by_s.get)
-        in_e = sorted((b for b in by_e if b != "aP" and by_e[b] <= 0.074 * scale), key=by_e.get)
-        def mark(b):
-            return "*" if by_s[b] > d1 else ""
+        in_s = sorted(b for b in by_s if b != "aP" and by_s[b] <= 0.074)
+        in_e = sorted(b for b in by_e if b != "aP" and by_e[b] <= 0.074 * r * scale)
+        mark = lambda b: "*" if by_s[b] > d1 else ""
         lad_s = ", ".join(f"{b} {100 * by_s[b]:.2f}{mark(b)}" for b in sorted((b for b in by_s if b != "aP"), key=by_s.get)[:4])
         lad_e = ", ".join(f"{b} {by_e[b]:.3g}" for b in sorted((b for b in by_e if b != "aP"), key=by_e.get)[:4])
         print(f"{name:26s} {rho:5.2f} {d1:6.3f}  {lad_s} | {lad_e}")
         diff = set(in_s) ^ set(in_e)
-        print(f"{'':26s} types within band: strain {sorted(in_s)}  SELLA {sorted(in_e)}" + (f"   differ: {sorted(diff)}" if diff else "   same"))
-    print("* above the cell's adjacency radius delta_1: an upper bound over the frames used (true distance >= delta_1)")
+        same += not diff
+        print(f"{'':26s} types within band: strain {in_s}  SELLA {in_e}" + (f"   differ: {sorted(diff)}" if diff else "   same"))
+    print(f"same types within band in {same} of {len(runs)} cells")
+    print("* above the cell's adjacency radius r_1: an upper bound over the frames used (true distance >= r_1)")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Figure 4 (and Fig. S1). Generate the inputs with sort_steps.py <cell> steps_worked.json / steps_lysozyme.json.
+"""Figure B1 (and Fig. S1). Generate the inputs with sort_steps.py <cell> steps_worked.json / steps_lysozyme.json.
 Two-panel Delone sort graph for the manuscript: worked 92-degree cell and lysozyme (P1 indexing)."""
 import sys, json, numpy as np, matplotlib
 matplotlib.use("Agg")
@@ -62,7 +62,7 @@ def panel(ax, path, label):
     ax.set_xlim(-1.9, 6.6); ax.set_ylim(0.8, 8.9); ax.axis("off")
 
 plt.rcParams["font.family"] = "DejaVu Sans"
-for name, src, label in (("fig4_sort_graph", "steps_worked.json", "worked cell"),
+for name, src, label in (("figB1_sort_graph", "steps_worked.json", "worked cell"),
                          ("figS1_sort_graph_lysozyme", "steps_lysozyme.json", "lysozyme indexed in P1:")):
     fig, ax = plt.subplots(1, 1, figsize=(6.7, 4.9))
     panel(ax, H + src, label)
