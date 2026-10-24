@@ -110,8 +110,6 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
   (`results_niggli_presentation.txt`).
 * `lookup_plate_case.py`: the plate case in which an uncertified lookup misses an operator
   (`results_lookup_plate_case.txt`).
-* `cmdlm_tree_vs_U.py` with `cmdlm_dumptree.cpp` (compiled against LatticeRepLib): the lattice
-  matcher's depth-2 tree against the S6 actions of U (`results_cmdlm_tree.txt`).
 * `export_universal_operators.py`: U as column operators with determinants
   (`universal_operators_columns.json`).
 * `adjacency_radii.py`: r_1 for the benchmark references and 2000 PDB cells, and the time
