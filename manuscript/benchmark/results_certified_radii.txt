@@ -1,0 +1,9 @@
+Certified adjacency radii (strain, %), exact rational arithmetic; '>25' = no superbase
+outside the layer within the cap 1/4.  lower-upper: proved bounds on the radius.
+
+needle 5.58x5.21x132 (conorms of test z57): ball 2526 vectors, 1472 candidate superbases; r1 5.5749-5.5750  r2 11.0983-11.0984
+worked cell 30.02x39.97x50.03, 90.25/92.05/89.80: ball 26 vectors, 16 candidate superbases; r1 >25  r2 >25
+needle 10x10x30: ball 50 vectors, 24 candidate superbases; r1 >25  r2 >25
+needle 10x10x100: ball 434 vectors, 248 candidate superbases; r1 13.9346-13.9347  r2 >25
+plate 100x100.1x5, 90.03/89.98/90.05: ball 322 vectors, 1928 candidate superbases; r1 5.0108-5.0109  r2 14.0512-14.0513
+plate 150x120x4.8, beta 90.4: ball 446 vectors, 3654 candidate superbases; r1 4.3008-4.3009  r2 9.9883-9.9884

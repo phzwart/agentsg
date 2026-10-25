@@ -114,6 +114,9 @@ is made proper (-M when det M = -1) and must itself be among the proper candidat
   (`universal_operators_columns.json`).
 * `adjacency_radii.py`: r_1 for the benchmark references and 2000 PDB cells, and the time
   to widen and reindex (`results_adjacency_radii.txt`).
+* `certify_radii.py`: the radii of Table 8 certified in exact rational arithmetic (exact
+  balls and conorm test, a dual lower bound for every superbase outside the layer, a
+  feasible point for the nearest); `results_certified_radii.txt`, `certified_radii.json`.
 * `niggli_types.py`: Selling reduction from the Niggli cell of near-monoclinic cells and
   where the near-zero conorms land (`results_niggli_types.txt`).
 * `pdb_nonisomorphism.py`, `pdb_lepage.py`, `pdb_pricing_summary.py` need the Zenodo
