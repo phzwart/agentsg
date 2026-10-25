@@ -45,7 +45,7 @@ theorem H_mul {x : X} {ε ε' : ℝ} {g h : G} (hg : g ∈ H x ε) (hh : h ∈ H
 cosets of the self-maps: `P₀ H_{ε-p₀} ⊆ C_ε ⊆ P₀ H_{ε+p₀}`. -/
 theorem coset_lower (x y : X) (P₀ : G) (ε : ℝ) (h : G) (hh : h ∈ H x (ε - dist y (P₀ • x))) :
     P₀ * h ∈ C x y ε := by
-  unfold H price at hh; unfold C
+  simp only [H, C, price, Set.mem_ofPred_eq] at hh ⊢
   calc dist y ((P₀ * h) • x) ≤ dist y (P₀ • x) + dist (P₀ • x) (P₀ • h • x) := by
         rw [mul_smul]; exact dist_triangle _ _ _
     _ = dist y (P₀ • x) + dist x (h • x) := by rw [dist_smul]
@@ -53,7 +53,7 @@ theorem coset_lower (x y : X) (P₀ : G) (ε : ℝ) (h : G) (hh : h ∈ H x (ε 
 
 theorem coset_upper (x y : X) (P₀ : G) (ε : ℝ) (P : G) (hP : P ∈ C x y ε) :
     P₀⁻¹ * P ∈ H x (ε + dist y (P₀ • x)) := by
-  unfold C at hP; unfold H price
+  simp only [H, C, price, Set.mem_ofPred_eq] at hP ⊢
   calc dist x ((P₀⁻¹ * P) • x) = dist (P₀ • x) (P • x) := by
         rw [← dist_smul P₀, mul_smul, smul_inv_smul]
     _ ≤ dist (P₀ • x) y + dist y (P • x) := dist_triangle _ _ _
@@ -65,7 +65,7 @@ def Hgroup (x : X) (ε : ℝ) (hgap : ∀ g : G, price x g ≤ 2 * ε → price 
     (hε : 0 ≤ ε) : Subgroup G where
   carrier := H x ε
   one_mem' := by simp [H, price_one, hε]
-  mul_mem' := fun {a b} ha hb => hgap _ (by have := H_mul ha hb; simp only [H] at this ⊢; linarith)
+  mul_mem' := fun {a b} ha hb => hgap _ (by have := H_mul ha hb; simp only [H, Set.mem_ofPred_eq] at this ⊢; linarith)
   inv_mem' := fun {a} ha => by simpa [H, price_inv] using ha
 
 /-- A10(iv): if moreover no self-map has a price in `(ε - p₀, ε + p₀]`, the candidates are
@@ -76,12 +76,12 @@ theorem candidates_eq_coset (x y : X) (P₀ : G) (ε : ℝ)
   constructor
   · intro hP
     have := hgap _ (coset_upper x y P₀ ε P hP)
-    simp only [H]
+    simp only [H, Set.mem_ofPred_eq]
     have : 0 ≤ dist y (P₀ • x) := dist_nonneg
     linarith
   · intro hh
     have hh' : P₀⁻¹ * P ∈ H x (ε + dist y (P₀ • x)) := by
-      simp only [H] at hh ⊢; have := dist_nonneg (x := y) (y := P₀ • x); linarith
+      simp only [H, Set.mem_ofPred_eq] at hh ⊢; have := dist_nonneg (x := y) (y := P₀ • x); linarith
     have := coset_lower x y P₀ ε (P₀⁻¹ * P) (hgap _ hh')
     simpa using this
 
@@ -97,7 +97,7 @@ theorem stab_sub_H (x x₀ : X) (g : G) (hg : g • x₀ = x₀) : price x g ≤
 
 theorem H_sub_H (x x₀ : X) (ε : ℝ) (g : G) (hg : g ∈ H x ε) :
     g ∈ H x₀ (ε + 2 * dist x x₀) := by
-  unfold H price at *
+  simp only [H, price, Set.mem_ofPred_eq] at *
   calc dist x₀ (g • x₀) ≤ dist x₀ x + dist x (g • x) + dist (g • x) (g • x₀) :=
         dist_triangle4 _ _ _ _
     _ = dist x (g • x) + 2 * dist x x₀ := by rw [dist_smul, dist_comm x₀ x, dist_comm x x₀]; ring

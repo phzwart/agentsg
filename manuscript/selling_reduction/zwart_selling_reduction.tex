@@ -293,7 +293,7 @@ Its superbases are the reduced cells of every lattice consistent with the measur
 
 \subsection{What is proved}
 \label{sec:verification}
-Table~\ref{tab:proved} separates what is proved from what rests on an exhaustive computation and what is checked. The proofs rest on Selling's identity, the characterisation of obtuse superbases by Voronoi vectors (Conway \& Sloane, 1992; at a zero conorm a partial sum is a Voronoi vector that is not strict) and Selling reduction. Exact closures and the closures of the 24 sorts were checked against brute force over bases with entries in $[-2,2]$, a window that contains a labelling of every member of every exact closure (by the enumeration that completes Lemma~A1), and widened sets against the ball enumeration of Lemma~A6.
+Table~\ref{tab:proved} separates what is proved from what rests on an exhaustive computation and what is checked. ``Machine-checked'' marks statements proved in Lean~4 with Mathlib (de~Moura \& Ullrich, 2021; mathlib Community, 2020); the finite steps are evaluated by compiled code, and the affine-invariant distance enters only through the properties stated in Section~\ref{sec:strain}. The proofs rest on Selling's identity, the characterisation of obtuse superbases by Voronoi vectors (Conway \& Sloane, 1992; at a zero conorm a partial sum is a Voronoi vector that is not strict) and Selling reduction. Exact closures and the closures of the 24 sorts were checked against brute force over bases with entries in $[-2,2]$, a window that contains a labelling of every member of every exact closure (by the enumeration that completes Lemma~A1), and widened sets against the ball enumeration of Lemma~A6.
 
 \onecolumn
 \begin{table}
@@ -305,17 +305,17 @@ Table~\ref{tab:proved} separates what is proved from what rests on an exhaustive
 statement & status \\
 \midrule
 every arrow is flips at zero conorms and a swap & proved (Lemma~A3) \\
-the members of each closure lie in a finite window & proved (Lemma~A1) \\
-$\mathcal U$ contains every arrow between reduced cells of any lattice; the entry sizes by zero pattern & computer-assisted: the window enumerated over all 38 faces \\
+the members of each closure lie in a finite window & proved (Lemma~A1); machine-checked \\
+$\mathcal U$ contains every arrow between reduced cells of any lattice, and every member of $\mathcal U$ is an arrow on some face; the entry sizes by zero pattern & computer-assisted: the window enumerated over all 38 faces; the first two machine-checked, with Lemma~A2, against the deposited table \\
 the 24 sorts & a definition and an enumeration, matched to Delone's patterns by computation (Definition~A5) \\
 the strain bounds every dot product & proved (Proposition~A4) \\
 the widened set is finite and enumerated exactly & proved (Lemma~A6); the depths are computed by a floating-point convex solver \\
 in the first layer, the lookup of $\mathcal U$ is complete & follows from the completeness of $\mathcal U$ (Remark~A7), and so is computer-assisted; $r_1$ is computed numerically up to $25\%$ \\
 widening the reference alone suffices, at $e^\epsilon-1$ & proved (Lemma~A8) \\
-a twofold's price is twice its distance to the metrics it fixes, and $2\sqrt2\,\mathrm{artanh}(\sin\delta)$ & proved, exactly (Proposition~A9) \\
+a twofold's price is twice its distance to the metrics it fixes, and $2\sqrt2\,\mathrm{artanh}(\sin\delta)$ & proved, exactly (Proposition~A9); part (i) machine-checked for any isometric action with unique midpoints \\
 the ratios of price to distance for orders 3, 4, 6 & proved in the strain at a symmetric metric; first order for the price (Proposition~A9) \\
-a type~II Niggli cell is obtuse, with its small conorms off $d$ below a stated size, near two or three right angles; a type~I metric near a three-zero lattice reduces to a path through $d$ from any basis & proved (Proposition~A11); type~I near two right angles, and reduction from other bases, observed \\
-candidates lie between two cosets of self-maps; $H_\epsilon$ is a group in a gap of the prices; the near-symmetries lie between the point group of the nearest symmetric lattice and its self-maps within $\epsilon+2\delta$ & proved, exactly (Proposition~A10) \\
+a type~II Niggli cell is obtuse, with its small conorms off $d$ below a stated size, near two or three right angles; a type~I metric near a three-zero lattice reduces to a path through $d$ from any basis & proved (Proposition~A11), parts (i) and (ii) machine-checked; type~I near two right angles, and reduction from other bases, observed \\
+candidates lie between two cosets of self-maps; $H_\epsilon$ is a group in a gap of the prices; the near-symmetries lie between the point group of the nearest symmetric lattice and its self-maps within $\epsilon+2\delta$ & proved, exactly (Proposition~A10); machine-checked for any isometric action \\
 the layers of 127 and 2755 superbases; the adjacency radii; the largest entries after relabelling; Lemma~S4.4 and so Theorem~S4.5 of the conorm band & computer-assisted enumeration \\
 \bottomrule
 \end{tabular}
@@ -511,7 +511,7 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 
 Every integer matrix between two Selling-reduced cells of any lattice lies in one set of 6096 matrices with entries up to $\pm3$, a computer-assisted result that depends only on the zero pattern of the reduced cell. For a measured cell the reduced cells within a strain tolerance are finite and are enumerated exactly, so reindexing returns every proper operator within a stated price band, and the enumeration reports when the fixed set would have sufficed. Where its entries exceed $1$ is stated exactly, and near three right angles the Niggli type decides whether reduction reaches those configurations. Prices are geodesic distances, so the candidates form cosets of the near-symmetries, and a pseudo-twofold costs twice its distance to the metrics it would leave invariant, about $5\%$ per degree of Le Page obliquity. In practice (Table~\ref{tab:algorithm}): widen each reference once; Selling-reduce each new data set once; keep the proper candidates within a band at the upper end of the non-isomorphism of the crystal's Bravais type (Table~\ref{tab:noniso}); group them by the Laue group; and read each class's price against that distribution. For $7.5$--$12.5\%$ of PDB entries, depending on the percentile and on whether the band is set per Bravais type, a pseudo-symmetric alternative is then as close as a second crystal of the same form, and the intensities have to decide.
 
-\paragraph{Data availability.}\sloppy The implementation is the module \texttt{agentsg.\allowbreak cell.\allowbreak strain\_closure} of \texttt{agentsg} (Zwart, 2026; \texttt{github.com/\allowbreak phzwart/\allowbreak agentsg}), version 0.5.0. Its main functions are \texttt{widened\_\allowbreak closure}, \texttt{reindex}, \texttt{indexing\_\allowbreak classes} and \texttt{universal\_\allowbreak operators}; the 6096 column operators of $\mathcal U$ are also deposited as \texttt{manuscript/\allowbreak benchmark/\allowbreak universal\_\allowbreak operators\_\allowbreak columns.json}. The PDB cell snapshot is on Zenodo (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222). Every number in this paper is reproduced by a test in \texttt{manuscript/\allowbreak appendix\_z}, by \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py} or by a script in \texttt{manuscript/\allowbreak benchmark}; the supporting information lists them by section, table and figure (Table~S12), with the versions of the software used.\par\fussy
+\paragraph{Data availability.}\sloppy The implementation is the module \texttt{agentsg.\allowbreak cell.\allowbreak strain\_closure} of \texttt{agentsg} (Zwart, 2026; \texttt{github.com/\allowbreak phzwart/\allowbreak agentsg}), version 0.5.0. Its main functions are \texttt{widened\_\allowbreak closure}, \texttt{reindex}, \texttt{indexing\_\allowbreak classes} and \texttt{universal\_\allowbreak operators}; the 6096 column operators of $\mathcal U$ are also deposited as \texttt{manuscript/\allowbreak benchmark/\allowbreak universal\_\allowbreak operators\_\allowbreak columns.json}. The PDB cell snapshot is on Zenodo (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222). The Lean proofs are in \texttt{manuscript/\allowbreak formal}. Every number in this paper is reproduced by a test in \texttt{manuscript/\allowbreak appendix\_z}, by \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py} or by a script in \texttt{manuscript/\allowbreak benchmark}; the supporting information lists them by section, table and figure (Table~S12), with the versions of the software used.\par\fussy
 
 \ack{[Funding statement and acknowledgements to be supplied by the author.]}
 
@@ -571,6 +571,7 @@ whatever the signs of the conorms, because the four vectors sum to zero.
 \reference{Burzlaff, H. \& Zimmermann, H. (2006). \emph{International Tables for Crystallography}, Vol. A, 5th ed., edited by Th. Hahn, ch. 9.1, pp. 742--749. Dordrecht: Springer.}
 \reference{Conway, J. H. \& Sloane, N. J. A. (1992). \emph{Proc. R. Soc. London Ser. A}, \textbf{436}, 55--68.}
 \reference{Dauter, Z. (2003). \emph{Acta Cryst.} D\textbf{59}, 2004--2016.}
+\reference{de Moura, L. \& Ullrich, S. (2021). \emph{Automated Deduction -- CADE 28}, Lecture Notes in Computer Science, Vol.~12699, pp.~625--635. Cham: Springer.}
 \reference{de Wolff, P. M. \& Gruber, B. (1991). \emph{Acta Cryst.} A\textbf{47}, 29--36.}
 \reference{Delaunay, B. (1933). \emph{Z. Kristallogr.} \textbf{84}, 109--149.}
 \reference{Delone, B. N., Galiulin, R. V. \& Shtogrin, M. I. (1975). \emph{J. Sov. Math.} \textbf{4}, 79--156.}
@@ -588,6 +589,7 @@ whatever the signs of the conorms, because the four vectors sum to zero.
 \reference{K\v{r}iv\'y, I. \& Gruber, B. (1976). \emph{Acta Cryst.} A\textbf{32}, 297--298.}
 \reference{Kurlin, V. (2022). \emph{A complete isometry classification of 3-dimensional lattices.} arXiv:2201.10543.}
 \reference{Le Page, Y. (1982). \emph{J. Appl. Cryst.} \textbf{15}, 255--259.}
+\reference{mathlib Community (2020). \emph{Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs}, pp.~367--381. New York: ACM.}
 \reference{Niggli, P. (1928). \emph{Kristallographische und strukturtheoretische Grundbegriffe.} Handbuch der Experimentalphysik, Vol. 7, Part 1. Leipzig: Akademische Verlagsgesellschaft.}
 \reference{Oishi-Tomiyasu, R. (2012). \emph{Acta Cryst.} A\textbf{68}, 525--535.}
 \reference{Oishi-Tomiyasu, R. (2024). \emph{Acta Cryst.} A\textbf{80}, 339--350.}

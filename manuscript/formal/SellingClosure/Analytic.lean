@@ -2,6 +2,9 @@ import Mathlib.Topology.MetricSpace.IsometricSMul
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.FinCases
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.BigOperators.Ring.Finset
 import SellingClosure.Finite
 
 /-!
@@ -37,7 +40,7 @@ theorem conorm_ab (p : Fin 6 → ℝ) : -dot p (1, 0, 0) (0, 1, 0) = p 3 := by
   simp [dot, Fin.sum_univ_six, diff]
 
 theorem conorm_da (p : Fin 6 → ℝ) : -dot p (-1, -1, -1) (1, 0, 0) = p 0 := by
-  simp [dot, Fin.sum_univ_six, diff]; ring
+  simp [dot, Fin.sum_univ_six, diff]
 
 /-! ## Linearity of the coordinate differences -/
 
@@ -115,23 +118,9 @@ theorem selling_identity (p : Fin 6 → ℝ) (W : Op) (e₁ e₂ e₃ : Int) :
       + (-dot p (sb W 1) (sb W 3)) * (e₁ - e₃) ^ 2
       + (-dot p (sb W 2) (sb W 3)) * (e₂ - e₃) ^ 2 := by
   intro x
-  have key : ∀ s, p s * (diff x s : ℝ) * (diff x s : ℝ) =
-      -((-(diff W.1 s + diff W.2.1 s + diff W.2.2 s : ℝ)) * diff W.1 s * p s * (0 - e₁) ^ 2
-        + (-(diff W.1 s + diff W.2.1 s + diff W.2.2 s : ℝ)) * diff W.2.1 s * p s * (0 - e₂) ^ 2
-        + (-(diff W.1 s + diff W.2.1 s + diff W.2.2 s : ℝ)) * diff W.2.2 s * p s * (0 - e₃) ^ 2
-        + (diff W.1 s : ℝ) * diff W.2.1 s * p s * (e₁ - e₂) ^ 2
-        + (diff W.1 s : ℝ) * diff W.2.2 s * p s * (e₁ - e₃) ^ 2
-        + (diff W.2.1 s : ℝ) * diff W.2.2 s * p s * (e₂ - e₃) ^ 2) := by
-    intro s
-    have h := selling_slot (diff W.1 s) (diff W.2.1 s) (diff W.2.2 s) e₁ e₂ e₃
-    simp only [x, diff_lc]
-    push_cast
-    linear_combination p s * h
-  simp only [dot, sb, diff_vneg, diff_vadd]
-  rw [sum_congr rfl fun s _ => key s]
-  simp only [sum_neg_distrib, sum_add_distrib, ← sum_mul]
+  simp only [x, dot, Fin.sum_univ_six, sb, diff_vneg, diff_vadd, diff_lc]
   push_cast
-  ring_nf
+  ring
 
 /-- In the frame of an obtuse superbase, a vector `e' + 2f` with `e' ∈ {0,1}³` is at least
 as long as `e'`: a partial sum is shortest in its parity class. -/
@@ -191,9 +180,9 @@ theorem unimodular_coords (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W
   simp only [lc, vadd, vsmul, Prod.mk.injEq] at h ⊢
   obtain ⟨h1, h2, h3⟩ := h
   refine ⟨?_, ?_, ?_⟩
-  · linear_combination (-d) * h1 + z₁ * hsq
-  · linear_combination (-d) * h2 + z₂ * hsq
-  · linear_combination (-d) * h3 + z₃ * hsq
+  · linear_combination (-d) * h1 - z₁ * hsq
+  · linear_combination (-d) * h2 - z₂ * hsq
+  · linear_combination (-d) * h3 - z₃ * hsq
 
 /-! ## The excess vanishes on the support -/
 
@@ -208,9 +197,9 @@ theorem lc_sub_two (e₁ e₂ e₃ g₁ g₂ g₃ : Int) (W : Op) (w : V3)
   obtain ⟨hw1, hw2, hw3⟩ := hw
   obtain ⟨hh1, hh2, hh3⟩ := hh
   refine ⟨?_, ?_, ?_⟩
-  · have := Int.emod_add_ediv w₁ 2; rw [← hw1]; linear_combination this - 2 * hh1 + 0 * hw1
-  · have := Int.emod_add_ediv w₂ 2; rw [← hw2]; linear_combination this - 2 * hh2
-  · have := Int.emod_add_ediv w₃ 2; rw [← hw3]; linear_combination this - 2 * hh3
+  · have := Int.emod_add_mul_ediv w₁ 2; linear_combination this - 2 * hh1 + hw1
+  · have := Int.emod_add_mul_ediv w₂ 2; linear_combination this - 2 * hh2 + hw2
+  · have := Int.emod_add_mul_ediv w₃ 2; linear_combination this - 2 * hh3 + hw3
 
 /-- For each partial sum `w'` of an obtuse superbase of the same lattice, `γₛ(w') = 0` on
 every slot where the reduced superbase's conorm is non-zero (Lemma A1's step). -/
