@@ -231,10 +231,6 @@ theorem gam_zero_of_partial (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (W : Op)
 /-- The support of the conorms, as a Boolean pattern. -/
 noncomputable def suppOf (p : Fin 6 → ℝ) : Supp := fun s => decide (p s ≠ 0)
 
-/-- **Completeness of 𝒰.** Let a lattice have a reduced (obtuse) superbase with conorms
-`p ≥ 0` whose support is connected.  Every unimodular integer matrix `W` that carries the
-reduced superbase to an obtuse superbase of the same lattice lies in the deposited table
-𝒰 of 6096 operators. -/
 /-- Every partial sum of an arrow has `γ = 0` on the support of the conorms. -/
 theorem partials_gok (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (W : Op)
     (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1) (hob : Obtuse p W) :
