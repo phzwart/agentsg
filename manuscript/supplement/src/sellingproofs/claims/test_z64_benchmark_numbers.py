@@ -793,7 +793,7 @@ def test_reproduce_benchmark_misses():
     _same(out, "results_benchmark_misses.txt")
 
 
-@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx",))
 def test_reproduce_niggli_window():
     """niggli_window.py 100 regenerates results_niggli_window.txt identically."""
     out, d = _run("niggli_window.py", "100")
