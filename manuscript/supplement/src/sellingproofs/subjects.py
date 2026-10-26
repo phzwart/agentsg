@@ -24,4 +24,5 @@ SUBJECTS = {
     "z64": "the benchmark numbers and their reproduction",
     "z65": "the PDB numbers and their reproduction",
     "z66": "remaining statements, tables and figures",
+    "z67": "the reindexing workflow: identities, worked example, comparison with the direct form",
 }

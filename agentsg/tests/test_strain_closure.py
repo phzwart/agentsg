@@ -265,3 +265,31 @@ def test_round6_api():
     Wi = widened_closure((50.0, 30.0, 40.0, 90, 105, 90), "C 1 2 1")
     with pytest.warns(UserWarning, match="no candidate"):
         reindex(Wi, (50.0, 30.0, 40.0, 90, 105, 90), "I 1 2 1")
+
+
+def test_reindex_workflow_matches_the_direct_form():
+    """the workflow (member table, common scale, necessary condition, exact operators only
+    within the band) returns the same operators as building every P, with the same prices;
+    on the worked cell 384 ordered bases leave 4 to price and 2 operators."""
+    from agentsg.cell.metric import params_from_metric
+    from agentsg.cell.strain_closure import _reindex_direct, reindex_workflow
+    rng = np.random.default_rng(11)
+    ref = widened_closure(WORKED)
+    G = np.array(UnitCell(*WORKED).metric_tensor(), float)
+    for t in range(12):
+        while True:
+            U = rng.integers(-2, 3, (3, 3))
+            if round(abs(np.linalg.det(U))) == 1:
+                break
+        X = rng.normal(size=(3, 3)); X = X + X.T; X *= rng.uniform(0.001, 0.03) / np.linalg.norm(X)
+        w, V = np.linalg.eigh(G); Gh = V @ np.diag(w ** .5) @ V.T
+        new = params_from_metric((U.T @ Gh @ (np.eye(3) + X) @ Gh @ U).tolist())
+        a, _ = _reindex_direct(ref, new)
+        b, _ = reindex(ref, new)
+        A = {tuple(c.operator.rows): c.price for c in a}
+        B = {tuple(c.operator.rows): c.price for c in b}
+        assert set(A) == set(B) and all(abs(A[k] - B[k]) < 1e-9 for k in A)
+    P = np.array([[1, 0, 1], [0, 1, 0], [0, 0, 1]])
+    X = np.random.default_rng(1).normal(size=(3, 3)); X = X + X.T; X *= 0.003 / np.linalg.norm(X)
+    wf = reindex_workflow(ref, params_from_metric((P.T @ Gh @ (np.eye(3) + X) @ Gh @ P).tolist()))
+    assert (wf.n_members, wf.n_orderings, wf.n_prefilter, wf.n_within, wf.n_candidates) == (16, 384, 4, 2, 2)

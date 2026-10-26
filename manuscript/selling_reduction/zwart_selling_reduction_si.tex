@@ -19,6 +19,7 @@
 \newcommand{\Cl}{\mathcal{C}}
 \newcommand{\Lay}{\mathcal{N}}
 \newcommand{\sym}{\operatorname{sym}}
+\newcommand{\dist}{D}
 
 \begin{document}
 
@@ -577,6 +578,219 @@ all & 45\,222 & 20\,206 & 0.98 (0.96--1.00) & 4.21 (4.09--4.33) & 6.72 (6.52--6.
 \emph{The crystal-form proxy.} Random pairs of entries with one space group whose identifiers do not share their first three characters, drawn with the space-group mix of the id-adjacent pairs, pass the $20\%$ cut in $1.5\%$ of 19\,986 cases ($0.75\%$ at $5\%$; \texttt{pdb\_\allowbreak proxy\_\allowbreak check.py}). Unrelated crystals rarely pass the cut by chance, so the movement of the percentiles with the cut reflects variation within deposition series rather than unrelated pairs.
 
 \emph{The Niggli window.} \texttt{niggli\_window.py} draws 100 lattices on each of the 38 faces (half of them anisotropic, with vertex scales up to 30) and on each of the 24 sorts, measures each twice with independent errors of total strain $0.5$, $2$, $5$ and $7.7\%$, the new cell in a random basis, and computes the true operator between the two Niggli cells (cctbx) and between the two Selling-reduced cells directly. Between Niggli cells its entries were in $\{-1,0,1\}$ in all 24\,800 cases, strictly and not only up to the lattice's point group, and in 3\,040 further cases on strongly anisotropic lattices (\texttt{niggli\_window.py thin}: 40 per face, vertex scales up to 60, the square root of the metric's eigenvalue ratio up to 98, median 5); between Selling-reduced cells an entry of 2 or 3 was needed in 3\,765 cases (on two zeros sharing a vector, three zeros, and the sorts cP, tP and oP) and in none once composed with the point group.
+
+%==============================================================================
+\section{The reindexing workflow in detail}\label{si:workflow}
+
+This section sets out, step by step, how the candidates of Section~4.2 of the main text are computed for a new cell once a reference has been widened, why each step is exact, what it costs, and what it gives on the worked cell. The procedure prices exactly the operators that the direct form of Table~6 of the main text prices, the operator $\Pop=B_R\Wop_k\mathbf QB_N^{-1}$ for every member $\Wop_k$ of the reference's widened set and every relabelling $\mathbf Q$; it differs only in where the work is done. Four observations reorganise it. (i) The two input bases drop out of every price, so each candidate can be priced in the new cell's reduced basis from a metric that depends only on the reference. (ii) Of the 48 relabellings of a superbase, two that differ by a common sign give the same metric, and the determinant rule keeps exactly one of them, so there are 24 metrics per member. (iii) Every candidate has the same best scale. (iv) A necessary condition on ten dot products of the new cell's reduced superbase, which follows from Lemma~A7(i) and Proposition~A4 of the main text, discards almost every ordering before an eigenvalue is computed. The exact operator is then built only for the candidates that lie within the band. The workflow is implemented in \texttt{agentsg} as the reindexing routine; a second entry point, \texttt{reindex\_workflow}, returns every intermediate quantity named below, and the numbers of this section are produced by \texttt{reindex\_workflow.py} (\texttt{results\_\allowbreak reindex\_\allowbreak workflow.txt}) and checked by claim z67 and by the library test registered as z63 (Section~S7).
+
+\subsection{Notation}
+
+The reference $R$ is given as a cell and a space group. Its primitive cell is Selling-reduced (step~1 of Table~6 of the main text), which gives the reduced basis $B_R$, a $3\times3$ matrix whose columns are the reduced basis vectors $a,b,c$ written in the reference's input basis, and the reduced metric
+\begin{equation}
+\Gmet_R=B_R^{\mathsf T}\,\Gmet_R^{\rm in}\,B_R ,
+\end{equation}
+with $\Gmet_R^{\rm in}$ the metric of the input cell. $B_R$ is integer for a primitive input cell and rational, with determinant $\pm1/k$, for a centred cell in its conventional basis. The reduced superbase is $F_0=(d,a,b,c)$, $d=-a-b-c$; in the reduced basis its four vectors are the rows $(-1,-1,-1)$, $(1,0,0)$, $(0,1,0)$, $(0,0,1)$. The reference's widened set at strain $\eta=e^\epsilon-1$ for the price band $\epsilon$ has members $F_1,\dots,F_m$; each is a superbase of four integer vectors, written as rows in the reference's reduced basis, with a depth, the strain from $\Gmet_R$ to the nearest metric that makes it obtuse. The new cell $N$ is reduced in the same way, which gives $B_N$, $\Gmet_N^{\rm in}$ and $\Gmet_N=B_N^{\mathsf T}\Gmet_N^{\rm in}B_N$. The price of an operator $\Pop$ is
+\begin{equation}
+\pi(\Pop)=\min_{s>0}\,\dist\!\bigl(\Gmet_N^{\rm in},\,s\,\Pop^{\mathsf T}\Gmet_R^{\rm in}\Pop\bigr),
+\label{eq:wf-price}
+\end{equation}
+with $\dist$ the geodesic distance of equation~(3) of the main text.
+
+\subsection{Step 1: the member table}
+
+\emph{Ordered bases.} A superbase $F=(v_0,v_1,v_2,v_3)$ has 48 labelled bases: leave out one of the four vectors, put the other three in an order, and give them a common sign $c=\pm1$. Write $B$ for the $3\times3$ integer matrix whose rows are the three vectors in order, without the sign; there are $4\times3!=24$ such \emph{ordered bases} per superbase, and the 48 labelled bases are $cB$. Every $B$ is unimodular, since three vectors of a superbase form a basis of the lattice.
+
+\emph{Their metrics.} The column operator of the labelled basis $cB$ is $\Wop=cB^{\mathsf T}$, and the metric it predicts for the new cell's reduced basis is
+\begin{equation}
+\mathbf H=\Wop^{\mathsf T}\Gmet_R\Wop=c^2\,B\,\Gmet_R\,B^{\mathsf T}=B\,\Gmet_R\,B^{\mathsf T},
+\label{eq:wf-H}
+\end{equation}
+which does not depend on the sign. A member therefore predicts 24 metrics, not 48. The member table holds, for every member $k$ and ordered basis $o$, the matrix $B_{ko}$, its determinant $\det B_{ko}=\pm1$, and $\mathbf H_{ko}$; it is computed once per reference and serves every new cell compared with it. In the conorm language of Section~2 of the main text, $\mathbf H_{ko}$ is the metric whose reduced superbase has the six conorms of $F_k$ in the slot order that the ordering $o$ induces, so the table is the member's six conorms under the 24 permutations of the four vectors.
+
+\subsection{Step 2: the new cell, and why the input bases drop out}
+
+The new cell is reduced once. For $\Pop=B_R\Wop B_N^{-1}$,
+\begin{equation}
+\Pop^{\mathsf T}\Gmet_R^{\rm in}\Pop=B_N^{-\mathsf T}\,\Wop^{\mathsf T}\bigl(B_R^{\mathsf T}\Gmet_R^{\rm in}B_R\bigr)\Wop\,B_N^{-1}=B_N^{-\mathsf T}\,\mathbf H\,B_N^{-1},\qquad \Gmet_N^{\rm in}=B_N^{-\mathsf T}\,\Gmet_N\,B_N^{-1}.
+\end{equation}
+Both metrics in equation~(\ref{eq:wf-price}) are transformed by the same congruence $X\mapsto B_N^{-\mathsf T}XB_N^{-1}$, an isometry of $\dist$ (main text, Section~3.4); equivalently, $(\Gmet_N^{\rm in})^{-1}\Pop^{\mathsf T}\Gmet_R^{\rm in}\Pop=B_N\,\Gmet_N^{-1}\mathbf H\,B_N^{-1}$ is similar to $\Gmet_N^{-1}\mathbf H$ and has the same eigenvalues. Hence
+\begin{equation}
+\pi(\Pop)=\min_{s>0}\dist(\Gmet_N,\,s\,\mathbf H),
+\label{eq:wf-reduced}
+\end{equation}
+the comparison of the new cell's reduced metric with an entry of the member table. Neither input basis, nor the rational part of a centred reference's $B_R$, enters a price. The implementation forms $\Gmet_R$ and $\Gmet_N$ from the input cells exactly as written, so that the prices agree with the direct form to rounding.
+
+\subsection{Step 3: the determinant rule}
+
+$\det\Pop=\det B_R\,c^3\det B\,/\det B_N$, so the sign of $\det\Pop$ is $c\,\det B\,\operatorname{sgn}(\det B_R)\operatorname{sgn}(\det B_N)$. For a proper operator (main text, Section~4.2) the sign $c$ is therefore fixed by the ordered basis,
+\begin{equation}
+c=\det B\;\operatorname{sgn}(\det B_R)\,\operatorname{sgn}(\det B_N),
+\end{equation}
+and every ordered basis gives exactly one proper candidate: $24m$ candidates for $m$ members, each with its own metric. For a reference whose widened set is the whole first layer, $m=127$ and $24\times127=3048$, the proper half of $\mathcal U$ that the lookup of Remark~A8 tries (Table~6 of the main text, step~3). When improper operators are asked for, the other sign is taken; when both are, both are listed, with the same price.
+
+\subsection{Step 4: one scale for every candidate}
+
+Every $\mathbf H_{ko}$ has $\det\mathbf H_{ko}=(\det B_{ko})^2\det\Gmet_R=\det\Gmet_R$. With $l_1,l_2,l_3$ the logarithms of the eigenvalues of $\Gmet_N^{-1/2}\mathbf H\,\Gmet_N^{-1/2}$, $\dist(\Gmet_N,s\mathbf H)^2=\sum_i(l_i+\ln s)^2$, which is smallest at $\ln s=-\bar l$, $\bar l=\frac13\sum_il_i=\frac13\ln(\det\mathbf H/\det\Gmet_N)$. So the best scale
+\begin{equation}
+s=\Bigl(\frac{\det\Gmet_N}{\det\Gmet_R}\Bigr)^{1/3}
+\label{eq:wf-scale}
+\end{equation}
+is the same for every candidate, and the price is $\pi=\bigl(\sum_i(l_i-\bar l)^2\bigr)^{1/2}$. The limit on the fitted change of edge lengths, $|\sqrt s-1|\le10\%$, is therefore one test for the pair of cells, not one per candidate; since the ratio of the primitive volumes is $V_N/V_R=s^{3/2}$, it is the volume check of step~2 of Table~6 of the main text, $(0.9)^3<V_N/V_R<(1.1)^3$, up to the treatment of the boundary.
+
+\subsection{Step 5: a necessary condition on ten dot products}
+
+\emph{The condition.} Let $u_0,\dots,u_3$ be the four vectors of the new cell's reduced superbase, with dot products $u_i\cdot u_j$ under $\Gmet_N$, lengths $|u_i|$ under $\Gmet_N$, and dot products $u_i^{\mathsf T}\mathbf H u_j$ under a predicted metric. If $\pi\le\epsilon$, then
+\begin{equation}
+\bigl|\,s\,u_i^{\mathsf T}\mathbf Hu_j-u_i^{\mathsf T}\Gmet_Nu_j\,\bigr|\le\eta\,|u_i|\,|u_j|\qquad(0\le i\le j\le3),\qquad\eta=e^\epsilon-1 .
+\label{eq:wf-condition}
+\end{equation}
+\emph{Proof.} By step~4, $\pi=\dist(\Gmet_N,s\mathbf H)$. By Lemma~A7(i) of the main text with $\mathbf A=\Gmet_N$ and $\mathbf B=s\mathbf H$, $\|s\mathbf H-\Gmet_N\|_{\Gmet_N}\le e^{\pi}-1\le\eta$. By Proposition~A4 of the main text with the metric $\Gmet_N$ and the perturbation $\Delta\Gmet=s\mathbf H-\Gmet_N$, $|u^{\mathsf T}\Delta\Gmet\,v|\le\eta|u||v|$ for all vectors $u,v$, in particular for $u_i,u_j$.\hfill$\square$
+
+The condition is exact, not a first-order estimate, and it never discards an ordering within the band. It reads the new cell's six conorms $p_{ij}=-u_i\cdot u_j$ and four squared lengths against the member's conorms in the slot order of the ordering, scaled by $s$: each conorm may differ by at most $\eta|u_i||u_j|$ and each squared length by $\eta|u_i|^2$. All ten bounds are computed once per new cell, and the predicted dot products $u_i^{\mathsf T}\mathbf H_{ko}u_j$ are entries of the member table, so the test costs ten comparisons per ordering. To absorb rounding, the implementation widens each bound by a relative $10^{-12}$ and an absolute $10^{-9}\max|u_i\cdot u_j|$, which only lets more orderings through.
+
+\emph{Why it is selective.} A wrong ordering puts a large conorm of the member in a slot where the new cell has a small one, or the reverse, and conorms of a reduced cell differ by much more than $\eta$ times the product of lengths unless the cell is close to a symmetry that exchanges them. In the cases examined here an ordering passes when it is the true one, when it differs from the true one by an exact or near symmetry of the lattice, or when the member lies at a depth below about the band; the last two are the alternatives that a band is meant to report.
+
+\subsection{Step 6: the prices}
+
+For the orderings that pass, the eigenvalues of $\Gmet_N^{-1/2}\mathbf H_{ko}\Gmet_N^{-1/2}$ are computed in one batch ($3\times3$ symmetric eigenvalue problems), and $\pi=\|l-\bar l\mathbf 1\|$. Orderings with $\pi>\epsilon$ are dropped; with the scale fit switched off, $\bar l$ is replaced by $0$ and $s$ by $1$ in steps~4 to~6.
+
+\subsection{Step 7: the exact operators}
+
+For each ordering within the band the exact operator is built in rational arithmetic,
+\begin{equation}
+\Pop=B_R\,\bigl(c\,B_{ko}^{\mathsf T}\bigr)\,B_N^{-1},
+\end{equation}
+with the sign of step~3; then $(a_N\,b_N\,c_N)=(a_R\,b_R\,c_R)\Pop$, $\Gmet_N^{\rm in}\approx s\Pop^{\mathsf T}\Gmet_R^{\rm in}\Pop$ and $h_N=\Pop^{\mathsf T}h_R$ (main text, equation~(6)). Each candidate carries its price, the scale $s$, the depth of its member and its determinant. Two different pairs $(k,o)$ cannot give the same $\Pop$: three ordered vectors determine the superbase they belong to, and the members are distinct superbases; the implementation checks for repeats all the same. The candidates are listed by price, ties nearest the identity first, as in the direct form, and are then grouped into indexing classes (step~5 of Table~6; main text, Section~5.3).
+
+\subsection{Why the result is the direct form's}
+
+The direct form prices $\pi(B_R\,cB^{\mathsf T}B_N^{-1})$ for every member, ordered basis and sign. By step~2 each such price is $\min_s\dist(\Gmet_N,s\mathbf H_{ko})$, by step~3 the sign only decides whether the operator is proper, by step~4 the minimising scale is the common $s$, and by step~5 an ordering discarded by the necessary condition has $\pi>\epsilon$. The workflow therefore returns exactly the operators of the direct form within the band, with the same prices up to rounding; the completeness of the candidate set (Lemma~A7 and the completeness of $\mathcal U$) carries over unchanged. On the 780 cases of the benchmark the two return the same set of operators in every case, and on 24 cases with centred references (four new cells in random primitive bases for each of $C121$, $I222$, $R3$ on hexagonal axes, $F23$, $I4_1$ and $Fddd$) as well. The prices agree to $3\times10^{-12}$; the workflow gives exactly equal prices to operators related by a symmetry of the reference, since they share a predicted metric, where the direct form's products of rational and floating-point matrices differ in the last digits.
+
+\subsection{Cost}
+
+\begin{table}
+\caption{The work of one reindexing, for a reference with $m$ members, in the direct form and in the workflow, with the counts for the worked cell (Table~\ref{tab:wf-example}) and, in parentheses, the medians and the totals over the 780 cases of the benchmark.}
+\label{tab:wf-cost}
+\begin{footnotesize}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{3.8cm}>{\raggedright\arraybackslash}p{5.6cm}}
+\toprule
+ & direct form & workflow \\
+\midrule
+once per reference & -- & member table: $24m$ ordered bases and metrics (384) \\
+exact operators built & $48m$ (768; 238\,224 in all) & those within the band (2; 5\,797 in all) \\
+dot-product conditions & -- & $10\times24m$ comparisons (3\,840; median 72 orderings) \\
+eigenvalue problems & $48m$ (768) & orderings that pass (4; median 4, $5.9\%$ of all) \\
+time for the 780 new cells & about 27\,s & about 1.3\,s \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+The direct form builds and prices an exact rational operator for each of the $48m$ labelled bases. The workflow builds the member table once per reference, $24m$ integer matrices and $3\times3$ products; for each new cell it computes two determinants, ten bounds and $24m$ sets of ten comparisons, solves an eigenvalue problem only for the orderings that pass, and builds exact operators only within the band (Table~\ref{tab:wf-cost}). On the benchmark the members number 3 at the median and 56 at most, the orderings 72 at the median and 1\,344 at most; $5.9\%$ of the orderings pass the condition (median 4 per case, at most 64), and the work of building exact operators falls from 238\,224 to 5\,797, which is also the number of operators returned. The 780 reindexings took about 27\,s in the direct form and about 1.3\,s in the workflow on the same machine, a factor of about 20; the reference was widened beforehand in both, and the times depend on the machine.
+
+\subsection{The worked cell}
+
+\begin{table}
+\caption{The workflow on the worked cell: the reference $30.02\times39.97\times50.03$\,\Ang, $90.25$, $92.05$, $89.80^\circ$ at the default price band, and as new cell the same lattice in the basis $(a,\,b,\,a+c)$ with an added strain of $0.3\%$. Conorms in \Ang$^2$ in the slot order $da,db,dc,ab,ac,bc$.}
+\label{tab:wf-example}
+\begin{footnotesize}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{9.6cm}}
+\toprule
+quantity & value \\
+\midrule
+price band $\epsilon$; strain $\eta=e^\epsilon-1$ & $0.0740$; $0.076807$ \\
+reference: $B_R$, $\det B_R$ & $((-1,0,1),(0,1,0),(0,0,1))$, $-1$ \\
+reference conorms & $49.54$, $1588.88$, $2444.74$, $4.19$, $847.47$, $4.54$ \\
+widened set; layer & 16 members (Table~\ref{tab:wf-members}); first layer \\
+new cell & $30.0319$, $40.0110$, $57.4349$\,\Ang; $90.0718$, $60.5600$, $89.8328^\circ$ \\
+new cell: $B_N$, $\det B_N$ & $((1,0,0),(0,0,-1),(0,-1,0))$, $-1$ \\
+new conorms & $50.61$, $2448.09$, $1594.50$, $847.80$, $3.51$, $2.88$ \\
+step 1: ordered bases & $16\times24=384$, each with one proper sign (step 3) \\
+step 4: common scale $s$; $\sqrt s$ & $1.001225$; $1.000612$, within $10\%$ \\
+step 5: bounds $\eta|u_i||u_j|$, rows and columns $d,a,b,c$ & $(314.4, 147.6, 282.2, 196.6)$, $(147.6, 69.3, 132.5, 92.3)$, $(282.2, 132.5, 253.4, 176.5)$, $(196.6, 92.3, 176.5, 123.0)$ \\
+step 5: orderings that pass & 4 of 384 (Table~\ref{tab:wf-priced}) \\
+step 6: within the band & 2 \\
+step 7: operators & $((1,0,1),(0,1,0),(0,0,1))$, price $0.212\%$, the true one; $((-1,0,-1),(0,1,0),(0,0,-1))$, price $1.381\%$, the pseudo-twofold \\
+direct form & 768 exact operators built, the same two returned, prices equal to $7\times10^{-16}$ \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\begin{table}
+\caption{The 16 members of the worked cell's widened set at the default band: their depths (strain to the nearest metric that makes them obtuse) and their conorms (\Ang$^2$) under the reference metric, in each member's stored labelling. The first six form the ring of Fig.~1 of the main text; the others lie at depths of $3.8$ to $5.1\%$.}
+\label{tab:wf-members}
+\begin{footnotesize}
+\begin{tabular}{rrrrrrrr}
+\toprule
+member & depth (\%) & \multicolumn{6}{c}{conorms} \\
+\midrule
+0 & 0.000 & $2444.7$ & $1588.9$ & $49.5$ & $4.5$ & $847.5$ & $4.2$ \\
+1 & 0.280 & $852.0$ & $1593.4$ & $45.0$ & $-4.5$ & $2449.3$ & $8.7$ \\
+2 & 0.494 & $8.7$ & $2440.6$ & $53.7$ & $1593.1$ & $-4.2$ & $851.7$ \\
+3 & 0.617 & $2458.0$ & $-8.7$ & $53.7$ & $1602.1$ & $843.3$ & $4.2$ \\
+4 & 0.777 & $847.5$ & $-4.2$ & $57.9$ & $-4.5$ & $2453.8$ & $1606.3$ \\
+5 & 0.777 & $2449.3$ & $-8.7$ & $62.5$ & $4.5$ & $842.9$ & $1601.8$ \\
+6 & 3.757 & $-49.5$ & $2494.3$ & $1638.4$ & $53.7$ & $897.0$ & $-45.0$ \\
+7 & 4.561 & $-62.5$ & $2511.7$ & $53.7$ & $1664.2$ & $905.4$ & $-57.9$ \\
+8 & 5.056 & $1584.7$ & $950.7$ & $2548.0$ & $4.2$ & $8.7$ & $-53.7$ \\
+9 & 5.078 & $1539.3$ & $49.5$ & $2494.3$ & $905.4$ & $62.5$ & $-53.7$ \\
+10 & 5.078 & $12.9$ & $954.9$ & $2543.8$ & $-4.2$ & $1588.9$ & $-49.5$ \\
+11 & 5.091 & $12.9$ & $2556.7$ & $942.0$ & $-8.7$ & $1593.4$ & $-45.0$ \\
+12 & 5.091 & $1548.4$ & $897.0$ & $45.0$ & $57.9$ & $2511.7$ & $-53.7$ \\
+13 & 5.111 & $-12.9$ & $967.8$ & $2556.7$ & $1601.8$ & $8.7$ & $-62.5$ \\
+14 & 5.111 & $-12.9$ & $2569.6$ & $954.9$ & $1606.3$ & $4.2$ & $-57.9$ \\
+15 & 5.111 & $1610.5$ & $959.1$ & $2565.5$ & $-4.2$ & $-8.7$ & $-53.7$ \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\begin{table}
+\caption{The four orderings of the worked cell that pass the necessary condition of step~5: the member, its superbase (rows in the reference's reduced basis), the vector left out and the order of the other three, the sign that makes the operator proper, the ordered basis with that sign, and the price. The first two are within the band.}
+\label{tab:wf-priced}
+\begin{footnotesize}
+\begin{tabular}{r>{\raggedright\arraybackslash}p{4.3cm}lr>{\raggedright\arraybackslash}p{3.6cm}r}
+\toprule
+member & superbase $(v_0,v_1,v_2,v_3)$ & ordering & sign & basis rows & price (\%) \\
+\midrule
+0 & $(-1,-1,-1)$, $(0,0,1)$, $(0,1,0)$, $(1,0,0)$ & omit $v_0$; $v_3,v_1,v_2$ & $-1$ & $(-1,0,0)$, $(0,0,-1)$, $(0,-1,0)$ & $0.212$ \\
+4 & $(-1,0,0)$, $(0,0,-1)$, $(0,1,0)$, $(1,-1,1)$ & omit $v_3$; $v_0,v_1,v_2$ & $-1$ & $(1,0,0)$, $(0,0,1)$, $(0,-1,0)$ & $1.381$ \\
+10 & $(-2,0,-1)$, $(0,-1,0)$, $(1,0,0)$, $(1,1,1)$ & omit $v_3$; $v_2,v_0,v_1$ & $-1$ & $(-1,0,0)$, $(2,0,1)$, $(0,1,0)$ & $10.194$ \\
+14 & $(-2,0,-1)$, $(0,1,0)$, $(1,-1,1)$, $(1,0,0)$ & omit $v_2$; $v_3,v_0,v_1$ & $+1$ & $(1,0,0)$, $(-2,0,-1)$, $(0,1,0)$ & $10.208$ \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+Table~\ref{tab:wf-example} follows one reindexing through every step. The reference is the worked cell of the main text, widened at the default band: 16 members, the six of the ring and ten deeper ones (Table~\ref{tab:wf-members}). The new cell is the same lattice in the basis $(a,\,b,\,a+c)$, the other cell shape of Section~3.2 of the main text, with a strain of $0.3\%$ added, so that its reduced cell is a different reduced cell of the lattice: its conorm $ac$ of $3.5$\,\Ang$^2$ and $bc$ of $2.9$\,\Ang$^2$ stand where the reference has $4.2$ and $4.5$ on $ab$ and $bc$. Of the 384 ordered bases of the members, each with the sign that makes the operator proper, four satisfy the ten inequalities~(\ref{eq:wf-condition}) (Table~\ref{tab:wf-priced}); for each of the other 380 orderings at least one conorm, and at least one squared length, differs from the new cell's by more than its bound. Two of the four are within the band: the true operator, at $0.212\%$, the shape part of the strain that was added, and the true operator composed with the pseudo-twofold of the lattice, at $1.381\%$, from a member at depth $0.777\%$ on the opposite side of the ring; as a self-map of the reference the pseudo-twofold costs $1.55\%$ (main text, Table~9), and the added error moves that price. The other two, at $10.2\%$, pass the necessary condition but not the band; they are the cheapest of the reference's members outside it, and a band of $10.2\%$ or more, with the reference widened for it, would return them. The direct form builds 768 exact operators to return the same two.
+
+\subsection{Summary of the workflow}
+
+\begin{table}
+\caption{The reindexing workflow, with the result of each step that the implementation reports.}
+\label{tab:wf-steps}
+\begin{footnotesize}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.5cm}>{\raggedright\arraybackslash}p{7.6cm}>{\raggedright\arraybackslash}p{5.8cm}}
+\toprule
+step & action & reported \\
+\midrule
+0 & Widen the reference at $\eta=e^\epsilon-1$ (main text, Table~6, step 1). Once per reference. & members, depths, layer \\
+1 & Member table: for every member the 24 ordered bases $B$, $\det B$, and $\mathbf H=B\Gmet_RB^{\mathsf T}$. Once per reference. & $24m$ orderings \\
+2 & Reduce the new cell once; form $\Gmet_N$ and $\Gmet_R$ from the input cells. & $B_N$, conorms \\
+3 & Sign of each ordered basis from $\det B\,\operatorname{sgn}\det B_R\,\operatorname{sgn}\det B_N$. & number with the selected sign \\
+4 & Common scale $s=(\det\Gmet_N/\det\Gmet_R)^{1/3}$; test $|\sqrt s-1|$ against the scale limit once. & $s$, $\sqrt s$ \\
+5 & Bounds $\eta|u_i||u_j|$ for the new reduced superbase; keep the orderings with $|s\,u_i^{\mathsf T}\mathbf Hu_j-u_i\cdot u_j|$ within them for all $i\le j$. & bounds, number passing \\
+6 & Price the survivors in one batch: eigenvalues of $\Gmet_N^{-1/2}\mathbf H\Gmet_N^{-1/2}$, $\pi=\|l-\bar l\mathbf 1\|$; keep $\pi\le\epsilon$. & prices, number within the band \\
+7 & Exact operator $\Pop=B_R\,cB^{\mathsf T}B_N^{-1}$ for each; order by price, ties nearest the identity. & candidates \\
+8 & Group into indexing classes (main text, Section~5.3). & classes \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+Table~\ref{tab:wf-steps} collects the steps. Steps 0 and 1 are paid once per reference and serve every new cell, which is the case of serial crystallography and of a series of data sets against one reference; steps 2 to 7 cost one reduction, a few determinants, ten comparisons per ordering, a handful of $3\times3$ eigenvalue problems and the exact operators that are returned.
 
 \begin{references}
 \reference{Andrews, L. C. \& Bernstein, H. J. (1988). \emph{Acta Cryst.} A\textbf{44}, 1009--1018.}

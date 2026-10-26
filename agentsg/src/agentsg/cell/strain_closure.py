@@ -346,6 +346,7 @@ class WidenedClosure:
     layer: int               # 1 or 2: smallest adjacency layer holding the whole set; 3: neither; 0: uncertified L1 filter
     members: list = field(default_factory=list)
     _selfmaps: dict = field(default_factory=dict, repr=False)   # (accept, proper) -> self-map candidates
+    _table: dict = field(default_factory=dict, repr=False)      # the member table of the reindexing workflow
 
     def __len__(self):
         return len(self.members)
@@ -471,6 +472,15 @@ def reindex(reference, new_cell, new_sg_hm="reference", accept=None, proper=True
     geometry has to be caught before the cell reaches this function. ``proper=None``
     keeps both signs, ``False`` only the improper ones (for analysing hand inversions).
     ``eps`` is a deprecated alias of ``accept``."""
+    return _reindex_core(reference, new_cell, new_sg_hm, accept, proper, fit_scale, eps, max_scale_change,
+                         trace=False)[:2]
+
+
+def _reindex_direct(reference, new_cell, new_sg_hm="reference", accept=None, proper=True, fit_scale=True, eps=None,
+            max_scale_change=0.1):
+    """The direct form of :func:`reindex`: the exact operator P is built and priced for every
+    member of the reference and every one of its 48 relabellings. Kept to check the
+    workflow, which gives the same candidates (supporting information, Section S10)."""
     np = _np()
     ref = reference
     if eps is not None:
@@ -528,6 +538,201 @@ def reindex(reference, new_cell, new_sg_hm="reference", accept=None, proper=True
     out.sort(key=lambda c: (round(c.price, 12), sum(abs(float(x - y)) for r1, r2 in zip(c.operator.rows, eye.rows)
                                                     for x, y in zip(r1, r2))))    # ties: nearest the identity first
     return out, ref.layer
+
+
+# ---- the reindexing workflow (supporting information, Section S10) ------------------
+@dataclass
+class ReindexWorkflow:
+    """Every step of one reindexing, as :func:`reindex_workflow` returns it.
+
+    The reference's members are tabulated once as metrics; the new cell is compared with
+    them in its own reduced frame, where the two input bases drop out; one scale serves
+    every candidate; a necessary condition on the ten dot products of the new cell's
+    reduced superbase discards most orderings before any eigenvalue is computed; and the
+    exact operator is built only for the candidates within the band."""
+    accept: float                 # the price band
+    eta: float                    # the strain exp(accept) - 1 of Lemma A7
+    layer: int                    # the reference's adjacency layer
+    reference_conorms: object     # (6,) conorms of the reference's reduced superbase
+    new_conorms: object           # (6,) conorms of the new cell's reduced superbase
+    basis_reference: Matrix3      # B_R, reduced basis of the reference in its input basis
+    basis_new: Matrix3            # B_N, reduced basis of the new cell in its input basis
+    n_members: int                # members of the reference's widened set
+    n_orderings: int              # 24 ordered bases per member, the distinct metrics
+    n_signed: int                 # ordered bases with the sign the determinant rule selects
+    scale: float                  # the common fitted scale s (1 without the scale fit)
+    edge_scale: float             # sqrt(s), the fitted change of edge lengths
+    scale_ok: bool                # whether sqrt(s) is within the scale limit
+    bounds: object                # (4,4) eta |u_i| |u_j| for the new superbase vectors u
+    n_prefilter: int              # orderings that pass the necessary condition
+    n_priced: int                 # eigenvalue problems solved
+    n_within: int                 # orderings priced within the band
+    n_candidates: int             # distinct exact operators returned
+    priced: list                  # (member, ordering, sign, price) for every priced ordering
+    candidates: list              # the Candidate list that reindex returns
+    seconds: dict                 # time spent in each step
+
+
+def _ordered_bases(S):
+    """the 24 ordered bases of a superbase (three of its four vectors, in order) as integer
+    rows; with a common sign of +1 or -1 they are its 48 relabellings, and both signs give
+    the same metric."""
+    np = _np()
+    out = []
+    for d in range(4):
+        rest = [i for i in range(4) if i != d]
+        for perm in itertools.permutations(rest):
+            out.append(np.asarray(S)[list(perm)])
+    return np.array(out)
+
+
+def _member_table(ref, G_R):
+    """the reference's member table, computed once: for each member and each of its 24
+    ordered bases B (rows, in the reference's reduced basis), the integer matrix, its
+    determinant and the metric B G_R B^T that it predicts for the new cell's reduced basis."""
+    np = _np()
+    key = "workflow"
+    if key not in ref._table:
+        B = np.array([_ordered_bases(np.rint(np.asarray(m.superbase)).astype(int)) for m in ref.members])
+        B = B.reshape(len(ref.members), 24, 3, 3).astype(int)
+        det = np.rint(np.linalg.det(B.astype(float))).astype(int)
+        if not np.all(np.abs(det) == 1):
+            raise RuntimeError("a member's ordered basis is not unimodular")
+        ref._table[key] = {"B": B, "det": det}
+    tab = ref._table[key]
+    Bf = tab["B"].astype(float)
+    tab["G"] = np.einsum("kois,st,kojt->koij", Bf, G_R, Bf)
+    return tab
+
+
+def _reindex_core(ref, new_cell, new_sg_hm, accept, proper, fit_scale, eps, max_scale_change, trace):
+    import time
+    np = _np()
+    t0 = time.perf_counter()
+    seconds = {}
+    if eps is not None:
+        import warnings
+        warnings.warn("reindex(eps=...) is a deprecated alias of accept= (a price, not the widening strain)",
+                      DeprecationWarning, stacklevel=3)
+    if accept is None:
+        accept = eps if eps is not None else accept_for(ref.eps)
+    if accept > accept_for(ref.eps) * (1 + 1e-9):
+        raise ValueError(f"accept={accept:.4f} needs the reference widened at band_for(accept)="
+                         f"{band_for(accept):.4f}; it was widened at {ref.eps:.4f}")
+    if new_sg_hm == "reference":
+        new_sg_hm = ref.reduced.sg_hm
+    # step 1: reduce the new cell once
+    new = reduce_cell(new_cell, new_sg_hm)
+    ratio = math.sqrt(float(np.linalg.det(new.G)) / float(np.linalg.det(ref.reduced.G)))
+    vmax = 1.6 if max_scale_change is None else (1 + max_scale_change) ** 3
+    vmin = 1 / 1.6 if max_scale_change is None else (1 - max_scale_change) ** 3
+    if not vmin < ratio < vmax:
+        raise ValueError(f"the primitive cells differ in volume by a factor {ratio:.2f} (allowed {vmax:.2f}): "
+                         "no operator within the scale limit relates them; check the centring symbols, "
+                         "or look for a sub- or superlattice (an obverse/reverse relation of rhombohedral "
+                         "lattices keeps the volume and is not detected from cell parameters)")
+    seconds["reduce"] = time.perf_counter() - t0
+    # step 2: the two reduced metrics, from the input cells (the input bases drop out of every price)
+    t = time.perf_counter()
+    BRf = np.array([[float(x) for x in row] for row in ref.reduced.basis.rows])
+    BNf = np.array([[float(x) for x in row] for row in new.basis.rows])
+    G_R = BRf.T @ np.array(UnitCell(*ref.reduced.cell).metric_tensor(), float) @ BRf
+    G_N = BNf.T @ np.array(UnitCell(*new.cell).metric_tensor(), float) @ BNf
+    tab = _member_table(ref, G_R)
+    nm = len(ref.members)
+    seconds["table"] = time.perf_counter() - t
+    # step 3: the determinant rule selects the sign of each ordered basis
+    t = time.perf_counter()
+    sR = 1 if ref.reduced.basis.det() > 0 else -1
+    sN = 1 if new.basis.det() > 0 else -1
+    want = {True: (1,), False: (-1,), None: (1, -1)}[proper]
+    # an ordered basis with determinant d and sign c gives det(P) of sign c^3 d sR sN = c d sR sN
+    signs = [(c, (c * tab["det"] * sR * sN)) for c in ((1, -1))]
+    # step 4: one scale for every candidate, since every predicted metric has det G_R
+    lam0 = np.linalg.eigvalsh(G_N)
+    Nh = np.linalg.eigh(G_N)[1] @ np.diag(lam0 ** -0.5) @ np.linalg.eigh(G_N)[1].T
+    s_fit = (np.linalg.det(G_N) / np.linalg.det(G_R)) ** (1 / 3) if fit_scale else 1.0
+    edge = math.sqrt(s_fit)
+    scale_ok = max_scale_change is None or abs(edge - 1) <= max_scale_change
+    # step 5: the necessary condition of Lemma A7(i) and Proposition A4 on the superbase
+    S0 = np.array(_S0, float)
+    eta = math.expm1(accept)
+    V = S0 @ G_N @ S0.T                                   # dot products of the new superbase
+    nrm = np.sqrt(np.diag(V))
+    bounds = eta * np.outer(nrm, nrm)
+    Vk = np.einsum("ia,koab,jb->koij", S0, tab["G"], S0)  # predicted dot products, unscaled
+    tol = 1e-9 * float(np.abs(V).max())
+    ok = np.all(np.abs(s_fit * Vk - V) <= bounds * (1 + 1e-12) + tol, axis=(2, 3))
+    seconds["prefilter"] = time.perf_counter() - t
+    # step 6: price the orderings that pass, in one batch
+    t = time.perf_counter()
+    idx = np.argwhere(ok)
+    priced = []
+    if len(idx):
+        M = Nh @ tab["G"][idx[:, 0], idx[:, 1]] @ Nh
+        lv = np.log(np.linalg.eigvalsh(M))
+        mean = lv.mean(axis=1) if fit_scale else np.zeros(len(lv))
+        prices = np.linalg.norm(lv - mean[:, None], axis=1)
+        scales = np.exp(-mean)
+        price_of = {(int(k), int(o)): (float(p), float(sc)) for (k, o), p, sc in zip(idx, prices, scales)}
+    else:
+        price_of = {}
+    seconds["price"] = time.perf_counter() - t
+    # step 7: the exact operator, only within the band, in the order of the direct form
+    t = time.perf_counter()
+    BN_inv = new.basis.inverse()
+    out, seen, n_within = [], set(), 0
+    for k in range(nm):
+        for o in range(24):
+            if (k, o) not in price_of:
+                continue
+            price, sc = price_of[(k, o)]
+            for c, dsign in signs:
+                if int(dsign[k, o]) not in want:
+                    continue
+                if trace:
+                    priced.append((k, o, c, price))
+                if price > accept:
+                    continue
+                if not scale_ok:
+                    continue
+                n_within += 1
+                Brows = c * tab["B"][k, o]
+                Mt = Matrix3([[Fraction(int(Brows[j][i])) for j in range(3)] for i in range(3)])
+                P = ref.reduced.basis @ Mt @ BN_inv
+                det = 1 if P.det() > 0 else -1
+                key = tuple(P.rows)
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append(Candidate(P, price, sc, ref.members[k].depth, det))
+    seconds["exact"] = time.perf_counter() - t
+    if not out:
+        import warnings
+        warnings.warn("no candidate within the band: the cells may belong to different lattices, or a centring "
+                      "symbol may be wrong (a C cell read as I, or the reverse, has the same volume)", stacklevel=3)
+    eye = Matrix3([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    out.sort(key=lambda c: (round(c.price, 12), sum(abs(float(x - y)) for r1, r2 in zip(c.operator.rows, eye.rows)
+                                                    for x, y in zip(r1, r2))))    # ties: nearest the identity first
+    seconds["total"] = time.perf_counter() - t0
+    if not trace:
+        return out, ref.layer, None
+    n_signed = int(sum(int(np.isin(d, want).sum()) for _, d in signs))
+    wf = ReindexWorkflow(
+        accept=accept, eta=eta, layer=ref.layer, reference_conorms=conorms(S0, G_R),
+        new_conorms=conorms(S0, G_N), basis_reference=ref.reduced.basis, basis_new=new.basis,
+        n_members=nm, n_orderings=24 * nm, n_signed=n_signed, scale=float(s_fit), edge_scale=edge,
+        scale_ok=scale_ok, bounds=bounds, n_prefilter=int(ok.sum()), n_priced=len(idx), n_within=n_within,
+        n_candidates=len(out), priced=priced, candidates=out, seconds=seconds)
+    return out, ref.layer, wf
+
+
+def reindex_workflow(reference, new_cell, new_sg_hm="reference", accept=None, proper=True, fit_scale=True,
+                     max_scale_change=0.1):
+    """:func:`reindex`, step by step: returns a :class:`ReindexWorkflow` with the
+    candidates and every intermediate quantity (supporting information, Section S10)."""
+    return _reindex_core(reference, new_cell, new_sg_hm, accept, proper, fit_scale, None, max_scale_change,
+                         trace=True)[2]
 
 
 def price_spectrum(reference, proper=True):
@@ -748,7 +953,7 @@ def sort_spectrum(cell, sg_hm=None):
 __all__ = [
     "LEPAGE_STRAIN", "LEPAGE_PRICE", "BRAVAIS", "band_for", "accept_for", "price_spectrum", "strain_from_esds",
     "certified_sort_spectrum", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
-    "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex",
+    "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex", "reindex_workflow", "ReindexWorkflow",
     "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum", "universal_operators",
     "DEFAULT_ACCEPT", "MAX_BALL",
 ]

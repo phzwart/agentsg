@@ -46,6 +46,8 @@ _CLAIMS = [
      "A thin needle at a large band is refused quickly, and the 6096 column operators of U, used as B_R W B_N^-1, contain the true operator between two reduced cells."),
     ("test_rhombohedral_axes_ties_and_scale_bounds", ("main §4.2",), "exhaustive",
      "Rhombohedral axes are read as given, ties are ordered nearest the identity first, and the volume check matches the scale bound."),
+    ("test_reindex_workflow_matches_the_direct_form", ("SI §S10", "main §4.2"), "sampled",
+     "The reindexing workflow returns the same operators, with the same prices, as building the exact operator for every member and relabelling; on the worked cell 384 ordered bases leave 4 to price and 2 operators."),
     ("test_round6_api", ("main §4.2",), "exhaustive",
      "No space group means primitive in both reindexing and indexing classes; impossible R settings raise; an empty result warns."),
 ]
