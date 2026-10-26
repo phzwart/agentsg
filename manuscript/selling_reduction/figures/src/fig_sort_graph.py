@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, LogNorm
 import os
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path[:0] = [os.path.join(HERE, "..", "..", "..", "appendix_z")]
-from test_z50_specialisations import EXPECTED
+sys.path[:0] = [os.path.join(HERE, "..", "..", "..", "supplement", "src")]
+from sellingproofs.claims.test_z50_specialisations import EXPECTED  # noqa: E402
+OUT = os.environ.get("SELLINGPROOFS_OUT", os.path.join(HERE, ".."))
 H = HERE + "/"
 BR = dict(C1="cI", C3="cF", C5="cP", H4="hP", T1="tI", T2="tI", T5="tP", R1="hR", R3="hR", O1A="oF", O1B="oI", O2="oI",
           O3="oI", O4="oS", O5="oP", M1A="mC", M1B="mC", M2A="mC", M2B="mC", M3="mC", M4="mP", A1="aP", A2="aP", A3="aP")
@@ -70,5 +71,5 @@ for name, src, label in (("figS1_sort_graph", "steps_worked.json", "worked cell"
     cb = fig.colorbar(sm, ax=ax, fraction=0.025, pad=0.01, shrink=0.7)
     cb.set_label("distance to the sort (% strain); grey: at least 25 %", fontsize=7, color=MUTED); cb.ax.tick_params(labelsize=6, colors=MUTED); cb.outline.set_visible(False)
     for ext in ("pdf", "png"):
-        fig.savefig(os.path.join(HERE, "..", f"{name}.{ext}"), bbox_inches="tight", dpi=200)
+        fig.savefig(os.path.join(OUT, f"{name}.{ext}"), bbox_inches="tight", dpi=200)
     plt.close(fig)

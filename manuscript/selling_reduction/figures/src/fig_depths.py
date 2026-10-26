@@ -3,7 +3,7 @@ their strain depth under the measured metric (z60); the band selects among them.
 import os, matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-OUT = os.path.join(os.path.dirname(__file__), "..")
+OUT = os.environ.get("SELLINGPROOFS_OUT", os.path.join(os.path.dirname(__file__), ".."))
 ROWS = [("e", 0.0, 0), ("bc", 0.28, 0), ("ab", 0.49, 0), ("bc.db", 0.62, 0), ("ab.bc", 0.78, 0), ("ab.bc.db", 0.78, 0),
         ("da", 3.76, 2), ("ab.bc.ac", 4.56, 2), ("da.ab", 5.06, 2), ("da.ab.ac", 5.08, 2), ("ab.ac", 5.08, 2),
         ("da.ab.bc", 5.09, 2), ("bc.db.dc", 5.09, 2), ("ab.ac.bc.ac", 5.11, 2), ("da.ab.bc.ac", 5.11, 2), ("ab.ac.bc", 5.11, 2)]

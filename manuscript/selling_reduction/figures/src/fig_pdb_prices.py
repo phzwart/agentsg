@@ -1,9 +1,9 @@
 """Figure 4: non-isomorphism against the price of pseudo-symmetry in the PDB.
 
 Cumulative distributions of (blue) the price between deposited cells of one crystal form
-(adjacent ids, same space group, below 20 %; manuscript/benchmark/pdb_nonisomorphism.py)
+(adjacent ids, same space group, below 20 %; manuscript/supplement/benchmark/pdb_nonisomorphism.py)
 and (orange) the price of the cheapest pseudo-symmetric alternative of each entry that
-Le Page's 3 degrees finds (manuscript/benchmark/pdb_lepage.jsonl, priced cases).
+Le Page's 3 degrees finds (manuscript/supplement/benchmark/pdb_lepage.jsonl, priced cases).
 
     PYTHONPATH=agentsg/src python manuscript/selling_reduction/figures/src/fig_pdb_prices.py
 """
@@ -22,7 +22,8 @@ from agentsg.cell.strain_closure import _price                      # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..", "..", "..", "..")
-BENCH = os.path.join(ROOT, "manuscript", "benchmark")
+BENCH = os.path.join(ROOT, "manuscript", "supplement", "benchmark")
+OUT = os.environ.get("SELLINGPROOFS_OUT", os.path.join(HERE, ".."))
 INK, MUTED, GRID = "#1f1f1d", "#6b6a66", "#d7d5cf"
 BLUE, ORANGE = "#2a78d6", "#eb6834"
 
@@ -81,7 +82,7 @@ def main():
     ax.legend(frameon=False, loc="upper left", fontsize=7, labelcolor=INK)
     fig.tight_layout()
     for ext in ("pdf", "png"):
-        fig.savefig(os.path.join(HERE, "..", f"fig3_pdb_prices.{ext}"), dpi=200, bbox_inches="tight")
+        fig.savefig(os.path.join(OUT, f"fig3_pdb_prices.{ext}"), dpi=200, bbox_inches="tight")
 
 
 if __name__ == "__main__":

@@ -4,8 +4,8 @@ row 0 = the measured cell, row S = the measured cell idealised onto sort S (its 
 column S' = the smallest strain that puts that lattice in sort S'."""
 import sys, json, numpy as np
 import os
-sys.path[:0] = [os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "appendix_z")]
-from test_z58_projection_closure import L_ALL, metric_M, _sort_patterns, _reduced, t
+sys.path[:0] = [os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "supplement", "src")]
+from sellingproofs.claims.test_z58_projection_closure import L_ALL, metric_M, _sort_patterns, _reduced, t
 
 PAT = _sort_patterns()
 NAMES = list(PAT)

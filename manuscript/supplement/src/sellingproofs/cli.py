@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 
 from . import pin as _pin
@@ -47,7 +48,10 @@ def ledger(fmt: str = "md") -> str:
 
 def run(zs, fast=False, strict=False, extra=()) -> int:
     import pytest
-    args = ["--pyargs", "sellingproofs.claims", "-p", "no:cacheprovider", "-q"]
+    from . import paths
+    ini = paths.SUPPLEMENT / "pytest.ini"
+    args = [str(paths.PACKAGE / "claims"), "--rootdir", str(paths.SUPPLEMENT)]
+    args += ["-c", str(ini)] if ini.is_file() else ["-p", "no:cacheprovider", "-q"]
     if zs:
         args += ["-m", " or ".join(zs)]
     if fast:
@@ -78,10 +82,15 @@ def main(argv=None) -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
     l = sub.add_parser("ledger"); l.add_argument("--format", default="md", choices=("md", "tex", "json"))
     l.add_argument("--out")
-    r = sub.add_parser("run"); r.add_argument("z", nargs="*"); r.add_argument("--fast", action="store_true")
-    r.add_argument("--strict-needs", action="store_true")
+    sub.add_parser("run", help="run [z52 ...] [--fast] [--strict-needs] [pytest options]")
     sub.add_parser("pin")
-    a, extra = p.parse_known_args(argv)
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv[:1] == ["run"]:
+        rest = argv[1:]
+        zs = [x for x in rest if re.fullmatch(r"z\d\d", x)]
+        opts = [x for x in rest if x not in zs and x not in ("--fast", "--strict-needs")]
+        return run(zs, "--fast" in rest, "--strict-needs" in rest, opts)
+    a = p.parse_args(argv)
     if a.cmd == "ledger":
         txt = ledger(a.format)
         if a.out:
@@ -89,8 +98,6 @@ def main(argv=None) -> int:
         else:
             print(txt)
         return 0
-    if a.cmd == "run":
-        return run(a.z, a.fast, a.strict_needs, extra)
     return show_pin()
 
 

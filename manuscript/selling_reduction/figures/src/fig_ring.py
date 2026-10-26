@@ -2,7 +2,7 @@
 import os, numpy as np, matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-OUT = os.path.join(os.path.dirname(__file__), "..")
+OUT = os.environ.get("SELLINGPROOFS_OUT", os.path.join(os.path.dirname(__file__), ".."))
 INK, MUTED, ACC = "#1f1f1d", "#6b6a66", "#b2342b"
 SHAPE = {"M0": 0, "M4": 0, "M1": 1, "M3": 1, "M2": 2, "M5": 2}
 COL = ["#2a78d6", "#e08a2b", "#3a9a5b"]

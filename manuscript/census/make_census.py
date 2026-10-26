@@ -29,13 +29,13 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-sys.path.insert(0, str(REPO / "manuscript" / "appendix_z"))
-sys.path.insert(0, str(REPO / "manuscript" / "benchmark"))
+sys.path.insert(0, str(REPO / "manuscript" / "supplement" / "src"))
+sys.path.insert(0, str(REPO / "manuscript" / "supplement" / "benchmark"))
 
-import test_z44_widened_complete as z44  # noqa: E402
+from sellingproofs.claims import test_z44_widened_complete as z44  # noqa: E402
 from evaluate import members_by  # noqa: E402
-from test_z50_specialisations import EXPECTED  # noqa: E402
-from test_z54_table_from_operators import S6_TO_SLOT, TABLE, _sella_partition  # noqa: E402
+from sellingproofs.claims.test_z50_specialisations import EXPECTED  # noqa: E402
+from sellingproofs.claims.test_z54_table_from_operators import S6_TO_SLOT, TABLE, _sella_partition  # noqa: E402
 
 from agentsg.cell.celldb import CellDatabase  # noqa: E402
 from agentsg.cell.cod import centring_symbol  # noqa: E402
@@ -1513,7 +1513,7 @@ def render_readme(summary, tables, conorm_path, env):
     parts = [
         "# Wall-incidence census",
         "",
-        "Measured cells from a `CellDatabase`, scored with the Selling-closure helpers in `manuscript/benchmark/evaluate.py` and `manuscript/appendix_z/test_z44_widened_complete.py`. No library code is changed.",
+        "Measured cells from a `CellDatabase`, scored with the Selling-closure helpers in `manuscript/supplement/benchmark/evaluate.py` and `sellingproofs.claims.test_z44_widened_complete`. No library code is changed.",
         "",
         f"Database `{summary['db']}`. Seed `{summary['seed']}`. Sample `{summary['sample']}`. "
         f"Loaded **{summary['n']:,}** cells. Closure pass: **{summary['closure_mode']}** on {summary['closure_n']:,} obtuse cells. "

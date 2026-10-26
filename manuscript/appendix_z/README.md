@@ -1,4 +1,11 @@
-# Appendix Z computational checks
+# Appendix Z computational checks (legacy)
+
+The checks behind *The Selling closure* have moved to the supplement package
+[`../supplement`](../supplement) (`sellingproofs`), where each is registered under the number
+of the statement it verifies; z36 and z44–z61 live there now, with the same numbers.  The
+modules left here back earlier drafts of the paper and the census, and none of the paper's
+numbers rests on them.
+
 
 Runnable checks for the manuscript [`../selling_reduction/zwart_selling_reduction.tex`](../selling_reduction/zwart_selling_reduction.tex) (Table S12 of its supporting information maps them to sections); they began as counterparts to the `\zitem{z:…}` items of an earlier draft, [`../main_v9.tex`](../main_v9.tex)
 (and earlier drafts). Each module maps to one check and calls `agentsg.cell`

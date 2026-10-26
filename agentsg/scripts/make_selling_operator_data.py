@@ -4,12 +4,12 @@ adjacency layers L1 = U.F0 and L2 = U.L1 as superbases (four integer vectors in 
 coordinates of the reduced cell, up to overall sign and order).
 
 Run from the repository root:  python agentsg/scripts/make_selling_operator_data.py
-It needs numpy and the manuscript checks in manuscript/appendix_z (for U)."""
+It needs numpy and the supplement's checks in manuscript/supplement/src (for U)."""
 import json, os, sys
 import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path[:0] = [os.path.join(ROOT, "manuscript", "appendix_z")]
-from test_z52_universal_operators import universal_set  # noqa: E402
+sys.path[:0] = [os.path.join(ROOT, "manuscript", "supplement", "src")]
+from sellingproofs.claims.test_z52_universal_operators import universal_set  # noqa: E402
 
 def key(S):
     a = tuple(sorted(tuple(int(round(x)) for x in v) for v in S))

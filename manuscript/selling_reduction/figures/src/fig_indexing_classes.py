@@ -95,7 +95,7 @@ for ax, (title, cell, sg) in zip(axes.ravel(), cases):
                  fontsize=8, color=INK, loc="left")
     ax.set_xlim(-2.0, 2.0); ax.set_ylim(-2.0 if n == 4 else -1.55, 1.75 if n == 4 else 1.35); ax.set_aspect("equal"); ax.axis("off")
 import os
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+OUT = os.environ.get("SELLINGPROOFS_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 fig.tight_layout(rect=(0, 0, 0.965, 1), w_pad=0.2)
 cax = fig.add_axes((0.955, 0.2, 0.01, 0.55))
 cb = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), cax=cax)
