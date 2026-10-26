@@ -67,6 +67,7 @@ pytest -m "not slow"
 | `z:brute-complete` | `test_z26_brute_complete.py` |
 | `z:coset-reps` | `test_z27_coset_reps.py` |
 | `z:pseudo` | `test_z28_pseudo.py` |
+| `z:appendix-statements` | `test_z61_appendix_statements.py` (the Voronoi characterisation and zero-conorm flip, Lemma A3, Proposition A4, Proposition A10 (iii)–(v), Proposition A11 (i)) |
 
 `helpers.prepare_reference` / `reindex_frame` mirror the App. D pseudo-code so
 `z:reindex-bench` can assert the reference closure is enumerated once.
