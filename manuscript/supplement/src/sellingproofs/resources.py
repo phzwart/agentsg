@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib.util
+import os
 import shutil
 from functools import lru_cache
 
@@ -26,10 +27,12 @@ def available(need: str) -> bool:
         return shutil.which("lake") is not None and (paths.FORMAL / "lakefile.toml").is_file()
     if need == "xfel":
         return paths.XFEL_STREAM.is_file()
-    if need == "sella":
-        return shutil.which("CmdSella") is not None or shutil.which("cmdsella") is not None
-    if need == "ncdist":
-        return _module("ncdist") or _module("pycs6dist")
+    if need == "sella":                                # compare_sella.py reads SELLA_BIN
+        b = os.environ.get("SELLA_BIN")
+        return bool(b and os.path.isfile(b)) or shutil.which("CmdSella") is not None
+    if need == "ncdist":                               # a checkout of yayahjb/ncdist
+        d = os.environ.get("NCDIST_DIR")
+        return bool(d and os.path.isdir(d))
     if need == "lysozyme":
         return any(paths.DATA.glob("*lyso*"))
     raise KeyError(need)

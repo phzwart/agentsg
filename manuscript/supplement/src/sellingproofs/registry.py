@@ -7,8 +7,8 @@ statement it verifies and the place in the paper where that statement is made.
         ...
 
 The first paragraph of the docstring is the statement as the ledger prints it.  The
-decorator records the claim, attaches pytest marks (the z-number, the kind and every
-resource in ``needs``), and leaves the function otherwise unchanged, so the claims run as
+decorator records the claim, attaches pytest marks (the z-number, the kind, and
+``needs_<resource>`` for every resource in ``needs``), and leaves the function otherwise unchanged, so the claims run as
 ordinary pytest tests.
 """
 from __future__ import annotations
@@ -85,7 +85,7 @@ def claim(z: str, *where: str, kind: str = "exhaustive", needs: tuple[str, ...] 
         except ImportError:                                   # ledger without pytest
             return f
         marks = [getattr(pytest.mark, z), pytest.mark.claim, getattr(pytest.mark, kind)]
-        marks += [getattr(pytest.mark, n) for n in needs]
+        marks += [getattr(pytest.mark, f"needs_{n}") for n in needs]
         for m in marks:
             f = m(f)
         return f

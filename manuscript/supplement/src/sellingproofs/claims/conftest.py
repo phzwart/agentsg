@@ -21,7 +21,7 @@ def pytest_configure(config):
     for k, v in KINDS.items():
         config.addinivalue_line("markers", f"{k}: {v}")
     for k, v in NEEDS.items():
-        config.addinivalue_line("markers", f"{k}: needs {v}")
+        config.addinivalue_line("markers", f"needs_{k}: needs {v}")
 
 
 def pytest_collection_modifyitems(config, items):

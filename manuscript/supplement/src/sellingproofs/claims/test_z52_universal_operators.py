@@ -81,7 +81,7 @@ def universal_set():
     return W, L_of(W.astype(float)), sw, faces
 
 
-@claim("z52", "main §2.1", "main §3.3", "main Table 4", "main Lemma A2", "SI §S3, Table S4", kind="exhaustive")
+@claim("z52", "main §2.1", "main §3.3", "main Table 4", "main Lemma A2", "SI §S3", "SI Table S4", kind="exhaustive")
 def test_universal_operator_set():
     r"""U has 6096 = 48 x 127 distinct unimodular elements with entries in {-3, ..., 3}, closed under inversion; 38 faces; every element has a labelling with entries in [-2, 2]; nine kinds up to relabelling at both ends with counts 48, 288, 1152, 1152, 1152, 576, 576, 576, 576."""
     W, L, sw, faces = universal_set()

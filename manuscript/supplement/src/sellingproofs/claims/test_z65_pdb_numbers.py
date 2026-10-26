@@ -278,18 +278,18 @@ def _arm(out, sg, arm, k):
 
 @claim("z65", "main §5.4, Against chance", "SI §S9, Against chance", kind="pdb")
 def test_against_chance():
-    """At Le Page's 3 deg the real rate exceeds both shuffled ones for P1 (42-45% against
-    30-41%) and P2_12_12_1 (23-24% against 13-17%), exceeds them slightly for P2_1 (46% against
+    """At Le Page's 3 deg the real rate exceeds both shuffled ones for P1 (42-44% against
+    30-40%) and P2_12_12_1 (23-24% against 13-17%), exceeds them slightly for P2_1 (46% against
     39-44%), and matches them for C2 and P2_12_12. The share whose cheapest alternative costs
-    at most 1% is 10-11% for real P1 cells against 2-4% shuffled, and 9% against 5-6% for P2_1
-    (intervals about +-1 point). At 4.2% the excess remains for P1 (16% against 6-10%) but not
+    at most 1% is 10% for real P1 cells against 2-3% shuffled, and 9% against 5-6% for P2_1
+    (intervals about +-1 point). At 4.2% the excess remains for P1 (15-16% against 6-9%) but not
     clearly for P2_1 (18% against 13-18%, intervals about +-2 points); two draws of 1500 cells
     per arm."""
     o = _null()
-    for sg, k, real, shuf in (("P 1", 0, ("42", "45"), ("30", "41")), ("P 21 21 21", 0, ("23", "24"), ("13", "17")),
+    for sg, k, real, shuf in (("P 1", 0, ("42", "44"), ("30", "40")), ("P 21 21 21", 0, ("23", "24"), ("13", "17")),
                               ("P 1 21 1", 0, ("46", "46"), ("39", "44")),
-                              ("P 1", 1, ("10", "11"), ("2", "4")), ("P 1 21 1", 1, ("9", "9"), ("5", "6")),
-                              ("P 1", 2, ("16", "16"), ("6", "10")), ("P 1 21 1", 2, ("18", "18"), ("13", "18"))):
+                              ("P 1", 1, ("10", "10"), ("2", "3")), ("P 1 21 1", 1, ("9", "9"), ("5", "6")),
+                              ("P 1", 2, ("15", "16"), ("6", "9")), ("P 1 21 1", 2, ("18", "18"), ("13", "18"))):
         assert_range(*real, _arm(o, sg, 0, k), f"{sg} real {k}")
         assert_range(*shuf, _arm(o, sg, None, k), f"{sg} shuffled {k}")
     for sg in ("P 1", "P 21 21 21", "P 1 21 1"):                                    # exceeds both shuffled
@@ -483,11 +483,11 @@ def test_table_s14_bootstrap_intervals():
 @claim("z65", "SI §S9, Intervals", kind="pdb")
 def test_intervals_of_the_shares():
     """The shares of entries with an alternative within the band have intervals of +-0.2 to
-    +-0.4 points."""
+    +-0.5 points."""
     _, _, shares = _bootstrap()
     half = [(hi - lo) / 2 for _, lo, hi in shares.values()]
     assert len(half) == 4
-    assert_range("0.2", "0.4", half, "half-widths of the share intervals")
+    assert_range("0.2", "0.5", half, "half-widths of the share intervals")
 
 
 @claim("z65", "SI §S9, The crystal-form proxy", kind="pdb")

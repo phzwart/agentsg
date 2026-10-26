@@ -1,6 +1,6 @@
 share of entries (%, with 95 % interval) with a higher lattice at 3 deg / cheapest alternative <= 1 % / <= 4.2 %; 1500 cells per arm
-  P 1         seed 1: real 42.3±2.5 / 9.9±1.5 / 15.7±1.8;  shuffled 37.0±2.4 / 3.1±0.9 / 10.1±1.5;  shuffled within volume 33.0±2.4 / 2.7±0.8 / 7.5±1.3
-  P 1         seed 2: real 44.5±2.5 / 10.7±1.6 / 16.3±1.9;  shuffled 41.2±2.5 / 4.3±1.0 / 10.3±1.5;  shuffled within volume 30.4±2.3 / 1.8±0.7 / 6.5±1.2
+  P 1         seed 1: real 42.0±2.5 / 9.5±1.5 / 15.3±1.8;  shuffled 36.3±2.4 / 2.4±0.8 / 9.1±1.5;  shuffled within volume 32.0±2.4 / 2.2±0.8 / 6.2±1.2
+  P 1         seed 2: real 44.2±2.5 / 10.3±1.5 / 16.0±1.9;  shuffled 40.2±2.5 / 3.1±0.9 / 8.7±1.4;  shuffled within volume 29.6±2.3 / 1.6±0.6 / 5.7±1.2
   P 1 21 1    seed 1: real 46.5±2.5 / 8.9±1.4 / 18.1±1.9;  shuffled 43.5±2.5 / 5.3±1.1 / 15.7±1.8;  shuffled within volume 39.0±2.5 / 4.8±1.1 / 12.6±1.7
   P 1 21 1    seed 2: real 45.9±2.5 / 9.5±1.5 / 18.5±2.0;  shuffled 44.4±2.5 / 5.9±1.2 / 17.5±1.9;  shuffled within volume 40.1±2.5 / 5.4±1.1 / 14.0±1.8
   C 1 2 1     seed 1: real 25.1±2.2 / 5.5±1.2 / 10.1±1.5;  shuffled 25.3±2.2 / 2.7±0.8 / 7.9±1.4;  shuffled within volume 21.5±2.1 / 2.3±0.8 / 7.5±1.3
