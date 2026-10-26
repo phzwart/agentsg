@@ -37,8 +37,8 @@
 All code is in \texttt{agentsg} (Zwart, 2026), version 0.5.0, \texttt{github.com/phzwart/agentsg}; the scripts named below are in its directory \texttt{manuscript/benchmark}. Table, section and equation numbers of the main text are cited as there. Conorm vectors are written in the slot order $da,db,dc,ab,ac,bc$ of the main text, and strains in per cent. Section~S7 lists, for every section, table and figure, the check that reproduces its numbers.
 
 %==============================================================================
-\section{Catalogues of shapes and specialisations}
-\label{app:catalogues}
+\section{Catalogues of shapes and specialisations}\label{app:catalogues}
+
 %==============================================================================
 
 \emph{Cell shapes.} Table~\ref{tab:shapes} lists the shapes of the ten sorts with more than one, each as the cell with the most right angles and no acute angle. The three shapes of a primitive monoclinic lattice are the three cell choices of \emph{International Tables} (Hahn, 2006, Section~2.2.16); the extra shapes of primitive orthorhombic, tetragonal and cubic lattices are monoclinic-looking cells with two right angles; C-centred orthorhombic has two primitive shapes; the boundary sorts of body-centred orthorhombic, C-centred monoclinic and triclinic have two or three cells with a single right angle each, for triclinic the known instability of the reduced cell when an angle is near $90^\circ$ (Andrews \emph{et al.}, 1980).
@@ -133,8 +133,8 @@ hR R3 & cF C3 & $r=s$ & 1 & $\alpha=60^\circ$ \\
 \end{table}
 
 %==============================================================================
-\section{The benchmark, the comparisons and the walks}
-\label{si:bench}
+\section{The benchmark, the comparisons and the walks}\label{si:bench}
+
 %==============================================================================
 
 \emph{The benchmark.} The directory \texttt{manuscript/benchmark} of the repository holds 780 measured cells with exact references and true operators, in five families: 75 cells measured in a different shape of the same lattice; 660 lattices placed $0.5$ to $8$ times the error from a condition of Table~\ref{tab:special}; 20 cells whose only reduced superbase is a difference-wall member; 16 needles and plates with angular errors; 9 cells of the boundary sorts. Each case carries its Niggli cell. The errors are isotropic in the metric tensor, of median strain $0.1\%$. A case counts as found when the true proper operator itself is among the candidates. \texttt{evaluate\_strain.py} scores the closure and the $\{-1,0,1\}$ search at the band and at three times each case's error (\texttt{results\_strain.txt}); \texttt{evaluate.py --niggli} tallies the Niggli cells by family and sort (\texttt{results\_niggli.txt}). The measured Niggli cell is a different cell from the reference's in 45 cases (O1B 23, O3 12, M1B 6, one each at M2B, M3, R3 and T2; 14 of them a change between type~I and type~II), and the same cell in another basis in 125 (O1B 25, M1A 15, O1A 15, T1 15, M1B 13, O4 9, O2 7, R1 7, M2A 6, T2 6, O3 5, A2 1, A3 1).
@@ -162,8 +162,8 @@ idealise at $4\tau$, enumerate the exact closure, filter & 0 \\
 \end{table}
 
 %==============================================================================
-\section{The operators alone}
-\label{app:operators}
+\section{The operators alone}\label{app:operators}
+
 %==============================================================================
 
 The closure can be described without any lattice. An operator $\Wop$, written as the new basis in the coordinates of the reduced cell, acts on the six conorms by a fixed integer $6\times6$ matrix $\mathbf A_{\Wop}$, since every conorm of $\Wop F_0$ is an integer combination of the conorms of $F_0$. The reduced cells are the points of the orthant $\{p\ge0\}$ in conorm space. Selling (1874) showed that every lattice has a conorm vector in this orthant, unique up to the 48 swaps except on the faces (Delaunay, 1933; Conway \& Sloane, 1992), and the closure of a lattice is the set of points of its orbit that lie in the orthant: one in the interior, several on the faces. So $\Wop$ is an operator of the closure of every lattice on the face of $Z$ exactly when $\mathbf A_{\Wop}$ maps the face $\{p\ge0,\ p_Z=0\}$ into the orthant, a sign condition on the entries of $\mathbf A_{\Wop}$ and nothing else.
@@ -195,8 +195,8 @@ kind & matrices & flips & occurs with \\
 \emph{Why four.} For a lattice with $a\perp b\perp c$ the sixteen members are four orthogonal superbases, differing by the sign of one axis, and twelve with a face diagonal. A flip from an orthogonal cell always gives a cell with a face diagonal, so changing the sign of one axis takes three flips, out, across and in, and the diagonal cells attached only to the far orthogonal cell take one more: from $(a,b,c)$ the members lie at flip distances $0,1,2,3,4$ in numbers $1,3,6,3,3$, and four is the diameter of the largest face.
 
 %==============================================================================
-\section{A band on the conorms}
-\label{app:tau}
+\section{A band on the conorms}\label{app:tau}
+
 %==============================================================================
 
 The simplest widening of the closure is an absolute band $\tau$ in \Ang$^2$ on the conorms,
@@ -228,6 +228,7 @@ For a superbase $F$ and two metrics, $\kappa_F(\Gmet,\Gmet')$ is the largest cha
 
 %==============================================================================
 \section{Further tables}
+
 %==============================================================================
 
 \begin{table}
@@ -414,8 +415,8 @@ A3 & aP & tu00sr & 2 & 3 & 2 & 2 & 3 \\
 \end{table}
 
 %==============================================================================
-\section{Distances to the 24 sorts}
-\label{si:spectrum}
+\section{Distances to the 24 sorts}\label{si:spectrum}
+
 %==============================================================================
 
 The same computation gives the distance from a measured cell to each of the 24 sorts. In each of the 6096 frames of $\mathcal U$ the cell's conorms are projected, in the strain, onto the sort's subspace (its zeros and equalities, Definition~A5 of the main text, the other conorms non-negative), and the smallest distance is taken. This is the computation of SELLA (Andrews \emph{et al.}, 2023), which projects the boundary images of a cell in $S^6$ onto the same subspaces, and of Oishi-Tomiyasu (2012) in Selling coordinates; projection onto Bravais-lattice subspaces goes back to Andrews \& Bernstein (1988). What changes is the norm, which is the same in every frame, and the set of frames, which is $\mathcal U$. We call the 24 distances the \emph{sort spectrum} of the cell. A distance below the adjacency radius $r_1$ is exact, since the frames of $\mathcal U$ then contain the frame of the nearest lattice of the sort; a minimum above $r_1$ is an upper bound over the frames used, the true distance being at least $r_1$, and the implementation flags it (\texttt{certified\_sort\_spectrum}). Along every specialisation of Table~\ref{tab:special} the distance cannot decrease, since the lower sort's subspace lies inside the upper one's.
@@ -475,6 +476,7 @@ M4 & mP & 23 & 7.4 (7.4--7.4) & 14.8 & --- \\
 
 %==============================================================================
 \section{Computational checks}
+
 %==============================================================================
 
 {\sloppy Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3, SciPy 1.18.1 and cctbx-base 2025.11, and the comparisons with cctbx, SELLA (CmdSella) and the NCDist/CS6Dist libraries; the checks z24, z25 and z42 are skipped when their external data are absent, and none of the numbers of the paper rests on them; the PDB scripts need the Zenodo snapshot (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222) in \texttt{data/}.\par}
@@ -518,8 +520,8 @@ Appendix~A & z44 (A1), z56 (A2), z53 (A5), z59 (A6, A8), z60 (A7, A9, A10, A11);
 
 
 %==============================================================================
-\section{Existing searches on the same cases}
-\label{si:searches}
+\section{Existing searches on the same cases}\label{si:searches}
+
 %==============================================================================
 
 The test cases of the main text were also given to the searches that data-processing programs use, each priced in the same way and kept within the same band: every matrix with entries in $\{-1,0,1\}$ or $\{-2,\dots,2\}$ between the two Selling-reduced cells; the $\{-1,0,1\}$ search between the two Niggli cells; cctbx \texttt{similarity\_\allowbreak transformations} between the two Niggli cells (Grosse-Kunstleve \emph{et al.}, 2002) with generator ranges 1 and 2; and a pipeline that runs the cctbx lattice-symmetry analysis (Sauter \emph{et al.}, 2004) on both cells and returns every operation of the reference's highest lattice group between the two standard settings. Table~\ref{tab:searches} gives the counts. The searches between Niggli cells and the cctbx similarity searches found the true operator in every case; the fixed windows between Selling-reduced cells, which no program uses, miss operators where Table~4 of the main text says they can; the pipeline missed a needle whose reference and measured cell idealise at $3^\circ$ to different lattices, and a few stress and window cases. The purpose of the table is to show that the guarantee and the existing searches agree where both apply, not to rank them.
@@ -549,8 +551,8 @@ lattice-symmetry pipeline & 779/780 & 56/60 & 54/60 & 60/60 & 171/171 & 126/129 
 
 
 %==============================================================================
-\section{Uncertainty of the PDB statistics, chance, and the Niggli window}
-\label{si:pdbstats}
+\section{Uncertainty of the PDB statistics, chance, and the Niggli window}\label{si:pdbstats}
+
 %==============================================================================
 
 \emph{Intervals.} Table~\ref{tab:bootstrap} gives block-bootstrap 95\% intervals for the percentiles of Table~10 of the main text: the deposition blocks (runs of id-adjacent pairs) are resampled with replacement, 1000 times, which keeps the correlation within a deposition series. The shares of entries with an alternative within the band have intervals of $\pm0.2$ to $\pm0.4$ points, where a type with fewer than 200 blocks uses the pooled band (\texttt{pdb\_band\_uncertainty.py}).

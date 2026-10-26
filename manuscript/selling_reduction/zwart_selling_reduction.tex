@@ -46,6 +46,7 @@ The reduced cells of a lattice and the integer matrices between them form a grou
 
 %==============================================================================
 \section{Introduction}
+
 %==============================================================================
 
 Take a primitive monoclinic lattice with $a=30$, $b=40$, $c=50$\,\Ang\ and $\beta=100^\circ$. Its Selling-reduced cell has two right angles between vectors of the reduced superbase, and a measured cell lies slightly to one side or the other of each. One data set therefore reduces to the cell $30$, $40$, $50$\,\Ang, $\beta=100^\circ$, and another, equally correctly, to $30$, $40$, $53.7$\,\Ang, $\beta=113.4^\circ$, built on $a$ and $a+c$ (Section~\ref{sec:example}). The matrix between the two is not a symmetry of the lattice. A program that reports the Niggli cell meets the same multiplicity in another form: the cell on $a$ and $a+c$ is never a Niggli cell, but at each right angle the Niggli cell changes between its two types, with three acute or no acute angles (Gruber, 1973; Andrews \emph{et al.}, 1980), and two measurements of one crystal can be reported in Niggli cells related by a matrix that is not a symmetry either. Data-processing programs find such matrices by trying a list: small integer matrices between the two reduced cells, the matrices that unit-cell similarity searches generate (Grosse-Kunstleve \emph{et al.}, 2002), or the operations of the lattice group found by a symmetry search (Le Page, 1982; Sauter \emph{et al.}, 2004). On ordinary cases these searches succeed. This paper asks which integer matrices can relate two reduced cells, how to enumerate every candidate within a stated tolerance, and how to price the pseudo-symmetric alternatives that a search returns.
@@ -64,8 +65,8 @@ As an application, the price between deposited cells of one crystal form sets th
 Section~\ref{sec:background} collects the classical definitions, Section~\ref{sec:closure} the theory with a table of what is proved, Section~\ref{sec:measured} the methods and tests, and Section~\ref{sec:results} the results, ending with the PDB application; proofs are in Appendix~A, and catalogues, further tables and the computational checks in the supporting information.
 
 %==============================================================================
-\section{Background}
-\label{sec:background}
+\section{Background}\label{sec:background}
+
 %==============================================================================
 
 \subsection{Superbases, conorms and the metric tensor}
@@ -171,8 +172,8 @@ non-isomorphism & the price between two crystals of one form & \ref{sec:band} \\
 
 %==============================================================================
 %==============================================================================
-\section{Theory}
-\label{sec:closure}
+\section{Theory}\label{sec:closure}
+
 %==============================================================================
 
 \subsection{Definition}
@@ -330,8 +331,8 @@ the layers of 127 and 2755 superbases; the largest entries after relabelling; Le
 \twocolumn
 
 %==============================================================================
-\section{Methods}
-\label{sec:measured}
+\section{Methods}\label{sec:measured}
+
 %==============================================================================
 
 All methods are implemented in the module \texttt{agentsg.\allowbreak cell.\allowbreak strain\_closure} of \texttt{agentsg} (Zwart, 2026), version 0.5.0; the test cases and the PDB analysis are scripts in the same repository (supporting information, Section~S2).
@@ -383,8 +384,8 @@ The band is a tolerance on how much two measurements of one crystal may differ. 
 \emph{The PDB.} The snapshot of 206\,214 deposited cells (Zenodo record 22986222) is used twice. Non-isomorphism is measured between entries of one crystal form, taken as entries with the same space group whose identifiers are adjacent and share their first three characters, so that most pairs come from one deposition series; both cells are in the standard setting of the space group, so the identity is taken as the operator, and pairs above $20\%$ are counted as different forms. The choices behind this proxy are varied as controls: the cut, identical cells, the weight of large deposition blocks, the Bravais type, and the cheapest operator in place of the identity. Pseudo-symmetry is measured by running the cctbx lattice-symmetry analysis at $3^\circ$ on the primitive Niggli cell of every entry and pricing every proper operator of the highest lattice group that is neither a symmetry of the reported space group nor of the reported lattice's own holohedry. A null model shuffles the cell parameters within a space group. Deposited cells are refined in the reported space group, so they satisfy its symmetry exactly; what the analysis measures is how far real crystals lie from a higher lattice.
 
 %==============================================================================
-\section{Results}
-\label{sec:results}
+\section{Results}\label{sec:results}
+
 %==============================================================================
 
 \subsection{Where reduction reaches large entries}
@@ -498,8 +499,8 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 \end{figure}
 
 %==============================================================================
-\section{Discussion}
-\label{sec:discussion}
+\section{Discussion}\label{sec:discussion}
+
 %==============================================================================
 
 \emph{Completeness.} The result of this paper is a statement of when a candidate set is complete. The operators between reduced cells of any lattice lie in one finite set; for a measured cell, the reduced cells within a tolerance are finite and are enumerated exactly; and the candidates within a price band are therefore all found, grouped into classes that differ by pseudo-symmetries whose price is known. The searches that programs use, from unit-cell similarity searches to lattice-symmetry pipelines, find the true operator in ordinary cases; on the cases tested here the $\{-1,0,1\}$ window between Niggli cells and the cctbx similarity search found it in every case, and our re-implementation of the lattice-symmetry pipeline missed 19 of 1560 (Section~\ref{sec:complete}). The theory says why a fixed list can work: below the adjacency radius every candidate is one of the 6096 matrices of $\mathcal U$, so any fixed list that contains their images has the same reach there, and between Niggli cells those images were always within $\{-1,0,1\}$; beyond the radius, and wherever such an observation is not enough, the enumeration supplies what a fixed list cannot promise.
@@ -516,6 +517,7 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 
 %==============================================================================
 \section{Conclusions}
+
 %==============================================================================
 
 The reduced cells of a lattice and the integer matrices between them form a groupoid whose arrows, for every lattice, lie in one set of 6096 matrices; that completeness, its converse and the dependence on the zero pattern alone are machine-checked. For a measured cell the reduced cells within a strain tolerance are enumerated exactly, so reindexing returns every proper operator within a stated price band, and prices, as displacements, place the candidates between cosets of the near-symmetries, bounded by the closure of the nearest symmetric lattice. In practice (Table~\ref{tab:algorithm}): widen each reference once at the chosen band, Selling-reduce each new data set once, group the candidates by the Laue group, and read each class's price against the non-isomorphism of its Bravais type (Table~\ref{tab:noniso}). The default band of $7.4\%$ covers non-isomorphism for most pairs but left the identity, the proxy for the true operator, outside for $4\%$ of real pairs of one crystal form; a band of $9.9$ to $14.8\%$ reproduces the alternatives that lattice-symmetry searches test, and within the band the intensities decide.
@@ -531,6 +533,7 @@ The reduced cells of a lattice and the integer matrices between them form a grou
 \renewcommand{\thetable}{\thesection\arabic{table}}
 \renewcommand{\thefigure}{\thesection\arabic{figure}}
 \section{Proofs}
+
 \sloppy
 %==============================================================================
 
