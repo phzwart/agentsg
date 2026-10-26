@@ -111,3 +111,31 @@ def test_lean_copy_of_U_is_the_deposited_table():
     assert r.returncode == 0, r.stdout + r.stderr
     assert "recorded" in r.stdout and "NOT recorded" not in r.stdout
     assert "identical" in r.stdout and "DIFFERS" not in r.stdout
+
+
+# the statements as the supporting information typesets them (Table S12)
+TEX = {
+    "arrow_mem_U": r"Completeness of $\mathcal U$: every unimodular matrix between two obtuse superbases of any lattice is in the deposited table.",
+    "U_arrow": r"Every element of $\mathcal U$ is an arrow of every lattice on some face.",
+    "arrow_zero_pattern": r"Arrows depend only on the zero pattern: an arrow for one metric is an arrow for every metric with the same zero conorms.",
+    "box_of_conn": r"The window of Lemma~A2: $\gamma=0$ on a connected support puts a vector in $[-7,7]^3$.",
+    "U_swaps": r"$\mathcal U$ is closed under the 48 swaps.",
+    "U_inv": r"$\mathcal U$ is closed under inversion.",
+    "excess_identity": r"The class excess identity of Lemma~A1.",
+    "partial_shortest": r"The partial sums of an obtuse superbase are shortest in their parity classes.",
+    "price_mul": r"$\pi(h_1h_2)\le\pi(h_1)+\pi(h_2)$.",
+    "price_inv": r"$\pi(h^{-1})=\pi(h)$.",
+    "coset_lower": r"$H_{\epsilon-p_0}\Pop_0\subseteq C_\epsilon$.",
+    "coset_upper": r"$C_\epsilon\subseteq H_{\epsilon+p_0}\Pop_0$.",
+    "Hgroup": r"With no price in $(\epsilon,2\epsilon]$, $H_\epsilon$ is a group.",
+    "candidates_eq_coset": r"With no price in $(\epsilon-p_0,\epsilon+p_0]$, $C_\epsilon=H_\epsilon\Pop_0$.",
+    "stab_sub_H": r"$\mathrm{Aut}(\Gmet_0)\subseteq H_{2\nu}(\Gmet_R)$.",
+    "H_sub_H": r"$H_\epsilon(\Gmet_R)\subseteq H_{\epsilon+2\nu}(\Gmet_0)$.",
+    "twofold_midpoint_fixed": r"For a twofold $g$, the midpoint of $x$ and $g\cdot x$ is fixed by $g$.",
+    "price_le_two_dist_fixed": r"The price of $g$ is at most twice the distance to the metrics $g$ fixes.",
+    "Niggli.typeII_obtuse": r"A type~II Niggli cell with $d=-a-b-c$ is an obtuse superbase.",
+    "Niggli.typeII_d_conorms": r"For a type~II Niggli cell, $p_{dx}\ge\frac12x\cdot x-\min(|x\cdot y|,|x\cdot z|)$.",
+    "Niggli.typeII_separation": r"Every conorm on $d$ exceeds every conorm off $d$ that is at most $\tau<\frac14a\cdot a$.",
+    "Niggli.typeI_no_orthogonal_obtuse": r"For a type~I cell none of the four orthogonal superbases is obtuse.",
+}
+assert set(TEX) == {t[0] for t in THEOREMS}

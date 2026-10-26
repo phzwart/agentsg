@@ -111,6 +111,14 @@ def tables(out) -> int:
         n = sum(c.z == z for c in claims)
         items.append(f"{z}: {_tex(SUBJECTS.get(z, ''))} ({n})")
     (out / "checks_subjects.tex").write_text(head + "; ".join(items) + ".\n")
+    from .claims.test_z62_formal_proofs import TEX, THEOREMS
+    rows = []
+    for name, where, statement, native in THEOREMS:
+        w = "; ".join(_tex_place(x.split(" ", 1)[1]) if x.startswith("main ") else _tex_place(x) for x in where)
+        ev = ", ".join(r"\texttt{" + _tex(n).replace(r"\_", r"\_\allowbreak ") + "}" for n in sorted(native)) or "none"
+        rows.append(r"\texttt{" + _tex(name).replace(".", r".\allowbreak ").replace(r"\_", r"\_\allowbreak ") + "} & " + w + " & "
+                    + TEX[name] + " & " + ev + r" \\")
+    (out / "checks_lean.tex").write_text(head + "\n".join(rows) + "\n")
     print(f"{len(claims)} checks written to {out}")
     return 0
 

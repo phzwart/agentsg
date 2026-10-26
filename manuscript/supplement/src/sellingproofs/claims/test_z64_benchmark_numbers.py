@@ -195,7 +195,7 @@ def test_window_family_design():
 # ---------------------------------------------------------------------------- the guarantee and the searches
 
 def _table_s13():
-    """Table S13 as regenerated from the deposited results files, columns: benchmark,
+    """Table S14 as regenerated from the deposited results files, columns: benchmark,
     stress 0.5, stress 0.9, entry 3, Niggli type I, type II, random 2 zeros, 3 zeros."""
     bench, stress, w = _found("results_compare.txt"), _found("results_stress.txt"), _window()
     look = {f: (int(k), int(n)) for f, k, n in _rows("results_lookup.txt", r"^\s+(\S+)\s+found (\d+)/(\d+)\s")}
@@ -216,7 +216,7 @@ def _table_s13():
     return table
 
 
-TABLE_S13 = {   # as printed in SI Table S13
+TABLE_S13 = {   # as printed in SI Table S14
     "closure": "780/780 60/60 60/60 60/60 171/171 129/129 150/150 150/150",
     "lookup": "780/780 60/60 60/60 60/60 171/171 129/129 150/150 150/150",
     "{-1,0,1} Selling": "778/780 58/60 52/60 24/60 142/171 129/129 120/150 99/150",
@@ -228,9 +228,9 @@ TABLE_S13 = {   # as printed in SI Table S13
 }
 
 
-@claim("z64", "SI Table S13", kind="benchmark")
+@claim("z64", "SI Table S14", kind="benchmark")
 def test_existing_searches_table_s13():
-    """SI Table S13: the true operator among the candidates, by method and family, for the
+    """SI Table S14: the true operator among the candidates, by method and family, for the
     closure, the lookup of U, the {-1,0,1} and {-2,...,2} windows between Selling-reduced
     cells, the {-1,0,1} window between Niggli cells, the cctbx similarity search with ranges 1
     and 2, and the lattice-symmetry pipeline.
@@ -735,7 +735,7 @@ def test_reproduce_evaluate_strain():
     _same(out, "results_strain.txt", drop=(r"\(\d+ s\)",))
 
 
-@claim("z64", "SI Table S13", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_compare_methods():
     """compare_methods.py regenerates results_compare.txt, apart from the line 'seconds per
     case' (wall-clock time)."""
@@ -743,7 +743,7 @@ def test_reproduce_compare_methods():
     _same(out, "results_compare.txt", drop=(r"^seconds per case: .*$",))
 
 
-@claim("z64", "SI Table S13", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_compare_methods_stress():
     """compare_methods.py --stress regenerates results_stress.txt, apart from the line
     'seconds per case' (wall-clock time)."""
@@ -751,7 +751,7 @@ def test_reproduce_compare_methods_stress():
     _same(out, "results_stress.txt", drop=(r"^seconds per case: .*$",))
 
 
-@claim("z64", "SI Table S13", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_window_failures():
     """window_failures.py regenerates results_window_failures.txt. The deposited file has a
     last column from LatticeRepLib's CmdLM (LM_BIN); when CmdLM is not configured that column
@@ -764,7 +764,7 @@ def test_reproduce_window_failures():
     assert a == [" ".join(x.split()) for x in dep], list(zip(dep, a))
 
 
-@claim("z64", "main §5.2", "SI Table S13", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "main §5.2", "SI Table S14", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_lookup_benchmark():
     """lookup_benchmark.py regenerates results_lookup.txt (the deposited file also holds the
     Python warnings printed to stderr, which are left out)."""

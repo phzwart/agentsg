@@ -114,7 +114,7 @@ def test_snapshot_and_entries_analysed():
     assert len(R) - len(err) == 206141
 
 
-@claim("z65", "main §5.4", "main Fig. 3", "SI Table S14", kind="pdb")
+@claim("z65", "main §5.4", "main Fig. 3", "SI Table S15", kind="pdb")
 def test_nonisomorphism_percentiles():
     """Between deposited cells of one crystal form (45,222 pairs) the price after the scale
     fit has a median of 0.98%, a 90th percentile of 4.2% and a 95th of 6.7% (95% intervals
@@ -446,9 +446,9 @@ def test_table_s9_transitions():
     assert _transitions(_read("results_pdb_pricing.txt")) == TABLE_S9
 
 
-@claim("z65", "SI Table S14", "SI §S9, Intervals", kind="pdb")
+@claim("z65", "SI Table S15", "SI §S9, Intervals", kind="pdb")
 def test_table_s14_bootstrap_intervals():
-    """SI Table S14: non-isomorphism by reported Bravais type with block-bootstrap 95%
+    """SI Table S15: non-isomorphism by reported Bravais type with block-bootstrap 95%
     intervals (1000 resamples of the deposition blocks): pairs, blocks, and the median, 90th
     and 95th percentiles with their intervals; the types with fewer than 200 deposition blocks
     are oF, cP, cI and cF."""
@@ -560,7 +560,7 @@ def test_reproduce_pdb_band_controls(tmp_path):
     _same(_run("pdb_band_controls.py", tmp_path), "results_pdb_band_controls.txt")
 
 
-@claim("z65", "SI Table S14", "main §5.4", kind="reproduce", needs=("pdb", "slow"))
+@claim("z65", "SI Table S15", "main §5.4", kind="reproduce", needs=("pdb", "slow"))
 def test_reproduce_pdb_band_uncertainty(tmp_path):
     """pdb_band_uncertainty.py (1000 block-bootstrap resamples) writes
     results_pdb_band_uncertainty.txt exactly."""

@@ -18,7 +18,7 @@ SHA256 = {
         "2d5e46a42db4184b98e76254dbe7265fb892b88905fcc5920905ec1ca02b724f",
     # the same operators as column operators with determinants (the deposited table)
     "manuscript/supplement/benchmark/universal_operators_columns.json":
-        "fcfed2be5a607ba3e48b86474696ee419bdebfd9bbea57dd9180172726dacf1a",
+        "29f6f0269fe25aae123691c9baa16425e460616955704450fa8208e0bc38b024",
 }
 
 
