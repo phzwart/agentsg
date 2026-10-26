@@ -287,3 +287,63 @@ def test_type_ii_niggli_bound_on_d():
         if tau < aa / 4:
             off = [q for q in p[3:] if q <= tau]
             assert all(pd > q for pd in p[:3] for q in off)
+
+
+@claim("z61", "main Appendix A, the enumeration", "main §3.3", kind="exhaustive")
+def test_first_layer_counted_by_hand():
+    """The 127 superbases of the first layer, pattern by pattern: the reduced cell, one new
+    superbase for each of the 6 single zeros, 3 for each of the 12 pairs sharing a vector and
+    each of the 4 triangles, 6 for each of the 12 paths, none for the 3 disjoint pairs;
+    1 + 6 + 36 + 12 + 72 = 127."""
+    import collections
+    U = sc.universal_operators()
+    faces = [Z for r in range(4) for Z in itertools.combinations(range(6), r) if _connected(Z)]
+    assert len(faces) == 38
+    rng = np.random.default_rng(611)
+    members = {}
+    for Z in faces:
+        p = rng.uniform(1, 2, 6); p[list(Z)] = 0.0
+        G = sc._gram(p)
+        keys = set()
+        for W in U:
+            B = W.T.astype(float); V = np.vstack([-B.sum(0), B])
+            if min(-V[i] @ G @ V[j] for i, j in SL) > -1e-9:
+                keys.add(sc._key(V))
+        members[Z] = keys
+    new = collections.defaultdict(list)
+    union = set()
+    for Z in faces:
+        sub = set().union(*[members[Y] for Y in faces if set(Y) < set(Z)]) if Z else set()
+        new[_kind(Z)].append(len(members[Z] - sub))
+        union |= members[Z]
+    assert {k: (len(v), sorted(set(v))) for k, v in new.items()} == {
+        "none": (1, [1]), "one": (6, [1]), "sharing": (12, [3]), "disjoint": (3, [0]),
+        "triangle": (4, [3]), "path": (12, [6])}
+    assert len(union) == 127 == 1 + 6 + 36 + 12 + 72
+
+
+def _connected(Z):
+    par = list(range(4))
+
+    def f(x):
+        while par[x] != x:
+            x = par[x]
+        return x
+    for k in range(6):
+        if k not in Z:
+            i, j = SL[k]
+            par[f(i)] = f(j)
+    return len({f(i) for i in range(4)}) == 1
+
+
+def _kind(Z):
+    import collections
+    E = [SL[k] for k in Z]
+    if len(E) == 0:
+        return "none"
+    if len(E) == 1:
+        return "one"
+    deg = collections.Counter(x for e in E for x in e)
+    if len(E) == 2:
+        return "disjoint" if len(deg) == 4 else "sharing"
+    return "triangle" if len(deg) == 3 else "path"
