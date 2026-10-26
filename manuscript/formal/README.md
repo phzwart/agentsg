@@ -26,7 +26,7 @@ new `a, b, c` in the old basis, as in the deposited table.
 
 | Paper | Lean | Notes |
 |---|---|---|
-| 𝒰 has 6096 distinct unimodular elements, entries in {−3,…,3}, closed under inversion | `Finite.U_length`, `U_nodup`, `U_unimodular`, `U_entries`, `U_inv` | `native_decide` |
+| 𝒰 has 6096 distinct unimodular elements, entries in {−3,…,3}, closed under inversion and under the 48 swaps | `Finite.U_length`, `U_nodup`, `U_unimodular`, `U_entries`, `U_inv`, `U_swaps` | `native_decide` |
 | 38 faces (connected supports) | `Finite.faces_count` | `native_decide` |
 | Lemma A1 (class excess identity) | `Analytic.excess_identity`, `gam_nonneg` | |
 | Selling's identity in the frame of any superbase; partial sums of an obtuse superbase are shortest in their parity class | `Analytic.selling_identity`, `partial_shortest` | |

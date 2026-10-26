@@ -169,5 +169,34 @@ def main(n=60):
     open(os.path.join(HERE, "results_niggli_window.txt"), "w").write(txt + "\n")
 
 
+def thin(n=40):
+    """The same test on strongly anisotropic lattices: vertex scales up to 60 on each of the
+    38 faces, total strain 2 and 7.7 %, Niggli cells only."""
+    rng = np.random.default_rng(5)
+    cnt = collections.Counter()
+    ratios = []
+    for Z in FACES:
+        for t in range(n):
+            scale = np.exp(rng.uniform(0, np.log(60), 4))
+            p = rng.uniform(0.3, 1.0, 6) * 100
+            p = np.array([p[k] * scale[SL[k][0]] * scale[SL[k][1]] for k in range(6)])
+            p[list(Z)] = 0.0
+            G0 = gram(p)
+            w = np.linalg.eigvalsh(G0)
+            ratios.append(np.sqrt(w.max() / w.min()))
+            for eta in (0.02, 0.077):
+                GR = strain(G0, eta / 2, rng); Q = random_basis(rng); GN = Q.T @ strain(G0, eta / 2, rng) @ Q
+                XR, XN = niggli_X(GR), niggli_X(GN)
+                cnt[int(round(np.abs(np.linalg.inv(XR) @ Q @ XN).max()))] += 1
+    txt = (f"anisotropic lattices, {n} per face, total strain 2 and 7.7 %: {sum(cnt.values())} cases; "
+           f"largest entry between Niggli cells: {dict(sorted(cnt.items()))}; "
+           f"ratio of largest to smallest edge scale (sqrt of the metric's eigenvalue ratio): median {np.median(ratios):.0f}, max {max(ratios):.0f}")
+    print(txt)
+    open(os.path.join(HERE, "results_niggli_window_thin.txt"), "w").write(txt + "\n")
+
+
 if __name__ == "__main__":
-    main(*(int(x) for x in sys.argv[1:]))
+    if sys.argv[1:2] == ["thin"]:
+        thin(*(int(x) for x in sys.argv[2:]))
+    else:
+        main(*(int(x) for x in sys.argv[1:]))

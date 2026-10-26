@@ -1,6 +1,6 @@
 # Appendix Z computational checks
 
-Runnable counterparts to every `\zitem{z:…}` in [`../main_v9.tex`](../main_v9.tex)
+Runnable checks for the manuscript [`../selling_reduction/zwart_selling_reduction.tex`](../selling_reduction/zwart_selling_reduction.tex) (Table S12 of its supporting information maps them to sections); they began as counterparts to the `\zitem{z:…}` items of an earlier draft, [`../main_v9.tex`](../main_v9.tex)
 (and earlier drafts). Each module maps to one check and calls `agentsg.cell`
 (no forked lattice math).
 
