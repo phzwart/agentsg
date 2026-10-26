@@ -113,7 +113,7 @@ def test_walks_on_the_measured_metric_are_incomplete(superbases):
                      "2tau filter": 2, "theorem": 0}
 
 
-@claim("z45", "main §5.2", "SI Table S6", kind="exhaustive")
+@claim("z45", "main §5.1", "SI Table S6", kind="exhaustive")
 def test_depth_ladder_of_the_worked_pair(superbases):
     r"""Idealised at 4 x 43.2 the worked cell lies on an orthorhombic stratum with 16 frames; their depths under the measured metric give the widened set at every band by filtering."""
     import numpy as np

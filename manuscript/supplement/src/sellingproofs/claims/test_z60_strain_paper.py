@@ -43,7 +43,7 @@ def _gap_after(ladder):
     return ladder[int(np.argmax(g)) + 1][0]
 
 
-@claim("z60", "main §5.2", "main Fig. 2", "SI Table S6", kind="exhaustive")
+@claim("z60", "main §5.1", "main Fig. 2", "SI Table S6", kind="exhaustive")
 def test_worked_filter_in_strain():
     r"""The worked cell's sixteen members have depths 0, 0.28, 0.49, 0.62, 0.78, 0.78 % then 3.76-5.11 %, and the widened set has 1, 2, 3, 6, 16 members at 0.1, 0.3, 0.6, 1 and 7.4 %."""
     from agentsg.cell.canonical import canonical_superbase
@@ -102,7 +102,7 @@ def test_conograph_samples_in_strain():
         assert lad[i][1] < LEPAGE_STRAIN < lad[i + 1][1], name        # Le Page's band selects the program's type
 
 
-@claim("z60", "main §5.3", "main Table 9", kind="exhaustive")
+@claim("z60", "main §5.2", "main Table 9", kind="exhaustive")
 def test_twofold_price_is_twice_the_sort_distance():
     r"""The second indexing class costs the pseudo-symmetry: prices 2.11 % and 1.55 %, twice the sort distances 1.06 % and 0.78 % to first order."""
     from agentsg.cell.metric import UnitCell, params_from_metric
@@ -118,7 +118,7 @@ def test_twofold_price_is_twice_the_sort_distance():
         assert abs(prices[1] / d - 2) < 0.02
 
 
-@claim("z60", "main §5.2", kind="exhaustive")
+@claim("z60", "main §5.1", kind="exhaustive")
 def test_single_projection_is_not_enough_on_the_needle():
     r"""On the needle at small bands a single projection onto the most special face misses members that the exact ball enumeration (Lemma A6) contains."""
     from . import test_z44_widened_complete as t
@@ -340,7 +340,7 @@ def test_exact_triangle_bounds():
 
 
 
-@claim("z60", "main Proposition A11(iii)", "main §5.1", kind="sampled")
+@claim("z60", "main Proposition A11(iii)", "main §5.4", kind="sampled")
 def test_niggli_type_decides_zeros_on_d_near_orthorhombic():
     r"""Near a three-zero face, a reference in Niggli type II reduces with its near-zero conorms off d and in type I with them on d."""
     import itertools

@@ -186,7 +186,7 @@ def _reduced(cell):
     return t._gram(np.maximum(p0, 0))
 
 
-@claim("z58", "main §5.2, Needles and plates", kind="exhaustive")
+@claim("z58", "main §5.1, Needles and plates", kind="exhaustive")
 def test_needle_and_thin_plates_against_the_3_window():
     r"""On the needle 5.58 x 5.21 x 131.97 A and two thin plates, the enumeration equals brute force in the window [-3, 3]."""
     cases = {
@@ -202,7 +202,7 @@ def test_needle_and_thin_plates_against_the_3_window():
             assert got is not None and got == ref and len(ref) == n, (name, deg, len(ref))
 
 
-@claim("z58", "main §5.2, Needles and plates", kind="sampled")
+@claim("z58", "main §5.1, Needles and plates", kind="sampled")
 def test_random_cells_against_the_2_window():
     r"""On 240 random cells the enumeration equals brute force in the window [-2, 2]."""
     from .test_z57_perslot_bands import _random_cells

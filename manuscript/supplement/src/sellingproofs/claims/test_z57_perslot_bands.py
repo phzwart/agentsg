@@ -335,7 +335,7 @@ def delta_obtuse(G, sigma, K):
     return found, maxent
 
 
-@claim("z57", "main §5.2", "SI §S4", kind="exhaustive")
+@claim("z57", "main §5.1", "SI §S4", kind="exhaustive")
 def test_window_beyond_the_hypothesis():
     r"""A 7.73 x 47.54 x 77.30 A cell, beta = 87.0 deg, at a 3 deg idealisation: the idealisation is refused, and the widened set needs a basis coordinate of 3."""
     p0 = np.array([0.0, 28.4690554, 5943.77198, 2260.08703, 0.0, 31.2814792])

@@ -220,7 +220,7 @@ def test_lambda1_over_32_is_about_1_8_degrees():
 
 # ---- the worked cell ----------------------------------------------------------------------
 
-@claim("z66", "main §5.2", kind="exhaustive")
+@claim("z66", "main §5.1", kind="exhaustive")
 def test_worked_cell_error_is_0_82_percent():
     """The measured worked cell 30.02, 39.97, 50.03 A, 90.25, 92.05, 89.80 deg is the cell
     30 x 40 x 50 A, beta = 92 deg, perturbed by a metric error of strain 0.82 %."""
@@ -272,7 +272,7 @@ def _worked_frame():
     return F0[1:4] @ G @ F0[1:4].T
 
 
-@claim("z66", "SI Table S6", "main §5.2", kind="exhaustive")
+@claim("z66", "SI Table S6", "main §5.1", kind="exhaustive")
 def test_table_s6_words_conorms_and_depths():
     """SI Table S6: each of the sixteen members, reached from the reduced cell by its flip
     word (Table 1, read left to right), has the printed conorms under the measured metric and
@@ -352,7 +352,7 @@ def test_pinned_library_and_tables():
 
 # ---- partially checked statements ---------------------------------------------------------
 
-@claim("z66", "main §5.2, Needles and plates", kind="exhaustive", needs=("slow",))
+@claim("z66", "main §5.1, Needles and plates", kind="exhaustive", needs=("slow",))
 def test_needle_from_0_05_to_5_2_percent():
     """On the needle 5.58 x 5.21 x 131.97 A, gamma = 91.12 deg, the exact enumeration and
     brute force agree at strains from 0.05 to 5.2 %."""
@@ -590,7 +590,7 @@ def test_fig_2_depths():
     assert len(deep) == 10 and round(min(deep), 1) >= 3.7 and round(max(deep), 1) <= 5.1
 
 
-@claim("z66", "main Fig. 3", "main §5.4", kind="pdb", needs=("pdb", "slow"))
+@claim("z66", "main Fig. 3", "main §5.3", kind="pdb", needs=("pdb", "slow"))
 def test_fig_3_data():
     """Fig. 3: the 90th and 95th percentiles of non-isomorphism drawn as vertical lines are 4.2
     and 6.7 %, and the orange curve of the cheapest pseudo-symmetric alternative ends near

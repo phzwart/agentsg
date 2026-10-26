@@ -99,7 +99,7 @@ TYPES = ["aP", "mP", "mC", "oP", "oS", "oI", "oF", "tP", "tI", "hR", "hP", "cP",
 
 # --- the pdb claims: paper against the deposited files -----------------------------------
 
-@claim("z65", "main §4.4", "main §5.4", kind="pdb")
+@claim("z65", "main §4.4", "main §5.3", kind="pdb")
 def test_snapshot_and_entries_analysed():
     """The snapshot holds 206,214 deposited cells; Le Page's analysis covers 206,141 of them,
     31 placeholder cells with an edge below 2 A and 42 cells the cctbx analysis did not
@@ -114,7 +114,7 @@ def test_snapshot_and_entries_analysed():
     assert len(R) - len(err) == 206141
 
 
-@claim("z65", "main §5.4", "main Fig. 3", "SI Table S15", kind="pdb")
+@claim("z65", "main §5.3", "main Fig. 3", "SI Table S15", kind="pdb")
 def test_nonisomorphism_percentiles():
     """Between deposited cells of one crystal form (45,222 pairs) the price after the scale
     fit has a median of 0.98%, a 90th percentile of 4.2% and a 95th of 6.7% (95% intervals
@@ -134,7 +134,7 @@ def test_nonisomorphism_percentiles():
     assert_near("4.1", l90); assert_near("4.3", h90); assert_near("6.5", l95); assert_near("7.0", h95)
 
 
-@claim("z65", "main §5.4", kind="pdb")
+@claim("z65", "main §5.3", kind="pdb")
 def test_band_against_the_crystal_form_cut():
     """With the cut between forms at 5, 10, 20 and 50% the 90th percentile is 2.5, 3.4, 4.2 and
     5.6% and the 95th 3.1, 4.7, 6.7 and 11.9%. Dropping the 1,464 pairs of identical cells
@@ -180,7 +180,7 @@ def test_table10_nonisomorphism_by_type():
     assert set(cheap) == {"aP", "mP", "mC", "oP"}
 
 
-@claim("z65", "main §5.4", kind="pdb")
+@claim("z65", "main §5.3", kind="pdb")
 def test_nonisomorphism_by_type_in_the_text():
     """By reported Bravais type the 90th and 95th percentiles are 2.6 and 4.0% for tP, 2.9 and
     4.6% for hP, 4.7 and 7.4% for oP, 5.1 and 8.4% for mC and 5.4 and 9.0% for mP; for the cubic
@@ -211,7 +211,7 @@ def test_nonisomorphism_by_type_in_the_text():
     assert boot["oF"][:2] == (31, 22)
 
 
-@claim("z65", "main §5.4", "abstract", kind="pdb")
+@claim("z65", "main §5.3", "abstract", kind="pdb")
 def test_pseudo_symmetry_counts():
     """Le Page's analysis at 3 deg finds a higher lattice than the reported one for 43,201 of the
     206,141 entries analysed (21%); for 545 (0.3%) the higher lattice is exact. For the 42,656
@@ -235,7 +235,7 @@ def test_pseudo_symmetry_counts():
     assert_near("6.7", m.group(2)); assert m.group(4) == "35" and m.group(5) == "50"
 
 
-@claim("z65", "main §5.4", "abstract", "main §6", kind="pdb")
+@claim("z65", "main §5.3", "abstract", "main §6", kind="pdb")
 def test_shares_of_entries_with_an_alternative_within_the_band():
     """Over all entries, 7.5% (95% interval 7.4-7.7%) have an alternative, exact or priced,
     within 4.2% and 10.6% (10.4-11.0%) within 6.7%; with the band of the entry's own Bravais
@@ -276,7 +276,7 @@ def _arm(out, sg, arm, k):
     return [s[a][2 * k] for s in out[sg] for a in arms]
 
 
-@claim("z65", "main §5.4, Against chance", "SI §S9, Against chance", kind="pdb")
+@claim("z65", "main §5.3, Against chance", "SI §S9, Against chance", kind="pdb")
 def test_against_chance():
     """At Le Page's 3 deg the real rate exceeds both shuffled ones for P1 (42-44% against
     30-40%) and P2_12_12_1 (23-24% against 13-17%), exceeds them slightly for P2_1 (46% against
@@ -303,7 +303,7 @@ def test_against_chance():
         assert all(1.0 <= x <= 2.0 for x in pm(sg, 2)), sg                          # about +-2 points
 
 
-@claim("z65", "main §5.4, What the cell decides", "abstract", kind="pdb")
+@claim("z65", "main §5.3, What the cell decides", "abstract", kind="pdb")
 def test_what_the_cell_decides():
     """Reindexing the second cell of 3,000 randomly chosen same-form pairs against the first with
     a band of 7.4%, a wrong class lies within the band at a positive price in 7.9% of pairs, and
@@ -337,7 +337,7 @@ def test_what_the_cell_decides():
     assert_near("1.2", c["wrong class strictly cheaper"][1], "abstract, high end")
 
 
-@claim("z65", "main §4.3", "main §5.4", "main §6", kind="pdb")
+@claim("z65", "main §4.3", "main §5.3", "main §6", kind="pdb")
 def test_band_coverage():
     """Against non-isomorphism, 7.4% covers 95.7% of the pairs of one crystal form in the PDB,
     9.9% covers 97.5% and 14.8% covers 99.4%; the pairs beyond 7.4%, the upper tail of
@@ -352,7 +352,7 @@ def test_band_coverage():
     assert_near(_line(nf, r"pairs within  7.4 %:\s+[\d.]+ % \(no fit\),\s+([\d.]+) % \(fit\)").group(1), b["7.4"][0])
 
 
-@claim("z65", "main §5.4, Where", kind="pdb")
+@claim("z65", "main §5.3, Where", kind="pdb")
 def test_where_the_pseudo_symmetry_lies():
     """18% of the 35,364 mP entries and 16% of the 8,491 aP entries have an alternative within
     4.2%, against 7% of oP and 1% of tP entries. Among the transitions, mP to hP has a median
@@ -525,20 +525,20 @@ def _same(regenerated: str, deposited_name: str):
     assert len(a) == len(b) and not diff, f"{deposited_name}: {len(a)} vs {len(b)} lines; first differences {diff[:5]}"
 
 
-@claim("z65", "main §5.4", "main Fig. 3", kind="reproduce", needs=("pdb",))
+@claim("z65", "main §5.3", "main Fig. 3", kind="reproduce", needs=("pdb",))
 def test_reproduce_pdb_nonisomorphism(tmp_path):
     """pdb_nonisomorphism.py on the snapshot prints results_pdb_nonisomorphism.txt exactly."""
     _same(_run("pdb_nonisomorphism.py", tmp_path), "results_pdb_nonisomorphism.txt")
 
 
-@claim("z65", "main §5.4", "SI Table S9", kind="reproduce")
+@claim("z65", "main §5.3", "SI Table S9", kind="reproduce")
 def test_reproduce_pdb_pricing_summary(tmp_path):
     """pdb_pricing_summary.py on the deposited pdb_lepage.jsonl prints results_pdb_pricing.txt
     exactly."""
     _same(_run("pdb_pricing_summary.py", tmp_path), "results_pdb_pricing.txt")
 
 
-@claim("z65", "main §4.3", "main §5.4", kind="reproduce", needs=("pdb",))
+@claim("z65", "main §4.3", "main §5.3", kind="reproduce", needs=("pdb",))
 def test_reproduce_pdb_band_coverage(tmp_path):
     """pdb_band_coverage.py on the snapshot writes results_pdb_band_coverage.txt exactly."""
     _run("pdb_band_coverage.py", tmp_path)
@@ -552,7 +552,7 @@ def test_reproduce_pdb_proxy_check(tmp_path):
     _same((tmp_path / "results_pdb_proxy_check.txt").read_text(), "results_pdb_proxy_check.txt")
 
 
-@claim("z65", "main §5.4", "main Table 10", kind="reproduce", needs=("pdb", "slow"))
+@claim("z65", "main §5.3", "main Table 10", kind="reproduce", needs=("pdb", "slow"))
 def test_reproduce_pdb_band_controls(tmp_path):
     """pdb_band_controls.py on the snapshot and the deposited pdb_lepage.jsonl prints
     results_pdb_band_controls.txt exactly (the cut controls, Table 10, the shares and the
@@ -560,7 +560,7 @@ def test_reproduce_pdb_band_controls(tmp_path):
     _same(_run("pdb_band_controls.py", tmp_path), "results_pdb_band_controls.txt")
 
 
-@claim("z65", "SI Table S15", "main §5.4", kind="reproduce", needs=("pdb", "slow"))
+@claim("z65", "SI Table S15", "main §5.3", kind="reproduce", needs=("pdb", "slow"))
 def test_reproduce_pdb_band_uncertainty(tmp_path):
     """pdb_band_uncertainty.py (1000 block-bootstrap resamples) writes
     results_pdb_band_uncertainty.txt exactly."""
@@ -568,7 +568,7 @@ def test_reproduce_pdb_band_uncertainty(tmp_path):
     _same((tmp_path / "results_pdb_band_uncertainty.txt").read_text(), "results_pdb_band_uncertainty.txt")
 
 
-@claim("z65", "SI Table S8", "main §5.4", kind="reproduce", needs=("cctbx",))
+@claim("z65", "SI Table S8", "main §5.3", kind="reproduce", needs=("cctbx",))
 def test_reproduce_pdb_lepage_tables(tmp_path):
     """pdb_lepage.py --table on the deposited pdb_lepage.jsonl prints the tables of
     results_pdb_lepage.txt exactly (the file's leading progress counters, written by the full
@@ -581,7 +581,7 @@ def test_reproduce_pdb_lepage_tables(tmp_path):
     assert a == b, [(x, y) for x, y in zip(a, b) if x != y][:5]
 
 
-@claim("z65", "main §5.4", "SI Table S8", kind="reproduce", needs=("pdb", "cctbx", "slow"))
+@claim("z65", "main §5.3", "SI Table S8", kind="reproduce", needs=("pdb", "cctbx", "slow"))
 def test_reproduce_pdb_lepage_full_run(tmp_path):
     """pdb_lepage.py on every cell of the snapshot regenerates pdb_lepage.jsonl line for line
     and prints results_pdb_lepage.txt exactly (progress counters included)."""
@@ -594,7 +594,7 @@ def test_reproduce_pdb_lepage_full_run(tmp_path):
     _same(out, "results_pdb_lepage.txt")
 
 
-@claim("z65", "main §5.4, Against chance", "SI §S9", kind="reproduce", needs=("pdb", "cctbx", "slow"))
+@claim("z65", "main §5.3, Against chance", "SI §S9", kind="reproduce", needs=("pdb", "cctbx", "slow"))
 def test_reproduce_pdb_lepage_null(tmp_path):
     """pdb_lepage_null.py (two seeds, 1500 cells per arm) prints results_pdb_lepage_null.txt
     exactly."""

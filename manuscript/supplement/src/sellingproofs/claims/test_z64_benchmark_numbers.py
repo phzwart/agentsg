@@ -135,7 +135,7 @@ def test_measured_niggli_cell_against_the_reference():
                     "M2A": 6, "T2": 6, "O3": 5, "A2": 1, "A3": 1}
 
 
-@claim("z64", "SI §S2", "main §5.2", kind="benchmark")
+@claim("z64", "SI §S2", "main §5.1", kind="benchmark")
 def test_strain_procedure_at_the_band_and_at_three_errors():
     """evaluate_strain.py scores the closure and the {-1,0,1} search at the band and at three
     times each case's error: the closure has the true operator in 780 of 780 cases at the
@@ -242,7 +242,7 @@ def test_existing_searches_table_s13():
     assert got == TABLE_S13
 
 
-@claim("z64", "main §5.2", "main abstract", "main §6", kind="benchmark")
+@claim("z64", "main §5.1", "main abstract", "main §6", kind="benchmark")
 def test_closure_found_the_true_operator_in_every_case():
     """The closure found the true operator in every case of every family, as Lemma A7
     guarantees: 780 of 780 on the benchmark, 120 of 120 in the stress cases, 600 of 600 near
@@ -257,7 +257,7 @@ def test_closure_found_the_true_operator_in_every_case():
     assert s == ("780", "780", "780")
 
 
-@claim("z64", "main §5.2", kind="benchmark")
+@claim("z64", "main §5.1", kind="benchmark")
 def test_lookup_found_the_true_operator_in_every_case():
     """The lookup of U found it in every case too, including 12 benchmark cases on three
     needle and plate references whose r_1 lies below the 7.7% that would certify it.
@@ -280,7 +280,7 @@ def test_lookup_found_the_true_operator_in_every_case():
     assert all(v["lookup"] == v["n"] for v in w.values())
 
 
-@claim("z64", "main §5.2", kind="benchmark", needs=("slow",))
+@claim("z64", "main §5.1", kind="benchmark", needs=("slow",))
 def test_the_uncertified_lookup_cases_lie_on_three_references():
     """The 12 benchmark cases whose reference has r_1 below 7.7% lie on three needle and
     plate references.
@@ -298,7 +298,7 @@ def test_the_uncertified_lookup_cases_lie_on_three_references():
     assert len({tuple(round(x, 6) for x in r["reference_cell"]) for r in cases}) == 3
 
 
-@claim("z64", "main §5.2", kind="benchmark")
+@claim("z64", "main §5.1", kind="benchmark")
 def test_lookup_misses_beyond_the_radius_on_a_plate():
     """Against the 100 x 100.1 x 5 A plate of Table 8 (r_1 = 5%), a new cell whose true
     operator costs 6.1% is found by the enumeration and missed by the lookup.
@@ -318,7 +318,7 @@ def test_lookup_misses_beyond_the_radius_on_a_plate():
     assert round(float(lo), 4) == round(float(hi), 4) == float(m.group(2))     # strain, not %
 
 
-@claim("z64", "main §5.2", "main §6", kind="benchmark")
+@claim("z64", "main §5.1", "main §6", kind="benchmark")
 def test_existing_searches_in_the_main_text():
     """The {-1,0,1} window between the two Niggli cells and the cctbx similarity search found
     the true operator in every case of every family; the lattice-symmetry pipeline missed 1 of
@@ -358,7 +358,7 @@ def test_benchmark_misses():
     assert all(r[1] == "specialisation" and r[2] == "A2" and r[4] == "2" for r in small)
 
 
-@claim("z64", "main §5.3", kind="benchmark")
+@claim("z64", "main §5.2", kind="benchmark")
 def test_what_the_metric_does_not_decide():
     """The cheapest candidate lies in the true operator's coset of the exact lattice
     symmetries in 742 of the 780 benchmark cases, and is the true operator itself in 741. The
@@ -382,7 +382,7 @@ def test_what_the_metric_does_not_decide():
 
 # ---------------------------------------------------------------------------- Niggli
 
-@claim("z64", "main §5.2", "SI §S9", kind="benchmark")
+@claim("z64", "main §5.4", "SI §S9", kind="benchmark")
 def test_why_the_niggli_window_works():
     """The true operator between the two Niggli cells, for 100 lattices on each of the 38
     faces and on each of the 24 sorts measured twice with errors of total strain 0.5 to 7.7%,
@@ -415,7 +415,7 @@ def test_why_the_niggli_window_works():
     assert 38 * 40 * 2 == 3040
 
 
-@claim("z64", "main §5.1", kind="benchmark")
+@claim("z64", "main §5.4", kind="benchmark")
 def test_niggli_type_and_presentation_near_op():
     """Near a lattice with three right angles, every reduction of a type I measurement ended
     with a zero on d: 402 of 402 reductions of measured near-oP cells from random bases, and 67
@@ -430,7 +430,7 @@ def test_niggli_type_and_presentation_near_op():
                    ("II", "Niggli form"): (0, 83), ("II", "random basis"): (370, 498)}
 
 
-@claim("z64", "main §5.1", kind="benchmark")
+@claim("z64", "main §5.4", kind="benchmark")
 def test_niggli_type_near_mp():
     """Near a lattice with two right angles a type II Niggli cell kept its right angles on ab,
     ac, bc in 519 of 519 measured near-mP cells; from a type I Niggli cell reduction put at
@@ -484,7 +484,7 @@ TABLE_8 = {   # certified_radii.json cell name prefix -> (r1, r2) as printed in 
 }
 
 
-@claim("z64", "main Table 8", "main §5.2", "SI §S7", kind="benchmark")
+@claim("z64", "main Table 8", "main §5.1", "SI §S7", kind="benchmark")
 def test_table_8_certified_radii():
     """Table 8: adjacency radii in strain (%), r_1 and r_2, searched up to 25%, each
     certified in exact rational arithmetic to the digits shown: worked cell >25, >25; needle
@@ -511,7 +511,7 @@ def test_table_8_certified_radii():
             assert f"{layer} {rr['text']}" in txt
 
 
-@claim("z64", "main §5.2", "main §6", kind="benchmark")
+@claim("z64", "main §5.1", "main §6", kind="benchmark")
 def test_adjacency_radii_on_the_archive():
     """r_1 reaches the cap for 99.4% of the 697 benchmark references and 98.6% of 2000 PDB
     cells drawn at random; every one of those 2000 has r_1 above the 7.7% that certifies the
@@ -539,7 +539,7 @@ def test_adjacency_radii_on_the_archive():
     assert MAX_BALL == 5000
 
 
-@claim("z64", "main §5.2", "SI §S7", kind="benchmark")
+@claim("z64", "main §5.1", "SI §S7", kind="benchmark")
 def test_timings():
     """On a tenth of the benchmark, widening a reference took a median of 0.02 s and
     reindexing one new cell 0.03 s (90th percentiles 0.03 and 0.12 s); a 150 x 120 x 4.8 A
@@ -735,7 +735,7 @@ def test_reproduce_evaluate_strain():
     _same(out, "results_strain.txt", drop=(r"\(\d+ s\)",))
 
 
-@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.1", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_compare_methods():
     """compare_methods.py regenerates results_compare.txt, apart from the line 'seconds per
     case' (wall-clock time)."""
@@ -743,7 +743,7 @@ def test_reproduce_compare_methods():
     _same(out, "results_compare.txt", drop=(r"^seconds per case: .*$",))
 
 
-@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.1", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_compare_methods_stress():
     """compare_methods.py --stress regenerates results_stress.txt, apart from the line
     'seconds per case' (wall-clock time)."""
@@ -751,7 +751,7 @@ def test_reproduce_compare_methods_stress():
     _same(out, "results_stress.txt", drop=(r"^seconds per case: .*$",))
 
 
-@claim("z64", "SI Table S14", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "SI Table S14", "main §5.1", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_window_failures():
     """window_failures.py regenerates results_window_failures.txt. The deposited file has a
     last column from LatticeRepLib's CmdLM (LM_BIN); when CmdLM is not configured that column
@@ -764,7 +764,7 @@ def test_reproduce_window_failures():
     assert a == [" ".join(x.split()) for x in dep], list(zip(dep, a))
 
 
-@claim("z64", "main §5.2", "SI Table S14", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "main §5.1", "SI Table S14", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_lookup_benchmark():
     """lookup_benchmark.py regenerates results_lookup.txt (the deposited file also holds the
     Python warnings printed to stderr, which are left out)."""
@@ -772,14 +772,14 @@ def test_reproduce_lookup_benchmark():
     _same(out, "results_lookup.txt")
 
 
-@claim("z64", "main §5.2", kind="reproduce", needs=("cctbx",))
+@claim("z64", "main §5.1", kind="reproduce", needs=("cctbx",))
 def test_reproduce_lookup_plate_case():
     """lookup_plate_case.py regenerates results_lookup_plate_case.txt identically."""
     out, _ = _run("lookup_plate_case.py")
     _same(out, "results_lookup_plate_case.txt")
 
 
-@claim("z64", "main §5.3", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "main §5.2", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_coset_rank():
     """coset_rank.py regenerates results_coset.txt identically."""
     out, _ = _run("coset_rank.py")
@@ -793,28 +793,28 @@ def test_reproduce_benchmark_misses():
     _same(out, "results_benchmark_misses.txt")
 
 
-@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx",))
+@claim("z64", "main §5.4", "SI §S9", kind="reproduce", needs=("cctbx",))
 def test_reproduce_niggli_window():
     """niggli_window.py 100 regenerates results_niggli_window.txt identically."""
     out, d = _run("niggli_window.py", "100")
     _same(open(os.path.join(d, "results_niggli_window.txt")).read(), "results_niggli_window.txt")
 
 
-@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx",))
+@claim("z64", "main §5.4", "SI §S9", kind="reproduce", needs=("cctbx",))
 def test_reproduce_niggli_window_thin():
     """niggli_window.py thin regenerates results_niggli_window_thin.txt identically."""
     out, d = _run("niggli_window.py", "thin")
     _same(open(os.path.join(d, "results_niggli_window_thin.txt")).read(), "results_niggli_window_thin.txt")
 
 
-@claim("z64", "main §5.1", kind="reproduce")
+@claim("z64", "main §5.4", kind="reproduce")
 def test_reproduce_niggli_presentation():
     """niggli_presentation.py regenerates results_niggli_presentation.txt identically."""
     out, _ = _run("niggli_presentation.py")
     _same(out, "results_niggli_presentation.txt")
 
 
-@claim("z64", "main §5.1", kind="reproduce", needs=("cctbx",))
+@claim("z64", "main §5.4", kind="reproduce", needs=("cctbx",))
 def test_reproduce_niggli_types():
     """niggli_types.py regenerates results_niggli_types.txt identically."""
     out, _ = _run("niggli_types.py")
@@ -837,7 +837,7 @@ def test_reproduce_certified_radii():
     assert json.load(open(os.path.join(d, "certified_radii.json"))) == json.loads(_text("certified_radii.json"))
 
 
-@claim("z64", "main §5.2", "SI §S7", kind="reproduce", needs=("pdb", "slow"))
+@claim("z64", "main §5.1", "SI §S7", kind="reproduce", needs=("pdb", "slow"))
 def test_reproduce_adjacency_radii():
     """adjacency_radii.py regenerates results_adjacency_radii.txt, apart from wall-clock
     times (every number followed by 's' or 'ms', and the 90th percentiles of the timings)."""
