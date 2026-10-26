@@ -22,6 +22,14 @@
 \newcommand{\Lay}{\mathcal{N}}
 \newcommand{\dist}{D}
 
+% Full-width tables that float to the top of a page, so the two columns of text run on
+% past them; numbered and captioned as the class's own (non-floating) tables.
+\makeatletter
+\newenvironment{widetable}{\begin{table*}[tp]\refstepcounter{table}\TABtrue
+  \begin{minipage}{\textwidth}\begin{small}}{\end{small}\hrule height .1pt
+  \vskip 6pt plus 2pt minus 2pt\end{minipage}\TABfalse\end{table*}}
+\makeatother
+
 % The two-column Acta style sets a section heading with \vskip-\baselineskip and a
 % \noindent, so the first line of text overprints the heading; restore the space.
 \makeatletter
@@ -129,8 +137,7 @@ All obtuse superbases of a lattice carry the same six conorm values as a multise
 \subsection{Terms}
 Table~\ref{tab:terms} collects the terms used in the rest of the paper, with the section in which each is defined. Strains and prices are given in per cent throughout; a band of $7.4\%$ is $0.074$ in the formulas. A strain measures a change of metric and a price a distance between two metrics (Section~\ref{sec:strain}). We write $\eta$ for a strain and $\epsilon$ for a price band; a price band $\epsilon$ needs the reference widened at the strain $\eta=e^\epsilon-1$ (Lemma~A7), $7.7\%$ for the default band of $7.4\%$.
 
-\onecolumn
-\begin{table}
+\begin{widetable}
 \caption{Terms and symbols.}
 \label{tab:terms}
 \begin{footnotesize}
@@ -171,8 +178,7 @@ non-isomorphism & the price between two crystals of one form & \ref{sec:band} \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}
-\end{table}
-\twocolumn
+\end{widetable}
 
 %==============================================================================
 %==============================================================================
@@ -261,8 +267,7 @@ with $\lambda_i$ the eigenvalues of $\Gmet_1^{-1/2}\Gmet_2\Gmet_1^{-1/2}$, the a
 
 Table~\ref{tab:tol} converts the classical tolerances. For Le Page's twofold criterion (Le Page, 1982) the conversion is exact: a twofold whose obliquity, the angle between a lattice row and the nearest reciprocal row, is $\delta$ sits at a geodesic distance $\sqrt2\,\mathrm{artanh}(\sin\delta)$ from the metrics it would leave invariant, and its price is twice that (Proposition~A9). One degree of obliquity is a price of $4.9\%$, and Le Page's $3^\circ$ a price of $14.8\%$ (Table~\ref{tab:tol}), for every twofold separately.
 
-\onecolumn
-\begin{table}
+\begin{widetable}
 \caption{Classical tolerances as strains and prices. The first two rows give, to first order, the smallest strain of such a change, reached for an orthogonal pair (first row) or an axis normal to the other two (second row); the last two rows are exact for a twofold along a lattice row, in every cell (Proposition~A9).}
 \label{tab:tol}
 \begin{footnotesize}
@@ -277,8 +282,7 @@ twofold of obliquity $\delta$: its price & $2\sqrt2\,\mathrm{artanh}(\sin\delta)
 \bottomrule
 \end{tabular}
 \end{footnotesize}
-\end{table}
-\twocolumn
+\end{widetable}
 
 \emph{The widened set.}\label{sec:widened} The \emph{widened closure} of a metric $\Gmet$ at strain $\eta$ is
 \begin{multline}
@@ -304,8 +308,7 @@ Its superbases are the reduced cells of every lattice consistent with the measur
 \label{sec:verification}
 Table~\ref{tab:proved} separates what is proved from what rests on an exhaustive computation and what is checked. ``Machine-checked'' marks statements proved in Lean~4 (version 4.35.0) with Mathlib (de~Moura \& Ullrich, 2021; mathlib Community, 2020; Mathlib release v4.35.0). The finite steps are evaluated with \texttt{native\_decide}, which trusts the Lean compiler as well as the kernel; the axioms of each theorem are listed in the supporting information (Section~S7). The Lean copy of $\mathcal U$ is tied to the deposited table by its SHA-256 hash, and the enumeration that completes Lemma~A2 was also run independently in Python. The affine-invariant distance enters the formal statements only through the properties stated in Section~\ref{sec:strain} and, for Proposition~A9(i), the existence and uniqueness of midpoints. The proofs rest on Selling's identity, the characterisation of obtuse superbases by Voronoi vectors (Conway \& Sloane, 1992; at a zero conorm a partial sum is a Voronoi vector that is not strict) and Selling reduction. Exact closures and the closures of the 24 sorts were checked against brute force over bases with entries in $[-2,2]$, a window that contains a labelling of every member of every exact closure (by the enumeration that completes Lemma~A2), and widened sets against the ball enumeration of Lemma~A6.
 
-\onecolumn
-\begin{table}
+\begin{widetable}
 \caption{What is proved, what rests on an exhaustive computation, and what is checked or refuted.}
 \label{tab:proved}
 \begin{footnotesize}
@@ -329,8 +332,7 @@ the layers of 127 and 2755 superbases; the largest entries after relabelling; Le
 \bottomrule
 \end{tabular}
 \end{footnotesize}
-\end{table}
-\twocolumn
+\end{widetable}
 
 %==============================================================================
 \section{Methods}\label{sec:measured}
@@ -352,8 +354,7 @@ A reference $R$ is stored as its widened closure, the operators $\Wop_k$ from it
 \end{equation}
 so that $(a_N\,b_N\,c_N)=(a_R\,b_R\,c_R)\Pop$, $\Gmet_N\approx\Pop^{\mathsf T}\Gmet_R\Pop$, and Miller indices transform as $h_N=\Pop^{\mathsf T}h_R$: for the flip at $ab$ of Table~\ref{tab:flips}, $\Pop=\mathbf F_{ab}$, the new cell is $(-a,\ b,\ a+c)$, and the reflection $(1,0,0)$ of the reference is $(-1,0,1)$ in the new cell. Candidates of price at most the band $\epsilon$ are returned; the reference is widened at $e^\epsilon-1$, so the true operator is among them whenever its price is at most $\epsilon$ (Lemma~A7). Three conventions complete the procedure. Only operators of positive determinant are returned: cell parameters carry no hand, so the convention is that both bases are right-handed, and an inverted geometry must be caught before the cell reaches this step. A fitted scale that changes the edge lengths by more than $10\%$ is rejected, and so are two primitive cells whose volumes differ by more than that allows; a wrong centring symbol or a doubled axis lands here. The limit is far looser than any shape band, so isotropic non-isomorphism is never penalised. An obverse--reverse relation between two rhombohedral lattices keeps the volume and the hexagonal cell, so no cell-based test sees it; it is a matter for the intensities. A centred reference is first taken to a primitive cell (a rhombohedral cell on rhombohedral axes is already primitive) and the centring matrix composed with the operator found, which is then rational in the conventional basis. When the reference's widened set lies in $\Lay_1$ the candidates can come from $\mathcal U$ directly (Table~\ref{tab:algorithm}, step~3); $\Wop$ is then a column operator (only 768 of the 6096 transposes lie in $\mathcal U$), and since Selling reduction may return a left-handed basis, a proper $\Pop$ needs the 3048 matrices with $\det\Wop=\det B_R\det B_N$.
 
-\onecolumn
-\begin{table}
+\begin{widetable}
 \caption{Reindexing a new cell against a reference within a price band $\epsilon$.}
 \label{tab:algorithm}
 \begin{footnotesize}
@@ -370,8 +371,7 @@ step & action \\
 \bottomrule
 \end{tabular}
 \end{footnotesize}
-\end{table}
-\twocolumn
+\end{widetable}
 
 \subsection{Choosing the band}
 \label{sec:band}
