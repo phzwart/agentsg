@@ -20,7 +20,7 @@ proper basis with a metric error drawn at the size of non-isomorphism, 0.1-2 % s
           an entry of 3 in the basis of the reduced cell; the new cell is that member.
 
 Methods (compare_methods.py): the closure (certified), the lookup of the 6096 matrices
-between the two Selling-reduced cells (the first layer, uncertified, Remark A7), the
+between the two Selling-reduced cells (the first layer, uncertified, Remark A8), the
 {-1,0,1} and {-2,...,2} searches, cctbx similarity_transformations (ranges 1, 2), and the
 lattice-symmetry pipeline; plus LatticeRepLib CmdLM (Andrews & Bernstein's lattice
 matcher, LM_BIN), scored by whether the cell it returns lies within the band of the

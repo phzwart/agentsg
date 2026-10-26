@@ -67,6 +67,16 @@ def signOK (S : Supp) (W : Op) : Bool :=
 theorem U_realised : U.all (fun W => (allSupp.filter isConn).any fun S => signOK S W) = true := by
   native_decide
 
+/-- On every face, every operator of 𝒰 whose seven partial sums have `γ = 0` on the face
+passes the sign test there: with Lemma A1 this is the converse of the Voronoi
+characterisation used for `arrow_mem_U`, and it makes the arrows depend only on the zero
+pattern. -/
+theorem zero_pattern_check : ∀ b₀ b₁ b₂ b₃ b₄ b₅ : Bool,
+    let S := ofBits b₀ b₁ b₂ b₃ b₄ b₅
+    (!isConn S || U.all fun W => !((partials W.1 W.2.1 W.2.2).all (gokB S)) || signOK S W)
+      = true := by
+  native_decide
+
 /-! ## From the computation to all vectors -/
 
 theorem rng_mem {a : Int} (h1 : -7 ≤ a) (h2 : a ≤ 7) : a ∈ rng := by
@@ -85,7 +95,7 @@ theorem gokB_iff (S : Supp) (x : V3) : gokB S x = true ↔ ∀ s, S s = true →
     Bool.not_eq_eq_eq_not, Bool.not_true, beq_iff_eq]
   exact forall_congr' fun s => by cases S s <;> simp
 
-/-- Lemma A1 (window), combinatorial form: `γ = 0` along a spanning tree puts a vector in
+/-- Lemma A2 (window), combinatorial form: `γ = 0` along a spanning tree puts a vector in
 the box `[-7, 7]³`. -/
 theorem box_of_tree (T : List (Fin 6)) (hT : T ∈ trees) (x : V3)
     (h : ∀ s ∈ T, gam x s = 0) : inBox x := by

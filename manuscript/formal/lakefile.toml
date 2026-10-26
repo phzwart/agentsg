@@ -4,7 +4,7 @@ defaultTargets = ["SellingClosure"]
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4"
-rev = "10dc7882b0311638b63e9aad5506f2cfcf4e61b8"
+rev = "v4.35.0"
 
 [[lean_lib]]
 name = "SellingClosure"

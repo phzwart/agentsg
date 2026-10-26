@@ -13,7 +13,7 @@ superbases (manuscript, Section 4.2).
 :func:`widened_closure` enumerates S_eps exactly from the finite ball of Lemma A6
 (every vector of a member has squared length at most (1+eps)/(1-eps) times the
 shortest vector of its parity class). It also reports the *layer* of the result
-(manuscript, Remark A7): 1 when every member lies in L1 = U.F0, the 127 superbases
+(manuscript, Remark A8): 1 when every member lies in L1 = U.F0, the 127 superbases
 adjacent to the reduced cell; 2 when every member lies in L2 = U.L1 (2755); 3
 otherwise. The layer describes how far from the reduced cell the set reaches; it is
 not needed for completeness, which the ball enumeration provides for every eps < 1/4.
@@ -37,7 +37,7 @@ fit has a 90th percentile near 0.04 and a 95th near 0.07), not by the cell esds.
 Reindexing (:func:`reindex`) pairs the new cell's single reduced superbase with every
 member of the reference's widened closure and every relabelling, and prices each
 candidate. If the true operator has price at most ``accept``, it is among the candidates
-provided the reference was widened at ``exp(accept) - 1`` (manuscript, Lemma A8);
+provided the reference was widened at ``exp(accept) - 1`` (manuscript, Lemma A7);
 :func:`band_for` gives that number. Only proper operators are returned by default, and
 a fitted scale that changes the edge lengths by more than ``max_scale_change`` is
 rejected (a doubled cell is not a reindexing). :func:`indexing_classes` groups the
@@ -82,7 +82,7 @@ large bands). Pass ``max_ball=None`` to :func:`widened_closure` to lift it."""
 
 def band_for(accept):
     """The band at which to widen a reference so that every operator of price at most
-    ``accept`` is among the candidates (Lemma A8): exp(accept) - 1."""
+    ``accept`` is among the candidates (Lemma A7): exp(accept) - 1."""
     if not 0 <= accept < math.log(1.25):
         raise ValueError("accept must be in [0, log(1.25)); the widened set is computed below a strain of 0.25")
     return math.expm1(accept)
@@ -119,7 +119,7 @@ def _data():
 def universal_operators():
     """The 6096 matrices of U as integer column operators W (3x3), for a lookup between two
     Selling-reduced cells: with B_R, B_N the reduced bases (columns, in each cell's input
-    basis), the candidates are P = B_R W B_N^-1 (Remark A7). The stored data hold each
+    basis), the candidates are P = B_R W B_N^-1 (Remark A8). The stored data hold each
     element as superbase rows; W is their transpose."""
     np = _np()
     return np.round(_data()[0]).astype(int).transpose(0, 2, 1)
@@ -363,7 +363,7 @@ def widened_closure(cell, sg_hm=None, eps=None, certify=True, max_ball=MAX_BALL)
     adjacency layer that contains the whole set (1: the 127 superbases of L1, 2: the 2755
     of L2, 3: neither). Without ``certify`` only L1 is filtered (fast, 127 depths) and
     ``layer`` is 0: complete only if eps is below the cell's adjacency radius delta_1,
-    which is not checked (Remark A7). The default ``eps`` is ``band_for(DEFAULT_ACCEPT)``,
+    which is not checked (Remark A8). The default ``eps`` is ``band_for(DEFAULT_ACCEPT)``,
     which certifies the default price band of :func:`reindex`. ``max_ball`` caps the ball
     of Lemma A6 (see :data:`MAX_BALL`)."""
     if eps is None:
@@ -456,7 +456,7 @@ def reindex(reference, new_cell, new_sg_hm="reference", accept=None, proper=True
     ``h_N = P^T h_R``. The price is the geodesic distance between the new metric and
     the predicted one after the best common scale (:func:`_price`). The default
     ``accept`` is the largest band the reference certifies, ``log(1 + ref.eps)``
-    (Lemma A8; see :func:`band_for` and :func:`accept_for`). A candidate whose fitted
+    (Lemma A7; see :func:`band_for` and :func:`accept_for`). A candidate whose fitted
     scale changes the edge lengths by more than ``max_scale_change`` (default 10 %) is
     rejected; ``None`` keeps every scale. If the two primitive cells differ in volume by
     more than that scale limit allows ((1 + max_scale_change)^3, or 1.6 without a limit),

@@ -1,5 +1,5 @@
 """The lookup of the 6096 matrices of U between the two Selling-reduced cells (widened
-closure with certify=False, Remark A7) on the benchmark and the stress family, scored as in
+closure with certify=False, Remark A8) on the benchmark and the stress family, scored as in
 compare_methods.py, with the number of references whose adjacency radius r_1 is below the
 strain e^band - 1 that certifies the lookup.
 

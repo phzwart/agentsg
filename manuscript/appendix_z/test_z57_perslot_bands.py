@@ -124,7 +124,7 @@ def closure_construct(G, sigma):
     any slot with 0 < p_ij(member; Lambda*) <= 4 sigma |u_i||u_j| (the member's own
     band) zeroes, at once, the surviving F0 slots that feed it and are below the
     same threshold; Lambda* is updated and every member found so far is queued
-    again, since it may now have new zeros to flip at. By Lemma A8 a member found
+    again, since it may now have new zeros to flip at. By Lemma A7 a member found
     under fewer zeros stays a member. Refuse when Lambda* becomes singular.
     Filter per slot under the measured metric at the end."""
     s0 = np.array(t.S0, float)

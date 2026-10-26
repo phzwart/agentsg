@@ -1,5 +1,5 @@
 """z:window — the obtuse superbases of every zero pattern enumerated inside the
-window that Lemma A2 forces, with no input from Kurlin's lists and no
+window that Lemma A1 forces, with no input from Kurlin's lists and no
 assumed entry bound.
 
 Let F0 be obtuse for a lattice whose non-zero conorms connect the four
@@ -125,7 +125,7 @@ def test_all_38_faces():
 
 
 def test_window_members_lie_in_the_universal_set():
-    """Completeness of U (z52) from Lemma A1 alone: every member of every one of the 38 faces,
+    """Completeness of U (z52) from Lemma A2 alone: every member of every one of the 38 faces,
     found in the full window |k_i| <= 3 with no entry bound, is in U in all 48 labellings."""
     import test_z52_universal_operators as u
     W, *_ = u.universal_set()

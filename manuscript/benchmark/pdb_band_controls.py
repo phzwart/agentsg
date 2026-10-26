@@ -43,7 +43,7 @@ def _signed_permutation(o):
 
 def best_price(c1, c2):
     """the cheapest proper operator between two cells: the identity, or the lookup of U
-    between the two Selling-reduced cells (exact below r_1, Remark A7)."""
+    between the two Selling-reduced cells (exact below r_1, Remark A8)."""
     U = sc.universal_operators().astype(float)
     r1, r2 = sc.reduce_cell(c1), sc.reduce_cell(c2)
     B1 = np.array([[float(x) for x in r] for r in r1.basis.rows]); B2 = np.array([[float(x) for x in r] for r in r2.basis.rows])

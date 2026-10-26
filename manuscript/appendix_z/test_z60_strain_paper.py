@@ -8,7 +8,7 @@ metric, and the size of the widened set as the band grows.
 Bravais type is the last sort before the widest gap.
 (iii) The seven BLDConograph samples (z51; Table S5): strain distance to the program's
 Bravais type, the next type, and where the widest gap lies.
-(iv) Propositions A9 and A10 and Lemma A8: prices of symmetries of order 2, 3, 4 and 6,
+(iv) Propositions A9 and A10 and Lemma A7: prices of symmetries of order 2, 3, 4 and 6,
 the twofold rule in the geodesic distance, the exact product and coset bounds, the
 overlap bound; Le Page's obliquity against prices and sort distances; null
 distributions of prices under noise; centred references.
@@ -274,7 +274,7 @@ def test_twofold_price_is_twice_the_geodesic_distance():
 
 
 def test_overlap_lemma_geodesic():
-    """Lemma A8: a geodesic distance eps implies a strain of at most e^eps - 1, attained by a
+    """Lemma A7: a geodesic distance eps implies a strain of at most e^eps - 1, attained by a
     single eigenvalue; so a reference widened at band_for(eps) = e^eps - 1 holds the new
     cell's reduced superbase whenever the true operator's price is at most eps."""
     from agentsg.cell.strain_closure import _price, _strain, band_for

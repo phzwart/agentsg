@@ -1,4 +1,4 @@
-"""The first-layer adjacency radius r_1 (Remark A7) of the benchmark references and of a
+"""The first-layer adjacency radius r_1 (Remark A8) of the benchmark references and of a
 random sample of PDB cells: below it, the lookup of the 6096 matrices of U between two
 Selling-reduced cells is a complete search. Reports quantiles, the share with r_1 above
 the strain e^0.074 - 1 = 7.7 % that certifies the default price band of 7.4 %, and the

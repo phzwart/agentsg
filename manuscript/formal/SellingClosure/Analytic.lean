@@ -18,7 +18,7 @@ the dot product of lattice vectors with coordinates `x, y` in `(a, b, c)` is
 The main theorem `arrow_mem_U`: if the support of `p` is connected (equivalently, the
 metric is positive definite), every unimodular integer matrix that carries the reduced
 superbase to another obtuse superbase of the same lattice belongs to the deposited table
-𝒰.  The proof is Lemma A2 (class excess identity) and the Voronoi characterisation of
+𝒰.  The proof is Lemma A1 (class excess identity) and the Voronoi characterisation of
 obtuse superbases, both proved here, followed by the finite check of `Finite.lean`.
 -/
 
@@ -78,7 +78,7 @@ theorem int_gam_nonneg (t a : Int) (h1 : -1 ≤ a) (h2 : a ≤ 1) : 0 ≤ t * (t
 theorem gam_nonneg (x : V3) (s : Fin 6) : 0 ≤ gam x s :=
   int_gam_nonneg _ _ (diff_par_bound x s).1 (diff_par_bound x s).2
 
-/-! ## Lemma A2: the class excess identity in the reduced frame -/
+/-! ## Lemma A1: the class excess identity in the reduced frame -/
 
 theorem excess_identity (p : Fin 6 → ℝ) (x : V3) :
     dot p x x - dot p (par x) (par x) = 4 * ∑ s, p s * (gam x s : ℝ) := by
@@ -202,7 +202,7 @@ theorem lc_sub_two (e₁ e₂ e₃ g₁ g₂ g₃ : Int) (W : Op) (w : V3)
   · have := Int.emod_add_mul_ediv w₃ 2; linear_combination this - 2 * hh3 + hw3
 
 /-- For each partial sum `w'` of an obtuse superbase of the same lattice, `γₛ(w') = 0` on
-every slot where the reduced superbase's conorm is non-zero (Lemma A1's step). -/
+every slot where the reduced superbase's conorm is non-zero (Lemma A2's step). -/
 theorem gam_zero_of_partial (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (W : Op) (hob : Obtuse p W)
     (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
     (e₁ e₂ e₃ : Int) (h₁ : 0 ≤ e₁ ∧ e₁ ≤ 1) (h₂ : 0 ≤ e₂ ∧ e₂ ≤ 1) (h₃ : 0 ≤ e₃ ∧ e₃ ≤ 1)
@@ -213,7 +213,7 @@ theorem gam_zero_of_partial (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (W : Op)
   -- the partial sum of the reduced superbase in w's class is no shorter than w ...
   have h1 : dot p w w ≤ dot p (par w) (par w) := by
     rw [hpar, hw]; exact partial_shortest p W hob e₁ e₂ e₃ (-g₁) (-g₂) (-g₃) h₁ h₂ h₃
-  -- ... and no longer, by Lemma A2 with non-negative conorms
+  -- ... and no longer, by Lemma A1 with non-negative conorms
   have hid := excess_identity p w
   have hterm : ∀ t ∈ (univ : Finset (Fin 6)), 0 ≤ p t * (gam w t : ℝ) := fun t _ =>
     mul_nonneg (hp t) (by exact_mod_cast gam_nonneg w t)
@@ -235,19 +235,17 @@ noncomputable def suppOf (p : Fin 6 → ℝ) : Supp := fun s => decide (p s ≠ 
 `p ≥ 0` whose support is connected.  Every unimodular integer matrix `W` that carries the
 reduced superbase to an obtuse superbase of the same lattice lies in the deposited table
 𝒰 of 6096 operators. -/
-theorem arrow_mem_U (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (hconn : isConn (suppOf p) = true)
-    (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
-    (hob : Obtuse p W) : W ∈ U := by
+/-- Every partial sum of an arrow has `γ = 0` on the support of the conorms. -/
+theorem partials_gok (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (W : Op)
+    (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1) (hob : Obtuse p W) :
+    ∀ w ∈ partials W.1 W.2.1 W.2.2, gokB (suppOf p) w = true := by
   obtain ⟨u₁, u₂, u₃⟩ := W
-  apply mem_U_of_gok (suppOf p) hconn u₁ u₂ u₃ _ hdet
   intro w hw
   rw [gokB_iff]
   intro s hs
   have hs' : p s ≠ 0 := by simpa [suppOf] using hs
   have key := fun e₁ e₂ e₃ h₁ h₂ h₃ =>
     gam_zero_of_partial p hp (u₁, u₂, u₃) hob hdet e₁ e₂ e₃ h₁ h₂ h₃ s hs'
-  have e : ∀ e₁ e₂ e₃ : Int, lc e₁ e₂ e₃ u₁ u₂ u₃ =
-      vadd (vadd (vsmul e₁ u₁) (vsmul e₂ u₂)) (vsmul e₃ u₃) := fun _ _ _ => rfl
   obtain ⟨a₁, a₂, a₃⟩ := u₁; obtain ⟨b₁, b₂, b₃⟩ := u₂; obtain ⟨c₁, c₂, c₃⟩ := u₃
   simp only [partials, List.mem_cons, List.not_mem_nil, or_false] at hw
   rcases hw with rfl | rfl | rfl | rfl | rfl | rfl | rfl
@@ -259,17 +257,20 @@ theorem arrow_mem_U (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (hconn : isConn 
   · simpa [lc, vadd, vsmul] using key 0 1 1 (by omega) (by omega) (by omega)
   · simpa [lc, vadd, vsmul, add_assoc] using key 1 1 1 (by omega) (by omega) (by omega)
 
-/-- **Every operator of 𝒰 is an arrow.** For each `W ∈ 𝒰` there is a face (a connected
-support) such that `W` carries the reduced superbase of every lattice on that face to an
-obtuse superbase. -/
-theorem U_arrow (W : Op) (hW : W ∈ U) :
-    ∃ S : Supp, isConn S = true ∧ (det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1) ∧
-      ∀ p : Fin 6 → ℝ, (∀ s, 0 ≤ p s) → (∀ s, S s = false → p s = 0) → Obtuse p W := by
-  have h := List.all_eq_true.mp U_realised W hW
-  have hd := List.all_eq_true.mp U_unimodular W hW
-  simp only [List.any_eq_true, List.mem_filter] at h
-  obtain ⟨S, ⟨_, hS⟩, hsign⟩ := h
-  refine ⟨S, hS, by simpa using hd, fun p hp hoff a b hab => ?_⟩
+/-- **Completeness of 𝒰.** Let a lattice have a reduced (obtuse) superbase with conorms
+`p ≥ 0` whose support is connected.  Every unimodular integer matrix `W` that carries the
+reduced superbase to an obtuse superbase of the same lattice lies in the deposited table
+𝒰 of 6096 operators. -/
+theorem arrow_mem_U (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (hconn : isConn (suppOf p) = true)
+    (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
+    (hob : Obtuse p W) : W ∈ U := by
+  obtain ⟨u₁, u₂, u₃⟩ := W
+  exact mem_U_of_gok (suppOf p) hconn u₁ u₂ u₃ (partials_gok p hp _ hdet hob) hdet
+
+/-- The sign test on a face makes the superbase obtuse for every metric on that face. -/
+theorem obtuse_of_signOK (S : Supp) (W : Op) (hsign : signOK S W = true) (p : Fin 6 → ℝ)
+    (hp : ∀ s, 0 ≤ p s) (hoff : ∀ s, S s = false → p s = 0) : Obtuse p W := by
+  intro a b hab
   simp only [signOK, List.all_eq_true, List.mem_finRange, true_implies] at hsign
   have hs := hsign a b
   have hab' : (a == b) = false := by simpa using hab
@@ -283,5 +284,36 @@ theorem U_arrow (W : Op) (hW : W ∈ U) :
     push_cast at this
     rw [mul_assoc]
     exact mul_nonpos_of_nonneg_of_nonpos (hp s) this
+
+/-- **Every operator of 𝒰 is an arrow.** For each `W ∈ 𝒰` there is a face (a connected
+support) such that `W` carries the reduced superbase of every lattice on that face to an
+obtuse superbase. -/
+theorem U_arrow (W : Op) (hW : W ∈ U) :
+    ∃ S : Supp, isConn S = true ∧ (det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1) ∧
+      ∀ p : Fin 6 → ℝ, (∀ s, 0 ≤ p s) → (∀ s, S s = false → p s = 0) → Obtuse p W := by
+  have h := List.all_eq_true.mp U_realised W hW
+  have hd := List.all_eq_true.mp U_unimodular W hW
+  simp only [List.any_eq_true, List.mem_filter] at h
+  obtain ⟨S, ⟨_, hS⟩, hsign⟩ := h
+  exact ⟨S, hS, by simpa using hd, fun p hp hoff => obtuse_of_signOK S W hsign p hp hoff⟩
+
+/-- **Arrows depend only on the zero pattern.** If `W` carries the reduced superbase to an
+obtuse superbase for one metric, it does so for every metric with the same zero conorms. -/
+theorem arrow_zero_pattern (p p' : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (hp' : ∀ s, 0 ≤ p' s)
+    (hsupp : ∀ s, (p s = 0 ↔ p' s = 0)) (hconn : isConn (suppOf p) = true)
+    (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
+    (hob : Obtuse p W) : Obtuse p' W := by
+  have hW := arrow_mem_U p hp hconn W hdet hob
+  have hc := zero_pattern_check (suppOf p 0) (suppOf p 1) (suppOf p 2) (suppOf p 3)
+    (suppOf p 4) (suppOf p 5)
+  simp only [ofBits_eta, hconn, Bool.not_true, Bool.false_or, List.all_eq_true] at hc
+  have := hc W hW
+  have hall : (partials W.1 W.2.1 W.2.2).all (gokB (suppOf p)) = true :=
+    List.all_eq_true.mpr (partials_gok p hp W hdet hob)
+  rw [hall] at this
+  simp only [Bool.not_true, Bool.false_or] at this
+  refine obtuse_of_signOK _ W this p' hp' fun s hs => ?_
+  have : p s = 0 := by simpa [suppOf] using hs
+  exact (hsupp s).mp this
 
 end SellingClosure

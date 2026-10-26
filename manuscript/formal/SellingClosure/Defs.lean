@@ -34,7 +34,7 @@ def par (x : V3) : V3 := (x.1 % 2, x.2.1 % 2, x.2.2 % 2)
 /-- The integer half `k` with `x = s + 2k`. -/
 def half (x : V3) : V3 := (x.1 / 2, x.2.1 / 2, x.2.2 / 2)
 
-/-- `γₛ = Δk (Δk + Δs)` of Lemma A2. -/
+/-- `γₛ = Δk (Δk + Δs)` of Lemma A1. -/
 def gam (x : V3) (s : Fin 6) : Int :=
   diff (half x) s * (diff (half x) s + diff (par x) s)
 

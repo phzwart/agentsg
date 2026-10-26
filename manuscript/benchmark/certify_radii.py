@@ -1,4 +1,4 @@
-"""Certified adjacency radii (Table 8, Remark A7) in exact rational arithmetic.
+"""Certified adjacency radii (Table 8, Remark A8) in exact rational arithmetic.
 
 The radius r_k(G) is the smallest strain from G to a metric for which a superbase outside
 the layer L_k is obtuse, searched up to the cap 1/4.  Everything that decides the radius is

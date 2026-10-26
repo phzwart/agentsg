@@ -15,7 +15,7 @@
 \newcommand{\Pop}{\mathbf{P}}
 \newcommand{\Wop}{\mathbf{W}}
 \newcommand{\Sw}{\mathcal{S}_\tau}
-\newcommand{\Se}{\mathcal{S}_\epsilon}
+\newcommand{\Se}{\mathcal{S}_\eta}
 \newcommand{\Cl}{\mathcal{C}}
 \newcommand{\Lay}{\mathcal{N}}
 \newcommand{\sym}{\operatorname{sym}}
@@ -168,7 +168,7 @@ idealise at $4\tau$, enumerate the exact closure, filter & 0 \\
 
 The closure can be described without any lattice. An operator $\Wop$, written as the new basis in the coordinates of the reduced cell, acts on the six conorms by a fixed integer $6\times6$ matrix $\mathbf A_{\Wop}$, since every conorm of $\Wop F_0$ is an integer combination of the conorms of $F_0$. The reduced cells are the points of the orthant $\{p\ge0\}$ in conorm space. Selling (1874) showed that every lattice has a conorm vector in this orthant, unique up to the 48 swaps except on the faces (Delaunay, 1933; Conway \& Sloane, 1992), and the closure of a lattice is the set of points of its orbit that lie in the orthant: one in the interior, several on the faces. So $\Wop$ is an operator of the closure of every lattice on the face of $Z$ exactly when $\mathbf A_{\Wop}$ maps the face $\{p\ge0,\ p_Z=0\}$ into the orthant, a sign condition on the entries of $\mathbf A_{\Wop}$ and nothing else.
 
-Enumerating integer matrices with entries in $[-2,2]$ under that condition, over all 38 faces, and closing the result under relabelling at both ends, gives a set $\mathcal U$ of $6096=48\times127$ integer matrices with entries in $\{-3,\dots,3\}$; per face there are $48\times1$, $2$, $3$, $6$ and $16$ matrices for no zero, one zero, two zeros on disjoint pairs, two zeros sharing a vector and three zeros. Both placements of three zeros, the triangle and the path, were enumerated; they describe the same lattices read from an orthogonal cell or from a cell with a face diagonal, each has 16 members, and no swap carries one placement into the other. $\mathcal U$ is closed under inversion, and every element has a labelling whose basis vectors have entries in $[-2,2]$. That $\mathcal U$ contains every operator between two reduced cells of one lattice, whatever the lattice, does not rest on that window: Lemma~A1 of the main text confines the members of every closure to superbase coordinates $s+2k$ with $|k_i|\le3$ relative to a reduced cell, and the enumeration of that whole window, over all 38 faces, finds only members that lie in $\mathcal U$ in each of their 48 labellings. In the basis of the reduced cell their entries are in $\{-1,0,1\}$ when the zero conorms avoid $d$, and up to $3$ otherwise (Table~4 of the main text). Up to relabelling at both ends $\mathcal U$ has nine kinds of element, of flip length $0$ to $4$ (Table~\ref{tab:kinds}).
+Enumerating integer matrices with entries in $[-2,2]$ under that condition, over all 38 faces, and closing the result under relabelling at both ends, gives a set $\mathcal U$ of $6096=48\times127$ integer matrices with entries in $\{-3,\dots,3\}$; per face there are $48\times1$, $2$, $3$, $6$ and $16$ matrices for no zero, one zero, two zeros on disjoint pairs, two zeros sharing a vector and three zeros. Both placements of three zeros, the triangle and the path, were enumerated; they describe the same lattices read from an orthogonal cell or from a cell with a face diagonal, each has 16 members, and no swap carries one placement into the other. $\mathcal U$ is closed under inversion, and every element has a labelling whose basis vectors have entries in $[-2,2]$. That $\mathcal U$ contains every operator between two reduced cells of one lattice, whatever the lattice, does not rest on that window: Lemma~A2 of the main text confines the members of every closure to superbase coordinates $s+2k$ with $|k_i|\le3$ relative to a reduced cell, and the enumeration of that whole window, over all 38 faces, finds only members that lie in $\mathcal U$ in each of their 48 labellings. In the basis of the reduced cell their entries are in $\{-1,0,1\}$ when the zero conorms avoid $d$, and up to $3$ otherwise (Table~4 of the main text). Up to relabelling at both ends $\mathcal U$ has nine kinds of element, of flip length $0$ to $4$ (Table~\ref{tab:kinds}).
 
 \begin{table}
 \caption{The nine kinds of operator between Selling-reduced cells, up to relabelling at both ends; ``matrices'' counts the integer matrices of the kind in $\mathcal U$, ``flips'' its length as a flip word, and the last column the zero patterns in whose closures it occurs.}
@@ -212,9 +212,9 @@ For a superbase $F$ and two metrics, $\kappa_F(\Gmet,\Gmet')$ is the largest cha
 
 \emph{Proposition S4.1 (characterisation superbase by superbase).} $\Sw(\Gmet)=\{F:F\in\Cl(\Gmet')\text{ for some }\Gmet'\text{ with }\kappa_F(\Gmet,\Gmet')\le\tau\}$. \emph{Proof.} ($\supseteq$) If $F$ is obtuse for $\Gmet'$ and $\kappa_F\le\tau$, every conorm of $F$ under $\Gmet$ is at least $-\tau$. ($\subseteq$) The metric whose conorms in the frame of $F$ are $\max(p_{ij},0)$ exceeds $\Gmet$ by a positive semidefinite term, so it is positive definite and $F$ is obtuse for it.\hfill$\square$
 
-\emph{Lemma S4.2 (class gap).} Let $\Lambda^*$ be obtained from $F_0$ by setting its conorms $\le\theta$ to zero, be positive definite, and let $m^*$ be the smallest conorm of $F_0$ above $\theta$. A superbase not obtuse for $\Lambda^*$ has $e_c\ge4m^*$ in some class. \emph{Proof.} In the frame of $F_0$, Lemma~A2 of the main text gives $e_c(F)=4\sum p^0_{ij}\gamma_{ij}$, and the excess for $\Lambda^*$ is the same sum over the slots above $\theta$. If those terms vanish in all seven classes, $F$ is obtuse for $\Lambda^*$; otherwise some $\gamma_{ij}\ge1$ multiplies a $p^0_{ij}\ge m^*$.\hfill$\square$
+\emph{Lemma S4.2 (class gap).} Let $\Lambda^*$ be obtained from $F_0$ by setting its conorms $\le\theta$ to zero, be positive definite, and let $m^*$ be the smallest conorm of $F_0$ above $\theta$. A superbase not obtuse for $\Lambda^*$ has $e_c\ge4m^*$ in some class, the excess taken for $\Lambda^*$. \emph{Proof.} In the frame of $F_0$, Lemma~A1 of the main text gives $e_c(F)=4\sum p^0_{ij}\gamma_{ij}$, and the excess for $\Lambda^*$ is the same sum over the slots above $\theta$. If those terms vanish in all seven classes, $F$ is obtuse for $\Lambda^*$; otherwise some $\gamma_{ij}\ge1$ multiplies a $p^0_{ij}\ge m^*$.\hfill$\square$
 
-\emph{Lemma S4.3 (small excess in the band).} If $\lambda_1>32\tau$ and every conorm of $F$ is at least $-\tau$, then $e_c(F)\le16\tau$ in every class. \emph{Proof.} Call a slot large if $p_{ij}>8\tau$, and let $N$ be the negative slots. The large slots connect the four vectors, since otherwise a split crossed only by slots with $p_{ij}\le8\tau$ has a partial sum of squared length at most $32\tau<\lambda_1$. Lemma~A2 in the frame of $F$ gives $0\le e_c(F)=4\sum_N|p_{ij}|\gamma_{ij}-4\sum_{p_{ij}>0}p_{ij}\gamma_{ij}$, so $\sum_{\rm large}p\gamma\le\tau\sum_N\gamma$. If a large $\gamma$ were positive, Lemma~S4.4(ii) would give $8\tau\sum_{\rm large}\gamma<\tau\sum_N\gamma\le8\tau\sum_{\rm large}\gamma$; so the large $\gamma$ vanish, and Lemma~S4.4(i) gives $e_c\le4\tau\cdot4$.\hfill$\square$
+\emph{Lemma S4.3 (small excess in the band).} If $\lambda_1>32\tau$ and every conorm of $F$ is at least $-\tau$, then $e_c(F)\le16\tau$ in every class. \emph{Proof.} Call a slot large if $p_{ij}>8\tau$, and let $N$ be the negative slots. The large slots connect the four vectors, since otherwise a split crossed only by slots with $p_{ij}\le8\tau$ has a partial sum of squared length at most $32\tau<\lambda_1$. Lemma~A1 in the frame of $F$ gives $0\le e_c(F)=4\sum_N|p_{ij}|\gamma_{ij}-4\sum_{p_{ij}>0}p_{ij}\gamma_{ij}$, so $\sum_{\rm large}p\gamma\le\tau\sum_N\gamma$. If a large $\gamma$ were positive, Lemma~S4.4(ii) would give $8\tau\sum_{\rm large}\gamma<\tau\sum_N\gamma\le8\tau\sum_{\rm large}\gamma$; so the large $\gamma$ vanish, and Lemma~S4.4(i) gives $e_c\le4\tau\cdot4$.\hfill$\square$
 
 \emph{Lemma S4.4 (two constants on four points).} Let $L$ be a set of slots connecting the four vectors and $N$ disjoint from $L$. (i) If $\gamma_{ij}=0$ on $L$, then $\sum_N\gamma_{ij}\le4$. (ii) If $\sum_L\gamma_{ij}>0$, then $\sum_N\gamma_{ij}\le8\sum_L\gamma_{ij}$. Both bounds are attained. \emph{Proof.} In (i) $|\Delta k|\le1$ on $L$, so all $|k_i|\le3$, and the maximum is a finite enumeration over the 38 connected slot sets, the sets $N$ and the 14 partial sums. In (ii) the ratio is enumerated for $|k_i|\le15$; beyond, some $|k_i|\ge16$, and since $L$ connects the four vertices with $k_0=0$, $Q=\sum_L\Delta k^2\ge16^2/3>75$. For each pattern $(L,N)$ let $\rho_{L,N}$ be the largest generalised eigenvalue of the quadratic form $\sum_N\Delta k^2$ against $\sum_L\Delta k^2$; the largest over all pairs $(L,N)$ is $3+2\sqrt2$. Then $\sum_N\gamma\le\rho_{L,N}Q+\sqrt{|N|\rho_{L,N}Q}$ and $\sum_L\gamma\ge Q-\sqrt{|L|Q}$, and the ratio of these bounds, $(\rho_{L,N}\sqrt Q+\sqrt{|N|\rho_{L,N}})/(\sqrt Q-\sqrt{|L|})$, decreases in $Q$, so it suffices to check it at $Q=75$ for each pattern with its own $\rho_{L,N}$, where it is below $8$ in every case; with the uniform value $3+2\sqrt2$ it would not be. The lemma is computer-assisted. Equality in (ii): $L=\{01,02,13\}$, $N=\{03,12,23\}$, $s=(0,0,1,1)$.\hfill$\square$
 
@@ -428,6 +428,12 @@ Fig.~\ref{fig:sortgraph} draws the spectrum of the worked cell on the graph of s
 \label{fig:sortgraph}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=0.9\textwidth]{figures/figS2_sort_graph_lysozyme.pdf}
+\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~\ref{fig:sortgraph}. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
+\label{fig:lyso}
+\end{figure}
+
 \emph{Le Page's $3^\circ$ by sort.} The distance to a sort at Le Page's boundary depends on the sort, while the price of each operator does not. For exact lattices of each sort perturbed in random directions until Le Page's obliquity for the sort's Bravais group is exactly $3^\circ$, the median largest twofold price is $14.8\%$ in every sort, which Proposition~A9 makes true by construction and the table confirms numerically (larger only in the monoclinic tails, up to $40$--$55\%$, where Le Page's group is another C-centred group), while the median distance to the sort is $7.4$--$7.7\%$ for the orthorhombic and monoclinic sorts other than O3, M2B and M3, $7.9$--$8.1\%$ for tP, tI, hP and hR, and $8.3$--$8.5\%$ for the cubic sorts, with longer tails for the boundary sorts O3, M2B and M3 (Table~\ref{tab:lepage}). A single band on the distance to a sort therefore tests each sort at a different level, which is why the reindexing in this paper is decided on the prices of operators.
 
 \begin{table}
@@ -473,6 +479,12 @@ M4 & mP & 23 & 7.4 (7.4--7.4) & 14.8 & --- \\
 
 {\sloppy Each entry of Table~\ref{tab:checks} names the test files that reproduce the numbers of a section, table or figure of the main text. A mark z$nn$ is \texttt{manuscript/\allowbreak appendix\_z/\allowbreak test\_z$nn$\_*.py} in the \texttt{agentsg} repository, lib is \texttt{agentsg/\allowbreak tests/\allowbreak test\_strain\_closure.py}, and bench names a script in \texttt{manuscript/benchmark}. The checks were run with Python 3.13.16, NumPy 2.5.3, SciPy 1.18.1 and cctbx-base 2025.11, and the comparisons with cctbx, SELLA (CmdSella) and the NCDist/CS6Dist libraries; the checks z24, z25 and z42 are skipped when their external data are absent, and none of the numbers of the paper rests on them; the PDB scripts need the Zenodo snapshot (doi:\allowbreak 10.5281/\allowbreak zenodo.22986222) in \texttt{data/}.\par}
 
+\emph{Formal proofs.} The Lean development in \texttt{manuscript/\allowbreak formal} builds with Lean 4.35.0 and Mathlib release v4.35.0 (\texttt{lake build}). Its data file is generated from \texttt{universal\_\allowbreak operators\_\allowbreak columns.json} and records the file's SHA-256 hash, which \texttt{check\_data.py} recomputes. \texttt{audit/\allowbreak axioms.lean} prints the axioms of each headline theorem: the completeness of $\mathcal U$ (\texttt{arrow\_\allowbreak mem\_U}), its converse (\texttt{U\_arrow}) and the dependence on the zero pattern (\texttt{arrow\_\allowbreak zero\_\allowbreak pattern}) rest on the standard axioms (\texttt{propext}, \texttt{Classical.\allowbreak choice}, \texttt{Quot.\allowbreak sound}) and on one compiled evaluation each (\texttt{native\_decide}); Lemma~A1 of the main text, the shortest-partial-sum lemma, Propositions~A10 and A9(i) and A11(i)--(ii) rest on the standard axioms alone. AXIOMS_PLACEHOLDER
+
+\emph{Certified radii.} The depth of a superbase $F$ with conorms $q$ under the metric is the least strain norm $\|r\|_M$ of a change $r\ge-q$ of its conorms, with $M$ the strain norm in the frame of $F$ ($r^{\mathsf T}Mr=\mathrm{tr}(\Gmet^{-1}\Delta\Gmet\,\Gmet^{-1}\Delta\Gmet)$). For any multipliers $\lambda\ge0$ with $c=-\lambda\cdot q>0$ the depth is at least $c/(\lambda^{\mathsf T}M^{-1}\lambda)^{1/2}$, by weak duality, and any $r$ with $q+r\ge0$ whose metric is positive definite bounds it from above. \texttt{certify\_radii.py} evaluates the balls of Lemma~A6 and the conorm test of Proposition~A4 exactly, so that every superbase within the cap is among its candidates, proves a lower bound for every candidate outside the layer and an upper bound for the nearest, all in rational arithmetic; floating point only proposes $\lambda$ and $r$. The certificates are for the reduced conorms as stored in double precision, read as exact rationals, which agree with the cells of Table~8 to about 15 digits.
+
+\emph{Timings.} On a tenth of the benchmark, widening a reference took a median of $0.02$\,s and reindexing one new cell $0.03$\,s ($90$th percentiles $0.03$ and $0.12$\,s); a $150\times120\times4.8$\,\Ang\ plate took $0.9$\,s to widen. A $300\times300\times3$\,\Ang\ plate takes about a minute to widen and its $r_1$ several minutes, and thinner cells are refused by the cap on the ball. A vectorised lookup of $\mathcal U$ for one new cell, reductions included, takes about $0.04$\,s (\texttt{adjacency\_radii.py}).
+
 \begin{table}
 \caption{The checks behind each part of the main text.}
 \label{tab:checks}
@@ -485,15 +497,15 @@ main text & checks \\
 \S3.1 counts of superbases and objects & z54, z56 \\
 \S3.2, Table~3, Fig.~1 & z46 (the ring, the action of $2/m$, the word $ab.bc.db$) \\
 \S3.3, Table~4 & z52 (6096, inversion, window, nine kinds), z56 (every window member in $\mathcal U$, entries by zero pattern; about 25\,min); bench: \texttt{face\_labellings.py}, \texttt{export\_universal\_operators.py} \\
-\S3.4, Table~5 & z59 (balls, layers of 127 and 2755), z60 (twofold price from obliquity, Lemma~A8, Proposition~A10); bench: \texttt{lookup\_plate\_case.py} \\
+\S3.4, Table~5 & z59 (balls, layers of 127 and 2755), z60 (twofold price from obliquity, Lemma~A7, Proposition~A10); bench: \texttt{lookup\_plate\_case.py} \\
 \S3.5, Table~6 & z52, z56 ($[-2,2]$ labelling), z58, z59 (brute force) \\
 \S4.1--4.2, Table~7 & z59 (filtered layer), z44, z45 (difference-wall members, walks); lib (reindexing, scale bound, volume check, centring and input checks, the column form of $\mathcal U$, classes) \\
 \S4.3--4.4 & bench: \texttt{make\_benchmark.py}, \texttt{window\_failures.py}, \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_band\_controls.py} \\
 \S5.1 & z60 (Proposition~A11 near oP); bench: \texttt{niggli\_types.py}, \texttt{niggli\_presentation.py} \\
-\S5.2, Fig.~2, Table~8 & z60 (depths, growth of the set), z57, z58, z59; bench: \texttt{adjacency\_radii.py}, \texttt{evaluate\_strain.py}, \texttt{lookup\_benchmark.py}, \texttt{window\_failures.py} \\
+\S5.2, Fig.~2, Table~8 & z60 (depths, growth of the set), z57, z58, z59; bench: \texttt{adjacency\_radii.py}, \texttt{certify\_radii.py}, \texttt{evaluate\_strain.py}, \texttt{lookup\_benchmark.py}, \texttt{window\_failures.py}, \texttt{niggli\_window.py} \\
 \S5.3, Table~9 & lib, z60 (classes, prices, centred references); bench: \texttt{coset\_rank.py} \\
-\S5.4, Fig.~3, Table~10, Tables~\ref{tab:pdbsort}, \ref{tab:pdbtrans} & bench: \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_band\_controls.py}, \texttt{pdb\_lepage.py}, \texttt{pdb\_lepage\_null.py}, \texttt{pdb\_pricing\_summary.py} (need the Zenodo snapshot) \\
-Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9, A10, A11) \\
+\S5.4, Fig.~3, Table~10, Tables~\ref{tab:pdbsort}, \ref{tab:pdbtrans} & bench: \texttt{pdb\_nonisomorphism.py}, \texttt{pdb\_band\_controls.py}, \texttt{pdb\_lepage.py}, \texttt{pdb\_lepage\_null.py}, \texttt{pdb\_pricing\_summary.py}, \texttt{pdb\_band\_uncertainty.py} (need the Zenodo snapshot) \\
+Appendix~A & z44 (A1), z56 (A2), z53 (A5), z59 (A6, A8), z60 (A7, A9, A10, A11); \texttt{manuscript/formal} (Lean) \\
 \S\ref{si:spectrum}, Figs~\ref{fig:sortgraph}, \ref{fig:lyso}, Tables~\ref{tab:lepage}, \ref{tab:conograph} & z58, z60, z51; bench: \texttt{lepage\_calibration.py}, \texttt{compare\_sella.py} \\
 \S S4 & z36, z44 (Lemma~S4.4), z45, z46, z47, z55, z57 \\
 \S\ref{si:sorts}, Table~\ref{tab:sorts} & z53, z54, z46, z49 (Table~\ref{tab:shapes}), z50 (Table~\ref{tab:special}) \\
@@ -503,11 +515,7 @@ Appendix~A & z56 (A1), z44 (A2), z53 (A5), z59 (A6, A7), z60 (A8, A9, A10, A11) 
 \end{footnotesize}
 \end{table}
 
-\begin{figure}
-\includegraphics[width=0.9\textwidth]{figures/figS2_sort_graph_lysozyme.pdf}
-\caption{The 24 Delone sorts as a graph for a tetragonal lysozyme cell ($79.1\times79.1\times37.9$\,\Ang) indexed in $P1$ with an added error, drawn as Fig.~\ref{fig:sortgraph}. The twelve sorts from aP to tP lie within $0.22\%$; every other sort is at least $25\%$ away (grey).}
-\label{fig:lyso}
-\end{figure}
+
 
 %==============================================================================
 \section{Existing searches on the same cases}
@@ -538,6 +546,48 @@ lattice-symmetry pipeline & 779/780 & 56/60 & 54/60 & 60/60 & 171/171 & 126/129 
 \end{tabular}
 \end{footnotesize}
 \end{table}
+
+
+%==============================================================================
+\section{Uncertainty of the PDB statistics, chance, and the Niggli window}
+\label{si:pdbstats}
+%==============================================================================
+
+\emph{Intervals.} Table~\ref{tab:bootstrap} gives block-bootstrap 95\% intervals for the percentiles of Table~10 of the main text: the deposition blocks (runs of id-adjacent pairs) are resampled with replacement, 1000 times, which keeps the correlation within a deposition series. The shares of entries with an alternative within the band have intervals of about $\pm0.2$ points with one band and $\pm0.4$ points with the band of the entry's own type, where a type with fewer than 200 blocks uses the pooled band (\texttt{pdb\_band\_uncertainty.py}).
+
+\begin{table}
+\caption{Non-isomorphism in the PDB by reported Bravais type with block-bootstrap 95\% intervals (cut $20\%$, identity as the operator, price after the scale fit, \%). $^a$Fewer than 200 deposition blocks; the pooled band stands in for these types in the shares of the main text, and the cubic rows are zero by construction.}
+\label{tab:bootstrap}
+\begin{footnotesize}
+\begin{tabular}{lrrlll}
+\toprule
+type & pairs & blocks & median & 90th & 95th \\
+\midrule
+aP & 902 & 535 & 2.06 (1.82--2.27) & 7.66 (6.40--9.46) & 11.68 (9.76--13.70) \\
+mP & 7\,077 & 3\,277 & 1.27 (1.21--1.33) & 5.38 (5.01--5.84) & 9.02 (8.21--9.78) \\
+mC & 4\,932 & 1\,977 & 1.49 (1.41--1.59) & 5.06 (4.73--5.49) & 8.40 (7.16--9.23) \\
+oP & 13\,615 & 5\,987 & 1.11 (1.07--1.14) & 4.70 (4.46--4.95) & 7.43 (7.06--7.81) \\
+oS & 2\,271 & 1\,108 & 1.01 (0.94--1.08) & 3.57 (3.32--4.01) & 5.50 (4.96--6.14) \\
+oI & 1\,353 & 574 & 1.22 (1.07--1.39) & 5.12 (4.28--6.16) & 7.91 (6.40--9.15) \\
+oF$^a$ & 31 & 22 & 1.99 (1.23--3.10) & 5.87 (3.39--8.28) & 7.54 (4.48--8.95) \\
+tP & 5\,174 & 2\,061 & 0.52 (0.48--0.57) & 2.59 (2.36--2.85) & 4.00 (3.61--4.41) \\
+tI & 805 & 416 & 0.65 (0.53--0.78) & 2.76 (2.28--3.34) & 4.91 (3.61--6.03) \\
+hR & 1\,270 & 597 & 0.68 (0.61--0.79) & 3.54 (3.10--3.94) & 5.86 (4.59--6.71) \\
+hP & 6\,817 & 3\,167 & 0.57 (0.53--0.62) & 2.87 (2.65--3.04) & 4.56 (4.22--4.95) \\
+cP$^a$ & 363 & 178 & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) \\
+cI$^a$ & 385 & 194 & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) \\
+cF$^a$ & 211 & 106 & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) & 0.00 (0.00--0.00) \\
+all & 45\,222 & 20\,206 & 0.98 (0.96--1.00) & 4.21 (4.09--4.33) & 6.72 (6.52--6.98) \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\emph{Against chance.} Shuffling the free cell parameters independently among the entries of one space group keeps their distributions and destroys any relation between them; shuffling within twenty classes of cell volume keeps cells of one size together. At Le Page's $3^\circ$ the real rate exceeds both shuffled ones for $P1$ ($42$--$45\%$ against $30$--$41\%$) and $P2_12_12_1$ ($23$--$24\%$ against $13$--$17\%$), whose real cells are more often pseudo-tetragonal, exceeds them slightly for $P2_1$ ($46\%$ against $39$--$44\%$), and matches them for $C2$ and $P2_12_12$. Near-exact pseudo-symmetry is not chance: the share whose cheapest alternative costs at most $1\%$ is $10$--$11\%$ for real $P1$ cells against $2$--$4\%$ shuffled, and $9\%$ against $5$--$6\%$ for $P2_1$ (intervals about $\pm1$ point). At $4.2\%$ the excess remains for $P1$ ($16\%$ against $6$--$10\%$) but not clearly for $P2_1$ ($18\%$ against $13$--$18\%$, intervals about $\pm2$ points), and mP entries carry much of the share within $4.2\%$ (two draws of 1500 cells per arm; \texttt{results\_\allowbreak pdb\_\allowbreak lepage\_\allowbreak null.txt}).
+
+\emph{The crystal-form proxy.} Random pairs of entries with one space group whose identifiers do not share their first three characters, drawn with the space-group mix of the id-adjacent pairs, pass the $20\%$ cut in $1.5\%$ of 19\,986 cases ($0.75\%$ at $5\%$; \texttt{pdb\_\allowbreak proxy\_\allowbreak check.py}). Unrelated crystals rarely pass the cut by chance, so the movement of the percentiles with the cut reflects variation within deposition series rather than unrelated pairs.
+
+\emph{The Niggli window.} \texttt{niggli\_window.py} draws 100 lattices on each of the 38 faces (half of them anisotropic, edge ratios up to about 30) and on each of the 24 sorts, measures each twice with independent errors of total strain $0.5$, $2$, $5$ and $7.7\%$, the new cell in a random basis, and computes the true operator between the two Niggli cells (cctbx) and between the two Selling-reduced cells directly. Between Niggli cells its entries were in $\{-1,0,1\}$ in all 24\,800 cases, strictly and not only up to the lattice's point group, and in 3\,040 further cases with edge ratios up to about 60; between Selling-reduced cells an entry of 2 or 3 was needed in 3\,765 cases (on two zeros sharing a vector, three zeros, and the sorts cP, tP and oP) and in none once composed with the point group.
 
 \begin{references}
 \reference{Andrews, L. C. \& Bernstein, H. J. (1988). \emph{Acta Cryst.} A\textbf{44}, 1009--1018.}
