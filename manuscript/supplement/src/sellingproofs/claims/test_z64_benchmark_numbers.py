@@ -800,7 +800,7 @@ def test_reproduce_niggli_window():
     _same(open(os.path.join(d, "results_niggli_window.txt")).read(), "results_niggli_window.txt")
 
 
-@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx", "slow"))
+@claim("z64", "main §5.2", "SI §S9", kind="reproduce", needs=("cctbx",))
 def test_reproduce_niggli_window_thin():
     """niggli_window.py thin regenerates results_niggli_window_thin.txt identically."""
     out, d = _run("niggli_window.py", "thin")
@@ -845,7 +845,7 @@ def test_reproduce_adjacency_radii():
     _same(out, "results_adjacency_radii.txt", drop=(r"\d+(\.\d+)? (s|ms)\b",))
 
 
-@claim("z64", "SI Table S11", kind="reproduce", needs=("slow",))
+@claim("z64", "SI Table S11", kind="reproduce", needs=("cctbx", "slow"))
 def test_reproduce_lepage_calibration():
     """lepage_calibration.py 25 regenerates results_lepage_calibration.txt and
     lepage_calibration.jsonl identically."""
