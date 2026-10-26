@@ -502,10 +502,16 @@ def test_crystal_form_proxy():
 
 # --- the reproduce claims: rerun the scripts -----------------------------------------------
 
-def _run(script: str, tmp, *args, timeout=4 * 3600) -> str:
-    env = dict(os.environ, SELLINGPROOFS_OUT=str(tmp), SELLINGPROOFS_DATA=str(paths.DATA),
+def _run(script: str, tmp, *args, timeout=4 * 3600, out=True) -> str:
+    """run a benchmark script with its outputs in tmp (out=False: read and write the deposited
+    directory, for a script that only reads a deposited file and prints)."""
+    env = dict(os.environ, SELLINGPROOFS_DATA=str(paths.DATA),
                PYTHONPATH=os.pathsep.join([str(paths.REPO / "agentsg" / "src"), str(paths.SUPPLEMENT / "src"),
                                            os.environ.get("PYTHONPATH", "")]))
+    if out:
+        env["SELLINGPROOFS_OUT"] = str(tmp)
+    else:
+        env.pop("SELLINGPROOFS_OUT", None)
     r = subprocess.run([sys.executable, str(paths.BENCH / script), *args], cwd=tmp, env=env,
                        capture_output=True, text=True, timeout=timeout)
     assert r.returncode == 0, r.stderr[-3000:]
@@ -567,7 +573,7 @@ def test_reproduce_pdb_lepage_tables(tmp_path):
     """pdb_lepage.py --table on the deposited pdb_lepage.jsonl prints the tables of
     results_pdb_lepage.txt exactly (the file's leading progress counters, written by the full
     run, are not part of the table)."""
-    out = _run("pdb_lepage.py", tmp_path, "--table")
+    out = _run("pdb_lepage.py", tmp_path, "--table", out=False)
     dep = _read("results_pdb_lepage.txt").split("\n")
     while dep and re.fullmatch(r"\d+", dep[0]):
         dep = dep[1:]

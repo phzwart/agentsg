@@ -840,9 +840,9 @@ def test_reproduce_certified_radii():
 @claim("z64", "main §5.2", "SI §S7", kind="reproduce", needs=("pdb", "slow"))
 def test_reproduce_adjacency_radii():
     """adjacency_radii.py regenerates results_adjacency_radii.txt, apart from wall-clock
-    times (every number followed by 's' or 'ms')."""
+    times (every number followed by 's' or 'ms', and the 90th percentiles of the timings)."""
     out, _ = _run("adjacency_radii.py")
-    _same(out, "results_adjacency_radii.txt", drop=(r"\d+(\.\d+)? (s|ms)\b",))
+    _same(out, "results_adjacency_radii.txt", drop=(r"\d+(\.\d+)? (s|ms)\b", r"\(90th [\d.]+\)"))
 
 
 @claim("z64", "SI Table S11", kind="reproduce", needs=("cctbx", "slow"))
