@@ -22,8 +22,16 @@
 \newcommand{\Lay}{\mathcal{N}}
 \newcommand{\dist}{D}
 
+% The two-column Acta style sets a section heading with \vskip-\baselineskip and a
+% \noindent, so the first line of text overprints the heading; restore the space.
+\makeatletter
+\let\iucr@section\section
+\renewcommand{\section}[1]{\iucr@section{#1}\par\vspace{0.9\baselineskip}}
+\makeatother
+
 \begin{document}                  % DO NOT DELETE THIS LINE
 \emergencystretch=2em
+\raggedbottom\raggedcolumns
 
 \title{The Selling closure: a complete operator set for reindexing, and the price of pseudo-symmetry}
 \shorttitle{The Selling closure}
@@ -47,8 +55,6 @@ The reduced cells of a lattice and the integer matrices between them form a grou
 %==============================================================================
 \section{Introduction}
 
-%==============================================================================
-
 Take a primitive monoclinic lattice with $a=30$, $b=40$, $c=50$\,\Ang\ and $\beta=100^\circ$. Its Selling-reduced cell has two right angles between vectors of the reduced superbase, and a measured cell lies slightly to one side or the other of each. One data set therefore reduces to the cell $30$, $40$, $50$\,\Ang, $\beta=100^\circ$, and another, equally correctly, to $30$, $40$, $53.7$\,\Ang, $\beta=113.4^\circ$, built on $a$ and $a+c$ (Section~\ref{sec:example}). The matrix between the two is not a symmetry of the lattice. A program that reports the Niggli cell meets the same multiplicity in another form: the cell on $a$ and $a+c$ is never a Niggli cell, but at each right angle the Niggli cell changes between its two types, with three acute or no acute angles (Gruber, 1973; Andrews \emph{et al.}, 1980), and two measurements of one crystal can be reported in Niggli cells related by a matrix that is not a symmetry either. Data-processing programs find such matrices by trying a list: small integer matrices between the two reduced cells, the matrices that unit-cell similarity searches generate (Grosse-Kunstleve \emph{et al.}, 2002), or the operations of the lattice group found by a symmetry search (Le Page, 1982; Sauter \emph{et al.}, 2004). On ordinary cases these searches succeed. This paper asks which integer matrices can relate two reduced cells, how to enumerate every candidate within a stated tolerance, and how to price the pseudo-symmetric alternatives that a search returns.
 
 The multiplicity has a classical description. A superbase is four lattice vectors summing to zero; it is obtuse, or Selling-reduced, when all six pairwise dot products are non-positive (Selling, 1874; Conway \& Sloane, 1992), and the obtuse superbase is unique except when a dot product vanishes (Delaunay, 1933). Kurlin (2022) listed all obtuse superbases of each Voronoi type. Delone's 24 sorts classify lattices by the zeros and equalities among the six dot products (Delone \emph{et al.}, 1975; Andrews \& Bernstein, 2023). The $S^6$ representation treats the six numbers as a point of a six-dimensional space, with boundary transformations between the reduced presentations of a lattice, and underlies the distances CS6Dist and NCDist and the Bravais-type determination of SELLA (Andrews \emph{et al.}, 2019\emph{b}, 2023; Andrews \& Bernstein, 2014); that a boundary transformation at a zero component carries one reduced presentation to another is noted there (Andrews \emph{et al.}, 2023, Section~6.3). The present paper does not work in $S^6$: it works with the reduced superbases themselves, the integer matrices between them, and distances between metric tensors that are the same in every basis. Oishi-Tomiyasu (2012, 2024) gives error-stable Bravais-lattice determination in Selling coordinates with a provably sufficient list of basis transforms. The instability of the Niggli cell (Andrews \emph{et al.}, 1980; Andrews \& Bernstein, 1988, 2014) is the same multiplicity seen from the Niggli side, and the operators between two settings of one lattice form a coset of its symmetries (Flack, 1987).
@@ -66,8 +72,6 @@ Section~\ref{sec:background} collects the classical definitions, Section~\ref{se
 
 %==============================================================================
 \section{Background}\label{sec:background}
-
-%==============================================================================
 
 \subsection{Superbases, conorms and the metric tensor}
 \label{sec:defs}
@@ -173,8 +177,6 @@ non-isomorphism & the price between two crystals of one form & \ref{sec:band} \\
 %==============================================================================
 %==============================================================================
 \section{Theory}\label{sec:closure}
-
-%==============================================================================
 
 \subsection{Definition}
 \label{sec:groupoid-def}
@@ -333,8 +335,6 @@ the layers of 127 and 2755 superbases; the largest entries after relabelling; Le
 %==============================================================================
 \section{Methods}\label{sec:measured}
 
-%==============================================================================
-
 All methods are implemented in the module \texttt{agentsg.\allowbreak cell.\allowbreak strain\_closure} of \texttt{agentsg} (Zwart, 2026), version 0.5.0; the test cases and the PDB analysis are scripts in the same repository (supporting information, Section~S2).
 
 \subsection{Computing the widened set}
@@ -385,8 +385,6 @@ The band is a tolerance on how much two measurements of one crystal may differ. 
 
 %==============================================================================
 \section{Results}\label{sec:results}
-
-%==============================================================================
 
 \subsection{Where reduction reaches large entries}
 \label{sec:operators-results}
@@ -501,8 +499,6 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 %==============================================================================
 \section{Discussion}\label{sec:discussion}
 
-%==============================================================================
-
 \emph{Completeness.} The result of this paper is a statement of when a candidate set is complete. The operators between reduced cells of any lattice lie in one finite set; for a measured cell, the reduced cells within a tolerance are finite and are enumerated exactly; and the candidates within a price band are therefore all found, grouped into classes that differ by pseudo-symmetries whose price is known. The searches that programs use, from unit-cell similarity searches to lattice-symmetry pipelines, find the true operator in ordinary cases; on the cases tested here the $\{-1,0,1\}$ window between Niggli cells and the cctbx similarity search found it in every case, and our re-implementation of the lattice-symmetry pipeline missed 19 of 1560 (Section~\ref{sec:complete}). The theory says why a fixed list can work: below the adjacency radius every candidate is one of the 6096 matrices of $\mathcal U$, so any fixed list that contains their images has the same reach there, and between Niggli cells those images were always within $\{-1,0,1\}$; beyond the radius, and wherever such an observation is not enough, the enumeration supplies what a fixed list cannot promise.
 
 \emph{A groupoid, and bounds.} The exact closure is the part of the action groupoid of $GL_3(\mathbb Z)$ on metrics that sits on reduced cells (Weinstein, 1996): its loops are point groups, the arrows between two objects form a coset, and all of them are computed once, as $\mathcal U$, the neighbours of Voronoi's principal domain (Voronoi, 1908; Sch\"urmann, 2009). A measured cell has no groupoid of its own, only near-symmetries that need not compose within the tolerance; they are the sublevel sets of a displacement, finite because the action is properly discontinuous, and bounded on both sides by the closure of the nearest symmetric lattice (Proposition~A10(v)). Thin cells lie far out in the cusps of the space of lattices, where a shear that adds a short vector to a long one moves the metric very little; the number of near-symmetries there has no bound independent of the cell, which is why the ball of Lemma~A6 grows for needles and plates at large bands.
@@ -517,8 +513,6 @@ cF & 211 & 0.00 & 0.00 & 0.00 & --- \\
 
 %==============================================================================
 \section{Conclusions}
-
-%==============================================================================
 
 The reduced cells of a lattice and the integer matrices between them form a groupoid whose arrows, for every lattice, lie in one set of 6096 matrices; that completeness, its converse and the dependence on the zero pattern alone are machine-checked. For a measured cell the reduced cells within a strain tolerance are enumerated exactly, so reindexing returns every proper operator within a stated price band, and prices, as displacements, place the candidates between cosets of the near-symmetries, bounded by the closure of the nearest symmetric lattice. In practice (Table~\ref{tab:algorithm}): widen each reference once at the chosen band, Selling-reduce each new data set once, group the candidates by the Laue group, and read each class's price against the non-isomorphism of its Bravais type (Table~\ref{tab:noniso}). The default band of $7.4\%$ covers non-isomorphism for most pairs but left the identity, the proxy for the true operator, outside for $4\%$ of real pairs of one crystal form; a band of $9.9$ to $14.8\%$ reproduces the alternatives that lattice-symmetry searches test, and within the band the intensities decide.
 
