@@ -371,9 +371,9 @@ SAMPLES_S5 = [  # name, BLDConograph distance (A^2), printed A^2, printed %
     ("1339prbasrcuo_bs1", 0.05641, 0.056, 0.10),
     ("sample3", 2.0738, 2.07, 0.78),
     ("CeO2_matsushita", 0.084427, 0.084, 0.61),
-    ("M402-pf-119673", 20.549, 20.5, 5.27),
-    ("Acrinol-B-D8CuKa1", 0.71525, 0.72, 0.36),
-    ("Alumina676", 1.9315, 1.93, 8.10),
+    ("M402-pf-119673", 20.549, 20.5, 5.28),
+    ("Acrinol-B-D8CuKa1", 0.71525, 0.72, 0.35),
+    ("Alumina676", 1.9315, 1.93, 8.11),
 ]
 
 
@@ -387,9 +387,7 @@ def test_table_s5_distance_columns():
         decimals = len(repr(a2).split(".")[1])
         assert round(dist, decimals) == a2, name
         L = np.array(cells[name][:3])
-        # the printed % agrees with the printed (rounded) A^2 value to its last digit; from the
-        # unrounded distance it is 5.28 for M402-pf-119673 and 8.11 for Alumina676
-        assert abs(100 * dist / np.mean(L ** 2) - pct) < 0.0151, (name, 100 * dist / np.mean(L ** 2))
+        assert round(100 * dist / np.mean(L ** 2), 2) == pct, (name, 100 * dist / np.mean(L ** 2))
 
 
 @claim("z66", "SI §S4, From a metric error to a band", kind="exhaustive")
@@ -460,7 +458,8 @@ TABLE_S1 = {
     "A2": (([2500, 400, 1200, 0, 1600, 900], "conorms"), [(1, (36.1, 60.8, 64.0, 114.3, 90, 114.2)),
                                                             (1, (36.1, 56.6, 64.0, 116.2, 90, 101.3))]),
     "A3": (([2500, 400, 0, 0, 1600, 900], "conorms"), [(1, (36.1, 50, 53.9, 90, 101.9, 119.9)),
-                                                         (1, (44.7, 50, 53.9, 90, 99.6, 135.7))]),
+                                                         (1, (44.7, 50, 53.9, 90, 99.6, 135.7)),
+                                                         (1, (36.1, 44.7, 58.3, 90, 115.3, 104.4))]),
 }
 _PERMS = [[{e: n for n, e in enumerate(SL)}[tuple(sorted((g[a], g[b])))] for a, b in SL]
           for g in itertools.permutations(range(4))]
