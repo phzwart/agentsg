@@ -1,0 +1,5 @@
+45222 pairs of one crystal form (cut 20 %)
+band 7.4 %: 95.67 % of pairs within; 4.33 % beyond (median price of those 10.7 %)
+band 9.9 %: 97.46 % of pairs within; 2.54 % beyond (median price of those 12.8 %)
+band 14.8 %: 99.37 % of pairs within; 0.63 % beyond (median price of those 16.4 %)
+pooled 97.5th / 99th percentile: 9.97 % / 13.55 %
