@@ -37,7 +37,7 @@ THEOREMS = [
      {"U_swaps"}),
     ("U_inv", ("main §3.3",), "U is closed under inversion.", {"U_inv"}),
     ("excess_identity", ("main Lemma A1",), "Lemma A1, the class excess identity.", set()),
-    ("partial_shortest", ("main Appendix A, Terms",),
+    ("partial_shortest", ("SI §S12, Terms",),
      "The partial sums of an obtuse superbase are shortest in their parity classes.", set()),
     ("price_mul", ("main Proposition A10(i)",), "Prices are subadditive under products.", set()),
     ("price_inv", ("main Proposition A10(i)",), "A self-map and its inverse have the same price.", set()),

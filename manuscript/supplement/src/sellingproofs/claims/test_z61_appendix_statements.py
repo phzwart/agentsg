@@ -75,7 +75,7 @@ def _superbase_conorms(B, G):
 
 # (i) Terms ---------------------------------------------------------------------------
 
-@claim("z61", "main Appendix A, Terms", kind="sampled")
+@claim("z61", "SI §S12, Terms", kind="sampled")
 def test_obtuse_iff_partial_sums_are_shortest():
     r"""A superbase is obtuse exactly when each of its seven partial sums is a shortest vector of its parity class."""
     rng = np.random.default_rng(61)
@@ -96,7 +96,7 @@ def test_obtuse_iff_partial_sums_are_shortest():
     assert n_obtuse >= 40 * 48 and n_not >= 1000
 
 
-@claim("z61", "main Appendix A, Terms", kind="sampled")
+@claim("z61", "SI §S12, Terms", kind="sampled")
 def test_zero_conorm_gives_two_shortest_pairs_and_the_flip():
     r"""At a zero conorm a.b = 0 the class of a+b has the shortest pairs +-(a+b) and +-(a-b), and the flip at ab gives an obtuse superbase whose partial sum there is b-a."""
     rng = np.random.default_rng(62)
@@ -289,7 +289,7 @@ def test_type_ii_niggli_bound_on_d():
             assert all(pd > q for pd in p[:3] for q in off)
 
 
-@claim("z61", "main Appendix A, the enumeration", "main §3.3", kind="exhaustive")
+@claim("z61", "main Appendix A, the enumeration", "SI §S12", "main §3.3", kind="exhaustive")
 def test_first_layer_counted_by_hand():
     """The 127 superbases of the first layer, pattern by pattern: the reduced cell, one new
     superbase for each of the 6 single zeros, 3 for each of the 12 pairs sharing a vector and
