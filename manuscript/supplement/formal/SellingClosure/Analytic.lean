@@ -312,4 +312,58 @@ theorem arrow_zero_pattern (p p' : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s) (hp' :
   have : p s = 0 := by simpa [suppOf] using hs
   exact (hsupp s).mp this
 
+/-! ## A lattice's conorms have connected support -/
+
+/-- The seven partial sums of the reduced superbase, in coordinates. -/
+def unitPartials : List V3 := partials (1, 0, 0) (0, 1, 0) (0, 0, 1)
+
+/-- If a support is not connected, some partial sum of the reduced superbase has zero
+coordinate difference on every slot of the support (a finite check over the 64 supports). -/
+theorem disconn_witness : ∀ b₀ b₁ b₂ b₃ b₄ b₅ : Bool,
+    let S := ofBits b₀ b₁ b₂ b₃ b₄ b₅
+    (isConn S || unitPartials.any fun x => (List.finRange 6).all fun s => !S s || diff x s == 0)
+      = true := by
+  decide
+
+/-- **The conorms of a lattice have connected support.** If the metric is positive definite on
+the lattice (every non-zero integer vector has positive squared length), the support of its
+conorms connects the four vectors of the reduced superbase. -/
+theorem conn_of_posdef (p : Fin 6 → ℝ) (hpos : ∀ x : V3, x ≠ (0, 0, 0) → 0 < dot p x x) :
+    isConn (suppOf p) = true := by
+  by_contra hc
+  have h := disconn_witness (suppOf p 0) (suppOf p 1) (suppOf p 2) (suppOf p 3) (suppOf p 4)
+    (suppOf p 5)
+  simp only [ofBits_eta, Bool.eq_false_iff.mpr hc, Bool.false_or, List.any_eq_true] at h
+  obtain ⟨x, hx, hall⟩ := h
+  have hx0 : x ≠ (0, 0, 0) := by
+    simp only [unitPartials, partials, vadd, List.mem_cons, List.not_mem_nil, or_false] at hx
+    rcases hx with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide
+  have hzero : dot p x x = 0 := by
+    unfold dot
+    apply Finset.sum_eq_zero
+    intro s _
+    have hs := List.all_eq_true.mp hall s (List.mem_finRange s)
+    by_cases hps : p s = 0
+    · simp [hps]
+    · have hS : suppOf p s = true := by simp [suppOf, hps]
+      simp only [hS, Bool.not_true, Bool.false_or, beq_iff_eq] at hs
+      simp [hs]
+  linarith [hpos x hx0]
+
+/-- **Completeness of 𝒰 for every lattice.** `arrow_mem_U` with positive definiteness in place
+of the connected support. -/
+theorem arrow_mem_U_of_posdef (p : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s)
+    (hpos : ∀ x : V3, x ≠ (0, 0, 0) → 0 < dot p x x)
+    (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
+    (hob : Obtuse p W) : W ∈ U :=
+  arrow_mem_U p hp (conn_of_posdef p hpos) W hdet hob
+
+/-- **Arrows depend only on the zero pattern, for every lattice.** -/
+theorem arrow_zero_pattern_of_posdef (p p' : Fin 6 → ℝ) (hp : ∀ s, 0 ≤ p s)
+    (hp' : ∀ s, 0 ≤ p' s) (hsupp : ∀ s, (p s = 0 ↔ p' s = 0))
+    (hpos : ∀ x : V3, x ≠ (0, 0, 0) → 0 < dot p x x)
+    (W : Op) (hdet : det W.1 W.2.1 W.2.2 = 1 ∨ det W.1 W.2.1 W.2.2 = -1)
+    (hob : Obtuse p W) : Obtuse p' W :=
+  arrow_zero_pattern p p' hp hp' hsupp (conn_of_posdef p hpos) W hdet hob
+
 end SellingClosure

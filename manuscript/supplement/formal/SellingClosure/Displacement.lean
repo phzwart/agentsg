@@ -103,6 +103,20 @@ theorem H_sub_H (x x₀ : X) (ε : ℝ) (g : G) (hg : g ∈ H x ε) :
     _ = dist x (g • x) + 2 * dist x x₀ := by rw [dist_smul, dist_comm x₀ x, dist_comm x x₀]; ring
     _ ≤ ε + 2 * dist x x₀ := by linarith
 
+/-- A10(v), the equality: if the nearby metric `x₀` has no self-map outside its stabiliser of
+price at most `ε + 2δ`, and `ε ≥ 2δ`, the self-maps of `x` of price at most `ε` are exactly the
+symmetries of `x₀`. -/
+theorem H_eq_stab (x x₀ : X) (ε : ℝ) (hε : 2 * dist x x₀ ≤ ε)
+    (hgap : ∀ g : G, price x₀ g ≤ ε + 2 * dist x x₀ → g • x₀ = x₀) (g : G) :
+    g ∈ H x ε ↔ g • x₀ = x₀ := by
+  constructor
+  · intro hg
+    exact hgap g (H_sub_H x x₀ ε g hg)
+  · intro hg
+    have := stab_sub_H x x₀ g hg
+    simp only [H, Set.mem_ofPred_eq]
+    linarith
+
 /-- A9(i), upper bound: a symmetry `g` of `x₀` displaces `x` by at most twice the distance
 from `x` to `x₀`. -/
 theorem price_le_two_dist_fixed (x x₀ : X) (g : G) (hg : g • x₀ = x₀) :

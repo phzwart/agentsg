@@ -24,3 +24,12 @@ open SellingClosure
 #print axioms Niggli.typeII_d_conorms
 #print axioms Niggli.typeII_separation
 #print axioms Niggli.typeI_no_orthogonal_obtuse
+#print axioms arrow_mem_U_of_posdef
+#print axioms arrow_zero_pattern_of_posdef
+#print axioms conn_of_posdef
+#print axioms H_eq_stab
+#print axioms U_length
+#print axioms U_nodup
+#print axioms U_entries
+#print axioms faces_count
+#print axioms swaps_length
