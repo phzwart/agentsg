@@ -185,19 +185,22 @@ def test_workflow_against_the_direct_form_on_the_test_cases():
     and all 24 centred cases, prices agreeing to 3e-12; members median 3 and at most 56;
     ordered bases median 72 and at most 1344; 5.9 % of them pass the necessary condition
     (median 4, at most 64); exact operators built 238 224 in the direct form and 5 797 in the
-    workflow, which is the number returned; about a twentieth of the time."""
+    workflow, which is the number returned; about a twentieth of the time (about 27 s against
+    1.3 s in the deposited run)."""
     t = _results()
     assert "the same set of operators in 780 of 780 cases" in t
     assert "the same set of operators in 24 of 24 cases" in t
     d = float(re.search(r"largest price difference ([\d.e+-]+)\n  members", t).group(1))
-    assert d < 5e-12
+    assert f"{d:.0e}" == "3e-12"
     assert "members: median 3, max 56" in t
     assert "ordered bases per case: median 72, max 1344" in t
     m = re.search(r"passing the necessary condition: median (\d+), max (\d+); ([\d.]+) %", t)
     assert (m.group(1), m.group(2), f"{float(m.group(3)):.1f}") == ("4", "64", "5.9")
     assert "exact operators built: direct form 238224, workflow 5797; distinct operators returned 5797" in t
+    sec = re.search(r"seconds: direct form ([\d.]+), workflow ([\d.]+)", t)
+    assert (round(float(sec.group(1))), round(float(sec.group(2)), 1)) == (27, 1.3)   # SI Table S16
     f = float(re.search(r"\(factor (\d+)\)", t).group(1))
-    assert 10 <= f <= 40
+    assert 15 <= f <= 30                     # 'about a twentieth', from the deposited run
 
 
 @claim("z67", "SI §S10", kind="reproduce", needs=("slow",))

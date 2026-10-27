@@ -207,6 +207,33 @@ def superbases(Z):
     return tuple(obtuse), total, agree
 
 
+@lru_cache(maxsize=None)
+def candidate_superbases(Z):
+    """Every superbase with all four vectors in V(Z), obtuse on Z or not (each unordered
+    superbase four times, once for each choice of v0)."""
+    V = class_shortest(Z)
+    Vs = {tuple(v) for v in V}
+    out = []
+    for t in itertools.combinations(range(len(V)), 3):
+        v1, v2, v3 = V[list(t)]
+        v0 = -(v1 + v2 + v3)
+        if tuple(v0) in Vs and abs(round(np.linalg.det(np.array([v1, v2, v3])))) == 1:
+            out.append((v0, v1, v2, v3))
+    return tuple(out)
+
+
+def landing_max_any_superbase(Z):
+    """The largest entry of the matrix from an ordered basis of any candidate superbase of Z,
+    obtuse or not, to a kept triple."""
+    kept = np.array(admissible(Z)[0], float)
+    big = 0
+    for F in candidate_superbases(Z):
+        for i, j, k in itertools.permutations(range(4), 3):
+            Bi = np.linalg.inv(np.array([F[i], F[j], F[k]]).T)
+            big = max(big, int(np.abs(np.rint(np.einsum("ij,njk->nik", Bi, kept))).max()))
+    return big
+
+
 def window_entries(Z):
     """The largest entry of B^-1 B' over all pairs of kept triples of Z, and the pair count."""
     kept = admissible(Z)[0]
@@ -291,7 +318,8 @@ def face_summary(Z) -> dict:
                 admissible=len(kept), certified=cert, uncertified=uncert, window_pairs=wpairs,
                 window_max=wbig, superbase_candidates=stot // 4, superbases=len(sk) // 4,
                 superbases_lp_agree=sagree,
-                landing_pairs=lpairs, landing_max=lbig, landing_matrices=mats)
+                landing_pairs=lpairs, landing_max=lbig, landing_matrices=mats,
+                landing_max_any=landing_max_any_superbase(Z))
 
 
 def summary(processes: int | None = None) -> list[dict]:

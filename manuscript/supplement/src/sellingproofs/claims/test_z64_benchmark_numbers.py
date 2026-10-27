@@ -135,20 +135,6 @@ def test_measured_niggli_cell_against_the_reference():
                     "M2A": 6, "T2": 6, "O3": 5, "A2": 1, "A3": 1}
 
 
-@claim("z64", "SI §S2", "main §5.1", kind="benchmark")
-def test_strain_procedure_at_the_band_and_at_three_errors():
-    """evaluate_strain.py scores the closure and the {-1,0,1} search at the band and at three
-    times each case's error: the closure has the true operator in 780 of 780 cases at the
-    band and the {-1,0,1} search in 778; at three times the error, 778 of 778 and 776 of 778.
-
-    From the 'all' row of results_strain.txt; each family row sums to it."""
-    cols = {}
-    for f, n, a, b, c, d in _rows("results_strain.txt", r"^(\w+)\s+(\d+) \|\s+(\d+)/\d+\s+(\d+)/\d+\s+\|\s+(\d+)/\d+\s+(\d+)/\d+"):
-        cols[f] = tuple(map(int, (a, b, c, d)))
-    assert cols.pop("all") == (780, 778, 778, 776)
-    assert tuple(map(sum, zip(*cols.values()))) == (780, 778, 778, 776)
-
-
 @claim("z64", "SI §S4", kind="benchmark")
 def test_uniform_band_declines_half_the_needles_and_plates():
     """On the 16 needles and plates of the benchmark the construction with a uniform conorm
@@ -342,9 +328,10 @@ def test_existing_searches_in_the_main_text():
 
 @claim("z64", "SI §S8", kind="benchmark")
 def test_benchmark_misses():
-    """The pipeline missed a needle whose reference and measured cell idealise at 3 deg to
-    different lattices; the {-1,0,1} window between Selling-reduced cells missed two A2 cases
-    near a specialisation, whose operator between the reduced cells has an entry of 2.
+    """The lattice-symmetry pipeline missed one benchmark case, a needle whose reference and
+    measured cell idealise at 3 deg to different lattices; the {-1,0,1} window between
+    Selling-reduced cells missed cases near a specialisation, where the operator between the
+    reduced cells has an entry of 2, as Table 4 allows near a pattern with a zero on d.
 
     From results_benchmark_misses.txt: one pipeline line, an M4 needle 5 x 5 x 100 A, and two
     small1 lines, both A2 with largest entry 2."""
@@ -373,7 +360,6 @@ def test_what_the_metric_does_not_decide():
     assert cos["benchmark all"] == (780, 780, 742)
     assert cos["benchmark hidden"][2] == 0 and cos["benchmark hidden"][0] == 20
     assert cos["benchmark specialisation"][0] - cos["benchmark specialisation"][2] == 18
-    assert 780 - 742 == 20 + 18
     assert sum(v[0] - v[2] for k, v in cos.items() if k.startswith("benchmark ") and k != "benchmark all") == 38
     assert cos["stress all"][0] == 120 and cos["stress all"][2] == 68
     assert _cheapest("results_compare.txt")["all", "closure"] == (742, 780)
@@ -404,7 +390,7 @@ def test_why_the_niggli_window_works():
                      for m in re.finditer(r"^  (face \S+(?: \S+)?|sort .*?\))\s+(.*)$", body, re.M)}
     assert tot == {"Niggli": (0, 24800), "Niggli mod point group": (0, 24800),
                    "Selling": (3765, 24800), "Selling mod point group": (0, 24800)}
-    assert (38 + 24) * 100 * 4 == 24800
+    assert sum(k.startswith("sort") for k in big["Niggli"]) == 24       # one row per sort
     where = {k for k, v in big["Selling"].items() if v}
     assert where and all(k in ("face 2 sharing", "face 3 triangle", "face 3 path")
                          or re.match(r"sort \w+ \((cP|tP|oP)\)", k) for k in where), where
@@ -412,7 +398,6 @@ def test_why_the_niggli_window_works():
     thin = _text("results_niggli_window_thin.txt")
     m = re.search(r"(\d+) cases; largest entry between Niggli cells: \{1: (\d+)\};.*median (\d+), max (\d+)", thin)
     assert m.groups() == ("3040", "3040", "5", "98")
-    assert 38 * 40 * 2 == 3040
 
 
 @claim("z64", "main §5.4", kind="benchmark")

@@ -169,7 +169,7 @@ CELLS = {                                        # (cell, delta_1, delta_2); 0.2
 }
 
 
-@claim("z59", "main Lemma A6", "main Remark A8", "main Table 8", "main §3.3", kind="exhaustive")
+@claim("z59", "main Lemma A6", "main Remark A8", "main Table 8", "main §5.1", kind="exhaustive")
 def test_ball_lemma_and_adjacency_radii():
     r"""The balls of Lemma A6 hold every member; the first layer has 127 superbases and the second 2755 up to relabelling; the adjacency radii of Table 8."""
     L = layers(2)
@@ -188,7 +188,7 @@ def test_ball_lemma_and_adjacency_radii():
                     assert float(u @ G @ u) <= bound * mu[tuple(int(x) % 2 for x in u)] * (1 + 1e-9), name
 
 
-@claim("z59", "main Remark A8", "main §4.3", kind="sampled")
+@claim("z59", "main Remark A8", "main §3.4", "main §5.1", kind="sampled")
 def test_adjacency_theorem_below_delta_and_its_failure_above():
     r"""Below r_1 the filtered lookup of U equals the widened set; above it the lookup can miss members, which the second layer contains."""
     for name, (make, delta, _) in CELLS.items():

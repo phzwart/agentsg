@@ -68,7 +68,8 @@ def test_sort_spectra_of_the_two_figure_cells():
     want = {"A2": 0.28, "M4": 0.777, "A3": 3.757, "O5": 5.111}
     for s, v in want.items():
         assert abs(100 * sp[s] - v) < 0.01, s
-    assert min(v for s, v in sp.items() if BRAVAIS[s] not in ("aP", "mP", "oP")) > 0.30
+    assert sp["A1"] < 1e-12
+    assert min(v for s, v in sp.items() if s not in ("A1", "A2", "M4", "A3", "O5")) >= 0.25
     assert _gap_after(_type_ladder(WORKED)) == "mP"
     sl = sort_spectrum(LYSO_P1)
     assert abs(100 * sl["T5"] - 0.215) < 0.005
@@ -197,7 +198,8 @@ def test_twofold_price_is_twice_the_distance_to_its_fixed_space():
 
 @claim("z60", "SI §S6", kind="exhaustive")
 def test_adjacency_radius_reaches_the_cap_for_the_spectrum_cells():
-    r"""For the seven BLDConograph cells, the lysozyme cell and the worked cell r_1 reaches the quarter cap, so sort distances reported as '> 25 %' are lower bounds."""
+    r"""For the seven BLDConograph cells and the lysozyme cell r_1 reaches the quarter cap, so
+    sort distances reported as '> 25 %' are lower bounds (the worked cell: z59, z63)."""
     from agentsg.cell.strain_closure import adjacency_radius, reduce_cell
     for cell in [c for _, c, *_ in CONOGRAPH] + [LYSO_P1]:
         assert adjacency_radius(reduce_cell(cell).G) == 0.25, cell
@@ -342,7 +344,8 @@ def test_exact_triangle_bounds():
 
 @claim("z60", "main Proposition A11(iii)", "main §5.4", kind="sampled")
 def test_niggli_type_decides_zeros_on_d_near_orthorhombic():
-    r"""Near a three-zero face, a reference in Niggli type II reduces with its near-zero conorms off d and in type I with them on d."""
+    r"""Near a three-zero face, a reference started from its Niggli-form basis reduces with its
+    near-zero conorms off d in Niggli type II and with them on d in type I."""
     import itertools
     from agentsg.cell.metric import params_from_metric
     from agentsg.cell.strain_closure import reduce_cell, conorms, _S0

@@ -103,7 +103,7 @@ def test_only_768_transposes_lie_in_U(U):
     assert sum(tuple(W.T.ravel()) in keys for W in U) == 768
 
 
-@claim("z66", "main §4.2", "main Table 6", "main Remark A8", kind="exhaustive")
+@claim("z66", "main §4.2", "main Table 7", "main Remark A8", kind="exhaustive")
 def test_3048_operators_of_each_determinant(U):
     """U has 3048 operators of determinant +1 and 3048 of determinant -1, so a proper
     candidate needs the 3048 with det W = det B_R det B_N."""
@@ -200,7 +200,7 @@ def test_table_5_first_two_rows():
     assert abs(_strain(G, D @ G @ D) / 0.10 - 1) < 0.03
 
 
-@claim("z66", "main §4.3", "main Table 6", kind="exhaustive")
+@claim("z66", "main §4.3", "main Table 7", kind="exhaustive")
 def test_two_and_three_degree_bands():
     """A 2 deg lattice-symmetry search corresponds to a price band of 9.9 % and a 3 deg one to
     14.8 %; the reference is then widened at 10.4 % or 16.0 % strain."""
@@ -326,16 +326,17 @@ def test_discussion_arithmetic():
 
 # ---- implementation constants -------------------------------------------------------------
 
-@claim("z66", "main Table 7", "main §4.1", kind="exhaustive")
+@claim("z66", "main §1", "main §3.4", "main §4.1", kind="exhaustive")
 def test_membership_margin_is_1e_9():
-    """Membership in the widened set is decided by a floating-point depth with a relative
-    margin of 1e-9."""
-    import inspect
-    src = inspect.getsource(sc.widened_closure) + inspect.getsource(sc._ball_superbases)
-    assert "eps * (1 + 1e-9)" in src
-    G = sc.reduce_cell(WORKED).G
-    W = sc.widened_closure(WORKED, eps=0.005)
-    assert all(m.depth <= 0.005 * (1 + 1e-9) for m in W.members)
+    """Membership in the widened set is decided by a floating-point depth with one relative
+    tolerance of 1e-9: a member whose depth exceeds the band by half that tolerance is kept,
+    and one whose depth exceeds it by twice that tolerance is not."""
+    W = sc.widened_closure(WORKED, eps=0.01)
+    m = max((m for m in W.members if m.depth > 0), key=lambda m: m.depth)
+    key = lambda w: {tuple(map(tuple, x.superbase)) for x in w.members}          # noqa: E731
+    target = tuple(map(tuple, m.superbase))
+    assert target in key(sc.widened_closure(WORKED, eps=m.depth / (1 + 0.5e-9)))
+    assert target not in key(sc.widened_closure(WORKED, eps=m.depth / (1 + 2e-9)))
 
 
 @claim("z66", "main §4", "main Data availability", "SI §S7", kind="exhaustive")
@@ -587,7 +588,7 @@ def test_fig_2_depths():
         assert abs(dd - d) < 0.0051, (w, dd)
         assert (colour == 0) == (dd < 0.8)
     deep = [d for _, d, k in rows if k]
-    assert len(deep) == 10 and round(min(deep), 1) >= 3.7 and round(max(deep), 1) <= 5.1
+    assert len(deep) == 10 and round(min(deep), 1) == 3.8 and round(max(deep), 1) == 5.1
 
 
 @claim("z66", "main Fig. 3", "main §5.3", kind="pdb", needs=("pdb", "slow"))

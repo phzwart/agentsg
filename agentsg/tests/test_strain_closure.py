@@ -80,7 +80,7 @@ def test_reindex_recovers_the_true_operator():
 def test_scale_fit_and_scale_invariance():
     W = widened_closure(WORKED)
     G = np.array(UnitCell(*WORKED).metric_tensor(), float)
-    cands, _ = reindex(W, params_from_metric((1.02 * G).tolist()))      # a 1 % error in the length scale
+    cands, _ = reindex(W, params_from_metric((1.02 * G).tolist()))      # 2 % on the metric, 1 % on the lengths
     assert cands[0].price < 1e-9 and abs(cands[0].scale - 1.02) < 1e-9  # removed by the scale fit
     assert len(widened_closure(tuple(1.3 * x for x in WORKED[:3]) + WORKED[3:])) == len(W)   # S_eps(sG) = S_eps(G)
 
@@ -100,22 +100,23 @@ def test_indexing_classes_reproduce_the_merohedral_ambiguities():
         P = np.array([[0, 1, 0], [1, 0, 0], [0, 0, -1]])
         return params_from_metric((P.T @ G @ P * 1.002).tolist())
 
-    expected = {   # (|H_eps| proper, |Laue|, number of distinct indexings)
-        ((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (8, 16, 1),
-        ((40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"): (8, 8, 2),     # pseudo-tetragonal
-        ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (12, 6, 4),
-        ((50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"): (12, 12, 2),
-        ((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"): (24, 24, 2),
-        (WORKED, "P 1"): (2, 2, 2),
+    expected = {   # (|H_eps| proper, |Laue|, number of distinct indexings, their prices in %)
+        ((79.1, 79.1, 37.9, 90, 90, 90), "P 43 21 2"): (8, 16, 1, [0.0]),
+        ((40.0, 40.3, 80.0, 90, 90, 90), "P 21 21 21"): (8, 8, 2, [0.0, 2.11]),     # pseudo-tetragonal
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 3"): (12, 6, 4, [0.0] * 4),
+        ((50.0, 50.0, 80.0, 90, 90, 120), "P 31 2 1"): (12, 12, 2, [0.0] * 2),
+        ((60.0, 60.0, 60.0, 90, 90, 90), "P 21 3"): (24, 24, 2, [0.0] * 2),
+        (WORKED, "P 1"): (2, 2, 2, [0.0, 1.55]),
     }
-    for (cell, sg), (h, l, n) in expected.items():
-        W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))      # widened at 0.080, accepted at 0.074
+    for (cell, sg), (h, l, n, prices) in expected.items():
+        W = widened_closure(cell, sg, eps=band_for(LEPAGE_STRAIN))      # widened at 0.0768, accepted at 0.074
         r = indexing_classes(W, relabel(cell), sg, accept=LEPAGE_STRAIN)
         assert (r.symmetry_order, r.group_order, len(r.classes)) == (h, l, n), (sg, r)
         assert r.closed and r.group_in_symmetry
         assert all(c.size == l // 2 for c in r.classes)                 # the proper half of each class
         assert all(c.representative.determinant == 1 for c in r.classes)
         assert r.classes[0].representative.price < 1e-6
+        assert [round(100 * c.representative.price, 2) for c in r.classes] == prices, (sg, r)
     # anomalous data: the point group replaces the Laue group. Only proper operators are
     # returned (the default); for a chiral group the count does not change, for an acentric
     # non-chiral group the inversion separates indexings and the count doubles.

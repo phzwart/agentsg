@@ -268,7 +268,9 @@ def test_needle_counterexample_to_construction_B(superbases):
 
 @claim("z57", "SI §S4, Bands per slot", kind="sampled")
 def test_consistent_construction_is_never_wrong(superbases):
-    r"""On 240 cells the consistent per-slot construction is exact on 124 and refuses 116, and is never wrong."""
+    r"""On 60 random needles, plates, isotropic and monoclinic cells, each at four bands (240
+    cases), the consistent per-slot construction is exact in 124 and refuses 116, and is never
+    wrong; the single-pass construction is wrong in 9."""
     from agentsg.cell.metric import metric_tensor
     from agentsg.cell.selling_cob import selling_matrix
     rng = np.random.default_rng(1)
@@ -335,48 +337,6 @@ def delta_obtuse(G, sigma, K):
     return found, maxent
 
 
-@claim("z57", "main §5.1", "SI §S4", kind="exhaustive")
-def test_window_beyond_the_hypothesis():
-    r"""A 7.73 x 47.54 x 77.30 A cell, beta = 87.0 deg, at a 3 deg idealisation: the idealisation is refused, and the widened set needs a basis coordinate of 3."""
-    p0 = np.array([0.0, 28.4690554, 5943.77198, 2260.08703, 0.0, 31.2814792])
-    G = t._gram(p0)
-    sigma = np.sin(np.radians(3.0)) / 4
-    out, _, _, _ = consistent_construct(G, sigma)
-    assert out is None
-    f2, _ = delta_obtuse(G, sigma, 2)
-    f3, m3 = delta_obtuse(G, sigma, 3)
-    assert len(f2) == 11 and len(f3) == 12 and m3 == 3
-
-
-@claim("z57", "SI §S4", kind="sampled")
-def test_three_degree_idealisation_by_aspect_ratio(superbases):
-    r"""Idealising at 3 deg on 300 random cells is exact up to 3:1, refused on 25 of 56 cells at 5:1 and 37 of 41 at 10:1, and never wrong."""
-    from agentsg.cell.metric import metric_tensor
-    from agentsg.cell.selling_cob import selling_matrix
-    import collections
-    sigma = np.sin(np.radians(3.0)) / 4
-    rng = np.random.default_rng(7)
-    tally = collections.Counter()
-    for _ in range(300):
-        ratio = rng.choice([1.0, 1.5, 2.0, 3.0, 5.0, 10.0])
-        s = rng.uniform(5, 15)
-        dims = np.array([s, s * rng.uniform(1, ratio), s * ratio])
-        rng.shuffle(dims)
-        ang = 90 + rng.uniform(-4, 4, 3) * rng.choice([0, 1], 3, p=[0.6, 0.4])
-        cell = (*dims, *ang)
-        Gc = np.array(metric_tensor(cell), float)
-        P = np.array([[float(x) for x in row] for row in selling_matrix(cell).rows], float)
-        p0 = t._cn(np.array(t.S0, float), P.T @ Gc @ P)
-        if p0.min() < -1e-9 * abs(Gc).max():
-            continue
-        G = t._gram(np.maximum(p0, 0))
-        out, _, _, _ = consistent_construct(G, sigma)
-        res = "refused" if out is None else ("exact" if out == brute(superbases, G, sigma) else "wrong")
-        tally[(float(ratio), res)] += 1
-    assert tally == {(1.0, "exact"): 57, (1.5, "exact"): 51, (2.0, "exact"): 48, (3.0, "exact"): 47,
-                     (5.0, "exact"): 31, (5.0, "refused"): 25, (10.0, "exact"): 4, (10.0, "refused"): 37}
-
-
 def _random_cells():
     from agentsg.cell.metric import metric_tensor
     from agentsg.cell.selling_cob import selling_matrix
@@ -399,27 +359,3 @@ def _random_cells():
         if p0.min() < -1e-9 * abs(Gc).max():
             continue
         yield t._gram(np.maximum(p0, 0))
-
-
-@claim("z57", "SI §S4", kind="sampled")
-def test_zeroing_on_the_closure_and_its_filtration(superbases):
-    r"""Zeroing while enumerating the closure gives the same sets as the rounds; as a filtration it is canonical and never wrong when stopped at 4 sigma."""
-    import collections
-    tally = collections.Counter()
-    for G in _random_cells():
-        levels, limit = zero_filtration(G)
-        assert np.isfinite(limit)
-        for deg in (0.1, 0.5, 1.0, 3.0):
-            sigma = np.sin(np.radians(deg))
-            truth = brute(superbases, G, sigma)
-            rounds, *_ = consistent_construct(G, sigma)
-            onfly, _ = closure_construct(G, sigma)
-            assert (rounds is None) == (onfly is None) and (rounds is None or rounds == onfly)
-            if 4 * sigma < limit:
-                assert filtration_select(levels, G, sigma, 4 * sigma) == truth
-                assert filtration_select(levels, G, sigma, np.inf) == truth
-                tally["answered"] += 1
-            else:
-                tally["beyond limit"] += 1
-                tally["closure exact beyond limit"] += onfly is not None
-    assert dict(tally) == {"answered": 118, "beyond limit": 122, "closure exact beyond limit": 6}

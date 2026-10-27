@@ -75,7 +75,10 @@ def members_in_window(Z, cands):
 
 @claim("z56", "main §3.1", "main Lemma A2", kind="exhaustive")
 def test_counts_from_the_window_lemma():
-    r"""From the window of Lemma A2 alone, the closures have 1, 2, 3, 6 and 16 superbases for no zero, one zero, two disjoint, two sharing and three zeros (both placements), independently of Kurlin's lists."""
+    r"""From the window of Lemma A2 alone (|k_i| <= 3, coefficients in [-6, 7]), the closures
+    have 1, 2, 3, 6 and 16 superbases for no zero, one zero, two disjoint zeros, two zeros
+    sharing a vector and a triangle of three, independently of Kurlin's lists (the path of
+    three, also 16, is counted with Table 4)."""
     cands = window_vectors(3)
     assert len(cands) == 2948
     counts = {}
@@ -101,14 +104,18 @@ def _connected(free):
     return len(seen) == 4
 
 
-@claim("z56", "main §2.1", "main §3.3", "main Table 4", "main Lemma A2", kind="exhaustive")
+@claim("z56", "main §3.3", "main Table 4", "main Lemma A2", kind="exhaustive")
 def test_all_38_faces():
-    r"""Over all 38 faces: the largest entry by kind of face and by whether a zero sits on d (Table 4), and the conorms (0, 0, 3, 2, 0, 5) have the obtuse basis (-3a-2b-c, a, a+b)."""
+    r"""Table 4, every entry: over all 38 faces, the largest entry of a member in its worst
+    labelling, by kind of zero pattern and by whether a zero sits on d (1 everywhere with the
+    zeros off d; with a zero on d, 1 for one zero and two disjoint zeros, 2 for two zeros
+    sharing a vector and for a triangle, 2 or 3 for a path); the numbers of members 1, 2, 3, 6
+    and 16; and the conorms (0, 0, 3, 2, 0, 5) have the obtuse basis (-3a-2b-c, a, a+b)."""
     faces = [Z for r in range(4) for Z in itertools.combinations(range(6), r)
              if _connected([m for m in range(6) if m not in Z])]
     assert len(faces) == 38
     cands = window_vectors(3)
-    by_kind = {}
+    by_kind, table = {}, {}
     for Z in faces:
         verts = {v for m in Z for v in SL[m]}
         kind = {0: "none", 1: "one"}.get(len(Z)) or (
@@ -116,11 +123,16 @@ def test_all_38_faces():
         mem = members_in_window(list(Z), cands)
         mx = max(abs(x) for m in mem for r in m for x in r)
         by_kind.setdefault(kind, set()).add((len(mem), mx))
+        table.setdefault((kind, 0 in verts), set()).add(mx)
         if 0 not in verts:                                   # zeros avoid d: entries in {-1, 0, 1}
             assert mx == 1, Z
     assert {k: {n for n, _ in v} for k, v in by_kind.items()} == {
         "none": {1}, "one": {2}, "disjoint": {3}, "share": {6}, "triangle": {16}, "path": {16}}
     assert max(mx for v in by_kind.values() for _, mx in v) == 3
+    # Table 4, cell by cell: (kind, a zero on d) -> the largest entries that occur
+    assert table == {("none", False): {1}, ("one", False): {1}, ("one", True): {1},
+                     ("disjoint", True): {1}, ("share", False): {1}, ("share", True): {2},
+                     ("triangle", False): {1}, ("triangle", True): {2}, ("path", True): {2, 3}}
     # the referee's example: conorms (0,0,3,2,0,5), basis (-3a-2b-c, a, a+b) is obtuse
     G = t._gram(np.array([0, 0, 3, 2, 0, 5], float))
     B = np.array([[-3, -2, -1], [1, 0, 0], [1, 1, 0]], float)

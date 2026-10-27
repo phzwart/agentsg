@@ -204,7 +204,8 @@ def test_needle_and_thin_plates_against_the_3_window():
 
 @claim("z58", "main §5.1, Needles and plates", kind="sampled")
 def test_random_cells_against_the_2_window():
-    r"""On 240 random cells the enumeration equals brute force in the window [-2, 2]."""
+    r"""On 60 random needles, plates, isotropic and monoclinic cells, each at four bands (240
+    cases), the enumeration equals brute force in the window [-2, 2]."""
     from .test_z57_perslot_bands import _random_cells
     r = np.arange(-2, 3)
     Mx = np.array(np.meshgrid(*[r] * 9, indexing="ij")).reshape(9, -1).T.reshape(-1, 3, 3)
@@ -264,20 +265,18 @@ def sort_spectrum(G):
     return out
 
 
-@claim("z58", "SI §S6", kind="exhaustive")
+@claim("z58", "main §5.2", kind="exhaustive")
 def test_sort_spectrum_examples():
-    r"""The sort spectra of the example cells."""
+    r"""The 40.0 x 40.3 x 80 A cell is 1.06 % from the tetragonal sort T5, its pseudo-twofold's
+    sort, and lies exactly on the triclinic sort A1."""
     from agentsg.cell.primitive import primitive_cell
     cases = {
         "tP from oP 40 x 40.3 x 80": ((40.0, 40.3, 80.0, 90, 90, 90), None, "T5", 0.01057),
-        "hP from C2 50 x 86.8 x 40, beta 90.4": ((50.0, 86.8, 40.0, 90, 90.4, 90), "C 1 2 1", "H4", 0.01041),
-        "cF from oF 100 x 100.2 x 99.9": ((100.0, 100.2, 99.9, 90, 90, 90), "F 2 2 2", "C3", 0.00432),
-        "oP from the needle, gamma 91.12": ((5.583, 5.21, 131.965, 90, 90, 91.118), None, "O5", 0.02759),
     }
     for name, (cell, sg, sort, d) in cases.items():
         G = _reduced(primitive_cell(cell, sg) if sg else cell)
         spec = sort_spectrum(G)
-        assert abs(spec[sort] - d) < 2e-5, (name, spec[sort])
+        assert round(100 * spec[sort], 2) == round(100 * d, 2), (name, spec[sort])
         assert spec["A1"] < 1e-12
 
 

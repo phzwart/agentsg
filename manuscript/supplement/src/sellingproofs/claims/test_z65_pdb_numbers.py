@@ -1,4 +1,4 @@
-"""z65 — the PDB numbers (main §4.3, §4.4, §5.4, Table 10, abstract, Conclusions; SI Tables
+"""z65 — the PDB numbers (main §4.3, §4.4, §5.3, Table 10, abstract, Conclusions; SI Tables
 S8, S9, S14 and Section S9).
 
 Two layers.  The ``pdb`` claims read the deposited results files of
@@ -211,7 +211,7 @@ def test_nonisomorphism_by_type_in_the_text():
     assert boot["oF"][:2] == (31, 22)
 
 
-@claim("z65", "main §5.3", "abstract", kind="pdb")
+@claim("z65", "main §5.3", kind="pdb")
 def test_pseudo_symmetry_counts():
     """Le Page's analysis at 3 deg finds a higher lattice than the reported one for 43,201 of the
     206,141 entries analysed (21%); for 545 (0.3%) the higher lattice is exact. For the 42,656
@@ -235,13 +235,12 @@ def test_pseudo_symmetry_counts():
     assert_near("6.7", m.group(2)); assert m.group(4) == "35" and m.group(5) == "50"
 
 
-@claim("z65", "main §5.3", "abstract", "main §6", kind="pdb")
+@claim("z65", "main §5.3", "main §6", kind="pdb")
 def test_shares_of_entries_with_an_alternative_within_the_band():
     """Over all entries, 7.5% (95% interval 7.4-7.7%) have an alternative, exact or priced,
     within 4.2% and 10.6% (10.4-11.0%) within 6.7%; with the band of the entry's own Bravais
     type, the pooled band standing in for a type with fewer than 200 deposition blocks, 8.6%
-    (8.4-9.0%) and 12.5% (12.0-13.0%). (Abstract: the cell alone cannot exclude an alternative
-    indexing from a higher lattice for 7.5-8.6% of entries.)"""
+    (8.4-9.0%) and 12.5% (12.0-13.0%)."""
     _, rows, shares = _bootstrap()
     want = {("one band", "90th"): ("7.5", "7.4", "7.7"), ("one band", "95th"): ("10.6", "10.4", "11.0"),
             ("own type's band", "90th"): ("8.6", "8.4", "9.0"), ("own type's band", "95th"): ("12.5", "12.0", "13.0")}
@@ -397,7 +396,7 @@ TABLE_S8 = {
 }
 
 
-@claim("z65", "SI Table S8", "SI §S8", kind="pdb")
+@claim("z65", "SI Table S8", "SI §S5", kind="pdb")
 def test_table_s8_pseudo_symmetry_by_sort():
     """SI Table S8: pseudo-symmetric PDB entries by the Delone sort of the Le Page lattice, with
     the 10th/50th/90th percentiles of the largest obliquity and of the largest and smallest

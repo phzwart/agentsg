@@ -86,6 +86,18 @@ def test_niggli_window_on_exact_lattices():
     assert sum(s["admissible"] for s in S) == 8256
     assert sum(s["window_pairs"] for s in S) == 3849216
     assert max(s["window_max"] for s in S) == 1
+    # SI Table S21, by Voronoi type: patterns, bases, retained, pairs (A12), pairs (A13)
+    by = {}
+    for s_ in S:
+        b = by.setdefault(s_["type"], [0, 0, 0, 0, 0])
+        for n, k in enumerate(("triples", "admissible", "window_pairs", "landing_pairs")):
+            b[n + 1] += s_[k]
+        b[0] += 1
+    assert by == {"truncated octahedron": [1, 1344, 768, 589824, 147456],
+                  "hexarhombic dodecahedron": [6, 11520, 2688, 1204224, 1032192],
+                  "rhombic dodecahedron": [3, 7488, 2304, 1769472, 1327104],
+                  "hexagonal prism": [12, 43200, 1728, 248832, 1990656],
+                  "cuboid": [16, 111360, 768, 36864, 2359296]}
 
 
 @claim("z68", "main Proposition A12", "SI §S11", kind="certified", needs=("slow",))
@@ -110,7 +122,8 @@ def test_from_a_reduced_cell_to_the_niggli_cell():
     6 856 704.  The matrices that occur are exactly the 1 344 ordered bases drawn from the 14
     vectors +-(u1, u2, u3, u1+u2, u1+u3, u2+u3, u1+u2+u3), the signed partial sums of the
     superbase, so the Niggli vectors are three of the partial sums of every obtuse superbase;
-    672 have determinant +1, and T and -T give the same cell."""
+    672 have determinant +1, and T and -T give the same cell.  Without the requirement that
+    the superbase be obtuse, an entry of 2 is needed (SI Section S11, step 4)."""
     S = _summary()
     counts = {}
     for s in S:
@@ -119,6 +132,9 @@ def test_from_a_reduced_cell_to_the_niggli_cell():
                       "hexagonal prism": {6}, "rhombic dodecahedron": {3}, "cuboid": {16}}
     assert sum(s["landing_pairs"] for s in S) == 6856704
     assert max(s["landing_max"] for s in S) == 1
+    # requiring the superbase to be obtuse matters: over all superbases with four vectors
+    # shortest in their classes, some reach a retained basis only through an entry of 2
+    assert max(s["landing_max_any"] for s in S) == 2
     found = set().union(*(s["landing_matrices"] for s in S))
     sums = [np.array(v) for v in [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1)]]
     vecs = sums + [-v for v in sums]
@@ -159,16 +175,20 @@ def test_reductions_of_the_library_agree():
     assert n == 38 * 10 * 24 and worst <= 1
 
 
-RHO = {"mP": ((30, 40, 50, 90, 100, 90), 10.4), "oC": ((25, 50, 25, 90, 106.3, 90), 9.4),
-       "hP": ((40, 40, 60, 90, 90, 120), 23.5), "oP": ((30, 40, 50, 90, 90, 90), 30.5),
-       "tP": ((40, 40, 60, 90, 90, 90), 38.1), "cP": ((40, 40, 40, 90, 90, 90), 50.0),
-       "aP": ((30, 40, 50, 85, 95, 100), 1.9)}
+RHO = {"mP": ((30, 40, 50, 90, 100, 90), 10.4, 46.9), "oC": ((25, 50, 25, 90, 106.3, 90), 9.4, 33.3),
+       "hP": ((40, 40, 60, 90, 90, 120), 23.5, 42.6), "oP": ((30, 40, 50, 90, 90, 90), 30.5, 39.1),
+       "tP": ((40, 40, 60, 90, 90, 90), 38.1, 42.6), "cP": ((40, 40, 40, 90, 90, 90), 50.0, 57.7),
+       "aP": ((30, 40, 50, 85, 95, 100), 1.9, 28.9)}
 
 
 @cache
-def _rho(name):
+def _gap_adm(name):
     Z, gap, adm = nw.rho(RHO[name][0])
-    return min(gap, adm)
+    return gap, adm
+
+
+def _rho(name):
+    return min(_gap_adm(name))
 
 
 @claim("z68", "main Proposition A12", "main §5.4", "SI Table S21", kind="sampled", needs=("slow",))
@@ -176,9 +196,13 @@ def test_window_radius_examples():
     """Proposition A12(ii), the radius rho below which two measurements of one lattice have
     Niggli cells within {-1, 0, 1} of each other (computed numerically): 10.4 % for the
     monoclinic 30 x 40 x 50 A, 100 deg cell, 9.4 % for a C-centred orthorhombic lattice, 23.5 % hP,
-    30.5 % oP, 38.1 % tP, 50 % cP and 1.9 % for a generic triclinic cell."""
-    for name, (_, r) in RHO.items():
-        assert abs(100 * _rho(name) - r) < 0.05, (name, 100 * _rho(name))
+    30.5 % oP, 38.1 % tP, 50 % cP and 1.9 % for a generic triclinic cell; in every example rho
+    is the class gap eta_gap, the admissibility radius eta_adm being 46.9, 33.3, 42.6, 39.1,
+    42.6, 57.7 and 28.9 % (SI Table S21)."""
+    for name, (_, gap, adm) in RHO.items():
+        g, a = _gap_adm(name)
+        assert (round(100 * g, 1), round(100 * a, 1)) == (gap, adm), (name, 100 * g, 100 * a)
+        assert g < a                            # rho is set by the class gap in every example
 
 
 @claim("z68", "main Proposition A12", kind="sampled", needs=("slow",))
@@ -186,7 +210,7 @@ def test_window_on_measured_cells_within_the_radius():
     """Two measurements of each example lattice, each within 0.9 rho of it and the second in a
     random basis, have Niggli cells related by a matrix with entries in {-1, 0, 1}."""
     rng = np.random.default_rng(682)
-    for name, (cell, _) in RHO.items():
+    for name, (cell, _, _) in RHO.items():
         G = np.array(UnitCell(*cell).metric_tensor(), float)
         Bs = _floats(sc.reduce_cell(cell).basis)
         G = Bs.T @ G @ Bs                                      # primitive (the oC cell is given primitive)
@@ -205,10 +229,12 @@ def test_niggli_from_selling_on_many_cells():
     """The library's Niggli cell read off the reduced superbase agrees with its Niggli
     reduction on 15 200 seeded cells (400 per zero pattern: on the face, slightly to either
     side, and with tied conorms, in random bases), of both Niggli types, with a right-handed
-    basis; 516 of the 672 right-handed matrices occur."""
+    basis, in about 3 ms per cell; 516 of the 672 right-handed matrices occur."""
     import warnings
+    import time
     rng = np.random.default_rng(5)
     seen, n, types = set(), 0, set()
+    elapsed = 0.0
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         for Z in nw.FACES:
@@ -225,7 +251,9 @@ def test_niggli_from_selling_on_many_cells():
                     p = q * rng.uniform(1, 3)
                 U = _unimodular(rng)
                 cell = tuple(params_from_metric((U.T @ sc._gram(p) @ U).tolist()))
+                t0 = time.perf_counter()
                 a = sc.niggli_from_selling(cell)
+                elapsed += time.perf_counter() - t0
                 b, _ = niggli_gk(cell)
                 assert max(abs(x - y) / max(1, abs(y)) for x, y in zip(a.cell, b)) <= 1e-6, (Z, rep)
                 assert a.basis.det() == 1
@@ -234,3 +262,4 @@ def test_niggli_from_selling_on_many_cells():
                 n += 1
     assert n == 15200 and types == {"I", "II"}
     assert len(seen) == 516
+    assert elapsed / n < 0.01                   # 'about 3 ms per cell' (machine dependent)
