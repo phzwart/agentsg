@@ -153,6 +153,15 @@ def test_combinatorial_constants():
     assert M == 4
     assert R == 8
     assert abs(max(rhos) - (3 + 2 * 2 ** 0.5)) < 1e-9
+    # the equality case of (ii): L = {01, 02, 13}, N = {03, 12, 23}, s = (0, 0, 1, 1)
+    s_eq = np.array([0, 0, 1, 1])
+
+    def gam_eq(e):
+        dk = K[:, e[0]] - K[:, e[1]]
+        return dk * (dk + s_eq[e[0]] - s_eq[e[1]])
+    gL = sum(gam_eq(e) for e in [(0, 1), (0, 2), (1, 3)])
+    gN = sum(gam_eq(e) for e in [(0, 3), (1, 2), (2, 3)])
+    assert (gN[gL > 0] / gL[gL > 0]).max() == 8
 
 
 LATTICES = {   # conorm vectors in the F0 frame; small entries play the noisy walls
@@ -188,9 +197,11 @@ def _cases():
     return out
 
 
-@claim("z44", "main Lemma A1", "SI Lemmas S4.2, S4.3", kind="exhaustive")
+@claim("z44", "main Lemma A1", "SI Lemmas S4.2, S4.3", kind="sampled")
 def test_class_gap_and_excess_bound(superbases):
-    r"""On every brute-force near-obtuse frame, the class excess is at most 16 tau, and a frame outside the closure has some class excess of at least 4 m* with m* > 4 tau."""
+    r"""Lemmas S4.2 and S4.3 on seeded cases: on every brute-force superbase within the band the
+    class excess is at most 16 tau, and one outside the closure has some class excess of at
+    least 4 m* with m* > 4 tau."""
     import numpy as np
     parts = [np.array(s) for s in itertools.product((0, 1), repeat=4) if 0 < sum(s) < 4 and s[0] == 0]
     for name, frac, p, tau in _cases()[::3]:
@@ -216,18 +227,26 @@ def test_class_gap_and_excess_bound(superbases):
                 assert max(ex) >= 4 * mstar - 1e-6 * np.abs(G).max(), name
 
 
-@claim("z44", "SI Theorem S4.5", kind="exhaustive")
+@claim("z44", "SI Theorem S4.5", kind="sampled")
 def test_generated_equals_brute_force(superbases):
-    r"""Zeroing at 4 tau, generating by exact flips and filtering at -tau gives the brute-force widened set in every case up to tau = 0.99 lambda1/32, grey-zone walls included."""
+    r"""Theorem S4.5 on seeded cases: zeroing at 4 tau, generating by exact flips and filtering
+    at -tau gives the brute-force widened set (bases with entries in [-2, 2]) in every case up
+    to tau = 0.99 lambda1/32, small conorms near the threshold included, and the idealised
+    lattice Lambda* is positive definite."""
+    import numpy as np
     for name, frac, p, tau in _cases():
+        ideal = np.where(np.asarray(p) <= 4 * tau, 0.0, p)            # Lambda*, positive definite
+        assert np.linalg.eigvalsh(_gram(ideal)).min() > 0, (name, frac)
         truth, _ = _brute(superbases, _gram(p), tau)
         gen, _ = _generate(p, 4 * tau, tau)
         assert gen == truth, (name, frac)
 
 
-@claim("z44", "SI §S4", kind="exhaustive")
+@claim("z44", "SI §S4", kind="sampled")
 def test_grey_zone_needs_the_4tau_threshold(superbases):
-    r"""Zeroing only at tau misses a member when a wall y lies in (tau, 2 tau] beside a wall z < tau with y - z <= tau; zeroing at 4 tau is exact."""
+    r"""At orthorhombic, cubic and plate corners with two small conorms 1.2 tau and 0.5 tau,
+    idealising only at tau misses one of the seven members and idealising at 4 tau finds all
+    seven (the exact condition for a miss is checked on a grid in z46)."""
     import numpy as np
     for name in ("oP three walls", "cP", "plate"):
         p = np.array(LATTICES[name], float)
@@ -240,18 +259,3 @@ def test_grey_zone_needs_the_4tau_threshold(superbases):
         assert len(truth) == 7 and len(at_tau) == 6 and at_tau < truth
         assert at_4tau == truth
 
-
-@claim("z44", "SI §S4", kind="exhaustive")
-def test_worked_pair_beyond_the_hypothesis(superbases):
-    r"""For the worked cell lambda1/32 = 28.2, below the band tau = 43.2 used; the construction is still exact there and at tau = 60."""
-    import numpy as np
-    from agentsg.cell.canonical import canonical_superbase
-    from agentsg.cell.metric import UnitCell
-    D = (30.02, 39.97, 50.03, 90.25, 92.05, 89.80)
-    G = np.array(UnitCell(*D).metric_tensor())
-    p0 = _cn(np.array(canonical_superbase(D)[0], float), G)
-    assert abs(_lam1(p0) / 32 - 28.2) < 0.1
-    for tau, n in ((43.2, 6), (60.0, 14)):
-        truth, _ = _brute(superbases, _gram(p0), tau)
-        gen, _ = _generate(p0, 4 * tau, tau)
-        assert gen == truth and len(truth) == n

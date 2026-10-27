@@ -116,10 +116,11 @@ def tie_pattern(B, free):
 
 @claim("z53", "main Definition A5", "SI §S5", kind="exhaustive")
 def test_sorts_are_the_closed_subspaces():
-    r"""The closed subspaces Fix(Sym(V)) number 8, 5, 3, 5 and 3 for no zero, one zero, two sharing, two disjoint and three zeros, with the stated symmetry orders, and match Delone's 24 sorts."""
+    r"""The closed subspaces Fix(Sym(V)) number 8, 5, 3, 5 and 3 for no zero, one zero, two sharing, two disjoint and three zeros, with the stated symmetry orders; their zero counts and equality patterns are those of Delone's 24 sorts as SELLA lists them (the sort-by-sort match is z54)."""
     counts = {}
     total = 0
     holohedries = {}
+    signatures = []
     for face in FACES:
         subs, free, W, L, sw = fixed_subspaces(face)
         Z = FACES[face]
@@ -148,6 +149,7 @@ def test_sorts_are_the_closed_subspaces():
                 n_sym += np.linalg.norm(A @ P) < 1e-9
             seen[_key(B)] = B
             holohedries.setdefault(face, []).append(n_sym)
+            signatures.append((len(Z), tuple(sorted(len(c) for c in pat))))
         counts[face] = len(seen)
         holohedries[face] = sorted(holohedries[face])
         total += len(seen)
@@ -159,6 +161,6 @@ def test_sorts_are_the_closed_subspaces():
     assert holohedries["path"] == [4, 8, 24]                           # M4 O4 H4
     assert holohedries["triangle"] == [8, 16, 48]                      # O5 T5 C5
     # and they are the SELLA patterns: same multiset of (zeros, equality-class sizes, |group|)
-    sella = sorted((pat.count("0"), tuple(sorted(pat.count(ch) for ch in set(pat) - {"0"})), )
+    sella = sorted((pat.count("0"), tuple(sorted(pat.count(ch) for ch in set(pat) - {"0"})))
                    for name, bt, pat in SORTS)
-    assert len(sella) == 24
+    assert len(sella) == 24 and sorted(signatures) == sella, (sorted(signatures), sella)

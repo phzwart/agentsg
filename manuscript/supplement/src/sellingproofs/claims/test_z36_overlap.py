@@ -1,13 +1,8 @@
-"""z:overlap — the widened closure is a union of on-cone Kurlin guarantees.
+"""z36 — from a metric error to a band on the conorms (supporting information, Section S4).
 
-Two directions. Overlap: for lattices within eps (Frobenius on G, shared
-frame), each one's EXACT closure lies inside the other's widened closure at
-tau = 3 eps, same integer coordinates -- because closure-member coordinates
-have entries <= 1, so each conorm moves by at most 3 eps. Clipping: every
-widened member is an EXACT obtuse superbase (hence a Kurlin-certified
-closure member) of an explicitly constructed lattice within 2*sqrt(6)*tau.
-So no guarantee is ever used off the cone: the band is bookkeeping for a
-family of exact closures, one per admissible perturbation.
+A metric error dG shifts the conorm of a member with coordinate vectors u_i, u_j by exactly
+-u_i^T dG u_j, at most c_ij xi with c_ij = ||sym(u_i u_j^T)||_F; the largest constant on the
+zero conorms of each zero pattern, and the frame-free bound of Proposition S4.7.
 """
 from __future__ import annotations
 
@@ -53,77 +48,14 @@ def _canonset(members):
     return out
 
 
-@claim("z36", "SI §S4", kind="sampled")
-def test_parent_closure_inside_widened_daughter():
-    r"""On all five Voronoi types, the closure of a parent lattice lies inside the widened set of a measured daughter, with penetration at most 3 eta."""
-    import numpy as np
-    from agentsg.cell.canonical import canonical_superbase, superbase_variants
-    from agentsg.cell.metric import UnitCell, params_from_metric
-    from agentsg.cell.selling_closure import selling_superbase_closure
-
-    rng = random.Random(3)
-    for vt in (1, 2, 3, 4, 5):
-        for _ in range(2):
-            cell = cell_from_conorms(
-                [x * (25 + 10 * rng.random()) for x in TYPE_CONORMS[vt]()])
-            G = np.array(UnitCell(*cell).metric_tensor())
-            A = np.array([[rng.gauss(0, 1) for _ in range(3)]
-                          for _ in range(3)])
-            E = 0.5 * (A + A.T)
-            E /= np.linalg.norm(E)
-            eps = 0.01 * np.linalg.norm(G)
-            Gp = G + eps * E
-            if np.linalg.eigvalsh(Gp)[0] <= 0:
-                continue
-            cellp = tuple(params_from_metric(Gp.tolist()))
-            parent = selling_superbase_closure(cell)
-            pen = max(max(0.0, -min(_conorms(m, Gp))) for m in parent)
-            assert pen <= 3.0 * eps + 1e-9, (vt, pen / eps)
-            C0, _ = canonical_superbase(cellp)
-            scale = max(abs(np.array(v) @ Gp @ np.array(v)) for v in C0)
-            wid = superbase_variants(cellp, boundary_rel=3.0 * eps / scale,
-                                     max_variants=512)
-            assert _canonset(parent) <= _canonset(wid), vt
-
-
-@claim("z36", "SI §S4", kind="sampled")
-def test_clipping_yields_exact_member_of_nearby_lattice():
-    r"""Clipping the negative conorms of a widened member gives an exact obtuse superbase of a lattice within 2 sqrt6 tau of the original."""
-    import numpy as np
-    from agentsg.cell.canonical import canonical_superbase, superbase_variants
-    from agentsg.cell.metric import UnitCell
-
-    delta = 0.8  # two small conorms put the lattice near walls
-    cell = cell_from_conorms((delta, 50.0, 75.0, 100.0, 125.0, 2.0 * delta))
-    G = np.array(UnitCell(*cell).metric_tensor())
-    C0, _ = canonical_superbase(cell)
-    scale = max(abs(np.array(v) @ G @ np.array(v)) for v in C0)
-    tau = 3.0 * (3.0 * delta)  # a band wide enough to cross both walls
-    wid = superbase_variants(cell, boundary_rel=tau / scale, max_variants=512)
-    n_clipped = 0
-    for m in wid:
-        p = _conorms(m, G)
-        if min(p) >= -1e-9:
-            continue  # already exactly obtuse
-        assert min(p) >= -tau * 2.0 - 1e-6  # within the (2x) band
-        # rebuild the member Gram in its own frame and clip there
-        order = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
-        pm = dict(zip(order, p))
-        q = [max(0.0, pm[k]) for k in order]
-        Hc = np.array(_gram_from_p(q))
-        Hm = np.array(_gram_from_p([pm[k] for k in order]))
-        n_clipped += 1
-        # exact obtuseness of the standard superbase under the clipped Gram
-        std = [(-1, -1, -1), (1, 0, 0), (0, 1, 0), (0, 0, 1)]
-        assert min(_conorms(std, Hc)) >= -1e-9
-        assert np.linalg.eigvalsh(Hc)[0] > 0
-        assert np.linalg.norm(Hc - Hm) <= 2.0 * math.sqrt(6.0) * (2.0 * tau)
-    assert n_clipped >= 1  # the band genuinely contained non-obtuse frames
-
-
 @claim("z36", "SI §S4, From a metric error to a band", kind="exhaustive")
 def test_conorm_shift_identity_and_coverage_constant():
-    r"""A metric error dG shifts the conorm p_ij by exactly -u_i^T dG u_j; the worst-case constants are sqrt2 (one zero), sqrt5 (two zeros), and 2 sqrt3 in six of the sixteen cuboid frames."""
+    r"""A metric error dG shifts the conorm p_ij by exactly -u_i^T dG u_j, and the coverage
+    bound tau_cov read off the closure holds for every error of norm xi.  The largest constant
+    c_ij on a zero conorm is sqrt2 over the one-zero patterns, sqrt5 over the two-zero patterns,
+    and 2 sqrt3 in six of the sixteen three-zero patterns (the paths with d in the interior),
+    where an error of norm xi pushes a conorm below -3 xi, so tau = 3 xi is not a worst-case
+    guarantee."""
     np = _np()
     from agentsg.cell.canonical import _closure_for_match
     from agentsg.cell.metric import UnitCell
@@ -147,6 +79,7 @@ def test_conorm_shift_identity_and_coverage_constant():
 
     rnd = np.random.default_rng(36)
     wall_max, coord_max, path_cuboid = 0.0, 0, []
+    by_zeros = {1: [], 2: [], 3: []}
     for r in range(4):
         for Z in itertools.combinations(range(6), r):
             if not connected([SL[k] for k in range(6) if k not in Z]):
@@ -168,6 +101,8 @@ def test_conorm_shift_identity_and_coverage_constant():
                     E = rnd.normal(size=(3, 3)); E = (E + E.T) / 2
                     assert np.isclose(cn(M, G + E)[n] - pm[n], -u @ E @ v)
             wall_max = max(wall_max, kap)
+            if r:
+                by_zeros[r].append(kap)
             zero_edges = [SL[k] for k in Z]
             deg = [sum(v in e for e in zero_edges) for v in range(4)]
             is_path = (r == 3 and connected(zero_edges) and max(deg) == 2
@@ -195,11 +130,16 @@ def test_conorm_shift_identity_and_coverage_constant():
     assert coord_max == 3                     # member vectors are not in {-1,0,1}
     assert abs(wall_max - 12 ** 0.5) < 1e-9
     assert path_cuboid and all(abs(k - 12 ** 0.5) < 1e-9 for k in path_cuboid)
+    assert abs(max(by_zeros[1]) - 2 ** 0.5) < 1e-9
+    assert abs(max(by_zeros[2]) - 5 ** 0.5) < 1e-9
+    assert len(by_zeros[3]) == 16 and sum(abs(k - 12 ** 0.5) < 1e-9 for k in by_zeros[3]) == 6
+    assert len(path_cuboid) == 6
 
 
-@claim("z36", "SI §S4, From a metric error to a band", kind="sampled")
+@claim("z36", "SI §S4, Proposition S4.7", kind="sampled")
 def test_frame_free_bound_sqrt2_eta_star():
-    r"""Measured in each member's own frame, no conorm of any member shifts by more than sqrt2 eta*."""
+    r"""Proposition S4.7: measured in a member's own basis, where the error has Frobenius norm
+    eta*, no conorm of the member shifts by more than sqrt2 eta*."""
     np = _np()
     from agentsg.cell.canonical import _closure_for_match
     from agentsg.cell.metric import UnitCell

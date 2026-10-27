@@ -229,3 +229,38 @@ def test_codimension_one_specialisations():
     order = {name: {"cI": 48, "cF": 48, "cP": 48, "hP": 24, "tI": 16, "tP": 16, "hR": 12, "oF": 8, "oI": 8,
                     "oS": 8, "oP": 8, "mC": 4, "mP": 4, "aP": 2}[bt] for name, bt, pat in SORTS}
     assert all(order[y] >= order[x] for x, y in got)
+
+
+@claim("z50", "SI Table S2", kind="exhaustive")
+def test_geometric_readings_of_the_specialisations():
+    """SI Table S2, the column ``reading'': each geometric condition carries a cell of the
+    starting sort onto the target sort (distance 0 at the condition, positive 1 % away, where
+    the cell is still of the starting sort): tP to cP at c = a, tI to cI at c/a = 1, tI to cF
+    at c/a = sqrt2 from below (T1) and from above (T2), oS to tP at b = a, oS to hP at
+    b = sqrt3 a, oP to tP at a = b, and hR to cP, cI and cF at alpha = 90, 109.47 and 60 deg."""
+    import math
+    import warnings
+    from agentsg.cell import strain_closure as sc
+
+    def d(cell, sg):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return sc.sort_spectrum(cell, sg)
+
+    a, c0 = 40.0, 70.0
+    cases = [  # (cell at the condition, cell 1 % away, space group, from sort, to sort)
+        ((a, a, a, 90, 90, 90), (a, a, 1.01 * a, 90, 90, 90), "P 4", "T5", "C5"),
+        ((a, a, a, 90, 90, 90), (a, a, 1.01 * a, 90, 90, 90), "I 4", "T1", "C1"),
+        ((a, a, a * 2 ** 0.5, 90, 90, 90), (a, a, 0.99 * a * 2 ** 0.5, 90, 90, 90), "I 4", "T1", "C3"),
+        ((a, a, a * 2 ** 0.5, 90, 90, 90), (a, a, 1.01 * a * 2 ** 0.5, 90, 90, 90), "I 4", "T2", "C3"),
+        ((a, a, c0, 90, 90, 90), (a, 1.01 * a, c0, 90, 90, 90), "C 2 2 2", "O4", "T5"),
+        ((a, a * 3 ** 0.5, c0, 90, 90, 90), (a, 1.01 * a * 3 ** 0.5, c0, 90, 90, 90), "C 2 2 2", "O4", "H4"),
+        ((a, a, c0, 90, 90, 90), (a, 1.01 * a, c0, 90, 90, 90), "P 2 2 2", "O5", "T5"),
+        ((a, a, a, 90, 90, 90), (a, a, a, 91, 91, 91), "R 3 :R", "R1", "C5"),
+        ((a, a, a, *[math.degrees(math.acos(-1 / 3))] * 3), (a, a, a, 108.5, 108.5, 108.5), "R 3 :R", "R1", "C1"),
+        ((a, a, a, 60, 60, 60), (a, a, a, 61, 61, 61), "R 3 :R", "R3", "C3"),
+    ]
+    for at, off, sg, frm, to in cases:
+        s_at, s_off = d(at, sg), d(off, sg)
+        assert s_at[to] < 1e-9, (sg, frm, to, s_at[to])
+        assert s_off[to] > 1e-3 and s_off[frm] < 1e-9, (sg, frm, to, s_off[to], s_off[frm])

@@ -140,7 +140,9 @@ def superbases():
 
 @claim("z46", "SI §S4", kind="exhaustive")
 def test_hidden_members_strip_corners_and_threshold(superbases):
-    r"""Members missed by snapping only at tau occur at three-wall corners exactly when z <= tau < y <= z + tau, never at the two-wall corners of mP and hP; snapping at 2 tau finds them."""
+    r"""On dense grids of two small conorms, idealising at tau misses members at the
+    orthorhombic and cubic corners exactly when z <= tau < y <= z + tau, and never at the
+    monoclinic and hexagonal corners; idealising at 2 tau or 4 tau is exact."""
     import numpy as np
     from .test_z44_widened_complete import _brute
     grid = np.arange(0.0, 2.51, 0.25)
@@ -177,9 +179,10 @@ def test_hidden_members_strip_corners_and_threshold(superbases):
     assert int((np.abs(R - G).max((1, 2)) < 1e-9 * np.abs(G).max()).sum()) == 2
 
 
-@claim("z46", "SI §S4", kind="sampled")
+@claim("z46", "SI Lemma S4.6", kind="sampled")
 def test_partial_snaps_are_nested_in_the_full_snap():
-    r"""Snapping a subset of the near-zero conorms gives a subset of the members of the full snap."""
+    r"""Lemma S4.6 on two seeded cells: idealising a subset of the small conorms gives a
+    subset of the members obtained by idealising them all."""
     import numpy as np
     from agentsg.cell.canonical import canonical_superbase
     from agentsg.cell.metric import UnitCell
@@ -202,7 +205,7 @@ def test_partial_snaps_are_nested_in_the_full_snap():
         assert union == full and len(full) == 16
 
 
-@claim("z46", "main §3.2", "main Table 2", "main Fig. 1", kind="exhaustive")
+@claim("z46", "main §3.2", "main Table 3", "main Fig. 1", kind="exhaustive")
 def test_primitive_monoclinic_worked_example(superbases):
     r"""The cell 30 x 40 x 50 A, beta = 100 deg, has conorms (639.5, 1600.0, 2239.5, 0, 260.5, 0) and six obtuse superbases on a ring of flips; 1 and -1 are loops at the reduced cell, the twofold and the mirror are arrows to the opposite member, and no frame outside the ring is obtuse."""
     import numpy as np
@@ -367,3 +370,53 @@ def test_twofolds_and_inversion_generate_every_point_group():
         assert len(seen) == len(aut), name
         if name in visible:
             assert (len(two), sum(v for _, v in two)) == visible[name], name
+
+
+@claim("z46", "SI §S5, Symmetry visible in one cell", kind="exhaustive")
+def test_orthorhombic_landing_points_and_twofolds():
+    """For a primitive orthorhombic lattice, in the graph of its sixteen superbases joined by
+    Selling steps at zero conorms, every superbase is at most one step from an orthogonal one;
+    three are four steps from the reference's orthogonal superbase (none farther), and the
+    orthogonal superbase next to each of them is the reference's moved by a twofold."""
+    import numpy as np
+    from . import test_z44_widened_complete as t
+    p = np.array([900.0, 1600.0, 2500.0, 0.0, 0.0, 0.0])
+    G = t._gram(p)
+    _, mem = t._generate(p, 1e-9, 1e-9)
+    assert len(mem) == 16
+    adj = {k: set() for k in mem}
+    for k, S in mem.items():
+        pc = t._cn(S, G)
+        for n, (i, j) in enumerate(t.SL):
+            if abs(pc[n]) < 1e-9:
+                ku = t._key(t._flip(S, i, j))
+                if ku in adj:
+                    adj[k].add(ku)
+
+    def bfs(src):
+        d, fr = {src: 0}, [src]
+        while fr:
+            nf = []
+            for x in fr:
+                for y in adj[x] - d.keys():
+                    d[y] = d[x] + 1
+                    nf.append(y)
+            fr = nf
+        return d
+
+    def orthogonal(S):
+        z = [t.SL[n] for n in range(6) if abs(t._cn(S, G)[n]) < 1e-9]
+        return 0 in [sum(v in e for e in z) for v in range(4)]
+    S0 = np.array(t.S0, float)
+    k0 = t._key(S0)
+    ortho = {k for k, S in mem.items() if orthogonal(S)}
+    d0 = bfs(k0)
+    assert all(min(bfs(k)[o] for o in ortho) <= 1 for k in mem)
+    far = [k for k in mem if d0[k] == 4]
+    assert len(far) == 3 and max(d0.values()) == 4
+    twofolds = [np.diag(v) for v in ((1, -1, -1), (-1, 1, -1), (-1, -1, 1))]
+    assert all(np.allclose(g.T @ G @ g, G) for g in twofolds)
+    images = {t._key((g @ S0.T).T) for g in twofolds}
+    for k in far:
+        nxt = {o for o in ortho if o in adj[k]}
+        assert nxt and nxt <= images and k0 not in nxt

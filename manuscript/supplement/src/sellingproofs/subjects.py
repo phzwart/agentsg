@@ -1,6 +1,6 @@
 """What each numbered statement group is about, in the paper's terms (for the ledger)."""
 SUBJECTS = {
-    "z36": "metric errors as conorm bands, coverage constants",
+    "z36": "from a metric error to a band on the conorms: coverage constants",
     "z44": "the band theorem: class excess, generation by flips, brute force",
     "z45": "the worked cell's widened set, walks and reduction under a band",
     "z46": "the closure groupoid of every sort, the monoclinic ring",
@@ -8,7 +8,6 @@ SUBJECTS = {
     "z48": "Delone's sorts from the groupoid",
     "z49": "bands per slot, cell shapes as classical ambiguities",
     "z50": "codimension-one specialisations",
-    "z51": "the BLDConograph samples",
     "z52": "the operator set U: 6096 operators, kinds, entries",
     "z53": "sorts as closed subspaces",
     "z54": "the table of sorts from the operators",

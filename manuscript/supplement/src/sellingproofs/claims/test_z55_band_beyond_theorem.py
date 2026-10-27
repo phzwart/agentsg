@@ -23,7 +23,9 @@ from .test_z44_widened_complete import superbases  # noqa: E402, F401
 
 @claim("z55", "SI §S4", kind="sampled")
 def test_exact_far_beyond_the_proved_band(superbases):
-    r"""The construction is exact at every band from lambda1/32 to lambda1/6 wherever the idealised lattice exists."""
+    r"""On monoclinic, hexagonal, orthorhombic, cubic and plate lattices with zero conorms placed
+    at random, the construction agrees with brute force over bases with entries in [-2, 2] at
+    every band from lambda1/32 to lambda1/6 wherever the idealised lattice exists."""
     rnd = np.random.default_rng(9)
     out = {}
     for div in (32, 24, 19, 16, 12, 10, 8, 6):

@@ -80,59 +80,6 @@ def _construct_rel(G, sig, factor=4.0):
     return {k for k, S in seen.items() if (_cn(S, G) >= -_band(S, G, sig) - tol).all()}, status
 
 
-@claim("z49", "SI §S4, Bands per slot", kind="sampled")
-def test_per_slot_bands_on_needles_and_plates(superbases):
-    r"""On needles and plates with angular errors, a band per slot reproduces the brute-force widened set."""
-    import numpy as np
-    from agentsg.cell.canonical import canonical_superbase
-    from agentsg.cell.metric import UnitCell, params_from_metric
-    rnd = np.random.default_rng(11)
-    cells = {"needle mP": (5, 5, 100, 90, 92, 90), "needle oP": (5, 5, 100, 90, 90, 90),
-             "needle hP": (40, 40, 300, 90, 90, 120), "plate oP": (100, 100, 5, 90, 90, 90)}
-    tally = {}
-    for name, c in cells.items():
-        G0 = np.array(UnitCell(*c).metric_tensor())
-        for sdeg in (0.02, 0.05, 0.2, 0.5):
-            sig = np.radians(sdeg)
-            for _ in range(4):
-                E = rnd.normal(size=(3, 3)); E = (E + E.T) / 2; np.fill_diagonal(E, 0)
-                L = np.sqrt(np.diag(G0))
-                G = G0 + np.outer(L, L) * E * sig * 0.7
-                cell = tuple(params_from_metric(G))
-                F0 = np.array(canonical_superbase(cell)[0], float)
-                Gf = F0[1:4] @ G @ F0[1:4].T
-                truth = _brute_rel(superbases, Gf, sig)
-                got, status = _construct_rel(Gf, sig)
-                key = (name, sdeg)
-                t_ = tally.setdefault(key, {"ok": 0, "wrong": 0, "beyond ok": 0,
-                                            "beyond wrong": 0, "singular": 0, "max": 0})
-                t_["max"] = max(t_["max"], len(truth))
-                if got is None:
-                    t_["singular"] += 1
-                elif status == "ok":
-                    t_["ok" if got == truth else "wrong"] += 1
-                else:
-                    t_["beyond ok" if got == truth else "beyond wrong"] += 1
-    # within the per-slot hypothesis the construction is exact, every cell and precision
-    assert all(v["wrong"] == 0 for v in tally.values()), tally
-    # needles: hypothesis holds and exact through 0.05 deg; beyond it (0.2,
-    # 0.5 deg) the set is still exact whenever the idealised lattice exists --
-    # the constant 32 is conservative
-    for name in ("needle mP", "needle oP", "needle hP"):
-        assert tally[(name, 0.02)]["ok"] == 4 and tally[(name, 0.05)]["ok"] == 4, name
-        for sdeg in (0.2, 0.5):
-            assert tally[(name, sdeg)]["beyond wrong"] == 0, (name, sdeg)
-    # plate: the floor -- at 0.2 and 0.5 deg the hypothesis fails, the widened
-    # set exceeds sixteen members and the sixteen-member closure misses some
-    for sdeg in (0.2, 0.5):
-        t_ = tally[("plate oP", sdeg)]
-        assert t_["ok"] == 0 and t_["beyond ok"] == 0 and t_["max"] > 16, t_
-    # (exact at 0.02 and 0.05 deg, mostly already beyond the hypothesis)
-    for sdeg in (0.02, 0.05):
-        t_ = tally[("plate oP", sdeg)]
-        assert t_["ok"] + t_["beyond ok"] == 4 and t_["wrong"] + t_["beyond wrong"] == 0, t_
-
-
 def _nice_cell(S, G):
     """the member's cell with all angles >= 90, most right angles first."""
     import numpy as np

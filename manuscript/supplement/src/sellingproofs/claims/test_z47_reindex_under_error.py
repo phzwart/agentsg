@@ -69,7 +69,10 @@ def _proposed(cache, SN):
 
 @claim("z47", "SI Proposition S4.7", kind="sampled")
 def test_true_operator_is_proposed_under_declared_error():
-    r"""Under a declared metric error the true operator is proposed: 180 of 180 new cells (15 references x 12 cells)."""
+    r"""Proposition S4.7 on seeded cases: under a declared metric error xi the true operator is
+    proposed for 180 of 180 new cells (15 references x 12 cells) at the coverage band of the
+    stored closure, between 0 and 8 xi for these references, while the a-priori certificate
+    of the proposition asks for a median 13 xi (4.3 xi to 75 xi)."""
     import numpy as np
     from agentsg.cell.canonical import canonical_superbase
     from agentsg.cell.metric import params_from_metric
@@ -87,11 +90,12 @@ def test_true_operator_is_proposed_under_declared_error():
             refs.append((name, p, unit))
     lost_by_tau_snap = 0
     trials = 0
-    certs, within = [], 0
+    certs, within, taus = [], 0, []
     for name, p, unit in refs:
         GR = _gram(p)
         eta = 0.25 * unit
         tau = _band_tau(p, eta)
+        taus.append(tau / eta)
         assert _lam1(p) > 32 * tau, name
         cache = _cache(p, 4 * tau, tau)
         keys = {_key(S) for S in cache}
@@ -124,5 +128,10 @@ def test_true_operator_is_proposed_under_declared_error():
     # tau-snap cache did not fail here; that failure is the constructed
     # case of test_z46_selling_groupoid
     assert lost_by_tau_snap == 0
-    # the certificate is valid but conservative (median about 13 eta)
-    assert 10 < float(np.median(certs)) < 16 and within == 15
+    # the certificate is valid but conservative: a median 13 eta against a band near 3 eta
+    assert round(float(np.median(certs))) == 13, np.median(certs)
+    # the coverage band per reference (in units of xi): 8, 5.4 and 0.71 at the orthorhombic,
+    # cubic and plate corners, 0 at the monoclinic and hexagonal ones
+    assert sorted(round(float(x), 2) for x in taus) == [0.0] * 6 + [0.71] * 3 + [5.4] * 3 + [8.0] * 3
+    assert round(min(certs), 1) == 4.3 and round(max(certs)) == 75
+    assert within == 15
