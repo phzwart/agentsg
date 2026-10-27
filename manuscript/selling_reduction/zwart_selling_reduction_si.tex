@@ -577,7 +577,7 @@ all & 45\,222 & 20\,206 & 0.98 (0.96--1.00) & 4.21 (4.09--4.33) & 6.72 (6.52--6.
 
 \emph{The crystal-form proxy.} Random pairs of entries with one space group whose identifiers do not share their first three characters, drawn with the space-group mix of the id-adjacent pairs, pass the $20\%$ cut in $1.5\%$ of 19\,986 cases ($0.75\%$ at $5\%$; \texttt{pdb\_\allowbreak proxy\_\allowbreak check.py}). Unrelated crystals rarely pass the cut by chance, so the movement of the percentiles with the cut reflects variation within deposition series rather than unrelated pairs.
 
-\emph{The Niggli window.} \texttt{niggli\_window.py} draws 100 lattices on each of the 38 faces (half of them anisotropic, with vertex scales up to 30) and on each of the 24 sorts, measures each twice with independent errors of total strain $0.5$, $2$, $5$ and $7.7\%$, the new cell in a random basis, and computes the true operator between the two Niggli cells (cctbx) and between the two Selling-reduced cells directly. Between Niggli cells its entries were in $\{-1,0,1\}$ in all 24\,800 cases, strictly and not only up to the lattice's point group, and in 3\,040 further cases on strongly anisotropic lattices (\texttt{niggli\_window.py thin}: 40 per face, vertex scales up to 60, the square root of the metric's eigenvalue ratio up to 98, median 5); between Selling-reduced cells an entry of 2 or 3 was needed in 3\,765 cases (on two zeros sharing a vector, three zeros, and the sorts cP, tP and oP) and in none once composed with the point group.
+\emph{The Niggli window.} \texttt{niggli\_window.py} draws 100 lattices on each of the 38 faces (half of them anisotropic, with vertex scales up to 30) and on each of the 24 sorts, measures each twice with independent errors of total strain $0.5$, $2$, $5$ and $7.7\%$, the new cell in a random basis, and computes the true operator between the two Niggli cells (cctbx) and between the two Selling-reduced cells directly. Between Niggli cells its entries were in $\{-1,0,1\}$ in all 24\,800 cases, strictly and not only up to the lattice's point group, and in 3\,040 further cases on strongly anisotropic lattices (\texttt{niggli\_window.py thin}: 40 per face, vertex scales up to 60, the square root of the metric's eigenvalue ratio up to 98, median 5); between Selling-reduced cells an entry of 2 or 3 was needed in 3\,765 cases (on two zeros sharing a vector, three zeros, and the sorts cP, tP and oP) and in none once composed with the point group. Proposition~A12 of the main text turns the first observation into a theorem for exact lattices and for measurements within a radius $\rho$ of one lattice (Section~\ref{si:niggli}).
 
 %==============================================================================
 \section{The reindexing workflow in detail}\label{si:workflow}
@@ -792,6 +792,54 @@ step & action & reported \\
 
 Table~\ref{tab:wf-steps} collects the steps. Steps 0 and 1 are paid once per reference and serve every new cell, which is the case of serial crystallography and of a series of data sets against one reference; steps 2 to 7 cost one reduction, a few determinants, ten comparisons per ordering, a handful of $3\times3$ eigenvalue problems and the exact operators that are returned.
 
+%==============================================================================
+\section{The Niggli window and the way to the Niggli cell: the finite proof}\label{si:niggli}
+
+This section gives the computation behind Proposition~A12 and Corollary~A13 of the main text (claims z68 of Section~S7, \texttt{sellingproofs/niggli\_window.py}). Throughout, a zero pattern $Z$ is fixed and vectors are written in the basis $(a,b,c)$ of a superbase $F_0=(d,a,b,c)$; the metrics for which $F_0$ is obtuse with pattern $Z$ are $\sum_kp_kE_k$ with $p_Z=0$ and $p_k>0$ off $Z$, so that every squared length and every scalar product is a linear form in the conorms $p$, with integer coefficients.
+
+\emph{Step 1: the vectors shortest in their classes.} By Lemma~A1 of the main text, a vector with coefficients $s+2k$ relative to $F_0$ ($s\in\{0,1\}^4$, $s_0=k_0=0$) is shortest in its parity class exactly when $\gamma_{ij}=\Delta k(\Delta k+\Delta s)=0$ on every slot off $Z$. The condition does not involve the values of $p$, and along the connected graph of non-zero slots it gives $|k_i|\le3$, so the set $V(Z)$ of such vectors is listed exactly from the window $[-7,7]^3$. It has 14, 16, 18, 20 and 26 vectors for the truncated octahedron, the hexarhombic dodecahedron, the rhombic dodecahedron, the hexagonal prism and the cuboid (Table~\ref{tab:niggli}); on three seeded metrics of every pattern the class minima found by enumeration are exactly $V(Z)$.
+
+\emph{Step 2: the Minkowski-reduced bases.} A Niggli cell is Minkowski reduced (Gruber, 1973), and each vector of a Minkowski-reduced basis is shortest in its class (main text, proof of Proposition~A12), so every Niggli cell of every metric with pattern $Z$ is an ordered basis of $V(Z)$ that satisfies the ten conditions
+\[
+|b|^2-|a|^2\ge0,\quad |c|^2-|b|^2\ge0,\quad |b\pm a|^2-|b|^2\ge0,\quad |c+xa+yb|^2-|c|^2\ge0\ \ (x,y\in\{-1,0,1\},\ (x,y)\ne0)
+\]
+at its own conorms. Each condition is a row $A_r$ with $A_rp\ge0$. An ordered basis is \emph{retained} for $Z$ when a linear program finds a point with $A p\ge0$, $p_Z=0$ and $p_k\ge1$ off $Z$ (the conditions are homogeneous, so this is the relative interior of the face). A basis the program rejects is excluded only when an exact certificate is found: rational $y\ge0$ with $y^{\mathsf T}A\le0$ on the free conorms and $y^{\mathsf T}A\ne0$, verified in exact arithmetic, so that $y^{\mathsf T}Ap<0$ for every $p$ in the relative interior and the conditions cannot all hold. A basis the program accepts is retained without further proof, which can only enlarge the set checked. Of the 174\,912 ordered bases of $V(Z)$ over the 38 patterns, 8\,256 are retained and the other 166\,656 are excluded, every one with a verified certificate.
+
+\emph{Step 3: the window.} For each pattern, every pair $(B,B')$ of retained bases gives $B^{-1}B'$; all 3\,849\,216 have entries in $\{-1,0,1\}$. The pairs are not required to be reduced at a common $p$, which is what part (ii) of the proposition uses: two measurements near one lattice have Niggli cells that are each retained for its pattern, at different conorms.
+
+\emph{Step 4: the way from a reduced cell.} A superbase of vectors of $V(Z)$ is obtuse for the metrics with pattern $Z$ exactly when its seven partial sums lie in $V(Z)$ (main text, step~(3) of the enumeration); as a cross-check, these are also exactly the superbases for which a linear program finds the six conditions $v_i\cdot v_j\le0$ satisfiable on the face. They number 1, 2, 3, 6 and 16 up to sign, as in Lemma~A2. For every one, each of its 24 ordered bases $(u_1,u_2,u_3)$ and each retained basis $B$, the matrix $(u_1,u_2,u_3)^{-1}B$ has entries in $\{-1,0,1\}$: 6\,856\,704 matrices, 1\,344 of them distinct. Requiring the superbase to be obtuse matters: among all superbases with four vectors in $V(Z)$, some reach a retained basis only through an entry of 2.
+
+\emph{Step 5: the radius.} For part (ii), $\eta_{\rm gap}$ is the class gap $(g-1)/(g+1)$ of the main text, computed by enumerating the classes, and $\eta_{\rm adm}$ is the smallest strain, to first order, at which an excluded basis of $V(Z)$ satisfies the ten conditions, a convex problem per basis solved numerically. In every example $\rho$ is set by the class gap (Table~\ref{tab:niggli}); two measurements of each example lattice within $0.9\rho$, the second in a random basis, had Niggli cells within $\{-1,0,1\}$ of each other in all 280 trials, and the library's Selling and Niggli reductions (the latter after Grosse-Kunstleve \emph{et al.}, 2004), run on 380 seeded cells on and slightly off every pattern, gave Niggli cells that satisfy the ten conditions and lie within $\{-1,0,1\}$ of all 24 ordered bases of the reduced superbase.
+
+\begin{table}
+\caption{The finite proof of Proposition~A12 and Corollary~A13 by Voronoi type (top), and the radius $\rho$ of Proposition~A12(ii) for example lattices (bottom; strain, \%). $|V|$: vectors shortest in their classes; bases: ordered bases of $V$; retained: Minkowski reduced somewhere on the pattern, the rest excluded with exact certificates; superbases: obtuse, up to sign; pairs: the matrices checked for Proposition~A12(i) and Corollary~A13, all with entries in $\{-1,0,1\}$.}
+\label{tab:niggli}
+\begin{footnotesize}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Voronoi type & patterns & $|V|$ & bases & retained & superbases & pairs (A12) & pairs (A13) \\
+\midrule
+truncated octahedron & 1 & 14 & 1\,344 & 768 & 1 & 589\,824 & 147\,456 \\
+hexarhombic dodecahedron & 6 & 16 & 11\,520 & 2\,688 & 2 & 1\,204\,224 & 1\,032\,192 \\
+rhombic dodecahedron & 3 & 18 & 7\,488 & 2\,304 & 3 & 1\,769\,472 & 1\,327\,104 \\
+hexagonal prism & 12 & 20 & 43\,200 & 1\,728 & 6 & 248\,832 & 1\,990\,656 \\
+cuboid & 16 & 26 & 111\,360 & 768 & 16 & 36\,864 & 2\,359\,296 \\
+all & 38 & & 174\,912 & 8\,256 & & 3\,849\,216 & 6\,856\,704 \\
+\midrule
+lattice & zeros & & $\eta_{\rm gap}$ & $\eta_{\rm adm}$ & $\rho$ & & \\
+\midrule
+mP, $30\times40\times50$\,\AA, $\beta=100^\circ$ & 2 & & 10.4 & 46.9 & 10.4 & & \\
+oC, primitive cell $25\times50\times25$\,\AA, $\beta=106.3^\circ$ & 2 & & 9.4 & 33.3 & 9.4 & & \\
+hP, $40\times40\times60$\,\AA & 2 & & 23.5 & 42.6 & 23.5 & & \\
+oP, $30\times40\times50$\,\AA & 3 & & 30.5 & 39.1 & 30.5 & & \\
+tP, $40\times40\times60$\,\AA & 3 & & 38.1 & 42.6 & 38.1 & & \\
+cP, $40$\,\AA & 3 & & 50.0 & 57.7 & 50.0 & & \\
+aP, $30\times40\times50$\,\AA, $85,95,100^\circ$ & 0 & & 1.9 & 28.9 & 1.9 & & \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
 \begin{references}
 \reference{Andrews, L. C. \& Bernstein, H. J. (1988). \emph{Acta Cryst.} A\textbf{44}, 1009--1018.}
 \reference{Andrews, L. C. \& Bernstein, H. J. (2023). \emph{Acta Cryst.} A\textbf{79}, 499--503.}
@@ -800,9 +848,11 @@ Table~\ref{tab:wf-steps} collects the steps. Steps 0 and 1 are paid once per ref
 \reference{Conway, J. H. \& Sloane, N. J. A. (1992). \emph{Proc. R. Soc. London Ser. A}, \textbf{436}, 55--68.}
 \reference{Delaunay, B. (1933). \emph{Z. Kristallogr.} \textbf{84}, 109--149.}
 \reference{Grosse-Kunstleve, R. W., Sauter, N. K., Moriarty, N. W. \& Adams, P. D. (2002). \emph{J. Appl. Cryst.} \textbf{35}, 126--136.}
+\reference{Gruber, B. (1973). \emph{Acta Cryst.} A\textbf{29}, 433--440.}
 \reference{Hahn, Th. (2006). Editor. \emph{International Tables for Crystallography}, Vol. A, 5th ed. Dordrecht: Springer.}
 \reference{Oishi-Tomiyasu, R. (2012). \emph{Acta Cryst.} A\textbf{68}, 525--535.}
 \reference{Oishi-Tomiyasu, R. (2024). \emph{Acta Cryst.} A\textbf{80}, 339--350.}
+\reference{Grosse-Kunstleve, R. W., Sauter, N. K. \& Adams, P. D. (2004). \emph{Acta Cryst.} A\textbf{60}, 1--6.}
 \reference{Sauter, N. K., Grosse-Kunstleve, R. W. \& Adams, P. D. (2004). \emph{J. Appl. Cryst.} \textbf{37}, 399--409.}
 \reference{Selling, E. (1874). \emph{J. Reine Angew. Math.} \textbf{77}, 143--229.}
 \reference{Zwart, P. H. (2026). \texttt{agentsg}: a space-group and lattice engine, version 0.5.0. https://github.com/phzwart/agentsg.}

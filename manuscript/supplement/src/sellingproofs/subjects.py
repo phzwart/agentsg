@@ -25,4 +25,5 @@ SUBJECTS = {
     "z65": "the PDB numbers and their reproduction",
     "z66": "remaining statements, tables and figures",
     "z67": "the reindexing workflow: identities, worked example, comparison with the direct form",
+    "z68": "the Niggli window and the way from a reduced cell to the Niggli cell",
 }
