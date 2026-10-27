@@ -19,8 +19,12 @@ def available(need: str) -> bool:
         return True
     if need == "pdb":
         return paths.PDB_DB.is_file()
-    if need == "cctbx":
-        return _module("cctbx")
+    if need == "cctbx":                                # importable, not merely present: cctbx
+        if not _module("cctbx"):                       # refuses to load from some virtual
+            return False                               # environments, as do the scripts run
+        import subprocess, sys                         # in a subprocess by the reproduce claims
+        r = subprocess.run([sys.executable, "-c", "import cctbx.uctbx"], capture_output=True)
+        return r.returncode == 0
     if need == "sympy":
         return _module("sympy")
     if need == "lean":

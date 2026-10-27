@@ -29,7 +29,7 @@ BLUE, ORANGE = "#2a78d6", "#eb6834"
 
 
 def nonisomorphism():
-    con = duckdb.connect(os.path.join(ROOT, "data", "pdb_cells.duckdb"), read_only=True)
+    con = duckdb.connect(os.path.join(os.environ.get("SELLINGPROOFS_DATA", os.path.join(ROOT, "data")), "pdb_cells.duckdb"), read_only=True)
     rows = con.execute("select pdb_id, a, b, c, alpha, beta, gamma, sg_hm from cells order by pdb_id").fetchall()
     out = []
     for r1, r2 in zip(rows, rows[1:]):

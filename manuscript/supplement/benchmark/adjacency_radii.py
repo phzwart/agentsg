@@ -44,7 +44,7 @@ def main(n_pdb=2000):
     rows = [json.loads(l) for l in open(os.path.join(HERE, "benchmark.jsonl"))]
     refs = {tuple(round(x, 6) for x in r["reference_cell"]): r["reference_cell"] for r in rows}
     radii([(c, None) for c in refs.values()], "benchmark references")
-    con = duckdb.connect(os.path.join(ROOT, "data", "pdb_cells.duckdb"), read_only=True)
+    con = duckdb.connect(os.path.join(os.environ.get("SELLINGPROOFS_DATA", os.path.join(ROOT, "data")), "pdb_cells.duckdb"), read_only=True)
     pdb = con.execute(f"select a, b, c, alpha, beta, gamma, sg_hm from cells using sample {n_pdb} rows (reservoir, 7)").fetchall()
     radii([(tuple(p[:6]), p[6] or None) for p in pdb], f"PDB sample")
     for pid in ("3HR2", "3HQV", "6BZP", "1CGM"):                    # the thin tail of the archive
