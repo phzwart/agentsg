@@ -361,7 +361,7 @@ def test_benchmark_misses():
 @claim("z64", "main §5.2", kind="benchmark")
 def test_what_the_metric_does_not_decide():
     """The cheapest candidate lies in the true operator's coset of the exact lattice
-    symmetries in 742 of the 780 benchmark cases, and is the true operator itself in 741. The
+    symmetries in 742 of the 780 benchmark cases, and in each of these it is the true operator itself. The
     38 that fail are the 20 difference-wall cases and 18 of the 660 cases near a
     specialisation. In the stress cases the cheapest candidate is in the true coset in 68 of
     120, and is the true operator itself in 40.
@@ -376,7 +376,7 @@ def test_what_the_metric_does_not_decide():
     assert 780 - 742 == 20 + 18
     assert sum(v[0] - v[2] for k, v in cos.items() if k.startswith("benchmark ") and k != "benchmark all") == 38
     assert cos["stress all"][0] == 120 and cos["stress all"][2] == 68
-    assert _cheapest("results_compare.txt")["all", "closure"] == (741, 780)
+    assert _cheapest("results_compare.txt")["all", "closure"] == (742, 780)
     assert _cheapest("results_stress.txt")["all", "closure"] == (40, 120)
 
 

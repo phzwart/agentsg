@@ -1,7 +1,7 @@
 
 benchmark: band 0.074, 780 cases
 family           method          found  cands q50/q90  true cheapest
-anisotropy       closure       16/16       30/40          15/16    
+anisotropy       closure       16/16       30/40          16/16    
 anisotropy       small1        16/16       24/28          16/16    
 anisotropy       small2        16/16       30/40          16/16    
 anisotropy       niggli1       16/16       30/40          16/16    
@@ -36,11 +36,11 @@ specialisation   niggli1      660/660       4/24         642/660
 specialisation   cctbx_sim1   660/660       4/24         642/660   
 specialisation   cctbx_sim2   660/660       4/24         642/660   
 specialisation   pipeline     660/660       4/24         642/660   
-all              closure      780/780       4/24         741/780   
+all              closure      780/780       4/24         742/780   
 all              small1       778/780       4/24         742/778   
 all              small2       780/780       4/24         742/780   
 all              niggli1      780/780       4/24         742/780   
 all              cctbx_sim1   780/780       4/24         742/780   
 all              cctbx_sim2   780/780       4/24         742/780   
 all              pipeline     779/780       4/24         741/779   
-seconds per case: closure 0.08, small1 0.04, small2 0.82, niggli1 0.04, cctbx_sim1 0.00, cctbx_sim2 0.03, pipeline 0.03
+seconds per case: closure 0.02, small1 0.03, small2 0.65, niggli1 0.03, cctbx_sim1 0.00, cctbx_sim2 0.02, pipeline 0.02
