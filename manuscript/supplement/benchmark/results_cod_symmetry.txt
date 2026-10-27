@@ -1,0 +1,7 @@
+
+(2) symmetry, 398 COD cells with a reported crystal system
+  highest Bravais type within sort distance 0.074 equals the reported type: 181/398
+  higher than reported: 210   lower than reported: 7
+  gap type equals the reported type: 231/398
+  (census flag metric-above-reported on 34 of these)
+  most common disagreements (reported -> within band): [(('mC', 'oS'), 29), (('aP', 'mP'), 26), (('mC', 'oF'), 18), (('mP', 'oS'), 18), (('mC', 'hP'), 16), (('aP', 'oS'), 12), (('mP', 'oP'), 11), (('hR', 'hP'), 10)]

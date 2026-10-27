@@ -1,0 +1,1 @@
+19986 random same-space-group pairs from different deposition prefixes: 0.75 % below a 5 % cut, 0.97 % below a 10 % cut, 1.46 % below a 20 % cut

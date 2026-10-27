@@ -1,6 +1,13 @@
-# Appendix Z computational checks
+# Appendix Z computational checks (legacy)
 
-Runnable counterparts to every `\zitem{z:…}` in [`../main_v9.tex`](../main_v9.tex)
+The checks behind *The Selling closure* have moved to the supplement package
+[`../supplement`](../supplement) (`sellingproofs`), where each is registered under the number
+of the statement it verifies; z36 and z44–z61 live there now, with the same numbers.  The
+modules left here back earlier drafts of the paper and the census, and none of the paper's
+numbers rests on them.
+
+
+Runnable checks for the manuscript [`../selling_reduction/zwart_selling_reduction.tex`](../selling_reduction/zwart_selling_reduction.tex) (Table S12 of its supporting information maps them to sections); they began as counterparts to the `\zitem{z:…}` items of an earlier draft, [`../main_v9.tex`](../main_v9.tex)
 (and earlier drafts). Each module maps to one check and calls `agentsg.cell`
 (no forked lattice math).
 
@@ -67,6 +74,7 @@ pytest -m "not slow"
 | `z:brute-complete` | `test_z26_brute_complete.py` |
 | `z:coset-reps` | `test_z27_coset_reps.py` |
 | `z:pseudo` | `test_z28_pseudo.py` |
+| `z:appendix-statements` | `test_z61_appendix_statements.py` (the Voronoi characterisation and zero-conorm flip, Lemma A3, Proposition A4, Proposition A10 (iii)–(v), Proposition A11 (i)) |
 
 `helpers.prepare_reference` / `reindex_frame` mirror the App. D pseudo-code so
 `z:reindex-bench` can assert the reference closure is enumerated once.

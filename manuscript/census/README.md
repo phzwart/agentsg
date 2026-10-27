@@ -1,6 +1,6 @@
 # Wall-incidence census
 
-Measured cells from a `CellDatabase`, scored with the Selling-closure helpers in `manuscript/benchmark/evaluate.py` and `manuscript/appendix_z/test_z44_widened_complete.py`. No library code is changed.
+Measured cells from a `CellDatabase`, scored with the Selling-closure helpers in `manuscript/supplement/benchmark/evaluate.py` and `sellingproofs.claims.test_z44_widened_complete`. No library code is changed.
 
 Database `data/cod_cells.duckdb`. Seed `0`. Sample `None`. Loaded **528,439** cells. Closure pass: **full** on 528,439 obtuse cells. Metric batch on **cuda**, closures and sort paths on **20** processes (2941.21 closure cells/s). A full closure pass would take 0.05 h.
 

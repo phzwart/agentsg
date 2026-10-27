@@ -5,7 +5,16 @@ Fixes 1–6 of `manuscript/census/prompts/CENSUS_FIXES.md` are in (`b63783b`); t
 full table, regenerate the outputs, and commit as
 "Add the per-slot closure and the tolerance calibration to the census".
 
-1. **Per-slot closure with consistent idealisation (replaces item 7).** Do not
+1. **Per-slot closure: the zeroing filtration (replaces item 7).** Prefer
+   `test_z57_perslot_bands.zero_filtration(G)` once per cell: it returns the
+   levels and the geometric limit (cosine units). Record the limit per cell
+   (and `degrees(asin(limit))`), and answer every band by
+   `filtration_select(levels, G, sigma, 4 * sigma)` when `4 * sigma < limit`,
+   else refuse. The text below about `consistent_construct` still applies as
+   the cross-check on a 5,000-cell sample (they should agree except for rare
+   extra refusals).
+
+   Original instruction: Do not
    use `members_by('slot')` or `test_z49._construct_rel`: their idealisation
    in the frame of F0 alone is wrong on some needles (see z57). Use
    `test_z57_perslot_bands.consistent_construct(G, sigma)`, with sigma the
@@ -26,7 +35,9 @@ full table, regenerate the outputs, and commit as
    3). For 200 of them also run K = 4 and report whether anything is added.
    Any `wrong` is an issue with five example ids and their cells.
 
-3. **The 3° rule on the archive.** Run the consistent construction a second
+3. **The 3° rule on the archive.** From the filtration: a cell answers the 3°
+   rule when `sin(3 deg) < limit`; tabulate the geometric limit in degrees per
+   reported system and axis-ratio bin (quantiles 10/25/50/75/90). Then, as before: Run the consistent construction a second
    time at `sigma = sin(3 deg) / 4` for every cell (idealise at 3°, filter at
    about 0.75°). Report per reported system and per axis-ratio bin (longest
    / shortest edge of the reduced cell: <1.5, 1.5–2.4, 2.4–3, 3–5, 5–10, >10):

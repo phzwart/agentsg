@@ -1,0 +1,1 @@
+anisotropic lattices, 40 per face, total strain 2 and 7.7 %: 3040 cases; largest entry between Niggli cells: {1: 3040}; ratio of largest to smallest edge scale (sqrt of the metric's eigenvalue ratio): median 5, max 98

@@ -1,0 +1,16 @@
+(Niggli type, near-zero conorms on a d slot): count -- Selling reduction from the Niggli basis
+  ('I', False) 67
+  ('I', True) 614
+  ('II', False) 519
+flip words and the slots of the two smallest conorms
+  ('II', 'none', ('ac', 'bc')) 364
+  ('I', 'ab.bc.db.dc', ('da', 'dc')) 316
+  ('I', 'ab.da.ab.bc', ('db', 'bc')) 188
+  ('II', 'none', ('ab', 'bc')) 154
+  ('I', 'ac.bc.ac.ab', ('da', 'ab')) 110
+  ('I', 'ac.da.ac.bc', ('ac', 'bc')) 67
+  ('II', 'none', ('ab', 'ac')) 1
+the same with agentsg reduce_cell
+  ('I', False) 67
+  ('I', True) 614
+  ('II', False) 519

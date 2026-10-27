@@ -1,0 +1,29 @@
+
+family               n   other basis, same cell  other cell  of which type flip
+shapes              75                        6           4                   4
+sort C5             16                        0           0                   0
+sort T5             19                        0           0                   0
+sort O3             19                        5          12                  10
+sort O4             26                        9           0                   0
+sort O5             60                        0           0                   0
+sort M2B            49                        0           1                   1
+sort M3             39                        0           1                   0
+sort M4             73                        0           0                   0
+sort A2             76                        1           0                   0
+sort A3             69                        1           0                   0
+specialisation     660                      119          39                   9
+sort A1             60                        0           0                   0
+sort M1A            40                       15           0                   0
+sort M1B            60                       13           6                   0
+sort M2A            10                        6           0                   0
+sort O1A            30                       15           0                   0
+sort O1B            60                       25          23                   1
+sort O2             10                        7           0                   0
+sort R1             20                        7           0                   0
+sort R3             10                        0           1                   1
+sort T1             20                       15           0                   0
+sort T2             10                        6           1                   1
+hidden              20                        0           0                   0
+anisotropy          16                        0           0                   0
+sort H4              4                        0           0                   0
+boundary             9                        0           2                   1
