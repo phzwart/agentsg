@@ -48,6 +48,8 @@ _CLAIMS = [
      "Rhombohedral axes are read as given, ties are ordered nearest the identity first, and the volume check matches the scale bound."),
     ("test_reindex_workflow_matches_the_direct_form", ("SI §S10", "main §4.2"), "sampled",
      "The reindexing workflow returns the same operators, with the same prices, as building the exact operator for every member and relabelling; on the worked cell 384 ordered bases leave 4 to price and 2 operators."),
+    ("test_niggli_from_selling_matches_niggli_reduction", ("main Corollary A13", "SI §S11"), "sampled",
+     "The Niggli cell read off the 14 signed partial sums of the reduced superbase (672 right-handed ordered bases) equals the cell of the Niggli reduction on seeded cells on, near and on both sides of every zero pattern, of both Niggli types, in random bases."),
     ("test_round6_api", ("main §4.2",), "exhaustive",
      "No space group means primitive in both reindexing and indexing classes; impossible R settings raise; an empty result warns."),
 ]

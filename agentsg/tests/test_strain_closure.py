@@ -293,3 +293,56 @@ def test_reindex_workflow_matches_the_direct_form():
     X = np.random.default_rng(1).normal(size=(3, 3)); X = X + X.T; X *= 0.003 / np.linalg.norm(X)
     wf = reindex_workflow(ref, params_from_metric((P.T @ Gh @ (np.eye(3) + X) @ Gh @ P).tolist()))
     assert (wf.n_members, wf.n_orderings, wf.n_prefilter, wf.n_within, wf.n_candidates) == (16, 384, 4, 2, 2)
+
+
+def test_niggli_from_selling_matches_niggli_reduction():
+    """Corollary A13: the Niggli cell read off the reduced superbase's partial sums is the cell
+    of the Niggli reduction, on seeded cells on, near and on both sides of every zero pattern
+    and with tied conorms, in random bases; the basis is right-handed and the operator from the
+    reduced basis has entries in {-1, 0, 1}."""
+    import itertools
+    from agentsg.cell import strain_closure as sc
+    from agentsg.cell.reduction import niggli_gk
+    assert len(sc._partial_sum_bases()) == 672
+    slots = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+
+    def connected(Z):
+        par = list(range(4))
+
+        def f(x):
+            while par[x] != x:
+                x = par[x]
+            return x
+        for k in range(6):
+            if k not in Z:
+                i, j = slots[k]
+                par[f(i)] = f(j)
+        return len({f(i) for i in range(4)}) == 1
+    faces = [Z for r in range(4) for Z in itertools.combinations(range(6), r) if connected(Z)]
+    assert len(faces) == 38
+    rng = np.random.default_rng(683)
+    kinds = set()
+    for Z in faces:
+        for rep in range(8):
+            p = rng.uniform(1, 10, 6) * np.exp(rng.uniform(0, np.log(8), 6))
+            p[list(Z)] = 0
+            if rep % 4 == 1:
+                p = p + rng.uniform(0, 1e-3, 6) * p.max() * np.isin(range(6), Z)
+            if rep % 4 == 2:
+                p = p - rng.uniform(0, 1e-3, 6) * p.max() * np.isin(range(6), Z)
+            if rep % 4 == 3:
+                q = np.ones(6)
+                q[rng.choice(6, 2, replace=False)] = rng.integers(1, 4, 2)
+                p = q * rng.uniform(1, 3)
+            while True:
+                U = rng.integers(-2, 3, (3, 3))
+                if round(abs(np.linalg.det(U))) == 1:
+                    break
+            cell = tuple(params_from_metric((U.T @ sc._gram(p) @ U).tolist()))
+            got = sc.niggli_from_selling(cell)
+            ref, _ = niggli_gk(cell)
+            assert max(abs(x - y) / max(1.0, abs(y)) for x, y in zip(got.cell, ref)) < 1e-6, (Z, rep)
+            assert got.basis.det() == 1 and got.operator.det() == (1 if reduce_cell(cell).basis.det() > 0 else -1)
+            assert max(abs(int(x)) for row in got.operator.rows for x in row) <= 1
+            kinds.add(got.niggli_type)
+    assert kinds == {"I", "II"}

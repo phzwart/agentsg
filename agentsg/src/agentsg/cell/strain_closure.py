@@ -950,12 +950,116 @@ def sort_spectrum(cell, sg_hm=None):
     return out
 
 
+# ---- Corollary A13: the Niggli cell from the reduced superbase ---------------
+@dataclass
+class NiggliFromSelling:
+    """The Niggli cell of a lattice, read off its Selling-reduced superbase.
+
+    ``cell`` is the Niggli cell (a, b, c, alpha, beta, gamma); ``basis`` (exact, 3x3,
+    determinant +1 for a primitive input) has its vectors as columns in the input basis;
+    ``operator`` (exact) has them as columns in the reduced basis, entries in {-1, 0, 1} and
+    determinant the sign of the reduced basis's determinant;
+    ``niggli_type`` is "I" (three acute angles) or "II"; ``tested`` is the number of ordered
+    bases of the partial sums that were tested (672)."""
+    cell: tuple
+    basis: Matrix3
+    operator: Matrix3
+    niggli_type: str
+    tested: int
+
+
+@lru_cache(maxsize=1)
+def _partial_sum_bases():
+    """the 672 right-handed ordered bases drawn from the 14 vectors +-(partial sums) of the
+    superbase (d, a, b, c), d = -a-b-c, written in the basis (a, b, c): the matrices of
+    Corollary A13 with determinant +1 (the other 672 are their negatives, which give the
+    same cell)."""
+    np = _np()
+    sums = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1)]
+    vecs = [np.array(v) for v in sums] + [-np.array(v) for v in sums]
+    out = []
+    for i, j, k in itertools.permutations(range(14), 3):
+        T = np.array([vecs[i], vecs[j], vecs[k]]).T
+        if round(np.linalg.det(T)) == 1:
+            out.append(T)
+    return np.array(out)
+
+
+def _is_niggli(A, B, C, xi, eta, zeta, eps):
+    """Niggli's conditions (Krivy & Gruber, 1976) on the scalars A = a.a, B = b.b, C = c.c,
+    xi = 2b.c, eta = 2a.c, zeta = 2a.b, compared with the tolerance eps, in the form of the
+    termination tests of the reduction of Grosse-Kunstleve et al. (2004)."""
+    gt = lambda x, y: x > y + eps          # noqa: E731
+    lt = lambda x, y: x < y - eps          # noqa: E731
+    eq = lambda x, y: abs(x - y) <= eps    # noqa: E731
+    if gt(A, B) or gt(B, C):
+        return None
+    if (eq(A, B) and gt(abs(xi), abs(eta))) or (eq(B, C) and gt(abs(eta), abs(zeta))):
+        return None
+    if gt(xi, 0) and gt(eta, 0) and gt(zeta, 0):
+        kind = "I"
+    elif not (gt(xi, 0) or gt(eta, 0) or gt(zeta, 0)):
+        kind = "II"
+    else:
+        return None
+    if gt(abs(xi), B) or (eq(xi, B) and lt(2 * eta, zeta)) or (eq(xi, -B) and lt(zeta, 0)):
+        return None
+    if gt(abs(eta), A) or (eq(eta, A) and lt(2 * xi, zeta)) or (eq(eta, -A) and lt(zeta, 0)):
+        return None
+    if gt(abs(zeta), A) or (eq(zeta, A) and lt(2 * xi, eta)) or (eq(zeta, -A) and lt(eta, 0)):
+        return None
+    tot = xi + eta + zeta + A + B
+    if lt(tot, 0) or (eq(tot, 0) and gt(2 * (A + eta) + zeta, 0)):
+        return None
+    return kind
+
+
+def niggli_from_selling(cell, sg_hm=None, eps_rel=None) -> NiggliFromSelling:
+    """The Niggli cell of ``cell`` (primitive, or of the primitive cell of the centring that
+    ``sg_hm`` gives), read off its Selling-reduced superbase without a second reduction.
+
+    By Corollary A13 of the manuscript the Niggli vectors are three of the 14 vectors
+    +-(partial sums) of any obtuse superbase, so the Niggli cell is the one of the 672
+    right-handed ordered bases of those vectors that satisfies Niggli's conditions.  The
+    comparisons use one relative tolerance (default ``REL_EPS``), scaled as in
+    ``reduction.niggli_gk`` by the cube root of the product of the diagonal; when the
+    tolerance lets several bases pass (a cell on a boundary of the conditions), the one with
+    the smallest scalars, in the order (A, B, C, |xi|, |eta|, |zeta|), is returned."""
+    np = _np()
+    from ..tolerances import REL_EPS
+    from .metric import params_from_metric
+    red = reduce_cell(cell, sg_hm)
+    G = np.asarray(red.G, float)
+    Ts = _partial_sum_bases()
+    M = np.einsum("nji,jk,nkl->nil", Ts, G, Ts)              # T^T G T for every T
+    A, B, C = M[:, 0, 0], M[:, 1, 1], M[:, 2, 2]
+    xi, eta, zeta = 2 * M[:, 1, 2], 2 * M[:, 0, 2], 2 * M[:, 0, 1]
+    eps = (REL_EPS if eps_rel is None else eps_rel) * float(np.prod(np.diag(G))) ** (1 / 3)
+    passing = []
+    for n in range(len(Ts)):
+        kind = _is_niggli(A[n], B[n], C[n], xi[n], eta[n], zeta[n], eps)
+        if kind is not None:
+            passing.append(((A[n], B[n], C[n], abs(xi[n]), abs(eta[n]), abs(zeta[n])), n, kind))
+    if not passing:                                           # not reached for a valid cell
+        raise RuntimeError("no ordered basis of the partial sums satisfies Niggli's conditions")
+    _, n, kind = min(passing, key=lambda t: t[0])
+    T = Matrix3([[int(x) for x in row] for row in Ts[n]])
+    basis = red.basis @ T
+    if basis.det() < 0:                                       # a left-handed input basis
+        T = Matrix3([[-int(x) for x in row] for row in Ts[n]])
+        basis = red.basis @ T
+    Bf = np.array([[float(x) for x in row] for row in basis.rows])
+    Gin = np.array(UnitCell(*_check_cell(cell)).metric_tensor(), float)
+    params = tuple(params_from_metric((Bf.T @ Gin @ Bf).tolist()))
+    return NiggliFromSelling(params, basis, T, kind, len(Ts))
+
+
 __all__ = [
     "LEPAGE_STRAIN", "LEPAGE_PRICE", "BRAVAIS", "band_for", "accept_for", "price_spectrum", "strain_from_esds",
     "certified_sort_spectrum", "ReducedCell", "reduce_cell", "conorms", "distance_to_obtuse",
     "adjacency_radius", "Member", "WidenedClosure", "widened_closure", "Candidate", "reindex", "reindex_workflow", "ReindexWorkflow",
     "IndexingClass", "IndexingResult", "indexing_classes", "sort_spectrum", "universal_operators",
-    "DEFAULT_ACCEPT", "MAX_BALL",
+    "DEFAULT_ACCEPT", "MAX_BALL", "NiggliFromSelling", "niggli_from_selling",
 ]
 
 

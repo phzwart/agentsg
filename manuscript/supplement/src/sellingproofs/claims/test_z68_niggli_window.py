@@ -107,7 +107,10 @@ def test_from_a_reduced_cell_to_the_niggli_cell():
     ordered bases, the Niggli cell is reached by a matrix with entries in {-1, 0, 1}.  The
     superbases obtuse somewhere on a face number 1, 2, 6 (two zeros sharing a vector), 3 (two
     disjoint zeros) and 16 up to sign, as in Lemma A2, and the pairs checked number
-    6 856 704."""
+    6 856 704.  The matrices that occur are exactly the 1 344 ordered bases drawn from the 14
+    vectors +-(u1, u2, u3, u1+u2, u1+u3, u2+u3, u1+u2+u3), the signed partial sums of the
+    superbase, so the Niggli vectors are three of the partial sums of every obtuse superbase;
+    672 have determinant +1, and T and -T give the same cell."""
     S = _summary()
     counts = {}
     for s in S:
@@ -116,6 +119,14 @@ def test_from_a_reduced_cell_to_the_niggli_cell():
                       "hexagonal prism": {6}, "rhombic dodecahedron": {3}, "cuboid": {16}}
     assert sum(s["landing_pairs"] for s in S) == 6856704
     assert max(s["landing_max"] for s in S) == 1
+    found = set().union(*(s["landing_matrices"] for s in S))
+    sums = [np.array(v) for v in [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1)]]
+    vecs = sums + [-v for v in sums]
+    closed = {tuple(np.array([vecs[i], vecs[j], vecs[k]]).T.ravel())
+              for i, j, k in itertools.permutations(range(14), 3)
+              if abs(round(np.linalg.det(np.array([vecs[i], vecs[j], vecs[k]])))) == 1}
+    assert found == closed and len(closed) == 1344
+    assert sum(round(np.linalg.det(np.array(t).reshape(3, 3))) == 1 for t in closed) == 672
 
 
 @claim("z68", "main Corollary A13", kind="sampled")
@@ -187,3 +198,39 @@ def test_window_on_measured_cells_within_the_radius():
             M1, M2 = _floats(niggli_gk(c1)[1]), _floats(niggli_gk(c2)[1])
             T = np.linalg.solve(M1, U @ M2)             # Niggli cell of c1 to that of c2
             assert np.abs(np.rint(T)).max() <= 1, (name, T)
+
+
+@claim("z68", "main Corollary A13", "SI §S11", kind="sampled")
+def test_niggli_from_selling_on_many_cells():
+    """The library's Niggli cell read off the reduced superbase agrees with its Niggli
+    reduction on 15 200 seeded cells (400 per zero pattern: on the face, slightly to either
+    side, and with tied conorms, in random bases), of both Niggli types, with a right-handed
+    basis; 516 of the 672 right-handed matrices occur."""
+    import warnings
+    rng = np.random.default_rng(5)
+    seen, n, types = set(), 0, set()
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        for Z in nw.FACES:
+            for rep in range(400):
+                p = rng.uniform(1, 10, 6) * np.exp(rng.uniform(0, np.log(8), 6))
+                p[list(Z)] = 0
+                if rep % 4 == 1:
+                    p = p + rng.uniform(0, 1e-3, 6) * p.max() * np.isin(range(6), Z)
+                if rep % 4 == 2:
+                    p = p + rng.uniform(-1e-3, 0, 6) * p.max() * np.isin(range(6), Z)
+                if rep % 4 == 3:
+                    q = np.ones(6)
+                    q[rng.choice(6, 2, replace=False)] = rng.integers(1, 4, 2)
+                    p = q * rng.uniform(1, 3)
+                U = _unimodular(rng)
+                cell = tuple(params_from_metric((U.T @ sc._gram(p) @ U).tolist()))
+                a = sc.niggli_from_selling(cell)
+                b, _ = niggli_gk(cell)
+                assert max(abs(x - y) / max(1, abs(y)) for x, y in zip(a.cell, b)) <= 1e-6, (Z, rep)
+                assert a.basis.det() == 1
+                seen.add(tuple(tuple(int(x) for x in r) for r in a.operator.rows))
+                types.add(a.niggli_type)
+                n += 1
+    assert n == 15200 and types == {"I", "II"}
+    assert len(seen) == 516
