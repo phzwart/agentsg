@@ -75,3 +75,25 @@ Clustering needs a snapshot with the UniProt and deposition-group columns. The f
 Joins are made in three steps per label, none of which changes the components: candidate pairs within a radius of the volume-normalised sorted linear key; a cheap price through the 24 relabellings of the reduced superbase, which is an upper bound on the closure price and accepts most joins; and the exact closure price for the remaining pairs that would still join two components. The key radius is 1.7 times the band. On every pair of 40 sampled labels, the largest ratio of key distance to price on a join was 1.30; `calibrate_key_ratio` repeats this measurement.
 
 Connectivity can chain: a run of intermediate cells can carry one cluster from a crystal form to a neighbouring one. `n_beyond_band` counts the members further than the band from the medoid, and `max_price_to_medoid` gives the furthest. Prices above the band in these columns are upper bounds.
+
+## One setting and origin per cluster
+
+`agentsg.cell.cluster_frames` puts every entry of a cluster on the setting and origin of one reference: the highest-resolution entry among those whose space group has the cluster's most common IT number. Entries of another IT number (a P1 or P2₁ entry in a P2₁2₁2₁ cluster) are listed and left alone.
+
+Each entry is placed in three steps:
+
+- **Reindexing.** The coset of reindexing operators from the reference to the entry within the band, grouped into classes of the reference's point group (proper operators only). Each class is one indexing the cell cannot decide; all are tried. The band is 7 %, widened to 15 % and then 20 % when nothing is found.
+- **Operators and origin.** The entry's space-group operators are written in the reference basis, and the origin shift that turns them into the reference's operators is solved exactly. A class with no such shift does not describe the reference's group and is dropped.
+- **Allowed origins.** Among the allowed origin shifts, the proper elements of the Euclidean normalizer and the operators of the group, the placement with the lowest Cα RMSD is kept. Cα atoms are paired by UniProt accession and residue number, so renumbered constructs and different chain labels pair correctly. Floating origin components are fitted, not searched.
+
+Entries more than 20 % from the reference (the far end of a chained cluster) are placed on an already-placed entry close in cell shape, and the two frames are composed (`via`).
+
+The coordinates come from the deposited mmCIF files:
+
+```bash
+pip install -e ".[coords]"
+python -m agentsg.cell.pdb_coords fetch data/clusters.duckdb data/ca.duckdb --workers 16
+python -m agentsg.cell.cluster_frames data/clusters.duckdb data/ca.duckdb data/frames.duckdb --workers 2
+```
+
+The `frames` table holds, for each entry, the affine map `x -> L x + t` from its deposited fractional coordinates to the reference's (`L` exact, `t` with its floating part fitted), the probe-chain RMSD, `margin` (the RMSD of the next distinct placement minus the best; below about 1 Å the coordinates barely decide), and `asu_rmsd` (every chain against its nearest reference chain under the group's operators and lattice translations only). `unp_offset` records a residue-numbering shift the pairing needed, and `acc_fallback` an entry whose chains map to another UniProt accession of the same protein.
