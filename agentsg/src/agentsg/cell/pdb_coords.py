@@ -108,30 +108,48 @@ def extract_ca(cif_text):
     return entry, rows
 
 
-def _download(pdb_id, timeout=60, retries=3):
+def _download(pdb_id, timeout=120, retries=3):
+    """The gzipped mmCIF bytes (kept compressed until parsed)."""
     url = RCSB_CIF.format(id=pdb_id.upper())
     last = None
     for k in range(retries):
         try:
             with urllib.request.urlopen(url, timeout=timeout) as resp:
-                return gzip.decompress(resp.read()).decode("utf-8", "replace")
+                return resp.read()
         except Exception as exc:          # network errors, 404 for obsoleted ids
             last = exc
             time.sleep(1 + 2 * k)
     raise last
 
 
+_PARSE_SLOTS = None
+
+
 def _work(pdb_id):
+    """Download, then parse under a small semaphore: a ribosome mmCIF expands to
+    hundreds of MB, so only a few are decompressed and parsed at once."""
     try:
-        entry, rows = extract_ca(_download(pdb_id))
+        raw = _download(pdb_id)
+        with _PARSE_SLOTS:
+            text = gzip.decompress(raw).decode("utf-8", "replace")
+            del raw
+            entry, rows = extract_ca(text)
         return pdb_id, entry, rows, None
     except Exception as exc:
         return pdb_id, None, None, f"{type(exc).__name__}: {exc}"[:200]
 
 
-def fetch_ca(ids, out_path, workers=16, progress=True, batch=500):
-    """Download and reduce every id in ``ids`` into ``out_path`` (resumable)."""
+def fetch_ca(ids, out_path, workers=16, progress=True, batch=500, parsers=1):
+    """Download and reduce every id in ``ids`` into ``out_path`` (resumable).
+
+    ``workers`` downloads run at once, at most ``parsers`` files are parsed at
+    once, and no more than ``4 * workers`` downloads are in flight, so memory
+    stays bounded on runs of very large entries."""
     import concurrent.futures as cf
+    import threading
+
+    global _PARSE_SLOTS
+    _PARSE_SLOTS = threading.Semaphore(parsers)
 
     import duckdb
     import pandas as pd
@@ -161,8 +179,21 @@ def fetch_ca(ids, out_path, workers=16, progress=True, batch=500):
         ent_buf.clear()
         ca_buf.clear()
 
+    def results(ex):
+        it = iter(todo)
+        window = 4 * workers
+        pending = set()
+        for pid in it:
+            pending.add(ex.submit(_work, pid))
+            if len(pending) >= window:
+                done_set, pending = cf.wait(pending, return_when=cf.FIRST_COMPLETED)
+                for f in done_set:
+                    yield f.result()
+        for f in cf.as_completed(pending):
+            yield f.result()
+
     with cf.ThreadPoolExecutor(workers) as ex:
-        for pdb_id, entry, rows, err in ex.map(_work, todo):
+        for pdb_id, entry, rows, err in results(ex):
             n += 1
             if err is not None:
                 ent_buf.append((pdb_id, None, None, None, None, None, None, None, None, 0, 0, err))
@@ -170,7 +201,7 @@ def fetch_ca(ids, out_path, workers=16, progress=True, batch=500):
                 ent_buf.append((pdb_id, entry["resolution"], *entry["cell"], entry["sg_hm"],
                                 len(rows), sum(1 for r in rows if r[1] is not None), None))
                 ca_buf.extend((pdb_id, *r) for r in rows)
-            if n % batch == 0:
+            if n % batch == 0 or len(ca_buf) > 2_000_000:
                 flush()
                 if progress:
                     el = time.time() - t0
