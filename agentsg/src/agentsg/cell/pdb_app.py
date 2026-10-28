@@ -39,6 +39,14 @@ database. ``build-cod`` makes a second database that holds only those cells::
 ``source`` is a COD table export, one CIF, or a directory of CIFs. Rows are
 keyed ``COD<id>`` with ``source = 'cod'``.
 
+``clusters`` finds every same-protein crystal-form cluster of more than 10
+entries (same UniProt set, or deposition group without one; strain price within
+7 %, primitive volume within 7 %) and writes them to a second DuckDB file
+(see :mod:`agentsg.cell.clusters`)::
+
+    python -m agentsg.cell.pdb_app clusters pdb_cells.duckdb clusters.duckdb \\
+        [--band 0.07] [--vol-tol 0.07] [--min-size 11]
+
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
 """
@@ -356,10 +364,35 @@ def _cli(argv=None):
             print(f"{pdb_id}\t{dist:.4f}")
         db.close()
         return 0
+    if cmd == "clusters":
+        usage = ("usage: pdb_app clusters <db_path> <out.duckdb> "
+                 "[--band 0.07] [--vol-tol 0.07] [--min-size 11]")
+        if len(argv) < 3:
+            print(usage)
+            return 2
+        from .clusters import (DEFAULT_BAND, DEFAULT_MIN_SIZE, DEFAULT_VOL_TOL,
+                               cluster_cells, write_clusters)
+        opts = {"--band": DEFAULT_BAND, "--vol-tol": DEFAULT_VOL_TOL,
+                "--min-size": DEFAULT_MIN_SIZE}
+        rest = argv[3:]
+        try:
+            while rest:
+                flag = rest.pop(0)
+                if flag not in opts or not rest:
+                    raise ValueError(f"unrecognised clusters argument {flag!r}")
+                opts[flag] = type(opts[flag])(rest.pop(0))
+        except ValueError as exc:
+            print(f"{usage}\n{exc}")
+            return 2
+        result = cluster_cells(argv[1], band=opts["--band"], vol_tol=opts["--vol-tol"],
+                               min_size=opts["--min-size"], progress=True)
+        write_clusters(result, argv[2])
+        print(f"wrote {len(result.clusters):,} clusters to {argv[2]}")
+        return 0
     print(
         f"unknown command: {cmd!r} "
         "(use build | backfill-similarity | backfill-linear | backfill-selling | "
-        "backfill-uniprot | backfill-deposit-group | build-cod | add-cod | query)"
+        "backfill-uniprot | backfill-deposit-group | build-cod | add-cod | query | clusters)"
     )
     return 2
 
