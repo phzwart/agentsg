@@ -97,3 +97,28 @@ python -m agentsg.cell.cluster_frames data/clusters.duckdb data/ca.duckdb data/f
 ```
 
 The `frames` table holds, for each entry, the affine map `x -> L x + t` from its deposited fractional coordinates to the reference's (`L` exact, `t` with its floating part fitted), the probe-chain RMSD, `margin` (the RMSD of the next distinct placement minus the best; below about 1 Å the coordinates barely decide), and `asu_rmsd` (every chain against its nearest reference chain under the group's operators and lattice translations only). `unp_offset` records a residue-numbering shift the pairing needed, and `acc_fallback` an entry whose chains map to another UniProt accession of the same protein.
+
+## Records per protein identity
+
+`agentsg.cell.cluster_records` turns the frames into one directory per protein identity (the exact set of UniProt accessions, or the deposition group of entries without one). No coordinates are written: an entry in the reference frame is rebuilt from its deposited model and its row of `frames.tsv`.
+
+```bash
+python -m agentsg.cell.cluster_records data/clusters.duckdb data/ca.duckdb data/frames.duckdb crystal_forms
+```
+
+```
+crystal_forms/index.tsv                          pdb_id -> identity directory, cluster, status, reference
+crystal_forms/<identity>/record.json             name, accessions, and per cluster: reference and its
+                                                 resolution, space group, cell, status counts, RMSD summaries
+crystal_forms/<identity>/cluster_<id>/frames.tsv one row per entry: resolution, deposited cell and space
+                                                 group, status, L, t, RMSD to the reference, margin, ...
+crystal_forms/<identity>/cluster_<id>/pairwise.tsv.gz   pdb_a, pdb_b, frame_rmsd, fit_rmsd, n_common
+```
+
+The frame maps deposited fractional coordinates to the reference's fractional coordinates:
+
+$$
+x_{\mathrm{ref}} = L\,x + t
+$$
+
+`L` is exact (rationals, rows separated by `;`); `t` is three decimals separated by `,`, its floating components fitted. `frame_rmsd` compares the two entries after their frames with no fitting, each orthogonalised with its own cell written in the reference setting; `fit_rmsd` is the same residue pairs after a Kabsch superposition. Both use the Cα atoms the two entries share by UniProt residue number; pairs sharing fewer than 20 are omitted.
