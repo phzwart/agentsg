@@ -2,9 +2,9 @@
 #
 # Scope: putting every PDB entry of a crystal-form cluster on one reference's setting and
 # origin (agentsg.cell.cluster_frames) and comparing them (agentsg.cell.cluster_records).
-# Every term was met in the October 2026 PDB run; counts are from the run with clusters at
-# 14.8 % and the reindexing coset scored up to 3 degrees (63,674 entries, 59,957 placed),
-# before the residue-register search.
+# Every term was met in the October 2026 PDB run; counts are from the final run (clusters at
+# 14.8 %, reindexing coset scored up to 3 degrees, register search, exact-placement ranking:
+# 63,674 entries, 60,003 placed) unless a count says otherwise.
 #
 # Fields
 #   parent      broader term (is_a)
@@ -38,7 +38,7 @@ terms:
       - "cluster 87 (shift 20-21)"
       - "cluster 45 (shift 173, 50 entries)"
       - "cluster 44 (shift 1)"
-    count: "1277 of the 2839 entries flagged far_mispaired before the register search"
+    count: "5320 placements with a nonzero unp_offset; the register search moved 1,179 entries from more than 3 Å to under 3 Å"
     remedy: "structure-based register search (±200 residues) offered to the placement; shift stored in unp_offset."
     status: handled
 
@@ -49,7 +49,7 @@ terms:
     signature: "acc_fallback = 1; often unp_offset != 0."
     examples:
       - "SARS-CoV-2 Mpro P0DTD1 / P0DTC1 / A0A7U3EDN3 (offset 22)"
-    count: "4044 placements with acc_fallback"
+    count: "4043 placements with acc_fallback"
     remedy: "pair on residue numbers under the other accession, trying shifts that align the ranges and the structure-based register."
     status: handled
 
@@ -61,7 +61,7 @@ terms:
     examples:
       - "3AGP"
       - "3AGQ (chain A maps to three accessions)"
-    count: "279 placements on a chain:accession unit"
+    count: "310 placements on a chain:accession unit"
     remedy: "one pairing unit per (chain, accession)."
     status: handled
 
@@ -72,7 +72,7 @@ terms:
     signature: "status no_shared_accession or too_few_paired_atoms."
     examples:
       - "6VKG"
-    count: "343 no_shared_accession, 189 too_few_paired_atoms"
+    count: "343 no_shared_accession, 143 too_few_paired_atoms"
     remedy: "sequence alignment on residue types (needs residue names, not in the Cα cache)."
     status: open
 
@@ -126,7 +126,7 @@ terms:
     examples:
       - "TTK P33981 I222"
       - "b ≈ c (b↔c indexing at 9.4 % beats identity at 5.3 %)"
-    count: "5999 placements chose a class above 7 %"
+    count: "6001 placements chose a class above 7 %"
     remedy: "score every class within Le Page's 3 degrees (price 14.8 %) on the Cα."
     status: handled
 
@@ -137,7 +137,7 @@ terms:
     signature: "accept = 0.20."
     examples:
       - "1U9Q (14.92 % against a 14.8 % band)"
-    count: "977 placements from the 20 % classes"
+    count: "982 placements from the 20 % classes"
     remedy: "score the classes up to 20 % when the 3-degree placement is more than 3 Å from the reference."
     status: handled
 
@@ -177,7 +177,7 @@ terms:
     definition: "A second placement that puts the Cα elsewhere fits almost as well (pseudo-symmetric packing, non-crystallographic symmetry close to a crystallographic operator)."
     signature: "margin < 1 Å."
     flag: low_margin
-    count: "2219"
+    count: "753"
     remedy: "none from coordinates alone; needs the intensities."
     status: flagged
 
@@ -212,7 +212,7 @@ terms:
     examples:
       - "TTK 4BI1 vs 4JS8 (14.6° about a after the best indexing)"
       - "cluster 45"
-    count: "1666 (before the register search)"
+    count: "1742"
     status: flagged
 
   lattice_strain:
@@ -231,7 +231,7 @@ terms:
     definition: "The molecule itself differs (domain motion, ligand-induced change, different construct or truncation)."
     signature: "fit_to_ref >= 1.5 Å after the best register."
     flag: far_different_structure
-    count: "up to 1562 (the far_mispaired entries no constant shift fixes)"
+    count: "1444 (far_different_structure)"
     status: flagged
 
   # ------------------------------------------------------------------ method
