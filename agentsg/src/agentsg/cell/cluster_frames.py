@@ -56,10 +56,14 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 
 BAND_STEPS = (0.148, 0.20)
+FALLBACK_RMSD = 3.0
+"""When the best placement within the first band is farther than this from the reference
+(Å), the classes of the next band are scored as well and the better placement is kept."""
 """Strain-price bands for the reindexing coset. The first is Le Page's 3 degrees
 (``strain_closure.LEPAGE_PRICE`` = 2 sqrt(2) artanh(sin 3 deg) = 0.148): every class within
 it is scored on the Cα, so an indexing just outside the 7 % clustering band is not missed
-when the lattice is close to a higher symmetry. 20 % is the fallback when nothing is found."""
+when the lattice is close to a higher symmetry. 20 % is scored as well when nothing is found within 3 degrees or the best placement is
+still more than ``FALLBACK_RMSD`` from the reference (an indexing just above 14.8 %)."""
 MIN_PAIRED = 20
 PROBE_MAX = 200
 """Largest number of probe Cα used to rank candidates; the reported RMSD uses all pairs."""
@@ -256,12 +260,28 @@ def place(ref, member, member_ops=None):
     if member_ops is None:
         member_ops = list(mem_group.operations())
 
-    accept, classes = reindex_classes(ref, member)
-    out.accept, out.n_classes = accept, len(classes)
-    if not classes:
+    best = None
+    for band in BAND_STEPS:
+        accept, classes = reindex_classes(ref, member, steps=(band,))
+        if not classes:
+            continue
+        cand = _place_classes(ref, member, member_ops, accept, classes)
+        if best is None or best.rmsd is None or (cand.rmsd is not None and cand.rmsd < best.rmsd):
+            best = cand
+        if best.status == "placed" and best.rmsd <= FALLBACK_RMSD:
+            break
+    if best is None:
         out.status = "no_reindexing_within_band"
         return out
+    return best
 
+
+def _place_classes(ref, member, member_ops, accept, classes):
+    """Place one entry on the reference, scoring every reindexing class given."""
+    np = _np()
+    R = ref.model
+    out = Placement(member.pdb_id, R.pdb_id, "pending")
+    out.accept, out.n_classes = accept, len(classes)
     ref_chains = R.mapped_chains()
     probe = max(ref_chains, key=lambda c: len(ref_chains[c][1]))
     p_acc, p_unp, p_xyz = ref_chains[probe]
@@ -287,11 +307,6 @@ def place(ref, member, member_ops=None):
     from ..group import centering_translations
     cens = [_vec(c) for c in centering_translations(ref.ops)] or [np.zeros(3)]
 
-    def key_of(Lx, t):
-        # one placement up to lattice and centring translations
-        reps = [tuple(np.round(np.mod(t + c, 1.0) * 200).astype(int) % 200) for c in cens]
-        return (Lx.rows, min(reps))
-
     from ..match_models import _candidate
     norm, gops, combos, _A, _b = ref.matcher()
     pool = []            # (rmsd, combo index, P, price, chain, numbering shift, xa, xb, pf)
@@ -308,7 +323,10 @@ def place(ref, member, member_ops=None):
             xa = p_xyz[ir[sel]]
             xb = xyz[im[sel]] @ Pf.T - pf
             r = ref.score(xa, xb)
-            pool.extend((float(r[k]), k, P, price, mc, base, xa, xb, pf) for k in range(len(r)))
+            orig = xyz[im[sel]]
+            keys = p_unp[ir[sel]]
+            pool.extend((float(r[k]), k, P, price, mc, base, xa, xb, pf, orig, keys)
+                        for k in range(len(r)))
     if not pool:
         out.status = "too_few_paired_atoms"
         return out
@@ -316,7 +334,7 @@ def place(ref, member, member_ops=None):
 
     def exact(item):
         """The exact placement of one pooled candidate (origin snapped, floating fitted)."""
-        r, k, P, price, mc, base, xa, xb, pf = item
+        r, k, P, price, mc, base, xa, xb, pf, _orig, _keys = item
         M, mvec, det, op = combos[k]
         cand = _candidate(M, mvec, det, op, xa.tolist(), xb.tolist(), R.cell, norm, gops)
         Mf = _mat(cand.reindex)
@@ -325,15 +343,42 @@ def place(ref, member, member_ops=None):
         t = Mf @ (wf - Wf @ pf) + _vec(cand.discrete_origin) + _vec(cand.floating_shift)
         return cand, Lx, t
 
+    def image(item, Lx, t):
+        """Where the candidate puts the paired Cα, by reference residue number."""
+        return dict(zip(item[10].tolist(), item[9] @ _mat(Lx).T + t))
+
+    def same_place(img1, img2):
+        """True when two placements put the shared Cα in the same positions, up to the
+        lattice and centring translations (0.5 Å)."""
+        common = sorted(set(img1) & set(img2))
+        if len(common) < MIN_PAIRED:
+            return False
+        d = np.array([img1[k] - img2[k] for k in common])
+        for c in cens:
+            dd = d + c
+            dd = dd - np.round(dd.mean(0))
+            if np.sqrt(((dd @ ref.orth.T) ** 2).sum(1).mean()) < 0.5:
+                return True
+        return False
+
     cand, Lx, t = exact(pool[0])
-    best_key = key_of(Lx, t)
+    best_img = image(pool[0], Lx, t)
     P, price, mc, base = pool[0][2], pool[0][3], pool[0][4], pool[0][5]
+    # Many operator combinations reach one placement with the same score (group operators,
+    # origin shifts, equivalent classes); one candidate per distinct score is examined.
     second = None
-    for j, item in enumerate(pool[1:], start=1):
-        if j > 60:                       # bound: the true second is no lower than this score
+    seen = 0
+    last = pool[0][0]
+    for item in pool[1:]:
+        if abs(item[0] - last) < 1e-6:
+            continue
+        last = item[0]
+        seen += 1
+        if seen > 60:                    # bound: the true second is no lower than this score
             second = item[0]
             break
-        if key_of(*exact(item)[1:]) != best_key:
+        _c, L2, t2 = exact(item)
+        if not same_place(best_img, image(item, L2, t2)):
             second = item[0]
             break
     margin = None if second is None else second - pool[0][0]
@@ -425,23 +470,31 @@ def _load_models(con, ids):
         "WHERE error IS NULL AND pdb_id IN (SELECT unnest(?))", [list(ids)]).fetchall()}
     rows = con.execute(
         "SELECT pdb_id, chain, acc, unp, fx, fy, fz FROM ca WHERE acc IS NOT NULL "
-        "AND pdb_id IN (SELECT unnest(?)) ORDER BY pdb_id, chain, unp", [list(ids)]).fetchnumpy()
+        "AND pdb_id IN (SELECT unnest(?)) ORDER BY pdb_id, chain, acc, unp", [list(ids)]).fetchnumpy()
     models = {}
     for pid, e in ent.items():
         if e[8] is None or any(x is None for x in e[2:8]):
             continue
         models[pid] = Model(pid, tuple(e[2:8]), e[8], e[1])
     if len(rows["pdb_id"]):
-        pid_a, ch_a = rows["pdb_id"], rows["chain"]
+        pid_a, ch_a, acc_a = rows["pdb_id"], rows["chain"], rows["acc"]
         xyz = np.stack([rows["fx"], rows["fy"], rows["fz"]], axis=1).astype(float)
-        brk = np.flatnonzero((pid_a[1:] != pid_a[:-1]) | (ch_a[1:] != ch_a[:-1])) + 1
-        for s, e in zip(np.r_[0, brk], np.r_[brk, len(pid_a)]):
-            m = models.get(pid_a[s])
+        brk = np.flatnonzero((pid_a[1:] != pid_a[:-1]) | (ch_a[1:] != ch_a[:-1])
+                             | (acc_a[1:] != acc_a[:-1])) + 1
+        segs = list(zip(np.r_[0, brk], np.r_[brk, len(pid_a)]))
+        n_acc = {}
+        for s0, _e in segs:
+            n_acc[(pid_a[s0], ch_a[s0])] = n_acc.get((pid_a[s0], ch_a[s0]), 0) + 1
+        for s0, e0 in segs:
+            m = models.get(pid_a[s0])
             if m is None:
                 continue
-            unp = rows["unp"][s:e].astype(int)
+            # a chain mapped to several accessions (a fusion) is one unit per accession,
+            # named "chain:accession"; residue numbers of different accessions never mix
+            name = ch_a[s0] if n_acc[(pid_a[s0], ch_a[s0])] == 1 else f"{ch_a[s0]}:{acc_a[s0]}"
+            unp = rows["unp"][s0:e0].astype(int)
             _, first = np.unique(unp, return_index=True)       # one Cα per UniProt residue
-            m.chains[ch_a[s]] = (rows["acc"][s], unp[first], xyz[s:e][first])
+            m.chains[name] = (acc_a[s0], unp[first], xyz[s0:e0][first])
     return models
 
 
