@@ -25,3 +25,8 @@ def test_tree_is_well_formed():
                                   "too_few_paired_atoms"])
 def test_every_flag_and_status_has_a_term(name):
     assert by_flag(name), name
+
+
+def test_every_kind_has_a_term():
+    kinds = {d.get("kind") for d in load_issues().values()}
+    assert set(KINDS) <= kinds, set(KINDS) - kinds
