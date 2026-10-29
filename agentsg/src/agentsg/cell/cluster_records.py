@@ -123,6 +123,23 @@ def _placed_chains(ca, frames, ref_chain):
     return out
 
 
+def _centring_vectors(ca, pdb_id):
+    """Centring translations (fractional) of the space group written in ``pdb_id``'s
+    file, the zero vector included."""
+    np = _np()
+    from ..group import centering_translations
+    from ..space_groups import space_group
+    row = ca.execute("SELECT sg_hm FROM entries WHERE pdb_id = ?", [pdb_id]).fetchone()
+    vecs = [np.zeros(3)]
+    try:
+        ops = space_group(row[0]).operations()
+        vecs += [np.array([float(x) for x in c.v]) for c in centering_translations(ops)
+                 if any(x != 0 for x in c.v)]
+    except Exception:
+        pass
+    return vecs
+
+
 def pairwise_rmsd(ca, frames, min_common=MIN_COMMON):
     """All-pairs frame and superposed Cα RMSD for one cluster.
 
@@ -145,14 +162,25 @@ def pairwise_rmsd(ca, frames, min_common=MIN_COMMON):
     rows = _placed_chains(ca, placed, ref_chain)
     if len(rows) < 2:
         return [r[0] for r in rows], None, None, None
-    # every entry in the reference's unit-cell copy
+    # every entry in the reference's copy: a frame is defined up to the lattice
+    # translations, which include the centring translations of a centred group
     ref_id = refs[0]["pdb_id"]
     kref = next((k for k, r in enumerate(rows) if r[0] == ref_id), 0)
     ru, rx = rows[kref][1], rows[kref][2]
+    cens = _centring_vectors(ca, ref_id)
     for r in rows:
         _, ir, im = np.intersect1d(ru, r[1], return_indices=True)
-        if len(ir):
-            r[2] = r[2] + np.round((rx[ir] - r[2][im]).mean(0))
+        if not len(ir):
+            continue
+        best = None
+        for c in cens:
+            y = r[2][im] + c
+            shift = np.round((rx[ir] - y).mean(0))
+            d = rx[ir] - y - shift
+            score = float((d ** 2).sum())
+            if best is None or score < best[0]:
+                best = (score, c + shift)
+        r[2] = r[2] + best[1]
     cols = np.unique(np.concatenate([r[1] for r in rows]))
     N, R = len(rows), len(cols)
     X = np.zeros((N, R, 3))

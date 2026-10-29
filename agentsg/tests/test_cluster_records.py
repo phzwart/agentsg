@@ -69,3 +69,22 @@ def test_identity_dirname():
     name = identity_dirname(long)
     assert len(name) < 64 and name.startswith("P00000+P00001_and28more_")
     assert identity_dirname(long) == name
+
+
+def test_centring_equivalent_frames_compare_at_zero():
+    """In C2 a frame is defined up to (1/2, 1/2, 0); two entries whose frames land one
+    centring vector apart are the same placement and must compare at 0 A."""
+    rng = np.random.default_rng(8)
+    cell = (113.3, 53.2, 44.7, 90, 102.3, 90)
+    x = _chain(rng)
+    B = _orth(cell)
+    f = x @ np.linalg.inv(B).T
+    con = _db([("REF", cell, "C 1 2 1", 1.0, x),
+               ("SAME", cell, "C 1 2 1", 2.0, (f + np.array([0.5, 0.5, 0.0])) @ B.T)])
+    ident = "1,0,0;0,1,0;0,0,1"
+    rows = [dict(pdb_id="REF", status="reference", member_chain=None, ref_chain="A",
+                 unp_offset=0, L=ident, t=(0.0, 0.0, 0.0)),
+            dict(pdb_id="SAME", status="placed", member_chain="A", ref_chain="A",
+                 unp_offset=0, L=ident, t=(0.0, 0.0, 0.0))]
+    ids, frame, fit, n = pairwise_rmsd(con, rows)
+    assert frame[0, 1] < 1e-3 and fit[0, 1] < 1e-3
