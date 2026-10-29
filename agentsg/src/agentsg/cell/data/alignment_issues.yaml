@@ -276,6 +276,15 @@ terms:
     remedy: "make candidates exact in score order and rank by the snapped placement's RMSD (the score is a lower bound, so the search stops exactly)."
     status: handled
 
+  helical_register_alias:
+    parent: method_defect
+    kind: method
+    definition: "On a helical protein a residue shift of about one turn (3-4 residues) superposes two conformers nearly as well as the true register, so a register search triggered by a small misfit can pick a false shift."
+    examples:
+      - "7K6G (BRD4, via 5VBP: shift -3, 1.8 → 40 Å)"
+    remedy: "search registers only when the deposited numbering superposes worse than 2.5 Å, and accept a shift only when it at least halves that RMSD; place through the neighbour whose composed frame lands closest to the reference."
+    status: handled
+
   pairwise_without_centring:
     parent: method_defect
     kind: method

@@ -64,6 +64,10 @@ MAX_EXACT = 80
 """Most candidates made exact per entry; a margin reached at this cap is a lower bound."""
 REGISTER_FIT = 1.5
 """Superposed Cα RMSD (Å) below which a residue-number register is taken as right."""
+REGISTER_TRIGGER = 2.5
+"""The register search runs only when the deposited numbering superposes worse than this
+(Å), and a shift is taken only when it at least halves that RMSD and is below
+``REGISTER_FIT``."""
 REGISTER_SEARCH = 200
 """Largest residue-number shift tried when the deposited register pairs badly."""
 """When the best placement within the first band is farther than this from the reference
@@ -263,9 +267,9 @@ def _register(ref_unp, ref_cart, mem_unp, mem_cart, search=REGISTER_SEARCH):
     """The residue-number shift ``k`` that pairs the member's Cα (number + k) with the
     reference's best, by superposed RMSD, when the deposited numbering pairs them badly.
 
-    Returns ``None`` when the deposited numbering is already good (superposed RMSD below
-    ``REGISTER_FIT`` on at least half the shorter chain) or no shift does better than
-    ``REGISTER_FIT``. A shift must pair at least half the shorter chain, so a repeat or a
+    Returns ``None`` when the deposited numbering superposes better than ``REGISTER_TRIGGER``
+    on at least half the shorter chain, or when no shift gets below ``REGISTER_FIT`` and
+    half the deposited RMSD. A shift must pair at least half the shorter chain, so a repeat or a
     second domain is not matched on its own.
     """
     np = _np()
@@ -276,7 +280,9 @@ def _register(ref_unp, ref_cart, mem_unp, mem_cart, search=REGISTER_SEARCH):
         return None if len(ir) < need else _kabsch_rmsd(ref_cart[ir], mem_cart[im])
 
     f0 = fit(0)
-    if f0 is not None and f0 < REGISTER_FIT:
+    if f0 is not None and f0 < REGISTER_TRIGGER:
+        # small misfits are conformational; on a helix a shift of one turn (3-4 residues)
+        # can fit two conformers nearly as well as the true register
         return None
     best = None
     for k in range(-search, search + 1):
@@ -286,6 +292,8 @@ def _register(ref_unp, ref_cart, mem_unp, mem_cart, search=REGISTER_SEARCH):
         if f is not None and (best is None or f < best[0]):
             best = (f, k)
     if best is None or best[0] >= REGISTER_FIT:
+        return None
+    if f0 is not None and best[0] > 0.5 * f0:
         return None
     return best[1]
 
@@ -651,6 +659,7 @@ def frame_cluster(con, ids, max_anchors=3):
             m = models[pid]
             near = sorted((a for a in placed if a != pid),
                           key=lambda a: similarity_distance(models[a].cell, m.cell))[:max_anchors]
+            best_q = None
             for a in near:
                 if a not in anchors:
                     anchors[a] = _Reference(models[a])
@@ -666,10 +675,12 @@ def frame_cluster(con, ids, max_anchors=3):
                 q.member_chain = None
                 q.ref_chain = None
                 _evaluate(ref, m, q)
-                results[pid] = q
+                if best_q is None or (q.rmsd is not None and q.rmsd < best_q.rmsd):
+                    best_q = q
+            if best_q is not None:
+                results[pid] = best_q
                 placed.append(pid)
                 progress = True
-                break
     return out + list(results.values())
 
 
