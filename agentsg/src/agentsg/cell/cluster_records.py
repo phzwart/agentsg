@@ -351,12 +351,72 @@ def write_records(cluster_path, ca_path, frames_path, out_dir, min_common=MIN_CO
     return len(by_label)
 
 
+FAR = 3.0
+"""Placements farther than this from the reference without fitting (Å) are flagged."""
+SAME = 1.5
+"""A far placement whose superposed RMSD to the reference is below this (Å) is the same
+structure elsewhere in the lattice; above it, the Cα atoms are likely paired wrongly."""
+
+
+def write_flags(out_dir):
+    """Write ``flags.tsv``: one quality flag per placed entry, from the records.
+
+    ``far_mispaired``      rmsd_to_ref > FAR and superposed RMSD to the reference >= SAME
+                           (or no pair): probably a residue-numbering mismatch;
+    ``far_same_structure`` rmsd_to_ref > FAR, superposed RMSD < SAME: another packing in a
+                           chained cluster, or a missed origin or setting;
+    ``low_margin``         margin < 1 Å: the coordinates barely decide between placements;
+    ``ok``                 otherwise.
+    """
+    import glob
+    np = _np()
+    rows = []
+    for f in sorted(glob.glob(os.path.join(out_dir, "*", "cluster_*", "frames.tsv"))):
+        cdir = os.path.dirname(f)
+        ident, cid = os.path.basename(os.path.dirname(cdir)), int(os.path.basename(cdir).split("_")[1])
+        with open(f) as fh:
+            frames = list(csv.DictReader(fh, delimiter="\t"))
+        ref = next((r["pdb_id"] for r in frames if r["status"] == "reference"), None)
+        fit = {}
+        if ref:
+            with gzip.open(os.path.join(cdir, "pairwise.tsv.gz"), "rt") as fh:
+                for r in csv.DictReader(fh, delimiter="\t"):
+                    if r["pdb_a"] == ref:
+                        fit[r["pdb_b"]] = float(r["fit_rmsd"])
+                    elif r["pdb_b"] == ref:
+                        fit[r["pdb_a"]] = float(r["fit_rmsd"])
+        for r in frames:
+            if r["status"] != "placed":
+                continue
+            d = float(r["rmsd_to_ref"]) if r["rmsd_to_ref"] else float("nan")
+            ft = fit.get(r["pdb_id"], float("nan"))
+            m = float(r["margin"]) if r["margin"] else float("nan")
+            if d > FAR:
+                flag = "far_same_structure" if ft < SAME else "far_mispaired"
+            elif m < 1.0:
+                flag = "low_margin"
+            else:
+                flag = "ok"
+            rows.append((r["pdb_id"], ident, cid, _fmt(d), _fmt(ft), _fmt(m), r["via"], flag))
+    rows.sort()
+    with open(os.path.join(out_dir, "flags.tsv"), "w", newline="") as fh:
+        w = csv.writer(fh, delimiter="\t", lineterminator="\n")
+        w.writerow(("pdb_id", "identity_dir", "cluster_id", "rmsd_to_ref", "fit_to_ref", "margin",
+                    "via", "flag"))
+        w.writerows(rows)
+    counts = {}
+    for r in rows:
+        counts[r[-1]] = counts.get(r[-1], 0) + 1
+    return counts
+
+
 def _cli(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     if len(argv) < 4:
         print(__doc__)
         return 2
     write_records(*argv[:4])
+    print(write_flags(argv[3]))
     return 0
 
 
