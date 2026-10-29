@@ -111,6 +111,43 @@ class _Reference:
         self._closures = {}
         self.orth = _orth(model.cell)
 
+    def matcher(self):
+        """The Euclidean normalizer of the reference's group at its cell, built once, and
+        every proper coset representative composed with every group operator as float
+        arrays ``x -> A x + b`` for vectorised scoring."""
+        m = getattr(self, "_matcher", None)
+        if m is None:
+            np = _np()
+            from ..match_models import _group
+            from ..normalizer import euclidean_normalizer
+            norm = euclidean_normalizer(self.model.sg_hm, tuple(self.model.cell))
+            _ops, _system, rec = _group(self.model.sg_hm)
+            ops = list(rec.operations()) if hasattr(rec, "operations") else list(_ops)
+            combos, A, b = [], [], []
+            for M, mvec, det in norm.coset_reps():
+                if det != 1:
+                    continue
+                Mf, mf = _mat(M), _vec(mvec)
+                for op in ops:
+                    combos.append((M, mvec, det, op))
+                    A.append(Mf @ _mat(op.W))
+                    b.append(Mf @ _vec(op.w) + mf)
+            m = self._matcher = (norm, ops, combos, np.array(A), np.array(b))
+        return m
+
+    def score(self, xa, xb):
+        """Cα RMSD of every candidate placement of ``xb`` (fractional, reference basis) on
+        ``xa``, after removing the torus-mean shift: the RMSD that
+        :func:`agentsg.match_models.match_models` reports, for all candidates at once."""
+        np = _np()
+        _norm, _ops, _combos, A, b = self.matcher()
+        d = xa[None] - (np.einsum("kij,nj->kni", A, xb) + b[:, None, :])
+        wrap = lambda v: v - np.ceil(v - 0.5)            # into (-1/2, 1/2]
+        sh = d[:, :1] + wrap(d - d[:, :1])
+        res = wrap(sh - sh.mean(1, keepdims=True))
+        cart = res @ self.orth.T
+        return np.sqrt((cart ** 2).sum(2).mean(1))
+
     def closure(self, accept):
         from .strain_closure import band_for, widened_closure
         W = self._closures.get(accept)
@@ -198,7 +235,6 @@ def place(ref, member, member_ops=None):
     """Place one entry on the reference. Returns a :class:`Placement`."""
     np = _np()
     from ..linalg import Matrix3, Vector3
-    from ..match_models import match_models
     from ..space_groups import space_group
 
     R = ref.model
@@ -250,7 +286,9 @@ def place(ref, member, member_ops=None):
         reps = [tuple(np.round(np.mod(t + c, 1.0) * 200).astype(int) % 200) for c in cens]
         return (Lx.rows, min(reps))
 
-    scored = []          # (rmsd_probe_subset, key, data)
+    from ..match_models import _candidate
+    norm, gops, combos, _A, _b = ref.matcher()
+    pool = []            # (rmsd, combo index, P, price, chain, numbering shift, xa, xb, pf)
     for P, price, _size in classes:
         p = origin_for(ref, member_ops, P)
         if p is None:
@@ -263,24 +301,36 @@ def place(ref, member, member_ops=None):
             sel = _subsample(len(ir), PROBE_MAX)
             xa = p_xyz[ir[sel]]
             xb = xyz[im[sel]] @ Pf.T - pf
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                res = match_models(xa.tolist(), xb.tolist(), R.sg_hm, R.cell)
-            for cand in res.ranked:
-                Mf = _mat(cand.reindex)
-                Wf, wf = _mat(cand.operator.W), _vec(cand.operator.w)
-                Lx = cand.reindex @ cand.operator.W @ P
-                t = Mf @ (wf - Wf @ pf) + _vec(cand.discrete_origin) + _vec(cand.floating_shift)
-                key = key_of(Lx, t)
-                scored.append((cand.rmsd, key, (P, price, mc, base, cand, Lx, t)))
-    if not scored:
+            r = ref.score(xa, xb)
+            pool.extend((float(r[k]), k, P, price, mc, base, xa, xb, pf) for k in range(len(r)))
+    if not pool:
         out.status = "too_few_paired_atoms"
         return out
-    scored.sort(key=lambda s: s[0])
-    best_key = scored[0][1]
-    P, price, mc, base, cand, Lx, t = scored[0][2]
-    second = next((s[0] for s in scored[1:] if s[1] != best_key), None)
-    margin = None if second is None else second - scored[0][0]
+    pool.sort(key=lambda s: s[0])
+
+    def exact(item):
+        """The exact placement of one pooled candidate (origin snapped, floating fitted)."""
+        r, k, P, price, mc, base, xa, xb, pf = item
+        M, mvec, det, op = combos[k]
+        cand = _candidate(M, mvec, det, op, xa.tolist(), xb.tolist(), R.cell, norm, gops)
+        Mf = _mat(cand.reindex)
+        Wf, wf = _mat(cand.operator.W), _vec(cand.operator.w)
+        Lx = cand.reindex @ cand.operator.W @ P
+        t = Mf @ (wf - Wf @ pf) + _vec(cand.discrete_origin) + _vec(cand.floating_shift)
+        return cand, Lx, t
+
+    cand, Lx, t = exact(pool[0])
+    best_key = key_of(Lx, t)
+    P, price, mc, base = pool[0][2], pool[0][3], pool[0][4], pool[0][5]
+    second = None
+    for j, item in enumerate(pool[1:], start=1):
+        if j > 60:                       # bound: the true second is no lower than this score
+            second = item[0]
+            break
+        if key_of(*exact(item)[1:]) != best_key:
+            second = item[0]
+            break
+    margin = None if second is None else second - pool[0][0]
 
     out.second_rmsd, out.margin = second, margin
     out.class_price, out.member_chain, out.ref_chain = float(price), mc, probe
