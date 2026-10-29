@@ -358,14 +358,15 @@ FAR = 3.0
 """Placements farther than this from the reference without fitting (Å) are flagged."""
 SAME = 1.5
 """A far placement whose superposed RMSD to the reference is below this (Å) is the same
-structure elsewhere in the lattice; above it, the Cα atoms are likely paired wrongly."""
+structure elsewhere in the lattice; above it, the structures themselves differ."""
 
 
 def write_flags(out_dir):
     """Write ``flags.tsv``: one quality flag per placed entry, from the records.
 
-    ``far_mispaired``      rmsd_to_ref > FAR and superposed RMSD to the reference >= SAME
-                           (or no pair): probably a residue-numbering mismatch;
+    ``far_different_structure``  rmsd_to_ref > FAR and superposed RMSD to the reference
+                           >= SAME (or no pair) after the best residue register: the
+                           structures differ (conformation, construct, or a different chain);
     ``far_same_structure`` rmsd_to_ref > FAR, superposed RMSD < SAME: another packing in a
                            chained cluster, or a missed origin or setting;
     ``low_margin``         margin < 1 Å: the coordinates barely decide between placements;
@@ -395,7 +396,7 @@ def write_flags(out_dir):
             ft = fit.get(r["pdb_id"], float("nan"))
             m = float(r["margin"]) if r["margin"] else float("nan")
             if d > FAR:
-                flag = "far_same_structure" if ft < SAME else "far_mispaired"
+                flag = "far_same_structure" if ft < SAME else "far_different_structure"
             elif m < 1.0:
                 flag = "low_margin"
             else:

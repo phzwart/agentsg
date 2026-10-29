@@ -57,6 +57,19 @@ from fractions import Fraction
 
 BAND_STEPS = (0.148, 0.20)
 FALLBACK_RMSD = 3.0
+MARGIN_CAP = 5.0
+"""Candidates are examined until their lower-bound score exceeds the best placement by this
+much (Å); a margin reported at this value is a lower bound."""
+MAX_EXACT = 80
+"""Most candidates made exact per entry; a margin reached at this cap is a lower bound."""
+REGISTER_FIT = 1.5
+"""Superposed Cα RMSD (Å) below which a residue-number register is taken as right."""
+REGISTER_TRIGGER = 2.5
+"""The register search runs only when the deposited numbering superposes worse than this
+(Å), and a shift is taken only when it at least halves that RMSD and is below
+``REGISTER_FIT``."""
+REGISTER_SEARCH = 200
+"""Largest residue-number shift tried when the deposited register pairs badly."""
 """When the best placement within the first band is farther than this from the reference
 (Å), the classes of the next band are scored as well and the better placement is kept."""
 """Strain-price bands for the reindexing coset. The first is Le Page's 3 degrees
@@ -241,6 +254,50 @@ def _subsample(n, k):
     return np.linspace(0, n - 1, k).round().astype(int)
 
 
+def _kabsch_rmsd(P, Q):
+    np = _np()
+    P = P - P.mean(0)
+    Q = Q - Q.mean(0)
+    U, S, Vt = np.linalg.svd(Q.T @ P)
+    S[2] *= np.sign(np.linalg.det(U @ Vt))
+    return float(np.sqrt(max((P ** 2).sum() + (Q ** 2).sum() - 2 * S.sum(), 0.0) / len(P)))
+
+
+def _register(ref_unp, ref_cart, mem_unp, mem_cart, search=REGISTER_SEARCH):
+    """The residue-number shift ``k`` that pairs the member's Cα (number + k) with the
+    reference's best, by superposed RMSD, when the deposited numbering pairs them badly.
+
+    Returns ``None`` when the deposited numbering superposes better than ``REGISTER_TRIGGER``
+    on at least half the shorter chain, or when no shift gets below ``REGISTER_FIT`` and
+    half the deposited RMSD. A shift must pair at least half the shorter chain, so a repeat or a
+    second domain is not matched on its own.
+    """
+    np = _np()
+    need = max(MIN_PAIRED, 0.5 * min(len(ref_unp), len(mem_unp)))
+
+    def fit(k):
+        _, ir, im = np.intersect1d(ref_unp, mem_unp + k, return_indices=True)
+        return None if len(ir) < need else _kabsch_rmsd(ref_cart[ir], mem_cart[im])
+
+    f0 = fit(0)
+    if f0 is not None and f0 < REGISTER_TRIGGER:
+        # small misfits are conformational; on a helix a shift of one turn (3-4 residues)
+        # can fit two conformers nearly as well as the true register
+        return None
+    best = None
+    for k in range(-search, search + 1):
+        if k == 0:
+            continue
+        f = fit(k)
+        if f is not None and (best is None or f < best[0]):
+            best = (f, k)
+    if best is None or best[0] >= REGISTER_FIT:
+        return None
+    if f0 is not None and best[0] > 0.5 * f0:
+        return None
+    return best[1]
+
+
 def place(ref, member, member_ops=None):
     """Place one entry on the reference. Returns a :class:`Placement`."""
     np = _np()
@@ -297,10 +354,17 @@ def _place_classes(ref, member, member_ops, accept, classes):
     # numbering shifts to try: none, and, under another accession, the shifts that
     # line the residue-number ranges up at their starts and at their ends
     shifted = {}
+    p_cart = p_xyz @ ref.orth.T
+    m_orth = _orth(member.cell)
     for c, (acc, unp, xyz) in mem_chains.items():
         offs = {0}
         if out.acc_fallback and len(unp):
             offs |= {int(p_unp.min() - unp.min()), int(p_unp.max() - unp.max())}
+        # a deposition numbered on another register (signal peptide, isoform, construct
+        # numbering): find the whole-chain register from the structure itself
+        k = _register(p_unp, p_cart, unp, xyz @ m_orth.T)
+        if k is not None:
+            offs.add(k)
         for k in sorted(offs, key=abs):
             shifted[(c, k)] = (acc, unp + k, xyz)
 
@@ -361,27 +425,58 @@ def _place_classes(ref, member, member_ops, accept, classes):
                 return True
         return False
 
-    cand, Lx, t = exact(pool[0])
-    best_img = image(pool[0], Lx, t)
-    P, price, mc, base = pool[0][2], pool[0][3], pool[0][4], pool[0][5]
-    # Many operator combinations reach one placement with the same score (group operators,
-    # origin shifts, equivalent classes); one candidate per distinct score is examined.
-    second = None
-    seen = 0
-    last = pool[0][0]
-    for item in pool[1:]:
-        if abs(item[0] - last) < 1e-6:
+    def actual(item, Lx, t):
+        """RMSD of the probe Cα after the exact placement (origin snapped), no fitting."""
+        d = item[6] - (item[9] @ _mat(Lx).T + t)
+        best_r = None
+        for c in cens:
+            dd = d + c
+            dd = dd - np.round(dd.mean(0))
+            r = float(np.sqrt(((dd @ ref.orth.T) ** 2).sum(1).mean()))
+            best_r = r if best_r is None else min(best_r, r)
+        return best_r
+
+    # The pool is ranked by the RMSD after the best continuous shift, a lower bound on the
+    # RMSD of the exact placement, whose shift is snapped to an allowed origin (they differ
+    # when, say, a second copy in the asymmetric unit sits on a non-crystallographic shift).
+    # Candidates are made exact in score order until the score passes the second-best
+    # distinct placement; many operator combinations reach one placement with one score,
+    # so equal scores on the same chain and register are examined once.
+    found = []            # [actual, item, cand, Lx, t, image], distinct placements
+    examined = set()
+    n_exact = 0
+    bound = None
+    for item in pool:
+        key = (round(item[0], 6), item[4], item[5])
+        if key in examined:
             continue
-        last = item[0]
-        seen += 1
-        if seen > 60:                    # bound: the true second is no lower than this score
-            second = item[0]
+        examined.add(key)
+        if len(found) >= 2 and item[0] >= found[1][0]:
             break
-        _c, L2, t2 = exact(item)
-        if not same_place(best_img, image(item, L2, t2)):
-            second = item[0]
+        if found and item[0] >= found[0][0] + MARGIN_CAP:
+            bound = item[0]
             break
-    margin = None if second is None else second - pool[0][0]
+        if n_exact >= MAX_EXACT:
+            bound = item[0]
+            break
+        n_exact += 1
+        c, L2, t2 = exact(item)
+        r = actual(item, L2, t2)
+        img = image(item, L2, t2)
+        same = next((f for f in found if same_place(f[5], img)), None)
+        if same is not None:
+            if r < same[0]:
+                same[:] = [r, item, c, L2, t2, img]
+        else:
+            found.append([r, item, c, L2, t2, img])
+        found.sort(key=lambda f: f[0])
+    r0, item0, cand, Lx, t, _img = found[0]
+    P, price, mc, base = item0[2], item0[3], item0[4], item0[5]
+    if len(found) > 1:
+        second = found[1][0] if bound is None else min(found[1][0], bound)
+    else:
+        second = bound
+    margin = None if second is None else second - r0
 
     out.second_rmsd, out.margin = second, margin
     out.class_price, out.member_chain, out.ref_chain = float(price), mc, probe
@@ -422,7 +517,7 @@ def _chain_rmsd(ref, rchain, mchain, Lf, t, ops):
     return best
 
 
-def _evaluate(ref, member, out):
+def _evaluate(ref, member, out, asu=True):
     """Fill rmsd, n_paired, unp_offset (probe chain, centring translations allowed) and
     asu_rmsd (every chain, every operator of the group) for the frame in ``out``."""
     from ..group import centering_translations
@@ -440,7 +535,8 @@ def _evaluate(ref, member, out):
             best = (r, mc)
     if best is not None:
         (out.rmsd, out.n_paired, out.unp_offset), out.member_chain = best
-    out.asu_rmsd = _asu_rmsd(ref, member, Lf, out.t)
+    if asu:
+        out.asu_rmsd = _asu_rmsd(ref, member, Lf, out.t)
 
 
 def _asu_rmsd(ref, member, Lf, t):
@@ -520,6 +616,23 @@ def choose_reference(models):
     return min(pool, key=lambda m: (m.resolution if m.resolution is not None else 99.0, m.pdb_id))
 
 
+def _onto_reference_copy(ref, member, out):
+    """A composed frame is right up to the reference group: it can put the molecule on a
+    symmetry mate of the reference copy. Multiply by the group operator (W, w) that brings
+    it back onto the reference copy: L -> W L, t -> W t + w."""
+    np = _np()
+    best = None
+    for op in ref.ops:
+        L2 = op.W @ out.L
+        t2 = _mat(op.W) @ out.t + _vec(op.w)
+        q = Placement(out.pdb_id, out.reference, out.status, L=L2, t=t2)
+        _evaluate(ref, member, q, asu=False)
+        if q.rmsd is not None and (best is None or q.rmsd < best[0]):
+            best = (q.rmsd, L2, t2)
+    if best is not None:
+        out.L, out.t = best[1], best[2]
+
+
 def compose(outer_L, outer_t, inner_L, inner_t):
     """Frame of ``x -> outer(inner(x))``: ``(Lo Li, Lo ti + to)``."""
     return outer_L @ inner_L, _mat(outer_L) @ inner_t + outer_t
@@ -564,6 +677,7 @@ def frame_cluster(con, ids, max_anchors=3):
             m = models[pid]
             near = sorted((a for a in placed if a != pid),
                           key=lambda a: similarity_distance(models[a].cell, m.cell))[:max_anchors]
+            best_q = None
             for a in near:
                 if a not in anchors:
                     anchors[a] = _Reference(models[a])
@@ -578,11 +692,14 @@ def frame_cluster(con, ids, max_anchors=3):
                 q.reference, q.via = ref_model.pdb_id, a
                 q.member_chain = None
                 q.ref_chain = None
+                _onto_reference_copy(ref, m, q)
                 _evaluate(ref, m, q)
-                results[pid] = q
+                if best_q is None or (q.rmsd is not None and q.rmsd < best_q.rmsd):
+                    best_q = q
+            if best_q is not None:
+                results[pid] = best_q
                 placed.append(pid)
                 progress = True
-                break
     return out + list(results.values())
 
 

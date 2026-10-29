@@ -17,8 +17,8 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy", "duckdb", "scipy"]
-db = ["duckdb", "numpy", "scipy"]
+test = ["pytest", "gemmi", "spglib", "matplotlib", "numpy", "duckdb", "scipy", "pyyaml"]
+db = ["duckdb", "numpy", "scipy", "pyyaml"]
 coords = ["duckdb", "numpy", "scipy", "gemmi", "pandas"]
 plot = ["matplotlib", "numpy"]
 mcp = ["fastmcp>=4"]
@@ -44,6 +44,7 @@ agentsg = [
   "serve/*.html",
   "cell/*.html",
   "cell/data/*.json",
+  "cell/data/*.yaml",
 ]
 
 [tool.pytest.ini_options]

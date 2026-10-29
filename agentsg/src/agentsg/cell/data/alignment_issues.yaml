@@ -1,0 +1,302 @@
+# Ontology of issues that make crystal-form alignment fail or look wrong.
+#
+# Scope: putting every PDB entry of a crystal-form cluster on one reference's setting and
+# origin (agentsg.cell.cluster_frames) and comparing them (agentsg.cell.cluster_records).
+# Every term was met in the October 2026 PDB run; counts are from the final run (clusters at
+# 14.8 %, reindexing coset scored up to 3 degrees, register search, exact-placement ranking:
+# 63,674 entries, 60,003 placed) unless a count says otherwise.
+#
+# Fields
+#   parent      broader term (is_a)
+#   kind        input (the deposited data), lattice, placement, comparison, biology (a real
+#               difference, not an error), or method (a defect of the pipeline itself)
+#   definition  what the issue is
+#   signature   how it shows in the records (frames.tsv / flags.tsv / pairwise.tsv.gz columns)
+#   flag        status or flag it ends up under
+#   examples    PDB ids or clusters where it was seen
+#   remedy      what handles it
+#   status      handled | flagged | open
+
+version: 1
+terms:
+
+  alignment_issue:
+    definition: "Anything that makes an entry's placement on its cluster reference wrong, ambiguous or impossible, or makes a correct placement look wrong."
+
+  # ------------------------------------------------------------------ input
+  input_issue:
+    parent: alignment_issue
+    kind: input
+    definition: "The deposited annotations (UniProt mapping, numbering, space group) do not let two entries be paired or compared directly."
+
+  residue_register_offset:
+    parent: input_issue
+    kind: input
+    definition: "The same protein numbered on a different register in the deposited UniProt mapping (signal peptide, isoform, construct numbering), so residues paired by number are not the same residues."
+    signature: "rmsd_to_ref > 3 Å and fit_to_ref >= 1.5 Å at the deposited numbering; a constant shift k pairs at least half the shorter chain with superposed RMSD < 1.5 Å; entries of one cluster agree on k."
+    examples:
+      - "cluster 87 (shift 20-21)"
+      - "cluster 45 (shift 173, 50 entries)"
+      - "cluster 44 (shift 1)"
+    count: "5320 placements with a nonzero unp_offset; the register search moved 1,179 entries from more than 3 Å to under 3 Å"
+    remedy: "structure-based register search (±200 residues) offered to the placement; shift stored in unp_offset."
+    status: handled
+
+  accession_mismatch:
+    parent: input_issue
+    kind: input
+    definition: "One protein mapped to different UniProt accessions in different entries (polyprotein pp1a and pp1ab, unreviewed variants, isoforms), so no accession is shared."
+    signature: "acc_fallback = 1; often unp_offset != 0."
+    examples:
+      - "SARS-CoV-2 Mpro P0DTD1 / P0DTC1 / A0A7U3EDN3 (offset 22)"
+    count: "4043 placements with acc_fallback"
+    remedy: "pair on residue numbers under the other accession, trying shifts that align the ranges and the structure-based register."
+    status: handled
+
+  fusion_chain:
+    parent: input_issue
+    kind: input
+    definition: "One chain mapped to several UniProt accessions (fusion, chimera, tag protein), with overlapping residue numbers from different proteins."
+    signature: "member_chain or ref_chain of the form chain:accession."
+    examples:
+      - "3AGP"
+      - "3AGQ (chain A maps to three accessions)"
+    count: "310 placements on a chain:accession unit"
+    remedy: "one pairing unit per (chain, accession)."
+    status: handled
+
+  missing_mapping:
+    parent: input_issue
+    kind: input
+    definition: "No usable UniProt mapping on the chain that matches the reference, or too few mapped Cα in common."
+    signature: "status no_shared_accession or too_few_paired_atoms."
+    examples:
+      - "6VKG"
+    count: "343 no_shared_accession, 143 too_few_paired_atoms"
+    remedy: "sequence alignment on residue types (needs residue names, not in the Cα cache)."
+    status: open
+
+  nonuniform_renumbering:
+    parent: input_issue
+    kind: input
+    definition: "Numbering differs by insertions or deletions along the chain, so no single shift pairs the residues."
+    signature: "no constant shift brings fit_to_ref below 1.5 Å, yet a sequence alignment would."
+    remedy: "sequence alignment on residue types."
+    status: open
+    note: "hypothesised part of far_different_structure; not yet separated from real conformational differences."
+
+  space_group_annotation:
+    parent: input_issue
+    kind: input
+    definition: "Entries of one lattice deposited in different space groups."
+    status: flagged
+
+  same_group_other_setting:
+    parent: space_group_annotation
+    kind: input
+    definition: "Same space-group type written in another setting or symbol (C 1 2 1 and I 1 2 1, P 21 21 2 and P 2 21 21)."
+    signature: "different sg_hm, same IT number."
+    remedy: "compare IT numbers; the reindexing operator carries the setting."
+    status: handled
+
+  different_space_group_type:
+    parent: space_group_annotation
+    kind: input
+    definition: "An entry deposited in another space-group type than the reference (a P1 or P21 entry in a P212121 cluster): a genuinely lower symmetry, a different crystal form on the same lattice, or a mis-assignment."
+    signature: "status different_space_group."
+    examples:
+      - "5DOH"
+      - "5LL4"
+      - "7Q0C (P1 in the P21 carbonic anhydrase II cluster)"
+    count: "1257"
+    remedy: "place on the common subgroup."
+    status: open
+
+  # ------------------------------------------------------------------ lattice
+  lattice_issue:
+    parent: alignment_issue
+    kind: lattice
+    definition: "The cell does not determine the reindexing operator from the reference to the entry."
+
+  pseudo_symmetric_lattice:
+    parent: lattice_issue
+    kind: lattice
+    definition: "The lattice is close to a higher symmetry, so several indexings have similar strain price and the right one can lie outside a narrow band (\"slippery field\")."
+    signature: "n_classes > 1; class_price of the chosen class > 0.07."
+    examples:
+      - "TTK P33981 I222"
+      - "b ≈ c (b↔c indexing at 9.4 % beats identity at 5.3 %)"
+    count: "6001 placements chose a class above 7 %"
+    remedy: "score every class within Le Page's 3 degrees (price 14.8 %) on the Cα."
+    status: handled
+
+  band_edge:
+    parent: lattice_issue
+    kind: lattice
+    definition: "The right indexing lies just above the scored band."
+    signature: "accept = 0.20."
+    examples:
+      - "1U9Q (14.92 % against a 14.8 % band)"
+    count: "982 placements from the 20 % classes"
+    remedy: "score the classes up to 20 % when the 3-degree placement is more than 3 Å from the reference."
+    status: handled
+
+  chained_cluster:
+    parent: lattice_issue
+    kind: lattice
+    definition: "Single-linkage clustering joins entries through intermediates, so the two ends of a cluster are farther apart than any band and have no reindexing to the reference."
+    signature: "via is set; often far_same_structure."
+    examples:
+      - "BRD4 O60885 cluster (37×44×78 and 32×47×80 Å forms)"
+    count: "557 placements via a neighbour"
+    remedy: "place on a placed neighbour and compose the frames."
+    status: handled
+
+  centring_ambiguity:
+    parent: lattice_issue
+    kind: lattice
+    definition: "In a centred group a frame is defined only up to the centring translations; two equivalent frames differ by one."
+    signature: "pairwise frame_rmsd of tens of Å between entries whose fit_rmsd is small, in C, I, F or R groups."
+    examples:
+      - "Mpro C2/I2"
+      - "Hsp90 I222"
+      - "Q9Y233 H3"
+      - "ferritin F432"
+    remedy: "compare modulo the centring translations of the reference group."
+    status: handled
+
+  # ------------------------------------------------------------------ placement
+  placement_issue:
+    parent: alignment_issue
+    kind: placement
+    definition: "The setting is right but the choice among allowed origins, normalizer elements and group operators is uncertain."
+
+  low_margin:
+    parent: placement_issue
+    kind: placement
+    definition: "A second placement that puts the Cα elsewhere fits almost as well (pseudo-symmetric packing, non-crystallographic symmetry close to a crystallographic operator)."
+    signature: "margin < 1 Å."
+    flag: low_margin
+    count: "753"
+    remedy: "none from coordinates alone; needs the intensities."
+    status: flagged
+
+  floating_origin:
+    parent: placement_issue
+    kind: placement
+    definition: "A continuous allowed origin along a polar axis (P21, P41, C2, ...); the shift is fitted, not chosen."
+    signature: "polar space group; t has non-rational components along the polar axis."
+    remedy: "fit the floating component to the mean Cα shift."
+    status: handled
+
+  copy_choice:
+    parent: placement_issue
+    kind: placement
+    definition: "Several copies in the asymmetric unit; the entry's chain may correspond to any reference copy or symmetry mate."
+    signature: "member_chain differs from ref_chain; asu_rmsd > rmsd_to_ref."
+    remedy: "try every chain of the entry against the probe under all group operators, ranked by the RMSD after the origin snap; report asu_rmsd for the rest."
+    status: handled
+
+  # ------------------------------------------------------------------ biology
+  real_difference:
+    parent: alignment_issue
+    kind: biology
+    definition: "The placement is right; the entries differ."
+
+  different_packing:
+    parent: real_difference
+    kind: biology
+    definition: "The same structure packed differently in the same or a nearby lattice; no lattice operator relates the two crystals."
+    signature: "rmsd_to_ref > 3 Å and fit_to_ref < 1.5 Å; a residual rotation after superposition that is not a lattice rotation."
+    flag: far_same_structure
+    examples:
+      - "TTK 4BI1 vs 4JS8 (14.6° about a after the best indexing)"
+      - "cluster 45"
+    count: "1742"
+    status: flagged
+
+  lattice_strain:
+    parent: real_difference
+    kind: biology
+    definition: "Same packing, different cell (temperature, dehydration, ligand); the molecule shifts rigidly with the lattice."
+    signature: "frame_rmsd - fit_rmsd of a few tenths of an Å to about 1 Å, correlated with a cell edge."
+    examples:
+      - "carbonic anhydrase II: 6YH series (c down to 69.4 Å)"
+      - "the room-temperature cell island (c ≈ 73.0 Å)"
+    status: flagged
+
+  conformational_difference:
+    parent: real_difference
+    kind: biology
+    definition: "The molecule itself differs (domain motion, ligand-induced change, different construct or truncation)."
+    signature: "fit_to_ref >= 1.5 Å after the best register."
+    flag: far_different_structure
+    count: "1444 (far_different_structure)"
+    status: flagged
+
+  # ------------------------------------------------------------------ method
+  method_defect:
+    parent: alignment_issue
+    kind: method
+    definition: "A defect of the pipeline that produced wrong or misleading results; all listed ones are fixed and kept here so tests guard them."
+    status: handled
+
+  narrow_band_first_hit:
+    parent: method_defect
+    kind: method
+    definition: "Scoring only the first band that yields any reindexing class missed better indexings just outside it."
+    remedy: "score all classes up to 3 degrees."
+    status: handled
+
+  nondeterministic_residue_pick:
+    parent: method_defect
+    kind: method
+    definition: "Residues of different accessions on one chain collided on number; which Cα was kept depended on row order."
+    examples:
+      - "3AGP 0.8 → 12.7 Å between runs"
+    remedy: "one unit per (chain, accession), deterministic order."
+    status: handled
+
+  equivalent_routes_as_alternatives:
+    parent: method_defect
+    kind: method
+    definition: "Many operator combinations reach one placement; counting them as alternatives produced margins of zero."
+    examples:
+      - "P212121 clusters with a ≈ b (every margin 0)"
+    remedy: "distinct placements by where the Cα land (0.5 Å, modulo lattice and centring); one candidate per distinct score."
+    status: handled
+
+  translation_free_ranking:
+    parent: method_defect
+    kind: method
+    definition: "Candidates were ranked by the RMSD after the best continuous shift, but placed with the shift snapped to an allowed origin; a second copy in the asymmetric unit on a non-crystallographic shift tied on the score and could win while landing far away."
+    examples:
+      - "1TWW (0.55 or 10.5 Å depending on which copy won)"
+      - "cluster 433 (9 placements over 3 Å, 32 margins under 1 Å)"
+    remedy: "make candidates exact in score order and rank by the snapped placement's RMSD (the score is a lower bound, so the search stops exactly)."
+    status: handled
+
+  helical_register_alias:
+    parent: method_defect
+    kind: method
+    definition: "On a helical protein a residue shift of about one turn (3-4 residues) superposes two conformers nearly as well as the true register, so a register search triggered by a small misfit can pick a false shift."
+    examples:
+      - "7K6G (BRD4, via 5VBP: shift -3, 1.8 → 40 Å)"
+    remedy: "search registers only when the deposited numbering superposes worse than 2.5 Å, and accept a shift only when it at least halves that RMSD; place through the neighbour whose composed frame lands closest to the reference."
+    status: handled
+
+  composed_frame_on_mate:
+    parent: method_defect
+    kind: method
+    definition: "A frame composed through a neighbour is right only up to the reference group, and can put the molecule on a symmetry mate of the reference copy (whole-asymmetric-unit RMSD small, probe RMSD tens of Å)."
+    examples:
+      - "7YDA, 7Y0S, 7WDG, 7WDH (65 Å probe RMSD, 6 Å asu RMSD)"
+    remedy: "multiply the composed frame by the reference group operator that brings the molecule back onto the reference copy."
+    status: handled
+
+  pairwise_without_centring:
+    parent: method_defect
+    kind: method
+    definition: "The pairwise step moved entries onto the reference copy by lattice translations only, splitting centred clusters into copies."
+    remedy: "see centring_ambiguity."
+    status: handled
