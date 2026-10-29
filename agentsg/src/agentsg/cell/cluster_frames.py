@@ -57,6 +57,10 @@ from fractions import Fraction
 
 BAND_STEPS = (0.148, 0.20)
 FALLBACK_RMSD = 3.0
+REGISTER_FIT = 1.5
+"""Superposed Cα RMSD (Å) below which a residue-number register is taken as right."""
+REGISTER_SEARCH = 200
+"""Largest residue-number shift tried when the deposited register pairs badly."""
 """When the best placement within the first band is farther than this from the reference
 (Å), the classes of the next band are scored as well and the better placement is kept."""
 """Strain-price bands for the reindexing coset. The first is Le Page's 3 degrees
@@ -241,6 +245,46 @@ def _subsample(n, k):
     return np.linspace(0, n - 1, k).round().astype(int)
 
 
+def _kabsch_rmsd(P, Q):
+    np = _np()
+    P = P - P.mean(0)
+    Q = Q - Q.mean(0)
+    U, S, Vt = np.linalg.svd(Q.T @ P)
+    S[2] *= np.sign(np.linalg.det(U @ Vt))
+    return float(np.sqrt(max((P ** 2).sum() + (Q ** 2).sum() - 2 * S.sum(), 0.0) / len(P)))
+
+
+def _register(ref_unp, ref_cart, mem_unp, mem_cart, search=REGISTER_SEARCH):
+    """The residue-number shift ``k`` that pairs the member's Cα (number + k) with the
+    reference's best, by superposed RMSD, when the deposited numbering pairs them badly.
+
+    Returns ``None`` when the deposited numbering is already good (superposed RMSD below
+    ``REGISTER_FIT`` on at least half the shorter chain) or no shift does better than
+    ``REGISTER_FIT``. A shift must pair at least half the shorter chain, so a repeat or a
+    second domain is not matched on its own.
+    """
+    np = _np()
+    need = max(MIN_PAIRED, 0.5 * min(len(ref_unp), len(mem_unp)))
+
+    def fit(k):
+        _, ir, im = np.intersect1d(ref_unp, mem_unp + k, return_indices=True)
+        return None if len(ir) < need else _kabsch_rmsd(ref_cart[ir], mem_cart[im])
+
+    f0 = fit(0)
+    if f0 is not None and f0 < REGISTER_FIT:
+        return None
+    best = None
+    for k in range(-search, search + 1):
+        if k == 0:
+            continue
+        f = fit(k)
+        if f is not None and (best is None or f < best[0]):
+            best = (f, k)
+    if best is None or best[0] >= REGISTER_FIT:
+        return None
+    return best[1]
+
+
 def place(ref, member, member_ops=None):
     """Place one entry on the reference. Returns a :class:`Placement`."""
     np = _np()
@@ -297,10 +341,17 @@ def _place_classes(ref, member, member_ops, accept, classes):
     # numbering shifts to try: none, and, under another accession, the shifts that
     # line the residue-number ranges up at their starts and at their ends
     shifted = {}
+    p_cart = p_xyz @ ref.orth.T
+    m_orth = _orth(member.cell)
     for c, (acc, unp, xyz) in mem_chains.items():
         offs = {0}
         if out.acc_fallback and len(unp):
             offs |= {int(p_unp.min() - unp.min()), int(p_unp.max() - unp.max())}
+        # a deposition numbered on another register (signal peptide, isoform, construct
+        # numbering): find the whole-chain register from the structure itself
+        k = _register(p_unp, p_cart, unp, xyz @ m_orth.T)
+        if k is not None:
+            offs.add(k)
         for k in sorted(offs, key=abs):
             shifted[(c, k)] = (acc, unp + k, xyz)
 

@@ -129,3 +129,14 @@ def test_accession_fallback_finds_numbering_shift():
     p = place(_Reference(ref), mem)
     assert p.status == "placed" and p.acc_fallback
     assert p.unp_offset == 22 and p.rmsd < 1e-6
+
+
+def test_register_shift_found_from_structure():
+    """Same accession, numbered 37 residues off: the register comes from the structure."""
+    rng = np.random.default_rng(13)
+    ref = _make((42.2, 41.3, 72.0, 90, 104.3, 90), "P 1 21 1", _chain(rng), "REF", unp0=20)
+    acc, unp, x = ref.chains["A"]
+    mem = Model("MEM", ref.cell, "P 1 21 1", 2.0, {"A": (acc, unp + 37, x.copy())})
+    p = place(_Reference(ref), mem)
+    assert p.status == "placed" and not p.acc_fallback
+    assert p.unp_offset == -37 and p.rmsd < 1e-6
