@@ -1,0 +1,62 @@
+{
+ "identity": "O44074+P92506+P92507+Q33862",
+ "accessions": [
+  "O44074",
+  "P92506",
+  "P92507",
+  "Q33862"
+ ],
+ "deposition_group": null,
+ "name": "Succinate dehydrogenase [rhodoquinone] flavoprotein subunit 1, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1482,
+   "n_members": 12,
+   "reference": "4YSX",
+   "reference_resolution": 2.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    124.2,
+    127.909,
+    220.546,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.072,
+    "q25": 0.631,
+    "q75": 1.21,
+    "p5": 0.384,
+    "p95": 2.24,
+    "max": 2.497,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.279,
+    "q25": 1.014,
+    "q75": 2.007,
+    "p5": 0.533,
+    "p95": 2.878,
+    "max": 3.813,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.345,
+    "q25": 0.269,
+    "q75": 0.433,
+    "p5": 0.214,
+    "p95": 0.478,
+    "max": 0.532,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

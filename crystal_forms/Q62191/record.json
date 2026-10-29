@@ -1,0 +1,59 @@
+{
+ "identity": "Q62191",
+ "accessions": [
+  "Q62191"
+ ],
+ "deposition_group": null,
+ "name": "E3 ubiquitin-protein ligase TRIM21",
+ "clusters": [
+  {
+   "cluster_id": 80,
+   "n_members": 110,
+   "reference": "7HLL",
+   "reference_resolution": 1.15,
+   "space_group": "I 4",
+   "reference_cell": [
+    95.378,
+    95.378,
+    45.818,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 109,
+    "reference": 1
+   },
+   "n_pairs": 5995,
+   "rmsd_to_reference": {
+    "median": 0.154,
+    "q25": 0.114,
+    "q75": 0.188,
+    "p5": 0.088,
+    "p95": 0.246,
+    "max": 0.284,
+    "n_pairs": 109
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.159,
+    "q25": 0.115,
+    "q75": 0.216,
+    "p5": 0.076,
+    "p95": 0.309,
+    "max": 0.602,
+    "n_pairs": 5995
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.083,
+    "q25": 0.065,
+    "q75": 0.109,
+    "p5": 0.046,
+    "p95": 0.162,
+    "max": 0.234,
+    "n_pairs": 5995
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

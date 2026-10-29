@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y253",
+ "accessions": [
+  "Q9Y253"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase eta",
+ "clusters": [
+  {
+   "cluster_id": 25,
+   "n_members": 233,
+   "reference": "7M7N",
+   "reference_resolution": 1.31,
+   "space_group": "P 61",
+   "reference_cell": [
+    98.444,
+    98.444,
+    82.105,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 232,
+    "reference": 1
+   },
+   "n_pairs": 27028,
+   "rmsd_to_reference": {
+    "median": 0.428,
+    "q25": 0.363,
+    "q75": 0.568,
+    "p5": 0.307,
+    "p95": 1.095,
+    "max": 1.236,
+    "n_pairs": 232
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.43,
+    "q25": 0.338,
+    "q75": 0.565,
+    "p5": 0.238,
+    "p95": 1.093,
+    "max": 1.551,
+    "n_pairs": 27028
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.359,
+    "q25": 0.285,
+    "q75": 0.451,
+    "p5": 0.2,
+    "p95": 1.051,
+    "max": 1.287,
+    "n_pairs": 27028
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P10828",
+ "accessions": [
+  "P10828"
+ ],
+ "deposition_group": null,
+ "name": "Thyroid hormone receptor beta",
+ "clusters": [
+  {
+   "cluster_id": 1690,
+   "n_members": 11,
+   "reference": "3GWS",
+   "reference_resolution": 2.2,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    68.974,
+    68.974,
+    131.247,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.586,
+    "q25": 0.394,
+    "q75": 0.798,
+    "p5": 0.305,
+    "p95": 0.938,
+    "max": 0.956,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.865,
+    "q25": 0.517,
+    "q75": 0.975,
+    "p5": 0.349,
+    "p95": 1.313,
+    "max": 1.594,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.544,
+    "q25": 0.437,
+    "q75": 0.75,
+    "p5": 0.309,
+    "p95": 0.838,
+    "max": 1.094,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

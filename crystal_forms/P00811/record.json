@@ -1,0 +1,59 @@
+{
+ "identity": "P00811",
+ "accessions": [
+  "P00811"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase",
+ "clusters": [
+  {
+   "cluster_id": 93,
+   "n_members": 103,
+   "reference": "2FFY",
+   "reference_resolution": 1.07,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    118.84,
+    76.063,
+    97.898,
+    90.0,
+    115.85,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 102,
+    "reference": 1
+   },
+   "n_pairs": 5253,
+   "rmsd_to_reference": {
+    "median": 0.913,
+    "q25": 0.728,
+    "q75": 0.986,
+    "p5": 0.479,
+    "p95": 1.143,
+    "max": 5.094,
+    "n_pairs": 102
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.805,
+    "q25": 0.608,
+    "q75": 1.035,
+    "p5": 0.322,
+    "p95": 1.438,
+    "max": 5.187,
+    "n_pairs": 5253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.536,
+    "q25": 0.254,
+    "q75": 0.68,
+    "p5": 0.176,
+    "p95": 0.916,
+    "max": 5.033,
+    "n_pairs": 5253
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

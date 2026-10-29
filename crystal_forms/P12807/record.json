@@ -1,0 +1,60 @@
+{
+ "identity": "P12807",
+ "accessions": [
+  "P12807"
+ ],
+ "deposition_group": null,
+ "name": "Peroxisomal primary amine oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1692,
+   "n_members": 11,
+   "reference": "3SXX",
+   "reference_resolution": 1.27,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    103.887,
+    223.364,
+    103.969,
+    90.0,
+    95.61,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 4,
+    "placed": 6,
+    "reference": 1
+   },
+   "n_pairs": 21,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.326,
+    "q75": 6.349,
+    "p5": 0.256,
+    "p95": 8.35,
+    "max": 8.363,
+    "n_pairs": 6
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.575,
+    "q25": 0.313,
+    "q75": 8.182,
+    "p5": 0.161,
+    "p95": 8.236,
+    "max": 8.266,
+    "n_pairs": 21
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.339,
+    "q25": 0.177,
+    "q75": 0.397,
+    "p5": 0.108,
+    "p95": 0.432,
+    "max": 0.448,
+    "n_pairs": 21
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

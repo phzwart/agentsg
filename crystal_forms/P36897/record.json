@@ -1,0 +1,59 @@
+{
+ "identity": "P36897",
+ "accessions": [
+  "P36897"
+ ],
+ "deposition_group": null,
+ "name": "TGF-beta receptor type-1",
+ "clusters": [
+  {
+   "cluster_id": 472,
+   "n_members": 31,
+   "reference": "9J9D",
+   "reference_resolution": 1.337,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.455,
+    75.677,
+    89.625,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.063,
+    "q25": 0.731,
+    "q75": 1.184,
+    "p5": 0.472,
+    "p95": 14.013,
+    "max": 27.966,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.831,
+    "q25": 0.598,
+    "q75": 1.121,
+    "p5": 0.364,
+    "p95": 27.191,
+    "max": 34.396,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.549,
+    "q25": 0.438,
+    "q75": 0.73,
+    "p5": 0.253,
+    "p95": 18.988,
+    "max": 19.206,
+    "n_pairs": 465
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

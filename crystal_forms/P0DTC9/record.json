@@ -1,0 +1,108 @@
+{
+ "identity": "P0DTC9",
+ "accessions": [
+  "P0DTC9"
+ ],
+ "deposition_group": null,
+ "name": "Nucleoprotein",
+ "clusters": [
+  {
+   "cluster_id": 232,
+   "n_members": 52,
+   "reference": "6ZCO",
+   "reference_resolution": 1.361,
+   "space_group": "I 41",
+   "reference_cell": [
+    88.203,
+    88.203,
+    42.763,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 51
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.39,
+    "q25": 0.355,
+    "q75": 0.422,
+    "p5": 0.311,
+    "p95": 0.68,
+    "max": 0.773,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.208,
+    "q25": 0.172,
+    "q75": 0.258,
+    "p5": 0.129,
+    "p95": 0.35,
+    "max": 0.488,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.195,
+    "q25": 0.162,
+    "q75": 0.23,
+    "p5": 0.123,
+    "p95": 0.319,
+    "max": 0.406,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1688,
+   "n_members": 11,
+   "reference": "9EZB",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.789,
+    92.466,
+    96.393,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.044,
+    "q25": 0.817,
+    "q75": 1.082,
+    "p5": 0.569,
+    "p95": 1.142,
+    "max": 1.155,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.724,
+    "q25": 0.546,
+    "q75": 0.962,
+    "p5": 0.364,
+    "p95": 1.197,
+    "max": 1.444,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.533,
+    "q25": 0.415,
+    "q75": 0.661,
+    "p5": 0.308,
+    "p95": 0.989,
+    "max": 1.076,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

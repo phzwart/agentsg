@@ -1,0 +1,109 @@
+{
+ "identity": "P30405",
+ "accessions": [
+  "P30405"
+ ],
+ "deposition_group": null,
+ "name": "Peptidyl-prolyl cis-trans isomerase F, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 358,
+   "n_members": 38,
+   "reference": "7R2H",
+   "reference_resolution": 0.79,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    57.348,
+    57.348,
+    87.562,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.225,
+    "q25": 0.125,
+    "q75": 0.262,
+    "p5": 0.084,
+    "p95": 0.379,
+    "max": 0.725,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.315,
+    "q25": 0.221,
+    "q75": 0.443,
+    "p5": 0.126,
+    "p95": 0.66,
+    "max": 1.02,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.184,
+    "q25": 0.128,
+    "q75": 0.226,
+    "p5": 0.081,
+    "p95": 0.523,
+    "max": 0.634,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 921,
+   "n_members": 18,
+   "reference": "9RLM",
+   "reference_resolution": 1.25,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    57.039,
+    57.039,
+    114.404,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.29,
+    "q25": 0.256,
+    "q75": 0.334,
+    "p5": 0.191,
+    "p95": 0.574,
+    "max": 0.638,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.474,
+    "q25": 0.336,
+    "q75": 0.653,
+    "p5": 0.217,
+    "p95": 0.985,
+    "max": 1.476,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.137,
+    "q75": 0.19,
+    "p5": 0.104,
+    "p95": 0.216,
+    "max": 0.245,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

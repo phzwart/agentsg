@@ -1,0 +1,59 @@
+{
+ "identity": "P00442",
+ "accessions": [
+  "P00442"
+ ],
+ "deposition_group": null,
+ "name": "Superoxide dismutase [Cu-Zn]",
+ "clusters": [
+  {
+   "cluster_id": 1033,
+   "n_members": 16,
+   "reference": "1Q0E",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.953,
+    51.507,
+    148.41,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.806,
+    "q25": 0.682,
+    "q75": 1.547,
+    "p5": 0.461,
+    "p95": 1.793,
+    "max": 1.814,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.218,
+    "q25": 0.716,
+    "q75": 2.637,
+    "p5": 0.223,
+    "p95": 3.064,
+    "max": 3.815,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.243,
+    "q25": 0.186,
+    "q75": 0.302,
+    "p5": 0.093,
+    "p95": 0.347,
+    "max": 0.374,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "O75874",
+ "accessions": [
+  "O75874"
+ ],
+ "deposition_group": null,
+ "name": "Isocitrate dehydrogenase [NADP] cytoplasmic",
+ "clusters": [
+  {
+   "cluster_id": 709,
+   "n_members": 22,
+   "reference": "4UMX",
+   "reference_resolution": 1.88,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    81.408,
+    81.408,
+    305.917,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.751,
+    "q25": 1.529,
+    "q75": 2.07,
+    "p5": 0.96,
+    "p95": 2.489,
+    "max": 2.734,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.622,
+    "q25": 1.187,
+    "q75": 2.363,
+    "p5": 0.753,
+    "p95": 3.21,
+    "max": 4.264,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.74,
+    "q25": 0.599,
+    "q75": 0.975,
+    "p5": 0.433,
+    "p95": 1.299,
+    "max": 1.816,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P00740",
+ "accessions": [
+  "P00740"
+ ],
+ "deposition_group": null,
+ "name": "Coagulation factor IX",
+ "clusters": [
+  {
+   "cluster_id": 1349,
+   "n_members": 13,
+   "reference": "5JB9",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    44.27,
+    67.05,
+    97.15,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.395,
+    "q25": 0.317,
+    "q75": 0.46,
+    "p5": 0.209,
+    "p95": 8.636,
+    "max": 16.639,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.512,
+    "q25": 0.419,
+    "q75": 0.643,
+    "p5": 0.284,
+    "p95": 16.143,
+    "max": 16.311,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.349,
+    "q25": 0.254,
+    "q75": 0.394,
+    "p5": 0.155,
+    "p95": 0.824,
+    "max": 0.894,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

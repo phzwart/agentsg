@@ -1,0 +1,59 @@
+{
+ "identity": "Q86T24",
+ "accessions": [
+  "Q86T24"
+ ],
+ "deposition_group": null,
+ "name": "Transcriptional regulator Kaiso",
+ "clusters": [
+  {
+   "cluster_id": 1598,
+   "n_members": 12,
+   "reference": "6DFB",
+   "reference_resolution": 1.66,
+   "space_group": "C 2 2 2",
+   "reference_cell": [
+    44.467,
+    184.271,
+    105.188,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.449,
+    "q25": 0.389,
+    "q75": 0.703,
+    "p5": 0.303,
+    "p95": 0.808,
+    "max": 0.852,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.676,
+    "q25": 0.458,
+    "q75": 0.784,
+    "p5": 0.347,
+    "p95": 0.93,
+    "max": 1.037,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.537,
+    "q25": 0.311,
+    "q75": 0.665,
+    "p5": 0.232,
+    "p95": 0.717,
+    "max": 0.732,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

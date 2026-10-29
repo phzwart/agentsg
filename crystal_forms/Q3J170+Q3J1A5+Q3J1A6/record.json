@@ -1,0 +1,61 @@
+{
+ "identity": "Q3J170+Q3J1A5+Q3J1A6",
+ "accessions": [
+  "Q3J170",
+  "Q3J1A5",
+  "Q3J1A6"
+ ],
+ "deposition_group": null,
+ "name": "Reaction center protein M chain",
+ "clusters": [
+  {
+   "cluster_id": 840,
+   "n_members": 20,
+   "reference": "4IN5",
+   "reference_resolution": 2.2,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    139.109,
+    139.109,
+    184.692,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.696,
+    "q25": 0.602,
+    "q75": 0.856,
+    "p5": 0.383,
+    "p95": 0.978,
+    "max": 1.079,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.948,
+    "q25": 0.544,
+    "q75": 1.466,
+    "p5": 0.323,
+    "p95": 2.136,
+    "max": 2.811,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.279,
+    "q75": 0.458,
+    "p5": 0.177,
+    "p95": 0.559,
+    "max": 0.687,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

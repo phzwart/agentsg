@@ -1,0 +1,59 @@
+{
+ "identity": "P0AB87",
+ "accessions": [
+  "P0AB87"
+ ],
+ "deposition_group": null,
+ "name": "L-fuculose phosphate aldolase",
+ "clusters": [
+  {
+   "cluster_id": 1140,
+   "n_members": 15,
+   "reference": "1E4C",
+   "reference_resolution": 1.66,
+   "space_group": "P 4 21 2",
+   "reference_cell": [
+    93.52,
+    93.52,
+    42.37,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.653,
+    "q25": 0.557,
+    "q75": 0.67,
+    "p5": 0.45,
+    "p95": 1.014,
+    "max": 1.384,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.447,
+    "q25": 0.349,
+    "q75": 0.653,
+    "p5": 0.21,
+    "p95": 1.358,
+    "max": 1.567,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.354,
+    "q25": 0.237,
+    "q75": 0.427,
+    "p5": 0.154,
+    "p95": 1.292,
+    "max": 1.359,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "O00408",
+ "accessions": [
+  "O00408"
+ ],
+ "deposition_group": null,
+ "name": "cGMP-dependent 3',5'-cyclic phosphodiesterase",
+ "clusters": [
+  {
+   "cluster_id": 594,
+   "n_members": 25,
+   "reference": "5U00",
+   "reference_resolution": 1.41,
+   "space_group": "P 1",
+   "reference_cell": [
+    55.986,
+    73.249,
+    91.206,
+    109.38,
+    90.79,
+    91.1
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.315,
+    "q25": 0.173,
+    "q75": 19.963,
+    "p5": 0.133,
+    "p95": 22.936,
+    "max": 23.334,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 19.973,
+    "q25": 0.281,
+    "q75": 22.724,
+    "p5": 0.184,
+    "p95": 35.817,
+    "max": 45.552,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 6.314,
+    "q25": 0.247,
+    "q75": 16.432,
+    "p5": 0.162,
+    "p95": 16.611,
+    "max": 16.715,
+    "n_pairs": 300
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  }
+ ]
+}

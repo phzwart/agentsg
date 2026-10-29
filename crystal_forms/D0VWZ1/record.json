@@ -1,0 +1,59 @@
+{
+ "identity": "D0VWZ1",
+ "accessions": [
+  "D0VWZ1"
+ ],
+ "deposition_group": null,
+ "name": "Amidase",
+ "clusters": [
+  {
+   "cluster_id": 1215,
+   "n_members": 14,
+   "reference": "5JQN",
+   "reference_resolution": 1.19,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    75.423,
+    115.794,
+    65.757,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.412,
+    "q25": 0.269,
+    "q75": 0.622,
+    "p5": 0.203,
+    "p95": 0.71,
+    "max": 0.759,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.483,
+    "q25": 0.328,
+    "q75": 0.654,
+    "p5": 0.184,
+    "p95": 0.929,
+    "max": 1.046,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.216,
+    "q25": 0.171,
+    "q75": 0.284,
+    "p5": 0.108,
+    "p95": 0.343,
+    "max": 0.4,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

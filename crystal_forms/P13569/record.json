@@ -1,0 +1,59 @@
+{
+ "identity": "P13569",
+ "accessions": [
+  "P13569"
+ ],
+ "deposition_group": null,
+ "name": "Cystic fibrosis transmembrane conductance regulator",
+ "clusters": [
+  {
+   "cluster_id": 1694,
+   "n_members": 11,
+   "reference": "5TFJ",
+   "reference_resolution": 1.85,
+   "space_group": "P 43",
+   "reference_cell": [
+    40.142,
+    40.142,
+    141.742,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.101,
+    "q25": 0.092,
+    "q75": 0.117,
+    "p5": 0.066,
+    "p95": 0.346,
+    "max": 0.51,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.154,
+    "q25": 0.099,
+    "q75": 0.205,
+    "p5": 0.078,
+    "p95": 0.515,
+    "max": 0.528,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.102,
+    "q25": 0.086,
+    "q75": 0.117,
+    "p5": 0.065,
+    "p95": 0.488,
+    "max": 0.494,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,207 @@
+{
+ "identity": "P9WGR1",
+ "accessions": [
+  "P9WGR1"
+ ],
+ "deposition_group": null,
+ "name": "Enoyl-[acyl-carrier-protein] reductase [NADH]",
+ "clusters": [
+  {
+   "cluster_id": 296,
+   "n_members": 43,
+   "reference": "4TRO",
+   "reference_resolution": 1.4,
+   "space_group": "P 62 2 2",
+   "reference_cell": [
+    97.434,
+    97.434,
+    139.752,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.249,
+    "q25": 0.206,
+    "q75": 0.352,
+    "p5": 0.161,
+    "p95": 0.624,
+    "max": 0.836,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.625,
+    "q25": 0.368,
+    "q75": 0.91,
+    "p5": 0.209,
+    "p95": 1.526,
+    "max": 2.322,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.2,
+    "q75": 0.385,
+    "p5": 0.137,
+    "p95": 0.504,
+    "max": 0.702,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1173,
+   "n_members": 15,
+   "reference": "9RJL",
+   "reference_resolution": 1.699,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    99.8,
+    82.35,
+    187.76,
+    90.0,
+    95.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.587,
+    "q25": 0.344,
+    "q75": 0.87,
+    "p5": 0.197,
+    "p95": 1.154,
+    "max": 1.249,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.785,
+    "q25": 0.57,
+    "q75": 1.05,
+    "p5": 0.281,
+    "p95": 1.384,
+    "max": 1.682,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.416,
+    "q25": 0.332,
+    "q75": 0.528,
+    "p5": 0.187,
+    "p95": 0.791,
+    "max": 0.892,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1745,
+   "n_members": 11,
+   "reference": "28IP",
+   "reference_resolution": 1.588,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    125.68,
+    91.8,
+    103.17,
+    90.0,
+    105.92,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 2.781,
+    "q25": 2.524,
+    "q75": 3.223,
+    "p5": 1.587,
+    "p95": 3.404,
+    "max": 3.416,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.094,
+    "q25": 0.622,
+    "q75": 2.072,
+    "p5": 0.333,
+    "p95": 2.946,
+    "max": 3.081,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.815,
+    "q25": 0.322,
+    "q75": 1.066,
+    "p5": 0.115,
+    "p95": 1.353,
+    "max": 1.384,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1746,
+   "n_members": 11,
+   "reference": "5G0T",
+   "reference_resolution": 1.54,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    65.166,
+    112.069,
+    67.847,
+    90.0,
+    98.43,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.245,
+    "q25": 0.183,
+    "q75": 0.527,
+    "p5": 0.153,
+    "p95": 0.671,
+    "max": 0.748,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.6,
+    "q25": 0.298,
+    "q75": 0.723,
+    "p5": 0.176,
+    "p95": 1.068,
+    "max": 1.142,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.244,
+    "q25": 0.171,
+    "q75": 0.306,
+    "p5": 0.136,
+    "p95": 0.386,
+    "max": 0.422,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

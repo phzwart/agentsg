@@ -1,0 +1,59 @@
+{
+ "identity": "A5H660",
+ "accessions": [
+  "A5H660"
+ ],
+ "deposition_group": null,
+ "name": "histone deacetylase",
+ "clusters": [
+  {
+   "cluster_id": 483,
+   "n_members": 30,
+   "reference": "6HSH",
+   "reference_resolution": 1.545,
+   "space_group": "P 1",
+   "reference_cell": [
+    70.75,
+    70.8,
+    97.82,
+    78.03,
+    75.67,
+    85.74
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.392,
+    "q25": 0.362,
+    "q75": 0.433,
+    "p5": 0.327,
+    "p95": 0.465,
+    "max": 0.672,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.457,
+    "q25": 0.354,
+    "q75": 0.581,
+    "p5": 0.248,
+    "p95": 0.799,
+    "max": 1.089,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.209,
+    "q25": 0.18,
+    "q75": 0.242,
+    "p5": 0.143,
+    "p95": 0.317,
+    "max": 0.599,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

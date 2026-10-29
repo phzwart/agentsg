@@ -1,0 +1,59 @@
+{
+ "identity": "P14735",
+ "accessions": [
+  "P14735"
+ ],
+ "deposition_group": null,
+ "name": "Insulin-degrading enzyme",
+ "clusters": [
+  {
+   "cluster_id": 769,
+   "n_members": 21,
+   "reference": "3CWW",
+   "reference_resolution": 1.96,
+   "space_group": "P 65",
+   "reference_cell": [
+    262.448,
+    262.448,
+    90.628,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.319,
+    "q25": 0.251,
+    "q75": 0.373,
+    "p5": 0.209,
+    "p95": 1.274,
+    "max": 2.374,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.743,
+    "q25": 0.48,
+    "q75": 1.426,
+    "p5": 0.319,
+    "p95": 2.598,
+    "max": 3.476,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.279,
+    "q25": 0.244,
+    "q75": 0.319,
+    "p5": 0.19,
+    "p95": 0.379,
+    "max": 0.408,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

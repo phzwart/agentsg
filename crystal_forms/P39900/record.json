@@ -1,0 +1,108 @@
+{
+ "identity": "P39900",
+ "accessions": [
+  "P39900"
+ ],
+ "deposition_group": null,
+ "name": "Macrophage metalloelastase",
+ "clusters": [
+  {
+   "cluster_id": 501,
+   "n_members": 29,
+   "reference": "1Y93",
+   "reference_resolution": 1.03,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    50.913,
+    59.552,
+    53.497,
+    90.0,
+    115.14,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.291,
+    "q25": 0.24,
+    "q75": 0.433,
+    "p5": 0.199,
+    "p95": 0.605,
+    "max": 0.677,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.478,
+    "q25": 0.358,
+    "q75": 0.675,
+    "p5": 0.21,
+    "p95": 0.919,
+    "max": 1.262,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.284,
+    "q25": 0.215,
+    "q75": 0.335,
+    "p5": 0.139,
+    "p95": 0.604,
+    "max": 0.649,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 826,
+   "n_members": 20,
+   "reference": "4GQL",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    69.58,
+    63.39,
+    36.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.819,
+    "q25": 0.373,
+    "q75": 1.319,
+    "p5": 0.283,
+    "p95": 1.472,
+    "max": 1.501,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.032,
+    "q25": 0.453,
+    "q75": 1.282,
+    "p5": 0.318,
+    "p95": 1.448,
+    "max": 1.682,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.331,
+    "q25": 0.27,
+    "q75": 0.389,
+    "p5": 0.215,
+    "p95": 0.465,
+    "max": 0.513,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P06766",
+ "accessions": [
+  "P06766"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase beta",
+ "clusters": [
+  {
+   "cluster_id": 1675,
+   "n_members": 11,
+   "reference": "2VAN",
+   "reference_resolution": 2.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    62.862,
+    119.43,
+    38.013,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.577,
+    "q25": 0.566,
+    "q75": 0.601,
+    "p5": 0.56,
+    "p95": 0.659,
+    "max": 0.673,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.686,
+    "q25": 0.426,
+    "q75": 0.859,
+    "p5": 0.268,
+    "p95": 1.084,
+    "max": 1.215,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.472,
+    "q25": 0.252,
+    "q75": 0.578,
+    "p5": 0.164,
+    "p95": 0.641,
+    "max": 0.758,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

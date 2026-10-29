@@ -1,0 +1,60 @@
+{
+ "identity": "P51449+Q15596",
+ "accessions": [
+  "P51449",
+  "Q15596"
+ ],
+ "deposition_group": null,
+ "name": "Nuclear receptor ROR-gamma",
+ "clusters": [
+  {
+   "cluster_id": 609,
+   "n_members": 25,
+   "reference": "5APH",
+   "reference_resolution": 1.54,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    61.85,
+    61.85,
+    159.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 24
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 1.481,
+    "q25": 0.394,
+    "q75": 1.911,
+    "p5": 0.321,
+    "p95": 45.948,
+    "max": 45.962,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.708,
+    "q25": 0.826,
+    "q75": 45.658,
+    "p5": 0.366,
+    "p95": 47.204,
+    "max": 47.678,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.301,
+    "q75": 20.469,
+    "p5": 0.173,
+    "p95": 20.523,
+    "max": 20.609,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

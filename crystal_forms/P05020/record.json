@@ -1,0 +1,59 @@
+{
+ "identity": "P05020",
+ "accessions": [
+  "P05020"
+ ],
+ "deposition_group": null,
+ "name": "Dihydroorotase",
+ "clusters": [
+  {
+   "cluster_id": 1498,
+   "n_members": 12,
+   "reference": "2Z26",
+   "reference_resolution": 1.29,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.493,
+    78.885,
+    180.091,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.254,
+    "q25": 0.152,
+    "q75": 0.428,
+    "p5": 0.114,
+    "p95": 0.57,
+    "max": 0.577,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.425,
+    "q25": 0.238,
+    "q75": 0.81,
+    "p5": 0.164,
+    "p95": 1.074,
+    "max": 1.256,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.155,
+    "q25": 0.107,
+    "q75": 0.182,
+    "p5": 0.065,
+    "p95": 0.221,
+    "max": 0.235,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

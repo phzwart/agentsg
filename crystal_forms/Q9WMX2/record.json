@@ -1,0 +1,59 @@
+{
+ "identity": "Q9WMX2",
+ "accessions": [
+  "Q9WMX2"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: Core protein precursor",
+ "clusters": [
+  {
+   "cluster_id": 1459,
+   "n_members": 13,
+   "reference": "5PZL",
+   "reference_resolution": 2.06,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.2,
+    91.3,
+    232.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.593,
+    "q25": 0.524,
+    "q75": 0.891,
+    "p5": 0.424,
+    "p95": 1.124,
+    "max": 1.218,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.564,
+    "q25": 0.371,
+    "q75": 0.818,
+    "p5": 0.282,
+    "p95": 1.088,
+    "max": 1.23,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.33,
+    "q25": 0.232,
+    "q75": 0.497,
+    "p5": 0.195,
+    "p95": 0.715,
+    "max": 0.799,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

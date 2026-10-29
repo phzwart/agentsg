@@ -1,0 +1,59 @@
+{
+ "identity": "P00383",
+ "accessions": [
+  "P00383"
+ ],
+ "deposition_group": null,
+ "name": "Dihydrofolate reductase type 2",
+ "clusters": [
+  {
+   "cluster_id": 1661,
+   "n_members": 11,
+   "reference": "2RH2",
+   "reference_resolution": 0.96,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    67.81,
+    67.81,
+    51.97,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.135,
+    "q25": 0.12,
+    "q75": 0.174,
+    "p5": 0.087,
+    "p95": 0.446,
+    "max": 0.461,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.232,
+    "q25": 0.133,
+    "q75": 0.465,
+    "p5": 0.099,
+    "p95": 0.533,
+    "max": 0.603,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.145,
+    "q25": 0.1,
+    "q75": 0.417,
+    "p5": 0.082,
+    "p95": 0.469,
+    "max": 0.573,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "identity": "D3KVM3",
+ "accessions": [
+  "D3KVM3"
+ ],
+ "deposition_group": null,
+ "name": "glycerol kinase",
+ "clusters": [
+  {
+   "cluster_id": 1473,
+   "n_members": 12,
+   "reference": "3WXL",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    62.115,
+    153.84,
+    120.098,
+    90.0,
+    89.95,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 9,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 0,
+   "rmsd_to_reference": null,
+   "pairwise_frame_rmsd": null,
+   "pairwise_fit_rmsd": null,
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

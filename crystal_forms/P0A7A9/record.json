@@ -1,0 +1,59 @@
+{
+ "identity": "P0A7A9",
+ "accessions": [
+  "P0A7A9"
+ ],
+ "deposition_group": null,
+ "name": "Inorganic pyrophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1683,
+   "n_members": 11,
+   "reference": "2AU7",
+   "reference_resolution": 1.05,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    110.985,
+    110.985,
+    73.054,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.827,
+    "q25": 0.609,
+    "q75": 0.854,
+    "p5": 0.271,
+    "p95": 1.101,
+    "max": 1.191,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.391,
+    "q25": 0.977,
+    "q75": 1.651,
+    "p5": 0.443,
+    "p95": 1.998,
+    "max": 2.166,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.612,
+    "q25": 0.394,
+    "q75": 0.746,
+    "p5": 0.244,
+    "p95": 1.105,
+    "max": 1.141,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

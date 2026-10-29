@@ -1,0 +1,60 @@
+{
+ "identity": "P00517+Q3SX13",
+ "accessions": [
+  "P00517",
+  "Q3SX13"
+ ],
+ "deposition_group": null,
+ "name": "cAMP-dependent protein kinase catalytic subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 1119,
+   "n_members": 15,
+   "reference": "4C38",
+   "reference_resolution": 1.58,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    72.14,
+    75.09,
+    80.19,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.721,
+    "q25": 0.678,
+    "q75": 0.816,
+    "p5": 0.33,
+    "p95": 0.854,
+    "max": 0.863,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.624,
+    "q25": 0.52,
+    "q75": 0.778,
+    "p5": 0.366,
+    "p95": 1.388,
+    "max": 1.624,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.448,
+    "q25": 0.377,
+    "q75": 0.528,
+    "p5": 0.271,
+    "p95": 0.696,
+    "max": 0.864,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

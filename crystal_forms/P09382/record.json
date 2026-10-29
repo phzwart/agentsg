@@ -1,0 +1,59 @@
+{
+ "identity": "P09382",
+ "accessions": [
+  "P09382"
+ ],
+ "deposition_group": null,
+ "name": "Galectin-1",
+ "clusters": [
+  {
+   "cluster_id": 462,
+   "n_members": 31,
+   "reference": "4Q27",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.468,
+    58.13,
+    110.8,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.712,
+    "q25": 0.5,
+    "q75": 0.809,
+    "p5": 0.199,
+    "p95": 0.984,
+    "max": 1.238,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.581,
+    "q25": 0.477,
+    "q75": 0.703,
+    "p5": 0.237,
+    "p95": 0.923,
+    "max": 1.138,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.361,
+    "q25": 0.308,
+    "q75": 0.43,
+    "p5": 0.171,
+    "p95": 0.644,
+    "max": 0.872,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

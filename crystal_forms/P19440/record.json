@@ -1,0 +1,59 @@
+{
+ "identity": "P19440",
+ "accessions": [
+  "P19440"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione hydrolase 1 proenzyme",
+ "clusters": [
+  {
+   "cluster_id": 1529,
+   "n_members": 12,
+   "reference": "7LD9",
+   "reference_resolution": 1.42,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    105.319,
+    125.57,
+    104.388,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.607,
+    "q25": 0.527,
+    "q75": 0.747,
+    "p5": 0.26,
+    "p95": 1.919,
+    "max": 1.951,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.625,
+    "q25": 0.543,
+    "q75": 1.418,
+    "p5": 0.29,
+    "p95": 2.298,
+    "max": 2.521,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.431,
+    "q25": 0.257,
+    "q75": 0.482,
+    "p5": 0.169,
+    "p95": 0.919,
+    "max": 0.963,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

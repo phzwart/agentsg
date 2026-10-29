@@ -1,0 +1,109 @@
+{
+ "identity": "P0ABQ4",
+ "accessions": [
+  "P0ABQ4"
+ ],
+ "deposition_group": null,
+ "name": "Dihydrofolate reductase",
+ "clusters": [
+  {
+   "cluster_id": 135,
+   "n_members": 80,
+   "reference": "45PC",
+   "reference_resolution": 0.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    33.96,
+    44.823,
+    98.254,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 78,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 3081,
+   "rmsd_to_reference": {
+    "median": 0.495,
+    "q25": 0.46,
+    "q75": 0.597,
+    "p5": 0.369,
+    "p95": 1.626,
+    "max": 1.883,
+    "n_pairs": 78
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.655,
+    "q25": 0.285,
+    "q75": 1.235,
+    "p5": 0.11,
+    "p95": 3.824,
+    "max": 4.984,
+    "n_pairs": 3081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.099,
+    "q75": 0.438,
+    "p5": 0.039,
+    "p95": 1.277,
+    "max": 1.6,
+    "n_pairs": 3081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 861,
+   "n_members": 19,
+   "reference": "4DFR",
+   "reference_resolution": 1.7,
+   "space_group": "P 61",
+   "reference_cell": [
+    93.22,
+    93.22,
+    73.56,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.38,
+    "q25": 0.318,
+    "q75": 0.475,
+    "p5": 0.232,
+    "p95": 0.511,
+    "max": 0.527,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.526,
+    "q25": 0.357,
+    "q75": 0.892,
+    "p5": 0.231,
+    "p95": 1.106,
+    "max": 1.276,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.328,
+    "q25": 0.231,
+    "q75": 0.393,
+    "p5": 0.144,
+    "p95": 0.529,
+    "max": 0.609,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

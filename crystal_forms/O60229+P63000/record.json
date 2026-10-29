@@ -1,0 +1,60 @@
+{
+ "identity": "O60229+P63000",
+ "accessions": [
+  "O60229",
+  "P63000"
+ ],
+ "deposition_group": null,
+ "name": "Kalirin",
+ "clusters": [
+  {
+   "cluster_id": 1484,
+   "n_members": 12,
+   "reference": "5QQJ",
+   "reference_resolution": 1.9,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    62.568,
+    62.568,
+    342.039,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.263,
+    "q25": 0.195,
+    "q75": 0.409,
+    "p5": 0.167,
+    "p95": 0.534,
+    "max": 0.641,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.325,
+    "q25": 0.24,
+    "q75": 0.704,
+    "p5": 0.177,
+    "p95": 0.952,
+    "max": 1.017,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.161,
+    "q75": 0.232,
+    "p5": 0.141,
+    "p95": 0.302,
+    "max": 0.333,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

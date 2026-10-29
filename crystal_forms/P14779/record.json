@@ -1,0 +1,109 @@
+{
+ "identity": "P14779",
+ "accessions": [
+  "P14779"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
+ "clusters": [
+  {
+   "cluster_id": 76,
+   "n_members": 113,
+   "reference": "2IJ2",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    59.448,
+    153.426,
+    59.69,
+    90.0,
+    94.72,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 112,
+    "reference": 1
+   },
+   "n_pairs": 6328,
+   "rmsd_to_reference": {
+    "median": 5.103,
+    "q25": 4.891,
+    "q75": 5.673,
+    "p5": 2.317,
+    "p95": 65.381,
+    "max": 65.488,
+    "n_pairs": 112
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.928,
+    "q25": 1.63,
+    "q75": 60.942,
+    "p5": 0.744,
+    "p95": 63.203,
+    "max": 88.354,
+    "n_pairs": 6328
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.156,
+    "q25": 0.759,
+    "q75": 3.83,
+    "p5": 0.351,
+    "p95": 3.959,
+    "max": 4.451,
+    "n_pairs": 6328
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 34
+  },
+  {
+   "cluster_id": 395,
+   "n_members": 35,
+   "reference": "6K58",
+   "reference_resolution": 1.41,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    59.055,
+    126.769,
+    149.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 11.047,
+    "q25": 10.817,
+    "q75": 11.717,
+    "p5": 0.527,
+    "p95": 11.891,
+    "max": 12.404,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.496,
+    "q25": 1.09,
+    "q75": 10.816,
+    "p5": 0.265,
+    "p95": 12.161,
+    "max": 13.479,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.694,
+    "q25": 0.382,
+    "q75": 1.076,
+    "p5": 0.175,
+    "p95": 1.145,
+    "max": 1.281,
+    "n_pairs": 561
+   },
+   "n_low_margin": 33,
+   "n_via_neighbour": 0
+  }
+ ]
+}

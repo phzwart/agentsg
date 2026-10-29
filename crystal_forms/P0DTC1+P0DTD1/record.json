@@ -1,0 +1,60 @@
+{
+ "identity": "P0DTC1+P0DTD1",
+ "accessions": [
+  "P0DTC1",
+  "P0DTD1"
+ ],
+ "deposition_group": null,
+ "name": "Replicase polyprotein 1ab",
+ "clusters": [
+  {
+   "cluster_id": 667,
+   "n_members": 23,
+   "reference": "28WF",
+   "reference_resolution": 1.7,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    170.157,
+    170.157,
+    52.27,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 22
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.514,
+    "q25": 0.485,
+    "q75": 0.541,
+    "p5": 0.429,
+    "p95": 0.593,
+    "max": 0.636,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.398,
+    "q25": 0.295,
+    "q75": 0.619,
+    "p5": 0.193,
+    "p95": 1.463,
+    "max": 1.674,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.232,
+    "q25": 0.187,
+    "q75": 0.331,
+    "p5": 0.121,
+    "p95": 0.412,
+    "max": 0.463,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

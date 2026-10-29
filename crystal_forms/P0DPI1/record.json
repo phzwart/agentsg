@@ -1,0 +1,59 @@
+{
+ "identity": "P0DPI1",
+ "accessions": [
+  "P0DPI1"
+ ],
+ "deposition_group": null,
+ "name": "Botulinum neurotoxin type A",
+ "clusters": [
+  {
+   "cluster_id": 978,
+   "n_members": 17,
+   "reference": "3BON",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.5,
+    66.6,
+    65.4,
+    90.0,
+    99.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.594,
+    "q25": 0.53,
+    "q75": 0.63,
+    "p5": 0.224,
+    "p95": 0.71,
+    "max": 0.801,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.725,
+    "q25": 0.432,
+    "q75": 1.057,
+    "p5": 0.234,
+    "p95": 1.487,
+    "max": 1.616,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.468,
+    "q25": 0.357,
+    "q75": 0.767,
+    "p5": 0.197,
+    "p95": 1.193,
+    "max": 1.301,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

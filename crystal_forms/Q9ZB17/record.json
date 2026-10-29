@@ -1,0 +1,59 @@
+{
+ "identity": "Q9ZB17",
+ "accessions": [
+  "Q9ZB17"
+ ],
+ "deposition_group": null,
+ "name": "Aldose 1-epimerase",
+ "clusters": [
+  {
+   "cluster_id": 893,
+   "n_members": 19,
+   "reference": "1NSX",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    44.9,
+    76.4,
+    211.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.107,
+    "q25": 0.094,
+    "q75": 0.136,
+    "p5": 0.082,
+    "p95": 0.781,
+    "max": 3.423,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.17,
+    "q25": 0.129,
+    "q75": 0.24,
+    "p5": 0.106,
+    "p95": 3.835,
+    "max": 3.934,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.111,
+    "q25": 0.095,
+    "q75": 0.131,
+    "p5": 0.085,
+    "p95": 0.332,
+    "max": 0.346,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

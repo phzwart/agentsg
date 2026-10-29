@@ -1,0 +1,63 @@
+{
+ "identity": "P9WGI1+P9WGY5+P9WGY7+P9WGY9+P9WGZ1",
+ "accessions": [
+  "P9WGI1",
+  "P9WGY5",
+  "P9WGY7",
+  "P9WGY9",
+  "P9WGZ1"
+ ],
+ "deposition_group": null,
+ "name": "DNA-directed RNA polymerase subunit beta'",
+ "clusters": [
+  {
+   "cluster_id": 1564,
+   "n_members": 12,
+   "reference": "5UH5",
+   "reference_resolution": 3.746,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    150.343,
+    163.641,
+    195.547,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.911,
+    "q25": 0.62,
+    "q75": 1.484,
+    "p5": 0.403,
+    "p95": 1.781,
+    "max": 1.882,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.053,
+    "q25": 1.424,
+    "q75": 3.258,
+    "p5": 0.615,
+    "p95": 4.554,
+    "max": 5.73,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.437,
+    "q25": 0.375,
+    "q75": 0.577,
+    "p5": 0.245,
+    "p95": 0.748,
+    "max": 0.975,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

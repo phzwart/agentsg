@@ -1,0 +1,59 @@
+{
+ "identity": "Q6FPH0",
+ "accessions": [
+  "Q6FPH0"
+ ],
+ "deposition_group": null,
+ "name": "dihydrofolate reductase",
+ "clusters": [
+  {
+   "cluster_id": 1586,
+   "n_members": 12,
+   "reference": "3CSE",
+   "reference_resolution": 1.6,
+   "space_group": "P 41",
+   "reference_cell": [
+    42.69,
+    42.69,
+    230.404,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.189,
+    "q25": 0.151,
+    "q75": 0.245,
+    "p5": 0.145,
+    "p95": 0.361,
+    "max": 0.44,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.233,
+    "q25": 0.196,
+    "q75": 0.391,
+    "p5": 0.156,
+    "p95": 0.536,
+    "max": 0.58,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.172,
+    "q25": 0.152,
+    "q75": 0.314,
+    "p5": 0.118,
+    "p95": 0.431,
+    "max": 0.441,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

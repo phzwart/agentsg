@@ -1,0 +1,59 @@
+{
+ "identity": "P30419",
+ "accessions": [
+  "P30419"
+ ],
+ "deposition_group": null,
+ "name": "Glycylpeptide N-tetradecanoyltransferase 1",
+ "clusters": [
+  {
+   "cluster_id": 677,
+   "n_members": 23,
+   "reference": "5O6H",
+   "reference_resolution": 1.29,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    79.138,
+    178.852,
+    58.465,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.869,
+    "q25": 0.631,
+    "q75": 0.918,
+    "p5": 0.435,
+    "p95": 53.063,
+    "max": 53.911,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.559,
+    "q25": 0.384,
+    "q75": 2.495,
+    "p5": 0.246,
+    "p95": 53.788,
+    "max": 54.087,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.333,
+    "q25": 0.273,
+    "q75": 0.468,
+    "p5": 0.185,
+    "p95": 25.243,
+    "max": 25.411,
+    "n_pairs": 253
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

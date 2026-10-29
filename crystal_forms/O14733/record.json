@@ -1,0 +1,59 @@
+{
+ "identity": "O14733",
+ "accessions": [
+  "O14733"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity mitogen-activated protein kinase kinase 7",
+ "clusters": [
+  {
+   "cluster_id": 750,
+   "n_members": 21,
+   "reference": "7OVI",
+   "reference_resolution": 1.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    61.72,
+    68.49,
+    83.99,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.237,
+    "q25": 0.982,
+    "q75": 19.677,
+    "p5": 0.539,
+    "p95": 40.4,
+    "max": 40.588,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.957,
+    "q25": 1.377,
+    "q75": 37.873,
+    "p5": 0.728,
+    "p95": 41.083,
+    "max": 44.875,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.269,
+    "q25": 0.716,
+    "q75": 19.384,
+    "p5": 0.472,
+    "p95": 20.064,
+    "max": 20.499,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

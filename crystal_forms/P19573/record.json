@@ -1,0 +1,59 @@
+{
+ "identity": "P19573",
+ "accessions": [
+  "P19573"
+ ],
+ "deposition_group": null,
+ "name": "Nitrous-oxide reductase",
+ "clusters": [
+  {
+   "cluster_id": 917,
+   "n_members": 18,
+   "reference": "6Y77",
+   "reference_resolution": 1.49,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    69.844,
+    76.306,
+    108.445,
+    90.0,
+    93.01,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 1.162,
+    "q25": 1.127,
+    "q75": 1.256,
+    "p5": 1.104,
+    "p95": 1.308,
+    "max": 1.325,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.401,
+    "q25": 0.315,
+    "q75": 0.569,
+    "p5": 0.19,
+    "p95": 1.248,
+    "max": 1.498,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.203,
+    "q25": 0.162,
+    "q75": 0.257,
+    "p5": 0.126,
+    "p95": 1.122,
+    "max": 1.161,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

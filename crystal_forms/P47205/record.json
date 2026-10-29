@@ -1,0 +1,59 @@
+{
+ "identity": "P47205",
+ "accessions": [
+  "P47205"
+ ],
+ "deposition_group": null,
+ "name": "UDP-3-O-acyl-N-acetylglucosamine deacetylase",
+ "clusters": [
+  {
+   "cluster_id": 643,
+   "n_members": 24,
+   "reference": "29AK",
+   "reference_resolution": 1.504,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    35.961,
+    66.807,
+    64.212,
+    90.0,
+    90.53,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 23
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.671,
+    "q25": 0.509,
+    "q75": 0.812,
+    "p5": 0.427,
+    "p95": 0.889,
+    "max": 1.04,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.646,
+    "q25": 0.507,
+    "q75": 0.762,
+    "p5": 0.346,
+    "p95": 0.992,
+    "max": 1.216,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.491,
+    "q25": 0.403,
+    "q75": 0.578,
+    "p5": 0.283,
+    "p95": 0.797,
+    "max": 0.96,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

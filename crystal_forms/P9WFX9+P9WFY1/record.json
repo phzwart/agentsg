@@ -1,0 +1,60 @@
+{
+ "identity": "P9WFX9+P9WFY1",
+ "accessions": [
+  "P9WFX9",
+  "P9WFY1"
+ ],
+ "deposition_group": null,
+ "name": "Tryptophan synthase beta chain",
+ "clusters": [
+  {
+   "cluster_id": 1744,
+   "n_members": 11,
+   "reference": "5TCH",
+   "reference_resolution": 2.35,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    134.321,
+    158.813,
+    166.218,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.751,
+    "q25": 0.721,
+    "q75": 1.817,
+    "p5": 0.391,
+    "p95": 1.854,
+    "max": 1.863,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.322,
+    "q25": 0.389,
+    "q75": 1.834,
+    "p5": 0.214,
+    "p95": 1.978,
+    "max": 2.006,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.878,
+    "q25": 0.301,
+    "q75": 1.305,
+    "p5": 0.134,
+    "p95": 1.458,
+    "max": 1.524,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

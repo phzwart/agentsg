@@ -1,0 +1,108 @@
+{
+ "identity": "P07379",
+ "accessions": [
+  "P07379"
+ ],
+ "deposition_group": null,
+ "name": "Phosphoenolpyruvate carboxykinase, cytosolic [GTP]",
+ "clusters": [
+  {
+   "cluster_id": 412,
+   "n_members": 34,
+   "reference": "3MOE",
+   "reference_resolution": 1.25,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    44.324,
+    119.117,
+    60.053,
+    90.0,
+    111.19,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.824,
+    "q25": 0.619,
+    "q75": 0.99,
+    "p5": 0.497,
+    "p95": 1.22,
+    "max": 1.397,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.906,
+    "q25": 0.565,
+    "q75": 1.282,
+    "p5": 0.367,
+    "p95": 1.633,
+    "max": 1.993,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.578,
+    "q25": 0.438,
+    "q75": 0.747,
+    "p5": 0.293,
+    "p95": 0.982,
+    "max": 1.392,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1506,
+   "n_members": 12,
+   "reference": "4GMU",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.546,
+    85.521,
+    118.755,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.836,
+    "q25": 0.633,
+    "q75": 1.002,
+    "p5": 0.506,
+    "p95": 1.328,
+    "max": 1.349,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.794,
+    "q25": 0.579,
+    "q75": 1.047,
+    "p5": 0.415,
+    "p95": 1.342,
+    "max": 1.705,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.542,
+    "q25": 0.401,
+    "q75": 0.657,
+    "p5": 0.264,
+    "p95": 0.897,
+    "max": 1.126,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

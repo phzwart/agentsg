@@ -1,0 +1,59 @@
+{
+ "identity": "P22736",
+ "accessions": [
+  "P22736"
+ ],
+ "deposition_group": null,
+ "name": "Nuclear receptor subfamily 4immunitygroup A member 1",
+ "clusters": [
+  {
+   "cluster_id": 823,
+   "n_members": 20,
+   "reference": "4RZF",
+   "reference_resolution": 1.99,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.542,
+    76.183,
+    128.095,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.51,
+    "q25": 0.394,
+    "q75": 0.602,
+    "p5": 0.323,
+    "p95": 0.83,
+    "max": 0.926,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.54,
+    "q25": 0.408,
+    "q75": 0.68,
+    "p5": 0.286,
+    "p95": 1.091,
+    "max": 1.425,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.354,
+    "q25": 0.281,
+    "q75": 0.487,
+    "p5": 0.22,
+    "p95": 0.591,
+    "max": 0.748,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

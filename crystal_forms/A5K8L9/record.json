@@ -1,0 +1,59 @@
+{
+ "identity": "A5K8L9",
+ "accessions": [
+  "A5K8L9"
+ ],
+ "deposition_group": null,
+ "name": "glycine hydroxymethyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 805,
+   "n_members": 20,
+   "reference": "5XMV",
+   "reference_resolution": 2.16,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    101.674,
+    58.843,
+    234.899,
+    90.0,
+    90.14,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.295,
+    "q25": 0.25,
+    "q75": 0.392,
+    "p5": 0.2,
+    "p95": 0.542,
+    "max": 0.55,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.482,
+    "q25": 0.375,
+    "q75": 0.599,
+    "p5": 0.239,
+    "p95": 0.727,
+    "max": 0.859,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.322,
+    "q25": 0.239,
+    "q75": 0.404,
+    "p5": 0.187,
+    "p95": 0.561,
+    "max": 0.606,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

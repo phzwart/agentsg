@@ -1,0 +1,61 @@
+{
+ "identity": "P00581+P0AA25",
+ "accessions": [
+  "P00581",
+  "P0AA25"
+ ],
+ "deposition_group": null,
+ "name": "DNA-directed DNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 1034,
+   "n_members": 16,
+   "reference": "1X9M",
+   "reference_resolution": 2.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    105.109,
+    212.308,
+    52.07,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.696,
+    "q25": 0.715,
+    "q75": 1.915,
+    "p5": 0.627,
+    "p95": 2.289,
+    "max": 2.728,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.81,
+    "q25": 0.869,
+    "q75": 2.02,
+    "p5": 0.533,
+    "p95": 2.353,
+    "max": 2.66,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.667,
+    "q25": 0.516,
+    "q75": 1.771,
+    "p5": 0.342,
+    "p95": 1.999,
+    "max": 2.318,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

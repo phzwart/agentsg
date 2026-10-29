@@ -1,0 +1,59 @@
+{
+ "identity": "Q9WYE2",
+ "accessions": [
+  "Q9WYE2"
+ ],
+ "deposition_group": null,
+ "name": "alpha-L-fucosidase",
+ "clusters": [
+  {
+   "cluster_id": 1614,
+   "n_members": 12,
+   "reference": "2ZXD",
+   "reference_resolution": 2.15,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    181.012,
+    181.012,
+    170.322,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.546,
+    "q25": 0.533,
+    "q75": 0.574,
+    "p5": 0.478,
+    "p95": 1.281,
+    "max": 1.948,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.358,
+    "q25": 0.246,
+    "q75": 0.622,
+    "p5": 0.154,
+    "p95": 2.758,
+    "max": 2.827,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.254,
+    "q25": 0.176,
+    "q75": 0.458,
+    "p5": 0.115,
+    "p95": 0.505,
+    "max": 0.513,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

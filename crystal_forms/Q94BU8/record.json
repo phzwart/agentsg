@@ -1,0 +1,59 @@
+{
+ "identity": "Q94BU8",
+ "accessions": [
+  "Q94BU8"
+ ],
+ "deposition_group": null,
+ "name": "Guanosine deaminase",
+ "clusters": [
+  {
+   "cluster_id": 1090,
+   "n_members": 16,
+   "reference": "7DC9",
+   "reference_resolution": 1.7,
+   "space_group": "P 61",
+   "reference_cell": [
+    119.812,
+    119.812,
+    39.884,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.241,
+    "q25": 0.219,
+    "q75": 0.343,
+    "p5": 0.204,
+    "p95": 1.116,
+    "max": 1.412,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.366,
+    "q25": 0.25,
+    "q75": 0.887,
+    "p5": 0.161,
+    "p95": 1.489,
+    "max": 1.586,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.17,
+    "q75": 0.25,
+    "p5": 0.122,
+    "p95": 0.336,
+    "max": 0.388,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

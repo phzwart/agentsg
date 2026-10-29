@@ -1,0 +1,59 @@
+{
+ "identity": "B3Y653",
+ "accessions": [
+  "B3Y653"
+ ],
+ "deposition_group": null,
+ "name": "Toll-like receptor 7",
+ "clusters": [
+  {
+   "cluster_id": 698,
+   "n_members": 22,
+   "reference": "6IF5",
+   "reference_resolution": 2.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    99.285,
+    139.039,
+    150.3,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.608,
+    "q25": 0.551,
+    "q75": 0.712,
+    "p5": 0.467,
+    "p95": 0.942,
+    "max": 1.026,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.523,
+    "q25": 0.436,
+    "q75": 0.648,
+    "p5": 0.298,
+    "p95": 0.869,
+    "max": 1.112,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.256,
+    "q75": 0.316,
+    "p5": 0.197,
+    "p95": 0.383,
+    "max": 0.51,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

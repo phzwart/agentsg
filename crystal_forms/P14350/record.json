@@ -1,0 +1,59 @@
+{
+ "identity": "P14350",
+ "accessions": [
+  "P14350"
+ ],
+ "deposition_group": null,
+ "name": "Pro-Pol polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 249,
+   "n_members": 50,
+   "reference": "3OYM",
+   "reference_resolution": 2.02,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    158.05,
+    158.05,
+    122.16,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.989,
+    "q25": 0.947,
+    "q75": 1.11,
+    "p5": 0.815,
+    "p95": 2.44,
+    "max": 2.718,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.795,
+    "q25": 0.493,
+    "q75": 1.282,
+    "p5": 0.297,
+    "p95": 1.792,
+    "max": 2.893,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.307,
+    "q75": 0.508,
+    "p5": 0.191,
+    "p95": 0.766,
+    "max": 0.966,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

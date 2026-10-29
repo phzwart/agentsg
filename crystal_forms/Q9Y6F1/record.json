@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y6F1",
+ "accessions": [
+  "Q9Y6F1"
+ ],
+ "deposition_group": null,
+ "name": "Protein mono-ADP-ribosyltransferase PARP3",
+ "clusters": [
+  {
+   "cluster_id": 1206,
+   "n_members": 15,
+   "reference": "4GV2",
+   "reference_resolution": 1.8,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    55.188,
+    56.784,
+    56.618,
+    90.0,
+    112.66,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.289,
+    "q25": 0.188,
+    "q75": 0.455,
+    "p5": 0.142,
+    "p95": 14.136,
+    "max": 39.321,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.452,
+    "q25": 0.331,
+    "q75": 0.581,
+    "p5": 0.182,
+    "p95": 40.227,
+    "max": 40.796,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.378,
+    "q25": 0.226,
+    "q75": 0.505,
+    "p5": 0.159,
+    "p95": 7.714,
+    "max": 7.769,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "Q6IV62+Q6IV65+Q6IV66",
+ "accessions": [
+  "Q6IV62",
+  "Q6IV65",
+  "Q6IV66"
+ ],
+ "deposition_group": null,
+ "name": "Toluene o-xylene monooxygenase component",
+ "clusters": [
+  {
+   "cluster_id": 1771,
+   "n_members": 11,
+   "reference": "3N20",
+   "reference_resolution": 1.9,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    182.889,
+    182.889,
+    68.578,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.243,
+    "q25": 0.191,
+    "q75": 0.332,
+    "p5": 0.146,
+    "p95": 0.395,
+    "max": 0.436,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.403,
+    "q25": 0.325,
+    "q75": 0.559,
+    "p5": 0.199,
+    "p95": 0.713,
+    "max": 0.752,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.197,
+    "q25": 0.167,
+    "q75": 0.226,
+    "p5": 0.148,
+    "p95": 0.263,
+    "max": 0.276,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

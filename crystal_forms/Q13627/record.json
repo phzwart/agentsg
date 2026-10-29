@@ -1,0 +1,108 @@
+{
+ "identity": "Q13627",
+ "accessions": [
+  "Q13627"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity tyrosine-phosphorylation-regulated kinase 1A",
+ "clusters": [
+  {
+   "cluster_id": 649,
+   "n_members": 24,
+   "reference": "8C3G",
+   "reference_resolution": 2.08,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    87.064,
+    87.445,
+    228.888,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.971,
+    "q25": 0.803,
+    "q75": 1.187,
+    "p5": 0.653,
+    "p95": 1.492,
+    "max": 2.79,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.907,
+    "q25": 0.726,
+    "q75": 1.101,
+    "p5": 0.471,
+    "p95": 2.272,
+    "max": 2.884,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.742,
+    "q25": 0.405,
+    "q75": 0.802,
+    "p5": 0.324,
+    "p95": 0.867,
+    "max": 0.993,
+    "n_pairs": 276
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1578,
+   "n_members": 12,
+   "reference": "7A5D",
+   "reference_resolution": 1.8,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    81.696,
+    81.696,
+    123.601,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.203,
+    "q25": 0.18,
+    "q75": 0.33,
+    "p5": 0.16,
+    "p95": 0.465,
+    "max": 0.525,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.327,
+    "q25": 0.227,
+    "q75": 0.412,
+    "p5": 0.169,
+    "p95": 0.545,
+    "max": 0.558,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.244,
+    "q25": 0.178,
+    "q75": 0.346,
+    "p5": 0.138,
+    "p95": 0.446,
+    "max": 0.483,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

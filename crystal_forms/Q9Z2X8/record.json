@@ -1,0 +1,60 @@
+{
+ "identity": "Q9Z2X8",
+ "accessions": [
+  "Q9Z2X8"
+ ],
+ "deposition_group": null,
+ "name": "Kelch-like ECH-associated protein 1",
+ "clusters": [
+  {
+   "cluster_id": 193,
+   "n_members": 60,
+   "reference": "9HWQ",
+   "reference_resolution": 1.14,
+   "space_group": "P 61",
+   "reference_cell": [
+    103.146,
+    103.146,
+    55.225,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 58,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 1711,
+   "rmsd_to_reference": {
+    "median": 0.452,
+    "q25": 0.303,
+    "q75": 0.556,
+    "p5": 0.228,
+    "p95": 0.755,
+    "max": 0.918,
+    "n_pairs": 58
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.452,
+    "q25": 0.31,
+    "q75": 0.575,
+    "p5": 0.172,
+    "p95": 0.775,
+    "max": 0.96,
+    "n_pairs": 1711
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.365,
+    "q25": 0.201,
+    "q75": 0.419,
+    "p5": 0.122,
+    "p95": 0.656,
+    "max": 0.824,
+    "n_pairs": 1711
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

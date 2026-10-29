@@ -1,0 +1,61 @@
+{
+ "identity": "P11558+P11560+P11562",
+ "accessions": [
+  "P11558",
+  "P11560",
+  "P11562"
+ ],
+ "deposition_group": null,
+ "name": "Methyl-coenzyme M reductase I subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 915,
+   "n_members": 18,
+   "reference": "5A0Y",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    82.227,
+    118.3,
+    122.56,
+    90.0,
+    91.9,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.35,
+    "q25": 0.224,
+    "q75": 0.441,
+    "p5": 0.156,
+    "p95": 0.569,
+    "max": 0.757,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.373,
+    "q25": 0.273,
+    "q75": 0.515,
+    "p5": 0.129,
+    "p95": 1.095,
+    "max": 1.333,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.199,
+    "q25": 0.158,
+    "q75": 0.237,
+    "p5": 0.094,
+    "p95": 0.651,
+    "max": 0.682,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

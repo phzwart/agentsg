@@ -1,0 +1,59 @@
+{
+ "identity": "Q8IEE9",
+ "accessions": [
+  "Q8IEE9"
+ ],
+ "deposition_group": null,
+ "name": "choline-phosphate cytidylyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 585,
+   "n_members": 26,
+   "reference": "7Q9V",
+   "reference_resolution": 1.5,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    50.699,
+    68.738,
+    116.881,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.695,
+    "q25": 0.35,
+    "q75": 0.838,
+    "p5": 0.242,
+    "p95": 0.948,
+    "max": 1.05,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.554,
+    "q25": 0.38,
+    "q75": 0.797,
+    "p5": 0.276,
+    "p95": 0.961,
+    "max": 1.14,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.352,
+    "q25": 0.289,
+    "q75": 0.424,
+    "p5": 0.207,
+    "p95": 0.731,
+    "max": 0.817,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

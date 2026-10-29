@@ -1,0 +1,59 @@
+{
+ "identity": "P30305",
+ "accessions": [
+  "P30305"
+ ],
+ "deposition_group": null,
+ "name": "M-phase inducer phosphatase 2",
+ "clusters": [
+  {
+   "cluster_id": 1155,
+   "n_members": 15,
+   "reference": "9T09",
+   "reference_resolution": 1.34,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.13,
+    71.2,
+    72.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.976,
+    "q25": 0.822,
+    "q75": 18.175,
+    "p5": 0.495,
+    "p95": 25.895,
+    "max": 26.159,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 17.948,
+    "q25": 0.805,
+    "q75": 25.924,
+    "p5": 0.298,
+    "p95": 26.568,
+    "max": 29.287,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 15.297,
+    "q25": 0.422,
+    "q75": 16.199,
+    "p5": 0.203,
+    "p95": 17.242,
+    "max": 17.943,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

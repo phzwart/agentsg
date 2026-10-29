@@ -1,0 +1,60 @@
+{
+ "identity": "P15056+Q02750",
+ "accessions": [
+  "P15056",
+  "Q02750"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity mitogen-activated protein kinase kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 1525,
+   "n_members": 12,
+   "reference": "7M0X",
+   "reference_resolution": 2.47,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    116.527,
+    116.527,
+    130.712,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.382,
+    "q25": 1.289,
+    "q75": 1.401,
+    "p5": 0.616,
+    "p95": 1.479,
+    "max": 1.516,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.107,
+    "q25": 0.889,
+    "q75": 1.422,
+    "p5": 0.542,
+    "p95": 1.78,
+    "max": 1.906,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.555,
+    "q25": 0.463,
+    "q75": 0.639,
+    "p5": 0.253,
+    "p95": 0.672,
+    "max": 0.686,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

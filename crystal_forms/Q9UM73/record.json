@@ -1,0 +1,60 @@
+{
+ "identity": "Q9UM73",
+ "accessions": [
+  "Q9UM73"
+ ],
+ "deposition_group": null,
+ "name": "ALK tyrosine kinase receptor",
+ "clusters": [
+  {
+   "cluster_id": 178,
+   "n_members": 64,
+   "reference": "4Z55",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.56,
+    57.52,
+    105.42,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 61,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 1891,
+   "rmsd_to_reference": {
+    "median": 0.636,
+    "q25": 0.529,
+    "q75": 0.742,
+    "p5": 0.337,
+    "p95": 1.369,
+    "max": 2.231,
+    "n_pairs": 61
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.745,
+    "q25": 0.57,
+    "q75": 1.057,
+    "p5": 0.379,
+    "p95": 2.161,
+    "max": 2.771,
+    "n_pairs": 1891
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.514,
+    "q25": 0.396,
+    "q75": 0.74,
+    "p5": 0.275,
+    "p95": 1.631,
+    "max": 2.24,
+    "n_pairs": 1891
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "identity": "P01112+Q07889",
+ "accessions": [
+  "P01112",
+  "Q07889"
+ ],
+ "deposition_group": null,
+ "name": "Son of sevenless homolog 1",
+ "clusters": [
+  {
+   "cluster_id": 363,
+   "n_members": 37,
+   "reference": "6V9M",
+   "reference_resolution": 1.648,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    183.712,
+    183.712,
+    178.523,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.189,
+    "q25": 0.138,
+    "q75": 0.387,
+    "p5": 0.069,
+    "p95": 0.765,
+    "max": 1.156,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.481,
+    "q25": 0.264,
+    "q75": 0.661,
+    "p5": 0.147,
+    "p95": 1.092,
+    "max": 1.593,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.249,
+    "q25": 0.15,
+    "q75": 0.439,
+    "p5": 0.089,
+    "p95": 0.759,
+    "max": 1.004,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1124,
+   "n_members": 15,
+   "reference": "4US0",
+   "reference_resolution": 2.17,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    149.217,
+    149.217,
+    201.038,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 3,
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.329,
+    "q75": 0.553,
+    "p5": 0.308,
+    "p95": 0.756,
+    "max": 0.797,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.692,
+    "q25": 0.443,
+    "q75": 0.889,
+    "p5": 0.27,
+    "p95": 1.556,
+    "max": 1.728,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.222,
+    "q75": 0.483,
+    "p5": 0.171,
+    "p95": 0.662,
+    "max": 0.687,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

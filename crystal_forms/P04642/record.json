@@ -1,0 +1,59 @@
+{
+ "identity": "P04642",
+ "accessions": [
+  "P04642"
+ ],
+ "deposition_group": null,
+ "name": "L-lactate dehydrogenase A chain",
+ "clusters": [
+  {
+   "cluster_id": 1496,
+   "n_members": 12,
+   "reference": "4AJ2",
+   "reference_resolution": 1.75,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    62.0,
+    81.73,
+    128.78,
+    90.0,
+    96.02,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.277,
+    "q25": 0.219,
+    "q75": 0.293,
+    "p5": 0.191,
+    "p95": 0.351,
+    "max": 0.37,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.268,
+    "q25": 0.216,
+    "q75": 0.304,
+    "p5": 0.152,
+    "p95": 0.43,
+    "max": 0.487,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.2,
+    "q25": 0.179,
+    "q75": 0.236,
+    "p5": 0.137,
+    "p95": 0.286,
+    "max": 0.301,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

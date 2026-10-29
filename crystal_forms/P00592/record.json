@@ -1,0 +1,59 @@
+{
+ "identity": "P00592",
+ "accessions": [
+  "P00592"
+ ],
+ "deposition_group": null,
+ "name": "Phospholipase A2, major isoenzyme",
+ "clusters": [
+  {
+   "cluster_id": 1035,
+   "n_members": 16,
+   "reference": "2B00",
+   "reference_resolution": 1.85,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    69.577,
+    69.577,
+    64.184,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.59,
+    "q25": 1.522,
+    "q75": 1.622,
+    "p5": 0.403,
+    "p95": 1.878,
+    "max": 1.987,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.548,
+    "q25": 0.686,
+    "q75": 2.11,
+    "p5": 0.393,
+    "p95": 2.619,
+    "max": 2.76,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.723,
+    "q25": 0.298,
+    "q75": 1.325,
+    "p5": 0.216,
+    "p95": 1.5,
+    "max": 1.53,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

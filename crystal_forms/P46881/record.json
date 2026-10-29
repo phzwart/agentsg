@@ -1,0 +1,108 @@
+{
+ "identity": "P46881",
+ "accessions": [
+  "P46881"
+ ],
+ "deposition_group": null,
+ "name": "Phenylethylamine oxidase",
+ "clusters": [
+  {
+   "cluster_id": 127,
+   "n_members": 83,
+   "reference": "3X3Y",
+   "reference_resolution": 1.499,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    193.471,
+    63.247,
+    157.906,
+    90.0,
+    117.73,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 82,
+    "reference": 1
+   },
+   "n_pairs": 3403,
+   "rmsd_to_reference": {
+    "median": 0.671,
+    "q25": 0.541,
+    "q75": 48.243,
+    "p5": 0.391,
+    "p95": 48.39,
+    "max": 48.956,
+    "n_pairs": 82
+   },
+   "pairwise_frame_rmsd": {
+    "median": 48.141,
+    "q25": 0.659,
+    "q75": 49.739,
+    "p5": 0.29,
+    "p95": 50.505,
+    "max": 79.676,
+    "n_pairs": 3403
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.401,
+    "q25": 0.327,
+    "q75": 0.463,
+    "p5": 0.126,
+    "p95": 0.537,
+    "max": 0.7,
+    "n_pairs": 3403
+   },
+   "n_low_margin": 56,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 734,
+   "n_members": 22,
+   "reference": "3WA2",
+   "reference_resolution": 1.08,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    157.745,
+    62.379,
+    92.076,
+    90.0,
+    112.1,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.336,
+    "q25": 0.307,
+    "q75": 0.459,
+    "p5": 0.258,
+    "p95": 0.617,
+    "max": 0.657,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.363,
+    "q25": 0.245,
+    "q75": 0.701,
+    "p5": 0.114,
+    "p95": 1.158,
+    "max": 1.258,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.196,
+    "q75": 0.432,
+    "p5": 0.091,
+    "p95": 0.493,
+    "max": 0.537,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

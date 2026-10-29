@@ -1,0 +1,60 @@
+{
+ "identity": "P00777+P68390",
+ "accessions": [
+  "P00777",
+  "P68390"
+ ],
+ "deposition_group": null,
+ "name": "Streptogrisin-B",
+ "clusters": [
+  {
+   "cluster_id": 715,
+   "n_members": 22,
+   "reference": "1SGP",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.38,
+    54.62,
+    45.47,
+    90.0,
+    119.2,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.189,
+    "q25": 0.163,
+    "q75": 0.199,
+    "p5": 0.153,
+    "p95": 0.22,
+    "max": 0.244,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.189,
+    "q25": 0.161,
+    "q75": 0.227,
+    "p5": 0.11,
+    "p95": 0.282,
+    "max": 0.365,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.13,
+    "q25": 0.11,
+    "q75": 0.158,
+    "p5": 0.088,
+    "p95": 0.193,
+    "max": 0.235,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

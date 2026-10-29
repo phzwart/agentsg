@@ -1,0 +1,59 @@
+{
+ "identity": "P00883",
+ "accessions": [
+  "P00883"
+ ],
+ "deposition_group": null,
+ "name": "Fructose-bisphosphate aldolase A",
+ "clusters": [
+  {
+   "cluster_id": 716,
+   "n_members": 22,
+   "reference": "5TLE",
+   "reference_resolution": 1.576,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    83.742,
+    103.717,
+    84.524,
+    90.0,
+    98.81,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.342,
+    "q25": 0.299,
+    "q75": 0.417,
+    "p5": 0.266,
+    "p95": 0.827,
+    "max": 0.992,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.578,
+    "q25": 0.4,
+    "q75": 0.79,
+    "p5": 0.271,
+    "p95": 1.788,
+    "max": 2.446,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.27,
+    "q25": 0.225,
+    "q75": 0.329,
+    "p5": 0.185,
+    "p95": 0.532,
+    "max": 0.715,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

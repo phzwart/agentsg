@@ -1,0 +1,59 @@
+{
+ "identity": "P05637",
+ "accessions": [
+  "P05637"
+ ],
+ "deposition_group": null,
+ "name": "Bis(5'-nucleosyl)-tetraphosphatase [symmetrical]",
+ "clusters": [
+  {
+   "cluster_id": 568,
+   "n_members": 26,
+   "reference": "9OP2",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    166.666,
+    55.048,
+    120.249,
+    90.0,
+    129.9,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.17,
+    "q25": 0.137,
+    "q75": 0.222,
+    "p5": 0.1,
+    "p95": 0.386,
+    "max": 0.518,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.26,
+    "q25": 0.199,
+    "q75": 0.34,
+    "p5": 0.138,
+    "p95": 0.488,
+    "max": 0.711,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.136,
+    "q25": 0.112,
+    "q75": 0.169,
+    "p5": 0.088,
+    "p95": 0.231,
+    "max": 0.288,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

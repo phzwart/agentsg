@@ -1,0 +1,59 @@
+{
+ "identity": "P0C7B7",
+ "accessions": [
+  "P0C7B7"
+ ],
+ "deposition_group": null,
+ "name": "Cys-loop ligand-gated ion channel",
+ "clusters": [
+  {
+   "cluster_id": 1520,
+   "n_members": 12,
+   "reference": "4TWD",
+   "reference_resolution": 3.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    105.482,
+    265.284,
+    111.098,
+    90.0,
+    110.28,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.437,
+    "q25": 0.908,
+    "q75": 2.309,
+    "p5": 0.614,
+    "p95": 3.076,
+    "max": 3.107,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.437,
+    "q25": 1.641,
+    "q75": 3.152,
+    "p5": 0.943,
+    "p95": 3.984,
+    "max": 4.049,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.034,
+    "q25": 0.86,
+    "q75": 2.913,
+    "p5": 0.429,
+    "p95": 3.07,
+    "max": 3.143,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

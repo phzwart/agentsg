@@ -1,0 +1,59 @@
+{
+ "identity": "Q5UQL3",
+ "accessions": [
+  "Q5UQL3"
+ ],
+ "deposition_group": null,
+ "name": "Nucleoside diphosphate kinase",
+ "clusters": [
+  {
+   "cluster_id": 1187,
+   "n_members": 15,
+   "reference": "3GP9",
+   "reference_resolution": 1.8,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    79.482,
+    152.951,
+    183.858,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.677,
+    "q25": 0.531,
+    "q75": 0.889,
+    "p5": 0.292,
+    "p95": 5.165,
+    "max": 5.228,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.626,
+    "q25": 0.43,
+    "q75": 1.327,
+    "p5": 0.219,
+    "p95": 5.102,
+    "max": 5.248,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.17,
+    "q75": 0.34,
+    "p5": 0.13,
+    "p95": 4.646,
+    "max": 4.665,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

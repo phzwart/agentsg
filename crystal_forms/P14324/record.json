@@ -1,0 +1,59 @@
+{
+ "identity": "P14324",
+ "accessions": [
+  "P14324"
+ ],
+ "deposition_group": null,
+ "name": "Farnesyl pyrophosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 107,
+   "n_members": 92,
+   "reference": "4NUA",
+   "reference_resolution": 1.43,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    111.29,
+    111.29,
+    66.87,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 91,
+    "reference": 1
+   },
+   "n_pairs": 4186,
+   "rmsd_to_reference": {
+    "median": 2.779,
+    "q25": 0.629,
+    "q75": 76.975,
+    "p5": 0.355,
+    "p95": 77.423,
+    "max": 77.847,
+    "n_pairs": 91
+   },
+   "pairwise_frame_rmsd": {
+    "median": 46.055,
+    "q25": 1.113,
+    "q75": 77.571,
+    "p5": 0.505,
+    "p95": 78.635,
+    "max": 81.369,
+    "n_pairs": 4186
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.599,
+    "q25": 0.544,
+    "q75": 22.456,
+    "p5": 0.318,
+    "p95": 22.603,
+    "max": 23.045,
+    "n_pairs": 4186
+   },
+   "n_low_margin": 24,
+   "n_via_neighbour": 31
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "identity": "P00125+P00126+P00129+P00130+P00157+P07552+P13271+P13272+P23004+P31800",
+ "accessions": [
+  "P00125",
+  "P00126",
+  "P00129",
+  "P00130",
+  "P00157",
+  "P07552",
+  "P13271",
+  "P13272",
+  "P23004",
+  "P31800"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome b-c1 complex subunit 1, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1031,
+   "n_members": 16,
+   "reference": "2FYU",
+   "reference_resolution": 2.26,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    154.263,
+    154.263,
+    590.191,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.493,
+    "q25": 0.45,
+    "q75": 0.613,
+    "p5": 0.365,
+    "p95": 0.906,
+    "max": 1.206,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.93,
+    "q25": 0.717,
+    "q75": 1.17,
+    "p5": 0.48,
+    "p95": 1.452,
+    "max": 1.624,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.464,
+    "q25": 0.39,
+    "q75": 0.599,
+    "p5": 0.268,
+    "p95": 1.054,
+    "max": 1.111,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P11511",
+ "accessions": [
+  "P11511"
+ ],
+ "deposition_group": null,
+ "name": "Aromatase",
+ "clusters": [
+  {
+   "cluster_id": 1691,
+   "n_members": 11,
+   "reference": "3S79",
+   "reference_resolution": 2.75,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    140.218,
+    140.218,
+    119.271,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.355,
+    "q25": 0.246,
+    "q75": 0.536,
+    "p5": 0.137,
+    "p95": 1.296,
+    "max": 1.838,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.448,
+    "q25": 0.385,
+    "q75": 1.059,
+    "p5": 0.187,
+    "p95": 1.338,
+    "max": 1.349,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.253,
+    "q25": 0.192,
+    "q75": 0.398,
+    "p5": 0.154,
+    "p95": 0.418,
+    "max": 0.466,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

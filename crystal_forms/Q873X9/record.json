@@ -1,0 +1,60 @@
+{
+ "identity": "Q873X9",
+ "accessions": [
+  "Q873X9"
+ ],
+ "deposition_group": null,
+ "name": "Endochitinase B1",
+ "clusters": [
+  {
+   "cluster_id": 1599,
+   "n_members": 12,
+   "reference": "1W9P",
+   "reference_resolution": 1.7,
+   "space_group": "P 41",
+   "reference_cell": [
+    117.407,
+    117.407,
+    99.27,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.22,
+    "q25": 0.201,
+    "q75": 0.229,
+    "p5": 0.189,
+    "p95": 0.264,
+    "max": 0.27,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.357,
+    "q25": 0.231,
+    "q75": 0.493,
+    "p5": 0.153,
+    "p95": 0.71,
+    "max": 0.907,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.153,
+    "q25": 0.117,
+    "q75": 0.18,
+    "p5": 0.087,
+    "p95": 0.209,
+    "max": 0.24,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

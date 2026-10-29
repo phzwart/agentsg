@@ -1,0 +1,60 @@
+{
+ "identity": "A4HSF7",
+ "accessions": [
+  "A4HSF7"
+ ],
+ "deposition_group": null,
+ "name": "Trypanothione reductase",
+ "clusters": [
+  {
+   "cluster_id": 1631,
+   "n_members": 11,
+   "reference": "2JK6",
+   "reference_resolution": 2.95,
+   "space_group": "P 41",
+   "reference_cell": [
+    103.451,
+    103.451,
+    192.621,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 6,
+    "different_space_group": 4
+   },
+   "n_pairs": 21,
+   "rmsd_to_reference": {
+    "median": 0.667,
+    "q25": 0.644,
+    "q75": 0.705,
+    "p5": 0.495,
+    "p95": 0.839,
+    "max": 0.881,
+    "n_pairs": 6
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.646,
+    "q25": 0.528,
+    "q75": 0.715,
+    "p5": 0.436,
+    "p95": 0.91,
+    "max": 0.95,
+    "n_pairs": 21
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.512,
+    "q25": 0.448,
+    "q75": 0.569,
+    "p5": 0.278,
+    "p95": 0.626,
+    "max": 0.655,
+    "n_pairs": 21
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

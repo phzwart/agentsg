@@ -1,0 +1,59 @@
+{
+ "identity": "Q03555",
+ "accessions": [
+  "Q03555"
+ ],
+ "deposition_group": null,
+ "name": "Gephyrin",
+ "clusters": [
+  {
+   "cluster_id": 1750,
+   "n_members": 11,
+   "reference": "6FGC",
+   "reference_resolution": 1.5,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    87.1,
+    99.22,
+    113.26,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 40.019,
+    "q25": 2.441,
+    "q75": 71.836,
+    "p5": 0.35,
+    "p95": 71.945,
+    "max": 72.003,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 71.73,
+    "q25": 0.736,
+    "q75": 71.979,
+    "p5": 0.507,
+    "p95": 72.032,
+    "max": 72.064,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 25.015,
+    "q25": 0.44,
+    "q75": 25.097,
+    "p5": 0.281,
+    "p95": 26.252,
+    "max": 26.293,
+    "n_pairs": 55
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P23007",
+ "accessions": [
+  "P23007"
+ ],
+ "deposition_group": null,
+ "name": "Citrate synthase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1535,
+   "n_members": 12,
+   "reference": "1CSH",
+   "reference_resolution": 1.65,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    104.4,
+    78.5,
+    58.5,
+    90.0,
+    78.9,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 46.209,
+    "q25": 23.037,
+    "q75": 48.113,
+    "p5": 0.076,
+    "p95": 50.06,
+    "max": 50.071,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 46.046,
+    "q25": 1.029,
+    "q75": 49.997,
+    "p5": 0.09,
+    "p95": 52.63,
+    "max": 52.648,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 6.724,
+    "q25": 0.174,
+    "q75": 24.963,
+    "p5": 0.081,
+    "p95": 25.813,
+    "max": 25.824,
+    "n_pairs": 66
+   },
+   "n_low_margin": 8,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P38830",
+ "accessions": [
+  "P38830"
+ ],
+ "deposition_group": null,
+ "name": "Meiosis-specific transcription factor NDT80",
+ "clusters": [
+  {
+   "cluster_id": 1717,
+   "n_members": 11,
+   "reference": "1MNN",
+   "reference_resolution": 1.4,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    70.143,
+    78.887,
+    161.522,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.413,
+    "q25": 0.398,
+    "q75": 0.424,
+    "p5": 0.386,
+    "p95": 0.547,
+    "max": 0.614,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.387,
+    "q25": 0.258,
+    "q75": 0.508,
+    "p5": 0.192,
+    "p95": 0.628,
+    "max": 0.816,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.193,
+    "q25": 0.141,
+    "q75": 0.248,
+    "p5": 0.112,
+    "p95": 0.408,
+    "max": 0.43,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

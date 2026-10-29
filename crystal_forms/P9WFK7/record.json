@@ -1,0 +1,60 @@
+{
+ "identity": "P9WFK7",
+ "accessions": [
+  "P9WFK7"
+ ],
+ "deposition_group": null,
+ "name": "N-acetyltransferase Eis",
+ "clusters": [
+  {
+   "cluster_id": 329,
+   "n_members": 40,
+   "reference": "6X6I",
+   "reference_resolution": 1.904,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    175.027,
+    175.027,
+    124.131,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.308,
+    "q25": 0.232,
+    "q75": 0.411,
+    "p5": 0.152,
+    "p95": 8.096,
+    "max": 8.111,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.577,
+    "q25": 0.392,
+    "q75": 1.024,
+    "p5": 0.252,
+    "p95": 8.132,
+    "max": 8.244,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.302,
+    "q25": 0.238,
+    "q75": 0.388,
+    "p5": 0.167,
+    "p95": 8.09,
+    "max": 8.122,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "A9JQL9",
+ "accessions": [
+  "A9JQL9"
+ ],
+ "deposition_group": null,
+ "name": "4,4'-diapophytoene synthase",
+ "clusters": [
+  {
+   "cluster_id": 697,
+   "n_members": 22,
+   "reference": "3ACX",
+   "reference_resolution": 1.31,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    80.628,
+    80.628,
+    90.453,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.513,
+    "q25": 0.409,
+    "q75": 0.56,
+    "p5": 0.361,
+    "p95": 1.151,
+    "max": 1.217,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.624,
+    "q25": 0.462,
+    "q75": 0.861,
+    "p5": 0.321,
+    "p95": 1.279,
+    "max": 1.538,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.306,
+    "q25": 0.26,
+    "q75": 0.38,
+    "p5": 0.196,
+    "p95": 0.945,
+    "max": 1.104,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

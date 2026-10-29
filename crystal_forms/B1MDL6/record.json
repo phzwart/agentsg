@@ -1,0 +1,59 @@
+{
+ "identity": "B1MDL6",
+ "accessions": [
+  "B1MDL6"
+ ],
+ "deposition_group": null,
+ "name": "Phosphopantetheine adenylyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 535,
+   "n_members": 27,
+   "reference": "7YY9",
+   "reference_resolution": 1.485,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    76.053,
+    125.052,
+    119.088,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.389,
+    "q25": 0.232,
+    "q75": 1.095,
+    "p5": 0.133,
+    "p95": 1.196,
+    "max": 5.405,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.025,
+    "q25": 0.348,
+    "q75": 1.119,
+    "p5": 0.169,
+    "p95": 5.439,
+    "max": 5.678,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.936,
+    "q25": 0.204,
+    "q75": 0.993,
+    "p5": 0.103,
+    "p95": 1.476,
+    "max": 1.645,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P77444",
+ "accessions": [
+  "P77444"
+ ],
+ "deposition_group": null,
+ "name": "Cysteine desulfurase",
+ "clusters": [
+  {
+   "cluster_id": 924,
+   "n_members": 18,
+   "reference": "6NDN",
+   "reference_resolution": 1.768,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    126.52,
+    126.52,
+    134.091,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.349,
+    "q25": 0.304,
+    "q75": 0.602,
+    "p5": 0.209,
+    "p95": 1.181,
+    "max": 1.497,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.621,
+    "q25": 0.33,
+    "q75": 0.952,
+    "p5": 0.175,
+    "p95": 1.233,
+    "max": 1.34,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.288,
+    "q25": 0.17,
+    "q75": 0.454,
+    "p5": 0.129,
+    "p95": 0.938,
+    "max": 0.957,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

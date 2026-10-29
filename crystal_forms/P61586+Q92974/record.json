@@ -1,0 +1,60 @@
+{
+ "identity": "P61586+Q92974",
+ "accessions": [
+  "P61586",
+  "Q92974"
+ ],
+ "deposition_group": null,
+ "name": "Rho guanine nucleotide exchange factor 2",
+ "clusters": [
+  {
+   "cluster_id": 206,
+   "n_members": 57,
+   "reference": "7G83",
+   "reference_resolution": 1.31,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    71.353,
+    71.353,
+    196.765,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 56,
+    "reference": 1
+   },
+   "n_pairs": 1596,
+   "rmsd_to_reference": {
+    "median": 0.386,
+    "q25": 0.185,
+    "q75": 0.919,
+    "p5": 0.097,
+    "p95": 1.616,
+    "max": 1.692,
+    "n_pairs": 56
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.645,
+    "q25": 0.381,
+    "q75": 1.128,
+    "p5": 0.166,
+    "p95": 1.676,
+    "max": 2.031,
+    "n_pairs": 1596
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.299,
+    "q25": 0.158,
+    "q75": 0.415,
+    "p5": 0.087,
+    "p95": 0.52,
+    "max": 0.692,
+    "n_pairs": 1596
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

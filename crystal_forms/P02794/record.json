@@ -1,0 +1,60 @@
+{
+ "identity": "P02794",
+ "accessions": [
+  "P02794"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin heavy chain",
+ "clusters": [
+  {
+   "cluster_id": 155,
+   "n_members": 74,
+   "reference": "6B8F",
+   "reference_resolution": 1.06,
+   "space_group": "F 4 3 2",
+   "reference_cell": [
+    180.04,
+    180.04,
+    180.04,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 72,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 2628,
+   "rmsd_to_reference": {
+    "median": 0.8,
+    "q25": 0.37,
+    "q75": 0.88,
+    "p5": 0.159,
+    "p95": 1.151,
+    "max": 4.392,
+    "n_pairs": 72
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.336,
+    "q25": 0.236,
+    "q75": 0.624,
+    "p5": 0.145,
+    "p95": 2.967,
+    "max": 5.382,
+    "n_pairs": 2628
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.238,
+    "q25": 0.17,
+    "q75": 0.397,
+    "p5": 0.106,
+    "p95": 2.763,
+    "max": 4.8,
+    "n_pairs": 2628
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

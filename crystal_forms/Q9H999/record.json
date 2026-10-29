@@ -1,0 +1,59 @@
+{
+ "identity": "Q9H999",
+ "accessions": [
+  "Q9H999"
+ ],
+ "deposition_group": null,
+ "name": "Pantothenate kinase 3",
+ "clusters": [
+  {
+   "cluster_id": 450,
+   "n_members": 32,
+   "reference": "7UE7",
+   "reference_resolution": 1.55,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    98.213,
+    98.213,
+    69.24,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.246,
+    "q25": 0.19,
+    "q75": 0.314,
+    "p5": 0.113,
+    "p95": 0.519,
+    "max": 0.711,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.284,
+    "q25": 0.226,
+    "q75": 0.379,
+    "p5": 0.155,
+    "p95": 0.645,
+    "max": 0.897,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.242,
+    "q25": 0.193,
+    "q75": 0.342,
+    "p5": 0.135,
+    "p95": 0.484,
+    "max": 0.658,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

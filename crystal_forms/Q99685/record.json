@@ -1,0 +1,59 @@
+{
+ "identity": "Q99685",
+ "accessions": [
+  "Q99685"
+ ],
+ "deposition_group": null,
+ "name": "Monoglyceride lipase",
+ "clusters": [
+  {
+   "cluster_id": 845,
+   "n_members": 20,
+   "reference": "9F8D",
+   "reference_resolution": 1.14,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    90.328,
+    127.265,
+    62.774,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.517,
+    "q25": 0.301,
+    "q75": 1.672,
+    "p5": 0.205,
+    "p95": 2.343,
+    "max": 2.371,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.537,
+    "q25": 0.467,
+    "q75": 1.855,
+    "p5": 0.272,
+    "p95": 2.503,
+    "max": 2.819,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.926,
+    "q25": 0.317,
+    "q75": 1.239,
+    "p5": 0.201,
+    "p95": 1.322,
+    "max": 1.613,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

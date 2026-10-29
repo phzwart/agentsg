@@ -1,0 +1,60 @@
+{
+ "identity": "P18434+P19156",
+ "accessions": [
+  "P18434",
+  "P19156"
+ ],
+ "deposition_group": null,
+ "name": "Potassium-transporting ATPase alpha chain 1",
+ "clusters": [
+  {
+   "cluster_id": 1699,
+   "n_members": 11,
+   "reference": "6JXH",
+   "reference_resolution": 2.5,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    103.37,
+    103.37,
+    370.01,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 5.181,
+    "q25": 5.063,
+    "q75": 5.836,
+    "p5": 0.245,
+    "p95": 6.297,
+    "max": 6.56,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.297,
+    "q25": 1.233,
+    "q75": 5.292,
+    "p5": 0.425,
+    "p95": 6.252,
+    "max": 6.709,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.879,
+    "q25": 0.585,
+    "q75": 3.742,
+    "p5": 0.367,
+    "p95": 3.776,
+    "max": 3.787,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

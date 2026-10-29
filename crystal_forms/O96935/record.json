@@ -1,0 +1,59 @@
+{
+ "identity": "O96935",
+ "accessions": [
+  "O96935"
+ ],
+ "deposition_group": null,
+ "name": "Aminopeptidase N",
+ "clusters": [
+  {
+   "cluster_id": 196,
+   "n_members": 59,
+   "reference": "6SBQ",
+   "reference_resolution": 1.33,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    75.079,
+    109.241,
+    113.053,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 58,
+    "reference": 1
+   },
+   "n_pairs": 1711,
+   "rmsd_to_reference": {
+    "median": 2.175,
+    "q25": 2.054,
+    "q75": 2.23,
+    "p5": 0.39,
+    "p95": 2.315,
+    "max": 2.355,
+    "n_pairs": 58
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.395,
+    "q25": 0.848,
+    "q75": 7.386,
+    "p5": 0.452,
+    "p95": 8.307,
+    "max": 9.218,
+    "n_pairs": 1711
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.216,
+    "q75": 0.429,
+    "p5": 0.122,
+    "p95": 0.531,
+    "max": 0.634,
+    "n_pairs": 1711
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q03181",
+ "accessions": [
+  "Q03181"
+ ],
+ "deposition_group": null,
+ "name": "Peroxisome proliferator-activated receptor delta",
+ "clusters": [
+  {
+   "cluster_id": 310,
+   "n_members": 42,
+   "reference": "5U3Q",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.46,
+    94.35,
+    96.73,
+    90.0,
+    98.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 25.835,
+    "q25": 1.442,
+    "q75": 27.573,
+    "p5": 0.624,
+    "p95": 30.035,
+    "max": 30.135,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 24.903,
+    "q25": 6.742,
+    "q75": 28.083,
+    "p5": 0.95,
+    "p95": 37.979,
+    "max": 42.878,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 16.902,
+    "q25": 0.813,
+    "q75": 18.718,
+    "p5": 0.371,
+    "p95": 18.928,
+    "max": 19.123,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

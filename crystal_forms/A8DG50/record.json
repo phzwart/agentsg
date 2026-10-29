@@ -1,0 +1,60 @@
+{
+ "identity": "A8DG50",
+ "accessions": [
+  "A8DG50"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 1020,
+   "n_members": 16,
+   "reference": "3SU6",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.981,
+    58.451,
+    59.829,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.272,
+    "q25": 0.204,
+    "q75": 0.443,
+    "p5": 0.147,
+    "p95": 0.549,
+    "max": 0.551,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.448,
+    "q25": 0.282,
+    "q75": 0.561,
+    "p5": 0.175,
+    "p95": 0.943,
+    "max": 1.065,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.23,
+    "q25": 0.168,
+    "q75": 0.29,
+    "p5": 0.123,
+    "p95": 0.371,
+    "max": 0.783,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

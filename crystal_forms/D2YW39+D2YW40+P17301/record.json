@@ -1,0 +1,61 @@
+{
+ "identity": "D2YW39+D2YW40+P17301",
+ "accessions": [
+  "D2YW39",
+  "D2YW40",
+  "P17301"
+ ],
+ "deposition_group": null,
+ "name": "Integrin alpha-2",
+ "clusters": [
+  {
+   "cluster_id": 1641,
+   "n_members": 11,
+   "reference": "6ND8",
+   "reference_resolution": 2.9,
+   "space_group": "P 41",
+   "reference_cell": [
+    131.134,
+    131.134,
+    251.522,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.131,
+    "q25": 0.115,
+    "q75": 0.149,
+    "p5": 0.089,
+    "p95": 0.482,
+    "max": 0.749,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.051,
+    "q25": 1.07,
+    "q75": 4.047,
+    "p5": 0.357,
+    "p95": 5.565,
+    "max": 6.261,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.128,
+    "q25": 0.101,
+    "q75": 0.171,
+    "p5": 0.079,
+    "p95": 0.687,
+    "max": 0.7,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

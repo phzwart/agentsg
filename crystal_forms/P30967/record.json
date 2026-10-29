@@ -1,0 +1,59 @@
+{
+ "identity": "P30967",
+ "accessions": [
+  "P30967"
+ ],
+ "deposition_group": null,
+ "name": "Phenylalanine-4-hydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 1711,
+   "n_members": 11,
+   "reference": "3TK2",
+   "reference_resolution": 1.35,
+   "space_group": "P 1",
+   "reference_cell": [
+    36.934,
+    38.561,
+    47.8,
+    76.56,
+    72.9,
+    85.41
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.304,
+    "q25": 0.291,
+    "q75": 0.347,
+    "p5": 0.249,
+    "p95": 0.51,
+    "max": 0.607,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.362,
+    "q25": 0.286,
+    "q75": 0.447,
+    "p5": 0.189,
+    "p95": 0.693,
+    "max": 0.738,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.35,
+    "q25": 0.253,
+    "q75": 0.424,
+    "p5": 0.15,
+    "p95": 0.595,
+    "max": 0.661,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

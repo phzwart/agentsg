@@ -1,0 +1,59 @@
+{
+ "identity": "G3XD46",
+ "accessions": [
+  "G3XD46"
+ ],
+ "deposition_group": null,
+ "name": "Peptidoglycan D,D-transpeptidase FtsI",
+ "clusters": [
+  {
+   "cluster_id": 314,
+   "n_members": 41,
+   "reference": "6HR4",
+   "reference_resolution": 1.19,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    67.548,
+    82.14,
+    88.113,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 1.715,
+    "q25": 1.419,
+    "q75": 2.473,
+    "p5": 0.901,
+    "p95": 2.985,
+    "max": 3.167,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.657,
+    "q25": 1.132,
+    "q75": 2.07,
+    "p5": 0.643,
+    "p95": 2.563,
+    "max": 3.022,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.97,
+    "q25": 0.807,
+    "q75": 1.214,
+    "p5": 0.522,
+    "p95": 1.474,
+    "max": 1.856,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "P05024+P05027+Q58K79",
+ "accessions": [
+  "P05024",
+  "P05027",
+  "Q58K79"
+ ],
+ "deposition_group": null,
+ "name": "Sodium/potassium-transporting ATPase subunit alpha-1",
+ "clusters": [
+  {
+   "cluster_id": 1132,
+   "n_members": 15,
+   "reference": "7WYT",
+   "reference_resolution": 2.9,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    115.621,
+    117.81,
+    493.203,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.943,
+    "q25": 0.807,
+    "q75": 1.487,
+    "p5": 0.497,
+    "p95": 3.573,
+    "max": 3.606,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.473,
+    "q25": 1.023,
+    "q75": 2.518,
+    "p5": 0.639,
+    "p95": 4.336,
+    "max": 4.759,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.829,
+    "q25": 0.338,
+    "q75": 1.081,
+    "p5": 0.21,
+    "p95": 1.381,
+    "max": 1.604,
+    "n_pairs": 105
+   },
+   "n_low_margin": 12,
+   "n_via_neighbour": 0
+  }
+ ]
+}

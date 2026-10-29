@@ -1,0 +1,206 @@
+{
+ "identity": "Q65900",
+ "accessions": [
+  "Q65900"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: P1; Capsid protein VP0",
+ "clusters": [
+  {
+   "cluster_id": 47,
+   "n_members": 155,
+   "reference": "7I3A",
+   "reference_resolution": 1.15,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    72.831,
+    61.314,
+    32.682,
+    90.0,
+    92.84,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 154,
+    "reference": 1
+   },
+   "n_pairs": 11935,
+   "rmsd_to_reference": {
+    "median": 0.272,
+    "q25": 0.218,
+    "q75": 0.321,
+    "p5": 0.167,
+    "p95": 0.882,
+    "max": 1.777,
+    "n_pairs": 154
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.403,
+    "q25": 0.294,
+    "q75": 0.617,
+    "p5": 0.198,
+    "p95": 1.227,
+    "max": 2.015,
+    "n_pairs": 11935
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.301,
+    "q25": 0.228,
+    "q75": 0.47,
+    "p5": 0.164,
+    "p95": 1.053,
+    "max": 1.837,
+    "n_pairs": 11935
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 81,
+   "n_members": 110,
+   "reference": "7H51",
+   "reference_resolution": 1.05,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    86.206,
+    56.741,
+    64.513,
+    90.0,
+    94.68,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 109,
+    "reference": 1
+   },
+   "n_pairs": 5995,
+   "rmsd_to_reference": {
+    "median": 0.15,
+    "q25": 0.114,
+    "q75": 0.203,
+    "p5": 0.087,
+    "p95": 0.286,
+    "max": 0.716,
+    "n_pairs": 109
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.242,
+    "q25": 0.171,
+    "q75": 0.346,
+    "p5": 0.1,
+    "p95": 0.569,
+    "max": 1.101,
+    "n_pairs": 5995
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.109,
+    "q25": 0.08,
+    "q75": 0.143,
+    "p5": 0.054,
+    "p95": 0.195,
+    "max": 0.759,
+    "n_pairs": 5995
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 83,
+   "n_members": 109,
+   "reference": "7H47",
+   "reference_resolution": 1.01,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    86.53,
+    56.319,
+    32.444,
+    90.0,
+    95.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 108,
+    "reference": 1
+   },
+   "n_pairs": 5886,
+   "rmsd_to_reference": {
+    "median": 1.155,
+    "q25": 0.243,
+    "q75": 1.537,
+    "p5": 0.089,
+    "p95": 1.798,
+    "max": 2.292,
+    "n_pairs": 108
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.143,
+    "q25": 0.589,
+    "q75": 1.578,
+    "p5": 0.208,
+    "p95": 2.063,
+    "max": 2.811,
+    "n_pairs": 5886
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.568,
+    "q25": 0.32,
+    "q75": 0.742,
+    "p5": 0.131,
+    "p95": 1.011,
+    "max": 1.614,
+    "n_pairs": 5886
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 105,
+   "n_members": 94,
+   "reference": "7I7R",
+   "reference_resolution": 1.15,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    72.47,
+    61.603,
+    65.381,
+    90.0,
+    92.82,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 93,
+    "reference": 1
+   },
+   "n_pairs": 4371,
+   "rmsd_to_reference": {
+    "median": 0.239,
+    "q25": 0.207,
+    "q75": 0.278,
+    "p5": 0.12,
+    "p95": 0.371,
+    "max": 0.522,
+    "n_pairs": 93
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.262,
+    "q25": 0.204,
+    "q75": 0.328,
+    "p5": 0.146,
+    "p95": 0.439,
+    "max": 0.645,
+    "n_pairs": 4371
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.203,
+    "q25": 0.156,
+    "q75": 0.262,
+    "p5": 0.106,
+    "p95": 0.334,
+    "max": 0.436,
+    "n_pairs": 4371
+   },
+   "n_low_margin": 25,
+   "n_via_neighbour": 0
+  }
+ ]
+}

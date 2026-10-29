@@ -1,0 +1,59 @@
+{
+ "identity": "P0DPA9",
+ "accessions": [
+  "P0DPA9"
+ ],
+ "deposition_group": null,
+ "name": "Psilocybin synthase",
+ "clusters": [
+  {
+   "cluster_id": 1686,
+   "n_members": 11,
+   "reference": "8PB5",
+   "reference_resolution": 0.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.211,
+    78.348,
+    83.8,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.224,
+    "q25": 0.145,
+    "q75": 0.304,
+    "p5": 0.099,
+    "p95": 0.652,
+    "max": 0.71,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.266,
+    "q25": 0.197,
+    "q75": 0.503,
+    "p5": 0.109,
+    "p95": 0.672,
+    "max": 0.716,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.156,
+    "q75": 0.417,
+    "p5": 0.095,
+    "p95": 0.642,
+    "max": 0.679,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

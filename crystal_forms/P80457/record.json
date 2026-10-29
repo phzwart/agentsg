@@ -1,0 +1,59 @@
+{
+ "identity": "P80457",
+ "accessions": [
+  "P80457"
+ ],
+ "deposition_group": null,
+ "name": "Xanthine dehydrogenase/oxidase [Includes: Xanthine dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1742,
+   "n_members": 11,
+   "reference": "3NVW",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    132.683,
+    73.396,
+    138.113,
+    90.0,
+    96.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.195,
+    "q25": 0.123,
+    "q75": 32.581,
+    "p5": 0.095,
+    "p95": 33.043,
+    "max": 33.096,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 33.17,
+    "q25": 0.273,
+    "q75": 33.63,
+    "p5": 0.153,
+    "p95": 33.786,
+    "max": 33.975,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.173,
+    "q75": 0.332,
+    "p5": 0.118,
+    "p95": 0.456,
+    "max": 0.481,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

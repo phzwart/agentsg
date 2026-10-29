@@ -1,0 +1,59 @@
+{
+ "identity": "Q9X1H0",
+ "accessions": [
+  "Q9X1H0"
+ ],
+ "deposition_group": null,
+ "name": "Cupin type-2 domain-containing protein",
+ "clusters": [
+  {
+   "cluster_id": 891,
+   "n_members": 19,
+   "reference": "21EJ",
+   "reference_resolution": 1.035,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.736,
+    57.794,
+    75.21,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 18
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.351,
+    "q25": 0.316,
+    "q75": 0.45,
+    "p5": 0.241,
+    "p95": 0.839,
+    "max": 0.869,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.425,
+    "q25": 0.302,
+    "q75": 0.691,
+    "p5": 0.158,
+    "p95": 0.997,
+    "max": 1.227,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.248,
+    "q25": 0.166,
+    "q75": 0.312,
+    "p5": 0.109,
+    "p95": 0.353,
+    "max": 0.381,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

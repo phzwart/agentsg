@@ -1,0 +1,108 @@
+{
+ "identity": "P03300",
+ "accessions": [
+  "P03300"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: P1; Capsid protein VP0",
+ "clusters": [
+  {
+   "cluster_id": 720,
+   "n_members": 22,
+   "reference": "1RA6",
+   "reference_resolution": 2.0,
+   "space_group": "P 65",
+   "reference_cell": [
+    127.59,
+    127.59,
+    112.971,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 21
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.898,
+    "q25": 0.415,
+    "q75": 0.961,
+    "p5": 0.282,
+    "p95": 1.138,
+    "max": 1.346,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.543,
+    "q25": 0.954,
+    "q75": 2.561,
+    "p5": 0.477,
+    "p95": 5.181,
+    "max": 6.348,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.382,
+    "q25": 0.336,
+    "q75": 0.494,
+    "p5": 0.192,
+    "p95": 0.612,
+    "max": 0.659,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1494,
+   "n_members": 12,
+   "reference": "1HXS",
+   "reference_resolution": 2.2,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    320.5,
+    355.25,
+    377.25,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.161,
+    "q25": 0.997,
+    "q75": 1.655,
+    "p5": 0.978,
+    "p95": 2.14,
+    "max": 2.142,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.221,
+    "q25": 0.798,
+    "q75": 1.833,
+    "p5": 0.194,
+    "p95": 2.145,
+    "max": 2.243,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.676,
+    "q25": 0.263,
+    "q75": 0.791,
+    "p5": 0.117,
+    "p95": 0.98,
+    "max": 1.017,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

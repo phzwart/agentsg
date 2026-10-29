@@ -1,0 +1,59 @@
+{
+ "identity": "P31226",
+ "accessions": [
+  "P31226"
+ ],
+ "deposition_group": null,
+ "name": "Saxiphilin",
+ "clusters": [
+  {
+   "cluster_id": 1156,
+   "n_members": 15,
+   "reference": "6O0F",
+   "reference_resolution": 2.12,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    96.563,
+    111.656,
+    254.624,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.353,
+    "q25": 1.024,
+    "q75": 2.013,
+    "p5": 0.574,
+    "p95": 2.523,
+    "max": 2.594,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.104,
+    "q25": 0.761,
+    "q75": 1.475,
+    "p5": 0.57,
+    "p95": 2.112,
+    "max": 2.583,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.62,
+    "q25": 0.523,
+    "q75": 0.831,
+    "p5": 0.366,
+    "p95": 1.044,
+    "max": 1.243,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

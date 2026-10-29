@@ -1,0 +1,59 @@
+{
+ "identity": "P11124",
+ "accessions": [
+  "P11124"
+ ],
+ "deposition_group": null,
+ "name": "RNA-directed RNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 864,
+   "n_members": 19,
+   "reference": "1UVJ",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    105.062,
+    93.51,
+    140.711,
+    90.0,
+    101.19,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.541,
+    "q25": 0.429,
+    "q75": 0.639,
+    "p5": 0.299,
+    "p95": 0.799,
+    "max": 0.898,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.498,
+    "q25": 0.429,
+    "q75": 0.64,
+    "p5": 0.287,
+    "p95": 0.83,
+    "max": 1.004,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.271,
+    "q25": 0.221,
+    "q75": 0.315,
+    "p5": 0.126,
+    "p95": 0.429,
+    "max": 0.505,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

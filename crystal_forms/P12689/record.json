@@ -1,0 +1,59 @@
+{
+ "identity": "P12689",
+ "accessions": [
+  "P12689"
+ ],
+ "deposition_group": null,
+ "name": "Translesion synthesis protein REV1",
+ "clusters": [
+  {
+   "cluster_id": 1379,
+   "n_members": 13,
+   "reference": "6X6Z",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    62.376,
+    73.947,
+    117.29,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.394,
+    "q25": 0.323,
+    "q75": 0.457,
+    "p5": 0.247,
+    "p95": 1.205,
+    "max": 1.305,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.483,
+    "q25": 0.389,
+    "q75": 1.029,
+    "p5": 0.297,
+    "p95": 1.802,
+    "max": 2.013,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.32,
+    "q25": 0.256,
+    "q75": 0.521,
+    "p5": 0.217,
+    "p95": 0.589,
+    "max": 0.696,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

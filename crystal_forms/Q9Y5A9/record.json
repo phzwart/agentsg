@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y5A9",
+ "accessions": [
+  "Q9Y5A9"
+ ],
+ "deposition_group": null,
+ "name": "YTH domain-containing family protein 2",
+ "clusters": [
+  {
+   "cluster_id": 588,
+   "n_members": 26,
+   "reference": "7Z5M",
+   "reference_resolution": 1.7,
+   "space_group": "P 65",
+   "reference_cell": [
+    80.33,
+    80.33,
+    114.03,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.502,
+    "q25": 0.359,
+    "q75": 0.683,
+    "p5": 0.228,
+    "p95": 1.543,
+    "max": 1.878,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.562,
+    "q25": 0.415,
+    "q75": 0.695,
+    "p5": 0.224,
+    "p95": 1.742,
+    "max": 2.208,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.373,
+    "q25": 0.241,
+    "q75": 0.531,
+    "p5": 0.148,
+    "p95": 0.609,
+    "max": 0.659,
+    "n_pairs": 325
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

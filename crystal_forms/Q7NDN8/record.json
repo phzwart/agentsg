@@ -1,0 +1,59 @@
+{
+ "identity": "Q7NDN8",
+ "accessions": [
+  "Q7NDN8"
+ ],
+ "deposition_group": null,
+ "name": "Proton-gated ion channel",
+ "clusters": [
+  {
+   "cluster_id": 100,
+   "n_members": 97,
+   "reference": "6HZW",
+   "reference_resolution": 2.22,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    182.416,
+    133.401,
+    160.474,
+    90.0,
+    102.48,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 96,
+    "reference": 1
+   },
+   "n_pairs": 4656,
+   "rmsd_to_reference": {
+    "median": 0.585,
+    "q25": 0.326,
+    "q75": 1.884,
+    "p5": 0.202,
+    "p95": 3.301,
+    "max": 3.768,
+    "n_pairs": 96
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.704,
+    "q25": 0.683,
+    "q75": 2.312,
+    "p5": 0.366,
+    "p95": 3.369,
+    "max": 3.982,
+    "n_pairs": 4656
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.054,
+    "q25": 0.321,
+    "q75": 1.305,
+    "p5": 0.201,
+    "p95": 1.662,
+    "max": 1.907,
+    "n_pairs": 4656
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

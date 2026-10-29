@@ -1,0 +1,59 @@
+{
+ "identity": "E1C9K5",
+ "accessions": [
+  "E1C9K5"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase I",
+ "clusters": [
+  {
+   "cluster_id": 436,
+   "n_members": 32,
+   "reference": "6DSW",
+   "reference_resolution": 1.589,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.139,
+    93.41,
+    105.619,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.74,
+    "q25": 0.576,
+    "q75": 0.848,
+    "p5": 0.401,
+    "p95": 0.999,
+    "max": 1.098,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.661,
+    "q25": 0.526,
+    "q75": 0.844,
+    "p5": 0.341,
+    "p95": 1.137,
+    "max": 1.746,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.512,
+    "q25": 0.39,
+    "q75": 0.618,
+    "p5": 0.25,
+    "p95": 0.799,
+    "max": 1.0,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

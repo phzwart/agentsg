@@ -1,0 +1,160 @@
+{
+ "identity": "Q86WV6",
+ "accessions": [
+  "Q86WV6"
+ ],
+ "deposition_group": null,
+ "name": "Stimulator of interferon genes protein",
+ "clusters": [
+  {
+   "cluster_id": 583,
+   "n_members": 26,
+   "reference": "8STI",
+   "reference_resolution": 1.72,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    111.519,
+    111.519,
+    35.806,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 4,
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 2.102,
+    "q25": 2.028,
+    "q75": 2.211,
+    "p5": 1.78,
+    "p95": 2.561,
+    "max": 2.671,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.771,
+    "q25": 0.594,
+    "q75": 1.09,
+    "p5": 0.389,
+    "p95": 2.056,
+    "max": 2.677,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.535,
+    "q25": 0.416,
+    "q75": 0.68,
+    "p5": 0.334,
+    "p95": 1.133,
+    "max": 1.267,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1309,
+   "n_members": 14,
+   "reference": "9KYA",
+   "reference_resolution": 1.89,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    81.147,
+    93.036,
+    74.397,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "placed": 8,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 1.24,
+    "q25": 1.173,
+    "q75": 1.405,
+    "p5": 1.087,
+    "p95": 1.467,
+    "max": 1.475,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.097,
+    "q25": 0.707,
+    "q75": 1.463,
+    "p5": 0.543,
+    "p95": 2.043,
+    "max": 2.52,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.5,
+    "q25": 0.439,
+    "q75": 0.707,
+    "p5": 0.37,
+    "p95": 1.06,
+    "max": 1.144,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1442,
+   "n_members": 13,
+   "reference": "7KW1",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    89.221,
+    78.653,
+    36.026,
+    90.0,
+    96.57,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.543,
+    "q25": 0.471,
+    "q75": 0.855,
+    "p5": 0.42,
+    "p95": 1.707,
+    "max": 2.322,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.707,
+    "q25": 0.528,
+    "q75": 1.026,
+    "p5": 0.348,
+    "p95": 2.511,
+    "max": 2.656,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.483,
+    "q25": 0.395,
+    "q75": 0.756,
+    "p5": 0.262,
+    "p95": 1.425,
+    "max": 1.448,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

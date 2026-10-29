@@ -1,0 +1,59 @@
+{
+ "identity": "O54438",
+ "accessions": [
+  "O54438"
+ ],
+ "deposition_group": null,
+ "name": "3-oxoacyl-[acyl-carrier-protein] reductase FabG",
+ "clusters": [
+  {
+   "cluster_id": 1025,
+   "n_members": 16,
+   "reference": "4BNW",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    53.95,
+    107.98,
+    146.13,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 2.132,
+    "q25": 0.605,
+    "q75": 2.491,
+    "p5": 0.471,
+    "p95": 3.032,
+    "max": 3.285,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.942,
+    "q25": 1.116,
+    "q75": 2.311,
+    "p5": 0.592,
+    "p95": 2.956,
+    "max": 3.352,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.533,
+    "q25": 0.427,
+    "q75": 0.625,
+    "p5": 0.299,
+    "p95": 0.744,
+    "max": 0.942,
+    "n_pairs": 120
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  }
+ ]
+}

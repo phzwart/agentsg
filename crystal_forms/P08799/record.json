@@ -1,0 +1,108 @@
+{
+ "identity": "P08799",
+ "accessions": [
+  "P08799"
+ ],
+ "deposition_group": null,
+ "name": "Myosin-2 heavy chain",
+ "clusters": [
+  {
+   "cluster_id": 724,
+   "n_members": 22,
+   "reference": "3MYK",
+   "reference_resolution": 1.84,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    88.005,
+    147.021,
+    153.425,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.673,
+    "q25": 0.516,
+    "q75": 0.81,
+    "p5": 0.339,
+    "p95": 1.319,
+    "max": 1.626,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.988,
+    "q25": 0.763,
+    "q75": 1.365,
+    "p5": 0.499,
+    "p95": 2.223,
+    "max": 3.113,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.527,
+    "q25": 0.385,
+    "q75": 0.648,
+    "p5": 0.26,
+    "p95": 0.969,
+    "max": 1.153,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 816,
+   "n_members": 20,
+   "reference": "1W9I",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    105.017,
+    186.506,
+    54.713,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 1.873,
+    "q25": 1.835,
+    "q75": 1.918,
+    "p5": 1.625,
+    "p95": 2.008,
+    "max": 2.043,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.167,
+    "q25": 0.477,
+    "q75": 1.981,
+    "p5": 0.279,
+    "p95": 2.754,
+    "max": 3.045,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.086,
+    "q25": 0.393,
+    "q75": 1.599,
+    "p5": 0.249,
+    "p95": 1.953,
+    "max": 2.02,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

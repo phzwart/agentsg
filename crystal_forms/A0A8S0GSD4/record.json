@@ -1,0 +1,60 @@
+{
+ "identity": "A0A8S0GSD4",
+ "accessions": [
+  "A0A8S0GSD4"
+ ],
+ "deposition_group": null,
+ "name": "Fluorescent protein",
+ "clusters": [
+  {
+   "cluster_id": 1626,
+   "n_members": 11,
+   "reference": "8BXT",
+   "reference_resolution": 1.6,
+   "space_group": "P 61",
+   "reference_cell": [
+    133.721,
+    133.721,
+    58.533,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 9,
+    "reference": 1,
+    "placed": 1
+   },
+   "n_pairs": 1,
+   "rmsd_to_reference": {
+    "median": 0.154,
+    "q25": 0.154,
+    "q75": 0.154,
+    "p5": 0.154,
+    "p95": 0.154,
+    "max": 0.154,
+    "n_pairs": 1
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.254,
+    "q25": 0.254,
+    "q75": 0.254,
+    "p5": 0.254,
+    "p95": 0.254,
+    "max": 0.254,
+    "n_pairs": 1
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.087,
+    "q25": 0.087,
+    "q75": 0.087,
+    "p5": 0.087,
+    "p95": 0.087,
+    "max": 0.087,
+    "n_pairs": 1
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

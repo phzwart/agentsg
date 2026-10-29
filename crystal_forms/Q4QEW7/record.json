@@ -1,0 +1,59 @@
+{
+ "identity": "Q4QEW7",
+ "accessions": [
+  "Q4QEW7"
+ ],
+ "deposition_group": null,
+ "name": "Dihydroorotate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1300,
+   "n_members": 14,
+   "reference": "4EF8",
+   "reference_resolution": 1.56,
+   "space_group": "P 61",
+   "reference_cell": [
+    144.19,
+    144.19,
+    69.87,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.364,
+    "q25": 0.315,
+    "q75": 0.441,
+    "p5": 0.277,
+    "p95": 1.171,
+    "max": 1.176,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.605,
+    "q25": 0.388,
+    "q75": 0.986,
+    "p5": 0.213,
+    "p95": 1.432,
+    "max": 1.808,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.252,
+    "q25": 0.175,
+    "q75": 0.327,
+    "p5": 0.114,
+    "p95": 0.495,
+    "max": 1.228,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

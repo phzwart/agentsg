@@ -1,0 +1,59 @@
+{
+ "identity": "P38489",
+ "accessions": [
+  "P38489"
+ ],
+ "deposition_group": null,
+ "name": "NAD(P)H-dependent nitroreductase NfsB",
+ "clusters": [
+  {
+   "cluster_id": 1158,
+   "n_members": 15,
+   "reference": "8C5F",
+   "reference_resolution": 1.6,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    57.193,
+    57.193,
+    262.01,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.776,
+    "q25": 0.444,
+    "q75": 0.857,
+    "p5": 0.357,
+    "p95": 1.705,
+    "max": 2.723,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.677,
+    "q25": 0.474,
+    "q75": 0.955,
+    "p5": 0.297,
+    "p95": 2.625,
+    "max": 3.064,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.215,
+    "q75": 0.312,
+    "p5": 0.144,
+    "p95": 0.485,
+    "max": 0.563,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

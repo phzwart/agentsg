@@ -1,0 +1,59 @@
+{
+ "identity": "F1QCV2",
+ "accessions": [
+  "F1QCV2"
+ ],
+ "deposition_group": null,
+ "name": "Polyamine deacetylase HDAC10",
+ "clusters": [
+  {
+   "cluster_id": 403,
+   "n_members": 34,
+   "reference": "6WBQ",
+   "reference_resolution": 2.0,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    80.63,
+    80.63,
+    246.811,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.792,
+    "q25": 0.699,
+    "q75": 1.636,
+    "p5": 0.668,
+    "p95": 3.01,
+    "max": 4.962,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.121,
+    "q25": 0.628,
+    "q75": 1.995,
+    "p5": 0.381,
+    "p95": 3.754,
+    "max": 5.992,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.546,
+    "q25": 0.336,
+    "q75": 0.679,
+    "p5": 0.271,
+    "p95": 0.869,
+    "max": 0.999,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

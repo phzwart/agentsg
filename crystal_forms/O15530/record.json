@@ -1,0 +1,108 @@
+{
+ "identity": "O15530",
+ "accessions": [
+  "O15530"
+ ],
+ "deposition_group": null,
+ "name": "3-phosphoinositide-dependent protein kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 351,
+   "n_members": 38,
+   "reference": "1UU3",
+   "reference_resolution": 1.7,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    121.623,
+    121.623,
+    47.875,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.903,
+    "q25": 0.674,
+    "q75": 1.086,
+    "p5": 0.504,
+    "p95": 47.773,
+    "max": 47.922,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.734,
+    "q25": 0.528,
+    "q75": 1.247,
+    "p5": 0.366,
+    "p95": 48.539,
+    "max": 48.799,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.417,
+    "q25": 0.354,
+    "q75": 0.537,
+    "p5": 0.259,
+    "p95": 16.772,
+    "max": 16.859,
+    "n_pairs": 703
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 850,
+   "n_members": 19,
+   "reference": "5LVO",
+   "reference_resolution": 1.09,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    148.22,
+    44.42,
+    47.87,
+    90.0,
+    101.81,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.36,
+    "q25": 0.313,
+    "q75": 0.411,
+    "p5": 0.214,
+    "p95": 0.596,
+    "max": 0.885,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.424,
+    "q25": 0.36,
+    "q75": 0.511,
+    "p5": 0.262,
+    "p95": 1.217,
+    "max": 1.469,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.273,
+    "q75": 0.418,
+    "p5": 0.208,
+    "p95": 0.604,
+    "max": 0.803,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

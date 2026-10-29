@@ -1,0 +1,59 @@
+{
+ "identity": "P21447",
+ "accessions": [
+  "P21447"
+ ],
+ "deposition_group": null,
+ "name": "ATP-dependent translocase ABCB1",
+ "clusters": [
+  {
+   "cluster_id": 1151,
+   "n_members": 15,
+   "reference": "4Q9H",
+   "reference_resolution": 3.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    87.95,
+    139.18,
+    186.03,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.595,
+    "q25": 1.014,
+    "q75": 2.475,
+    "p5": 0.656,
+    "p95": 2.655,
+    "max": 2.684,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.304,
+    "q25": 1.61,
+    "q75": 3.077,
+    "p5": 0.753,
+    "p95": 4.043,
+    "max": 4.443,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.485,
+    "q25": 1.057,
+    "q75": 1.904,
+    "p5": 0.498,
+    "p95": 2.407,
+    "max": 3.019,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "identity": "A5GZW8+D0VWV4+Q007T0+Q0QF01",
+ "accessions": [
+  "A5GZW8",
+  "D0VWV4",
+  "Q007T0",
+  "Q0QF01"
+ ],
+ "deposition_group": null,
+ "name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 658,
+   "n_members": 23,
+   "reference": "1ZOY",
+   "reference_resolution": 2.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    70.238,
+    83.557,
+    293.896,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "no_shared_accession": 1,
+    "placed": 21
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 41.532,
+    "q25": 41.496,
+    "q75": 41.887,
+    "p5": 41.382,
+    "p95": 42.227,
+    "max": 50.746,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.639,
+    "q25": 0.96,
+    "q75": 3.172,
+    "p5": 0.505,
+    "p95": 54.007,
+    "max": 54.72,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.401,
+    "q25": 0.366,
+    "q75": 0.44,
+    "p5": 0.29,
+    "p95": 28.665,
+    "max": 28.744,
+    "n_pairs": 231
+   },
+   "n_low_margin": 20,
+   "n_via_neighbour": 0
+  }
+ ]
+}

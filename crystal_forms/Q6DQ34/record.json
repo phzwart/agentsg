@@ -1,0 +1,60 @@
+{
+ "identity": "Q6DQ34",
+ "accessions": [
+  "Q6DQ34"
+ ],
+ "deposition_group": null,
+ "name": "Hemagglutinin",
+ "clusters": [
+  {
+   "cluster_id": 882,
+   "n_members": 19,
+   "reference": "4CQR",
+   "reference_resolution": 2.45,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    101.077,
+    101.077,
+    451.337,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.305,
+    "q25": 0.262,
+    "q75": 0.321,
+    "p5": 0.197,
+    "p95": 0.389,
+    "max": 0.457,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.37,
+    "q25": 0.31,
+    "q75": 0.451,
+    "p5": 0.222,
+    "p95": 0.609,
+    "max": 0.728,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.282,
+    "q25": 0.251,
+    "q75": 0.321,
+    "p5": 0.171,
+    "p95": 0.387,
+    "max": 0.424,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

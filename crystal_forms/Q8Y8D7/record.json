@@ -1,0 +1,59 @@
+{
+ "identity": "Q8Y8D7",
+ "accessions": [
+  "Q8Y8D7"
+ ],
+ "deposition_group": null,
+ "name": "NAD kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 123,
+   "n_members": 85,
+   "reference": "8QGO",
+   "reference_resolution": 1.53,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    62.969,
+    74.436,
+    118.37,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 84,
+    "reference": 1
+   },
+   "n_pairs": 3570,
+   "rmsd_to_reference": {
+    "median": 0.498,
+    "q25": 0.421,
+    "q75": 0.619,
+    "p5": 0.308,
+    "p95": 0.772,
+    "max": 0.982,
+    "n_pairs": 84
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.545,
+    "q25": 0.421,
+    "q75": 0.696,
+    "p5": 0.305,
+    "p95": 0.962,
+    "max": 1.559,
+    "n_pairs": 3570
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.39,
+    "q25": 0.313,
+    "q75": 0.496,
+    "p5": 0.232,
+    "p95": 0.663,
+    "max": 0.993,
+    "n_pairs": 3570
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

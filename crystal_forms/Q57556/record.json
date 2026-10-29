@@ -1,0 +1,59 @@
+{
+ "identity": "Q57556",
+ "accessions": [
+  "Q57556"
+ ],
+ "deposition_group": null,
+ "name": "Uncharacterized membrane protein MJ0091",
+ "clusters": [
+  {
+   "cluster_id": 1301,
+   "n_members": 14,
+   "reference": "5HYA",
+   "reference_resolution": 1.897,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.49,
+    72.879,
+    96.206,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.618,
+    "q25": 0.395,
+    "q75": 0.718,
+    "p5": 0.154,
+    "p95": 0.761,
+    "max": 0.788,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.476,
+    "q25": 0.394,
+    "q75": 0.576,
+    "p5": 0.226,
+    "p95": 0.68,
+    "max": 0.742,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.433,
+    "q25": 0.349,
+    "q75": 0.493,
+    "p5": 0.171,
+    "p95": 0.585,
+    "max": 0.595,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

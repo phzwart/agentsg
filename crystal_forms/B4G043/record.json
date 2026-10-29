@@ -1,0 +1,60 @@
+{
+ "identity": "B4G043",
+ "accessions": [
+  "B4G043"
+ ],
+ "deposition_group": null,
+ "name": "Ferredoxin--NADP reductase, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 1021,
+   "n_members": 16,
+   "reference": "9KKH",
+   "reference_resolution": 1.1,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    59.08,
+    59.08,
+    186.9,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 4,
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.345,
+    "q25": 0.204,
+    "q75": 0.494,
+    "p5": 0.125,
+    "p95": 0.668,
+    "max": 0.796,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.551,
+    "q25": 0.302,
+    "q75": 0.652,
+    "p5": 0.183,
+    "p95": 0.854,
+    "max": 1.074,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.299,
+    "q25": 0.175,
+    "q75": 0.377,
+    "p5": 0.106,
+    "p95": 0.395,
+    "max": 0.401,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

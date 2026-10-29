@@ -1,0 +1,59 @@
+{
+ "identity": "Q739M9",
+ "accessions": [
+  "Q739M9"
+ ],
+ "deposition_group": null,
+ "name": "Metallothiol transferase FosB",
+ "clusters": [
+  {
+   "cluster_id": 1305,
+   "n_members": 14,
+   "reference": "4JH2",
+   "reference_resolution": 1.27,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    64.339,
+    68.087,
+    69.765,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.237,
+    "q25": 0.171,
+    "q75": 0.255,
+    "p5": 0.157,
+    "p95": 0.358,
+    "max": 0.372,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.244,
+    "q25": 0.187,
+    "q75": 0.312,
+    "p5": 0.139,
+    "p95": 0.483,
+    "max": 0.556,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.136,
+    "q25": 0.122,
+    "q75": 0.155,
+    "p5": 0.096,
+    "p95": 0.179,
+    "max": 0.2,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

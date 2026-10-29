@@ -1,0 +1,59 @@
+{
+ "identity": "P23909",
+ "accessions": [
+  "P23909"
+ ],
+ "deposition_group": null,
+ "name": "DNA mismatch repair protein MutS",
+ "clusters": [
+  {
+   "cluster_id": 1704,
+   "n_members": 11,
+   "reference": "1WB9",
+   "reference_resolution": 2.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    89.65,
+    92.116,
+    260.744,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.501,
+    "q25": 0.33,
+    "q75": 0.581,
+    "p5": 0.256,
+    "p95": 0.784,
+    "max": 0.844,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.835,
+    "q25": 0.584,
+    "q75": 1.276,
+    "p5": 0.393,
+    "p95": 1.862,
+    "max": 2.62,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.43,
+    "q25": 0.336,
+    "q75": 0.513,
+    "p5": 0.258,
+    "p95": 0.608,
+    "max": 0.666,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

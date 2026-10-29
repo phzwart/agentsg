@@ -1,0 +1,59 @@
+{
+ "identity": "E8MGH8",
+ "accessions": [
+  "E8MGH8"
+ ],
+ "deposition_group": null,
+ "name": "Non-reducing end beta-L-arabinofuranosidase",
+ "clusters": [
+  {
+   "cluster_id": 1642,
+   "n_members": 11,
+   "reference": "7DIF",
+   "reference_resolution": 1.75,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    77.714,
+    77.714,
+    252.094,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.023,
+    "q25": 0.729,
+    "q75": 2.147,
+    "p5": 0.428,
+    "p95": 2.498,
+    "max": 2.53,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.194,
+    "q25": 0.737,
+    "q75": 2.079,
+    "p5": 0.415,
+    "p95": 2.704,
+    "max": 2.778,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.668,
+    "q25": 0.373,
+    "q75": 0.757,
+    "p5": 0.245,
+    "p95": 0.936,
+    "max": 1.096,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

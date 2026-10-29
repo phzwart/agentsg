@@ -1,0 +1,59 @@
+{
+ "identity": "Q84EX5",
+ "accessions": [
+  "Q84EX5"
+ ],
+ "deposition_group": null,
+ "name": "R-specific alcohol dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1193,
+   "n_members": 15,
+   "reference": "1ZK4",
+   "reference_resolution": 1.0,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    55.999,
+    79.946,
+    114.427,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.433,
+    "q25": 0.319,
+    "q75": 0.881,
+    "p5": 0.269,
+    "p95": 1.018,
+    "max": 1.058,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.302,
+    "q25": 0.228,
+    "q75": 0.359,
+    "p5": 0.167,
+    "p95": 0.452,
+    "max": 0.488,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.205,
+    "q75": 0.306,
+    "p5": 0.154,
+    "p95": 0.34,
+    "max": 0.394,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

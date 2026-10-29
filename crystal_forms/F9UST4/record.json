@@ -1,0 +1,60 @@
+{
+ "identity": "F9UST4",
+ "accessions": [
+  "F9UST4"
+ ],
+ "deposition_group": null,
+ "name": "Pyridinium-3,5-bisthiocarboxylic acid mononucleotide synthase",
+ "clusters": [
+  {
+   "cluster_id": 1107,
+   "n_members": 15,
+   "reference": "6B2M",
+   "reference_resolution": 2.088,
+   "space_group": "P 41 2 2",
+   "reference_cell": [
+    107.362,
+    107.362,
+    319.849,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 1.311,
+    "q25": 0.848,
+    "q75": 1.651,
+    "p5": 0.574,
+    "p95": 1.76,
+    "max": 1.813,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.233,
+    "q25": 0.824,
+    "q75": 1.531,
+    "p5": 0.505,
+    "p95": 2.137,
+    "max": 2.588,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.546,
+    "q25": 0.469,
+    "q75": 0.737,
+    "p5": 0.314,
+    "p95": 1.0,
+    "max": 1.194,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

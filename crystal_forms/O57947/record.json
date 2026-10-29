@@ -1,0 +1,59 @@
+{
+ "identity": "O57947",
+ "accessions": [
+  "O57947"
+ ],
+ "deposition_group": null,
+ "name": "Ribose 1,5-bisphosphate isomerase",
+ "clusters": [
+  {
+   "cluster_id": 1483,
+   "n_members": 12,
+   "reference": "5YFJ",
+   "reference_resolution": 2.2,
+   "space_group": "P 31 1 2",
+   "reference_cell": [
+    98.63,
+    98.63,
+    257.061,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.243,
+    "q25": 0.231,
+    "q75": 0.283,
+    "p5": 0.206,
+    "p95": 0.298,
+    "max": 0.301,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.271,
+    "q25": 0.223,
+    "q75": 0.318,
+    "p5": 0.19,
+    "p95": 0.417,
+    "max": 0.502,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.179,
+    "q25": 0.165,
+    "q75": 0.196,
+    "p5": 0.138,
+    "p95": 0.216,
+    "max": 0.229,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

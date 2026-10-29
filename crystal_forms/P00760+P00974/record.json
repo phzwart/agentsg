@@ -1,0 +1,60 @@
+{
+ "identity": "P00760+P00974",
+ "accessions": [
+  "P00760",
+  "P00974"
+ ],
+ "deposition_group": null,
+ "name": "Serine protease 1",
+ "clusters": [
+  {
+   "cluster_id": 486,
+   "n_members": 30,
+   "reference": "7PH1",
+   "reference_resolution": 1.18,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    74.975,
+    81.289,
+    124.248,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.519,
+    "q25": 0.337,
+    "q75": 0.591,
+    "p5": 0.178,
+    "p95": 1.131,
+    "max": 1.211,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.736,
+    "q25": 0.674,
+    "q75": 3.126,
+    "p5": 0.273,
+    "p95": 3.935,
+    "max": 5.207,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.197,
+    "q25": 0.164,
+    "q75": 0.236,
+    "p5": 0.094,
+    "p95": 1.058,
+    "max": 1.092,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

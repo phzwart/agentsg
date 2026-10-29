@@ -1,0 +1,59 @@
+{
+ "identity": "P43912",
+ "accessions": [
+  "P43912"
+ ],
+ "deposition_group": null,
+ "name": "tRNA",
+ "clusters": [
+  {
+   "cluster_id": 342,
+   "n_members": 39,
+   "reference": "4YQD",
+   "reference_resolution": 1.45,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    94.376,
+    94.376,
+    177.996,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.516,
+    "q25": 0.261,
+    "q75": 1.104,
+    "p5": 0.192,
+    "p95": 4.704,
+    "max": 4.849,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.442,
+    "q25": 0.304,
+    "q75": 0.968,
+    "p5": 0.206,
+    "p95": 3.787,
+    "max": 4.52,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.286,
+    "q25": 0.22,
+    "q75": 0.501,
+    "p5": 0.159,
+    "p95": 1.006,
+    "max": 1.481,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

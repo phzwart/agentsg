@@ -1,0 +1,159 @@
+{
+ "identity": "P41182",
+ "accessions": [
+  "P41182"
+ ],
+ "deposition_group": null,
+ "name": "B-cell lymphoma 6 protein",
+ "clusters": [
+  {
+   "cluster_id": 39,
+   "n_members": 174,
+   "reference": "7OKL",
+   "reference_resolution": 1.2,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    68.284,
+    68.284,
+    168.17,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 173,
+    "reference": 1
+   },
+   "n_pairs": 15051,
+   "rmsd_to_reference": {
+    "median": 0.45,
+    "q25": 0.316,
+    "q75": 0.595,
+    "p5": 0.243,
+    "p95": 1.179,
+    "max": 1.632,
+    "n_pairs": 173
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.458,
+    "q25": 0.256,
+    "q75": 0.703,
+    "p5": 0.099,
+    "p95": 1.069,
+    "max": 2.763,
+    "n_pairs": 15051
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.17,
+    "q25": 0.12,
+    "q75": 0.221,
+    "p5": 0.048,
+    "p95": 0.562,
+    "max": 1.245,
+    "n_pairs": 15051
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 502,
+   "n_members": 29,
+   "reference": "7LWE",
+   "reference_resolution": 1.17,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    30.606,
+    72.113,
+    55.044,
+    90.0,
+    104.875,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "different_space_group": 4,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.367,
+    "q25": 0.234,
+    "q75": 0.68,
+    "p5": 0.167,
+    "p95": 22.681,
+    "max": 26.963,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.503,
+    "q25": 0.351,
+    "q75": 0.754,
+    "p5": 0.227,
+    "p95": 27.037,
+    "max": 27.259,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.347,
+    "q25": 0.228,
+    "q75": 0.473,
+    "p5": 0.16,
+    "p95": 6.874,
+    "max": 6.938,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1720,
+   "n_members": 11,
+   "reference": "5X9O",
+   "reference_resolution": 1.58,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    66.618,
+    66.618,
+    151.996,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.646,
+    "q25": 0.536,
+    "q75": 0.729,
+    "p5": 0.32,
+    "p95": 0.866,
+    "max": 0.923,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.739,
+    "q25": 0.616,
+    "q75": 1.052,
+    "p5": 0.275,
+    "p95": 1.291,
+    "max": 1.461,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.541,
+    "q25": 0.273,
+    "q75": 0.634,
+    "p5": 0.18,
+    "p95": 0.704,
+    "max": 0.718,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

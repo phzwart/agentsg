@@ -1,0 +1,13 @@
+pdb_id	status	resolution	sg_hm	a	b	c	alpha	beta	gamma	L	t	rmsd_to_ref	n_paired	margin	asu_rmsd	accept	n_classes	class_price	via	member_chain	ref_chain	unp_offset	acc_fallback	ambiguous_snap
+7ZMY	no_reference	1.70	P 21 21 21	68.240	109.570	119.470	90.000	90.000	90.000													0	0	0
+7ZN0	no_reference	1.70	P 21 21 21	68.500	109.500	119.000	90.000	90.000	90.000													0	0	0
+7ZN3	no_reference	1.60	P 21 21 21	68.390	109.490	119.390	90.000	90.000	90.000													0	0	0
+7ZN8	no_reference	2.20	P 21 21 21	68.600	109.600	119.300	90.000	90.000	90.000													0	0	0
+7ZN9	no_reference	2.30	P 21 21 21	68.900	109.500	119.400	90.000	90.000	90.000													0	0	0
+7ZNA	no_reference	1.80	P 21 21 21	68.570	109.590	119.620	90.000	90.000	90.000													0	0	0
+7ZNB	no_reference	1.90	P 21 21 21	68.500	109.500	119.000	90.000	90.000	90.000													0	0	0
+7ZNC	no_reference	1.70	P 21 21 21	68.450	109.630	118.460	90.000	90.000	90.000													0	0	0
+7ZND	no_reference	1.99	P 21 21 21	69.095	109.364	119.311	90.000	90.000	90.000													0	0	0
+7ZNE	no_reference	2.10	P 21 21 21	71.500	111.500	119.300	90.000	90.000	90.000													0	0	0
+7ZNH	no_reference	2.30	P 21 21 21	71.910	111.860	119.520	90.000	90.000	90.000													0	0	0
+7ZNI	no_reference	2.20	P 21 21 21	71.500	111.500	119.300	90.000	90.000	90.000													0	0	0

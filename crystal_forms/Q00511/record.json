@@ -1,0 +1,59 @@
+{
+ "identity": "Q00511",
+ "accessions": [
+  "Q00511"
+ ],
+ "deposition_group": null,
+ "name": "Uricase",
+ "clusters": [
+  {
+   "cluster_id": 138,
+   "n_members": 80,
+   "reference": "3L8W",
+   "reference_resolution": 1.0,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    79.527,
+    94.98,
+    104.323,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 79,
+    "reference": 1
+   },
+   "n_pairs": 3160,
+   "rmsd_to_reference": {
+    "median": 0.346,
+    "q25": 0.292,
+    "q75": 0.361,
+    "p5": 0.178,
+    "p95": 0.428,
+    "max": 0.664,
+    "n_pairs": 79
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.624,
+    "q25": 0.273,
+    "q75": 0.876,
+    "p5": 0.098,
+    "p95": 1.179,
+    "max": 1.735,
+    "n_pairs": 3160
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.213,
+    "q25": 0.132,
+    "q75": 0.25,
+    "p5": 0.062,
+    "p95": 0.318,
+    "max": 0.553,
+    "n_pairs": 3160
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

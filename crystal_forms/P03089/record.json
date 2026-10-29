@@ -1,0 +1,59 @@
+{
+ "identity": "P03089",
+ "accessions": [
+  "P03089"
+ ],
+ "deposition_group": null,
+ "name": "Major capsid protein VP1",
+ "clusters": [
+  {
+   "cluster_id": 1040,
+   "n_members": 16,
+   "reference": "7ZIL",
+   "reference_resolution": 1.24,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    150.098,
+    96.023,
+    128.058,
+    90.0,
+    110.555,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.317,
+    "q25": 0.248,
+    "q75": 0.344,
+    "p5": 0.149,
+    "p95": 0.382,
+    "max": 0.42,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.351,
+    "q25": 0.272,
+    "q75": 0.458,
+    "p5": 0.17,
+    "p95": 0.672,
+    "max": 0.801,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.186,
+    "q25": 0.153,
+    "q75": 0.242,
+    "p5": 0.12,
+    "p95": 0.282,
+    "max": 0.313,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

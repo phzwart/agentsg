@@ -1,0 +1,59 @@
+{
+ "identity": "O95696",
+ "accessions": [
+  "O95696"
+ ],
+ "deposition_group": null,
+ "name": "Bromodomain-containing protein 1",
+ "clusters": [
+  {
+   "cluster_id": 14,
+   "n_members": 301,
+   "reference": "5PQI",
+   "reference_resolution": 1.33,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    55.45,
+    56.16,
+    101.92,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 300,
+    "reference": 1
+   },
+   "n_pairs": 45150,
+   "rmsd_to_reference": {
+    "median": 0.192,
+    "q25": 0.151,
+    "q75": 0.24,
+    "p5": 0.096,
+    "p95": 0.422,
+    "max": 26.616,
+    "n_pairs": 300
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.256,
+    "q25": 0.175,
+    "q75": 0.394,
+    "p5": 0.092,
+    "p95": 0.932,
+    "max": 27.291,
+    "n_pairs": 45150
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.129,
+    "q25": 0.093,
+    "q75": 0.177,
+    "p5": 0.053,
+    "p95": 0.271,
+    "max": 1.31,
+    "n_pairs": 45150
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

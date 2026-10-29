@@ -1,0 +1,59 @@
+{
+ "identity": "Q76KB0",
+ "accessions": [
+  "Q76KB0"
+ ],
+ "deposition_group": null,
+ "name": "Ferredoxin--nitrite reductase, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 1189,
+   "n_members": 15,
+   "reference": "3B0G",
+   "reference_resolution": 1.25,
+   "space_group": "P 4 21 2",
+   "reference_cell": [
+    134.051,
+    134.051,
+    77.801,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.436,
+    "q25": 0.288,
+    "q75": 0.682,
+    "p5": 0.118,
+    "p95": 1.182,
+    "max": 1.262,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.471,
+    "q25": 0.343,
+    "q75": 0.792,
+    "p5": 0.115,
+    "p95": 1.288,
+    "max": 1.521,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.115,
+    "q25": 0.088,
+    "q75": 0.159,
+    "p5": 0.056,
+    "p95": 0.201,
+    "max": 0.234,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

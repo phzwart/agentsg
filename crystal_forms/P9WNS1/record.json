@@ -1,0 +1,59 @@
+{
+ "identity": "P9WNS1",
+ "accessions": [
+  "P9WNS1"
+ ],
+ "deposition_group": null,
+ "name": "1-deoxy-D-xylulose 5-phosphate reductoisomerase",
+ "clusters": [
+  {
+   "cluster_id": 1565,
+   "n_members": 12,
+   "reference": "2Y1E",
+   "reference_resolution": 1.65,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    67.487,
+    64.754,
+    86.005,
+    90.0,
+    101.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.269,
+    "q75": 0.35,
+    "p5": 0.22,
+    "p95": 0.464,
+    "max": 0.516,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.433,
+    "q25": 0.298,
+    "q75": 0.492,
+    "p5": 0.218,
+    "p95": 0.771,
+    "max": 0.925,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.297,
+    "q25": 0.233,
+    "q75": 0.399,
+    "p5": 0.162,
+    "p95": 0.441,
+    "max": 0.494,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

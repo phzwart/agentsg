@@ -1,0 +1,108 @@
+{
+ "identity": "P04058",
+ "accessions": [
+  "P04058"
+ ],
+ "deposition_group": null,
+ "name": "Acetylcholinesterase",
+ "clusters": [
+  {
+   "cluster_id": 121,
+   "n_members": 85,
+   "reference": "1EA5",
+   "reference_resolution": 1.8,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    111.573,
+    111.573,
+    137.587,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 84,
+    "reference": 1
+   },
+   "n_pairs": 3570,
+   "rmsd_to_reference": {
+    "median": 0.368,
+    "q25": 0.253,
+    "q75": 0.551,
+    "p5": 0.181,
+    "p95": 1.204,
+    "max": 22.876,
+    "n_pairs": 84
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.661,
+    "q25": 0.473,
+    "q75": 1.041,
+    "p5": 0.298,
+    "p95": 2.017,
+    "max": 22.986,
+    "n_pairs": 3570
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.209,
+    "q75": 0.368,
+    "p5": 0.162,
+    "p95": 0.65,
+    "max": 22.751,
+    "n_pairs": 3570
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 441,
+   "n_members": 32,
+   "reference": "7AIS",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    91.899,
+    106.755,
+    150.707,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.315,
+    "q25": 0.279,
+    "q75": 0.558,
+    "p5": 0.197,
+    "p95": 2.148,
+    "max": 2.82,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.747,
+    "q25": 0.53,
+    "q75": 1.207,
+    "p5": 0.341,
+    "p95": 3.042,
+    "max": 3.584,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.247,
+    "q25": 0.208,
+    "q75": 0.284,
+    "p5": 0.156,
+    "p95": 0.625,
+    "max": 0.716,
+    "n_pairs": 496
+   },
+   "n_low_margin": 31,
+   "n_via_neighbour": 0
+  }
+ ]
+}

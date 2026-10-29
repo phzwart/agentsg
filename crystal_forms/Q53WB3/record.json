@@ -1,0 +1,59 @@
+{
+ "identity": "Q53WB3",
+ "accessions": [
+  "Q53WB3"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-ribazole-5'-phosphate phosphatase",
+ "clusters": [
+  {
+   "cluster_id": 929,
+   "n_members": 18,
+   "reference": "1V37",
+   "reference_resolution": 1.4,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    84.591,
+    91.846,
+    110.611,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 17
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.374,
+    "q25": 0.283,
+    "q75": 0.876,
+    "p5": 0.174,
+    "p95": 0.917,
+    "max": 0.926,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.58,
+    "q25": 0.359,
+    "q75": 1.073,
+    "p5": 0.211,
+    "p95": 1.399,
+    "max": 1.542,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.217,
+    "q25": 0.169,
+    "q75": 0.274,
+    "p5": 0.123,
+    "p95": 0.355,
+    "max": 0.43,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

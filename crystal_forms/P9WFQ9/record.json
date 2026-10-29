@@ -1,0 +1,59 @@
+{
+ "identity": "P9WFQ9",
+ "accessions": [
+  "P9WFQ9"
+ ],
+ "deposition_group": null,
+ "name": "Uracil-DNA glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 1292,
+   "n_members": 14,
+   "reference": "4WPK",
+   "reference_resolution": 0.98,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    38.919,
+    63.473,
+    45.186,
+    90.0,
+    112.89,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.284,
+    "q25": 0.17,
+    "q75": 0.302,
+    "p5": 0.148,
+    "p95": 0.851,
+    "max": 1.539,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.417,
+    "q25": 0.338,
+    "q75": 0.637,
+    "p5": 0.222,
+    "p95": 3.132,
+    "max": 3.336,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.203,
+    "q25": 0.161,
+    "q75": 0.269,
+    "p5": 0.113,
+    "p95": 0.508,
+    "max": 0.563,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

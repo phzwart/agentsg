@@ -1,0 +1,60 @@
+{
+ "identity": "P81446",
+ "accessions": [
+  "P81446"
+ ],
+ "deposition_group": null,
+ "name": "Beta-galactoside-specific lectin 1",
+ "clusters": [
+  {
+   "cluster_id": 1290,
+   "n_members": 14,
+   "reference": "1M2T",
+   "reference_resolution": 1.89,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    107.12,
+    107.12,
+    309.82,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 9,
+    "no_shared_accession": 4
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.079,
+    "q25": 1.031,
+    "q75": 1.674,
+    "p5": 0.637,
+    "p95": 3.331,
+    "max": 4.132,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.801,
+    "q25": 0.569,
+    "q75": 1.221,
+    "p5": 0.375,
+    "p95": 3.009,
+    "max": 3.883,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.426,
+    "q25": 0.35,
+    "q75": 0.457,
+    "p5": 0.23,
+    "p95": 0.503,
+    "max": 0.554,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

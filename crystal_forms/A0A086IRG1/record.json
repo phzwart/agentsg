@@ -1,0 +1,59 @@
+{
+ "identity": "A0A086IRG1",
+ "accessions": [
+  "A0A086IRG1"
+ ],
+ "deposition_group": null,
+ "name": "FosA family fosfomycin resistance glutathione transferase",
+ "clusters": [
+  {
+   "cluster_id": 619,
+   "n_members": 24,
+   "reference": "9RPZ",
+   "reference_resolution": 1.11,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    67.898,
+    89.691,
+    44.922,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.084,
+    "q25": 0.059,
+    "q75": 0.102,
+    "p5": 0.05,
+    "p95": 1.099,
+    "max": 1.56,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.113,
+    "q25": 0.08,
+    "q75": 0.209,
+    "p5": 0.055,
+    "p95": 1.567,
+    "max": 1.629,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.068,
+    "q25": 0.05,
+    "q75": 0.105,
+    "p5": 0.037,
+    "p95": 1.061,
+    "max": 1.068,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

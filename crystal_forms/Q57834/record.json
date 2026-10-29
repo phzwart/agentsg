@@ -1,0 +1,60 @@
+{
+ "identity": "Q57834",
+ "accessions": [
+  "Q57834"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 841,
+   "n_members": 20,
+   "reference": "6WRT",
+   "reference_resolution": 1.55,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    101.78,
+    101.78,
+    71.56,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.593,
+    "q25": 0.418,
+    "q75": 0.828,
+    "p5": 0.243,
+    "p95": 1.864,
+    "max": 2.56,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.199,
+    "q25": 0.673,
+    "q75": 2.071,
+    "p5": 0.404,
+    "p95": 2.82,
+    "max": 3.552,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.563,
+    "q25": 0.32,
+    "q75": 0.804,
+    "p5": 0.23,
+    "p95": 1.298,
+    "max": 1.507,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

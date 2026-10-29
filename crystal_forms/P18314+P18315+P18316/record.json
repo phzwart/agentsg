@@ -1,0 +1,61 @@
+{
+ "identity": "P18314+P18315+P18316",
+ "accessions": [
+  "P18314",
+  "P18315",
+  "P18316"
+ ],
+ "deposition_group": null,
+ "name": "Urease subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 467,
+   "n_members": 31,
+   "reference": "4EP8",
+   "reference_resolution": 1.55,
+   "space_group": "I 21 3",
+   "reference_cell": [
+    168.886,
+    168.886,
+    168.886,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.979,
+    "q25": 0.43,
+    "q75": 1.039,
+    "p5": 0.278,
+    "p95": 1.051,
+    "max": 1.064,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.247,
+    "q25": 0.183,
+    "q75": 0.793,
+    "p5": 0.103,
+    "p95": 1.303,
+    "max": 1.399,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.228,
+    "q25": 0.166,
+    "q75": 0.304,
+    "p5": 0.09,
+    "p95": 0.866,
+    "max": 0.893,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

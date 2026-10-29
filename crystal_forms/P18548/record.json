@@ -1,0 +1,59 @@
+{
+ "identity": "P18548",
+ "accessions": [
+  "P18548"
+ ],
+ "deposition_group": null,
+ "name": "Deacetoxycephalosporin C synthase",
+ "clusters": [
+  {
+   "cluster_id": 1391,
+   "n_members": 13,
+   "reference": "1DCS",
+   "reference_resolution": 1.3,
+   "space_group": "H 3",
+   "reference_cell": [
+    106.4,
+    106.4,
+    71.2,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.48,
+    "q25": 0.424,
+    "q75": 0.576,
+    "p5": 0.361,
+    "p95": 1.094,
+    "max": 1.65,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.653,
+    "q25": 0.511,
+    "q75": 1.024,
+    "p5": 0.322,
+    "p95": 1.86,
+    "max": 2.401,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.404,
+    "q25": 0.333,
+    "q75": 0.521,
+    "p5": 0.283,
+    "p95": 0.629,
+    "max": 0.709,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

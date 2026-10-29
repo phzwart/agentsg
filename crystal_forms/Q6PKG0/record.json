@@ -1,0 +1,59 @@
+{
+ "identity": "Q6PKG0",
+ "accessions": [
+  "Q6PKG0"
+ ],
+ "deposition_group": null,
+ "name": "La-related protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1589,
+   "n_members": 12,
+   "reference": "7SOQ",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    36.915,
+    46.474,
+    59.135,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.358,
+    "q25": 0.268,
+    "q75": 0.574,
+    "p5": 0.226,
+    "p95": 0.769,
+    "max": 0.856,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.492,
+    "q25": 0.295,
+    "q75": 0.645,
+    "p5": 0.218,
+    "p95": 0.89,
+    "max": 1.054,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.156,
+    "q75": 0.347,
+    "p5": 0.122,
+    "p95": 0.488,
+    "max": 0.524,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

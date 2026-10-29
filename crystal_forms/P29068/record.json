@@ -1,0 +1,59 @@
+{
+ "identity": "P29068",
+ "accessions": [
+  "P29068"
+ ],
+ "deposition_group": null,
+ "name": "Carboxypeptidase T",
+ "clusters": [
+  {
+   "cluster_id": 640,
+   "n_members": 24,
+   "reference": "4IHM",
+   "reference_resolution": 1.29,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    158.101,
+    158.101,
+    104.584,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.169,
+    "q25": 0.148,
+    "q75": 0.202,
+    "p5": 0.125,
+    "p95": 0.279,
+    "max": 0.382,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.273,
+    "q25": 0.213,
+    "q75": 0.407,
+    "p5": 0.14,
+    "p95": 0.892,
+    "max": 1.185,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.142,
+    "q25": 0.117,
+    "q75": 0.174,
+    "p5": 0.09,
+    "p95": 0.235,
+    "max": 0.285,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

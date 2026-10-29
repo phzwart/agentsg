@@ -1,0 +1,59 @@
+{
+ "identity": "P05373",
+ "accessions": [
+  "P05373"
+ ],
+ "deposition_group": null,
+ "name": "Delta-aminolevulinic acid dehydratase",
+ "clusters": [
+  {
+   "cluster_id": 1502,
+   "n_members": 12,
+   "reference": "1H7N",
+   "reference_resolution": 1.6,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    103.2,
+    103.2,
+    167.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.384,
+    "q25": 0.284,
+    "q75": 1.06,
+    "p5": 0.211,
+    "p95": 1.214,
+    "max": 1.252,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.001,
+    "q25": 0.332,
+    "q75": 1.091,
+    "p5": 0.226,
+    "p95": 1.183,
+    "max": 1.24,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.987,
+    "q25": 0.292,
+    "q75": 1.061,
+    "p5": 0.205,
+    "p95": 1.142,
+    "max": 1.191,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

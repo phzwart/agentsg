@@ -1,0 +1,59 @@
+{
+ "identity": "B7JBP8",
+ "accessions": [
+  "B7JBP8"
+ ],
+ "deposition_group": null,
+ "name": "Sulfide-quinone reductase",
+ "clusters": [
+  {
+   "cluster_id": 1213,
+   "n_members": 14,
+   "reference": "3SX6",
+   "reference_resolution": 1.7955,
+   "space_group": "P 62 2 2",
+   "reference_cell": [
+    149.828,
+    149.828,
+    81.513,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.423,
+    "q25": 0.401,
+    "q75": 0.439,
+    "p5": 0.359,
+    "p95": 0.491,
+    "max": 0.497,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.339,
+    "q25": 0.273,
+    "q75": 0.401,
+    "p5": 0.23,
+    "p95": 0.472,
+    "max": 0.536,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.254,
+    "q25": 0.224,
+    "q75": 0.311,
+    "p5": 0.184,
+    "p95": 0.399,
+    "max": 0.475,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

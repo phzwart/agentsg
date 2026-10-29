@@ -1,0 +1,59 @@
+{
+ "identity": "P00742",
+ "accessions": [
+  "P00742"
+ ],
+ "deposition_group": null,
+ "name": "Coagulation factor X",
+ "clusters": [
+  {
+   "cluster_id": 97,
+   "n_members": 100,
+   "reference": "2PR3",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.485,
+    72.354,
+    77.88,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 99,
+    "reference": 1
+   },
+   "n_pairs": 4950,
+   "rmsd_to_reference": {
+    "median": 0.95,
+    "q25": 0.685,
+    "q75": 1.226,
+    "p5": 0.451,
+    "p95": 1.525,
+    "max": 2.136,
+    "n_pairs": 99
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.838,
+    "q25": 0.628,
+    "q75": 1.093,
+    "p5": 0.431,
+    "p95": 1.584,
+    "max": 2.926,
+    "n_pairs": 4950
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.348,
+    "q25": 0.295,
+    "q75": 0.404,
+    "p5": 0.228,
+    "p95": 0.484,
+    "max": 0.607,
+    "n_pairs": 4950
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

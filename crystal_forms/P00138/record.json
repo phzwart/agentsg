@@ -1,0 +1,59 @@
+{
+ "identity": "P00138",
+ "accessions": [
+  "P00138"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c'",
+ "clusters": [
+  {
+   "cluster_id": 240,
+   "n_members": 51,
+   "reference": "2YKZ",
+   "reference_resolution": 0.84,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    53.47,
+    53.47,
+    181.19,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 50,
+    "reference": 1
+   },
+   "n_pairs": 1275,
+   "rmsd_to_reference": {
+    "median": 0.371,
+    "q25": 0.337,
+    "q75": 0.453,
+    "p5": 0.166,
+    "p95": 2.193,
+    "max": 2.477,
+    "n_pairs": 50
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.549,
+    "q25": 0.392,
+    "q75": 0.935,
+    "p5": 0.248,
+    "p95": 2.111,
+    "max": 3.033,
+    "n_pairs": 1275
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.318,
+    "q25": 0.255,
+    "q75": 0.413,
+    "p5": 0.166,
+    "p95": 0.703,
+    "max": 0.856,
+    "n_pairs": 1275
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "identity": "Q9L5C7",
+ "accessions": [
+  "Q9L5C7"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase",
+ "clusters": [
+  {
+   "cluster_id": 1013,
+   "n_members": 17,
+   "reference": "6MZ2",
+   "reference_resolution": 0.83,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.161,
+    106.842,
+    47.913,
+    90.0,
+    101.82,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.22,
+    "q25": 0.167,
+    "q75": 0.283,
+    "p5": 0.136,
+    "p95": 0.758,
+    "max": 1.099,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.268,
+    "q25": 0.207,
+    "q75": 0.363,
+    "p5": 0.15,
+    "p95": 1.258,
+    "max": 1.304,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.16,
+    "q75": 0.261,
+    "p5": 0.121,
+    "p95": 0.903,
+    "max": 0.927,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1610,
+   "n_members": 12,
+   "reference": "8DON",
+   "reference_resolution": 1.36,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    41.43,
+    41.43,
+    231.26,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.713,
+    "q25": 0.341,
+    "q75": 0.765,
+    "p5": 0.279,
+    "p95": 1.155,
+    "max": 1.503,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.625,
+    "q25": 0.477,
+    "q75": 0.954,
+    "p5": 0.252,
+    "p95": 1.479,
+    "max": 1.713,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.426,
+    "q25": 0.252,
+    "q75": 0.791,
+    "p5": 0.179,
+    "p95": 1.402,
+    "max": 1.583,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

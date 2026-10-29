@@ -1,0 +1,59 @@
+{
+ "identity": "A0A125SZC1",
+ "accessions": [
+  "A0A125SZC1"
+ ],
+ "deposition_group": null,
+ "name": "N-formimidoyl fortimicin A synthase",
+ "clusters": [
+  {
+   "cluster_id": 1621,
+   "n_members": 11,
+   "reference": "7XQA",
+   "reference_resolution": 1.93,
+   "space_group": "P 1",
+   "reference_cell": [
+    103.386,
+    107.803,
+    134.754,
+    89.853,
+    89.989,
+    83.575
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.28,
+    "q25": 0.194,
+    "q75": 0.341,
+    "p5": 0.169,
+    "p95": 0.589,
+    "max": 0.666,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.515,
+    "q25": 0.38,
+    "q75": 0.729,
+    "p5": 0.218,
+    "p95": 1.071,
+    "max": 1.205,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.179,
+    "q25": 0.119,
+    "q75": 0.311,
+    "p5": 0.095,
+    "p95": 0.532,
+    "max": 0.567,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

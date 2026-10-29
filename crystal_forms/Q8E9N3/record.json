@@ -1,0 +1,59 @@
+{
+ "identity": "Q8E9N3",
+ "accessions": [
+  "Q8E9N3"
+ ],
+ "deposition_group": null,
+ "name": "3-isopropylmalate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1783,
+   "n_members": 11,
+   "reference": "3WZY",
+   "reference_resolution": 1.55,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    102.314,
+    57.417,
+    75.362,
+    90.0,
+    118.81,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.449,
+    "q25": 0.305,
+    "q75": 0.539,
+    "p5": 0.199,
+    "p95": 0.581,
+    "max": 0.612,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.526,
+    "q25": 0.361,
+    "q75": 0.719,
+    "p5": 0.173,
+    "p95": 0.84,
+    "max": 0.891,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.374,
+    "q25": 0.246,
+    "q75": 0.438,
+    "p5": 0.14,
+    "p95": 0.559,
+    "max": 0.585,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

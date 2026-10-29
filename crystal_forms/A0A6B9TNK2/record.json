@@ -1,0 +1,61 @@
+{
+ "identity": "A0A6B9TNK2",
+ "accessions": [
+  "A0A6B9TNK2"
+ ],
+ "deposition_group": null,
+ "name": "norbelladine O-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1625,
+   "n_members": 11,
+   "reference": "8XDO",
+   "reference_resolution": 1.37,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    49.637,
+    81.183,
+    118.027,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 7,
+    "no_shared_accession": 2,
+    "different_space_group": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.354,
+    "q25": 0.302,
+    "q75": 0.472,
+    "p5": 0.199,
+    "p95": 2.044,
+    "max": 2.677,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.564,
+    "q25": 0.33,
+    "q75": 1.196,
+    "p5": 0.216,
+    "p95": 3.037,
+    "max": 3.136,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.178,
+    "q25": 0.147,
+    "q75": 0.212,
+    "p5": 0.111,
+    "p95": 0.926,
+    "max": 0.938,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

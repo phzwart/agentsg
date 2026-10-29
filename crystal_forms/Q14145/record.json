@@ -1,0 +1,206 @@
+{
+ "identity": "Q14145",
+ "accessions": [
+  "Q14145"
+ ],
+ "deposition_group": null,
+ "name": "Kelch-like ECH-associated protein 1",
+ "clusters": [
+  {
+   "cluster_id": 686,
+   "n_members": 23,
+   "reference": "8PKW",
+   "reference_resolution": 1.54,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    162.684,
+    68.97,
+    77.965,
+    90.0,
+    117.864,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.266,
+    "q25": 0.243,
+    "q75": 0.309,
+    "p5": 0.156,
+    "p95": 0.347,
+    "max": 0.357,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.266,
+    "q25": 0.23,
+    "q75": 0.309,
+    "p5": 0.186,
+    "p95": 0.395,
+    "max": 0.498,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.187,
+    "q25": 0.166,
+    "q75": 0.212,
+    "p5": 0.138,
+    "p95": 0.244,
+    "max": 0.264,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1296,
+   "n_members": 14,
+   "reference": "3ZGD",
+   "reference_resolution": 1.98,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    75.72,
+    75.77,
+    202.04,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.893,
+    "q25": 0.687,
+    "q75": 2.075,
+    "p5": 0.428,
+    "p95": 2.511,
+    "max": 2.655,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.75,
+    "q25": 1.017,
+    "q75": 3.001,
+    "p5": 0.47,
+    "p95": 3.95,
+    "max": 4.311,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.269,
+    "q25": 0.181,
+    "q75": 0.32,
+    "p5": 0.13,
+    "p95": 0.445,
+    "max": 0.495,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1297,
+   "n_members": 14,
+   "reference": "9R1Z",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    126.34,
+    75.461,
+    48.63,
+    90.0,
+    106.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.366,
+    "q25": 0.275,
+    "q75": 0.567,
+    "p5": 0.153,
+    "p95": 0.704,
+    "max": 0.726,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.491,
+    "q25": 0.385,
+    "q75": 0.586,
+    "p5": 0.255,
+    "p95": 0.781,
+    "max": 0.968,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.302,
+    "q25": 0.253,
+    "q75": 0.335,
+    "p5": 0.189,
+    "p95": 0.391,
+    "max": 0.609,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1757,
+   "n_members": 11,
+   "reference": "9PHR",
+   "reference_resolution": 1.801,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    42.976,
+    42.976,
+    266.628,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.425,
+    "q25": 0.343,
+    "q75": 0.549,
+    "p5": 0.269,
+    "p95": 0.678,
+    "max": 0.731,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.524,
+    "q25": 0.401,
+    "q75": 0.649,
+    "p5": 0.293,
+    "p95": 0.847,
+    "max": 1.145,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.391,
+    "q25": 0.328,
+    "q75": 0.435,
+    "p5": 0.207,
+    "p95": 0.508,
+    "max": 0.597,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0AEG4",
+ "accessions": [
+  "P0AEG4"
+ ],
+ "deposition_group": null,
+ "name": "Thiol:disulfide interchange protein DsbA",
+ "clusters": [
+  {
+   "cluster_id": 30,
+   "n_members": 201,
+   "reference": "8CXE",
+   "reference_resolution": 1.47,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    115.825,
+    64.822,
+    75.075,
+    90.0,
+    125.752,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 200,
+    "reference": 1
+   },
+   "n_pairs": 20100,
+   "rmsd_to_reference": {
+    "median": 0.935,
+    "q25": 0.882,
+    "q75": 1.035,
+    "p5": 0.709,
+    "p95": 1.802,
+    "max": 1.916,
+    "n_pairs": 200
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.644,
+    "q25": 0.334,
+    "q75": 1.089,
+    "p5": 0.183,
+    "p95": 1.531,
+    "max": 2.648,
+    "n_pairs": 20100
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.356,
+    "q25": 0.209,
+    "q75": 0.556,
+    "p5": 0.135,
+    "p95": 0.709,
+    "max": 1.035,
+    "n_pairs": 20100
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9QYJ6",
+ "accessions": [
+  "Q9QYJ6"
+ ],
+ "deposition_group": null,
+ "name": "cAMP and cAMP-inhibited cGMP 3',5'-cyclic phosphodiesterase 10A",
+ "clusters": [
+  {
+   "cluster_id": 1611,
+   "n_members": 12,
+   "reference": "3HR1",
+   "reference_resolution": 1.53,
+   "space_group": "H 3",
+   "reference_cell": [
+    120.66,
+    120.66,
+    83.21,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.228,
+    "q25": 0.219,
+    "q75": 0.348,
+    "p5": 0.173,
+    "p95": 0.501,
+    "max": 0.523,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.579,
+    "q25": 0.422,
+    "q75": 0.815,
+    "p5": 0.243,
+    "p95": 1.298,
+    "max": 1.378,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.241,
+    "q25": 0.188,
+    "q75": 0.277,
+    "p5": 0.151,
+    "p95": 0.318,
+    "max": 0.328,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

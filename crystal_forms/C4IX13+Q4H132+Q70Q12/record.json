@@ -1,0 +1,61 @@
+{
+ "identity": "C4IX13+Q4H132+Q70Q12",
+ "accessions": [
+  "C4IX13",
+  "Q4H132",
+  "Q70Q12"
+ ],
+ "deposition_group": null,
+ "name": "Sodium/potassium-transporting ATPase subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 699,
+   "n_members": 22,
+   "reference": "2ZXE",
+   "reference_resolution": 2.4,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    223.815,
+    50.914,
+    163.786,
+    90.0,
+    105.12,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 21
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.363,
+    "q25": 0.218,
+    "q75": 0.466,
+    "p5": 0.135,
+    "p95": 0.593,
+    "max": 0.832,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.845,
+    "q25": 0.412,
+    "q75": 1.328,
+    "p5": 0.224,
+    "p95": 2.017,
+    "max": 2.614,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.001,
+    "q25": 0.001,
+    "q75": 0.001,
+    "p5": 0.001,
+    "p95": 0.776,
+    "max": 0.776,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

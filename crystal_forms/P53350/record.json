@@ -1,0 +1,59 @@
+{
+ "identity": "P53350",
+ "accessions": [
+  "P53350"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase PLK1",
+ "clusters": [
+  {
+   "cluster_id": 1068,
+   "n_members": 16,
+   "reference": "2RKU",
+   "reference_resolution": 1.95,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    66.593,
+    66.593,
+    154.11,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.745,
+    "q25": 0.414,
+    "q75": 0.796,
+    "p5": 0.353,
+    "p95": 0.947,
+    "max": 0.981,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.87,
+    "q25": 0.626,
+    "q75": 1.05,
+    "p5": 0.442,
+    "p95": 1.419,
+    "max": 2.113,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.493,
+    "q25": 0.395,
+    "q75": 0.553,
+    "p5": 0.294,
+    "p95": 0.704,
+    "max": 0.868,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

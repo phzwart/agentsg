@@ -1,0 +1,59 @@
+{
+ "identity": "P14668",
+ "accessions": [
+  "P14668"
+ ],
+ "deposition_group": null,
+ "name": "Annexin A5",
+ "clusters": [
+  {
+   "cluster_id": 1145,
+   "n_members": 15,
+   "reference": "2IE7",
+   "reference_resolution": 1.75,
+   "space_group": "H 3",
+   "reference_cell": [
+    157.028,
+    157.028,
+    37.327,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.528,
+    "q25": 0.518,
+    "q75": 0.56,
+    "p5": 0.346,
+    "p95": 0.594,
+    "max": 0.595,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.469,
+    "q25": 0.353,
+    "q75": 0.597,
+    "p5": 0.214,
+    "p95": 0.831,
+    "max": 0.925,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.387,
+    "q25": 0.306,
+    "q75": 0.516,
+    "p5": 0.162,
+    "p95": 0.559,
+    "max": 0.578,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

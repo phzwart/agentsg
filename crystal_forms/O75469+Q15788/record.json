@@ -1,0 +1,60 @@
+{
+ "identity": "O75469+Q15788",
+ "accessions": [
+  "O75469",
+  "Q15788"
+ ],
+ "deposition_group": null,
+ "name": "Nuclear receptor subfamily 1 group I member 2",
+ "clusters": [
+  {
+   "cluster_id": 566,
+   "n_members": 26,
+   "reference": "6TFI",
+   "reference_resolution": 1.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    85.356,
+    88.964,
+    105.658,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.813,
+    "q25": 0.647,
+    "q75": 0.967,
+    "p5": 0.512,
+    "p95": 1.167,
+    "max": 47.695,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.071,
+    "q25": 0.848,
+    "q75": 1.356,
+    "p5": 0.593,
+    "p95": 46.319,
+    "max": 48.921,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.576,
+    "q25": 0.495,
+    "q75": 0.704,
+    "p5": 0.387,
+    "p95": 20.723,
+    "max": 21.036,
+    "n_pairs": 325
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

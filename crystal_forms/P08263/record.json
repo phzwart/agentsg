@@ -1,0 +1,59 @@
+{
+ "identity": "P08263",
+ "accessions": [
+  "P08263"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione S-transferase A1",
+ "clusters": [
+  {
+   "cluster_id": 461,
+   "n_members": 31,
+   "reference": "6ATR",
+   "reference_resolution": 1.29,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    100.163,
+    94.487,
+    51.782,
+    90.0,
+    92.65,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.595,
+    "q25": 0.37,
+    "q75": 1.247,
+    "p5": 0.313,
+    "p95": 1.324,
+    "max": 1.468,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.044,
+    "q25": 0.702,
+    "q75": 1.364,
+    "p5": 0.429,
+    "p95": 2.159,
+    "max": 3.414,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.38,
+    "q25": 0.295,
+    "q75": 0.521,
+    "p5": 0.218,
+    "p95": 0.741,
+    "max": 0.844,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

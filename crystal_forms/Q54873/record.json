@@ -1,0 +1,60 @@
+{
+ "identity": "Q54873",
+ "accessions": [
+  "Q54873"
+ ],
+ "deposition_group": null,
+ "name": "Hyaluronate lyase",
+ "clusters": [
+  {
+   "cluster_id": 1082,
+   "n_members": 16,
+   "reference": "1N7O",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    84.066,
+    103.351,
+    101.603,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "no_shared_accession": 4,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 31.248,
+    "q25": 0.464,
+    "q75": 31.655,
+    "p5": 0.369,
+    "p95": 31.683,
+    "max": 31.693,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 31.038,
+    "q25": 0.909,
+    "q75": 31.674,
+    "p5": 0.388,
+    "p95": 32.036,
+    "max": 32.291,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 23.213,
+    "q25": 0.311,
+    "q75": 23.455,
+    "p5": 0.201,
+    "p95": 23.495,
+    "max": 23.519,
+    "n_pairs": 66
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P05230",
+ "accessions": [
+  "P05230"
+ ],
+ "deposition_group": null,
+ "name": "Fibroblast growth factor 1",
+ "clusters": [
+  {
+   "cluster_id": 210,
+   "n_members": 56,
+   "reference": "1RG8",
+   "reference_resolution": 1.1,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    74.26,
+    96.209,
+    108.956,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "different_space_group": 4,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.515,
+    "q25": 0.394,
+    "q75": 0.755,
+    "p5": 0.281,
+    "p95": 8.691,
+    "max": 8.707,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.01,
+    "q25": 0.661,
+    "q75": 2.183,
+    "p5": 0.327,
+    "p95": 8.748,
+    "max": 9.959,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.327,
+    "q25": 0.225,
+    "q75": 0.635,
+    "p5": 0.147,
+    "p95": 8.229,
+    "max": 9.324,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 0
+  }
+ ]
+}

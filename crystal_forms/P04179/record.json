@@ -1,0 +1,59 @@
+{
+ "identity": "P04179",
+ "accessions": [
+  "P04179"
+ ],
+ "deposition_group": null,
+ "name": "Superoxide dismutase [Mn], mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 410,
+   "n_members": 34,
+   "reference": "9NSJ",
+   "reference_resolution": 1.33,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    78.112,
+    78.112,
+    236.02,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 1.185,
+    "q25": 0.308,
+    "q75": 2.636,
+    "p5": 0.244,
+    "p95": 2.858,
+    "max": 2.927,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.199,
+    "q25": 0.653,
+    "q75": 1.895,
+    "p5": 0.269,
+    "p95": 2.526,
+    "max": 2.711,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.279,
+    "q25": 0.227,
+    "q75": 0.334,
+    "p5": 0.16,
+    "p95": 0.388,
+    "max": 0.466,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

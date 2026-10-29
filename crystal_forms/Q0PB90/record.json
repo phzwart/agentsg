@@ -1,0 +1,59 @@
+{
+ "identity": "Q0PB90",
+ "accessions": [
+  "Q0PB90"
+ ],
+ "deposition_group": null,
+ "name": "Periplasmic protein",
+ "clusters": [
+  {
+   "cluster_id": 1178,
+   "n_members": 15,
+   "reference": "5W39",
+   "reference_resolution": 2.48,
+   "space_group": "P 6 2 2",
+   "reference_cell": [
+    178.242,
+    178.242,
+    50.599,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.267,
+    "q25": 0.188,
+    "q75": 0.29,
+    "p5": 0.162,
+    "p95": 0.431,
+    "max": 0.434,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.436,
+    "q25": 0.327,
+    "q75": 0.72,
+    "p5": 0.199,
+    "p95": 0.978,
+    "max": 1.126,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.274,
+    "q25": 0.216,
+    "q75": 0.325,
+    "p5": 0.144,
+    "p95": 0.443,
+    "max": 0.496,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

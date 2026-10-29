@@ -1,0 +1,59 @@
+{
+ "identity": "P08200",
+ "accessions": [
+  "P08200"
+ ],
+ "deposition_group": null,
+ "name": "Isocitrate dehydrogenase [NADP]",
+ "clusters": [
+  {
+   "cluster_id": 443,
+   "n_members": 32,
+   "reference": "1PB1",
+   "reference_resolution": 1.7,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    103.654,
+    103.654,
+    149.391,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.515,
+    "q25": 0.427,
+    "q75": 0.639,
+    "p5": 0.251,
+    "p95": 2.428,
+    "max": 2.686,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.821,
+    "q25": 0.556,
+    "q75": 2.656,
+    "p5": 0.25,
+    "p95": 2.937,
+    "max": 3.374,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.412,
+    "q25": 0.327,
+    "q75": 0.561,
+    "p5": 0.182,
+    "p95": 1.194,
+    "max": 1.384,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

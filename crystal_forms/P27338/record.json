@@ -1,0 +1,60 @@
+{
+ "identity": "P27338",
+ "accessions": [
+  "P27338"
+ ],
+ "deposition_group": null,
+ "name": "Amine oxidase [flavin-containing] B",
+ "clusters": [
+  {
+   "cluster_id": 213,
+   "n_members": 56,
+   "reference": "9FJT",
+   "reference_resolution": 1.4,
+   "space_group": "C 2 2 2",
+   "reference_cell": [
+    130.92,
+    222.033,
+    85.879,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 54,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 0.195,
+    "q25": 0.166,
+    "q75": 0.235,
+    "p5": 0.117,
+    "p95": 0.921,
+    "max": 2.588,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.818,
+    "q25": 0.472,
+    "q75": 1.32,
+    "p5": 0.261,
+    "p95": 2.301,
+    "max": 3.943,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.215,
+    "q25": 0.178,
+    "q75": 0.258,
+    "p5": 0.132,
+    "p95": 0.384,
+    "max": 0.778,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

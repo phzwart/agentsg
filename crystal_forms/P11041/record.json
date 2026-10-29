@@ -1,0 +1,59 @@
+{
+ "identity": "P11041",
+ "accessions": [
+  "P11041"
+ ],
+ "deposition_group": null,
+ "name": "Polyhedrin",
+ "clusters": [
+  {
+   "cluster_id": 668,
+   "n_members": 23,
+   "reference": "5GQI",
+   "reference_resolution": 1.3,
+   "space_group": "I 2 3",
+   "reference_cell": [
+    102.86,
+    102.86,
+    102.86,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 1.824,
+    "q25": 1.796,
+    "q75": 1.859,
+    "p5": 1.79,
+    "p95": 21.571,
+    "max": 52.45,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.81,
+    "q25": 0.245,
+    "q75": 3.805,
+    "p5": 0.125,
+    "p95": 52.897,
+    "max": 53.41,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.778,
+    "q25": 0.172,
+    "q75": 3.677,
+    "p5": 0.103,
+    "p95": 19.633,
+    "max": 19.727,
+    "n_pairs": 253
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

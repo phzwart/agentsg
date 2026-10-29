@@ -1,0 +1,60 @@
+{
+ "identity": "P9WMC1",
+ "accessions": [
+  "P9WMC1"
+ ],
+ "deposition_group": null,
+ "name": "HTH-type transcriptional regulator EthR",
+ "clusters": [
+  {
+   "cluster_id": 122,
+   "n_members": 85,
+   "reference": "7NGG",
+   "reference_resolution": 1.17,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    121.814,
+    121.814,
+    33.587,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 83,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 3486,
+   "rmsd_to_reference": {
+    "median": 0.49,
+    "q25": 0.394,
+    "q75": 0.688,
+    "p5": 0.284,
+    "p95": 1.123,
+    "max": 1.778,
+    "n_pairs": 83
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.696,
+    "q25": 0.443,
+    "q75": 1.087,
+    "p5": 0.262,
+    "p95": 1.945,
+    "max": 3.079,
+    "n_pairs": 3486
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.299,
+    "q25": 0.237,
+    "q75": 0.413,
+    "p5": 0.18,
+    "p95": 0.658,
+    "max": 0.85,
+    "n_pairs": 3486
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

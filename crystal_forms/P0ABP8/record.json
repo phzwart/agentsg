@@ -1,0 +1,59 @@
+{
+ "identity": "P0ABP8",
+ "accessions": [
+  "P0ABP8"
+ ],
+ "deposition_group": null,
+ "name": "Purine nucleoside phosphorylase DeoD-type",
+ "clusters": [
+  {
+   "cluster_id": 1142,
+   "n_members": 15,
+   "reference": "9FPE",
+   "reference_resolution": 1.35,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    120.277,
+    120.277,
+    239.409,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.512,
+    "q25": 0.339,
+    "q75": 1.541,
+    "p5": 0.176,
+    "p95": 1.588,
+    "max": 1.628,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.481,
+    "q25": 0.781,
+    "q75": 1.663,
+    "p5": 0.268,
+    "p95": 2.433,
+    "max": 2.968,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.363,
+    "q25": 0.29,
+    "q75": 1.4,
+    "p5": 0.147,
+    "p95": 1.43,
+    "max": 1.448,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

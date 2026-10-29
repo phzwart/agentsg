@@ -1,0 +1,59 @@
+{
+ "identity": "P47929",
+ "accessions": [
+  "P47929"
+ ],
+ "deposition_group": null,
+ "name": "Galectin-7",
+ "clusters": [
+  {
+   "cluster_id": 874,
+   "n_members": 19,
+   "reference": "3ZXF",
+   "reference_resolution": 1.38,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.301,
+    65.11,
+    70.832,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 1.16,
+    "q25": 1.016,
+    "q75": 3.989,
+    "p5": 0.693,
+    "p95": 4.411,
+    "max": 4.421,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.557,
+    "q25": 0.955,
+    "q75": 4.747,
+    "p5": 0.496,
+    "p95": 5.146,
+    "max": 5.522,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.504,
+    "q25": 0.395,
+    "q75": 0.691,
+    "p5": 0.311,
+    "p95": 0.915,
+    "max": 1.051,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P38894",
+ "accessions": [
+  "P38894"
+ ],
+ "deposition_group": null,
+ "name": "Flocculation protein FLO5",
+ "clusters": [
+  {
+   "cluster_id": 1159,
+   "n_members": 15,
+   "reference": "2XJP",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.28,
+    61.82,
+    106.26,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.839,
+    "q25": 0.25,
+    "q75": 0.902,
+    "p5": 0.19,
+    "p95": 0.982,
+    "max": 0.992,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.043,
+    "q25": 0.744,
+    "q75": 1.645,
+    "p5": 0.262,
+    "p95": 2.608,
+    "max": 2.804,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.77,
+    "q25": 0.195,
+    "q75": 0.816,
+    "p5": 0.112,
+    "p95": 0.833,
+    "max": 0.845,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

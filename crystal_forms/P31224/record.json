@@ -1,0 +1,108 @@
+{
+ "identity": "P31224",
+ "accessions": [
+  "P31224"
+ ],
+ "deposition_group": null,
+ "name": "Multidrug efflux pump subunit AcrB",
+ "clusters": [
+  {
+   "cluster_id": 469,
+   "n_members": 31,
+   "reference": "4DX5",
+   "reference_resolution": 1.9,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    145.99,
+    161.72,
+    245.97,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.803,
+    "q25": 0.692,
+    "q75": 1.116,
+    "p5": 0.47,
+    "p95": 1.355,
+    "max": 1.966,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.166,
+    "q25": 0.814,
+    "q75": 1.432,
+    "p5": 0.528,
+    "p95": 2.007,
+    "max": 2.969,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.608,
+    "q25": 0.453,
+    "q75": 1.008,
+    "p5": 0.336,
+    "p95": 1.518,
+    "max": 1.767,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 641,
+   "n_members": 24,
+   "reference": "1T9X",
+   "reference_resolution": 3.08,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    144.967,
+    144.967,
+    519.372,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.887,
+    "q25": 0.693,
+    "q75": 1.446,
+    "p5": 0.359,
+    "p95": 2.326,
+    "max": 6.596,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.503,
+    "q25": 0.76,
+    "q75": 2.02,
+    "p5": 0.423,
+    "p95": 6.551,
+    "max": 6.762,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.083,
+    "q25": 0.6,
+    "q75": 1.356,
+    "p5": 0.354,
+    "p95": 6.504,
+    "max": 6.576,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

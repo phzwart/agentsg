@@ -1,0 +1,109 @@
+{
+ "identity": "P11797",
+ "accessions": [
+  "P11797"
+ ],
+ "deposition_group": null,
+ "name": "Chitinase B",
+ "clusters": [
+  {
+   "cluster_id": 1257,
+   "n_members": 14,
+   "reference": "3WD0",
+   "reference_resolution": 1.7,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    98.129,
+    98.129,
+    197.508,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11,
+    "different_space_group": 2
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.279,
+    "q75": 0.424,
+    "p5": 0.181,
+    "p95": 0.916,
+    "max": 1.375,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.329,
+    "q25": 0.274,
+    "q75": 0.4,
+    "p5": 0.194,
+    "p95": 1.326,
+    "max": 1.37,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.208,
+    "q75": 0.32,
+    "p5": 0.159,
+    "p95": 0.475,
+    "max": 0.558,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1522,
+   "n_members": 12,
+   "reference": "1GOI",
+   "reference_resolution": 1.45,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    55.904,
+    104.016,
+    186.524,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.769,
+    "q25": 0.595,
+    "q75": 0.978,
+    "p5": 0.375,
+    "p95": 1.371,
+    "max": 1.672,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.018,
+    "q25": 0.817,
+    "q75": 1.269,
+    "p5": 0.552,
+    "p95": 2.441,
+    "max": 2.812,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.516,
+    "q25": 0.43,
+    "q75": 0.587,
+    "p5": 0.32,
+    "p95": 0.709,
+    "max": 0.848,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

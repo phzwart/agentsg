@@ -1,0 +1,59 @@
+{
+ "identity": "A2RJT9",
+ "accessions": [
+  "A2RJT9"
+ ],
+ "deposition_group": null,
+ "name": "Dihydroorotate dehydrogenase A",
+ "clusters": [
+  {
+   "cluster_id": 1630,
+   "n_members": 11,
+   "reference": "1JUB",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    52.88,
+    108.25,
+    65.73,
+    90.0,
+    103.74,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.609,
+    "q25": 0.589,
+    "q75": 0.674,
+    "p5": 0.573,
+    "p95": 0.813,
+    "max": 0.861,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.534,
+    "q25": 0.274,
+    "q75": 0.634,
+    "p5": 0.163,
+    "p95": 1.406,
+    "max": 1.438,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.255,
+    "q25": 0.173,
+    "q75": 0.568,
+    "p5": 0.114,
+    "p95": 1.343,
+    "max": 1.367,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

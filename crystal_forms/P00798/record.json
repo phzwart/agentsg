@@ -1,0 +1,59 @@
+{
+ "identity": "P00798",
+ "accessions": [
+  "P00798"
+ ],
+ "deposition_group": null,
+ "name": "Penicillopepsin-1",
+ "clusters": [
+  {
+   "cluster_id": 1231,
+   "n_members": 14,
+   "reference": "1BXO",
+   "reference_resolution": 0.95,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    96.98,
+    46.65,
+    65.71,
+    90.0,
+    115.57,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.396,
+    "q25": 0.324,
+    "q75": 0.587,
+    "p5": 0.238,
+    "p95": 0.678,
+    "max": 0.744,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.348,
+    "q25": 0.224,
+    "q75": 0.468,
+    "p5": 0.139,
+    "p95": 0.62,
+    "max": 0.677,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.238,
+    "q25": 0.172,
+    "q75": 0.415,
+    "p5": 0.111,
+    "p95": 0.502,
+    "max": 0.53,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

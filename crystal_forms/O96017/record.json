@@ -1,0 +1,59 @@
+{
+ "identity": "O96017",
+ "accessions": [
+  "O96017"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase Chk2",
+ "clusters": [
+  {
+   "cluster_id": 406,
+   "n_members": 34,
+   "reference": "2YCF",
+   "reference_resolution": 1.77,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    90.465,
+    90.465,
+    93.639,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 1.197,
+    "q25": 0.58,
+    "q75": 1.291,
+    "p5": 0.409,
+    "p95": 2.391,
+    "max": 2.698,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.103,
+    "q25": 0.546,
+    "q75": 1.33,
+    "p5": 0.34,
+    "p95": 3.111,
+    "max": 3.589,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.903,
+    "q25": 0.393,
+    "q75": 1.038,
+    "p5": 0.26,
+    "p95": 1.938,
+    "max": 2.378,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

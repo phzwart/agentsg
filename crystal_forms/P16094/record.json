@@ -1,0 +1,59 @@
+{
+ "identity": "P16094",
+ "accessions": [
+  "P16094"
+ ],
+ "deposition_group": null,
+ "name": "Ribosome-inactivating protein momordin I",
+ "clusters": [
+  {
+   "cluster_id": 1058,
+   "n_members": 16,
+   "reference": "6LOZ",
+   "reference_resolution": 1.08,
+   "space_group": "H 3",
+   "reference_cell": [
+    131.167,
+    131.167,
+    37.145,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.65,
+    "q25": 0.442,
+    "q75": 0.79,
+    "p5": 0.143,
+    "p95": 0.842,
+    "max": 0.845,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.522,
+    "q25": 0.413,
+    "q75": 0.648,
+    "p5": 0.179,
+    "p95": 0.764,
+    "max": 0.792,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.395,
+    "q25": 0.289,
+    "q75": 0.525,
+    "p5": 0.153,
+    "p95": 0.637,
+    "max": 0.67,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

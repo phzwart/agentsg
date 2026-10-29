@@ -1,0 +1,59 @@
+{
+ "identity": "Q01693",
+ "accessions": [
+  "Q01693"
+ ],
+ "deposition_group": null,
+ "name": "Bacterial leucyl aminopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 737,
+   "n_members": 22,
+   "reference": "1RTQ",
+   "reference_resolution": 0.95,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    109.936,
+    109.936,
+    91.369,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.576,
+    "q25": 0.335,
+    "q75": 1.855,
+    "p5": 0.247,
+    "p95": 2.323,
+    "max": 2.332,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.276,
+    "q25": 1.103,
+    "q75": 2.893,
+    "p5": 0.357,
+    "p95": 4.684,
+    "max": 4.781,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.286,
+    "q25": 0.247,
+    "q75": 0.335,
+    "p5": 0.173,
+    "p95": 0.659,
+    "max": 0.857,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 3
+  }
+ ]
+}

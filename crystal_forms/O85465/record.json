@@ -1,0 +1,59 @@
+{
+ "identity": "O85465",
+ "accessions": [
+  "O85465"
+ ],
+ "deposition_group": null,
+ "name": "Endoglucanase 5A",
+ "clusters": [
+  {
+   "cluster_id": 1030,
+   "n_members": 16,
+   "reference": "7A3H",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.71,
+    69.57,
+    77.04,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.135,
+    "q25": 0.112,
+    "q75": 0.153,
+    "p5": 0.08,
+    "p95": 0.45,
+    "max": 0.926,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.396,
+    "q25": 0.249,
+    "q75": 0.643,
+    "p5": 0.142,
+    "p95": 1.456,
+    "max": 1.644,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.12,
+    "q25": 0.096,
+    "q75": 0.162,
+    "p5": 0.071,
+    "p95": 0.546,
+    "max": 0.574,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

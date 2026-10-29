@@ -1,0 +1,59 @@
+{
+ "identity": "P21524",
+ "accessions": [
+  "P21524"
+ ],
+ "deposition_group": null,
+ "name": "Ribonucleoside-diphosphate reductase large chain 1",
+ "clusters": [
+  {
+   "cluster_id": 987,
+   "n_members": 17,
+   "reference": "3K8T",
+   "reference_resolution": 2.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    107.528,
+    116.915,
+    64.065,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.64,
+    "q25": 0.552,
+    "q75": 0.724,
+    "p5": 0.451,
+    "p95": 1.163,
+    "max": 1.26,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.943,
+    "q25": 0.716,
+    "q75": 1.265,
+    "p5": 0.486,
+    "p95": 1.663,
+    "max": 1.94,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.597,
+    "q25": 0.493,
+    "q75": 0.752,
+    "p5": 0.348,
+    "p95": 1.074,
+    "max": 1.186,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

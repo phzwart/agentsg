@@ -1,0 +1,63 @@
+{
+ "identity": "P0A7Z4+P0A800+P0A8T7+P0A8V2+P13445",
+ "accessions": [
+  "P0A7Z4",
+  "P0A800",
+  "P0A8T7",
+  "P0A8V2",
+  "P13445"
+ ],
+ "deposition_group": null,
+ "name": "DNA-directed RNA polymerase subunit beta'",
+ "clusters": [
+  {
+   "cluster_id": 1684,
+   "n_members": 11,
+   "reference": "5IPL",
+   "reference_resolution": 3.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    131.71,
+    152.671,
+    226.698,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 3.463,
+    "q25": 2.945,
+    "q75": 3.6,
+    "p5": 1.461,
+    "p95": 3.873,
+    "max": 3.996,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.555,
+    "q25": 0.975,
+    "q75": 2.26,
+    "p5": 0.66,
+    "p95": 3.763,
+    "max": 4.154,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.743,
+    "q25": 0.629,
+    "q75": 0.823,
+    "p5": 0.345,
+    "p95": 0.917,
+    "max": 1.009,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

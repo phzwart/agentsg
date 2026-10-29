@@ -1,0 +1,62 @@
+{
+ "identity": "A0A8D0VN39+A0A8V0Z8P0+P63042+Q2XVP4",
+ "accessions": [
+  "A0A8D0VN39",
+  "A0A8V0Z8P0",
+  "P63042",
+  "Q2XVP4"
+ ],
+ "deposition_group": null,
+ "name": "Tubulin alpha-1B chain",
+ "clusters": [
+  {
+   "cluster_id": 1099,
+   "n_members": 15,
+   "reference": "9VZ1",
+   "reference_resolution": 2.38,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    105.41,
+    157.82,
+    180.64,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.229,
+    "q25": 0.171,
+    "q75": 0.291,
+    "p5": 0.133,
+    "p95": 0.394,
+    "max": 0.444,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.327,
+    "q25": 0.255,
+    "q75": 0.442,
+    "p5": 0.162,
+    "p95": 0.573,
+    "max": 0.749,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.148,
+    "q25": 0.119,
+    "q75": 0.164,
+    "p5": 0.091,
+    "p95": 0.187,
+    "max": 0.201,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

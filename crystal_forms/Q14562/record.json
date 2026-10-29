@@ -1,0 +1,60 @@
+{
+ "identity": "Q14562",
+ "accessions": [
+  "Q14562"
+ ],
+ "deposition_group": null,
+ "name": "ATP-dependent RNA helicase DHX8",
+ "clusters": [
+  {
+   "cluster_id": 1579,
+   "n_members": 12,
+   "reference": "28ZQ",
+   "reference_resolution": 2.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    66.242,
+    168.239,
+    136.787,
+    90.0,
+    92.49,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.532,
+    "q25": 0.441,
+    "q75": 0.608,
+    "p5": 0.398,
+    "p95": 0.754,
+    "max": 0.767,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.496,
+    "q25": 0.355,
+    "q75": 0.587,
+    "p5": 0.274,
+    "p95": 0.712,
+    "max": 0.762,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.316,
+    "q25": 0.258,
+    "q75": 0.496,
+    "p5": 0.184,
+    "p95": 0.589,
+    "max": 0.666,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

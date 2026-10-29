@@ -1,0 +1,59 @@
+{
+ "identity": "W8QF82",
+ "accessions": [
+  "W8QF82"
+ ],
+ "deposition_group": null,
+ "name": "Putative 6-phospho-beta-galactobiosidase",
+ "clusters": [
+  {
+   "cluster_id": 1808,
+   "n_members": 11,
+   "reference": "8B81",
+   "reference_resolution": 1.585,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    107.9,
+    68.38,
+    149.8,
+    90.0,
+    99.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.888,
+    "q25": 0.696,
+    "q75": 0.908,
+    "p5": 0.626,
+    "p95": 0.918,
+    "max": 0.919,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.4,
+    "q25": 0.293,
+    "q75": 2.125,
+    "p5": 0.085,
+    "p95": 2.336,
+    "max": 2.392,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.243,
+    "q25": 0.139,
+    "q75": 0.281,
+    "p5": 0.069,
+    "p95": 0.318,
+    "max": 0.331,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

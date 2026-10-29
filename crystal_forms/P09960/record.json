@@ -1,0 +1,59 @@
+{
+ "identity": "P09960",
+ "accessions": [
+  "P09960"
+ ],
+ "deposition_group": null,
+ "name": "Leukotriene A-4 hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 186,
+   "n_members": 61,
+   "reference": "3U9W",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    78.078,
+    86.799,
+    99.145,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 60,
+    "reference": 1
+   },
+   "n_pairs": 1830,
+   "rmsd_to_reference": {
+    "median": 0.579,
+    "q25": 0.406,
+    "q75": 0.892,
+    "p5": 0.259,
+    "p95": 1.315,
+    "max": 2.619,
+    "n_pairs": 60
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.409,
+    "q25": 0.301,
+    "q75": 0.581,
+    "p5": 0.199,
+    "p95": 1.194,
+    "max": 1.882,
+    "n_pairs": 1830
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.21,
+    "q25": 0.171,
+    "q75": 0.255,
+    "p5": 0.135,
+    "p95": 0.385,
+    "max": 0.548,
+    "n_pairs": 1830
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

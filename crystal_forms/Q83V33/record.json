@@ -1,0 +1,59 @@
+{
+ "identity": "Q83V33",
+ "accessions": [
+  "Q83V33"
+ ],
+ "deposition_group": null,
+ "name": "2-aminomuconate 6-semialdehyde dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1308,
+   "n_members": 14,
+   "reference": "5KLO",
+   "reference_resolution": 1.79,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    88.111,
+    141.724,
+    171.505,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.657,
+    "q25": 0.557,
+    "q75": 0.708,
+    "p5": 0.372,
+    "p95": 0.817,
+    "max": 0.821,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.147,
+    "q25": 0.684,
+    "q75": 2.05,
+    "p5": 0.337,
+    "p95": 3.461,
+    "max": 3.998,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.22,
+    "q25": 0.185,
+    "q75": 0.25,
+    "p5": 0.143,
+    "p95": 0.305,
+    "max": 0.361,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

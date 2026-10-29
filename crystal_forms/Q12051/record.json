@@ -1,0 +1,59 @@
+{
+ "identity": "Q12051",
+ "accessions": [
+  "Q12051"
+ ],
+ "deposition_group": null,
+ "name": "Geranylgeranyl pyrophosphate synthase BTS1",
+ "clusters": [
+  {
+   "cluster_id": 783,
+   "n_members": 21,
+   "reference": "2Z4V",
+   "reference_resolution": 1.86,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    47.164,
+    115.944,
+    128.404,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.505,
+    "q25": 0.433,
+    "q75": 0.692,
+    "p5": 0.32,
+    "p95": 0.971,
+    "max": 1.199,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.572,
+    "q25": 0.403,
+    "q75": 0.997,
+    "p5": 0.307,
+    "p95": 1.461,
+    "max": 1.608,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.303,
+    "q25": 0.247,
+    "q75": 0.446,
+    "p5": 0.212,
+    "p95": 0.75,
+    "max": 1.151,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

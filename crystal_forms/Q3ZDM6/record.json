@@ -1,0 +1,60 @@
+{
+ "identity": "Q3ZDM6",
+ "accessions": [
+  "Q3ZDM6"
+ ],
+ "deposition_group": null,
+ "name": "Xenobiotic reductase",
+ "clusters": [
+  {
+   "cluster_id": 1431,
+   "n_members": 13,
+   "reference": "4UTJ",
+   "reference_resolution": 1.07,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    57.98,
+    83.36,
+    156.36,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 7,
+    "placed": 5,
+    "reference": 1
+   },
+   "n_pairs": 15,
+   "rmsd_to_reference": {
+    "median": 0.138,
+    "q25": 0.116,
+    "q75": 0.189,
+    "p5": 0.081,
+    "p95": 0.195,
+    "max": 0.196,
+    "n_pairs": 5
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.272,
+    "q25": 0.204,
+    "q75": 0.351,
+    "p5": 0.124,
+    "p95": 0.401,
+    "max": 0.459,
+    "n_pairs": 15
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.155,
+    "q25": 0.074,
+    "q75": 0.171,
+    "p5": 0.06,
+    "p95": 0.177,
+    "max": 0.179,
+    "n_pairs": 15
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

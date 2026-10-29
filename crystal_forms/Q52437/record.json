@@ -1,0 +1,60 @@
+{
+ "identity": "Q52437",
+ "accessions": [
+  "Q52437"
+ ],
+ "deposition_group": null,
+ "name": "Ferredoxin reductase",
+ "clusters": [
+  {
+   "cluster_id": 689,
+   "n_members": 23,
+   "reference": "4H4R",
+   "reference_resolution": 1.4,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    98.456,
+    98.456,
+    170.721,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "no_shared_accession": 5,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.374,
+    "q25": 0.199,
+    "q75": 0.549,
+    "p5": 0.105,
+    "p95": 0.875,
+    "max": 0.893,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.392,
+    "q25": 0.261,
+    "q75": 0.518,
+    "p5": 0.147,
+    "p95": 0.953,
+    "max": 1.043,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.3,
+    "q25": 0.215,
+    "q75": 0.368,
+    "p5": 0.105,
+    "p95": 0.747,
+    "max": 0.777,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

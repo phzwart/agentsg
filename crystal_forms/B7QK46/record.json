@@ -1,0 +1,59 @@
+{
+ "identity": "B7QK46",
+ "accessions": [
+  "B7QK46"
+ ],
+ "deposition_group": null,
+ "name": "Glutaminyl-peptide cyclotransferase",
+ "clusters": [
+  {
+   "cluster_id": 1470,
+   "n_members": 12,
+   "reference": "4MHP",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    55.388,
+    71.146,
+    80.121,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.315,
+    "q25": 0.298,
+    "q75": 0.338,
+    "p5": 0.167,
+    "p95": 0.371,
+    "max": 0.388,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.33,
+    "q25": 0.246,
+    "q75": 0.378,
+    "p5": 0.164,
+    "p95": 0.498,
+    "max": 0.535,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.167,
+    "q75": 0.246,
+    "p5": 0.119,
+    "p95": 0.302,
+    "max": 0.31,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

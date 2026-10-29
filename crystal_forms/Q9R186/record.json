@@ -1,0 +1,59 @@
+{
+ "identity": "Q9R186",
+ "accessions": [
+  "Q9R186"
+ ],
+ "deposition_group": null,
+ "name": "Transient receptor potential cation channel subfamily V member 6",
+ "clusters": [
+  {
+   "cluster_id": 1200,
+   "n_members": 15,
+   "reference": "5WO7",
+   "reference_resolution": 3.246,
+   "space_group": "P 4 21 2",
+   "reference_cell": [
+    146.026,
+    146.026,
+    116.058,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.381,
+    "q25": 0.955,
+    "q75": 9.686,
+    "p5": 0.654,
+    "p95": 9.744,
+    "max": 9.759,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 9.425,
+    "q25": 1.084,
+    "q75": 9.808,
+    "p5": 0.674,
+    "p95": 9.937,
+    "max": 10.016,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 8.094,
+    "q25": 0.826,
+    "q75": 8.291,
+    "p5": 0.452,
+    "p95": 8.403,
+    "max": 8.506,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

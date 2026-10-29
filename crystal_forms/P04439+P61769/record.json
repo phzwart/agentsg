@@ -1,0 +1,109 @@
+{
+ "identity": "P04439+P61769",
+ "accessions": [
+  "P04439",
+  "P61769"
+ ],
+ "deposition_group": null,
+ "name": "HLA class I histocompatibility antigen, A alpha chain",
+ "clusters": [
+  {
+   "cluster_id": 457,
+   "n_members": 31,
+   "reference": "5C0G",
+   "reference_resolution": 1.37,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    55.03,
+    79.17,
+    58.29,
+    90.0,
+    115.54,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.992,
+    "q25": 0.668,
+    "q75": 50.947,
+    "p5": 0.393,
+    "p95": 51.322,
+    "max": 51.419,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 17.412,
+    "q25": 1.427,
+    "q75": 51.383,
+    "p5": 0.451,
+    "p95": 51.806,
+    "max": 52.042,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.443,
+    "q25": 0.372,
+    "q75": 0.527,
+    "p5": 0.229,
+    "p95": 4.861,
+    "max": 4.934,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1244,
+   "n_members": 14,
+   "reference": "2V2W",
+   "reference_resolution": 1.6,
+   "space_group": "P 1",
+   "reference_cell": [
+    50.772,
+    63.605,
+    74.988,
+    81.98,
+    76.26,
+    77.85
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.378,
+    "q25": 0.348,
+    "q75": 0.45,
+    "p5": 0.307,
+    "p95": 30.735,
+    "max": 30.833,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.507,
+    "q25": 0.411,
+    "q75": 30.323,
+    "p5": 0.339,
+    "p95": 30.62,
+    "max": 30.727,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.414,
+    "q25": 0.36,
+    "q75": 22.112,
+    "p5": 0.28,
+    "p95": 22.207,
+    "max": 22.28,
+    "n_pairs": 91
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

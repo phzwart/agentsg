@@ -1,0 +1,59 @@
+{
+ "identity": "D6D1V7",
+ "accessions": [
+  "D6D1V7"
+ ],
+ "deposition_group": null,
+ "name": "Glycosyl hydrolase family 71",
+ "clusters": [
+  {
+   "cluster_id": 562,
+   "n_members": 26,
+   "reference": "5M17",
+   "reference_resolution": 1.03,
+   "space_group": "I 4",
+   "reference_cell": [
+    108.576,
+    108.576,
+    67.746,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.172,
+    "q25": 0.111,
+    "q75": 0.32,
+    "p5": 0.072,
+    "p95": 0.386,
+    "max": 0.422,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.304,
+    "q25": 0.194,
+    "q75": 0.392,
+    "p5": 0.106,
+    "p95": 0.473,
+    "max": 0.559,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.151,
+    "q75": 0.344,
+    "p5": 0.089,
+    "p95": 0.408,
+    "max": 0.515,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

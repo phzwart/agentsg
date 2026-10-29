@@ -1,0 +1,60 @@
+{
+ "identity": "P19614",
+ "accessions": [
+  "P19614"
+ ],
+ "deposition_group": null,
+ "name": "Type-3 ice-structuring protein HPLC 12",
+ "clusters": [
+  {
+   "cluster_id": 445,
+   "n_members": 32,
+   "reference": "1HG7",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    32.218,
+    39.127,
+    44.694,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.053,
+    "q25": 0.958,
+    "q75": 2.023,
+    "p5": 0.671,
+    "p95": 2.103,
+    "max": 2.143,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.83,
+    "q25": 0.279,
+    "q75": 1.299,
+    "p5": 0.159,
+    "p95": 1.643,
+    "max": 2.193,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.183,
+    "q75": 0.276,
+    "p5": 0.115,
+    "p95": 0.36,
+    "max": 0.437,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

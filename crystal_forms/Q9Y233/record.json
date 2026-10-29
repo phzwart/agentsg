@@ -1,0 +1,157 @@
+{
+ "identity": "Q9Y233",
+ "accessions": [
+  "Q9Y233"
+ ],
+ "deposition_group": null,
+ "name": "cAMP and cAMP-inhibited cGMP 3',5'-cyclic phosphodiesterase 10A",
+ "clusters": [
+  {
+   "cluster_id": 24,
+   "n_members": 239,
+   "reference": "5SFE",
+   "reference_resolution": 1.86,
+   "space_group": "H 3",
+   "reference_cell": [
+    135.85,
+    135.85,
+    235.666,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 238,
+    "reference": 1
+   },
+   "n_pairs": 28441,
+   "rmsd_to_reference": {
+    "median": 0.396,
+    "q25": 0.318,
+    "q75": 0.515,
+    "p5": 0.244,
+    "p95": 0.684,
+    "max": 12.244,
+    "n_pairs": 238
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.526,
+    "q25": 0.346,
+    "q75": 0.74,
+    "p5": 0.222,
+    "p95": 1.065,
+    "max": 12.488,
+    "n_pairs": 28441
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.215,
+    "q25": 0.182,
+    "q75": 0.253,
+    "p5": 0.141,
+    "p95": 0.337,
+    "max": 11.502,
+    "n_pairs": 28441
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 112,
+   "n_members": 91,
+   "reference": "2OUR",
+   "reference_resolution": 1.45,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.296,
+    82.285,
+    153.999,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 90,
+    "reference": 1
+   },
+   "n_pairs": 4095,
+   "rmsd_to_reference": {
+    "median": 1.502,
+    "q25": 1.264,
+    "q75": 2.032,
+    "p5": 0.875,
+    "p95": 11.528,
+    "max": 36.877,
+    "n_pairs": 90
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.005,
+    "q25": 1.424,
+    "q75": 11.648,
+    "p5": 0.538,
+    "p95": 27.499,
+    "max": 57.621,
+    "n_pairs": 4095
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.445,
+    "q25": 0.384,
+    "q75": 11.465,
+    "p5": 0.271,
+    "p95": 11.588,
+    "max": 23.458,
+    "n_pairs": 4095
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 943,
+   "n_members": 18,
+   "reference": "5SI1",
+   "reference_resolution": 1.75,
+   "space_group": "I 2 3",
+   "reference_cell": [
+    142.221,
+    142.221,
+    142.221,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.231,
+    "q25": 0.208,
+    "q75": 0.296,
+    "p5": 0.116,
+    "p95": 0.424,
+    "max": 0.557,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.736,
+    "q25": 0.412,
+    "q75": 1.133,
+    "p5": 0.25,
+    "p95": 2.017,
+    "max": 3.285,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.17,
+    "q75": 0.232,
+    "p5": 0.117,
+    "p95": 0.279,
+    "max": 0.371,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P19120",
+ "accessions": [
+  "P19120"
+ ],
+ "deposition_group": null,
+ "name": "Heat shock cognate 71 kDa protein",
+ "clusters": [
+  {
+   "cluster_id": 638,
+   "n_members": 24,
+   "reference": "1BA1",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    143.8,
+    64.1,
+    46.1,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.594,
+    "q25": 0.294,
+    "q75": 0.634,
+    "p5": 0.207,
+    "p95": 0.68,
+    "max": 1.135,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.666,
+    "q25": 0.299,
+    "q75": 0.744,
+    "p5": 0.178,
+    "p95": 0.96,
+    "max": 1.24,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.363,
+    "q25": 0.213,
+    "q75": 0.406,
+    "p5": 0.156,
+    "p95": 0.462,
+    "max": 0.549,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P49841",
+ "accessions": [
+  "P49841"
+ ],
+ "deposition_group": null,
+ "name": "Glycogen synthase kinase-3 beta",
+ "clusters": [
+  {
+   "cluster_id": 273,
+   "n_members": 46,
+   "reference": "1J1B",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    82.8,
+    86.3,
+    178.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 44,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 990,
+   "rmsd_to_reference": {
+    "median": 0.843,
+    "q25": 0.75,
+    "q75": 1.215,
+    "p5": 0.539,
+    "p95": 8.04,
+    "max": 8.159,
+    "n_pairs": 44
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.1,
+    "q25": 0.793,
+    "q75": 5.916,
+    "p5": 0.489,
+    "p95": 7.899,
+    "max": 8.9,
+    "n_pairs": 990
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.592,
+    "q25": 0.462,
+    "q75": 0.707,
+    "p5": 0.323,
+    "p95": 0.856,
+    "max": 1.147,
+    "n_pairs": 990
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q72498",
+ "accessions": [
+  "Q72498"
+ ],
+ "deposition_group": null,
+ "name": "Pepsin A",
+ "clusters": [
+  {
+   "cluster_id": 1775,
+   "n_members": 11,
+   "reference": "3VQ7",
+   "reference_resolution": 1.63,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.284,
+    61.658,
+    82.017,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.488,
+    "q25": 0.459,
+    "q75": 0.567,
+    "p5": 0.294,
+    "p95": 0.784,
+    "max": 0.792,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.624,
+    "q25": 0.435,
+    "q75": 0.804,
+    "p5": 0.297,
+    "p95": 1.294,
+    "max": 1.332,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.347,
+    "q25": 0.258,
+    "q75": 0.415,
+    "p5": 0.206,
+    "p95": 0.482,
+    "max": 0.512,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "identity": "A0AA82WPB4",
+ "accessions": [
+  "A0AA82WPB4"
+ ],
+ "deposition_group": null,
+ "name": "Xenorhodopsin",
+ "clusters": [
+  {
+   "cluster_id": 1465,
+   "n_members": 12,
+   "reference": null,
+   "reference_resolution": null,
+   "space_group": null,
+   "reference_cell": null,
+   "status_counts": {
+    "no_reference": 12
+   },
+   "n_pairs": 0,
+   "rmsd_to_reference": null,
+   "pairwise_frame_rmsd": null,
+   "pairwise_fit_rmsd": null,
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q42561",
+ "accessions": [
+  "Q42561"
+ ],
+ "deposition_group": null,
+ "name": "Oleoyl-acyl carrier protein thioesterase 1, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 56,
+   "n_members": 136,
+   "reference": "7HQW",
+   "reference_resolution": 1.481,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    99.428,
+    99.392,
+    129.862,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 132,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 8778,
+   "rmsd_to_reference": {
+    "median": 0.54,
+    "q25": 0.433,
+    "q75": 0.625,
+    "p5": 0.307,
+    "p95": 0.999,
+    "max": 2.188,
+    "n_pairs": 132
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.456,
+    "q25": 0.37,
+    "q75": 0.596,
+    "p5": 0.27,
+    "p95": 1.499,
+    "max": 3.012,
+    "n_pairs": 8778
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.356,
+    "q25": 0.29,
+    "q75": 0.441,
+    "p5": 0.215,
+    "p95": 0.708,
+    "max": 1.051,
+    "n_pairs": 8778
+   },
+   "n_low_margin": 132,
+   "n_via_neighbour": 0
+  }
+ ]
+}

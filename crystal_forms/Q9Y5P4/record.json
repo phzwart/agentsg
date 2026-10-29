@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y5P4",
+ "accessions": [
+  "Q9Y5P4"
+ ],
+ "deposition_group": null,
+ "name": "Ceramide transfer protein",
+ "clusters": [
+  {
+   "cluster_id": 1805,
+   "n_members": 11,
+   "reference": "5ZYK",
+   "reference_resolution": 1.55,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    60.13,
+    60.13,
+    153.59,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.706,
+    "q25": 0.316,
+    "q75": 1.782,
+    "p5": 0.136,
+    "p95": 1.953,
+    "max": 1.965,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.699,
+    "q25": 0.309,
+    "q75": 1.78,
+    "p5": 0.178,
+    "p95": 1.93,
+    "max": 1.988,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.392,
+    "q25": 0.25,
+    "q75": 0.467,
+    "p5": 0.138,
+    "p95": 0.551,
+    "max": 0.603,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

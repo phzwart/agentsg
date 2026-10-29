@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0B4WYC6",
+ "accessions": [
+  "A0A0B4WYC6"
+ ],
+ "deposition_group": null,
+ "name": "NS3 protease",
+ "clusters": [
+  {
+   "cluster_id": 451,
+   "n_members": 31,
+   "reference": "6DIQ",
+   "reference_resolution": 1.579,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    55.455,
+    58.482,
+    59.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.228,
+    "q25": 0.201,
+    "q75": 0.273,
+    "p5": 0.161,
+    "p95": 0.322,
+    "max": 0.359,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.246,
+    "q25": 0.194,
+    "q75": 0.309,
+    "p5": 0.132,
+    "p95": 0.429,
+    "max": 0.503,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.166,
+    "q25": 0.142,
+    "q75": 0.199,
+    "p5": 0.105,
+    "p95": 0.246,
+    "max": 0.316,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

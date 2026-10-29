@@ -1,0 +1,110 @@
+{
+ "identity": "P01116+P62937",
+ "accessions": [
+  "P01116",
+  "P62937"
+ ],
+ "deposition_group": null,
+ "name": "Peptidyl-prolyl cis-trans isomerase A",
+ "clusters": [
+  {
+   "cluster_id": 813,
+   "n_members": 20,
+   "reference": "8TBK",
+   "reference_resolution": 1.26,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.47,
+    83.57,
+    126.21,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 1.492,
+    "q25": 0.676,
+    "q75": 1.749,
+    "p5": 0.242,
+    "p95": 2.095,
+    "max": 2.246,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.819,
+    "q25": 1.013,
+    "q75": 2.217,
+    "p5": 0.337,
+    "p95": 3.282,
+    "max": 3.747,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.451,
+    "q25": 0.363,
+    "q75": 0.523,
+    "p5": 0.223,
+    "p95": 0.643,
+    "max": 0.814,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1038,
+   "n_members": 16,
+   "reference": "9E3S",
+   "reference_resolution": 1.08,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    47.92,
+    101.5,
+    66.8,
+    90.0,
+    90.64,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.46,
+    "q25": 0.377,
+    "q75": 0.552,
+    "p5": 0.3,
+    "p95": 2.492,
+    "max": 3.76,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.578,
+    "q25": 0.401,
+    "q75": 1.617,
+    "p5": 0.31,
+    "p95": 3.82,
+    "max": 4.136,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.312,
+    "q25": 0.269,
+    "q75": 0.353,
+    "p5": 0.191,
+    "p95": 0.491,
+    "max": 0.534,
+    "n_pairs": 105
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

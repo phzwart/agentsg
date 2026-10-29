@@ -1,0 +1,59 @@
+{
+ "identity": "A6V1E4",
+ "accessions": [
+  "A6V1E4"
+ ],
+ "deposition_group": null,
+ "name": "Acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1633,
+   "n_members": 11,
+   "reference": "5DEM",
+   "reference_resolution": 1.81,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    79.031,
+    82.176,
+    220.515,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.951,
+    "q25": 0.67,
+    "q75": 1.03,
+    "p5": 0.454,
+    "p95": 1.14,
+    "max": 1.165,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.809,
+    "q25": 0.64,
+    "q75": 0.92,
+    "p5": 0.468,
+    "p95": 1.069,
+    "max": 1.079,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.658,
+    "q25": 0.428,
+    "q75": 0.725,
+    "p5": 0.198,
+    "p95": 0.876,
+    "max": 0.926,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

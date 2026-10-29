@@ -1,0 +1,59 @@
+{
+ "identity": "P23919",
+ "accessions": [
+  "P23919"
+ ],
+ "deposition_group": null,
+ "name": "Thymidylate kinase",
+ "clusters": [
+  {
+   "cluster_id": 871,
+   "n_members": 19,
+   "reference": "1NN5",
+   "reference_resolution": 1.5,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    101.1,
+    101.1,
+    49.8,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.501,
+    "q25": 0.307,
+    "q75": 0.561,
+    "p5": 0.249,
+    "p95": 0.607,
+    "max": 0.607,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.585,
+    "q25": 0.456,
+    "q75": 0.716,
+    "p5": 0.293,
+    "p95": 1.033,
+    "max": 1.267,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.424,
+    "q25": 0.339,
+    "q75": 0.506,
+    "p5": 0.157,
+    "p95": 0.62,
+    "max": 0.712,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

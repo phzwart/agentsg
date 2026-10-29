@@ -1,0 +1,207 @@
+{
+ "identity": "P00183",
+ "accessions": [
+  "P00183"
+ ],
+ "deposition_group": null,
+ "name": "Camphor 5-monooxygenase",
+ "clusters": [
+  {
+   "cluster_id": 422,
+   "n_members": 33,
+   "reference": "4L4E",
+   "reference_resolution": 1.261,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    36.644,
+    103.594,
+    106.082,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.645,
+    "q25": 0.493,
+    "q75": 0.699,
+    "p5": 0.243,
+    "p95": 0.828,
+    "max": 1.689,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.382,
+    "q25": 0.244,
+    "q75": 0.883,
+    "p5": 0.157,
+    "p95": 1.545,
+    "max": 1.821,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.176,
+    "q75": 0.337,
+    "p5": 0.134,
+    "p95": 0.391,
+    "max": 0.498,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 567,
+   "n_members": 26,
+   "reference": "2A1O",
+   "reference_resolution": 1.55,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    67.26,
+    62.18,
+    95.22,
+    90.0,
+    90.53,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.272,
+    "q25": 0.233,
+    "q75": 0.325,
+    "p5": 0.203,
+    "p95": 0.542,
+    "max": 0.643,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.586,
+    "q25": 0.439,
+    "q75": 0.772,
+    "p5": 0.25,
+    "p95": 1.118,
+    "max": 1.447,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.255,
+    "q25": 0.208,
+    "q75": 0.298,
+    "p5": 0.146,
+    "p95": 0.39,
+    "max": 0.44,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 755,
+   "n_members": 21,
+   "reference": "1RE9",
+   "reference_resolution": 1.45,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    64.565,
+    75.941,
+    92.403,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.406,
+    "q25": 0.59,
+    "q75": 1.529,
+    "p5": 0.402,
+    "p95": 1.558,
+    "max": 1.576,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.2,
+    "q25": 0.713,
+    "q75": 1.522,
+    "p5": 0.443,
+    "p95": 1.896,
+    "max": 2.216,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.73,
+    "q25": 0.368,
+    "q75": 1.092,
+    "p5": 0.244,
+    "p95": 1.206,
+    "max": 1.323,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1115,
+   "n_members": 15,
+   "reference": "2ZWU",
+   "reference_resolution": 1.3,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    63.608,
+    63.608,
+    250.389,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.347,
+    "q25": 0.247,
+    "q75": 1.211,
+    "p5": 0.086,
+    "p95": 3.336,
+    "max": 3.575,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.985,
+    "q25": 0.451,
+    "q75": 2.774,
+    "p5": 0.171,
+    "p95": 3.471,
+    "max": 3.599,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.286,
+    "q25": 0.191,
+    "q75": 0.319,
+    "p5": 0.119,
+    "p95": 0.372,
+    "max": 0.392,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

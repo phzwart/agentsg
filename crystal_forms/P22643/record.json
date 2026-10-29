@@ -1,0 +1,60 @@
+{
+ "identity": "P22643",
+ "accessions": [
+  "P22643"
+ ],
+ "deposition_group": null,
+ "name": "Haloalkane dehalogenase",
+ "clusters": [
+  {
+   "cluster_id": 989,
+   "n_members": 17,
+   "reference": "1B6G",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    92.18,
+    72.029,
+    40.909,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15,
+    "different_space_group": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.559,
+    "q25": 0.44,
+    "q75": 0.616,
+    "p5": 0.297,
+    "p95": 0.75,
+    "max": 0.809,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.69,
+    "q25": 0.291,
+    "q75": 0.949,
+    "p5": 0.203,
+    "p95": 1.181,
+    "max": 1.286,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.291,
+    "q25": 0.193,
+    "q75": 0.332,
+    "p5": 0.143,
+    "p95": 0.372,
+    "max": 0.396,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P13423",
+ "accessions": [
+  "P13423"
+ ],
+ "deposition_group": null,
+ "name": "Protective antigen",
+ "clusters": [
+  {
+   "cluster_id": 1383,
+   "n_members": 13,
+   "reference": "4H2A",
+   "reference_resolution": 1.62,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.05,
+    94.09,
+    117.39,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.252,
+    "q25": 1.201,
+    "q75": 1.283,
+    "p5": 1.019,
+    "p95": 1.399,
+    "max": 1.42,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.315,
+    "q25": 0.745,
+    "q75": 1.956,
+    "p5": 0.355,
+    "p95": 2.973,
+    "max": 3.508,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.486,
+    "q25": 0.372,
+    "q75": 0.636,
+    "p5": 0.291,
+    "p95": 0.768,
+    "max": 0.829,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q99IB8",
+ "accessions": [
+  "Q99IB8"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: Core protein precursor",
+ "clusters": [
+  {
+   "cluster_id": 693,
+   "n_members": 23,
+   "reference": "4WTL",
+   "reference_resolution": 2.0,
+   "space_group": "P 65",
+   "reference_cell": [
+    140.41,
+    140.41,
+    92.08,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.73,
+    "q25": 0.482,
+    "q75": 5.63,
+    "p5": 0.273,
+    "p95": 5.903,
+    "max": 6.057,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.494,
+    "q25": 0.687,
+    "q75": 5.719,
+    "p5": 0.326,
+    "p95": 6.083,
+    "max": 6.344,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.915,
+    "q25": 0.413,
+    "q75": 5.57,
+    "p5": 0.214,
+    "p95": 5.888,
+    "max": 6.008,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

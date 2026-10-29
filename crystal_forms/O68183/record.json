@@ -1,0 +1,59 @@
+{
+ "identity": "O68183",
+ "accessions": [
+  "O68183"
+ ],
+ "deposition_group": null,
+ "name": "APH(2'')-Id",
+ "clusters": [
+  {
+   "cluster_id": 362,
+   "n_members": 37,
+   "reference": "9QMR",
+   "reference_resolution": 1.78,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    75.286,
+    65.43,
+    77.475,
+    90.0,
+    91.35,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.572,
+    "q25": 0.416,
+    "q75": 0.843,
+    "p5": 0.335,
+    "p95": 4.239,
+    "max": 10.753,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.026,
+    "q25": 0.638,
+    "q75": 2.917,
+    "p5": 0.423,
+    "p95": 7.256,
+    "max": 10.995,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.428,
+    "q25": 0.358,
+    "q75": 0.613,
+    "p5": 0.275,
+    "p95": 1.024,
+    "max": 1.242,
+    "n_pairs": 666
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  }
+ ]
+}

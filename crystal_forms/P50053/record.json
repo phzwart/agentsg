@@ -1,0 +1,59 @@
+{
+ "identity": "P50053",
+ "accessions": [
+  "P50053"
+ ],
+ "deposition_group": null,
+ "name": "Ketohexokinase",
+ "clusters": [
+  {
+   "cluster_id": 503,
+   "n_members": 29,
+   "reference": "9FHD",
+   "reference_resolution": 1.845,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    82.964,
+    86.345,
+    136.907,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.804,
+    "q25": 0.699,
+    "q75": 1.176,
+    "p5": 0.422,
+    "p95": 1.792,
+    "max": 2.203,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.822,
+    "q25": 0.588,
+    "q75": 1.126,
+    "p5": 0.357,
+    "p95": 1.538,
+    "max": 1.954,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.313,
+    "q25": 0.268,
+    "q75": 0.377,
+    "p5": 0.212,
+    "p95": 0.464,
+    "max": 0.582,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

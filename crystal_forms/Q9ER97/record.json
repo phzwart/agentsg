@@ -1,0 +1,60 @@
+{
+ "identity": "Q9ER97",
+ "accessions": [
+  "Q9ER97"
+ ],
+ "deposition_group": null,
+ "name": "Neuroglobin",
+ "clusters": [
+  {
+   "cluster_id": 387,
+   "n_members": 36,
+   "reference": "1Q1F",
+   "reference_resolution": 1.5,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    86.973,
+    86.973,
+    110.815,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 34,
+    "too_few_paired_atoms": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.601,
+    "q25": 0.481,
+    "q75": 0.737,
+    "p5": 0.435,
+    "p95": 1.046,
+    "max": 1.136,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.014,
+    "q25": 0.74,
+    "q75": 1.353,
+    "p5": 0.427,
+    "p95": 2.15,
+    "max": 3.425,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.501,
+    "q25": 0.371,
+    "q75": 0.652,
+    "p5": 0.27,
+    "p95": 0.85,
+    "max": 1.012,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

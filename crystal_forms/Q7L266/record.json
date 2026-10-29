@@ -1,0 +1,59 @@
+{
+ "identity": "Q7L266",
+ "accessions": [
+  "Q7L266"
+ ],
+ "deposition_group": null,
+ "name": "Isoaspartyl peptidase/L-asparaginase",
+ "clusters": [
+  {
+   "cluster_id": 1593,
+   "n_members": 12,
+   "reference": "4O0C",
+   "reference_resolution": 1.5,
+   "space_group": "P 65",
+   "reference_cell": [
+    59.213,
+    59.213,
+    297.793,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.55,
+    "q25": 0.489,
+    "q75": 0.677,
+    "p5": 0.437,
+    "p95": 1.143,
+    "max": 1.488,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.585,
+    "q25": 0.47,
+    "q75": 0.867,
+    "p5": 0.392,
+    "p95": 1.364,
+    "max": 1.675,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.433,
+    "q25": 0.376,
+    "q75": 0.499,
+    "p5": 0.308,
+    "p95": 0.649,
+    "max": 0.923,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

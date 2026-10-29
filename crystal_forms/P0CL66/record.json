@@ -1,0 +1,60 @@
+{
+ "identity": "P0CL66",
+ "accessions": [
+  "P0CL66"
+ ],
+ "deposition_group": null,
+ "name": "Outer surface protein A",
+ "clusters": [
+  {
+   "cluster_id": 544,
+   "n_members": 27,
+   "reference": "2I5V",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    33.261,
+    54.705,
+    66.509,
+    90.0,
+    99.91,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.53,
+    "q25": 0.37,
+    "q75": 1.54,
+    "p5": 0.333,
+    "p95": 5.535,
+    "max": 5.554,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.463,
+    "q25": 0.448,
+    "q75": 3.8,
+    "p5": 0.271,
+    "p95": 5.537,
+    "max": 6.066,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.144,
+    "q25": 0.368,
+    "q75": 3.772,
+    "p5": 0.204,
+    "p95": 5.476,
+    "max": 5.888,
+    "n_pairs": 325
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

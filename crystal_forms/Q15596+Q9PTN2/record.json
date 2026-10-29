@@ -1,0 +1,61 @@
+{
+ "identity": "Q15596+Q9PTN2",
+ "accessions": [
+  "Q15596",
+  "Q9PTN2"
+ ],
+ "deposition_group": null,
+ "name": "Vitamin D3 receptor A",
+ "clusters": [
+  {
+   "cluster_id": 449,
+   "n_members": 32,
+   "reference": "9EZ2",
+   "reference_resolution": 1.8,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    66.14,
+    66.14,
+    263.74,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.101,
+    "q25": 0.455,
+    "q75": 1.965,
+    "p5": 0.229,
+    "p95": 3.109,
+    "max": 3.361,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.41,
+    "q25": 0.765,
+    "q75": 2.198,
+    "p5": 0.331,
+    "p95": 3.281,
+    "max": 4.29,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.435,
+    "q25": 0.328,
+    "q75": 0.502,
+    "p5": 0.182,
+    "p95": 0.594,
+    "max": 0.758,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

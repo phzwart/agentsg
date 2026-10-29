@@ -1,0 +1,60 @@
+{
+ "identity": "P0AEX9+Q07820",
+ "accessions": [
+  "P0AEX9",
+  "Q07820"
+ ],
+ "deposition_group": null,
+ "name": "Maltose/maltodextrin-binding periplasmic protein",
+ "clusters": [
+  {
+   "cluster_id": 764,
+   "n_members": 21,
+   "reference": "8SVY",
+   "reference_resolution": 1.47,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    99.04,
+    137.032,
+    38.715,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.873,
+    "q25": 1.632,
+    "q75": 2.303,
+    "p5": 1.113,
+    "p95": 3.001,
+    "max": 6.884,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.022,
+    "q25": 1.454,
+    "q75": 2.639,
+    "p5": 0.799,
+    "p95": 3.239,
+    "max": 3.638,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.412,
+    "q25": 0.936,
+    "q75": 1.766,
+    "p5": 0.233,
+    "p95": 2.964,
+    "max": 3.199,
+    "n_pairs": 210
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

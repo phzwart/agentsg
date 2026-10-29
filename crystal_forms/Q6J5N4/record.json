@@ -1,0 +1,59 @@
+{
+ "identity": "Q6J5N4",
+ "accessions": [
+  "Q6J5N4"
+ ],
+ "deposition_group": null,
+ "name": "Fluoride-specific ion channel FluC",
+ "clusters": [
+  {
+   "cluster_id": 1587,
+   "n_members": 12,
+   "reference": "5KBN",
+   "reference_resolution": 2.48,
+   "space_group": "P 41",
+   "reference_cell": [
+    87.655,
+    87.655,
+    143.625,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.574,
+    "q25": 0.518,
+    "q75": 0.99,
+    "p5": 0.35,
+    "p95": 1.286,
+    "max": 1.529,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.758,
+    "q25": 0.579,
+    "q75": 1.015,
+    "p5": 0.399,
+    "p95": 1.396,
+    "max": 1.788,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.257,
+    "q25": 0.22,
+    "q75": 0.296,
+    "p5": 0.183,
+    "p95": 0.339,
+    "max": 0.414,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

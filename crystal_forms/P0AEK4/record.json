@@ -1,0 +1,59 @@
+{
+ "identity": "P0AEK4",
+ "accessions": [
+  "P0AEK4"
+ ],
+ "deposition_group": null,
+ "name": "Enoyl-[acyl-carrier-protein] reductase [NADH] FabI",
+ "clusters": [
+  {
+   "cluster_id": 726,
+   "n_members": 22,
+   "reference": "7UMW",
+   "reference_resolution": 1.54,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    79.54,
+    79.54,
+    323.68,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.229,
+    "q25": 0.85,
+    "q75": 1.567,
+    "p5": 0.375,
+    "p95": 2.284,
+    "max": 2.446,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.927,
+    "q25": 0.613,
+    "q75": 1.265,
+    "p5": 0.356,
+    "p95": 1.955,
+    "max": 2.683,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.354,
+    "q25": 0.267,
+    "q75": 0.528,
+    "p5": 0.22,
+    "p95": 1.028,
+    "max": 1.103,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

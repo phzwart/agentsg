@@ -1,0 +1,59 @@
+{
+ "identity": "Q0INZ4",
+ "accessions": [
+  "Q0INZ4"
+ ],
+ "deposition_group": null,
+ "name": "Probable solanesyl-diphosphate synthase 3, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 1754,
+   "n_members": 11,
+   "reference": "9JV9",
+   "reference_resolution": 1.655,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.673,
+    90.179,
+    128.586,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.391,
+    "q25": 0.343,
+    "q75": 1.134,
+    "p5": 0.236,
+    "p95": 1.448,
+    "max": 1.468,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.44,
+    "q25": 0.325,
+    "q75": 1.607,
+    "p5": 0.227,
+    "p95": 1.781,
+    "max": 1.82,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.346,
+    "q25": 0.261,
+    "q75": 0.773,
+    "p5": 0.19,
+    "p95": 0.92,
+    "max": 0.985,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

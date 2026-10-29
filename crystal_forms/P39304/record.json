@@ -1,0 +1,59 @@
+{
+ "identity": "P39304",
+ "accessions": [
+  "P39304"
+ ],
+ "deposition_group": null,
+ "name": "3-keto-L-gulonate-6-phosphate decarboxylase UlaD",
+ "clusters": [
+  {
+   "cluster_id": 1275,
+   "n_members": 14,
+   "reference": "1Q6O",
+   "reference_resolution": 1.202,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    123.24,
+    41.775,
+    90.958,
+    90.0,
+    97.15,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.378,
+    "q25": 0.321,
+    "q75": 0.399,
+    "p5": 0.223,
+    "p95": 0.567,
+    "max": 0.772,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.443,
+    "q25": 0.313,
+    "q75": 0.526,
+    "p5": 0.213,
+    "p95": 0.617,
+    "max": 0.811,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.274,
+    "q25": 0.225,
+    "q75": 0.362,
+    "p5": 0.181,
+    "p95": 0.431,
+    "max": 0.491,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q9XAL8",
+ "accessions": [
+  "Q9XAL8"
+ ],
+ "deposition_group": null,
+ "name": "Copper oxidase",
+ "clusters": [
+  {
+   "cluster_id": 942,
+   "n_members": 18,
+   "reference": "8U8P",
+   "reference_resolution": 2.2,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    177.221,
+    177.221,
+    177.399,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 7,
+    "different_space_group": 10,
+    "reference": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.826,
+    "q25": 0.411,
+    "q75": 1.506,
+    "p5": 0.251,
+    "p95": 11.977,
+    "max": 16.242,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.059,
+    "q25": 0.603,
+    "q75": 5.76,
+    "p5": 0.394,
+    "p95": 17.422,
+    "max": 17.674,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.393,
+    "q25": 0.306,
+    "q75": 0.467,
+    "p5": 0.191,
+    "p95": 0.564,
+    "max": 0.59,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

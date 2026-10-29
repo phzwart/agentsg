@@ -1,0 +1,59 @@
+{
+ "identity": "Q13126",
+ "accessions": [
+  "Q13126"
+ ],
+ "deposition_group": null,
+ "name": "S-methyl-5'-thioadenosine phosphorylase",
+ "clusters": [
+  {
+   "cluster_id": 1575,
+   "n_members": 12,
+   "reference": "5TC6",
+   "reference_resolution": 1.48,
+   "space_group": "P 3 2 1",
+   "reference_cell": [
+    122.76,
+    122.76,
+    44.484,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.651,
+    "q25": 0.497,
+    "q75": 0.951,
+    "p5": 0.321,
+    "p95": 1.679,
+    "max": 1.964,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.773,
+    "q25": 0.596,
+    "q75": 0.927,
+    "p5": 0.392,
+    "p95": 1.262,
+    "max": 1.357,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.285,
+    "q25": 0.232,
+    "q75": 0.454,
+    "p5": 0.181,
+    "p95": 0.531,
+    "max": 0.645,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

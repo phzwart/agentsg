@@ -1,0 +1,60 @@
+{
+ "identity": "Q7SID2+Q7SID3",
+ "accessions": [
+  "Q7SID2",
+  "Q7SID3"
+ ],
+ "deposition_group": null,
+ "name": "Cobalt-containing nitrile hydratase subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 790,
+   "n_members": 21,
+   "reference": "4OB0",
+   "reference_resolution": 1.2,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    65.68,
+    65.68,
+    185.691,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.402,
+    "q25": 0.314,
+    "q75": 0.699,
+    "p5": 0.175,
+    "p95": 3.271,
+    "max": 3.318,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.595,
+    "q25": 0.391,
+    "q75": 2.606,
+    "p5": 0.227,
+    "p95": 3.218,
+    "max": 3.392,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.347,
+    "q25": 0.27,
+    "q75": 0.439,
+    "p5": 0.134,
+    "p95": 0.628,
+    "max": 0.75,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

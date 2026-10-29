@@ -1,0 +1,60 @@
+{
+ "identity": "O06644",
+ "accessions": [
+  "O06644"
+ ],
+ "deposition_group": null,
+ "name": "Formyl-CoA:oxalate CoA-transferase",
+ "clusters": [
+  {
+   "cluster_id": 1649,
+   "n_members": 11,
+   "reference": "2VJM",
+   "reference_resolution": 1.89,
+   "space_group": "I 4",
+   "reference_cell": [
+    151.668,
+    151.668,
+    98.947,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.441,
+    "q25": 0.365,
+    "q75": 0.513,
+    "p5": 0.302,
+    "p95": 0.824,
+    "max": 0.967,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.627,
+    "q25": 0.415,
+    "q75": 0.931,
+    "p5": 0.298,
+    "p95": 1.383,
+    "max": 1.856,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.367,
+    "q25": 0.291,
+    "q75": 0.475,
+    "p5": 0.207,
+    "p95": 0.605,
+    "max": 0.655,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P58072",
+ "accessions": [
+  "P58072"
+ ],
+ "deposition_group": null,
+ "name": null,
+ "clusters": [
+  {
+   "cluster_id": 1285,
+   "n_members": 14,
+   "reference": "7C7K",
+   "reference_resolution": 1.77,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    90.163,
+    90.163,
+    345.059,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 1.217,
+    "q25": 1.125,
+    "q75": 1.28,
+    "p5": 1.044,
+    "p95": 1.353,
+    "max": 1.391,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.361,
+    "q25": 0.273,
+    "q75": 0.513,
+    "p5": 0.168,
+    "p95": 1.165,
+    "max": 1.351,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.142,
+    "q25": 0.122,
+    "q75": 0.165,
+    "p5": 0.103,
+    "p95": 0.349,
+    "max": 0.374,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

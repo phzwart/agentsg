@@ -1,0 +1,59 @@
+{
+ "identity": "O14684",
+ "accessions": [
+  "O14684"
+ ],
+ "deposition_group": null,
+ "name": "Prostaglandin E synthase",
+ "clusters": [
+  {
+   "cluster_id": 1110,
+   "n_members": 15,
+   "reference": "4AL0",
+   "reference_resolution": 1.16,
+   "space_group": "H 3",
+   "reference_cell": [
+    76.742,
+    76.742,
+    123.401,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.197,
+    "q25": 0.153,
+    "q75": 0.238,
+    "p5": 0.1,
+    "p95": 0.363,
+    "max": 0.382,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.234,
+    "q25": 0.177,
+    "q75": 0.334,
+    "p5": 0.128,
+    "p95": 0.44,
+    "max": 0.613,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.149,
+    "q25": 0.122,
+    "q75": 0.192,
+    "p5": 0.089,
+    "p95": 0.301,
+    "max": 0.342,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0C024",
+ "accessions": [
+  "P0C024"
+ ],
+ "deposition_group": null,
+ "name": "Peroxisomal coenzyme A diphosphatase NUDT7",
+ "clusters": [
+  {
+   "cluster_id": 356,
+   "n_members": 38,
+   "reference": "9RTP",
+   "reference_resolution": 1.47,
+   "space_group": "P 3 2 1",
+   "reference_cell": [
+    123.808,
+    123.808,
+    40.856,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.344,
+    "q25": 0.247,
+    "q75": 0.478,
+    "p5": 0.17,
+    "p95": 0.67,
+    "max": 0.747,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.71,
+    "q25": 0.374,
+    "q75": 1.163,
+    "p5": 0.192,
+    "p95": 1.498,
+    "max": 1.784,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.268,
+    "q25": 0.195,
+    "q75": 0.36,
+    "p5": 0.113,
+    "p95": 0.479,
+    "max": 0.63,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

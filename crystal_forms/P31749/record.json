@@ -1,0 +1,59 @@
+{
+ "identity": "P31749",
+ "accessions": [
+  "P31749"
+ ],
+ "deposition_group": null,
+ "name": "RAC-alpha serine/threonine-protein kinase",
+ "clusters": [
+  {
+   "cluster_id": 1712,
+   "n_members": 11,
+   "reference": "9TMV",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.61,
+    71.17,
+    67.74,
+    90.0,
+    107.27,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.565,
+    "q25": 0.473,
+    "q75": 0.603,
+    "p5": 0.426,
+    "p95": 0.634,
+    "max": 0.644,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.456,
+    "q25": 0.328,
+    "q75": 0.548,
+    "p5": 0.227,
+    "p95": 0.661,
+    "max": 0.74,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.435,
+    "q25": 0.272,
+    "q75": 0.491,
+    "p5": 0.183,
+    "p95": 0.6,
+    "max": 0.629,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

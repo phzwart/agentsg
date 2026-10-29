@@ -1,0 +1,59 @@
+{
+ "identity": "P69441",
+ "accessions": [
+  "P69441"
+ ],
+ "deposition_group": null,
+ "name": "Adenylate kinase",
+ "clusters": [
+  {
+   "cluster_id": 1559,
+   "n_members": 12,
+   "reference": "7APU",
+   "reference_resolution": 1.36,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    72.754,
+    82.226,
+    78.783,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.375,
+    "q25": 0.335,
+    "q75": 0.64,
+    "p5": 0.268,
+    "p95": 0.818,
+    "max": 0.915,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.8,
+    "q25": 0.586,
+    "q75": 1.044,
+    "p5": 0.427,
+    "p95": 1.397,
+    "max": 1.779,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.37,
+    "q25": 0.316,
+    "q75": 0.414,
+    "p5": 0.253,
+    "p95": 0.455,
+    "max": 0.47,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

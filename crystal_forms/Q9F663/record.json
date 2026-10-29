@@ -1,0 +1,108 @@
+{
+ "identity": "Q9F663",
+ "accessions": [
+  "Q9F663"
+ ],
+ "deposition_group": null,
+ "name": "Carbapenem-hydrolyzing beta-lactamase KPC-2",
+ "clusters": [
+  {
+   "cluster_id": 227,
+   "n_members": 54,
+   "reference": "9F0T",
+   "reference_resolution": 0.98,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    59.877,
+    78.323,
+    55.976,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 53,
+    "reference": 1
+   },
+   "n_pairs": 1431,
+   "rmsd_to_reference": {
+    "median": 0.406,
+    "q25": 0.202,
+    "q75": 0.894,
+    "p5": 0.139,
+    "p95": 1.18,
+    "max": 1.586,
+    "n_pairs": 53
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.862,
+    "q25": 0.383,
+    "q75": 1.032,
+    "p5": 0.184,
+    "p95": 1.512,
+    "max": 2.48,
+    "n_pairs": 1431
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.686,
+    "q25": 0.231,
+    "q75": 0.887,
+    "p5": 0.126,
+    "p95": 0.969,
+    "max": 1.223,
+    "n_pairs": 1431
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1795,
+   "n_members": 11,
+   "reference": "6B1F",
+   "reference_resolution": 1.44,
+   "space_group": "P 1",
+   "reference_cell": [
+    34.54,
+    37.432,
+    82.339,
+    92.33,
+    90.05,
+    95.25
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.313,
+    "q25": 0.225,
+    "q75": 0.611,
+    "p5": 0.097,
+    "p95": 0.729,
+    "max": 0.73,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.431,
+    "q25": 0.308,
+    "q75": 0.7,
+    "p5": 0.104,
+    "p95": 0.848,
+    "max": 0.912,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.304,
+    "q25": 0.281,
+    "q75": 0.593,
+    "p5": 0.095,
+    "p95": 0.611,
+    "max": 0.621,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

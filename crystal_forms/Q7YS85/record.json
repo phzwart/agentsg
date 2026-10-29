@@ -1,0 +1,60 @@
+{
+ "identity": "Q7YS85",
+ "accessions": [
+  "Q7YS85"
+ ],
+ "deposition_group": null,
+ "name": "Chitinase-3-like protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1594,
+   "n_members": 12,
+   "reference": "5Z05",
+   "reference_resolution": 1.49,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.457,
+    66.517,
+    105.847,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 22.913,
+    "q25": 22.817,
+    "q75": 22.978,
+    "p5": 0.551,
+    "p95": 22.996,
+    "max": 23.004,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.446,
+    "q25": 0.66,
+    "q75": 23.052,
+    "p5": 0.332,
+    "p95": 23.129,
+    "max": 23.187,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.527,
+    "q25": 0.397,
+    "q75": 22.685,
+    "p5": 0.243,
+    "p95": 22.76,
+    "max": 22.788,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

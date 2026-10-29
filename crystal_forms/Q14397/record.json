@@ -1,0 +1,59 @@
+{
+ "identity": "Q14397",
+ "accessions": [
+  "Q14397"
+ ],
+ "deposition_group": null,
+ "name": "Glucokinase regulatory protein",
+ "clusters": [
+  {
+   "cluster_id": 1078,
+   "n_members": 16,
+   "reference": "4PX2",
+   "reference_resolution": 2.15,
+   "space_group": "P 65",
+   "reference_cell": [
+    148.155,
+    148.155,
+    131.434,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.355,
+    "q25": 0.317,
+    "q75": 0.441,
+    "p5": 0.236,
+    "p95": 0.48,
+    "max": 0.512,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.419,
+    "q25": 0.312,
+    "q75": 0.527,
+    "p5": 0.2,
+    "p95": 0.731,
+    "max": 0.856,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.222,
+    "q75": 0.31,
+    "p5": 0.168,
+    "p95": 0.337,
+    "max": 0.39,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

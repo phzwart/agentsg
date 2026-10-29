@@ -1,0 +1,59 @@
+{
+ "identity": "P09958",
+ "accessions": [
+  "P09958"
+ ],
+ "deposition_group": null,
+ "name": "Furin",
+ "clusters": [
+  {
+   "cluster_id": 336,
+   "n_members": 39,
+   "reference": "7QY1",
+   "reference_resolution": 1.45,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    131.191,
+    131.191,
+    155.28,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.411,
+    "q25": 0.243,
+    "q75": 0.451,
+    "p5": 0.092,
+    "p95": 0.56,
+    "max": 0.572,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.43,
+    "q25": 0.29,
+    "q75": 0.605,
+    "p5": 0.126,
+    "p95": 0.968,
+    "max": 1.357,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.184,
+    "q75": 0.31,
+    "p5": 0.077,
+    "p95": 0.416,
+    "max": 0.508,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q24451",
+ "accessions": [
+  "Q24451"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-mannosidase 2",
+ "clusters": [
+  {
+   "cluster_id": 207,
+   "n_members": 57,
+   "reference": "3BVX",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    68.805,
+    109.547,
+    138.522,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 50,
+    "no_shared_accession": 6,
+    "reference": 1
+   },
+   "n_pairs": 1275,
+   "rmsd_to_reference": {
+    "median": 0.233,
+    "q25": 0.197,
+    "q75": 0.271,
+    "p5": 0.166,
+    "p95": 0.524,
+    "max": 0.733,
+    "n_pairs": 50
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.36,
+    "q25": 0.251,
+    "q75": 0.567,
+    "p5": 0.173,
+    "p95": 0.971,
+    "max": 1.691,
+    "n_pairs": 1275
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.185,
+    "q25": 0.153,
+    "q75": 0.239,
+    "p5": 0.116,
+    "p95": 0.315,
+    "max": 0.532,
+    "n_pairs": 1275
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

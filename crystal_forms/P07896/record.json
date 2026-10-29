@@ -1,0 +1,59 @@
+{
+ "identity": "P07896",
+ "accessions": [
+  "P07896"
+ ],
+ "deposition_group": null,
+ "name": "Peroxisomal bifunctional enzyme",
+ "clusters": [
+  {
+   "cluster_id": 1248,
+   "n_members": 14,
+   "reference": "6ZIC",
+   "reference_resolution": 2.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.637,
+    127.086,
+    227.1,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.619,
+    "q25": 0.456,
+    "q75": 0.896,
+    "p5": 0.329,
+    "p95": 1.028,
+    "max": 1.03,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.766,
+    "q25": 0.581,
+    "q75": 1.019,
+    "p5": 0.416,
+    "p95": 1.29,
+    "max": 1.776,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.464,
+    "q25": 0.372,
+    "q75": 0.548,
+    "p5": 0.29,
+    "p95": 0.7,
+    "max": 0.783,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

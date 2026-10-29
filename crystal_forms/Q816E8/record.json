@@ -1,0 +1,59 @@
+{
+ "identity": "Q816E8",
+ "accessions": [
+  "Q816E8"
+ ],
+ "deposition_group": null,
+ "name": "DNA alkylation repair protein",
+ "clusters": [
+  {
+   "cluster_id": 1307,
+   "n_members": 14,
+   "reference": "5CL8",
+   "reference_resolution": 1.38,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    38.502,
+    93.446,
+    48.767,
+    90.0,
+    114.19,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.177,
+    "q25": 0.092,
+    "q75": 0.244,
+    "p5": 0.056,
+    "p95": 0.972,
+    "max": 1.873,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.327,
+    "q25": 0.2,
+    "q75": 0.68,
+    "p5": 0.121,
+    "p95": 2.738,
+    "max": 3.215,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.114,
+    "q25": 0.096,
+    "q75": 0.132,
+    "p5": 0.057,
+    "p95": 0.401,
+    "max": 0.42,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

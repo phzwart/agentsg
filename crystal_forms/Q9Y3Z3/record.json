@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y3Z3",
+ "accessions": [
+  "Q9Y3Z3"
+ ],
+ "deposition_group": null,
+ "name": "Deoxynucleoside triphosphate triphosphohydrolase SAMHD1",
+ "clusters": [
+  {
+   "cluster_id": 419,
+   "n_members": 34,
+   "reference": "6DWD",
+   "reference_resolution": 1.7,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    80.477,
+    142.233,
+    98.79,
+    90.0,
+    114.1,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 2.338,
+    "q25": 2.094,
+    "q75": 2.574,
+    "p5": 1.093,
+    "p95": 3.17,
+    "max": 3.336,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.991,
+    "q25": 1.124,
+    "q75": 3.764,
+    "p5": 0.486,
+    "p95": 4.848,
+    "max": 6.192,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.378,
+    "q25": 0.296,
+    "q75": 0.462,
+    "p5": 0.2,
+    "p95": 1.345,
+    "max": 1.494,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

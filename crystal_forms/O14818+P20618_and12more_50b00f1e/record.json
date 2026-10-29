@@ -1,0 +1,72 @@
+{
+ "identity": "O14818+P20618+P25786+P25787+P25788+P25789+P28066+P28070+P28072+P28074+P49720+P49721+P60900+Q99436",
+ "accessions": [
+  "O14818",
+  "P20618",
+  "P25786",
+  "P25787",
+  "P25788",
+  "P25789",
+  "P28066",
+  "P28070",
+  "P28072",
+  "P28074",
+  "P49720",
+  "P49721",
+  "P60900",
+  "Q99436"
+ ],
+ "deposition_group": null,
+ "name": "Proteasome subunit alpha type-1",
+ "clusters": [
+  {
+   "cluster_id": 1651,
+   "n_members": 11,
+   "reference": "5LE5",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    113.44,
+    202.77,
+    316.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.322,
+    "q25": 0.268,
+    "q75": 0.386,
+    "p5": 0.217,
+    "p95": 0.741,
+    "max": 0.774,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.697,
+    "q25": 0.444,
+    "q75": 0.954,
+    "p5": 0.196,
+    "p95": 1.233,
+    "max": 1.387,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.157,
+    "q25": 0.115,
+    "q75": 0.192,
+    "p5": 0.1,
+    "p95": 0.258,
+    "max": 0.277,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

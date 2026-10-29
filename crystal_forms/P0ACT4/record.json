@@ -1,0 +1,59 @@
+{
+ "identity": "P0ACT4",
+ "accessions": [
+  "P0ACT4"
+ ],
+ "deposition_group": null,
+ "name": "Tetracycline repressor protein class D",
+ "clusters": [
+  {
+   "cluster_id": 413,
+   "n_members": 34,
+   "reference": "2XPW",
+   "reference_resolution": 1.44,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    66.893,
+    66.893,
+    181.553,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 1.203,
+    "q25": 0.963,
+    "q75": 1.551,
+    "p5": 0.577,
+    "p95": 1.92,
+    "max": 1.959,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.115,
+    "q25": 0.79,
+    "q75": 1.622,
+    "p5": 0.499,
+    "p95": 2.353,
+    "max": 3.503,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.617,
+    "q25": 0.462,
+    "q75": 0.814,
+    "p5": 0.328,
+    "p95": 1.087,
+    "max": 1.368,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

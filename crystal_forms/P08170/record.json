@@ -1,0 +1,59 @@
+{
+ "identity": "P08170",
+ "accessions": [
+  "P08170"
+ ],
+ "deposition_group": null,
+ "name": "Seed linoleate 13S-lipoxygenase-1",
+ "clusters": [
+  {
+   "cluster_id": 970,
+   "n_members": 17,
+   "reference": "4WFO",
+   "reference_resolution": 1.14,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    48.123,
+    91.497,
+    90.897,
+    90.0,
+    93.88,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 1.289,
+    "q25": 1.279,
+    "q75": 1.319,
+    "p5": 1.042,
+    "p95": 1.466,
+    "max": 1.542,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.532,
+    "q25": 0.353,
+    "q75": 1.118,
+    "p5": 0.201,
+    "p95": 2.666,
+    "max": 3.552,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.335,
+    "q25": 0.262,
+    "q75": 0.445,
+    "p5": 0.154,
+    "p95": 0.543,
+    "max": 0.693,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

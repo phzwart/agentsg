@@ -1,0 +1,59 @@
+{
+ "identity": "P24182",
+ "accessions": [
+  "P24182"
+ ],
+ "deposition_group": null,
+ "name": "Biotin carboxylase",
+ "clusters": [
+  {
+   "cluster_id": 1268,
+   "n_members": 14,
+   "reference": "2W70",
+   "reference_resolution": 1.77,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    84.234,
+    106.215,
+    122.635,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.502,
+    "q25": 0.449,
+    "q75": 0.52,
+    "p5": 0.382,
+    "p95": 0.756,
+    "max": 0.78,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.468,
+    "q25": 0.373,
+    "q75": 0.621,
+    "p5": 0.257,
+    "p95": 0.839,
+    "max": 1.228,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.302,
+    "q25": 0.241,
+    "q75": 0.428,
+    "p5": 0.168,
+    "p95": 0.551,
+    "max": 0.572,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "G3G192",
+ "accessions": [
+  "G3G192"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase",
+ "clusters": [
+  {
+   "cluster_id": 949,
+   "n_members": 17,
+   "reference": "6Z7K",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    44.693,
+    45.426,
+    117.753,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 16
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.401,
+    "q25": 0.377,
+    "q75": 0.409,
+    "p5": 0.355,
+    "p95": 0.738,
+    "max": 1.711,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.311,
+    "q25": 0.237,
+    "q75": 0.395,
+    "p5": 0.099,
+    "p95": 1.682,
+    "max": 1.729,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.119,
+    "q75": 0.239,
+    "p5": 0.076,
+    "p95": 1.644,
+    "max": 1.666,
+    "n_pairs": 136
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "D0VWY9+D0VWZ0+P63043",
+ "accessions": [
+  "D0VWY9",
+  "D0VWZ0",
+  "P63043"
+ ],
+ "deposition_group": null,
+ "name": "Tubulin alpha chain",
+ "clusters": [
+  {
+   "cluster_id": 1472,
+   "n_members": 12,
+   "reference": "3RYC",
+   "reference_resolution": 2.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.45,
+    127.24,
+    250.34,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 3.718,
+    "q25": 2.012,
+    "q75": 4.509,
+    "p5": 0.291,
+    "p95": 84.294,
+    "max": 88.875,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.711,
+    "q25": 1.993,
+    "q75": 79.823,
+    "p5": 0.397,
+    "p95": 89.9,
+    "max": 90.187,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.875,
+    "q25": 0.798,
+    "q75": 51.942,
+    "p5": 0.264,
+    "p95": 52.833,
+    "max": 52.874,
+    "n_pairs": 66
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

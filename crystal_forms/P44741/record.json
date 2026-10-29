@@ -1,0 +1,59 @@
+{
+ "identity": "P44741",
+ "accessions": [
+  "P44741"
+ ],
+ "deposition_group": null,
+ "name": "Tellurite resistance protein TehA homolog",
+ "clusters": [
+  {
+   "cluster_id": 1279,
+   "n_members": 14,
+   "reference": "3M73",
+   "reference_resolution": 1.15,
+   "space_group": "H 3",
+   "reference_cell": [
+    95.535,
+    95.535,
+    135.99,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.718,
+    "q25": 0.397,
+    "q75": 0.9,
+    "p5": 0.266,
+    "p95": 1.217,
+    "max": 1.229,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.567,
+    "q25": 0.386,
+    "q75": 0.892,
+    "p5": 0.232,
+    "p95": 1.906,
+    "max": 2.534,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.282,
+    "q25": 0.201,
+    "q75": 0.372,
+    "p5": 0.128,
+    "p95": 0.706,
+    "max": 0.965,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

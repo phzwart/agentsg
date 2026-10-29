@@ -1,0 +1,59 @@
+{
+ "identity": "P34913",
+ "accessions": [
+  "P34913"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional epoxide hydrolase 2 [Includes: Cytosolic epoxide hydrolase 2",
+ "clusters": [
+  {
+   "cluster_id": 79,
+   "n_members": 112,
+   "reference": "9EXM",
+   "reference_resolution": 1.64,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    93.156,
+    93.156,
+    246.213,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 111,
+    "reference": 1
+   },
+   "n_pairs": 6216,
+   "rmsd_to_reference": {
+    "median": 0.417,
+    "q25": 0.375,
+    "q75": 0.491,
+    "p5": 0.316,
+    "p95": 0.641,
+    "max": 0.757,
+    "n_pairs": 111
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.57,
+    "q25": 0.433,
+    "q75": 0.86,
+    "p5": 0.312,
+    "p95": 1.473,
+    "max": 2.002,
+    "n_pairs": 6216
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.405,
+    "q25": 0.325,
+    "q75": 0.499,
+    "p5": 0.238,
+    "p95": 0.657,
+    "max": 0.865,
+    "n_pairs": 6216
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

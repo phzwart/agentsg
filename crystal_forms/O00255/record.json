@@ -1,0 +1,60 @@
+{
+ "identity": "O00255",
+ "accessions": [
+  "O00255"
+ ],
+ "deposition_group": null,
+ "name": "Menin",
+ "clusters": [
+  {
+   "cluster_id": 421,
+   "n_members": 33,
+   "reference": "6O5I",
+   "reference_resolution": 1.24025624626,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.092,
+    79.843,
+    124.261,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 18.796,
+    "q25": 18.763,
+    "q75": 19.624,
+    "p5": 12.054,
+    "p95": 19.682,
+    "max": 19.731,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.312,
+    "q25": 0.25,
+    "q75": 3.016,
+    "p5": 0.183,
+    "p95": 20.275,
+    "max": 20.481,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.276,
+    "q25": 0.217,
+    "q75": 2.935,
+    "p5": 0.152,
+    "p95": 19.455,
+    "max": 19.581,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

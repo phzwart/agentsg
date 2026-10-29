@@ -1,0 +1,59 @@
+{
+ "identity": "P22188",
+ "accessions": [
+  "P22188"
+ ],
+ "deposition_group": null,
+ "name": "UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase",
+ "clusters": [
+  {
+   "cluster_id": 1152,
+   "n_members": 15,
+   "reference": "7B61",
+   "reference_resolution": 1.65,
+   "space_group": "P 1",
+   "reference_cell": [
+    58.15,
+    58.24,
+    74.03,
+    96.93,
+    91.27,
+    105.2
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.343,
+    "q25": 0.301,
+    "q75": 0.495,
+    "p5": 0.283,
+    "p95": 0.655,
+    "max": 0.691,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.609,
+    "q25": 0.492,
+    "q75": 0.759,
+    "p5": 0.352,
+    "p95": 1.099,
+    "max": 1.244,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.382,
+    "q25": 0.293,
+    "q75": 0.47,
+    "p5": 0.225,
+    "p95": 0.638,
+    "max": 0.835,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

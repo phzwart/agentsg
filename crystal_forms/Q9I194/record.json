@@ -1,0 +1,59 @@
+{
+ "identity": "Q9I194",
+ "accessions": [
+  "Q9I194"
+ ],
+ "deposition_group": null,
+ "name": "Acyl-homoserine lactone acylase PvdQ",
+ "clusters": [
+  {
+   "cluster_id": 889,
+   "n_members": 19,
+   "reference": "4WKS",
+   "reference_resolution": 1.629,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    121.862,
+    167.471,
+    94.45,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.8,
+    "q25": 0.582,
+    "q75": 0.929,
+    "p5": 0.434,
+    "p95": 1.574,
+    "max": 2.413,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.565,
+    "q25": 0.387,
+    "q75": 0.86,
+    "p5": 0.258,
+    "p95": 2.651,
+    "max": 3.311,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.225,
+    "q75": 0.304,
+    "p5": 0.179,
+    "p95": 0.485,
+    "max": 0.843,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

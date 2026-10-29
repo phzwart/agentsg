@@ -1,0 +1,59 @@
+{
+ "identity": "P12676",
+ "accessions": [
+  "P12676"
+ ],
+ "deposition_group": null,
+ "name": "Cholesterol oxidase",
+ "clusters": [
+  {
+   "cluster_id": 670,
+   "n_members": 23,
+   "reference": "4REK",
+   "reference_resolution": 0.74,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.24,
+    72.92,
+    63.01,
+    90.0,
+    105.13,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.13,
+    "q25": 0.097,
+    "q75": 0.252,
+    "p5": 0.076,
+    "p95": 0.516,
+    "max": 0.735,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.278,
+    "q25": 0.164,
+    "q75": 0.53,
+    "p5": 0.112,
+    "p95": 0.888,
+    "max": 1.162,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.21,
+    "q25": 0.118,
+    "q75": 0.274,
+    "p5": 0.084,
+    "p95": 0.311,
+    "max": 0.438,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

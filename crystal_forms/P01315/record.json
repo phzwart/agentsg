@@ -1,0 +1,59 @@
+{
+ "identity": "P01315",
+ "accessions": [
+  "P01315"
+ ],
+ "deposition_group": null,
+ "name": "Insulin [Cleaved into: Insulin B chain; Insulin A chain]",
+ "clusters": [
+  {
+   "cluster_id": 662,
+   "n_members": 23,
+   "reference": "7AC4",
+   "reference_resolution": 1.46,
+   "space_group": "I 21 3",
+   "reference_cell": [
+    77.96,
+    77.96,
+    77.96,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.339,
+    "q25": 0.279,
+    "q75": 0.414,
+    "p5": 0.266,
+    "p95": 0.559,
+    "max": 1.207,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.39,
+    "q25": 0.292,
+    "q75": 0.484,
+    "p5": 0.138,
+    "p95": 0.896,
+    "max": 1.117,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.204,
+    "q75": 0.353,
+    "p5": 0.118,
+    "p95": 0.474,
+    "max": 0.63,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

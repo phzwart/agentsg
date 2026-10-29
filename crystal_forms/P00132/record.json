@@ -1,0 +1,59 @@
+{
+ "identity": "P00132",
+ "accessions": [
+  "P00132"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c3",
+ "clusters": [
+  {
+   "cluster_id": 1658,
+   "n_members": 11,
+   "reference": "1J0P",
+   "reference_resolution": 0.91,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.868,
+    67.309,
+    34.328,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.768,
+    "q25": 0.704,
+    "q75": 0.79,
+    "p5": 0.641,
+    "p95": 0.854,
+    "max": 0.886,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.621,
+    "q25": 0.414,
+    "q75": 0.85,
+    "p5": 0.249,
+    "p95": 1.252,
+    "max": 1.446,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.274,
+    "q25": 0.194,
+    "q75": 0.352,
+    "p5": 0.139,
+    "p95": 0.421,
+    "max": 0.459,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P00491",
+ "accessions": [
+  "P00491"
+ ],
+ "deposition_group": null,
+ "name": "Purine nucleoside phosphorylase",
+ "clusters": [
+  {
+   "cluster_id": 497,
+   "n_members": 29,
+   "reference": "3BGS",
+   "reference_resolution": 2.099,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    142.801,
+    142.801,
+    167.348,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 1.231,
+    "q25": 1.012,
+    "q75": 1.476,
+    "p5": 0.595,
+    "p95": 1.691,
+    "max": 1.798,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.702,
+    "q25": 1.194,
+    "q75": 2.394,
+    "p5": 0.654,
+    "p95": 3.238,
+    "max": 3.96,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.003,
+    "q25": 0.842,
+    "q75": 1.234,
+    "p5": 0.444,
+    "p95": 1.429,
+    "max": 1.698,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q8WSF8",
+ "accessions": [
+  "Q8WSF8"
+ ],
+ "deposition_group": null,
+ "name": "Soluble acetylcholine receptor",
+ "clusters": [
+  {
+   "cluster_id": 1790,
+   "n_members": 11,
+   "reference": "2WN9",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.909,
+    115.394,
+    130.607,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.77,
+    "q25": 0.554,
+    "q75": 1.49,
+    "p5": 0.33,
+    "p95": 2.957,
+    "max": 3.024,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.196,
+    "q25": 0.755,
+    "q75": 3.363,
+    "p5": 0.463,
+    "p95": 4.056,
+    "max": 4.454,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.659,
+    "q25": 0.431,
+    "q75": 0.785,
+    "p5": 0.256,
+    "p95": 0.936,
+    "max": 1.054,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

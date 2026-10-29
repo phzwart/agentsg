@@ -1,0 +1,59 @@
+{
+ "identity": "P20586",
+ "accessions": [
+  "P20586"
+ ],
+ "deposition_group": null,
+ "name": "p-hydroxybenzoate hydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 868,
+   "n_members": 19,
+   "reference": "6JU1",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    70.866,
+    145.901,
+    86.421,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.486,
+    "q25": 0.426,
+    "q75": 0.6,
+    "p5": 0.39,
+    "p95": 2.384,
+    "max": 2.411,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.267,
+    "q75": 2.549,
+    "p5": 0.181,
+    "p95": 3.022,
+    "max": 3.123,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.329,
+    "q25": 0.224,
+    "q75": 0.771,
+    "p5": 0.151,
+    "p95": 1.05,
+    "max": 1.186,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "O75909+Q16531+Q9NYV4",
+ "accessions": [
+  "O75909",
+  "Q16531",
+  "Q9NYV4"
+ ],
+ "deposition_group": null,
+ "name": "DNA damage-binding protein 1",
+ "clusters": [
+  {
+   "cluster_id": 485,
+   "n_members": 30,
+   "reference": "8BU1",
+   "reference_resolution": 2.98,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    249.447,
+    249.447,
+    218.45,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.438,
+    "q25": 0.371,
+    "q75": 0.908,
+    "p5": 0.285,
+    "p95": 1.527,
+    "max": 2.073,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.57,
+    "q25": 0.422,
+    "q75": 0.861,
+    "p5": 0.294,
+    "p95": 1.707,
+    "max": 2.463,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.245,
+    "q25": 0.187,
+    "q75": 0.415,
+    "p5": 0.135,
+    "p95": 0.484,
+    "max": 0.626,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

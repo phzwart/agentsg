@@ -1,0 +1,59 @@
+{
+ "identity": "P04377",
+ "accessions": [
+  "P04377"
+ ],
+ "deposition_group": null,
+ "name": "Pseudoazurin",
+ "clusters": [
+  {
+   "cluster_id": 1243,
+   "n_members": 14,
+   "reference": "8K9N",
+   "reference_resolution": 0.86,
+   "space_group": "P 65",
+   "reference_cell": [
+    49.676,
+    49.676,
+    96.519,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.928,
+    "q25": 0.851,
+    "q75": 1.065,
+    "p5": 0.651,
+    "p95": 1.102,
+    "max": 1.125,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.451,
+    "q25": 0.242,
+    "q75": 0.769,
+    "p5": 0.142,
+    "p95": 1.111,
+    "max": 1.201,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.244,
+    "q25": 0.173,
+    "q75": 0.421,
+    "p5": 0.114,
+    "p95": 0.671,
+    "max": 0.759,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

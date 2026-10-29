@@ -1,0 +1,60 @@
+{
+ "identity": "P19821",
+ "accessions": [
+  "P19821"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase I, thermostable",
+ "clusters": [
+  {
+   "cluster_id": 175,
+   "n_members": 66,
+   "reference": "6FBC",
+   "reference_resolution": 1.54,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    109.23,
+    109.23,
+    90.7,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 64,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 2080,
+   "rmsd_to_reference": {
+    "median": 0.638,
+    "q25": 0.504,
+    "q75": 1.338,
+    "p5": 0.31,
+    "p95": 2.904,
+    "max": 3.161,
+    "n_pairs": 64
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.912,
+    "q25": 0.585,
+    "q75": 2.011,
+    "p5": 0.383,
+    "p95": 3.921,
+    "max": 4.966,
+    "n_pairs": 2080
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.646,
+    "q25": 0.418,
+    "q75": 1.697,
+    "p5": 0.299,
+    "p95": 2.118,
+    "max": 2.774,
+    "n_pairs": 2080
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

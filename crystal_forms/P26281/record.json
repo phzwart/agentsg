@@ -1,0 +1,59 @@
+{
+ "identity": "P26281",
+ "accessions": [
+  "P26281"
+ ],
+ "deposition_group": null,
+ "name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase",
+ "clusters": [
+  {
+   "cluster_id": 1540,
+   "n_members": 12,
+   "reference": "5ETP",
+   "reference_resolution": 1.05,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    35.95,
+    57.77,
+    38.64,
+    90.0,
+    116.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.307,
+    "q25": 0.246,
+    "q75": 0.443,
+    "p5": 0.208,
+    "p95": 0.618,
+    "max": 0.752,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.33,
+    "q25": 0.227,
+    "q75": 0.536,
+    "p5": 0.126,
+    "p95": 0.979,
+    "max": 1.141,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.231,
+    "q25": 0.16,
+    "q75": 0.284,
+    "p5": 0.098,
+    "p95": 0.488,
+    "max": 0.561,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

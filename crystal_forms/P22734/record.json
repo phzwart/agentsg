@@ -1,0 +1,108 @@
+{
+ "identity": "P22734",
+ "accessions": [
+  "P22734"
+ ],
+ "deposition_group": null,
+ "name": "Catechol O-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 278,
+   "n_members": 45,
+   "reference": "5P9V",
+   "reference_resolution": 1.04,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.891,
+    53.664,
+    81.611,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 44,
+    "reference": 1
+   },
+   "n_pairs": 990,
+   "rmsd_to_reference": {
+    "median": 0.35,
+    "q25": 0.32,
+    "q75": 0.418,
+    "p5": 0.235,
+    "p95": 1.049,
+    "max": 23.285,
+    "n_pairs": 44
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.354,
+    "q25": 0.261,
+    "q75": 0.936,
+    "p5": 0.185,
+    "p95": 5.277,
+    "max": 23.303,
+    "n_pairs": 990
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.243,
+    "q25": 0.191,
+    "q75": 0.327,
+    "p5": 0.135,
+    "p95": 0.437,
+    "max": 17.129,
+    "n_pairs": 990
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 990,
+   "n_members": 17,
+   "reference": "5P9U",
+   "reference_resolution": 1.42,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    50.42,
+    50.42,
+    168.262,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 11.628,
+    "q25": 0.512,
+    "q75": 12.727,
+    "p5": 0.359,
+    "p95": 13.81,
+    "max": 13.861,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 11.628,
+    "q25": 0.487,
+    "q75": 12.774,
+    "p5": 0.28,
+    "p95": 12.932,
+    "max": 14.068,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 11.087,
+    "q25": 0.256,
+    "q75": 12.142,
+    "p5": 0.182,
+    "p95": 12.234,
+    "max": 13.195,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

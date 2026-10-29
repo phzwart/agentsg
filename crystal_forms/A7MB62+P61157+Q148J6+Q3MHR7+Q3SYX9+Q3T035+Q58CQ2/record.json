@@ -1,0 +1,65 @@
+{
+ "identity": "A7MB62+P61157+Q148J6+Q3MHR7+Q3SYX9+Q3T035+Q58CQ2",
+ "accessions": [
+  "A7MB62",
+  "P61157",
+  "Q148J6",
+  "Q3MHR7",
+  "Q3SYX9",
+  "Q3T035",
+  "Q58CQ2"
+ ],
+ "deposition_group": null,
+ "name": "Actin-related protein 3",
+ "clusters": [
+  {
+   "cluster_id": 1102,
+   "n_members": 15,
+   "reference": "1K8K",
+   "reference_resolution": 2.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    111.71,
+    130.4,
+    204.93,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.545,
+    "q25": 1.094,
+    "q75": 2.665,
+    "p5": 0.542,
+    "p95": 3.034,
+    "max": 3.12,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.482,
+    "q25": 1.038,
+    "q75": 2.312,
+    "p5": 0.661,
+    "p95": 2.747,
+    "max": 3.014,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.834,
+    "q25": 0.642,
+    "q75": 1.044,
+    "p5": 0.388,
+    "p95": 1.262,
+    "max": 1.418,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

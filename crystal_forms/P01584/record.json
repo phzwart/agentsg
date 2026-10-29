@@ -1,0 +1,59 @@
+{
+ "identity": "P01584",
+ "accessions": [
+  "P01584"
+ ],
+ "deposition_group": null,
+ "name": "Interleukin-1 beta",
+ "clusters": [
+  {
+   "cluster_id": 293,
+   "n_members": 43,
+   "reference": "8RYS",
+   "reference_resolution": 1.16,
+   "space_group": "P 43",
+   "reference_cell": [
+    54.784,
+    54.784,
+    76.173,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 42,
+    "reference": 1
+   },
+   "n_pairs": 903,
+   "rmsd_to_reference": {
+    "median": 0.421,
+    "q25": 0.362,
+    "q75": 0.46,
+    "p5": 0.269,
+    "p95": 0.558,
+    "max": 0.646,
+    "n_pairs": 42
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.53,
+    "q25": 0.385,
+    "q75": 0.677,
+    "p5": 0.228,
+    "p95": 0.776,
+    "max": 0.963,
+    "n_pairs": 903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.444,
+    "q25": 0.34,
+    "q75": 0.573,
+    "p5": 0.187,
+    "p95": 0.681,
+    "max": 0.874,
+    "n_pairs": 903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "B8NJH3",
+ "accessions": [
+  "B8NJH3"
+ ],
+ "deposition_group": null,
+ "name": "O-methyltransferase lepI",
+ "clusters": [
+  {
+   "cluster_id": 1638,
+   "n_members": 11,
+   "reference": "6IX8",
+   "reference_resolution": 1.659,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    160.8,
+    62.562,
+    113.836,
+    90.0,
+    113.34,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.258,
+    "q25": 0.213,
+    "q75": 0.395,
+    "p5": 0.193,
+    "p95": 0.875,
+    "max": 0.879,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.423,
+    "q25": 0.322,
+    "q75": 0.935,
+    "p5": 0.256,
+    "p95": 1.128,
+    "max": 1.152,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.301,
+    "q25": 0.222,
+    "q75": 0.339,
+    "p5": 0.167,
+    "p95": 0.379,
+    "max": 0.422,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P31947+Q4VCS5",
+ "accessions": [
+  "P31947",
+  "Q4VCS5"
+ ],
+ "deposition_group": null,
+ "name": "14-3-3 protein sigma",
+ "clusters": [
+  {
+   "cluster_id": 1271,
+   "n_members": 14,
+   "reference": "7NP2",
+   "reference_resolution": 1.27,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    82.419,
+    111.941,
+    62.673,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.167,
+    "q25": 0.152,
+    "q75": 0.313,
+    "p5": 0.084,
+    "p95": 0.403,
+    "max": 0.451,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.31,
+    "q25": 0.22,
+    "q75": 0.401,
+    "p5": 0.158,
+    "p95": 0.477,
+    "max": 0.558,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.204,
+    "q25": 0.157,
+    "q75": 0.27,
+    "p5": 0.111,
+    "p95": 0.336,
+    "max": 0.358,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P02829",
+ "accessions": [
+  "P02829"
+ ],
+ "deposition_group": null,
+ "name": "ATP-dependent molecular chaperone HSP82",
+ "clusters": [
+  {
+   "cluster_id": 409,
+   "n_members": 34,
+   "reference": "2IWX",
+   "reference_resolution": 1.5,
+   "space_group": "P 43 2 2",
+   "reference_cell": [
+    73.703,
+    73.703,
+    110.019,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.554,
+    "q25": 0.494,
+    "q75": 0.66,
+    "p5": 0.356,
+    "p95": 0.75,
+    "max": 0.803,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.757,
+    "q25": 0.567,
+    "q75": 1.078,
+    "p5": 0.359,
+    "p95": 1.987,
+    "max": 3.543,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.461,
+    "q25": 0.342,
+    "q75": 0.586,
+    "p5": 0.247,
+    "p95": 0.751,
+    "max": 0.887,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

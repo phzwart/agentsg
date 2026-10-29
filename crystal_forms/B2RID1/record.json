@@ -1,0 +1,59 @@
+{
+ "identity": "B2RID1",
+ "accessions": [
+  "B2RID1"
+ ],
+ "deposition_group": null,
+ "name": "Asp/Glu-specific dipeptidyl-peptidase",
+ "clusters": [
+  {
+   "cluster_id": 747,
+   "n_members": 21,
+   "reference": "5SDD",
+   "reference_resolution": 1.839,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    101.524,
+    117.283,
+    147.875,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.341,
+    "q25": 0.288,
+    "q75": 0.5,
+    "p5": 0.262,
+    "p95": 1.018,
+    "max": 1.077,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.423,
+    "q25": 0.3,
+    "q75": 0.961,
+    "p5": 0.222,
+    "p95": 1.213,
+    "max": 1.733,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.268,
+    "q25": 0.198,
+    "q75": 0.633,
+    "p5": 0.137,
+    "p95": 0.909,
+    "max": 1.001,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

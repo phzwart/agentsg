@@ -1,0 +1,59 @@
+{
+ "identity": "Q9C0B1",
+ "accessions": [
+  "Q9C0B1"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-ketoglutarate-dependent dioxygenase FTO",
+ "clusters": [
+  {
+   "cluster_id": 557,
+   "n_members": 27,
+   "reference": "4IE5",
+   "reference_resolution": 1.95,
+   "space_group": "H 3",
+   "reference_cell": [
+    141.391,
+    141.391,
+    84.184,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.606,
+    "q25": 0.514,
+    "q75": 0.84,
+    "p5": 0.351,
+    "p95": 1.009,
+    "max": 1.06,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.762,
+    "q25": 0.613,
+    "q75": 0.935,
+    "p5": 0.438,
+    "p95": 1.19,
+    "max": 1.489,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.554,
+    "q25": 0.461,
+    "q75": 0.677,
+    "p5": 0.332,
+    "p95": 0.823,
+    "max": 0.945,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

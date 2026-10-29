@@ -1,0 +1,60 @@
+{
+ "identity": "Q79F77",
+ "accessions": [
+  "Q79F77"
+ ],
+ "deposition_group": null,
+ "name": "6-aminohexanoate-oligomer endohydrolase",
+ "clusters": [
+  {
+   "cluster_id": 1777,
+   "n_members": 11,
+   "reference": "5Y0M",
+   "reference_resolution": 1.03,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    70.418,
+    144.424,
+    128.268,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.703,
+    "q25": 0.322,
+    "q75": 0.761,
+    "p5": 0.245,
+    "p95": 1.676,
+    "max": 1.681,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.783,
+    "q25": 0.492,
+    "q75": 1.696,
+    "p5": 0.305,
+    "p95": 1.894,
+    "max": 1.913,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.698,
+    "q25": 0.405,
+    "q75": 1.607,
+    "p5": 0.235,
+    "p95": 1.758,
+    "max": 1.782,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P22756",
+ "accessions": [
+  "P22756"
+ ],
+ "deposition_group": null,
+ "name": "Glutamate receptor ionotropic, kainate 1",
+ "clusters": [
+  {
+   "cluster_id": 991,
+   "n_members": 17,
+   "reference": "3C31",
+   "reference_resolution": 1.49,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    70.529,
+    70.529,
+    234.128,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 3.894,
+    "q25": 0.537,
+    "q75": 18.375,
+    "p5": 0.409,
+    "p95": 54.624,
+    "max": 57.158,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 18.431,
+    "q25": 3.106,
+    "q75": 18.721,
+    "p5": 0.259,
+    "p95": 56.222,
+    "max": 56.485,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.165,
+    "q25": 0.366,
+    "q75": 18.268,
+    "p5": 0.145,
+    "p95": 18.351,
+    "max": 18.533,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

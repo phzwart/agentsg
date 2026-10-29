@@ -1,0 +1,108 @@
+{
+ "identity": "P9WFX5",
+ "accessions": [
+  "P9WFX5"
+ ],
+ "deposition_group": null,
+ "name": "Anthranilate phosphoribosyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1172,
+   "n_members": 15,
+   "reference": "3QR9",
+   "reference_resolution": 1.87,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    79.465,
+    91.771,
+    120.085,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.263,
+    "q25": 1.044,
+    "q75": 1.435,
+    "p5": 0.457,
+    "p95": 1.631,
+    "max": 1.727,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.118,
+    "q25": 0.606,
+    "q75": 1.461,
+    "p5": 0.311,
+    "p95": 1.869,
+    "max": 2.365,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.698,
+    "q25": 0.392,
+    "q75": 1.084,
+    "p5": 0.225,
+    "p95": 1.377,
+    "max": 1.523,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1563,
+   "n_members": 12,
+   "reference": "3R88",
+   "reference_resolution": 1.73,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    94.312,
+    78.849,
+    100.494,
+    90.0,
+    110.27,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.358,
+    "q25": 0.311,
+    "q75": 0.441,
+    "p5": 0.239,
+    "p95": 1.123,
+    "max": 1.544,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.928,
+    "q25": 0.498,
+    "q75": 1.244,
+    "p5": 0.293,
+    "p95": 1.94,
+    "max": 2.146,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.28,
+    "q25": 0.244,
+    "q75": 0.64,
+    "p5": 0.169,
+    "p95": 1.524,
+    "max": 1.531,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

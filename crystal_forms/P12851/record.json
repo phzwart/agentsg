@@ -1,0 +1,59 @@
+{
+ "identity": "P12851",
+ "accessions": [
+  "P12851"
+ ],
+ "deposition_group": null,
+ "name": "Xylose isomerase",
+ "clusters": [
+  {
+   "cluster_id": 1259,
+   "n_members": 14,
+   "reference": "1XIM",
+   "reference_resolution": 2.2,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    143.45,
+    143.45,
+    231.5,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.11,
+    "q25": 0.07,
+    "q75": 0.146,
+    "p5": 0.059,
+    "p95": 0.422,
+    "max": 0.7,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.116,
+    "q25": 0.087,
+    "q75": 0.231,
+    "p5": 0.061,
+    "p95": 3.122,
+    "max": 3.22,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.076,
+    "q25": 0.065,
+    "q75": 0.131,
+    "p5": 0.047,
+    "p95": 0.152,
+    "max": 0.199,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

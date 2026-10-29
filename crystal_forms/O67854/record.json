@@ -1,0 +1,59 @@
+{
+ "identity": "O67854",
+ "accessions": [
+  "O67854"
+ ],
+ "deposition_group": null,
+ "name": "Na(+):neurotransmitter symporter",
+ "clusters": [
+  {
+   "cluster_id": 333,
+   "n_members": 39,
+   "reference": "2A65",
+   "reference_resolution": 1.65,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    87.86,
+    86.31,
+    81.02,
+    90.0,
+    95.73,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 38
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.553,
+    "q25": 0.272,
+    "q75": 1.26,
+    "p5": 0.197,
+    "p95": 1.611,
+    "max": 1.914,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.404,
+    "q25": 0.74,
+    "q75": 1.876,
+    "p5": 0.299,
+    "p95": 2.713,
+    "max": 4.017,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.436,
+    "q25": 0.273,
+    "q75": 1.19,
+    "p5": 0.19,
+    "p95": 1.292,
+    "max": 1.403,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

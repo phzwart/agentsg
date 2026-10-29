@@ -1,0 +1,59 @@
+{
+ "identity": "O32164",
+ "accessions": [
+  "O32164"
+ ],
+ "deposition_group": null,
+ "name": "Cysteine desulfurase SufS",
+ "clusters": [
+  {
+   "cluster_id": 564,
+   "n_members": 26,
+   "reference": "5J8Q",
+   "reference_resolution": 1.702,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    93.191,
+    93.191,
+    130.543,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 25
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.469,
+    "q25": 0.419,
+    "q75": 0.599,
+    "p5": 0.334,
+    "p95": 1.244,
+    "max": 2.009,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.524,
+    "q25": 0.329,
+    "q75": 1.129,
+    "p5": 0.211,
+    "p95": 2.92,
+    "max": 3.821,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.287,
+    "q25": 0.184,
+    "q75": 0.364,
+    "p5": 0.132,
+    "p95": 0.705,
+    "max": 0.806,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

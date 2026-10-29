@@ -1,0 +1,59 @@
+{
+ "identity": "P00299",
+ "accessions": [
+  "P00299"
+ ],
+ "deposition_group": null,
+ "name": "Plastocyanin A, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 1224,
+   "n_members": 14,
+   "reference": "4DP9",
+   "reference_resolution": 1.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    29.012,
+    46.354,
+    57.091,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.342,
+    "q25": 0.281,
+    "q75": 0.416,
+    "p5": 0.137,
+    "p95": 0.478,
+    "max": 0.479,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.419,
+    "q25": 0.281,
+    "q75": 0.521,
+    "p5": 0.178,
+    "p95": 0.609,
+    "max": 0.703,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.2,
+    "q75": 0.292,
+    "p5": 0.134,
+    "p95": 0.372,
+    "max": 0.389,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

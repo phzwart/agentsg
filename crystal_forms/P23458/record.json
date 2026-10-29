@@ -1,0 +1,60 @@
+{
+ "identity": "P23458",
+ "accessions": [
+  "P23458"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine-protein kinase JAK1",
+ "clusters": [
+  {
+   "cluster_id": 577,
+   "n_members": 26,
+   "reference": "6N7A",
+   "reference_resolution": 1.33,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    42.72,
+    173.23,
+    45.06,
+    90.0,
+    94.17,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "different_space_group": 5,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.071,
+    "q25": 0.988,
+    "q75": 1.245,
+    "p5": 0.735,
+    "p95": 1.61,
+    "max": 1.805,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.879,
+    "q25": 0.605,
+    "q75": 1.266,
+    "p5": 0.44,
+    "p95": 2.476,
+    "max": 3.052,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.487,
+    "q25": 0.391,
+    "q75": 0.577,
+    "p5": 0.302,
+    "p95": 0.811,
+    "max": 1.009,
+    "n_pairs": 210
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

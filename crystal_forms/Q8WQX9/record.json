@@ -1,0 +1,59 @@
+{
+ "identity": "Q8WQX9",
+ "accessions": [
+  "Q8WQX9"
+ ],
+ "deposition_group": null,
+ "name": "Phosphodiesterase",
+ "clusters": [
+  {
+   "cluster_id": 792,
+   "n_members": 21,
+   "reference": "6FE3",
+   "reference_resolution": 1.62,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    115.53,
+    114.82,
+    68.31,
+    90.0,
+    108.25,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.505,
+    "q25": 0.218,
+    "q75": 0.997,
+    "p5": 0.162,
+    "p95": 1.701,
+    "max": 2.024,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.662,
+    "q25": 0.408,
+    "q75": 1.138,
+    "p5": 0.235,
+    "p95": 1.642,
+    "max": 2.553,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.317,
+    "q25": 0.24,
+    "q75": 0.364,
+    "p5": 0.169,
+    "p95": 0.425,
+    "max": 0.488,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

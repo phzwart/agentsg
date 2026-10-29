@@ -1,0 +1,59 @@
+{
+ "identity": "P42196",
+ "accessions": [
+  "P42196"
+ ],
+ "deposition_group": null,
+ "name": "Sensory rhodopsin-2",
+ "clusters": [
+  {
+   "cluster_id": 1277,
+   "n_members": 14,
+   "reference": "9H1X",
+   "reference_resolution": 1.85,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    89.75,
+    131.7,
+    51.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.058,
+    "q25": 0.0,
+    "q75": 0.74,
+    "p5": 0.0,
+    "p95": 1.025,
+    "max": 1.102,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.156,
+    "q25": 0.062,
+    "q75": 1.941,
+    "p5": 0.0,
+    "p95": 2.034,
+    "max": 2.049,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.29,
+    "q25": 0.046,
+    "q75": 0.536,
+    "p5": 0.0,
+    "p95": 0.856,
+    "max": 0.856,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

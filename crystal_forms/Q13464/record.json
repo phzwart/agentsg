@@ -1,0 +1,59 @@
+{
+ "identity": "Q13464",
+ "accessions": [
+  "Q13464"
+ ],
+ "deposition_group": null,
+ "name": "Rho-associated protein kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 1577,
+   "n_members": 12,
+   "reference": "2ETR",
+   "reference_resolution": 2.6,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    180.865,
+    180.865,
+    91.456,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.589,
+    "q25": 0.511,
+    "q75": 0.697,
+    "p5": 0.396,
+    "p95": 1.183,
+    "max": 1.438,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.01,
+    "q25": 0.737,
+    "q75": 1.302,
+    "p5": 0.527,
+    "p95": 1.904,
+    "max": 1.999,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.463,
+    "q25": 0.403,
+    "q75": 0.551,
+    "p5": 0.327,
+    "p95": 0.658,
+    "max": 0.801,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

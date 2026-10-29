@@ -1,0 +1,59 @@
+{
+ "identity": "Q9YFY3",
+ "accessions": [
+  "Q9YFY3"
+ ],
+ "deposition_group": null,
+ "name": "Threonine--tRNA ligase editing subunit",
+ "clusters": [
+  {
+   "cluster_id": 1322,
+   "n_members": 14,
+   "reference": "4RRI",
+   "reference_resolution": 1.5,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    47.119,
+    47.119,
+    113.124,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.524,
+    "q25": 0.27,
+    "q75": 0.779,
+    "p5": 0.198,
+    "p95": 1.072,
+    "max": 1.328,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.629,
+    "q25": 0.438,
+    "q75": 1.012,
+    "p5": 0.208,
+    "p95": 1.487,
+    "max": 1.97,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.183,
+    "q75": 0.239,
+    "p5": 0.135,
+    "p95": 0.285,
+    "max": 0.307,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

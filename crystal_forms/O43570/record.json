@@ -1,0 +1,59 @@
+{
+ "identity": "O43570",
+ "accessions": [
+  "O43570"
+ ],
+ "deposition_group": null,
+ "name": "Carbonic anhydrase 12",
+ "clusters": [
+  {
+   "cluster_id": 704,
+   "n_members": 22,
+   "reference": "9F2O",
+   "reference_resolution": 1.12,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    77.391,
+    73.947,
+    91.361,
+    90.0,
+    108.88,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.217,
+    "q25": 0.181,
+    "q75": 0.257,
+    "p5": 0.143,
+    "p95": 0.379,
+    "max": 0.396,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.257,
+    "q25": 0.21,
+    "q75": 0.326,
+    "p5": 0.136,
+    "p95": 0.388,
+    "max": 0.496,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.225,
+    "q25": 0.175,
+    "q75": 0.304,
+    "p5": 0.119,
+    "p95": 0.367,
+    "max": 0.494,
+    "n_pairs": 231
+   },
+   "n_low_margin": 21,
+   "n_via_neighbour": 0
+  }
+ ]
+}

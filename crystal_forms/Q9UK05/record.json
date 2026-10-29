@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UK05",
+ "accessions": [
+  "Q9UK05"
+ ],
+ "deposition_group": null,
+ "name": "Growth/differentiation factor 2",
+ "clusters": [
+  {
+   "cluster_id": 1203,
+   "n_members": 15,
+   "reference": "5I05",
+   "reference_resolution": 1.87,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    71.06,
+    71.06,
+    145.67,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.392,
+    "q25": 0.31,
+    "q75": 0.51,
+    "p5": 0.253,
+    "p95": 0.8,
+    "max": 1.114,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.511,
+    "q25": 0.312,
+    "q75": 0.62,
+    "p5": 0.235,
+    "p95": 0.886,
+    "max": 1.116,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.412,
+    "q25": 0.28,
+    "q75": 0.577,
+    "p5": 0.213,
+    "p95": 0.851,
+    "max": 1.081,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

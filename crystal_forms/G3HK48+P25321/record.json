@@ -1,0 +1,60 @@
+{
+ "identity": "G3HK48+P25321",
+ "accessions": [
+  "G3HK48",
+  "P25321"
+ ],
+ "deposition_group": null,
+ "name": "cAMP-dependent protein kinase catalytic subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 389,
+   "n_members": 35,
+   "reference": "4WIH",
+   "reference_resolution": 1.139,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.276,
+    72.949,
+    109.351,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 34
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.878,
+    "q25": 0.729,
+    "q75": 2.107,
+    "p5": 0.655,
+    "p95": 3.26,
+    "max": 3.512,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.891,
+    "q25": 0.545,
+    "q75": 2.465,
+    "p5": 0.263,
+    "p95": 3.541,
+    "max": 4.205,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.963,
+    "q25": 0.317,
+    "q75": 1.248,
+    "p5": 0.182,
+    "p95": 1.66,
+    "max": 1.75,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

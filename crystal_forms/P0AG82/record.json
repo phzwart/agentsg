@@ -1,0 +1,59 @@
+{
+ "identity": "P0AG82",
+ "accessions": [
+  "P0AG82"
+ ],
+ "deposition_group": null,
+ "name": "Phosphate-binding protein PstS",
+ "clusters": [
+  {
+   "cluster_id": 1518,
+   "n_members": 12,
+   "reference": "1IXH",
+   "reference_resolution": 0.98,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.506,
+    63.379,
+    122.373,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.35,
+    "q25": 0.259,
+    "q75": 0.762,
+    "p5": 0.206,
+    "p95": 0.891,
+    "max": 0.899,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.542,
+    "q25": 0.357,
+    "q75": 0.619,
+    "p5": 0.22,
+    "p95": 0.745,
+    "max": 0.851,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.249,
+    "q25": 0.215,
+    "q75": 0.277,
+    "p5": 0.172,
+    "p95": 0.328,
+    "max": 0.395,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

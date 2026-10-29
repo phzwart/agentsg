@@ -1,0 +1,59 @@
+{
+ "identity": "B3LRE1",
+ "accessions": [
+  "B3LRE1"
+ ],
+ "deposition_group": null,
+ "name": "Peroxidase",
+ "clusters": [
+  {
+   "cluster_id": 281,
+   "n_members": 44,
+   "reference": "4NVB",
+   "reference_resolution": 1.17,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.97,
+    74.66,
+    106.58,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 43,
+    "reference": 1
+   },
+   "n_pairs": 946,
+   "rmsd_to_reference": {
+    "median": 0.367,
+    "q25": 0.305,
+    "q75": 2.165,
+    "p5": 0.234,
+    "p95": 4.276,
+    "max": 4.519,
+    "n_pairs": 43
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.759,
+    "q25": 0.519,
+    "q75": 2.798,
+    "p5": 0.302,
+    "p95": 6.113,
+    "max": 7.491,
+    "n_pairs": 946
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.28,
+    "q25": 0.217,
+    "q75": 0.329,
+    "p5": 0.129,
+    "p95": 0.374,
+    "max": 0.425,
+    "n_pairs": 946
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

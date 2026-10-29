@@ -1,0 +1,158 @@
+{
+ "identity": "P00749",
+ "accessions": [
+  "P00749"
+ ],
+ "deposition_group": null,
+ "name": "Urokinase-type plasminogen activator",
+ "clusters": [
+  {
+   "cluster_id": 172,
+   "n_members": 67,
+   "reference": "5YC6",
+   "reference_resolution": 1.18,
+   "space_group": "H 3",
+   "reference_cell": [
+    120.853,
+    120.853,
+    42.627,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 66,
+    "reference": 1
+   },
+   "n_pairs": 2211,
+   "rmsd_to_reference": {
+    "median": 0.575,
+    "q25": 0.458,
+    "q75": 1.72,
+    "p5": 0.338,
+    "p95": 1.941,
+    "max": 41.872,
+    "n_pairs": 66
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.67,
+    "q25": 0.442,
+    "q75": 1.87,
+    "p5": 0.264,
+    "p95": 45.492,
+    "max": 46.009,
+    "n_pairs": 2211
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.375,
+    "q25": 0.282,
+    "q75": 0.48,
+    "p5": 0.199,
+    "p95": 18.898,
+    "max": 19.045,
+    "n_pairs": 2211
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 242,
+   "n_members": 51,
+   "reference": "4MNW",
+   "reference_resolution": 1.49,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.57,
+    53.96,
+    80.17,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.556,
+    "q25": 0.497,
+    "q75": 0.66,
+    "p5": 0.371,
+    "p95": 23.046,
+    "max": 38.243,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.579,
+    "q25": 0.461,
+    "q75": 0.789,
+    "p5": 0.256,
+    "p95": 38.58,
+    "max": 39.055,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.375,
+    "q25": 0.306,
+    "q75": 0.439,
+    "p5": 0.188,
+    "p95": 18.97,
+    "max": 19.086,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 902,
+   "n_members": 18,
+   "reference": "1GJ7",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    82.25,
+    49.56,
+    66.16,
+    90.0,
+    113.18,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.266,
+    "q25": 0.233,
+    "q75": 0.328,
+    "p5": 0.192,
+    "p95": 0.443,
+    "max": 0.448,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.347,
+    "q25": 0.269,
+    "q75": 0.425,
+    "p5": 0.164,
+    "p95": 0.552,
+    "max": 0.697,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.222,
+    "q25": 0.187,
+    "q75": 0.239,
+    "p5": 0.113,
+    "p95": 0.264,
+    "max": 0.303,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

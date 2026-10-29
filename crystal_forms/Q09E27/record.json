@@ -1,0 +1,59 @@
+{
+ "identity": "Q09E27",
+ "accessions": [
+  "Q09E27"
+ ],
+ "deposition_group": null,
+ "name": "histidine kinase",
+ "clusters": [
+  {
+   "cluster_id": 1753,
+   "n_members": 11,
+   "reference": "9DZA",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    82.33,
+    81.69,
+    83.49,
+    90.0,
+    107.07,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.955,
+    "q25": 0.88,
+    "q75": 1.049,
+    "p5": 0.192,
+    "p95": 1.202,
+    "max": 1.271,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.873,
+    "q25": 0.528,
+    "q75": 1.101,
+    "p5": 0.26,
+    "p95": 1.362,
+    "max": 1.545,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.695,
+    "q25": 0.496,
+    "q75": 0.862,
+    "p5": 0.215,
+    "p95": 1.122,
+    "max": 1.217,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

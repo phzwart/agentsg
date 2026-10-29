@@ -1,0 +1,59 @@
+{
+ "identity": "Q9GZT9",
+ "accessions": [
+  "Q9GZT9"
+ ],
+ "deposition_group": null,
+ "name": "Egl nine homolog 1",
+ "clusters": [
+  {
+   "cluster_id": 617,
+   "n_members": 25,
+   "reference": "4BQY",
+   "reference_resolution": 1.53,
+   "space_group": "P 63",
+   "reference_cell": [
+    110.885,
+    110.885,
+    40.432,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 2.166,
+    "q25": 0.636,
+    "q75": 2.825,
+    "p5": 0.531,
+    "p95": 3.596,
+    "max": 3.757,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.742,
+    "q25": 0.616,
+    "q75": 0.894,
+    "p5": 0.327,
+    "p95": 1.321,
+    "max": 3.678,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.566,
+    "q25": 0.358,
+    "q75": 0.727,
+    "p5": 0.264,
+    "p95": 1.261,
+    "max": 3.634,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

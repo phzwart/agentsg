@@ -1,0 +1,60 @@
+{
+ "identity": "P16581",
+ "accessions": [
+  "P16581"
+ ],
+ "deposition_group": null,
+ "name": "E-selectin",
+ "clusters": [
+  {
+   "cluster_id": 1527,
+   "n_members": 12,
+   "reference": "6EYI",
+   "reference_resolution": 2.04,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    93.59,
+    72.94,
+    52.52,
+    90.0,
+    94.16,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.461,
+    "q25": 0.449,
+    "q75": 0.516,
+    "p5": 0.343,
+    "p95": 0.535,
+    "max": 0.54,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.316,
+    "q75": 0.617,
+    "p5": 0.262,
+    "p95": 0.809,
+    "max": 0.987,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.342,
+    "q25": 0.249,
+    "q75": 0.557,
+    "p5": 0.163,
+    "p95": 0.631,
+    "max": 0.665,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

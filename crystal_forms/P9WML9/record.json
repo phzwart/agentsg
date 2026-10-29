@@ -1,0 +1,60 @@
+{
+ "identity": "P9WML9",
+ "accessions": [
+  "P9WML9"
+ ],
+ "deposition_group": null,
+ "name": "Imidazoleglycerol-phosphate dehydratase",
+ "clusters": [
+  {
+   "cluster_id": 1747,
+   "n_members": 11,
+   "reference": "6KHH",
+   "reference_resolution": 1.65,
+   "space_group": "P 4 3 2",
+   "reference_cell": [
+    112.567,
+    112.567,
+    112.567,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.393,
+    "q25": 0.18,
+    "q75": 0.44,
+    "p5": 0.13,
+    "p95": 0.479,
+    "max": 0.482,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.402,
+    "q25": 0.172,
+    "q75": 0.426,
+    "p5": 0.132,
+    "p95": 0.487,
+    "max": 0.498,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.393,
+    "q25": 0.138,
+    "q75": 0.406,
+    "p5": 0.115,
+    "p95": 0.432,
+    "max": 0.445,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

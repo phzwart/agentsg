@@ -1,0 +1,59 @@
+{
+ "identity": "Q93009",
+ "accessions": [
+  "Q93009"
+ ],
+ "deposition_group": null,
+ "name": "Ubiquitin C-terminal hydrolase 7",
+ "clusters": [
+  {
+   "cluster_id": 742,
+   "n_members": 22,
+   "reference": "4M5X",
+   "reference_resolution": 2.187,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    74.951,
+    67.579,
+    76.805,
+    90.0,
+    96.21,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.644,
+    "q25": 1.324,
+    "q75": 21.828,
+    "p5": 0.906,
+    "p95": 35.451,
+    "max": 36.291,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 21.631,
+    "q25": 3.134,
+    "q75": 27.741,
+    "p5": 1.544,
+    "p95": 36.824,
+    "max": 38.656,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.536,
+    "q25": 0.752,
+    "q75": 21.282,
+    "p5": 0.548,
+    "p95": 23.249,
+    "max": 23.51,
+    "n_pairs": 231
+   },
+   "n_low_margin": 21,
+   "n_via_neighbour": 0
+  }
+ ]
+}

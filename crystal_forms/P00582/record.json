@@ -1,0 +1,59 @@
+{
+ "identity": "P00582",
+ "accessions": [
+  "P00582"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase I",
+ "clusters": [
+  {
+   "cluster_id": 1228,
+   "n_members": 14,
+   "reference": "2KFN",
+   "reference_resolution": 2.03,
+   "space_group": "P 43",
+   "reference_cell": [
+    102.9,
+    102.9,
+    86.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.299,
+    "q25": 0.232,
+    "q75": 0.729,
+    "p5": 0.117,
+    "p95": 2.176,
+    "max": 2.877,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.341,
+    "q25": 0.843,
+    "q75": 1.821,
+    "p5": 0.343,
+    "p95": 3.564,
+    "max": 3.768,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.43,
+    "q25": 0.349,
+    "q75": 1.682,
+    "p5": 0.172,
+    "p95": 2.516,
+    "max": 2.574,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

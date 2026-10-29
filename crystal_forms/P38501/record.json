@@ -1,0 +1,59 @@
+{
+ "identity": "P38501",
+ "accessions": [
+  "P38501"
+ ],
+ "deposition_group": null,
+ "name": "Copper-containing nitrite reductase",
+ "clusters": [
+  {
+   "cluster_id": 324,
+   "n_members": 41,
+   "reference": "4YSE",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    61.871,
+    101.149,
+    146.238,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.524,
+    "q25": 0.465,
+    "q75": 0.626,
+    "p5": 0.342,
+    "p95": 1.014,
+    "max": 2.083,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.998,
+    "q25": 0.567,
+    "q75": 1.75,
+    "p5": 0.313,
+    "p95": 2.798,
+    "max": 3.97,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.167,
+    "q75": 0.273,
+    "p5": 0.109,
+    "p95": 0.384,
+    "max": 0.478,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

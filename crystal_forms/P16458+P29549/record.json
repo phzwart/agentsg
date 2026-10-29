@@ -1,0 +1,60 @@
+{
+ "identity": "P16458+P29549",
+ "accessions": [
+  "P16458",
+  "P29549"
+ ],
+ "deposition_group": null,
+ "name": "Telomere-binding protein subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 1263,
+   "n_members": 14,
+   "reference": "1JB7",
+   "reference_resolution": 1.86,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    93.1,
+    93.1,
+    421.8,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.478,
+    "q25": 0.279,
+    "q75": 0.728,
+    "p5": 0.215,
+    "p95": 0.947,
+    "max": 0.976,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.461,
+    "q25": 0.351,
+    "q75": 0.749,
+    "p5": 0.211,
+    "p95": 1.082,
+    "max": 1.149,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.323,
+    "q25": 0.218,
+    "q75": 0.524,
+    "p5": 0.147,
+    "p95": 0.887,
+    "max": 0.935,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

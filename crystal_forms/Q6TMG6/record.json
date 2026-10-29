@@ -1,0 +1,60 @@
+{
+ "identity": "Q6TMG6",
+ "accessions": [
+  "Q6TMG6"
+ ],
+ "deposition_group": null,
+ "name": "Chitinase-3-like protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1590,
+   "n_members": 12,
+   "reference": "2PI6",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.873,
+    66.415,
+    105.692,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.962,
+    "q25": 0.933,
+    "q75": 0.99,
+    "p5": 0.465,
+    "p95": 1.002,
+    "max": 1.003,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.345,
+    "q25": 0.272,
+    "q75": 0.738,
+    "p5": 0.221,
+    "p95": 0.791,
+    "max": 0.81,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.325,
+    "q25": 0.255,
+    "q75": 0.635,
+    "p5": 0.203,
+    "p95": 0.681,
+    "max": 0.687,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

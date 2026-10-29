@@ -1,0 +1,59 @@
+{
+ "identity": "G8TV28",
+ "accessions": [
+  "G8TV28"
+ ],
+ "deposition_group": null,
+ "name": "Triacylglycerol lipase",
+ "clusters": [
+  {
+   "cluster_id": 1220,
+   "n_members": 14,
+   "reference": "9J1E",
+   "reference_resolution": 1.22,
+   "space_group": "P 63",
+   "reference_cell": [
+    107.71,
+    107.71,
+    44.402,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.209,
+    "q25": 0.152,
+    "q75": 0.339,
+    "p5": 0.129,
+    "p95": 0.777,
+    "max": 0.811,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.337,
+    "q25": 0.244,
+    "q75": 0.612,
+    "p5": 0.172,
+    "p95": 0.843,
+    "max": 0.886,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.166,
+    "q75": 0.359,
+    "p5": 0.107,
+    "p95": 0.418,
+    "max": 0.448,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

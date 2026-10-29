@@ -1,0 +1,59 @@
+{
+ "identity": "P00915",
+ "accessions": [
+  "P00915"
+ ],
+ "deposition_group": null,
+ "name": "Carbonic anhydrase 1",
+ "clusters": [
+  {
+   "cluster_id": 258,
+   "n_members": 47,
+   "reference": "7Q0D",
+   "reference_resolution": 1.24,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    62.039,
+    73.235,
+    120.473,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 1.52,
+    "q25": 1.361,
+    "q75": 24.616,
+    "p5": 1.062,
+    "p95": 24.749,
+    "max": 24.872,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.554,
+    "q25": 0.498,
+    "q75": 25.692,
+    "p5": 0.264,
+    "p95": 25.949,
+    "max": 26.173,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.236,
+    "q75": 0.331,
+    "p5": 0.147,
+    "p95": 0.455,
+    "max": 3.762,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 45,
+   "n_via_neighbour": 0
+  }
+ ]
+}

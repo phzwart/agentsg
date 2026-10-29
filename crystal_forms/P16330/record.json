@@ -1,0 +1,60 @@
+{
+ "identity": "P16330",
+ "accessions": [
+  "P16330"
+ ],
+ "deposition_group": null,
+ "name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+ "clusters": [
+  {
+   "cluster_id": 984,
+   "n_members": 17,
+   "reference": "4WCB",
+   "reference_resolution": 1.57,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    38.81,
+    48.27,
+    108.06,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 28.877,
+    "q25": 0.969,
+    "q75": 29.204,
+    "p5": 0.625,
+    "p95": 29.297,
+    "max": 29.337,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 29.817,
+    "q25": 0.895,
+    "q75": 30.463,
+    "p5": 0.457,
+    "p95": 30.951,
+    "max": 31.344,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 21.263,
+    "q25": 0.518,
+    "q75": 21.372,
+    "p5": 0.33,
+    "p95": 21.574,
+    "max": 21.72,
+    "n_pairs": 120
+   },
+   "n_low_margin": 8,
+   "n_via_neighbour": 0
+  }
+ ]
+}

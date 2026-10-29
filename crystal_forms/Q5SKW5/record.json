@@ -1,0 +1,59 @@
+{
+ "identity": "Q5SKW5",
+ "accessions": [
+  "Q5SKW5"
+ ],
+ "deposition_group": null,
+ "name": "ADP-ribose pyrophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1769,
+   "n_members": 11,
+   "reference": "3X0I",
+   "reference_resolution": 0.91,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    49.683,
+    49.683,
+    118.182,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.336,
+    "q25": 0.272,
+    "q75": 0.876,
+    "p5": 0.247,
+    "p95": 1.184,
+    "max": 1.279,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.18,
+    "q25": 0.148,
+    "q75": 0.332,
+    "p5": 0.102,
+    "p95": 1.029,
+    "max": 1.274,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.144,
+    "q25": 0.131,
+    "q75": 0.28,
+    "p5": 0.093,
+    "p95": 1.016,
+    "max": 1.256,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q3JNW6",
+ "accessions": [
+  "Q3JNW6"
+ ],
+ "deposition_group": null,
+ "name": "Catalase-peroxidase",
+ "clusters": [
+  {
+   "cluster_id": 417,
+   "n_members": 34,
+   "reference": "5KQ6",
+   "reference_resolution": 1.62,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    100.577,
+    115.791,
+    174.726,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.335,
+    "q25": 0.221,
+    "q75": 0.789,
+    "p5": 0.16,
+    "p95": 0.899,
+    "max": 0.913,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.57,
+    "q25": 0.356,
+    "q75": 0.912,
+    "p5": 0.211,
+    "p95": 1.231,
+    "max": 1.481,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.195,
+    "q25": 0.141,
+    "q75": 0.253,
+    "p5": 0.103,
+    "p95": 0.315,
+    "max": 0.364,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

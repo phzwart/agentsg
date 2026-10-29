@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UJM8",
+ "accessions": [
+  "Q9UJM8"
+ ],
+ "deposition_group": null,
+ "name": "2-Hydroxyacid oxidase 1",
+ "clusters": [
+  {
+   "cluster_id": 890,
+   "n_members": 19,
+   "reference": "5QIF",
+   "reference_resolution": 1.2,
+   "space_group": "I 4",
+   "reference_cell": [
+    97.78,
+    97.78,
+    81.268,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.255,
+    "q25": 0.192,
+    "q75": 0.417,
+    "p5": 0.137,
+    "p95": 0.674,
+    "max": 0.703,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.359,
+    "q25": 0.24,
+    "q75": 0.502,
+    "p5": 0.161,
+    "p95": 0.664,
+    "max": 0.933,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.154,
+    "q75": 0.444,
+    "p5": 0.113,
+    "p95": 0.606,
+    "max": 0.856,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

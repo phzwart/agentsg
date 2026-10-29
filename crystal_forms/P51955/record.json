@@ -1,0 +1,59 @@
+{
+ "identity": "P51955",
+ "accessions": [
+  "P51955"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase Nek2",
+ "clusters": [
+  {
+   "cluster_id": 610,
+   "n_members": 25,
+   "reference": "2W5A",
+   "reference_resolution": 1.55,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    99.467,
+    57.103,
+    80.213,
+    90.0,
+    132.99,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 24
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.718,
+    "q25": 0.538,
+    "q75": 1.041,
+    "p5": 0.472,
+    "p95": 1.255,
+    "max": 1.432,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.85,
+    "q25": 0.614,
+    "q75": 1.145,
+    "p5": 0.358,
+    "p95": 1.754,
+    "max": 2.211,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.59,
+    "q25": 0.448,
+    "q75": 0.755,
+    "p5": 0.291,
+    "p95": 1.116,
+    "max": 1.458,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

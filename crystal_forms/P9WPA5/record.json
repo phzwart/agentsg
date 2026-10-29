@@ -1,0 +1,59 @@
+{
+ "identity": "P9WPA5",
+ "accessions": [
+  "P9WPA5"
+ ],
+ "deposition_group": null,
+ "name": "Phosphopantetheine adenylyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1566,
+   "n_members": 12,
+   "reference": "3RBA",
+   "reference_resolution": 1.59,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    99.224,
+    99.224,
+    115.852,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.159,
+    "q25": 0.723,
+    "q75": 1.22,
+    "p5": 0.588,
+    "p95": 1.264,
+    "max": 1.285,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.879,
+    "q25": 0.535,
+    "q75": 1.283,
+    "p5": 0.351,
+    "p95": 1.521,
+    "max": 1.686,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.468,
+    "q25": 0.37,
+    "q75": 1.031,
+    "p5": 0.239,
+    "p95": 1.075,
+    "max": 1.09,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

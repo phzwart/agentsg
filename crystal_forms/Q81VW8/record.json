@@ -1,0 +1,59 @@
+{
+ "identity": "Q81VW8",
+ "accessions": [
+  "Q81VW8"
+ ],
+ "deposition_group": null,
+ "name": "Dihydropteroate synthase",
+ "clusters": [
+  {
+   "cluster_id": 428,
+   "n_members": 33,
+   "reference": "4NIR",
+   "reference_resolution": 1.772,
+   "space_group": "P 62 2 2",
+   "reference_cell": [
+    98.338,
+    98.338,
+    263.415,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.669,
+    "q25": 0.507,
+    "q75": 9.296,
+    "p5": 0.283,
+    "p95": 12.298,
+    "max": 14.289,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 8.974,
+    "q25": 0.608,
+    "q75": 10.66,
+    "p5": 0.356,
+    "p95": 14.304,
+    "max": 14.577,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.406,
+    "q25": 0.31,
+    "q75": 8.771,
+    "p5": 0.236,
+    "p95": 8.944,
+    "max": 9.001,
+    "n_pairs": 528
+   },
+   "n_low_margin": 32,
+   "n_via_neighbour": 0
+  }
+ ]
+}

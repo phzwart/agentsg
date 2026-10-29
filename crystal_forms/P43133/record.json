@@ -1,0 +1,59 @@
+{
+ "identity": "P43133",
+ "accessions": [
+  "P43133"
+ ],
+ "deposition_group": null,
+ "name": "Thermolysin",
+ "clusters": [
+  {
+   "cluster_id": 1161,
+   "n_members": 15,
+   "reference": "6GHX",
+   "reference_resolution": 1.156,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    93.06,
+    93.06,
+    130.29,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.257,
+    "q25": 0.233,
+    "q75": 0.325,
+    "p5": 0.224,
+    "p95": 0.559,
+    "max": 0.584,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.405,
+    "q25": 0.292,
+    "q75": 0.562,
+    "p5": 0.128,
+    "p95": 0.781,
+    "max": 0.987,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.201,
+    "q25": 0.164,
+    "q75": 0.224,
+    "p5": 0.113,
+    "p95": 0.256,
+    "max": 0.293,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

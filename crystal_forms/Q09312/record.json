@@ -1,0 +1,59 @@
+{
+ "identity": "Q09312",
+ "accessions": [
+  "Q09312"
+ ],
+ "deposition_group": null,
+ "name": "Fem-3 mRNA-binding factor 2",
+ "clusters": [
+  {
+   "cluster_id": 1177,
+   "n_members": 15,
+   "reference": "3K62",
+   "reference_resolution": 1.9,
+   "space_group": "P 61",
+   "reference_cell": [
+    96.62,
+    96.62,
+    101.678,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.261,
+    "q75": 1.455,
+    "p5": 0.131,
+    "p95": 2.123,
+    "max": 2.173,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.045,
+    "q25": 0.481,
+    "q75": 2.553,
+    "p5": 0.248,
+    "p95": 3.011,
+    "max": 3.246,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.546,
+    "q25": 0.315,
+    "q75": 0.856,
+    "p5": 0.175,
+    "p95": 1.255,
+    "max": 1.292,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

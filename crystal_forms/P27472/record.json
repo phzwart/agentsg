@@ -1,0 +1,59 @@
+{
+ "identity": "P27472",
+ "accessions": [
+  "P27472"
+ ],
+ "deposition_group": null,
+ "name": "Glycogen [starch] synthase isoform 2",
+ "clusters": [
+  {
+   "cluster_id": 1707,
+   "n_members": 11,
+   "reference": "3NB0",
+   "reference_resolution": 2.406,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    192.739,
+    206.982,
+    205.799,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.654,
+    "q25": 0.518,
+    "q75": 0.803,
+    "p5": 0.365,
+    "p95": 1.064,
+    "max": 1.168,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.676,
+    "q25": 0.571,
+    "q75": 0.824,
+    "p5": 0.371,
+    "p95": 0.963,
+    "max": 0.998,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.419,
+    "q25": 0.349,
+    "q75": 0.496,
+    "p5": 0.287,
+    "p95": 0.642,
+    "max": 0.731,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

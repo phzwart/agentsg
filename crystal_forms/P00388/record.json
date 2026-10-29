@@ -1,0 +1,59 @@
+{
+ "identity": "P00388",
+ "accessions": [
+  "P00388"
+ ],
+ "deposition_group": null,
+ "name": "NADPH--cytochrome P450 reductase",
+ "clusters": [
+  {
+   "cluster_id": 853,
+   "n_members": 19,
+   "reference": "1JA1",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    101.437,
+    115.159,
+    118.547,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.766,
+    "q25": 0.534,
+    "q75": 1.423,
+    "p5": 0.478,
+    "p95": 1.489,
+    "max": 1.649,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.366,
+    "q25": 0.703,
+    "q75": 1.558,
+    "p5": 0.416,
+    "p95": 1.772,
+    "max": 2.133,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.974,
+    "q25": 0.477,
+    "q75": 1.442,
+    "p5": 0.291,
+    "p95": 1.636,
+    "max": 1.745,
+    "n_pairs": 171
+   },
+   "n_low_margin": 7,
+   "n_via_neighbour": 0
+  }
+ ]
+}

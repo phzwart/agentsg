@@ -1,0 +1,59 @@
+{
+ "identity": "P08254",
+ "accessions": [
+  "P08254"
+ ],
+ "deposition_group": null,
+ "name": "Stromelysin-1",
+ "clusters": [
+  {
+   "cluster_id": 1135,
+   "n_members": 15,
+   "reference": "1HY7",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    37.918,
+    78.059,
+    105.801,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.616,
+    "q25": 0.493,
+    "q75": 0.716,
+    "p5": 0.428,
+    "p95": 0.863,
+    "max": 0.904,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.912,
+    "q25": 0.709,
+    "q75": 1.054,
+    "p5": 0.494,
+    "p95": 1.399,
+    "max": 1.748,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.541,
+    "q25": 0.392,
+    "q75": 0.728,
+    "p5": 0.278,
+    "p95": 0.916,
+    "max": 1.124,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+ "identity": "P51449",
+ "accessions": [
+  "P51449"
+ ],
+ "deposition_group": null,
+ "name": "Nuclear receptor ROR-gamma",
+ "clusters": [
+  {
+   "cluster_id": 473,
+   "n_members": 31,
+   "reference": "4WQP",
+   "reference_resolution": 1.99,
+   "space_group": "P 61",
+   "reference_cell": [
+    99.735,
+    99.735,
+    129.606,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1,
+    "different_space_group": 5
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 1.652,
+    "q25": 0.718,
+    "q75": 2.763,
+    "p5": 0.422,
+    "p95": 45.483,
+    "max": 49.537,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.228,
+    "q25": 1.191,
+    "q75": 4.856,
+    "p5": 0.566,
+    "p95": 48.755,
+    "max": 51.895,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.567,
+    "q25": 0.462,
+    "q75": 1.624,
+    "p5": 0.354,
+    "p95": 20.319,
+    "max": 20.404,
+    "n_pairs": 325
+   },
+   "n_low_margin": 12,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 644,
+   "n_members": 24,
+   "reference": "7NPC",
+   "reference_resolution": 1.47,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    107.603,
+    107.603,
+    100.205,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 1.812,
+    "q25": 0.54,
+    "q75": 2.971,
+    "p5": 0.34,
+    "p95": 3.393,
+    "max": 3.526,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.312,
+    "q25": 0.64,
+    "q75": 2.81,
+    "p5": 0.358,
+    "p95": 3.205,
+    "max": 3.497,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.452,
+    "q25": 0.339,
+    "q75": 0.533,
+    "p5": 0.204,
+    "p95": 0.672,
+    "max": 0.729,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 828,
+   "n_members": 20,
+   "reference": "6LO9",
+   "reference_resolution": 1.8600494706,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    61.583,
+    61.583,
+    155.507,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.473,
+    "q25": 0.367,
+    "q75": 1.32,
+    "p5": 0.257,
+    "p95": 1.867,
+    "max": 1.879,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.914,
+    "q25": 0.548,
+    "q75": 1.889,
+    "p5": 0.354,
+    "p95": 2.38,
+    "max": 2.848,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.35,
+    "q25": 0.288,
+    "q75": 0.407,
+    "p5": 0.218,
+    "p95": 0.502,
+    "max": 0.57,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

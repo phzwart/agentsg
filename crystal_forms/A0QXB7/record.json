@@ -1,0 +1,59 @@
+{
+ "identity": "A0QXB7",
+ "accessions": [
+  "A0QXB7"
+ ],
+ "deposition_group": null,
+ "name": "Starvation-inducible DNA-binding protein or fine tangled pili major subunit",
+ "clusters": [
+  {
+   "cluster_id": 1466,
+   "n_members": 12,
+   "reference": "4M32",
+   "reference_resolution": 1.86,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    89.65,
+    89.65,
+    421.071,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.373,
+    "q25": 0.237,
+    "q75": 0.473,
+    "p5": 0.127,
+    "p95": 0.584,
+    "max": 0.633,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.309,
+    "q25": 0.247,
+    "q75": 0.407,
+    "p5": 0.15,
+    "p95": 0.57,
+    "max": 0.648,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.125,
+    "q25": 0.1,
+    "q75": 0.207,
+    "p5": 0.078,
+    "p95": 0.315,
+    "max": 0.36,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

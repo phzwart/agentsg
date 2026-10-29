@@ -1,0 +1,59 @@
+{
+ "identity": "P20906",
+ "accessions": [
+  "P20906"
+ ],
+ "deposition_group": null,
+ "name": "Benzoylformate decarboxylase",
+ "clusters": [
+  {
+   "cluster_id": 446,
+   "n_members": 32,
+   "reference": "1Q6Z",
+   "reference_resolution": 1.0,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    81.371,
+    95.6,
+    136.881,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.219,
+    "q25": 0.184,
+    "q75": 0.262,
+    "p5": 0.144,
+    "p95": 0.346,
+    "max": 0.363,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.497,
+    "q25": 0.371,
+    "q75": 0.64,
+    "p5": 0.248,
+    "p95": 1.575,
+    "max": 2.318,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.167,
+    "q25": 0.129,
+    "q75": 0.213,
+    "p5": 0.099,
+    "p95": 0.279,
+    "max": 0.346,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

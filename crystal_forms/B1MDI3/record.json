@@ -1,0 +1,59 @@
+{
+ "identity": "B1MDI3",
+ "accessions": [
+  "B1MDI3"
+ ],
+ "deposition_group": null,
+ "name": "tRNA",
+ "clusters": [
+  {
+   "cluster_id": 184,
+   "n_members": 61,
+   "reference": "6QOK",
+   "reference_resolution": 1.48,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    73.702,
+    78.625,
+    86.484,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 60,
+    "reference": 1
+   },
+   "n_pairs": 1830,
+   "rmsd_to_reference": {
+    "median": 0.587,
+    "q25": 0.417,
+    "q75": 0.806,
+    "p5": 0.292,
+    "p95": 1.16,
+    "max": 1.575,
+    "n_pairs": 60
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.657,
+    "q25": 0.482,
+    "q75": 0.892,
+    "p5": 0.299,
+    "p95": 1.272,
+    "max": 1.926,
+    "n_pairs": 1830
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.411,
+    "q25": 0.318,
+    "q75": 0.668,
+    "p5": 0.217,
+    "p95": 0.948,
+    "max": 1.229,
+    "n_pairs": 1830
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

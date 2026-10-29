@@ -1,0 +1,59 @@
+{
+ "identity": "Q9I4K6",
+ "accessions": [
+  "Q9I4K6"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione transferase FosA",
+ "clusters": [
+  {
+   "cluster_id": 1607,
+   "n_members": 12,
+   "reference": "1NKI",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.982,
+    66.895,
+    76.723,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.528,
+    "q25": 0.943,
+    "q75": 1.563,
+    "p5": 0.183,
+    "p95": 1.598,
+    "max": 1.614,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.523,
+    "q25": 0.418,
+    "q75": 2.244,
+    "p5": 0.263,
+    "p95": 2.471,
+    "max": 2.614,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.323,
+    "q25": 0.239,
+    "q75": 0.359,
+    "p5": 0.132,
+    "p95": 0.425,
+    "max": 0.497,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

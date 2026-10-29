@@ -1,0 +1,59 @@
+{
+ "identity": "O08760",
+ "accessions": [
+  "O08760"
+ ],
+ "deposition_group": null,
+ "name": "N-glycosylase/DNA lyase [Includes: 8-oxoguanine DNA glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 659,
+   "n_members": 23,
+   "reference": "8CEY",
+   "reference_resolution": 1.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    81.632,
+    81.763,
+    170.486,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 1.229,
+    "q25": 0.98,
+    "q75": 1.491,
+    "p5": 0.676,
+    "p95": 1.708,
+    "max": 1.853,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.902,
+    "q25": 0.687,
+    "q75": 1.111,
+    "p5": 0.483,
+    "p95": 1.482,
+    "max": 1.992,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.407,
+    "q25": 0.353,
+    "q75": 0.476,
+    "p5": 0.275,
+    "p95": 0.656,
+    "max": 0.78,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

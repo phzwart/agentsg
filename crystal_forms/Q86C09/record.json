@@ -1,0 +1,108 @@
+{
+ "identity": "Q86C09",
+ "accessions": [
+  "Q86C09"
+ ],
+ "deposition_group": null,
+ "name": "Farnesyl pyrophosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 740,
+   "n_members": 22,
+   "reference": "5QTD",
+   "reference_resolution": 1.642,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    60.453,
+    60.453,
+    340.066,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.475,
+    "q25": 0.293,
+    "q75": 0.636,
+    "p5": 0.192,
+    "p95": 0.992,
+    "max": 1.475,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.635,
+    "q25": 0.439,
+    "q75": 0.847,
+    "p5": 0.25,
+    "p95": 1.312,
+    "max": 1.681,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.391,
+    "q25": 0.292,
+    "q75": 0.564,
+    "p5": 0.186,
+    "p95": 0.635,
+    "max": 0.838,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1597,
+   "n_members": 12,
+   "reference": "3DYH",
+   "reference_resolution": 1.94,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    133.915,
+    118.733,
+    63.036,
+    90.0,
+    112.29,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.581,
+    "q25": 0.481,
+    "q75": 0.706,
+    "p5": 0.374,
+    "p95": 0.798,
+    "max": 0.826,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.996,
+    "q25": 0.751,
+    "q75": 1.125,
+    "p5": 0.449,
+    "p95": 1.751,
+    "max": 1.822,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.405,
+    "q25": 0.331,
+    "q75": 0.631,
+    "p5": 0.257,
+    "p95": 0.697,
+    "max": 0.765,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

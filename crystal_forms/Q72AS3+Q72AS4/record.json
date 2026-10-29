@@ -1,0 +1,60 @@
+{
+ "identity": "Q72AS3+Q72AS4",
+ "accessions": [
+  "Q72AS3",
+  "Q72AS4"
+ ],
+ "deposition_group": null,
+ "name": "Periplasmic [NiFe] hydrogenase large subunit",
+ "clusters": [
+  {
+   "cluster_id": 1776,
+   "n_members": 11,
+   "reference": "5JSK",
+   "reference_resolution": 0.95,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    106.28,
+    62.77,
+    110.86,
+    90.0,
+    105.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.22,
+    "q25": 0.125,
+    "q75": 0.346,
+    "p5": 0.085,
+    "p95": 0.472,
+    "max": 0.558,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.957,
+    "q25": 0.587,
+    "q75": 1.353,
+    "p5": 0.242,
+    "p95": 1.628,
+    "max": 1.791,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.124,
+    "q25": 0.093,
+    "q75": 0.176,
+    "p5": 0.074,
+    "p95": 0.202,
+    "max": 0.226,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

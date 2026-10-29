@@ -1,0 +1,157 @@
+{
+ "identity": "P21589",
+ "accessions": [
+  "P21589"
+ ],
+ "deposition_group": null,
+ "name": "5'-nucleotidase",
+ "clusters": [
+  {
+   "cluster_id": 919,
+   "n_members": 18,
+   "reference": "6TVE",
+   "reference_resolution": 1.05,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    67.316,
+    131.38,
+    66.195,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.251,
+    "q25": 0.214,
+    "q75": 0.364,
+    "p5": 0.181,
+    "p95": 0.734,
+    "max": 1.398,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.361,
+    "q25": 0.254,
+    "q75": 0.577,
+    "p5": 0.17,
+    "p95": 1.783,
+    "max": 2.336,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.205,
+    "q25": 0.158,
+    "q75": 0.296,
+    "p5": 0.104,
+    "p95": 1.057,
+    "max": 1.18,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1531,
+   "n_members": 12,
+   "reference": "6XUE",
+   "reference_resolution": 1.94,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    94.019,
+    232.175,
+    54.83,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 5.719,
+    "q25": 1.128,
+    "q75": 7.508,
+    "p5": 0.621,
+    "p95": 7.827,
+    "max": 7.832,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.452,
+    "q25": 1.28,
+    "q75": 7.411,
+    "p5": 0.746,
+    "p95": 7.926,
+    "max": 8.027,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.757,
+    "q25": 0.6,
+    "q75": 1.12,
+    "p5": 0.289,
+    "p95": 1.326,
+    "max": 1.717,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1532,
+   "n_members": 12,
+   "reference": "6S7H",
+   "reference_resolution": 1.85,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    53.83,
+    95.8,
+    233.59,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.742,
+    "q25": 0.553,
+    "q75": 0.857,
+    "p5": 0.421,
+    "p95": 1.241,
+    "max": 1.399,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.876,
+    "q25": 0.658,
+    "q75": 1.258,
+    "p5": 0.373,
+    "p95": 1.824,
+    "max": 2.008,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.368,
+    "q25": 0.311,
+    "q75": 0.518,
+    "p5": 0.227,
+    "p95": 0.759,
+    "max": 1.008,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

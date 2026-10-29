@@ -1,0 +1,59 @@
+{
+ "identity": "Q57U83",
+ "accessions": [
+  "Q57U83"
+ ],
+ "deposition_group": null,
+ "name": "Dihydroorotate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1585,
+   "n_members": 12,
+   "reference": "5XFW",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    140.053,
+    146.218,
+    66.389,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.352,
+    "q25": 0.319,
+    "q75": 0.469,
+    "p5": 0.277,
+    "p95": 0.795,
+    "max": 0.814,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.753,
+    "q25": 0.484,
+    "q75": 1.046,
+    "p5": 0.299,
+    "p95": 5.72,
+    "max": 6.154,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.201,
+    "q25": 0.156,
+    "q75": 0.237,
+    "p5": 0.107,
+    "p95": 0.283,
+    "max": 0.326,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

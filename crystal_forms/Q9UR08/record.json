@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UR08",
+ "accessions": [
+  "Q9UR08"
+ ],
+ "deposition_group": null,
+ "name": "Aristolochene synthase",
+ "clusters": [
+  {
+   "cluster_id": 1801,
+   "n_members": 11,
+   "reference": "4KWD",
+   "reference_resolution": 1.857,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    123.865,
+    123.865,
+    202.081,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.292,
+    "q25": 0.255,
+    "q75": 0.426,
+    "p5": 0.243,
+    "p95": 0.484,
+    "max": 0.513,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.481,
+    "q25": 0.385,
+    "q75": 0.669,
+    "p5": 0.284,
+    "p95": 0.936,
+    "max": 1.008,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.184,
+    "q25": 0.165,
+    "q75": 0.232,
+    "p5": 0.131,
+    "p95": 0.279,
+    "max": 0.306,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

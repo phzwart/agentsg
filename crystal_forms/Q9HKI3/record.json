@@ -1,0 +1,59 @@
+{
+ "identity": "Q9HKI3",
+ "accessions": [
+  "Q9HKI3"
+ ],
+ "deposition_group": null,
+ "name": "Transaldolase",
+ "clusters": [
+  {
+   "cluster_id": 1606,
+   "n_members": 12,
+   "reference": "6YR3",
+   "reference_resolution": 1.48,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    148.51,
+    172.2,
+    100.58,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.444,
+    "q25": 0.343,
+    "q75": 0.659,
+    "p5": 0.237,
+    "p95": 1.92,
+    "max": 1.96,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.633,
+    "q25": 0.417,
+    "q75": 1.54,
+    "p5": 0.283,
+    "p95": 1.881,
+    "max": 2.018,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.294,
+    "q25": 0.205,
+    "q75": 0.969,
+    "p5": 0.12,
+    "p95": 1.151,
+    "max": 1.228,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

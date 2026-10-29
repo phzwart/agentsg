@@ -1,0 +1,59 @@
+{
+ "identity": "P02883",
+ "accessions": [
+  "P02883"
+ ],
+ "deposition_group": null,
+ "name": "Thaumatin I",
+ "clusters": [
+  {
+   "cluster_id": 36,
+   "n_members": 184,
+   "reference": "5X9L",
+   "reference_resolution": 0.9,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    57.702,
+    57.702,
+    149.908,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 183,
+    "reference": 1
+   },
+   "n_pairs": 16836,
+   "rmsd_to_reference": {
+    "median": 0.477,
+    "q25": 0.219,
+    "q75": 0.532,
+    "p5": 0.132,
+    "p95": 0.595,
+    "max": 1.434,
+    "n_pairs": 183
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.523,
+    "q25": 0.307,
+    "q75": 0.726,
+    "p5": 0.127,
+    "p95": 0.982,
+    "max": 1.767,
+    "n_pairs": 16836
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.223,
+    "q25": 0.166,
+    "q75": 0.275,
+    "p5": 0.085,
+    "p95": 0.348,
+    "max": 0.617,
+    "n_pairs": 16836
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

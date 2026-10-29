@@ -1,0 +1,60 @@
+{
+ "identity": "P02791",
+ "accessions": [
+  "P02791"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin light chain",
+ "clusters": [
+  {
+   "cluster_id": 41,
+   "n_members": 168,
+   "reference": "2V2P",
+   "reference_resolution": 1.15,
+   "space_group": "F 4 3 2",
+   "reference_cell": [
+    181.255,
+    181.255,
+    181.255,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 166,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 13861,
+   "rmsd_to_reference": {
+    "median": 0.438,
+    "q25": 0.267,
+    "q75": 0.536,
+    "p5": 0.212,
+    "p95": 2.812,
+    "max": 3.602,
+    "n_pairs": 166
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.457,
+    "q25": 0.281,
+    "q75": 0.684,
+    "p5": 0.163,
+    "p95": 3.643,
+    "max": 4.14,
+    "n_pairs": 13861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.396,
+    "q25": 0.219,
+    "q75": 0.625,
+    "p5": 0.131,
+    "p95": 3.27,
+    "max": 3.7,
+    "n_pairs": 13861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P08684",
+ "accessions": [
+  "P08684"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome P450 3A4",
+ "clusters": [
+  {
+   "cluster_id": 86,
+   "n_members": 107,
+   "reference": "5VCC",
+   "reference_resolution": 1.7,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    76.3,
+    98.91,
+    133.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 106,
+    "reference": 1
+   },
+   "n_pairs": 5671,
+   "rmsd_to_reference": {
+    "median": 21.449,
+    "q25": 1.572,
+    "q75": 21.561,
+    "p5": 0.765,
+    "p95": 21.862,
+    "max": 22.313,
+    "n_pairs": 106
+   },
+   "pairwise_frame_rmsd": {
+    "median": 4.674,
+    "q25": 1.442,
+    "q75": 21.684,
+    "p5": 0.74,
+    "p95": 21.908,
+    "max": 22.713,
+    "n_pairs": 5671
+   },
+   "pairwise_fit_rmsd": {
+    "median": 3.848,
+    "q25": 0.756,
+    "q75": 21.236,
+    "p5": 0.487,
+    "p95": 21.368,
+    "max": 22.087,
+    "n_pairs": 5671
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

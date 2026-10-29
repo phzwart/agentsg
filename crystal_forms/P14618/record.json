@@ -1,0 +1,60 @@
+{
+ "identity": "P14618",
+ "accessions": [
+  "P14618"
+ ],
+ "deposition_group": null,
+ "name": "Pyruvate kinase PKM",
+ "clusters": [
+  {
+   "cluster_id": 865,
+   "n_members": 19,
+   "reference": "3GR4",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    81.275,
+    153.206,
+    93.138,
+    90.0,
+    102.91,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.876,
+    "q25": 0.68,
+    "q75": 2.866,
+    "p5": 0.305,
+    "p95": 3.788,
+    "max": 3.808,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.579,
+    "q25": 0.779,
+    "q75": 3.198,
+    "p5": 0.428,
+    "p95": 3.961,
+    "max": 4.673,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.911,
+    "q25": 0.522,
+    "q75": 1.953,
+    "p5": 0.306,
+    "p95": 2.487,
+    "max": 2.703,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,158 @@
+{
+ "identity": "P15121",
+ "accessions": [
+  "P15121"
+ ],
+ "deposition_group": null,
+ "name": "Aldo-keto reductase family 1 member B1",
+ "clusters": [
+  {
+   "cluster_id": 66,
+   "n_members": 121,
+   "reference": "1US0",
+   "reference_resolution": 0.66,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.28,
+    66.59,
+    47.26,
+    90.0,
+    92.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 117,
+    "reference": 1,
+    "no_shared_accession": 3
+   },
+   "n_pairs": 6903,
+   "rmsd_to_reference": {
+    "median": 0.334,
+    "q25": 0.227,
+    "q75": 0.389,
+    "p5": 0.142,
+    "p95": 0.585,
+    "max": 41.703,
+    "n_pairs": 117
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.396,
+    "q25": 0.305,
+    "q75": 0.51,
+    "p5": 0.188,
+    "p95": 2.225,
+    "max": 42.698,
+    "n_pairs": 6903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.311,
+    "q25": 0.243,
+    "q75": 0.372,
+    "p5": 0.152,
+    "p95": 0.559,
+    "max": 0.963,
+    "n_pairs": 6903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 466,
+   "n_members": 31,
+   "reference": "4GCA",
+   "reference_resolution": 0.9,
+   "space_group": "P 1",
+   "reference_cell": [
+    47.102,
+    47.218,
+    39.953,
+    67.83,
+    76.96,
+    76.15
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.283,
+    "q25": 0.227,
+    "q75": 0.345,
+    "p5": 0.181,
+    "p95": 0.538,
+    "max": 0.68,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.322,
+    "q25": 0.248,
+    "q75": 0.388,
+    "p5": 0.172,
+    "p95": 0.638,
+    "max": 0.755,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.288,
+    "q25": 0.215,
+    "q75": 0.359,
+    "p5": 0.152,
+    "p95": 0.615,
+    "max": 0.751,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1261,
+   "n_members": 14,
+   "reference": "1ADS",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.0,
+    67.12,
+    92.02,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.454,
+    "q25": 0.427,
+    "q75": 0.501,
+    "p5": 0.373,
+    "p95": 0.592,
+    "max": 0.628,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.474,
+    "q25": 0.381,
+    "q75": 0.548,
+    "p5": 0.199,
+    "p95": 0.73,
+    "max": 0.975,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.353,
+    "q25": 0.191,
+    "q75": 0.435,
+    "p5": 0.124,
+    "p95": 0.486,
+    "max": 0.544,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P24627",
+ "accessions": [
+  "P24627"
+ ],
+ "deposition_group": null,
+ "name": "Lactotransferrin",
+ "clusters": [
+  {
+   "cluster_id": 160,
+   "n_members": 72,
+   "reference": "3TOD",
+   "reference_resolution": 1.38,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    62.415,
+    49.977,
+    65.289,
+    90.0,
+    107.14,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 71,
+    "reference": 1
+   },
+   "n_pairs": 2556,
+   "rmsd_to_reference": {
+    "median": 0.618,
+    "q25": 0.506,
+    "q75": 0.631,
+    "p5": 0.224,
+    "p95": 0.68,
+    "max": 39.814,
+    "n_pairs": 71
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.539,
+    "q25": 0.402,
+    "q75": 0.657,
+    "p5": 0.267,
+    "p95": 1.188,
+    "max": 40.778,
+    "n_pairs": 2556
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.453,
+    "q25": 0.354,
+    "q75": 0.559,
+    "p5": 0.243,
+    "p95": 1.149,
+    "max": 22.313,
+    "n_pairs": 2556
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

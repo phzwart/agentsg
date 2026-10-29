@@ -1,0 +1,59 @@
+{
+ "identity": "Q8NFU5",
+ "accessions": [
+  "Q8NFU5"
+ ],
+ "deposition_group": null,
+ "name": "Inositol polyphosphate multikinase",
+ "clusters": [
+  {
+   "cluster_id": 586,
+   "n_members": 26,
+   "reference": "5W2I",
+   "reference_resolution": 1.6,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    78.09,
+    78.09,
+    86.32,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 4.601,
+    "q25": 4.594,
+    "q75": 4.624,
+    "p5": 1.187,
+    "p95": 4.643,
+    "max": 4.654,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.502,
+    "q25": 0.335,
+    "q75": 0.642,
+    "p5": 0.21,
+    "p95": 4.629,
+    "max": 4.679,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.424,
+    "q25": 0.223,
+    "q75": 0.517,
+    "p5": 0.131,
+    "p95": 4.568,
+    "max": 4.589,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

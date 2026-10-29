@@ -1,0 +1,59 @@
+{
+ "identity": "P48736",
+ "accessions": [
+  "P48736"
+ ],
+ "deposition_group": null,
+ "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit gamma isoform",
+ "clusters": [
+  {
+   "cluster_id": 92,
+   "n_members": 104,
+   "reference": "1E8Y",
+   "reference_resolution": 2.0,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    139.227,
+    66.255,
+    102.642,
+    90.0,
+    97.85,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 103
+   },
+   "n_pairs": 5356,
+   "rmsd_to_reference": {
+    "median": 2.717,
+    "q25": 2.363,
+    "q75": 3.093,
+    "p5": 1.31,
+    "p95": 3.573,
+    "max": 3.912,
+    "n_pairs": 103
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.212,
+    "q25": 0.961,
+    "q75": 1.559,
+    "p5": 0.726,
+    "p95": 2.219,
+    "max": 3.303,
+    "n_pairs": 5356
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.768,
+    "q25": 0.672,
+    "q75": 0.889,
+    "p5": 0.556,
+    "p95": 1.112,
+    "max": 1.705,
+    "n_pairs": 5356
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

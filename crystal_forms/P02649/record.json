@@ -1,0 +1,59 @@
+{
+ "identity": "P02649",
+ "accessions": [
+  "P02649"
+ ],
+ "deposition_group": null,
+ "name": "Apolipoprotein E",
+ "clusters": [
+  {
+   "cluster_id": 1238,
+   "n_members": 14,
+   "reference": "7FCR",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    40.642,
+    53.207,
+    85.982,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.466,
+    "q25": 0.442,
+    "q75": 0.536,
+    "p5": 0.265,
+    "p95": 0.719,
+    "max": 0.761,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.194,
+    "q25": 0.728,
+    "q75": 1.713,
+    "p5": 0.386,
+    "p95": 2.415,
+    "max": 2.926,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.33,
+    "q25": 0.269,
+    "q75": 0.583,
+    "p5": 0.197,
+    "p95": 0.702,
+    "max": 0.943,
+    "n_pairs": 91
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

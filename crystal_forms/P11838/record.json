@@ -1,0 +1,157 @@
+{
+ "identity": "P11838",
+ "accessions": [
+  "P11838"
+ ],
+ "deposition_group": null,
+ "name": "Endothiapepsin",
+ "clusters": [
+  {
+   "cluster_id": 3,
+   "n_members": 947,
+   "reference": "5RDH",
+   "reference_resolution": 0.85,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.266,
+    72.916,
+    52.509,
+    90.0,
+    109.33,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 946,
+    "reference": 1
+   },
+   "n_pairs": 447931,
+   "rmsd_to_reference": {
+    "median": 0.126,
+    "q25": 0.095,
+    "q75": 0.205,
+    "p5": 0.064,
+    "p95": 0.391,
+    "max": 0.865,
+    "n_pairs": 946
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.43,
+    "q25": 0.263,
+    "q75": 0.704,
+    "p5": 0.137,
+    "p95": 1.188,
+    "max": 3.201,
+    "n_pairs": 447931
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.133,
+    "q25": 0.092,
+    "q75": 0.198,
+    "p5": 0.058,
+    "p95": 0.31,
+    "max": 0.841,
+    "n_pairs": 447931
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 574,
+   "n_members": 26,
+   "reference": "1OEW",
+   "reference_resolution": 0.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    42.72,
+    74.66,
+    42.55,
+    90.0,
+    97.27,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 1.531,
+    "q25": 0.255,
+    "q75": 1.541,
+    "p5": 0.124,
+    "p95": 1.549,
+    "max": 1.558,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.542,
+    "q25": 0.243,
+    "q75": 1.605,
+    "p5": 0.162,
+    "p95": 1.661,
+    "max": 1.728,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.533,
+    "q25": 0.217,
+    "q75": 1.55,
+    "p5": 0.146,
+    "p95": 1.585,
+    "max": 1.609,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 981,
+   "n_members": 17,
+   "reference": "5P63",
+   "reference_resolution": 1.199,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    45.295,
+    72.598,
+    104.178,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.124,
+    "q25": 0.082,
+    "q75": 0.161,
+    "p5": 0.056,
+    "p95": 0.28,
+    "max": 0.287,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.174,
+    "q25": 0.131,
+    "q75": 0.245,
+    "p5": 0.08,
+    "p95": 0.346,
+    "max": 0.426,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.096,
+    "q25": 0.078,
+    "q75": 0.113,
+    "p5": 0.054,
+    "p95": 0.158,
+    "max": 0.179,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

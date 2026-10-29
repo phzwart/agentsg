@@ -1,0 +1,60 @@
+{
+ "identity": "P02754",
+ "accessions": [
+  "P02754"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactoglobulin",
+ "clusters": [
+  {
+   "cluster_id": 170,
+   "n_members": 68,
+   "reference": "4GNY",
+   "reference_resolution": 1.6367,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    53.977,
+    53.977,
+    112.861,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 66,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 2211,
+   "rmsd_to_reference": {
+    "median": 0.894,
+    "q25": 0.72,
+    "q75": 1.069,
+    "p5": 0.548,
+    "p95": 1.274,
+    "max": 1.379,
+    "n_pairs": 66
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.629,
+    "q25": 0.495,
+    "q75": 0.813,
+    "p5": 0.348,
+    "p95": 1.179,
+    "max": 1.659,
+    "n_pairs": 2211
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.47,
+    "q25": 0.358,
+    "q75": 0.615,
+    "p5": 0.26,
+    "p95": 1.01,
+    "max": 1.433,
+    "n_pairs": 2211
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

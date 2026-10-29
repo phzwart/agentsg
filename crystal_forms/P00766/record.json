@@ -1,0 +1,59 @@
+{
+ "identity": "P00766",
+ "accessions": [
+  "P00766"
+ ],
+ "deposition_group": null,
+ "name": "Chymotrypsinogen A",
+ "clusters": [
+  {
+   "cluster_id": 334,
+   "n_members": 39,
+   "reference": "5R43",
+   "reference_resolution": 1.0,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    68.859,
+    68.859,
+    96.489,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.348,
+    "q25": 0.297,
+    "q75": 0.433,
+    "p5": 0.222,
+    "p95": 0.512,
+    "max": 0.734,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.51,
+    "q25": 0.315,
+    "q75": 0.676,
+    "p5": 0.194,
+    "p95": 0.86,
+    "max": 1.108,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.241,
+    "q25": 0.191,
+    "q75": 0.273,
+    "p5": 0.115,
+    "p95": 0.321,
+    "max": 0.362,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

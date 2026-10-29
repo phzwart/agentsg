@@ -1,0 +1,109 @@
+{
+ "identity": "P09467",
+ "accessions": [
+  "P09467"
+ ],
+ "deposition_group": null,
+ "name": "Fructose-1,6-bisphosphatase 1",
+ "clusters": [
+  {
+   "cluster_id": 601,
+   "n_members": 25,
+   "reference": "7WJV",
+   "reference_resolution": 1.724,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    67.641,
+    83.617,
+    278.717,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.958,
+    "q25": 0.855,
+    "q75": 1.202,
+    "p5": 0.833,
+    "p95": 1.507,
+    "max": 1.596,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.904,
+    "q25": 0.594,
+    "q75": 1.231,
+    "p5": 0.362,
+    "p95": 1.695,
+    "max": 2.573,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.304,
+    "q75": 0.564,
+    "p5": 0.177,
+    "p95": 0.885,
+    "max": 1.059,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 971,
+   "n_members": 17,
+   "reference": "5Q09",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    66.579,
+    286.577,
+    83.616,
+    90.0,
+    97.44,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.568,
+    "q25": 0.394,
+    "q75": 1.074,
+    "p5": 0.275,
+    "p95": 1.749,
+    "max": 2.808,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.878,
+    "q25": 0.466,
+    "q75": 1.426,
+    "p5": 0.316,
+    "p95": 3.003,
+    "max": 4.165,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.296,
+    "q25": 0.249,
+    "q75": 0.411,
+    "p5": 0.191,
+    "p95": 0.806,
+    "max": 0.885,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

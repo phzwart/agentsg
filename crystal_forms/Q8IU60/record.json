@@ -1,0 +1,59 @@
+{
+ "identity": "Q8IU60",
+ "accessions": [
+  "Q8IU60"
+ ],
+ "deposition_group": null,
+ "name": "m7GpppN-mRNA hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 430,
+   "n_members": 33,
+   "reference": "5QOQ",
+   "reference_resolution": 1.49,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.388,
+    60.478,
+    65.62,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.223,
+    "q25": 0.165,
+    "q75": 0.301,
+    "p5": 0.141,
+    "p95": 0.475,
+    "max": 0.567,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.661,
+    "q25": 0.453,
+    "q75": 0.944,
+    "p5": 0.274,
+    "p95": 1.437,
+    "max": 2.093,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.259,
+    "q25": 0.191,
+    "q75": 0.311,
+    "p5": 0.123,
+    "p95": 0.402,
+    "max": 0.487,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

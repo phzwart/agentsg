@@ -1,0 +1,59 @@
+{
+ "identity": "P04905",
+ "accessions": [
+  "P04905"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione S-transferase Mu 1",
+ "clusters": [
+  {
+   "cluster_id": 1497,
+   "n_members": 12,
+   "reference": "6GSV",
+   "reference_resolution": 1.75,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    86.62,
+    68.54,
+    80.37,
+    90.0,
+    105.74,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.547,
+    "q25": 0.537,
+    "q75": 0.559,
+    "p5": 0.488,
+    "p95": 0.616,
+    "max": 0.666,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.274,
+    "q75": 0.547,
+    "p5": 0.167,
+    "p95": 0.834,
+    "max": 0.896,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.249,
+    "q25": 0.205,
+    "q75": 0.307,
+    "p5": 0.128,
+    "p95": 0.369,
+    "max": 0.406,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

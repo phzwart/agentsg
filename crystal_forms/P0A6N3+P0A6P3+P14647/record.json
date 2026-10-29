@@ -1,0 +1,61 @@
+{
+ "identity": "P0A6N3+P0A6P3+P14647",
+ "accessions": [
+  "P0A6N3",
+  "P0A6P3",
+  "P14647"
+ ],
+ "deposition_group": null,
+ "name": "RNA-directed RNA polymerase subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 1682,
+   "n_members": 11,
+   "reference": "3AVX",
+   "reference_resolution": 2.406,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    139.31,
+    256.58,
+    101.59,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.841,
+    "q25": 0.726,
+    "q75": 0.927,
+    "p5": 0.671,
+    "p95": 1.296,
+    "max": 1.497,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.824,
+    "q25": 0.698,
+    "q75": 1.042,
+    "p5": 0.554,
+    "p95": 1.614,
+    "max": 1.707,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.697,
+    "q25": 0.617,
+    "q75": 0.845,
+    "p5": 0.487,
+    "p95": 1.535,
+    "max": 1.576,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

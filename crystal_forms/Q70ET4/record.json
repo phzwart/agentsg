@@ -1,0 +1,59 @@
+{
+ "identity": "Q70ET4",
+ "accessions": [
+  "Q70ET4"
+ ],
+ "deposition_group": null,
+ "name": "FNR type regulator",
+ "clusters": [
+  {
+   "cluster_id": 1774,
+   "n_members": 11,
+   "reference": "9QMC",
+   "reference_resolution": 2.1,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    75.98,
+    75.98,
+    218.37,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.123,
+    "q25": 0.435,
+    "q75": 1.545,
+    "p5": 0.273,
+    "p95": 1.925,
+    "max": 2.174,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.531,
+    "q25": 0.975,
+    "q75": 1.831,
+    "p5": 0.423,
+    "p95": 2.785,
+    "max": 2.929,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.948,
+    "q25": 0.665,
+    "q75": 1.145,
+    "p5": 0.265,
+    "p95": 1.501,
+    "max": 1.603,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

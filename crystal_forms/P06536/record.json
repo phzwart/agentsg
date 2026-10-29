@@ -1,0 +1,59 @@
+{
+ "identity": "P06536",
+ "accessions": [
+  "P06536"
+ ],
+ "deposition_group": null,
+ "name": "Glucocorticoid receptor",
+ "clusters": [
+  {
+   "cluster_id": 1504,
+   "n_members": 12,
+   "reference": "3G9M",
+   "reference_resolution": 1.61,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    118.058,
+    38.713,
+    96.475,
+    90.0,
+    123.71,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.849,
+    "q25": 0.645,
+    "q75": 1.03,
+    "p5": 0.486,
+    "p95": 2.295,
+    "max": 3.12,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.938,
+    "q25": 0.761,
+    "q75": 1.322,
+    "p5": 0.533,
+    "p95": 3.083,
+    "max": 3.208,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.582,
+    "q25": 0.44,
+    "q75": 0.775,
+    "p5": 0.247,
+    "p95": 2.742,
+    "max": 2.808,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

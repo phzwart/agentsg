@@ -1,0 +1,59 @@
+{
+ "identity": "Q27743",
+ "accessions": [
+  "Q27743"
+ ],
+ "deposition_group": null,
+ "name": "L-lactate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1079,
+   "n_members": 16,
+   "reference": "4PLZ",
+   "reference_resolution": 1.05,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    80.53,
+    86.01,
+    91.44,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.296,
+    "q25": 0.267,
+    "q75": 0.756,
+    "p5": 0.234,
+    "p95": 0.837,
+    "max": 0.892,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.836,
+    "q25": 0.479,
+    "q75": 1.092,
+    "p5": 0.272,
+    "p95": 1.313,
+    "max": 1.466,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.66,
+    "q25": 0.28,
+    "q75": 0.906,
+    "p5": 0.16,
+    "p95": 1.05,
+    "max": 1.135,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

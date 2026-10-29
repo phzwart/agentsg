@@ -1,0 +1,59 @@
+{
+ "identity": "P9WJF1",
+ "accessions": [
+  "P9WJF1"
+ ],
+ "deposition_group": null,
+ "name": "Decaprenylphosphoryl-beta-D-ribose oxidase",
+ "clusters": [
+  {
+   "cluster_id": 876,
+   "n_members": 19,
+   "reference": "4P8N",
+   "reference_resolution": 1.79,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    77.242,
+    83.219,
+    80.755,
+    90.0,
+    103.04,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.657,
+    "q25": 0.364,
+    "q75": 0.835,
+    "p5": 0.264,
+    "p95": 1.141,
+    "max": 1.253,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.603,
+    "q25": 0.453,
+    "q75": 0.779,
+    "p5": 0.32,
+    "p95": 1.051,
+    "max": 1.275,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.324,
+    "q75": 0.453,
+    "p5": 0.25,
+    "p95": 0.565,
+    "max": 0.834,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

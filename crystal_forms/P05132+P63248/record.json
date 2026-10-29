@@ -1,0 +1,60 @@
+{
+ "identity": "P05132+P63248",
+ "accessions": [
+  "P05132",
+  "P63248"
+ ],
+ "deposition_group": null,
+ "name": "cAMP-dependent protein kinase catalytic subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 1673,
+   "n_members": 11,
+   "reference": "4HPU",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    57.69,
+    79.8,
+    98.14,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.433,
+    "q25": 0.371,
+    "q75": 0.568,
+    "p5": 0.297,
+    "p95": 0.869,
+    "max": 0.997,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.52,
+    "q25": 0.444,
+    "q75": 0.713,
+    "p5": 0.289,
+    "p95": 1.112,
+    "max": 1.19,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.375,
+    "q25": 0.27,
+    "q75": 0.423,
+    "p5": 0.206,
+    "p95": 0.928,
+    "max": 0.938,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

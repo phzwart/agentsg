@@ -1,0 +1,59 @@
+{
+ "identity": "O95831",
+ "accessions": [
+  "O95831"
+ ],
+ "deposition_group": null,
+ "name": "Apoptosis-inducing factor 1, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1657,
+   "n_members": 11,
+   "reference": "5FS9",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    90.619,
+    114.93,
+    121.77,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.782,
+    "q25": 0.706,
+    "q75": 0.889,
+    "p5": 0.405,
+    "p95": 1.02,
+    "max": 1.02,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.048,
+    "q25": 0.782,
+    "q75": 1.355,
+    "p5": 0.406,
+    "p95": 1.771,
+    "max": 2.07,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.565,
+    "q25": 0.42,
+    "q75": 0.667,
+    "p5": 0.216,
+    "p95": 0.77,
+    "max": 0.788,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

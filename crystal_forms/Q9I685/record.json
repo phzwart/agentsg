@@ -1,0 +1,108 @@
+{
+ "identity": "Q9I685",
+ "accessions": [
+  "Q9I685"
+ ],
+ "deposition_group": null,
+ "name": "Adenosylhomocysteinase",
+ "clusters": [
+  {
+   "cluster_id": 1608,
+   "n_members": 12,
+   "reference": "6F3M",
+   "reference_resolution": 1.6,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    175.976,
+    104.145,
+    107.634,
+    90.0,
+    100.71,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.314,
+    "q25": 0.287,
+    "q75": 0.42,
+    "p5": 0.26,
+    "p95": 0.68,
+    "max": 0.768,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.654,
+    "q25": 0.375,
+    "q75": 0.909,
+    "p5": 0.211,
+    "p95": 1.291,
+    "max": 1.43,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.171,
+    "q25": 0.141,
+    "q75": 0.207,
+    "p5": 0.1,
+    "p95": 0.311,
+    "max": 0.339,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1609,
+   "n_members": 12,
+   "reference": "8CFU",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    75.55,
+    133.9,
+    97.95,
+    90.0,
+    101.21,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.689,
+    "q25": 0.648,
+    "q75": 0.737,
+    "p5": 0.595,
+    "p95": 0.989,
+    "max": 1.014,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.377,
+    "q25": 0.178,
+    "q75": 0.703,
+    "p5": 0.127,
+    "p95": 1.477,
+    "max": 1.826,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.146,
+    "q25": 0.103,
+    "q75": 0.206,
+    "p5": 0.086,
+    "p95": 0.257,
+    "max": 0.516,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

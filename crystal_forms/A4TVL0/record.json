@@ -1,0 +1,59 @@
+{
+ "identity": "A4TVL0",
+ "accessions": [
+  "A4TVL0"
+ ],
+ "deposition_group": null,
+ "name": "Cereblon isoform 4",
+ "clusters": [
+  {
+   "cluster_id": 216,
+   "n_members": 55,
+   "reference": "6R18",
+   "reference_resolution": 1.35,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.63,
+    59.592,
+    88.894,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 54,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 0.338,
+    "q25": 0.276,
+    "q75": 0.469,
+    "p5": 0.225,
+    "p95": 0.867,
+    "max": 1.283,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.457,
+    "q25": 0.326,
+    "q75": 0.667,
+    "p5": 0.221,
+    "p95": 1.111,
+    "max": 1.953,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.205,
+    "q25": 0.172,
+    "q75": 0.243,
+    "p5": 0.13,
+    "p95": 0.378,
+    "max": 0.658,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

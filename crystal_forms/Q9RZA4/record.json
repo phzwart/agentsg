@@ -1,0 +1,59 @@
+{
+ "identity": "Q9RZA4",
+ "accessions": [
+  "Q9RZA4"
+ ],
+ "deposition_group": null,
+ "name": "Bacteriophytochrome",
+ "clusters": [
+  {
+   "cluster_id": 743,
+   "n_members": 22,
+   "reference": "6T3L",
+   "reference_resolution": 2.07,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.98,
+    116.69,
+    117.86,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 21
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.129,
+    "q25": 0.122,
+    "q75": 0.14,
+    "p5": 0.116,
+    "p95": 0.346,
+    "max": 0.374,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.112,
+    "q25": 0.072,
+    "q75": 0.2,
+    "p5": 0.035,
+    "p95": 0.364,
+    "max": 0.387,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.11,
+    "q25": 0.069,
+    "q75": 0.196,
+    "p5": 0.035,
+    "p95": 0.342,
+    "max": 0.359,
+    "n_pairs": 231
+   },
+   "n_low_margin": 21,
+   "n_via_neighbour": 0
+  }
+ ]
+}

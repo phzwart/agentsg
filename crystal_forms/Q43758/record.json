@@ -1,0 +1,59 @@
+{
+ "identity": "Q43758",
+ "accessions": [
+  "Q43758"
+ ],
+ "deposition_group": null,
+ "name": "NAD(P)H oxidase",
+ "clusters": [
+  {
+   "cluster_id": 427,
+   "n_members": 33,
+   "reference": "2VCN",
+   "reference_resolution": 1.2,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    82.126,
+    82.126,
+    75.16,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.228,
+    "q25": 0.201,
+    "q75": 0.305,
+    "p5": 0.172,
+    "p95": 0.905,
+    "max": 1.071,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.459,
+    "q25": 0.301,
+    "q75": 0.808,
+    "p5": 0.19,
+    "p95": 1.207,
+    "max": 1.948,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.169,
+    "q75": 0.296,
+    "p5": 0.126,
+    "p95": 1.014,
+    "max": 1.135,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

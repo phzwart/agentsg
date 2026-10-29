@@ -1,0 +1,59 @@
+{
+ "identity": "P32396",
+ "accessions": [
+  "P32396"
+ ],
+ "deposition_group": null,
+ "name": "Coproporphyrin III ferrochelatase",
+ "clusters": [
+  {
+   "cluster_id": 774,
+   "n_members": 21,
+   "reference": "9KTA",
+   "reference_resolution": 1.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.62,
+    49.82,
+    118.43,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.321,
+    "q25": 0.226,
+    "q75": 0.477,
+    "p5": 0.172,
+    "p95": 1.444,
+    "max": 2.01,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.508,
+    "q25": 0.365,
+    "q75": 1.053,
+    "p5": 0.206,
+    "p95": 2.091,
+    "max": 2.371,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.303,
+    "q25": 0.232,
+    "q75": 0.4,
+    "p5": 0.155,
+    "p95": 0.631,
+    "max": 0.674,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

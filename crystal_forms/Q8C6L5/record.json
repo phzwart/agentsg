@@ -1,0 +1,60 @@
+{
+ "identity": "Q8C6L5",
+ "accessions": [
+  "Q8C6L5"
+ ],
+ "deposition_group": null,
+ "name": "Cyclic GMP-AMP synthase",
+ "clusters": [
+  {
+   "cluster_id": 477,
+   "n_members": 31,
+   "reference": "7UTT",
+   "reference_resolution": 2.04,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    77.093,
+    97.882,
+    142.271,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.643,
+    "q25": 0.529,
+    "q75": 0.737,
+    "p5": 0.391,
+    "p95": 0.792,
+    "max": 0.812,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.453,
+    "q25": 0.368,
+    "q75": 0.569,
+    "p5": 0.281,
+    "p95": 0.822,
+    "max": 0.997,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.319,
+    "q25": 0.275,
+    "q75": 0.39,
+    "p5": 0.221,
+    "p95": 0.493,
+    "max": 0.564,
+    "n_pairs": 435
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 0
+  }
+ ]
+}

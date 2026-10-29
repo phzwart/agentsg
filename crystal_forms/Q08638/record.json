@@ -1,0 +1,59 @@
+{
+ "identity": "Q08638",
+ "accessions": [
+  "Q08638"
+ ],
+ "deposition_group": null,
+ "name": "Beta-glucosidase A",
+ "clusters": [
+  {
+   "cluster_id": 648,
+   "n_members": 24,
+   "reference": "5OSS",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    94.316,
+    94.616,
+    113.443,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.217,
+    "q25": 0.17,
+    "q75": 0.315,
+    "p5": 0.127,
+    "p95": 0.445,
+    "max": 0.506,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.276,
+    "q25": 0.205,
+    "q75": 0.39,
+    "p5": 0.146,
+    "p95": 0.552,
+    "max": 0.665,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.157,
+    "q25": 0.132,
+    "q75": 0.183,
+    "p5": 0.108,
+    "p95": 0.217,
+    "max": 0.376,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q4Q5L3",
+ "accessions": [
+  "Q4Q5L3"
+ ],
+ "deposition_group": null,
+ "name": "Ubiquitin-conjugating enzyme E2 H",
+ "clusters": [
+  {
+   "cluster_id": 1763,
+   "n_members": 11,
+   "reference": "29LQ",
+   "reference_resolution": 2.001,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    115.826,
+    115.826,
+    154.919,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.225,
+    "q25": 0.186,
+    "q75": 0.265,
+    "p5": 0.166,
+    "p95": 0.39,
+    "max": 0.406,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.411,
+    "q25": 0.271,
+    "q75": 0.672,
+    "p5": 0.189,
+    "p95": 0.985,
+    "max": 1.27,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.166,
+    "q25": 0.14,
+    "q75": 0.191,
+    "p5": 0.1,
+    "p95": 0.247,
+    "max": 0.412,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

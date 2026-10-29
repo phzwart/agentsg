@@ -1,0 +1,62 @@
+{
+ "identity": "P06008+P06009+P06010+P07173",
+ "accessions": [
+  "P06008",
+  "P06009",
+  "P06010",
+  "P07173"
+ ],
+ "deposition_group": null,
+ "name": "Photosynthetic reaction center cytochrome c subunit",
+ "clusters": [
+  {
+   "cluster_id": 569,
+   "n_members": 26,
+   "reference": "3T6E",
+   "reference_resolution": 1.92,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    221.583,
+    221.583,
+    113.418,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 1.233,
+    "q25": 1.076,
+    "q75": 1.547,
+    "p5": 0.475,
+    "p95": 1.615,
+    "max": 97.454,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.537,
+    "q25": 0.268,
+    "q75": 1.95,
+    "p5": 0.092,
+    "p95": 98.57,
+    "max": 99.476,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.221,
+    "q25": 0.183,
+    "q75": 0.251,
+    "p5": 0.086,
+    "p95": 24.473,
+    "max": 24.522,
+    "n_pairs": 325
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

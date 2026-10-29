@@ -1,0 +1,59 @@
+{
+ "identity": "P00433",
+ "accessions": [
+  "P00433"
+ ],
+ "deposition_group": null,
+ "name": "Peroxidase C1A",
+ "clusters": [
+  {
+   "cluster_id": 537,
+   "n_members": 27,
+   "reference": "1GWU",
+   "reference_resolution": 1.31,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    40.037,
+    66.806,
+    116.356,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.212,
+    "q25": 0.204,
+    "q75": 0.256,
+    "p5": 0.131,
+    "p95": 0.379,
+    "max": 0.456,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.273,
+    "q25": 0.182,
+    "q75": 0.495,
+    "p5": 0.04,
+    "p95": 0.727,
+    "max": 1.103,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.137,
+    "q25": 0.086,
+    "q75": 0.173,
+    "p5": 0.037,
+    "p95": 0.235,
+    "max": 0.315,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

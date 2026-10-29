@@ -1,0 +1,59 @@
+{
+ "identity": "F2Z7K9",
+ "accessions": [
+  "F2Z7K9"
+ ],
+ "deposition_group": null,
+ "name": "Probable peptidoglycan D,D-transpeptidase PenA",
+ "clusters": [
+  {
+   "cluster_id": 1644,
+   "n_members": 11,
+   "reference": "6VBC",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.429,
+    61.329,
+    108.961,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 2.444,
+    "q25": 0.267,
+    "q75": 2.543,
+    "p5": 0.242,
+    "p95": 2.806,
+    "max": 3.017,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.414,
+    "q25": 0.362,
+    "q75": 2.552,
+    "p5": 0.247,
+    "p95": 3.15,
+    "max": 3.177,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 2.176,
+    "q25": 0.297,
+    "q75": 2.392,
+    "p5": 0.212,
+    "p95": 2.433,
+    "max": 2.456,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

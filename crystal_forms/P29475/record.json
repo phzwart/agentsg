@@ -1,0 +1,60 @@
+{
+ "identity": "P29475",
+ "accessions": [
+  "P29475"
+ ],
+ "deposition_group": null,
+ "name": "Nitric oxide synthase 1",
+ "clusters": [
+  {
+   "cluster_id": 71,
+   "n_members": 117,
+   "reference": "6CID",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.492,
+    121.522,
+    165.512,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 74,
+    "reference": 1,
+    "different_space_group": 42
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 0.439,
+    "q25": 0.384,
+    "q75": 0.585,
+    "p5": 0.341,
+    "p95": 1.093,
+    "max": 2.208,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.062,
+    "q25": 1.348,
+    "q75": 3.122,
+    "p5": 0.647,
+    "p95": 6.54,
+    "max": 11.042,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.182,
+    "q75": 0.287,
+    "p5": 0.137,
+    "p95": 1.679,
+    "max": 1.734,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

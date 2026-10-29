@@ -1,0 +1,60 @@
+{
+ "identity": "P29473",
+ "accessions": [
+  "P29473"
+ ],
+ "deposition_group": null,
+ "name": "Nitric oxide synthase 3",
+ "clusters": [
+  {
+   "cluster_id": 62,
+   "n_members": 128,
+   "reference": "1D0C",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    57.44,
+    105.98,
+    155.79,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 126,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 8001,
+   "rmsd_to_reference": {
+    "median": 0.541,
+    "q25": 0.433,
+    "q75": 0.654,
+    "p5": 0.346,
+    "p95": 0.961,
+    "max": 40.088,
+    "n_pairs": 126
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.422,
+    "q25": 0.34,
+    "q75": 0.543,
+    "p5": 0.25,
+    "p95": 2.258,
+    "max": 41.149,
+    "n_pairs": 8001
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.226,
+    "q75": 0.312,
+    "p5": 0.178,
+    "p95": 0.638,
+    "max": 24.774,
+    "n_pairs": 8001
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  }
+ ]
+}

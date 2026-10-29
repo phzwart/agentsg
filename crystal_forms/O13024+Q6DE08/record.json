@@ -1,0 +1,60 @@
+{
+ "identity": "O13024+Q6DE08",
+ "accessions": [
+  "O13024",
+  "Q6DE08"
+ ],
+ "deposition_group": null,
+ "name": "Aurora kinase B-A",
+ "clusters": [
+  {
+   "cluster_id": 1650,
+   "n_members": 11,
+   "reference": "4C2V",
+   "reference_resolution": 1.49,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    46.065,
+    68.101,
+    117.087,
+    90.0,
+    96.65,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.553,
+    "q25": 0.425,
+    "q75": 0.946,
+    "p5": 0.337,
+    "p95": 0.976,
+    "max": 0.986,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.687,
+    "q25": 0.516,
+    "q75": 0.948,
+    "p5": 0.398,
+    "p95": 1.078,
+    "max": 1.153,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.444,
+    "q25": 0.313,
+    "q75": 0.91,
+    "p5": 0.212,
+    "p95": 0.961,
+    "max": 0.974,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

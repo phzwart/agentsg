@@ -1,0 +1,59 @@
+{
+ "identity": "Q460N3",
+ "accessions": [
+  "Q460N3"
+ ],
+ "deposition_group": null,
+ "name": "Protein mono-ADP-ribosyltransferase PARP15",
+ "clusters": [
+  {
+   "cluster_id": 297,
+   "n_members": 43,
+   "reference": "7OTF",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    45.31,
+    68.63,
+    158.65,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 42,
+    "reference": 1
+   },
+   "n_pairs": 903,
+   "rmsd_to_reference": {
+    "median": 0.626,
+    "q25": 0.353,
+    "q75": 0.807,
+    "p5": 0.271,
+    "p95": 1.29,
+    "max": 21.103,
+    "n_pairs": 42
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.647,
+    "q25": 0.429,
+    "q75": 1.081,
+    "p5": 0.237,
+    "p95": 2.723,
+    "max": 21.343,
+    "n_pairs": 903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.241,
+    "q25": 0.188,
+    "q75": 0.363,
+    "p5": 0.128,
+    "p95": 0.439,
+    "max": 18.591,
+    "n_pairs": 903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

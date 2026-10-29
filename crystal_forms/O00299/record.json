@@ -1,0 +1,60 @@
+{
+ "identity": "O00299",
+ "accessions": [
+  "O00299"
+ ],
+ "deposition_group": null,
+ "name": "Chloride intracellular channel protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1648,
+   "n_members": 11,
+   "reference": "4K0N",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.915,
+    64.519,
+    82.843,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "placed": 5,
+    "reference": 1
+   },
+   "n_pairs": 15,
+   "rmsd_to_reference": {
+    "median": 17.623,
+    "q25": 17.395,
+    "q75": 17.721,
+    "p5": 4.332,
+    "p95": 18.079,
+    "max": 18.168,
+    "n_pairs": 5
+   },
+   "pairwise_frame_rmsd": {
+    "median": 17.396,
+    "q25": 1.141,
+    "q75": 17.641,
+    "p5": 0.308,
+    "p95": 17.795,
+    "max": 17.864,
+    "n_pairs": 15
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.609,
+    "q25": 0.537,
+    "q75": 0.643,
+    "p5": 0.247,
+    "p95": 0.743,
+    "max": 0.836,
+    "n_pairs": 15
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

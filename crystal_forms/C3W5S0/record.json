@@ -1,0 +1,159 @@
+{
+ "identity": "C3W5S0",
+ "accessions": [
+  "C3W5S0"
+ ],
+ "deposition_group": null,
+ "name": "Polymerase acidic protein",
+ "clusters": [
+  {
+   "cluster_id": 251,
+   "n_members": 49,
+   "reference": "8T5W",
+   "reference_resolution": 1.65,
+   "space_group": "P 62 2 2",
+   "reference_cell": [
+    75.111,
+    75.111,
+    121.444,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "different_space_group": 13,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 1.012,
+    "q25": 0.828,
+    "q75": 1.612,
+    "p5": 0.589,
+    "p95": 4.036,
+    "max": 10.81,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.684,
+    "q25": 0.522,
+    "q75": 0.883,
+    "p5": 0.329,
+    "p95": 10.814,
+    "max": 11.648,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.523,
+    "q25": 0.34,
+    "q75": 0.68,
+    "p5": 0.232,
+    "p95": 10.238,
+    "max": 11.403,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 350,
+   "n_members": 38,
+   "reference": "5CZN",
+   "reference_resolution": 1.98,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    89.395,
+    89.395,
+    134.14,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 37
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.461,
+    "q25": 0.413,
+    "q75": 0.521,
+    "p5": 0.322,
+    "p95": 14.889,
+    "max": 14.902,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.254,
+    "q25": 1.378,
+    "q75": 3.813,
+    "p5": 0.594,
+    "p95": 15.628,
+    "max": 17.723,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.364,
+    "q25": 0.317,
+    "q75": 0.443,
+    "p5": 0.236,
+    "p95": 13.409,
+    "max": 13.482,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1639,
+   "n_members": 11,
+   "reference": "4M5R",
+   "reference_resolution": 1.4,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    87.246,
+    102.978,
+    66.226,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.677,
+    "q25": 0.519,
+    "q75": 0.805,
+    "p5": 0.382,
+    "p95": 1.003,
+    "max": 1.077,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.591,
+    "q25": 0.487,
+    "q75": 0.741,
+    "p5": 0.368,
+    "p95": 0.981,
+    "max": 1.106,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.414,
+    "q25": 0.341,
+    "q75": 0.488,
+    "p5": 0.215,
+    "p95": 0.569,
+    "max": 0.606,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

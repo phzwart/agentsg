@@ -1,0 +1,108 @@
+{
+ "identity": "P0AE67",
+ "accessions": [
+  "P0AE67"
+ ],
+ "deposition_group": null,
+ "name": "Chemotaxis protein CheY",
+ "clusters": [
+  {
+   "cluster_id": 976,
+   "n_members": 17,
+   "reference": "3F7N",
+   "reference_resolution": 2.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    53.411,
+    53.543,
+    161.756,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.41,
+    "q25": 0.328,
+    "q75": 0.529,
+    "p5": 0.188,
+    "p95": 0.893,
+    "max": 1.061,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.472,
+    "q25": 0.365,
+    "q75": 0.692,
+    "p5": 0.237,
+    "p95": 1.245,
+    "max": 1.513,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.193,
+    "q25": 0.156,
+    "q75": 0.27,
+    "p5": 0.095,
+    "p95": 0.318,
+    "max": 0.355,
+    "n_pairs": 136
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1517,
+   "n_members": 12,
+   "reference": "1JBE",
+   "reference_resolution": 1.08,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    45.122,
+    46.652,
+    53.12,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.575,
+    "q25": 0.463,
+    "q75": 0.681,
+    "p5": 0.331,
+    "p95": 1.327,
+    "max": 1.385,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.678,
+    "q25": 0.547,
+    "q75": 1.11,
+    "p5": 0.316,
+    "p95": 1.718,
+    "max": 1.952,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.453,
+    "q25": 0.398,
+    "q75": 0.495,
+    "p5": 0.204,
+    "p95": 0.591,
+    "max": 0.65,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

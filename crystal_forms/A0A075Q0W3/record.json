@@ -1,0 +1,60 @@
+{
+ "identity": "A0A075Q0W3",
+ "accessions": [
+  "A0A075Q0W3"
+ ],
+ "deposition_group": null,
+ "name": "Pbp5",
+ "clusters": [
+  {
+   "cluster_id": 801,
+   "n_members": 20,
+   "reference": "8F3T",
+   "reference_resolution": 2.56,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    192.777,
+    192.777,
+    155.427,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.694,
+    "q25": 0.546,
+    "q75": 2.262,
+    "p5": 0.461,
+    "p95": 2.318,
+    "max": 2.34,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.275,
+    "q25": 0.886,
+    "q75": 2.373,
+    "p5": 0.53,
+    "p95": 3.171,
+    "max": 3.492,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 2.084,
+    "q25": 0.501,
+    "q75": 2.241,
+    "p5": 0.373,
+    "p95": 2.965,
+    "max": 3.085,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q1LCS4",
+ "accessions": [
+  "Q1LCS4"
+ ],
+ "deposition_group": null,
+ "name": "3-hydroxyanthranilate 3,4-dioxygenase",
+ "clusters": [
+  {
+   "cluster_id": 476,
+   "n_members": 31,
+   "reference": "4R52",
+   "reference_resolution": 1.53,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    58.32,
+    58.32,
+    231.849,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 4,
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.492,
+    "q25": 0.326,
+    "q75": 0.713,
+    "p5": 0.194,
+    "p95": 1.208,
+    "max": 1.495,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.744,
+    "q25": 0.494,
+    "q75": 1.128,
+    "p5": 0.287,
+    "p95": 1.536,
+    "max": 2.276,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.344,
+    "q25": 0.266,
+    "q75": 0.554,
+    "p5": 0.166,
+    "p95": 1.124,
+    "max": 1.228,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

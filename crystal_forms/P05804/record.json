@@ -1,0 +1,59 @@
+{
+ "identity": "P05804",
+ "accessions": [
+  "P05804"
+ ],
+ "deposition_group": null,
+ "name": "Beta-glucuronidase",
+ "clusters": [
+  {
+   "cluster_id": 1503,
+   "n_members": 12,
+   "reference": "8OHX",
+   "reference_resolution": 1.95,
+   "space_group": "I 1 2 1",
+   "reference_cell": [
+    126.281,
+    76.711,
+    141.018,
+    90.0,
+    102.01,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.922,
+    "q25": 0.901,
+    "q75": 1.003,
+    "p5": 0.576,
+    "p95": 1.251,
+    "max": 1.344,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.924,
+    "q25": 0.713,
+    "q75": 1.135,
+    "p5": 0.444,
+    "p95": 1.326,
+    "max": 1.446,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.812,
+    "q25": 0.565,
+    "q75": 1.034,
+    "p5": 0.343,
+    "p95": 1.18,
+    "max": 1.314,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

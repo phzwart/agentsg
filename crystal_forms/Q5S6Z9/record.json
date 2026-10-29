@@ -1,0 +1,109 @@
+{
+ "identity": "Q5S6Z9",
+ "accessions": [
+  "Q5S6Z9"
+ ],
+ "deposition_group": null,
+ "name": "Green to red photoconvertible GFP-like protein EosFP",
+ "clusters": [
+  {
+   "cluster_id": 788,
+   "n_members": 21,
+   "reference": "7QLJ",
+   "reference_resolution": 1.02,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    38.747,
+    73.524,
+    78.106,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "no_shared_accession": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.244,
+    "q25": 0.231,
+    "q75": 0.37,
+    "p5": 0.174,
+    "p95": 0.392,
+    "max": 0.401,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.27,
+    "q25": 0.214,
+    "q75": 0.361,
+    "p5": 0.118,
+    "p95": 0.399,
+    "max": 0.408,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.232,
+    "q25": 0.174,
+    "q75": 0.286,
+    "p5": 0.106,
+    "p95": 0.302,
+    "max": 0.314,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1440,
+   "n_members": 13,
+   "reference": "2VVH",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.34,
+    96.55,
+    139.83,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.372,
+    "q25": 0.257,
+    "q75": 1.002,
+    "p5": 0.125,
+    "p95": 1.212,
+    "max": 1.254,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.725,
+    "q25": 0.366,
+    "q75": 0.89,
+    "p5": 0.23,
+    "p95": 1.462,
+    "max": 1.573,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.254,
+    "q25": 0.212,
+    "q75": 0.369,
+    "p5": 0.152,
+    "p95": 0.47,
+    "max": 0.501,
+    "n_pairs": 78
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

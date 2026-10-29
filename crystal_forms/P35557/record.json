@@ -1,0 +1,59 @@
+{
+ "identity": "P35557",
+ "accessions": [
+  "P35557"
+ ],
+ "deposition_group": null,
+ "name": "Hexokinase-4",
+ "clusters": [
+  {
+   "cluster_id": 1716,
+   "n_members": 11,
+   "reference": "3H1V",
+   "reference_resolution": 2.11,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    79.793,
+    79.793,
+    326.124,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 2.267,
+    "q25": 1.515,
+    "q75": 2.563,
+    "p5": 1.119,
+    "p95": 3.496,
+    "max": 3.692,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.481,
+    "q25": 0.85,
+    "q75": 2.103,
+    "p5": 0.604,
+    "p95": 3.171,
+    "max": 4.229,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.462,
+    "q25": 0.43,
+    "q75": 0.525,
+    "p5": 0.361,
+    "p95": 0.595,
+    "max": 0.637,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

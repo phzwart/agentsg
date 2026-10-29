@@ -1,0 +1,59 @@
+{
+ "identity": "Q8GGK7",
+ "accessions": [
+  "Q8GGK7"
+ ],
+ "deposition_group": null,
+ "name": "PpcA",
+ "clusters": [
+  {
+   "cluster_id": 1784,
+   "n_members": 11,
+   "reference": "1OS6",
+   "reference_resolution": 1.45,
+   "space_group": "P 43 2 2",
+   "reference_cell": [
+    32.4,
+    32.4,
+    178.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.163,
+    "q25": 0.127,
+    "q75": 0.26,
+    "p5": 0.113,
+    "p95": 0.371,
+    "max": 0.373,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.323,
+    "q25": 0.209,
+    "q75": 0.466,
+    "p5": 0.124,
+    "p95": 0.639,
+    "max": 0.756,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.139,
+    "q25": 0.113,
+    "q75": 0.18,
+    "p5": 0.092,
+    "p95": 0.212,
+    "max": 0.239,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

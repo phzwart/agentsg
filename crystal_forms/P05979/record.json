@@ -1,0 +1,110 @@
+{
+ "identity": "P05979",
+ "accessions": [
+  "P05979"
+ ],
+ "deposition_group": null,
+ "name": "Prostaglandin G/H synthase 1",
+ "clusters": [
+  {
+   "cluster_id": 968,
+   "n_members": 17,
+   "reference": "4O1Z",
+   "reference_resolution": 2.4,
+   "space_group": "P 65",
+   "reference_cell": [
+    181.326,
+    181.326,
+    103.213,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 7,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.508,
+    "q25": 0.431,
+    "q75": 0.961,
+    "p5": 0.392,
+    "p95": 0.991,
+    "max": 1.01,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.041,
+    "q25": 0.761,
+    "q75": 1.588,
+    "p5": 0.478,
+    "p95": 2.116,
+    "max": 2.84,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.385,
+    "q25": 0.338,
+    "q75": 0.423,
+    "p5": 0.302,
+    "p95": 0.447,
+    "max": 0.477,
+    "n_pairs": 45
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1358,
+   "n_members": 13,
+   "reference": "2AYL",
+   "reference_resolution": 2.0,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    98.931,
+    206.55,
+    221.553,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 7,
+    "no_shared_accession": 5,
+    "reference": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.496,
+    "q25": 0.407,
+    "q75": 1.079,
+    "p5": 0.272,
+    "p95": 1.613,
+    "max": 1.625,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.687,
+    "q25": 0.772,
+    "q75": 8.18,
+    "p5": 0.463,
+    "p95": 9.257,
+    "max": 9.639,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.262,
+    "q25": 0.221,
+    "q75": 0.31,
+    "p5": 0.148,
+    "p95": 0.407,
+    "max": 0.415,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

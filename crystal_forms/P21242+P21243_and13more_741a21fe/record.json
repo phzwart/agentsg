@@ -1,0 +1,73 @@
+{
+ "identity": "P21242+P21243+P22141+P23638+P23639+P23724+P25043+P25451+P30656+P30657+P32379+P38624+P40302+P40303+P40306",
+ "accessions": [
+  "P21242",
+  "P21243",
+  "P22141",
+  "P23638",
+  "P23639",
+  "P23724",
+  "P25043",
+  "P25451",
+  "P30656",
+  "P30657",
+  "P32379",
+  "P38624",
+  "P40302",
+  "P40303",
+  "P40306"
+ ],
+ "deposition_group": null,
+ "name": "Probable proteasome subunit alpha type-7",
+ "clusters": [
+  {
+   "cluster_id": 1530,
+   "n_members": 12,
+   "reference": "6HV3",
+   "reference_resolution": 2.7,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    135.37,
+    301.72,
+    144.99,
+    90.0,
+    113.12,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.372,
+    "q25": 0.303,
+    "q75": 0.457,
+    "p5": 0.242,
+    "p95": 0.636,
+    "max": 0.689,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.589,
+    "q25": 0.418,
+    "q75": 0.841,
+    "p5": 0.298,
+    "p95": 1.206,
+    "max": 1.577,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.096,
+    "q25": 0.082,
+    "q75": 0.145,
+    "p5": 0.049,
+    "p95": 0.299,
+    "max": 0.316,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

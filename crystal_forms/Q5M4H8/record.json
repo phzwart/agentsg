@@ -1,0 +1,59 @@
+{
+ "identity": "Q5M4H8",
+ "accessions": [
+  "Q5M4H8"
+ ],
+ "deposition_group": null,
+ "name": "Di-/tripeptide transporter",
+ "clusters": [
+  {
+   "cluster_id": 787,
+   "n_members": 21,
+   "reference": "5OXO",
+   "reference_resolution": 1.95,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    102.1,
+    110.3,
+    110.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.589,
+    "q25": 0.453,
+    "q75": 1.088,
+    "p5": 0.281,
+    "p95": 2.17,
+    "max": 2.318,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.904,
+    "q25": 0.669,
+    "q75": 1.141,
+    "p5": 0.36,
+    "p95": 2.098,
+    "max": 2.457,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.685,
+    "q25": 0.469,
+    "q75": 0.913,
+    "p5": 0.255,
+    "p95": 1.72,
+    "max": 2.296,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

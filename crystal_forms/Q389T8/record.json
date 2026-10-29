@@ -1,0 +1,108 @@
+{
+ "identity": "Q389T8",
+ "accessions": [
+  "Q389T8"
+ ],
+ "deposition_group": null,
+ "name": "Trypanothione reductase",
+ "clusters": [
+  {
+   "cluster_id": 784,
+   "n_members": 21,
+   "reference": "9IFJ",
+   "reference_resolution": 1.62,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    102.234,
+    63.906,
+    170.532,
+    90.0,
+    97.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.272,
+    "q25": 0.165,
+    "q75": 0.365,
+    "p5": 0.103,
+    "p95": 0.443,
+    "max": 0.486,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.633,
+    "q25": 0.439,
+    "q75": 0.909,
+    "p5": 0.283,
+    "p95": 1.289,
+    "max": 1.709,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.245,
+    "q25": 0.186,
+    "q75": 0.285,
+    "p5": 0.119,
+    "p95": 0.348,
+    "max": 0.44,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1430,
+   "n_members": 13,
+   "reference": "5SMJ",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    80.56,
+    108.921,
+    111.95,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.305,
+    "q25": 0.253,
+    "q75": 0.348,
+    "p5": 0.212,
+    "p95": 0.469,
+    "max": 0.477,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.296,
+    "q25": 0.231,
+    "q75": 0.381,
+    "p5": 0.158,
+    "p95": 0.533,
+    "max": 0.606,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.139,
+    "q75": 0.212,
+    "p5": 0.106,
+    "p95": 0.263,
+    "max": 0.298,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

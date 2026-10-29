@@ -1,0 +1,108 @@
+{
+ "identity": "P0C6U8",
+ "accessions": [
+  "P0C6U8"
+ ],
+ "deposition_group": null,
+ "name": "Replicase polyprotein 1a",
+ "clusters": [
+  {
+   "cluster_id": 636,
+   "n_members": 24,
+   "reference": "2H2Z",
+   "reference_resolution": 1.6,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    108.406,
+    81.75,
+    53.553,
+    90.0,
+    104.7,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.364,
+    "q25": 0.277,
+    "q75": 0.471,
+    "p5": 0.229,
+    "p95": 0.764,
+    "max": 1.015,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.347,
+    "q25": 0.855,
+    "q75": 1.993,
+    "p5": 0.467,
+    "p95": 3.619,
+    "max": 4.549,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.339,
+    "q25": 0.271,
+    "q75": 0.42,
+    "p5": 0.204,
+    "p95": 0.572,
+    "max": 0.656,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1253,
+   "n_members": 14,
+   "reference": "2DUC",
+   "reference_resolution": 1.7,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    52.282,
+    96.317,
+    67.753,
+    90.0,
+    102.9,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.775,
+    "q25": 0.722,
+    "q75": 0.891,
+    "p5": 0.612,
+    "p95": 1.167,
+    "max": 1.193,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.836,
+    "q25": 0.615,
+    "q75": 1.222,
+    "p5": 0.374,
+    "p95": 2.165,
+    "max": 2.724,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.554,
+    "q25": 0.406,
+    "q75": 0.685,
+    "p5": 0.229,
+    "p95": 0.836,
+    "max": 1.046,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

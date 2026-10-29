@@ -1,0 +1,59 @@
+{
+ "identity": "Q47PU3",
+ "accessions": [
+  "Q47PU3"
+ ],
+ "deposition_group": null,
+ "name": "Phenylacetone monooxygenase",
+ "clusters": [
+  {
+   "cluster_id": 1583,
+   "n_members": 12,
+   "reference": "4D04",
+   "reference_resolution": 1.75,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    107.879,
+    107.879,
+    107.044,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.425,
+    "q25": 0.315,
+    "q75": 0.48,
+    "p5": 0.258,
+    "p95": 0.676,
+    "max": 0.734,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.565,
+    "q25": 0.477,
+    "q75": 0.772,
+    "p5": 0.313,
+    "p95": 1.314,
+    "max": 1.572,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.26,
+    "q25": 0.228,
+    "q75": 0.29,
+    "p5": 0.171,
+    "p95": 0.36,
+    "max": 0.376,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

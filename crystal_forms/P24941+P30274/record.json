@@ -1,0 +1,60 @@
+{
+ "identity": "P24941+P30274",
+ "accessions": [
+  "P24941",
+  "P30274"
+ ],
+ "deposition_group": null,
+ "name": "Cyclin-dependent kinase 2",
+ "clusters": [
+  {
+   "cluster_id": 321,
+   "n_members": 41,
+   "reference": "3DDQ",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.421,
+    133.376,
+    147.509,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.664,
+    "q25": 0.555,
+    "q75": 0.996,
+    "p5": 0.461,
+    "p95": 3.016,
+    "max": 3.106,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.724,
+    "q25": 0.534,
+    "q75": 2.247,
+    "p5": 0.334,
+    "p95": 3.01,
+    "max": 3.604,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.583,
+    "q25": 0.457,
+    "q75": 2.168,
+    "p5": 0.279,
+    "p95": 2.868,
+    "max": 2.937,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

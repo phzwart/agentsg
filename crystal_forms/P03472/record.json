@@ -1,0 +1,60 @@
+{
+ "identity": "P03472",
+ "accessions": [
+  "P03472"
+ ],
+ "deposition_group": null,
+ "name": "Neuraminidase",
+ "clusters": [
+  {
+   "cluster_id": 271,
+   "n_members": 46,
+   "reference": "6HFC",
+   "reference_resolution": 1.29,
+   "space_group": "I 4 3 2",
+   "reference_cell": [
+    180.0,
+    180.0,
+    180.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "no_shared_accession": 4,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.138,
+    "q25": 0.119,
+    "q75": 0.289,
+    "p5": 0.103,
+    "p95": 0.36,
+    "max": 0.628,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.311,
+    "q25": 0.155,
+    "q75": 0.817,
+    "p5": 0.103,
+    "p95": 1.452,
+    "max": 2.304,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.164,
+    "q25": 0.117,
+    "q75": 0.28,
+    "p5": 0.086,
+    "p95": 0.411,
+    "max": 0.64,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P37019",
+ "accessions": [
+  "P37019"
+ ],
+ "deposition_group": null,
+ "name": "H(+)/Cl(-) exchange transporter ClcA",
+ "clusters": [
+  {
+   "cluster_id": 679,
+   "n_members": 23,
+   "reference": "4ENE",
+   "reference_resolution": 2.4,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    232.26,
+    97.52,
+    173.96,
+    90.0,
+    132.87,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.607,
+    "q25": 0.515,
+    "q75": 0.777,
+    "p5": 0.384,
+    "p95": 0.989,
+    "max": 1.002,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.639,
+    "q25": 0.469,
+    "q75": 0.778,
+    "p5": 0.331,
+    "p95": 1.03,
+    "max": 1.286,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.318,
+    "q25": 0.282,
+    "q75": 0.354,
+    "p5": 0.229,
+    "p95": 0.44,
+    "max": 0.482,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

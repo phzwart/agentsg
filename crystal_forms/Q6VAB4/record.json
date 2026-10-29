@@ -1,0 +1,59 @@
+{
+ "identity": "Q6VAB4",
+ "accessions": [
+  "Q6VAB4"
+ ],
+ "deposition_group": null,
+ "name": "UDP-glycosyltransferase 76G1",
+ "clusters": [
+  {
+   "cluster_id": 1773,
+   "n_members": 11,
+   "reference": "6INF",
+   "reference_resolution": 1.69,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    97.662,
+    97.662,
+    89.626,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.347,
+    "q25": 1.095,
+    "q75": 1.385,
+    "p5": 0.613,
+    "p95": 1.446,
+    "max": 1.467,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.923,
+    "q25": 0.684,
+    "q75": 1.226,
+    "p5": 0.506,
+    "p95": 1.46,
+    "max": 1.486,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.629,
+    "q25": 0.507,
+    "q75": 0.758,
+    "p5": 0.324,
+    "p95": 0.882,
+    "max": 0.949,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

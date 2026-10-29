@@ -1,0 +1,59 @@
+{
+ "identity": "P61769",
+ "accessions": [
+  "P61769"
+ ],
+ "deposition_group": null,
+ "name": "Beta-2-microglobulin [Cleaved into: Beta-2-microglobulin form pI 5.3]",
+ "clusters": [
+  {
+   "cluster_id": 1736,
+   "n_members": 11,
+   "reference": "2YXF",
+   "reference_resolution": 1.13,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    77.644,
+    28.907,
+    54.397,
+    90.0,
+    121.59,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.151,
+    "q25": 0.129,
+    "q75": 0.175,
+    "p5": 0.118,
+    "p95": 0.53,
+    "max": 0.619,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.255,
+    "q25": 0.182,
+    "q75": 0.511,
+    "p5": 0.137,
+    "p95": 0.637,
+    "max": 0.834,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.188,
+    "q25": 0.137,
+    "q75": 0.459,
+    "p5": 0.116,
+    "p95": 0.596,
+    "max": 0.746,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

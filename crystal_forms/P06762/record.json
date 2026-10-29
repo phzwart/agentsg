@@ -1,0 +1,59 @@
+{
+ "identity": "P06762",
+ "accessions": [
+  "P06762"
+ ],
+ "deposition_group": null,
+ "name": "Heme oxygenase 1",
+ "clusters": [
+  {
+   "cluster_id": 721,
+   "n_members": 22,
+   "reference": "1J02",
+   "reference_resolution": 1.7,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    65.37,
+    65.37,
+    121.01,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.441,
+    "q25": 0.287,
+    "q75": 0.521,
+    "p5": 0.152,
+    "p95": 0.607,
+    "max": 0.77,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.957,
+    "q25": 0.478,
+    "q75": 1.291,
+    "p5": 0.256,
+    "p95": 1.771,
+    "max": 2.677,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.336,
+    "q25": 0.183,
+    "q75": 0.407,
+    "p5": 0.108,
+    "p95": 0.519,
+    "max": 0.652,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

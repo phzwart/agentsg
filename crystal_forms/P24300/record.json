@@ -1,0 +1,133 @@
+{
+ "identity": "P24300",
+ "accessions": [
+  "P24300"
+ ],
+ "deposition_group": null,
+ "name": "Xylose isomerase",
+ "clusters": [
+  {
+   "cluster_id": 65,
+   "n_members": 123,
+   "reference": "5AVH",
+   "reference_resolution": 0.9,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    93.268,
+    97.588,
+    102.49,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 122,
+    "reference": 1
+   },
+   "n_pairs": 7503,
+   "rmsd_to_reference": {
+    "median": 0.321,
+    "q25": 0.301,
+    "q75": 0.342,
+    "p5": 0.245,
+    "p95": 0.385,
+    "max": 0.763,
+    "n_pairs": 122
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.648,
+    "q25": 0.349,
+    "q75": 1.039,
+    "p5": 0.173,
+    "p95": 1.543,
+    "max": 3.636,
+    "n_pairs": 7503
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.222,
+    "q25": 0.156,
+    "q75": 0.274,
+    "p5": 0.106,
+    "p95": 0.36,
+    "max": 0.572,
+    "n_pairs": 7503
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1536,
+   "n_members": 12,
+   "reference": "5AVN",
+   "reference_resolution": 1.03,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    94.082,
+    98.285,
+    85.777,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 11,
+    "reference": 1
+   },
+   "n_pairs": 0,
+   "rmsd_to_reference": null,
+   "pairwise_frame_rmsd": null,
+   "pairwise_fit_rmsd": null,
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1705,
+   "n_members": 11,
+   "reference": "6RND",
+   "reference_resolution": 1.7,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    94.6,
+    99.4,
+    87.6,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.281,
+    "q25": 0.141,
+    "q75": 0.363,
+    "p5": 0.106,
+    "p95": 0.382,
+    "max": 0.384,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.373,
+    "q25": 0.219,
+    "q75": 0.432,
+    "p5": 0.114,
+    "p95": 0.509,
+    "max": 0.609,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.183,
+    "q75": 0.341,
+    "p5": 0.099,
+    "p95": 0.378,
+    "max": 0.395,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "V6F235",
+ "accessions": [
+  "V6F235"
+ ],
+ "deposition_group": null,
+ "name": "Magnetosome protein MamM",
+ "clusters": [
+  {
+   "cluster_id": 589,
+   "n_members": 26,
+   "reference": "6H8G",
+   "reference_resolution": 1.35,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    36.997,
+    94.499,
+    53.214,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.354,
+    "q25": 0.268,
+    "q75": 0.407,
+    "p5": 0.188,
+    "p95": 0.474,
+    "max": 0.539,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.509,
+    "q25": 0.345,
+    "q75": 0.754,
+    "p5": 0.194,
+    "p95": 1.208,
+    "max": 2.032,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.154,
+    "q25": 0.132,
+    "q75": 0.176,
+    "p5": 0.105,
+    "p95": 0.296,
+    "max": 0.39,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

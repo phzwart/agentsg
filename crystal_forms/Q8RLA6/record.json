@@ -1,0 +1,60 @@
+{
+ "identity": "Q8RLA6",
+ "accessions": [
+  "Q8RLA6"
+ ],
+ "deposition_group": null,
+ "name": "Carbapenem-hydrolyzing beta-lactamase OXA-40",
+ "clusters": [
+  {
+   "cluster_id": 493,
+   "n_members": 30,
+   "reference": "5TG4",
+   "reference_resolution": 1.44,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    102.347,
+    102.347,
+    85.438,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.441,
+    "q25": 0.383,
+    "q75": 0.488,
+    "p5": 0.238,
+    "p95": 0.762,
+    "max": 0.802,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.507,
+    "q25": 0.385,
+    "q75": 0.663,
+    "p5": 0.273,
+    "p95": 0.942,
+    "max": 1.324,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.228,
+    "q75": 0.323,
+    "p5": 0.185,
+    "p95": 0.747,
+    "max": 0.819,
+    "n_pairs": 378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

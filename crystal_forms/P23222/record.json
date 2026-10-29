@@ -1,0 +1,59 @@
+{
+ "identity": "P23222",
+ "accessions": [
+  "P23222"
+ ],
+ "deposition_group": null,
+ "name": "Sensor protein FixL",
+ "clusters": [
+  {
+   "cluster_id": 1266,
+   "n_members": 14,
+   "reference": "1XJ3",
+   "reference_resolution": 1.9,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    128.644,
+    128.644,
+    58.695,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.371,
+    "q25": 0.333,
+    "q75": 0.621,
+    "p5": 0.253,
+    "p95": 0.641,
+    "max": 0.659,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.781,
+    "q25": 0.563,
+    "q75": 0.937,
+    "p5": 0.3,
+    "p95": 1.292,
+    "max": 1.426,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.319,
+    "q25": 0.259,
+    "q75": 0.528,
+    "p5": 0.2,
+    "p95": 0.57,
+    "max": 0.602,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

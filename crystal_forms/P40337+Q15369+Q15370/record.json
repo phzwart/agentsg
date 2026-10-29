@@ -1,0 +1,62 @@
+{
+ "identity": "P40337+Q15369+Q15370",
+ "accessions": [
+  "P40337",
+  "Q15369",
+  "Q15370"
+ ],
+ "deposition_group": null,
+ "name": "von Hippel-Lindau disease tumor suppressor",
+ "clusters": [
+  {
+   "cluster_id": 198,
+   "n_members": 59,
+   "reference": "6GMN",
+   "reference_resolution": 1.94,
+   "space_group": "P 41 2 2",
+   "reference_cell": [
+    93.71,
+    93.71,
+    364.86,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 55,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 1540,
+   "rmsd_to_reference": {
+    "median": 0.554,
+    "q25": 0.421,
+    "q75": 0.735,
+    "p5": 0.294,
+    "p95": 1.171,
+    "max": 47.031,
+    "n_pairs": 55
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.748,
+    "q25": 0.547,
+    "q75": 1.001,
+    "p5": 0.347,
+    "p95": 1.485,
+    "max": 47.846,
+    "n_pairs": 1540
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.348,
+    "q25": 0.281,
+    "q75": 0.425,
+    "p5": 0.205,
+    "p95": 0.568,
+    "max": 0.718,
+    "n_pairs": 1540
+   },
+   "n_low_margin": 38,
+   "n_via_neighbour": 0
+  }
+ ]
+}

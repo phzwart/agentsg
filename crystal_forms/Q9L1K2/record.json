@@ -1,0 +1,60 @@
+{
+ "identity": "Q9L1K2",
+ "accessions": [
+  "Q9L1K2"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-1,4-glucan:maltose-1-phosphate maltosyltransferase 1",
+ "clusters": [
+  {
+   "cluster_id": 846,
+   "n_members": 20,
+   "reference": "7MEL",
+   "reference_resolution": 1.75,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    113.049,
+    113.049,
+    311.506,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 2.129,
+    "q25": 1.961,
+    "q75": 2.373,
+    "p5": 0.284,
+    "p95": 66.517,
+    "max": 93.76,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.795,
+    "q25": 1.379,
+    "q75": 51.557,
+    "p5": 0.532,
+    "p95": 92.865,
+    "max": 130.344,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.587,
+    "q25": 0.347,
+    "q75": 0.722,
+    "p5": 0.201,
+    "p95": 0.841,
+    "max": 0.965,
+    "n_pairs": 105
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

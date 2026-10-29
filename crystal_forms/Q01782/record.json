@@ -1,0 +1,60 @@
+{
+ "identity": "Q01782",
+ "accessions": [
+  "Q01782"
+ ],
+ "deposition_group": null,
+ "name": "Pteridine reductase 1",
+ "clusters": [
+  {
+   "cluster_id": 1749,
+   "n_members": 11,
+   "reference": "7PXX",
+   "reference_resolution": 1.81,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    94.9,
+    103.75,
+    136.79,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.343,
+    "q75": 0.442,
+    "p5": 0.322,
+    "p95": 0.464,
+    "max": 0.468,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.399,
+    "q25": 0.357,
+    "q75": 0.484,
+    "p5": 0.279,
+    "p95": 0.653,
+    "max": 0.738,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.282,
+    "q25": 0.248,
+    "q75": 0.308,
+    "p5": 0.188,
+    "p95": 0.367,
+    "max": 0.387,
+    "n_pairs": 45
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  }
+ ]
+}

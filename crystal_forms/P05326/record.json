@@ -1,0 +1,108 @@
+{
+ "identity": "P05326",
+ "accessions": [
+  "P05326"
+ ],
+ "deposition_group": null,
+ "name": "Isopenicillin N synthase",
+ "clusters": [
+  {
+   "cluster_id": 211,
+   "n_members": 56,
+   "reference": "6ZAN",
+   "reference_resolution": 1.35,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.236,
+    74.404,
+    101.114,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 55,
+    "reference": 1
+   },
+   "n_pairs": 1540,
+   "rmsd_to_reference": {
+    "median": 0.34,
+    "q25": 0.267,
+    "q75": 0.405,
+    "p5": 0.16,
+    "p95": 0.532,
+    "max": 0.881,
+    "n_pairs": 55
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.358,
+    "q25": 0.264,
+    "q75": 0.479,
+    "p5": 0.15,
+    "p95": 0.859,
+    "max": 1.019,
+    "n_pairs": 1540
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.169,
+    "q75": 0.29,
+    "p5": 0.102,
+    "p95": 0.796,
+    "max": 0.898,
+    "n_pairs": 1540
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 394,
+   "n_members": 35,
+   "reference": "1ODM",
+   "reference_resolution": 1.15,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.701,
+    71.393,
+    100.906,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.225,
+    "q25": 0.176,
+    "q75": 0.279,
+    "p5": 0.144,
+    "p95": 0.344,
+    "max": 0.453,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.257,
+    "q25": 0.193,
+    "q75": 0.356,
+    "p5": 0.138,
+    "p95": 1.148,
+    "max": 1.443,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.156,
+    "q25": 0.129,
+    "q75": 0.197,
+    "p5": 0.099,
+    "p95": 0.367,
+    "max": 0.403,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

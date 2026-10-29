@@ -1,0 +1,59 @@
+{
+ "identity": "P53355",
+ "accessions": [
+  "P53355"
+ ],
+ "deposition_group": null,
+ "name": "Death-associated protein kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 236,
+   "n_members": 52,
+   "reference": "4PF4",
+   "reference_resolution": 1.13,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.516,
+    62.005,
+    88.375,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.411,
+    "q25": 0.34,
+    "q75": 0.47,
+    "p5": 0.267,
+    "p95": 0.679,
+    "max": 0.796,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.381,
+    "q25": 0.323,
+    "q75": 0.459,
+    "p5": 0.234,
+    "p95": 0.724,
+    "max": 0.889,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.344,
+    "q25": 0.287,
+    "q75": 0.422,
+    "p5": 0.204,
+    "p95": 0.673,
+    "max": 0.804,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+{
+ "identity": "O74036",
+ "accessions": [
+  "O74036"
+ ],
+ "deposition_group": null,
+ "name": "DNA repair and recombination protein RadA",
+ "clusters": [
+  {
+   "cluster_id": 514,
+   "n_members": 28,
+   "reference": "5J4L",
+   "reference_resolution": 1.13,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    40.481,
+    61.06,
+    87.911,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "different_space_group": 6,
+    "reference": 1,
+    "no_shared_accession": 8
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.771,
+    "q25": 0.528,
+    "q75": 1.029,
+    "p5": 0.204,
+    "p95": 8.945,
+    "max": 8.981,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.84,
+    "q25": 0.586,
+    "q75": 7.56,
+    "p5": 0.235,
+    "p95": 8.89,
+    "max": 8.934,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.552,
+    "q25": 0.403,
+    "q75": 7.103,
+    "p5": 0.213,
+    "p95": 8.604,
+    "max": 8.629,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1344,
+   "n_members": 13,
+   "reference": "6XUJ",
+   "reference_resolution": 1.54,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    69.453,
+    73.211,
+    40.793,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 1,
+    "no_shared_accession": 10,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 1,
+   "rmsd_to_reference": {
+    "median": 6.54,
+    "q25": 6.54,
+    "q75": 6.54,
+    "p5": 6.54,
+    "p95": 6.54,
+    "max": 6.54,
+    "n_pairs": 1
+   },
+   "pairwise_frame_rmsd": {
+    "median": 6.567,
+    "q25": 6.567,
+    "q75": 6.567,
+    "p5": 6.567,
+    "p95": 6.567,
+    "max": 6.567,
+    "n_pairs": 1
+   },
+   "pairwise_fit_rmsd": {
+    "median": 6.298,
+    "q25": 6.298,
+    "q75": 6.298,
+    "p5": 6.298,
+    "p95": 6.298,
+    "max": 6.298,
+    "n_pairs": 1
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

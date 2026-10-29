@@ -1,0 +1,61 @@
+{
+ "identity": "Q83WS1+Q83WS2",
+ "accessions": [
+  "Q83WS1",
+  "Q83WS2"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosinase",
+ "clusters": [
+  {
+   "cluster_id": 429,
+   "n_members": 33,
+   "reference": "3AWU",
+   "reference_resolution": 1.16,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    65.1,
+    97.79,
+    54.99,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1,
+    "no_shared_accession": 2
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.299,
+    "q25": 0.261,
+    "q75": 0.345,
+    "p5": 0.177,
+    "p95": 0.421,
+    "max": 0.467,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.334,
+    "q25": 0.231,
+    "q75": 0.491,
+    "p5": 0.145,
+    "p95": 0.686,
+    "max": 0.849,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.184,
+    "q25": 0.131,
+    "q75": 0.21,
+    "p5": 0.089,
+    "p95": 0.258,
+    "max": 0.3,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

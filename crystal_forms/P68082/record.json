@@ -1,0 +1,108 @@
+{
+ "identity": "P68082",
+ "accessions": [
+  "P68082"
+ ],
+ "deposition_group": null,
+ "name": "Myoglobin",
+ "clusters": [
+  {
+   "cluster_id": 72,
+   "n_members": 117,
+   "reference": "2FRF",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    35.24,
+    28.607,
+    62.938,
+    90.0,
+    105.75,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 116,
+    "reference": 1
+   },
+   "n_pairs": 6786,
+   "rmsd_to_reference": {
+    "median": 0.329,
+    "q25": 0.284,
+    "q75": 0.34,
+    "p5": 0.254,
+    "p95": 0.427,
+    "max": 0.647,
+    "n_pairs": 116
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.334,
+    "q25": 0.285,
+    "q75": 0.413,
+    "p5": 0.0,
+    "p95": 0.623,
+    "max": 1.232,
+    "n_pairs": 6786
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.217,
+    "q25": 0.162,
+    "q75": 0.287,
+    "p5": 0.0,
+    "p95": 0.46,
+    "max": 0.886,
+    "n_pairs": 6786
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1740,
+   "n_members": 11,
+   "reference": "3VM9",
+   "reference_resolution": 1.05,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    57.34,
+    62.523,
+    83.354,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.892,
+    "q25": 0.598,
+    "q75": 1.252,
+    "p5": 0.215,
+    "p95": 1.519,
+    "max": 1.632,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.906,
+    "q25": 0.727,
+    "q75": 1.151,
+    "p5": 0.442,
+    "p95": 1.458,
+    "max": 1.621,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.668,
+    "q25": 0.511,
+    "q75": 0.804,
+    "p5": 0.327,
+    "p95": 0.855,
+    "max": 0.904,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

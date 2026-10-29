@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0H3K724",
+ "accessions": [
+  "A0A0H3K724"
+ ],
+ "deposition_group": null,
+ "name": "Cystathionine gamma-synthase",
+ "clusters": [
+  {
+   "cluster_id": 1462,
+   "n_members": 12,
+   "reference": "7MCT",
+   "reference_resolution": 1.6,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    105.115,
+    105.115,
+    288.104,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.156,
+    "q25": 0.133,
+    "q75": 0.216,
+    "p5": 0.121,
+    "p95": 0.844,
+    "max": 1.417,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.459,
+    "q25": 0.241,
+    "q75": 0.79,
+    "p5": 0.148,
+    "p95": 1.453,
+    "max": 1.754,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.13,
+    "q25": 0.12,
+    "q75": 0.163,
+    "p5": 0.098,
+    "p95": 1.309,
+    "max": 1.315,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

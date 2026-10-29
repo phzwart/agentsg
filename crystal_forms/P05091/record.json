@@ -1,0 +1,59 @@
+{
+ "identity": "P05091",
+ "accessions": [
+  "P05091"
+ ],
+ "deposition_group": null,
+ "name": "Aldehyde dehydrogenase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1043,
+   "n_members": 16,
+   "reference": "1O04",
+   "reference_resolution": 1.42,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    141.211,
+    152.487,
+    177.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.556,
+    "q25": 0.391,
+    "q75": 0.621,
+    "p5": 0.177,
+    "p95": 1.183,
+    "max": 2.138,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.807,
+    "q25": 0.519,
+    "q75": 1.223,
+    "p5": 0.273,
+    "p95": 2.914,
+    "max": 3.48,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.153,
+    "q25": 0.128,
+    "q75": 0.188,
+    "p5": 0.101,
+    "p95": 0.274,
+    "max": 0.301,
+    "n_pairs": 120
+   },
+   "n_low_margin": 15,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q6PL18",
+ "accessions": [
+  "Q6PL18"
+ ],
+ "deposition_group": null,
+ "name": "ATPase family AAA domain-containing protein 2",
+ "clusters": [
+  {
+   "cluster_id": 87,
+   "n_members": 107,
+   "reference": "5R4V",
+   "reference_resolution": 1.29,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    80.19,
+    80.19,
+    140.1,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 106,
+    "reference": 1
+   },
+   "n_pairs": 5671,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.319,
+    "q75": 0.574,
+    "p5": 0.136,
+    "p95": 0.74,
+    "max": 1.058,
+    "n_pairs": 106
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.623,
+    "q25": 0.432,
+    "q75": 0.825,
+    "p5": 0.238,
+    "p95": 1.088,
+    "max": 1.603,
+    "n_pairs": 5671
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.337,
+    "q25": 0.265,
+    "q75": 0.406,
+    "p5": 0.151,
+    "p95": 0.52,
+    "max": 0.816,
+    "n_pairs": 5671
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

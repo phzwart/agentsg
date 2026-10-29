@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y5Y6",
+ "accessions": [
+  "Q9Y5Y6"
+ ],
+ "deposition_group": null,
+ "name": "Suppressor of tumorigenicity 14 protein",
+ "clusters": [
+  {
+   "cluster_id": 1616,
+   "n_members": 12,
+   "reference": "3P8G",
+   "reference_resolution": 1.2,
+   "space_group": "C 2 2 2",
+   "reference_cell": [
+    66.888,
+    141.701,
+    51.995,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.25,
+    "q25": 0.221,
+    "q75": 0.288,
+    "p5": 0.151,
+    "p95": 0.343,
+    "max": 0.393,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.263,
+    "q25": 0.22,
+    "q75": 0.309,
+    "p5": 0.172,
+    "p95": 0.412,
+    "max": 0.46,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.191,
+    "q25": 0.159,
+    "q75": 0.232,
+    "p5": 0.118,
+    "p95": 0.265,
+    "max": 0.284,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

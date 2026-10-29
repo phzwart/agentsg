@@ -1,0 +1,59 @@
+{
+ "identity": "Q12852",
+ "accessions": [
+  "Q12852"
+ ],
+ "deposition_group": null,
+ "name": "Mitogen-activated protein kinase kinase kinase 12",
+ "clusters": [
+  {
+   "cluster_id": 1573,
+   "n_members": 12,
+   "reference": "9CDY",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    57.429,
+    39.775,
+    62.471,
+    90.0,
+    106.05,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.837,
+    "q25": 0.485,
+    "q75": 0.943,
+    "p5": 0.44,
+    "p95": 1.488,
+    "max": 1.71,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.424,
+    "q25": 0.869,
+    "q75": 1.858,
+    "p5": 0.45,
+    "p95": 2.814,
+    "max": 2.959,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.431,
+    "q25": 0.37,
+    "q75": 0.515,
+    "p5": 0.292,
+    "p95": 0.84,
+    "max": 1.575,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

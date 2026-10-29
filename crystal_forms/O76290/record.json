@@ -1,0 +1,59 @@
+{
+ "identity": "O76290",
+ "accessions": [
+  "O76290"
+ ],
+ "deposition_group": null,
+ "name": "Pteridine reductase",
+ "clusters": [
+  {
+   "cluster_id": 147,
+   "n_members": 75,
+   "reference": "2X9G",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    74.72,
+    90.57,
+    82.58,
+    90.0,
+    115.61,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 74,
+    "reference": 1
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 0.435,
+    "q25": 0.368,
+    "q75": 0.711,
+    "p5": 0.268,
+    "p95": 15.941,
+    "max": 16.456,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.641,
+    "q25": 0.387,
+    "q75": 0.894,
+    "p5": 0.237,
+    "p95": 16.031,
+    "max": 16.288,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.354,
+    "q25": 0.234,
+    "q75": 0.604,
+    "p5": 0.161,
+    "p95": 0.698,
+    "max": 0.917,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

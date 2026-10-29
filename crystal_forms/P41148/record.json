@@ -1,0 +1,59 @@
+{
+ "identity": "P41148",
+ "accessions": [
+  "P41148"
+ ],
+ "deposition_group": null,
+ "name": "Endoplasmin",
+ "clusters": [
+  {
+   "cluster_id": 1276,
+   "n_members": 14,
+   "reference": "2GQP",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.69,
+    84.84,
+    95.74,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.535,
+    "q25": 0.442,
+    "q75": 0.621,
+    "p5": 0.305,
+    "p95": 0.716,
+    "max": 0.754,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.965,
+    "q25": 0.716,
+    "q75": 1.297,
+    "p5": 0.495,
+    "p95": 1.742,
+    "max": 2.167,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.316,
+    "q25": 0.276,
+    "q75": 0.362,
+    "p5": 0.206,
+    "p95": 0.454,
+    "max": 0.486,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

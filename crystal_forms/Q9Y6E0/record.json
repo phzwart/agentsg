@@ -1,0 +1,108 @@
+{
+ "identity": "Q9Y6E0",
+ "accessions": [
+  "Q9Y6E0"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase 24",
+ "clusters": [
+  {
+   "cluster_id": 1204,
+   "n_members": 15,
+   "reference": "3A7F",
+   "reference_resolution": 1.55,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    99.138,
+    59.263,
+    61.542,
+    90.0,
+    93.71,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 3.315,
+    "q25": 0.481,
+    "q75": 5.994,
+    "p5": 0.345,
+    "p95": 6.005,
+    "max": 6.008,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.975,
+    "q25": 0.53,
+    "q75": 6.005,
+    "p5": 0.306,
+    "p95": 6.054,
+    "max": 6.113,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 5.89,
+    "q25": 0.361,
+    "q75": 5.907,
+    "p5": 0.226,
+    "p95": 5.921,
+    "max": 5.931,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1205,
+   "n_members": 15,
+   "reference": "3A7I",
+   "reference_resolution": 1.45,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    47.583,
+    55.598,
+    60.481,
+    90.0,
+    111.13,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.582,
+    "q25": 0.411,
+    "q75": 0.722,
+    "p5": 0.319,
+    "p95": 1.261,
+    "max": 1.365,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.967,
+    "q25": 0.632,
+    "q75": 1.175,
+    "p5": 0.38,
+    "p95": 1.728,
+    "max": 2.364,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.648,
+    "q25": 0.471,
+    "q75": 0.772,
+    "p5": 0.316,
+    "p95": 0.852,
+    "max": 1.026,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9AYY6",
+ "accessions": [
+  "Q9AYY6"
+ ],
+ "deposition_group": null,
+ "name": "Tail spike protein",
+ "clusters": [
+  {
+   "cluster_id": 480,
+   "n_members": 31,
+   "reference": "4XOT",
+   "reference_resolution": 1.06,
+   "space_group": "P 3 2 1",
+   "reference_cell": [
+    74.179,
+    74.179,
+    174.678,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.16,
+    "q25": 0.123,
+    "q75": 0.196,
+    "p5": 0.103,
+    "p95": 3.907,
+    "max": 4.027,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.291,
+    "q25": 0.202,
+    "q75": 0.625,
+    "p5": 0.132,
+    "p95": 4.035,
+    "max": 4.103,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.161,
+    "q25": 0.119,
+    "q75": 0.248,
+    "p5": 0.088,
+    "p95": 3.857,
+    "max": 3.887,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

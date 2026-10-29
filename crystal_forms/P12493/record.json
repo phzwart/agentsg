@@ -1,0 +1,59 @@
+{
+ "identity": "P12493",
+ "accessions": [
+  "P12493"
+ ],
+ "deposition_group": null,
+ "name": "Gag polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 220,
+   "n_members": 55,
+   "reference": "8QUK",
+   "reference_resolution": 1.38,
+   "space_group": "P 6",
+   "reference_cell": [
+    90.61,
+    90.61,
+    56.8,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 54,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 1.62,
+    "q25": 0.427,
+    "q75": 4.124,
+    "p5": 0.287,
+    "p95": 4.613,
+    "max": 4.841,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.975,
+    "q25": 0.55,
+    "q75": 4.114,
+    "p5": 0.293,
+    "p95": 4.674,
+    "max": 5.088,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.087,
+    "q25": 0.452,
+    "q75": 1.382,
+    "p5": 0.245,
+    "p95": 1.768,
+    "max": 3.388,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

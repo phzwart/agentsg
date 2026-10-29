@@ -1,0 +1,71 @@
+{
+ "identity": "P00396+P00415+P00423+P00426+P00428+P00429+P00430+P04038+P07470+P07471+P10175+P13183+P68530",
+ "accessions": [
+  "P00396",
+  "P00415",
+  "P00423",
+  "P00426",
+  "P00428",
+  "P00429",
+  "P00430",
+  "P04038",
+  "P07470",
+  "P07471",
+  "P10175",
+  "P13183",
+  "P68530"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c oxidase subunit 1",
+ "clusters": [
+  {
+   "cluster_id": 148,
+   "n_members": 75,
+   "reference": "7COH",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    181.998,
+    204.193,
+    177.759,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 74,
+    "reference": 1
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 0.329,
+    "q25": 0.19,
+    "q75": 0.631,
+    "p5": 0.114,
+    "p95": 0.841,
+    "max": 0.949,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.662,
+    "q25": 1.812,
+    "q75": 6.135,
+    "p5": 0.581,
+    "p95": 10.321,
+    "max": 12.679,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.268,
+    "q25": 0.144,
+    "q75": 0.302,
+    "p5": 0.097,
+    "p95": 0.362,
+    "max": 0.45,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

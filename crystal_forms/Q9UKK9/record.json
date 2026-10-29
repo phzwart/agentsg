@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UKK9",
+ "accessions": [
+  "Q9UKK9"
+ ],
+ "deposition_group": null,
+ "name": "ADP-sugar pyrophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 224,
+   "n_members": 55,
+   "reference": "5QK0",
+   "reference_resolution": 1.44,
+   "space_group": "P 1",
+   "reference_cell": [
+    49.672,
+    60.151,
+    79.779,
+    79.37,
+    80.65,
+    75.23
+   ],
+   "status_counts": {
+    "placed": 54,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 0.356,
+    "q25": 0.311,
+    "q75": 0.43,
+    "p5": 0.245,
+    "p95": 0.569,
+    "max": 0.808,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.326,
+    "q25": 0.235,
+    "q75": 0.446,
+    "p5": 0.162,
+    "p95": 0.724,
+    "max": 1.316,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.167,
+    "q25": 0.143,
+    "q75": 0.211,
+    "p5": 0.115,
+    "p95": 0.321,
+    "max": 0.487,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

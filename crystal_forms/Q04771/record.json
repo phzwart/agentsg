@@ -1,0 +1,59 @@
+{
+ "identity": "Q04771",
+ "accessions": [
+  "Q04771"
+ ],
+ "deposition_group": null,
+ "name": "Activin receptor type-1",
+ "clusters": [
+  {
+   "cluster_id": 263,
+   "n_members": 47,
+   "reference": "6SRH",
+   "reference_resolution": 1.25,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    127.17,
+    84.83,
+    88.08,
+    90.0,
+    130.87,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.211,
+    "q25": 0.165,
+    "q75": 0.298,
+    "p5": 0.121,
+    "p95": 0.876,
+    "max": 1.016,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.281,
+    "q25": 0.213,
+    "q75": 0.385,
+    "p5": 0.146,
+    "p95": 0.929,
+    "max": 1.152,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.209,
+    "q25": 0.159,
+    "q75": 0.283,
+    "p5": 0.113,
+    "p95": 0.802,
+    "max": 1.129,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

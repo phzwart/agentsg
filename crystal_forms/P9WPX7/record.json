@@ -1,0 +1,59 @@
+{
+ "identity": "P9WPX7",
+ "accessions": [
+  "P9WPX7"
+ ],
+ "deposition_group": null,
+ "name": "3-dehydroquinate dehydratase",
+ "clusters": [
+  {
+   "cluster_id": 834,
+   "n_members": 20,
+   "reference": "1H05",
+   "reference_resolution": 1.5,
+   "space_group": "F 2 3",
+   "reference_cell": [
+    126.635,
+    126.635,
+    126.635,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 19
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.295,
+    "q25": 0.26,
+    "q75": 0.379,
+    "p5": 0.201,
+    "p95": 0.476,
+    "max": 0.485,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.502,
+    "q25": 0.394,
+    "q75": 0.659,
+    "p5": 0.269,
+    "p95": 0.978,
+    "max": 1.328,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.328,
+    "q25": 0.261,
+    "q75": 0.42,
+    "p5": 0.179,
+    "p95": 0.621,
+    "max": 0.953,
+    "n_pairs": 190
+   },
+   "n_low_margin": 19,
+   "n_via_neighbour": 0
+  }
+ ]
+}

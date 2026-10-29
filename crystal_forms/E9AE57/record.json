@@ -1,0 +1,59 @@
+{
+ "identity": "E9AE57",
+ "accessions": [
+  "E9AE57"
+ ],
+ "deposition_group": null,
+ "name": "Fumarate hydratase 2",
+ "clusters": [
+  {
+   "cluster_id": 1216,
+   "n_members": 14,
+   "reference": "6UQ8",
+   "reference_resolution": 1.339,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.732,
+    84.748,
+    240.12,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.323,
+    "q25": 0.221,
+    "q75": 0.397,
+    "p5": 0.164,
+    "p95": 0.576,
+    "max": 0.673,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.34,
+    "q25": 0.232,
+    "q75": 0.457,
+    "p5": 0.16,
+    "p95": 0.661,
+    "max": 0.875,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.166,
+    "q25": 0.138,
+    "q75": 0.251,
+    "p5": 0.115,
+    "p95": 0.373,
+    "max": 0.412,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

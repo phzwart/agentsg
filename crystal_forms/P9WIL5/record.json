@@ -1,0 +1,59 @@
+{
+ "identity": "P9WIL5",
+ "accessions": [
+  "P9WIL5"
+ ],
+ "deposition_group": null,
+ "name": "Pantothenate synthetase",
+ "clusters": [
+  {
+   "cluster_id": 399,
+   "n_members": 35,
+   "reference": "3COV",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    48.27,
+    70.92,
+    81.87,
+    90.0,
+    99.16,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.332,
+    "q25": 0.244,
+    "q75": 0.409,
+    "p5": 0.168,
+    "p95": 1.07,
+    "max": 1.432,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.47,
+    "q25": 0.357,
+    "q75": 0.829,
+    "p5": 0.245,
+    "p95": 1.172,
+    "max": 1.568,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.288,
+    "q75": 0.723,
+    "p5": 0.195,
+    "p95": 1.126,
+    "max": 1.398,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q79FX8",
+ "accessions": [
+  "Q79FX8"
+ ],
+ "deposition_group": null,
+ "name": "Hydroxymycolate synthase MmaA4",
+ "clusters": [
+  {
+   "cluster_id": 1592,
+   "n_members": 12,
+   "reference": "7Q2H",
+   "reference_resolution": 1.75,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    56.619,
+    56.619,
+    207.667,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 2,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.994,
+    "q25": 0.905,
+    "q75": 1.674,
+    "p5": 0.528,
+    "p95": 2.353,
+    "max": 2.689,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.156,
+    "q25": 0.902,
+    "q75": 1.656,
+    "p5": 0.319,
+    "p95": 2.76,
+    "max": 2.978,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.667,
+    "q25": 0.349,
+    "q75": 0.866,
+    "p5": 0.162,
+    "p95": 0.982,
+    "max": 1.195,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

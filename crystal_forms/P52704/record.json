@@ -1,0 +1,59 @@
+{
+ "identity": "P52704",
+ "accessions": [
+  "P52704"
+ ],
+ "deposition_group": null,
+ "name": "(S)-hydroxynitrile lyase",
+ "clusters": [
+  {
+   "cluster_id": 829,
+   "n_members": 20,
+   "reference": "3C6X",
+   "reference_resolution": 1.05,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    47.251,
+    106.343,
+    128.22,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.195,
+    "q25": 0.131,
+    "q75": 0.268,
+    "p5": 0.083,
+    "p95": 0.398,
+    "max": 0.411,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.269,
+    "q25": 0.205,
+    "q75": 0.493,
+    "p5": 0.137,
+    "p95": 1.167,
+    "max": 1.302,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.141,
+    "q25": 0.107,
+    "q75": 0.193,
+    "p5": 0.073,
+    "p95": 0.264,
+    "max": 0.296,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

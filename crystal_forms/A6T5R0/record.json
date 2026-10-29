@@ -1,0 +1,59 @@
+{
+ "identity": "A6T5R0",
+ "accessions": [
+  "A6T5R0"
+ ],
+ "deposition_group": null,
+ "name": "UDP-2,3-diacylglucosamine hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 1632,
+   "n_members": 11,
+   "reference": "9CD0",
+   "reference_resolution": 1.72,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    106.16,
+    106.16,
+    53.55,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.325,
+    "q25": 0.271,
+    "q75": 0.396,
+    "p5": 0.22,
+    "p95": 1.201,
+    "max": 1.385,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.467,
+    "q25": 0.363,
+    "q75": 0.988,
+    "p5": 0.215,
+    "p95": 1.311,
+    "max": 1.417,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.309,
+    "q25": 0.246,
+    "q75": 0.728,
+    "p5": 0.156,
+    "p95": 1.109,
+    "max": 1.152,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

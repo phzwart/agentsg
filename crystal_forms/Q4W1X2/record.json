@@ -1,0 +1,59 @@
+{
+ "identity": "Q4W1X2",
+ "accessions": [
+  "Q4W1X2"
+ ],
+ "deposition_group": null,
+ "name": "UDP-galactopyranose mutase",
+ "clusters": [
+  {
+   "cluster_id": 1005,
+   "n_members": 17,
+   "reference": "4U8I",
+   "reference_resolution": 2.05,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    217.126,
+    217.126,
+    320.348,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.559,
+    "q25": 0.242,
+    "q75": 1.479,
+    "p5": 0.162,
+    "p95": 1.597,
+    "max": 1.661,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.563,
+    "q25": 1.127,
+    "q75": 1.947,
+    "p5": 0.555,
+    "p95": 2.81,
+    "max": 3.581,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.007,
+    "q25": 0.253,
+    "q75": 1.451,
+    "p5": 0.144,
+    "p95": 1.521,
+    "max": 1.534,
+    "n_pairs": 136
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P42336",
+ "accessions": [
+  "P42336"
+ ],
+ "deposition_group": null,
+ "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit alpha isoform",
+ "clusters": [
+  {
+   "cluster_id": 579,
+   "n_members": 26,
+   "reference": "8EXL",
+   "reference_resolution": 1.989,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.365,
+    134.385,
+    141.693,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 9.248,
+    "q25": 9.142,
+    "q75": 9.357,
+    "p5": 0.413,
+    "p95": 9.582,
+    "max": 9.614,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.179,
+    "q25": 1.397,
+    "q75": 9.114,
+    "p5": 0.61,
+    "p95": 9.473,
+    "max": 9.73,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.929,
+    "q25": 0.698,
+    "q75": 9.096,
+    "p5": 0.418,
+    "p95": 9.187,
+    "max": 9.292,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P07061+P07062",
+ "accessions": [
+  "P07061",
+  "P07062"
+ ],
+ "deposition_group": null,
+ "name": "6-aminohexanoate-dimer hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 1046,
+   "n_members": 16,
+   "reference": "3VWN",
+   "reference_resolution": 1.2,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    96.64,
+    96.64,
+    112.996,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.363,
+    "q25": 0.254,
+    "q75": 0.561,
+    "p5": 0.171,
+    "p95": 0.649,
+    "max": 0.694,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.437,
+    "q25": 0.263,
+    "q75": 0.631,
+    "p5": 0.148,
+    "p95": 0.753,
+    "max": 0.998,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.219,
+    "q25": 0.158,
+    "q75": 0.561,
+    "p5": 0.101,
+    "p95": 0.649,
+    "max": 0.684,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

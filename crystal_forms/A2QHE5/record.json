@@ -1,0 +1,59 @@
+{
+ "identity": "A2QHE5",
+ "accessions": [
+  "A2QHE5"
+ ],
+ "deposition_group": null,
+ "name": "Ferulic acid decarboxylase 1",
+ "clusters": [
+  {
+   "cluster_id": 289,
+   "n_members": 43,
+   "reference": "4ZA9",
+   "reference_resolution": 1.01,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    96.05,
+    63.85,
+    87.68,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 42,
+    "reference": 1
+   },
+   "n_pairs": 903,
+   "rmsd_to_reference": {
+    "median": 0.121,
+    "q25": 0.091,
+    "q75": 0.152,
+    "p5": 0.07,
+    "p95": 0.206,
+    "max": 0.281,
+    "n_pairs": 42
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.155,
+    "q25": 0.122,
+    "q75": 0.201,
+    "p5": 0.085,
+    "p95": 0.268,
+    "max": 0.378,
+    "n_pairs": 903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.121,
+    "q25": 0.096,
+    "q75": 0.149,
+    "p5": 0.069,
+    "p95": 0.216,
+    "max": 0.274,
+    "n_pairs": 903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "K0BWD0+K4LC41",
+ "accessions": [
+  "K0BWD0",
+  "K4LC41"
+ ],
+ "deposition_group": null,
+ "name": "ORF1ab polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 1478,
+   "n_members": 12,
+   "reference": "5YNM",
+   "reference_resolution": 1.68,
+   "space_group": "P 21 2 21",
+   "reference_cell": [
+    67.713,
+    70.024,
+    120.131,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.573,
+    "q25": 0.33,
+    "q75": 0.687,
+    "p5": 0.282,
+    "p95": 0.808,
+    "max": 0.839,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.335,
+    "q25": 0.987,
+    "q75": 1.768,
+    "p5": 0.654,
+    "p95": 2.58,
+    "max": 3.325,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.364,
+    "q25": 0.22,
+    "q75": 0.451,
+    "p5": 0.154,
+    "p95": 0.702,
+    "max": 0.721,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

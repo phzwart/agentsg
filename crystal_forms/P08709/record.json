@@ -1,0 +1,59 @@
+{
+ "identity": "P08709",
+ "accessions": [
+  "P08709"
+ ],
+ "deposition_group": null,
+ "name": "Coagulation factor VII",
+ "clusters": [
+  {
+   "cluster_id": 201,
+   "n_members": 58,
+   "reference": "5PAG",
+   "reference_resolution": 1.36,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    95.06,
+    95.06,
+    115.91,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 57,
+    "reference": 1
+   },
+   "n_pairs": 1653,
+   "rmsd_to_reference": {
+    "median": 0.413,
+    "q25": 0.344,
+    "q75": 0.474,
+    "p5": 0.224,
+    "p95": 0.741,
+    "max": 1.181,
+    "n_pairs": 57
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.42,
+    "q25": 0.32,
+    "q75": 0.519,
+    "p5": 0.223,
+    "p95": 0.818,
+    "max": 1.53,
+    "n_pairs": 1653
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.28,
+    "q25": 0.216,
+    "q75": 0.377,
+    "p5": 0.163,
+    "p95": 0.478,
+    "max": 0.603,
+    "n_pairs": 1653
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

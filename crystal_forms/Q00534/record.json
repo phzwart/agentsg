@@ -1,0 +1,59 @@
+{
+ "identity": "Q00534",
+ "accessions": [
+  "Q00534"
+ ],
+ "deposition_group": null,
+ "name": "Cyclin-dependent kinase 6",
+ "clusters": [
+  {
+   "cluster_id": 1420,
+   "n_members": 13,
+   "reference": "9PE8",
+   "reference_resolution": 1.8,
+   "space_group": "I 4",
+   "reference_cell": [
+    101.27,
+    101.27,
+    59.45,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.771,
+    "q25": 0.697,
+    "q75": 0.873,
+    "p5": 0.606,
+    "p95": 0.988,
+    "max": 1.082,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.751,
+    "q25": 0.638,
+    "q75": 0.865,
+    "p5": 0.479,
+    "p95": 1.099,
+    "max": 1.272,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.585,
+    "q25": 0.479,
+    "q75": 0.683,
+    "p5": 0.408,
+    "p95": 0.786,
+    "max": 0.956,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

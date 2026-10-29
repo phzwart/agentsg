@@ -1,0 +1,59 @@
+{
+ "identity": "P9WK17",
+ "accessions": [
+  "P9WK17"
+ ],
+ "deposition_group": null,
+ "name": "Malate synthase G",
+ "clusters": [
+  {
+   "cluster_id": 262,
+   "n_members": 47,
+   "reference": "6AS6",
+   "reference_resolution": 1.4,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    78.804,
+    78.804,
+    224.946,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.59,
+    "q25": 0.469,
+    "q75": 0.785,
+    "p5": 0.354,
+    "p95": 1.489,
+    "max": 1.609,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.457,
+    "q25": 0.938,
+    "q75": 2.309,
+    "p5": 0.519,
+    "p95": 3.777,
+    "max": 5.848,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.538,
+    "q25": 0.444,
+    "q75": 0.659,
+    "p5": 0.283,
+    "p95": 0.836,
+    "max": 1.167,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

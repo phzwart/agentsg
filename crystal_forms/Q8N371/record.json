@@ -1,0 +1,59 @@
+{
+ "identity": "Q8N371",
+ "accessions": [
+  "Q8N371"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional peptidase and arginyl-hydroxylase JMJD5",
+ "clusters": [
+  {
+   "cluster_id": 1085,
+   "n_members": 16,
+   "reference": "4GJZ",
+   "reference_resolution": 1.0481,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.695,
+    64.056,
+    76.801,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.756,
+    "q25": 0.547,
+    "q75": 0.979,
+    "p5": 0.314,
+    "p95": 25.434,
+    "max": 25.527,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.682,
+    "q25": 0.42,
+    "q75": 1.43,
+    "p5": 0.257,
+    "p95": 25.566,
+    "max": 25.623,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.345,
+    "q25": 0.236,
+    "q75": 0.971,
+    "p5": 0.173,
+    "p95": 21.703,
+    "max": 21.79,
+    "n_pairs": 120
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

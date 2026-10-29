@@ -1,0 +1,59 @@
+{
+ "identity": "Q7SI98",
+ "accessions": [
+  "Q7SI98"
+ ],
+ "deposition_group": null,
+ "name": "Beta-xylanase",
+ "clusters": [
+  {
+   "cluster_id": 933,
+   "n_members": 18,
+   "reference": "2D1Z",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    78.508,
+    94.063,
+    139.657,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.979,
+    "q25": 0.699,
+    "q75": 2.166,
+    "p5": 0.239,
+    "p95": 2.236,
+    "max": 2.238,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.487,
+    "q25": 0.738,
+    "q75": 2.001,
+    "p5": 0.407,
+    "p95": 2.849,
+    "max": 3.339,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.443,
+    "q25": 0.328,
+    "q75": 0.539,
+    "p5": 0.203,
+    "p95": 0.669,
+    "max": 0.744,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q93NH4",
+ "accessions": [
+  "Q93NH4"
+ ],
+ "deposition_group": null,
+ "name": "(S)-6-hydroxynicotine oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1792,
+   "n_members": 11,
+   "reference": "3K7M",
+   "reference_resolution": 1.95,
+   "space_group": "P 4 3 2",
+   "reference_cell": [
+    163.919,
+    163.92,
+    163.919,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.279,
+    "q75": 0.356,
+    "p5": 0.207,
+    "p95": 0.387,
+    "max": 0.398,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.523,
+    "q25": 0.364,
+    "q75": 0.669,
+    "p5": 0.199,
+    "p95": 1.013,
+    "max": 1.18,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.234,
+    "q75": 0.344,
+    "p5": 0.176,
+    "p95": 0.418,
+    "max": 0.456,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

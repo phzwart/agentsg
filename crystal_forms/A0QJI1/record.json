@@ -1,0 +1,59 @@
+{
+ "identity": "A0QJI1",
+ "accessions": [
+  "A0QJI1"
+ ],
+ "deposition_group": null,
+ "name": "Phosphoserine phosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1628,
+   "n_members": 11,
+   "reference": "5IS2",
+   "reference_resolution": 1.881,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    66.476,
+    109.494,
+    133.412,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.254,
+    "q75": 0.591,
+    "p5": 0.199,
+    "p95": 0.778,
+    "max": 0.872,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.601,
+    "q25": 0.413,
+    "q75": 0.848,
+    "p5": 0.242,
+    "p95": 1.241,
+    "max": 1.549,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.342,
+    "q25": 0.262,
+    "q75": 0.39,
+    "p5": 0.184,
+    "p95": 0.533,
+    "max": 0.579,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "P10636+P31947",
+ "accessions": [
+  "P10636",
+  "P31947"
+ ],
+ "deposition_group": null,
+ "name": "14-3-3 protein sigma",
+ "clusters": [
+  {
+   "cluster_id": 1255,
+   "n_members": 14,
+   "reference": "9GG8",
+   "reference_resolution": 1.1,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    82.254,
+    112.509,
+    62.482,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.242,
+    "q25": 0.166,
+    "q75": 0.448,
+    "p5": 0.151,
+    "p95": 0.612,
+    "max": 0.74,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.326,
+    "q25": 0.198,
+    "q75": 0.451,
+    "p5": 0.137,
+    "p95": 0.657,
+    "max": 0.739,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.285,
+    "q25": 0.151,
+    "q75": 0.418,
+    "p5": 0.108,
+    "p95": 0.633,
+    "max": 0.735,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

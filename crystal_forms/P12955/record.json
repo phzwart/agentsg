@@ -1,0 +1,59 @@
+{
+ "identity": "P12955",
+ "accessions": [
+  "P12955"
+ ],
+ "deposition_group": null,
+ "name": "Xaa-Pro dipeptidase",
+ "clusters": [
+  {
+   "cluster_id": 768,
+   "n_members": 21,
+   "reference": "6SRE",
+   "reference_resolution": 1.39,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    103.725,
+    106.858,
+    216.323,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.046,
+    "q25": 0.415,
+    "q75": 1.893,
+    "p5": 0.341,
+    "p95": 2.423,
+    "max": 3.259,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.632,
+    "q25": 0.504,
+    "q75": 3.007,
+    "p5": 0.231,
+    "p95": 3.625,
+    "max": 4.057,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.496,
+    "q25": 0.306,
+    "q75": 0.904,
+    "p5": 0.11,
+    "p95": 2.774,
+    "max": 2.8,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

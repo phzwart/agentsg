@@ -1,0 +1,59 @@
+{
+ "identity": "Q99972",
+ "accessions": [
+  "Q99972"
+ ],
+ "deposition_group": null,
+ "name": "Myocilin",
+ "clusters": [
+  {
+   "cluster_id": 1319,
+   "n_members": 14,
+   "reference": "7SKE",
+   "reference_resolution": 1.24,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.243,
+    50.721,
+    50.364,
+    90.0,
+    97.668,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.416,
+    "q25": 0.33,
+    "q75": 0.46,
+    "p5": 0.27,
+    "p95": 0.52,
+    "max": 0.565,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.159,
+    "q25": 0.123,
+    "q75": 0.275,
+    "p5": 0.085,
+    "p95": 0.364,
+    "max": 0.531,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.114,
+    "q25": 0.072,
+    "q75": 0.167,
+    "p5": 0.062,
+    "p95": 0.193,
+    "max": 0.257,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

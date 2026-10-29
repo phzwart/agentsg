@@ -1,0 +1,59 @@
+{
+ "identity": "P06745",
+ "accessions": [
+  "P06745"
+ ],
+ "deposition_group": null,
+ "name": "Glucose-6-phosphate isomerase",
+ "clusters": [
+  {
+   "cluster_id": 1505,
+   "n_members": 12,
+   "reference": "2CXN",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    69.951,
+    116.025,
+    73.208,
+    90.0,
+    101.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.349,
+    "q25": 0.213,
+    "q75": 0.492,
+    "p5": 0.115,
+    "p95": 0.973,
+    "max": 1.256,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.383,
+    "q25": 0.308,
+    "q75": 0.629,
+    "p5": 0.127,
+    "p95": 1.072,
+    "max": 1.13,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.327,
+    "q25": 0.182,
+    "q75": 0.349,
+    "p5": 0.092,
+    "p95": 0.421,
+    "max": 0.438,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

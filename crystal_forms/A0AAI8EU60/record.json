@@ -1,0 +1,59 @@
+{
+ "identity": "A0AAI8EU60",
+ "accessions": [
+  "A0AAI8EU60"
+ ],
+ "deposition_group": null,
+ "name": null,
+ "clusters": [
+  {
+   "cluster_id": 620,
+   "n_members": 24,
+   "reference": "5BMN",
+   "reference_resolution": 1.27,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.98,
+    55.18,
+    174.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 23
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 1.052,
+    "q25": 0.961,
+    "q75": 1.192,
+    "p5": 0.589,
+    "p95": 1.411,
+    "max": 1.557,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.526,
+    "q25": 0.383,
+    "q75": 0.768,
+    "p5": 0.258,
+    "p95": 1.077,
+    "max": 1.359,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.357,
+    "q25": 0.254,
+    "q75": 0.579,
+    "p5": 0.166,
+    "p95": 0.826,
+    "max": 0.999,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q92831",
+ "accessions": [
+  "Q92831"
+ ],
+ "deposition_group": null,
+ "name": "Histone acetyltransferase KAT2B",
+ "clusters": [
+  {
+   "cluster_id": 1089,
+   "n_members": 16,
+   "reference": "5MKX",
+   "reference_resolution": 1.68,
+   "space_group": "H 3",
+   "reference_cell": [
+    99.264,
+    99.264,
+    100.378,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.707,
+    "q25": 0.598,
+    "q75": 0.765,
+    "p5": 0.462,
+    "p95": 1.019,
+    "max": 1.083,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.748,
+    "q25": 0.579,
+    "q75": 0.858,
+    "p5": 0.401,
+    "p95": 1.169,
+    "max": 1.415,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.503,
+    "q25": 0.358,
+    "q75": 0.673,
+    "p5": 0.231,
+    "p95": 0.96,
+    "max": 1.123,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P32357+P33334",
+ "accessions": [
+  "P32357",
+  "P33334"
+ ],
+ "deposition_group": null,
+ "name": "A1 cistron-splicing factor AAR2",
+ "clusters": [
+  {
+   "cluster_id": 9,
+   "n_members": 387,
+   "reference": "5R0D",
+   "reference_resolution": 1.27,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    89.193,
+    82.004,
+    94.002,
+    90.0,
+    109.08,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 386,
+    "reference": 1
+   },
+   "n_pairs": 74691,
+   "rmsd_to_reference": {
+    "median": 0.456,
+    "q25": 0.368,
+    "q75": 0.658,
+    "p5": 0.253,
+    "p95": 12.101,
+    "max": 12.154,
+    "n_pairs": 386
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.567,
+    "q25": 0.383,
+    "q75": 12.048,
+    "p5": 0.231,
+    "p95": 12.113,
+    "max": 12.236,
+    "n_pairs": 74691
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.279,
+    "q25": 0.202,
+    "q75": 11.508,
+    "p5": 0.135,
+    "p95": 11.565,
+    "max": 11.708,
+    "n_pairs": 74691
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

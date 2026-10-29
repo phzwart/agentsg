@@ -1,0 +1,59 @@
+{
+ "identity": "P9WPP1",
+ "accessions": [
+  "P9WPP1"
+ ],
+ "deposition_group": null,
+ "name": "Steroid C26-monooxygenase",
+ "clusters": [
+  {
+   "cluster_id": 1567,
+   "n_members": 12,
+   "reference": "7ZQR",
+   "reference_resolution": 1.79,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    136.782,
+    69.109,
+    144.785,
+    90.0,
+    94.008,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.32,
+    "q25": 0.29,
+    "q75": 0.341,
+    "p5": 0.231,
+    "p95": 0.446,
+    "max": 0.453,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.428,
+    "q25": 0.377,
+    "q75": 0.525,
+    "p5": 0.267,
+    "p95": 0.633,
+    "max": 0.847,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.288,
+    "q25": 0.249,
+    "q75": 0.314,
+    "p5": 0.19,
+    "p95": 0.418,
+    "max": 0.443,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

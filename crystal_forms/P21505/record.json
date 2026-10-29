@@ -1,0 +1,59 @@
+{
+ "identity": "P21505",
+ "accessions": [
+  "P21505"
+ ],
+ "deposition_group": null,
+ "name": "Homing endonuclease I-DmoI",
+ "clusters": [
+  {
+   "cluster_id": 918,
+   "n_members": 18,
+   "reference": "2VS7",
+   "reference_resolution": 2.05,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    106.988,
+    70.587,
+    106.848,
+    90.0,
+    119.75,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 17
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.434,
+    "q25": 0.32,
+    "q75": 0.619,
+    "p5": 0.258,
+    "p95": 1.139,
+    "max": 1.898,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.486,
+    "q25": 0.382,
+    "q75": 0.601,
+    "p5": 0.267,
+    "p95": 2.151,
+    "max": 2.476,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.252,
+    "q75": 0.344,
+    "p5": 0.209,
+    "p95": 0.436,
+    "max": 0.479,
+    "n_pairs": 153
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  }
+ ]
+}

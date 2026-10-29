@@ -1,0 +1,59 @@
+{
+ "identity": "B6DMH6",
+ "accessions": [
+  "B6DMH6"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin",
+ "clusters": [
+  {
+   "cluster_id": 1637,
+   "n_members": 11,
+   "reference": "4ZKW",
+   "reference_resolution": 1.8,
+   "space_group": "P 2 3",
+   "reference_cell": [
+    174.92,
+    174.92,
+    174.92,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.171,
+    "q25": 0.148,
+    "q75": 0.199,
+    "p5": 0.115,
+    "p95": 0.27,
+    "max": 0.314,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.241,
+    "q25": 0.198,
+    "q75": 0.356,
+    "p5": 0.151,
+    "p95": 0.65,
+    "max": 0.786,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.172,
+    "q25": 0.154,
+    "q75": 0.221,
+    "p5": 0.119,
+    "p95": 0.3,
+    "max": 0.36,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

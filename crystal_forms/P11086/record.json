@@ -1,0 +1,59 @@
+{
+ "identity": "P11086",
+ "accessions": [
+  "P11086"
+ ],
+ "deposition_group": null,
+ "name": "Phenylethanolamine N-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 286,
+   "n_members": 44,
+   "reference": "4MIK",
+   "reference_resolution": 1.9506,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    94.664,
+    94.664,
+    188.46,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 43,
+    "reference": 1
+   },
+   "n_pairs": 946,
+   "rmsd_to_reference": {
+    "median": 0.41,
+    "q25": 0.28,
+    "q75": 0.609,
+    "p5": 0.214,
+    "p95": 0.953,
+    "max": 1.212,
+    "n_pairs": 43
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.713,
+    "q25": 0.488,
+    "q75": 1.058,
+    "p5": 0.297,
+    "p95": 1.543,
+    "max": 2.198,
+    "n_pairs": 946
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.21,
+    "q75": 0.323,
+    "p5": 0.16,
+    "p95": 0.511,
+    "max": 0.972,
+    "n_pairs": 946
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

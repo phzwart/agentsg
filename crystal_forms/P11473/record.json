@@ -1,0 +1,59 @@
+{
+ "identity": "P11473",
+ "accessions": [
+  "P11473"
+ ],
+ "deposition_group": null,
+ "name": "Vitamin D3 receptor",
+ "clusters": [
+  {
+   "cluster_id": 259,
+   "n_members": 47,
+   "reference": "3B0T",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    45.013,
+    51.377,
+    132.121,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.763,
+    "q25": 0.449,
+    "q75": 0.928,
+    "p5": 0.23,
+    "p95": 24.465,
+    "max": 24.648,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.798,
+    "q25": 0.558,
+    "q75": 24.446,
+    "p5": 0.3,
+    "p95": 24.604,
+    "max": 24.826,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.666,
+    "q25": 0.374,
+    "q75": 21.55,
+    "p5": 0.188,
+    "p95": 21.717,
+    "max": 21.947,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

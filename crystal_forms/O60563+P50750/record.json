@@ -1,0 +1,60 @@
+{
+ "identity": "O60563+P50750",
+ "accessions": [
+  "O60563",
+  "P50750"
+ ],
+ "deposition_group": null,
+ "name": "Cyclin-dependent kinase 9",
+ "clusters": [
+  {
+   "cluster_id": 752,
+   "n_members": 21,
+   "reference": "3BLH",
+   "reference_resolution": 2.48,
+   "space_group": "H 3",
+   "reference_cell": [
+    172.92,
+    172.92,
+    95.76,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 20
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 2.728,
+    "q25": 2.452,
+    "q75": 3.044,
+    "p5": 0.749,
+    "p95": 3.516,
+    "max": 4.454,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.359,
+    "q25": 0.959,
+    "q75": 2.13,
+    "p5": 0.638,
+    "p95": 3.139,
+    "max": 4.754,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.762,
+    "q25": 0.629,
+    "q75": 0.924,
+    "p5": 0.49,
+    "p95": 1.241,
+    "max": 1.428,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

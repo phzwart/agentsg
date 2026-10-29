@@ -1,0 +1,59 @@
+{
+ "identity": "P07788",
+ "accessions": [
+  "P07788"
+ ],
+ "deposition_group": null,
+ "name": "Laccase",
+ "clusters": [
+  {
+   "cluster_id": 723,
+   "n_members": 22,
+   "reference": "2WSD",
+   "reference_resolution": 1.6,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    101.868,
+    101.868,
+    137.037,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.26,
+    "q25": 0.226,
+    "q75": 0.356,
+    "p5": 0.141,
+    "p95": 0.517,
+    "max": 0.567,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.425,
+    "q25": 0.302,
+    "q75": 0.537,
+    "p5": 0.222,
+    "p95": 0.718,
+    "max": 1.044,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.22,
+    "q25": 0.181,
+    "q75": 0.292,
+    "p5": 0.137,
+    "p95": 0.438,
+    "max": 0.466,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

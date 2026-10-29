@@ -1,0 +1,158 @@
+{
+ "identity": "P20248+P24941",
+ "accessions": [
+  "P20248",
+  "P24941"
+ ],
+ "deposition_group": null,
+ "name": "Cyclin-dependent kinase 2",
+ "clusters": [
+  {
+   "cluster_id": 382,
+   "n_members": 36,
+   "reference": "4EOJ",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    73.56,
+    133.85,
+    149.02,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 35,
+    "reference": 1
+   },
+   "n_pairs": 630,
+   "rmsd_to_reference": {
+    "median": 0.754,
+    "q25": 0.566,
+    "q75": 1.005,
+    "p5": 0.491,
+    "p95": 1.453,
+    "max": 4.828,
+    "n_pairs": 35
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.861,
+    "q25": 0.658,
+    "q75": 1.099,
+    "p5": 0.416,
+    "p95": 3.617,
+    "max": 4.368,
+    "n_pairs": 630
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.622,
+    "q25": 0.484,
+    "q75": 0.745,
+    "p5": 0.305,
+    "p95": 0.918,
+    "max": 1.104,
+    "n_pairs": 630
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1149,
+   "n_members": 15,
+   "reference": "1FIN",
+   "reference_resolution": 2.3,
+   "space_group": "P 62 2 2",
+   "reference_cell": [
+    185.1,
+    185.1,
+    214.4,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.971,
+    "q25": 0.829,
+    "q75": 1.061,
+    "p5": 0.499,
+    "p95": 1.279,
+    "max": 1.383,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.612,
+    "q25": 1.282,
+    "q75": 2.46,
+    "p5": 0.641,
+    "p95": 3.999,
+    "max": 4.638,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.568,
+    "q25": 0.453,
+    "q75": 0.721,
+    "p5": 0.262,
+    "p95": 0.826,
+    "max": 1.025,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1150,
+   "n_members": 15,
+   "reference": "2UUE",
+   "reference_resolution": 2.06,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.563,
+    113.8,
+    155.031,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.56,
+    "q25": 0.447,
+    "q75": 0.665,
+    "p5": 0.343,
+    "p95": 0.783,
+    "max": 0.791,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.767,
+    "q25": 0.588,
+    "q75": 0.953,
+    "p5": 0.424,
+    "p95": 1.15,
+    "max": 1.646,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.478,
+    "q25": 0.418,
+    "q75": 0.536,
+    "p5": 0.341,
+    "p95": 0.675,
+    "max": 0.751,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

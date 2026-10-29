@@ -1,0 +1,108 @@
+{
+ "identity": "O15178",
+ "accessions": [
+  "O15178"
+ ],
+ "deposition_group": null,
+ "name": "T-box transcription factor T",
+ "clusters": [
+  {
+   "cluster_id": 495,
+   "n_members": 29,
+   "reference": "7HI8",
+   "reference_resolution": 1.54,
+   "space_group": "P 41 2 2",
+   "reference_cell": [
+    60.318,
+    60.318,
+    110.014,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.377,
+    "q25": 0.329,
+    "q75": 0.514,
+    "p5": 0.294,
+    "p95": 0.615,
+    "max": 0.962,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.283,
+    "q25": 0.203,
+    "q75": 0.414,
+    "p5": 0.147,
+    "p95": 0.64,
+    "max": 0.97,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.177,
+    "q25": 0.146,
+    "q75": 0.262,
+    "p5": 0.112,
+    "p95": 0.511,
+    "max": 0.629,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 702,
+   "n_members": 22,
+   "reference": "7HI9",
+   "reference_resolution": 1.42,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    99.734,
+    99.734,
+    99.325,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.194,
+    "q25": 0.141,
+    "q75": 0.342,
+    "p5": 0.096,
+    "p95": 0.438,
+    "max": 0.457,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.291,
+    "q25": 0.209,
+    "q75": 0.388,
+    "p5": 0.147,
+    "p95": 0.517,
+    "max": 0.645,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.18,
+    "q25": 0.151,
+    "q75": 0.227,
+    "p5": 0.114,
+    "p95": 0.3,
+    "max": 0.333,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

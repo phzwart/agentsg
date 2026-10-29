@@ -1,0 +1,209 @@
+{
+ "identity": "P22629",
+ "accessions": [
+  "P22629"
+ ],
+ "deposition_group": null,
+ "name": "Streptavidin",
+ "clusters": [
+  {
+   "cluster_id": 64,
+   "n_members": 123,
+   "reference": "6T2L",
+   "reference_resolution": 1.0,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    57.215,
+    57.215,
+    174.866,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 108,
+    "different_space_group": 14,
+    "reference": 1
+   },
+   "n_pairs": 5886,
+   "rmsd_to_reference": {
+    "median": 0.744,
+    "q25": 0.722,
+    "q75": 0.954,
+    "p5": 0.402,
+    "p95": 2.542,
+    "max": 47.02,
+    "n_pairs": 108
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.824,
+    "q25": 0.325,
+    "q75": 2.441,
+    "p5": 0.154,
+    "p95": 5.12,
+    "max": 50.301,
+    "n_pairs": 5886
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.695,
+    "q25": 0.214,
+    "q75": 2.225,
+    "p5": 0.122,
+    "p95": 4.951,
+    "max": 17.978,
+    "n_pairs": 5886
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 212,
+   "n_members": 56,
+   "reference": "2F01",
+   "reference_resolution": 0.85,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    46.39,
+    93.811,
+    104.449,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 54,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 0.607,
+    "q25": 0.357,
+    "q75": 0.769,
+    "p5": 0.2,
+    "p95": 2.291,
+    "max": 40.832,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.931,
+    "q25": 0.619,
+    "q75": 2.218,
+    "p5": 0.308,
+    "p95": 2.61,
+    "max": 52.79,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.599,
+    "q25": 0.375,
+    "q75": 2.077,
+    "p5": 0.199,
+    "p95": 2.264,
+    "max": 14.052,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 320,
+   "n_members": 41,
+   "reference": "3RY1",
+   "reference_resolution": 1.03,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    58.018,
+    84.432,
+    45.994,
+    90.0,
+    98.81,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.616,
+    "q25": 0.538,
+    "q75": 0.721,
+    "p5": 0.446,
+    "p95": 0.881,
+    "max": 18.907,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.51,
+    "q25": 0.379,
+    "q75": 0.69,
+    "p5": 0.22,
+    "p95": 1.242,
+    "max": 18.891,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.296,
+    "q75": 0.494,
+    "p5": 0.176,
+    "p95": 0.773,
+    "max": 2.483,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 870,
+   "n_members": 19,
+   "reference": "6GH7",
+   "reference_resolution": 1.08,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.631,
+    98.495,
+    52.915,
+    90.0,
+    112.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1,
+    "different_space_group": 4
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.516,
+    "q25": 0.434,
+    "q75": 0.566,
+    "p5": 0.358,
+    "p95": 0.89,
+    "max": 1.19,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.688,
+    "q25": 0.534,
+    "q75": 0.924,
+    "p5": 0.339,
+    "p95": 1.966,
+    "max": 2.464,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.32,
+    "q25": 0.272,
+    "q75": 0.35,
+    "p5": 0.198,
+    "p95": 0.458,
+    "max": 0.539,
+    "n_pairs": 105
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

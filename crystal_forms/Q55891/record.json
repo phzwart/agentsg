@@ -1,0 +1,59 @@
+{
+ "identity": "Q55891",
+ "accessions": [
+  "Q55891"
+ ],
+ "deposition_group": null,
+ "name": "Phycocyanobilin:ferredoxin oxidoreductase",
+ "clusters": [
+  {
+   "cluster_id": 1006,
+   "n_members": 17,
+   "reference": "3I94",
+   "reference_resolution": 1.04,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    70.785,
+    94.797,
+    42.653,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.352,
+    "q25": 0.311,
+    "q75": 0.459,
+    "p5": 0.247,
+    "p95": 0.671,
+    "max": 0.685,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.392,
+    "q25": 0.299,
+    "q75": 0.787,
+    "p5": 0.198,
+    "p95": 0.996,
+    "max": 1.08,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.21,
+    "q75": 0.279,
+    "p5": 0.149,
+    "p95": 0.339,
+    "max": 0.393,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

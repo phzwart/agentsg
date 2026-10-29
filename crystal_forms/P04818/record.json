@@ -1,0 +1,60 @@
+{
+ "identity": "P04818",
+ "accessions": [
+  "P04818"
+ ],
+ "deposition_group": null,
+ "name": "Thymidylate synthase",
+ "clusters": [
+  {
+   "cluster_id": 541,
+   "n_members": 27,
+   "reference": "3ED7",
+   "reference_resolution": 1.56,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    95.546,
+    95.546,
+    80.923,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 35.686,
+    "q25": 35.554,
+    "q75": 35.912,
+    "p5": 33.865,
+    "p95": 54.483,
+    "max": 54.637,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 8.008,
+    "q25": 1.087,
+    "q75": 55.027,
+    "p5": 0.497,
+    "p95": 78.211,
+    "max": 78.91,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.935,
+    "q25": 0.601,
+    "q75": 3.834,
+    "p5": 0.252,
+    "p95": 22.616,
+    "max": 23.083,
+    "n_pairs": 300
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

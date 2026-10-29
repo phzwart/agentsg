@@ -1,0 +1,108 @@
+{
+ "identity": "P02213",
+ "accessions": [
+  "P02213"
+ ],
+ "deposition_group": null,
+ "name": "Globin-1",
+ "clusters": [
+  {
+   "cluster_id": 377,
+   "n_members": 36,
+   "reference": "3G46",
+   "reference_resolution": 0.91,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    92.536,
+    43.487,
+    82.853,
+    90.0,
+    122.25,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 35,
+    "reference": 1
+   },
+   "n_pairs": 630,
+   "rmsd_to_reference": {
+    "median": 0.339,
+    "q25": 0.327,
+    "q75": 0.352,
+    "p5": 0.309,
+    "p95": 0.405,
+    "max": 0.498,
+    "n_pairs": 35
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.191,
+    "q25": 0.149,
+    "q75": 0.304,
+    "p5": 0.11,
+    "p95": 0.608,
+    "max": 0.727,
+    "n_pairs": 630
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.138,
+    "q25": 0.113,
+    "q75": 0.227,
+    "p5": 0.086,
+    "p95": 0.29,
+    "max": 0.41,
+    "n_pairs": 630
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 628,
+   "n_members": 24,
+   "reference": "2Z85",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    91.76,
+    44.52,
+    143.95,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.202,
+    "q25": 0.166,
+    "q75": 0.242,
+    "p5": 0.133,
+    "p95": 0.306,
+    "max": 0.326,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.21,
+    "q25": 0.17,
+    "q75": 0.261,
+    "p5": 0.121,
+    "p95": 0.335,
+    "max": 0.406,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.149,
+    "q25": 0.117,
+    "q75": 0.181,
+    "p5": 0.091,
+    "p95": 0.246,
+    "max": 0.287,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

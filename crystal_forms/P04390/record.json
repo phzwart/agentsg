@@ -1,0 +1,59 @@
+{
+ "identity": "P04390",
+ "accessions": [
+  "P04390"
+ ],
+ "deposition_group": null,
+ "name": "Type II restriction enzyme EcoRV",
+ "clusters": [
+  {
+   "cluster_id": 758,
+   "n_members": 21,
+   "reference": "1SX5",
+   "reference_resolution": 1.5,
+   "space_group": "P 1",
+   "reference_cell": [
+    47.708,
+    48.627,
+    63.544,
+    96.68,
+    108.94,
+    107.33
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.537,
+    "q25": 0.472,
+    "q75": 0.678,
+    "p5": 0.393,
+    "p95": 0.795,
+    "max": 0.854,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.42,
+    "q25": 0.374,
+    "q75": 0.501,
+    "p5": 0.279,
+    "p95": 0.685,
+    "max": 0.863,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.355,
+    "q25": 0.318,
+    "q75": 0.403,
+    "p5": 0.248,
+    "p95": 0.586,
+    "max": 0.704,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

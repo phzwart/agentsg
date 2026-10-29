@@ -1,0 +1,59 @@
+{
+ "identity": "Q859P9",
+ "accessions": [
+  "Q859P9"
+ ],
+ "deposition_group": null,
+ "name": "Virion DNA-directed RNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 1781,
+   "n_members": 11,
+   "reference": "3Q23",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    82.834,
+    111.861,
+    276.093,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.38,
+    "q25": 0.365,
+    "q75": 0.514,
+    "p5": 0.261,
+    "p95": 0.733,
+    "max": 0.874,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.876,
+    "q25": 0.652,
+    "q75": 1.153,
+    "p5": 0.417,
+    "p95": 1.405,
+    "max": 1.519,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.316,
+    "q25": 0.263,
+    "q75": 0.354,
+    "p5": 0.196,
+    "p95": 0.421,
+    "max": 0.449,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

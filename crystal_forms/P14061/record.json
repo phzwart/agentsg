@@ -1,0 +1,59 @@
+{
+ "identity": "P14061",
+ "accessions": [
+  "P14061"
+ ],
+ "deposition_group": null,
+ "name": "17-beta-hydroxysteroid dehydrogenase type 1",
+ "clusters": [
+  {
+   "cluster_id": 1056,
+   "n_members": 16,
+   "reference": "1JTV",
+   "reference_resolution": 1.54,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    122.369,
+    43.944,
+    60.614,
+    90.0,
+    99.24,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.486,
+    "q25": 0.297,
+    "q75": 0.639,
+    "p5": 0.128,
+    "p95": 0.736,
+    "max": 0.766,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.555,
+    "q25": 0.369,
+    "q75": 0.696,
+    "p5": 0.147,
+    "p95": 1.141,
+    "max": 1.28,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.466,
+    "q25": 0.297,
+    "q75": 0.647,
+    "p5": 0.134,
+    "p95": 1.056,
+    "max": 1.148,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

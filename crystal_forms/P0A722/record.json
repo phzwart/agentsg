@@ -1,0 +1,59 @@
+{
+ "identity": "P0A722",
+ "accessions": [
+  "P0A722"
+ ],
+ "deposition_group": null,
+ "name": "Acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1513,
+   "n_members": 12,
+   "reference": "6HY2",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    96.809,
+    96.809,
+    96.809,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.391,
+    "q25": 0.299,
+    "q75": 0.61,
+    "p5": 0.198,
+    "p95": 0.983,
+    "max": 1.005,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.517,
+    "q25": 0.359,
+    "q75": 0.809,
+    "p5": 0.237,
+    "p95": 1.163,
+    "max": 1.654,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.227,
+    "q25": 0.187,
+    "q75": 0.286,
+    "p5": 0.119,
+    "p95": 0.396,
+    "max": 0.416,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

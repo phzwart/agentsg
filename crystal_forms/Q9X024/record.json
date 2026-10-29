@@ -1,0 +1,59 @@
+{
+ "identity": "Q9X024",
+ "accessions": [
+  "Q9X024"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional NAD(P)H-hydrate repair enzyme Nnr",
+ "clusters": [
+  {
+   "cluster_id": 800,
+   "n_members": 21,
+   "reference": "3RTA",
+   "reference_resolution": 1.95,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    122.507,
+    122.507,
+    154.904,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.21,
+    "q25": 0.172,
+    "q75": 0.244,
+    "p5": 0.151,
+    "p95": 0.303,
+    "max": 0.407,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.242,
+    "q25": 0.204,
+    "q75": 0.305,
+    "p5": 0.154,
+    "p95": 0.546,
+    "max": 0.633,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.185,
+    "q25": 0.155,
+    "q75": 0.233,
+    "p5": 0.124,
+    "p95": 0.385,
+    "max": 0.446,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "O68601",
+ "accessions": [
+  "O68601"
+ ],
+ "deposition_group": null,
+ "name": "Copper-containing nitrite reductase",
+ "clusters": [
+  {
+   "cluster_id": 1656,
+   "n_members": 11,
+   "reference": "1WA0",
+   "reference_resolution": 1.6,
+   "space_group": "H 3",
+   "reference_cell": [
+    89.792,
+    89.792,
+    143.462,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.275,
+    "q25": 0.247,
+    "q75": 0.346,
+    "p5": 0.235,
+    "p95": 0.657,
+    "max": 0.769,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.431,
+    "q25": 0.308,
+    "q75": 0.746,
+    "p5": 0.179,
+    "p95": 1.208,
+    "max": 1.354,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.166,
+    "q25": 0.132,
+    "q75": 0.267,
+    "p5": 0.1,
+    "p95": 0.329,
+    "max": 0.361,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

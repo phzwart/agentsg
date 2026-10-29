@@ -1,0 +1,60 @@
+{
+ "identity": "Q9PPB4",
+ "accessions": [
+  "Q9PPB4"
+ ],
+ "deposition_group": null,
+ "name": "4-hydroxy-tetrahydrodipicolinate synthase",
+ "clusters": [
+  {
+   "cluster_id": 348,
+   "n_members": 39,
+   "reference": "7KKD",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    84.55,
+    225.54,
+    199.98,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.668,
+    "q25": 0.552,
+    "q75": 0.803,
+    "p5": 0.291,
+    "p95": 0.858,
+    "max": 0.896,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.841,
+    "q25": 0.5,
+    "q75": 1.453,
+    "p5": 0.244,
+    "p95": 1.881,
+    "max": 2.395,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.181,
+    "q75": 0.33,
+    "p5": 0.13,
+    "p95": 0.401,
+    "max": 0.429,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

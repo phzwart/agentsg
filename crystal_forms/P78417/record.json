@@ -1,0 +1,59 @@
+{
+ "identity": "P78417",
+ "accessions": [
+  "P78417"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione S-transferase omega-1",
+ "clusters": [
+  {
+   "cluster_id": 1741,
+   "n_members": 11,
+   "reference": "5YVN",
+   "reference_resolution": 1.33,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    57.226,
+    57.226,
+    140.051,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.388,
+    "q25": 0.337,
+    "q75": 0.447,
+    "p5": 0.273,
+    "p95": 0.502,
+    "max": 0.51,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.406,
+    "q25": 0.341,
+    "q75": 0.473,
+    "p5": 0.276,
+    "p95": 0.588,
+    "max": 0.692,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.337,
+    "q25": 0.291,
+    "q75": 0.402,
+    "p5": 0.225,
+    "p95": 0.453,
+    "max": 0.508,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0DTD2",
+ "accessions": [
+  "P0DTD2"
+ ],
+ "deposition_group": null,
+ "name": "ORF9b protein",
+ "clusters": [
+  {
+   "cluster_id": 230,
+   "n_members": 53,
+   "reference": "13TX",
+   "reference_resolution": 1.37,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    35.919,
+    64.488,
+    73.547,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 52,
+    "reference": 1
+   },
+   "n_pairs": 1378,
+   "rmsd_to_reference": {
+    "median": 0.192,
+    "q25": 0.156,
+    "q75": 0.232,
+    "p5": 0.125,
+    "p95": 0.361,
+    "max": 0.604,
+    "n_pairs": 52
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.219,
+    "q25": 0.17,
+    "q75": 0.286,
+    "p5": 0.116,
+    "p95": 0.549,
+    "max": 0.77,
+    "n_pairs": 1378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.15,
+    "q25": 0.123,
+    "q75": 0.189,
+    "p5": 0.088,
+    "p95": 0.304,
+    "max": 0.439,
+    "n_pairs": 1378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

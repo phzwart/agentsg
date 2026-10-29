@@ -1,0 +1,108 @@
+{
+ "identity": "P18858",
+ "accessions": [
+  "P18858"
+ ],
+ "deposition_group": null,
+ "name": "DNA ligase 1",
+ "clusters": [
+  {
+   "cluster_id": 1148,
+   "n_members": 15,
+   "reference": "6P0C",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    71.235,
+    101.322,
+    115.319,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.696,
+    "q25": 0.418,
+    "q75": 2.211,
+    "p5": 0.287,
+    "p95": 3.288,
+    "max": 3.332,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.043,
+    "q25": 0.78,
+    "q75": 2.722,
+    "p5": 0.333,
+    "p95": 3.323,
+    "max": 3.392,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.548,
+    "q25": 0.431,
+    "q75": 0.655,
+    "p5": 0.237,
+    "p95": 0.736,
+    "max": 0.764,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1700,
+   "n_members": 11,
+   "reference": "8VDN",
+   "reference_resolution": 2.39,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    64.977,
+    115.631,
+    126.175,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.474,
+    "q25": 1.157,
+    "q75": 3.402,
+    "p5": 0.7,
+    "p95": 3.994,
+    "max": 4.093,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.335,
+    "q25": 0.895,
+    "q75": 3.823,
+    "p5": 0.541,
+    "p95": 4.057,
+    "max": 4.289,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.664,
+    "q25": 0.523,
+    "q75": 0.741,
+    "p5": 0.37,
+    "p95": 0.935,
+    "max": 1.07,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

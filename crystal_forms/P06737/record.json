@@ -1,0 +1,60 @@
+{
+ "identity": "P06737",
+ "accessions": [
+  "P06737"
+ ],
+ "deposition_group": null,
+ "name": "Glycogen phosphorylase, liver form",
+ "clusters": [
+  {
+   "cluster_id": 906,
+   "n_members": 18,
+   "reference": "3DDS",
+   "reference_resolution": 1.8,
+   "space_group": "P 31",
+   "reference_cell": [
+    124.403,
+    124.403,
+    123.614,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.499,
+    "q25": 0.424,
+    "q75": 0.585,
+    "p5": 0.349,
+    "p95": 0.671,
+    "max": 0.739,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.035,
+    "q25": 0.707,
+    "q75": 1.448,
+    "p5": 0.467,
+    "p95": 2.326,
+    "max": 3.257,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.376,
+    "q25": 0.323,
+    "q75": 0.438,
+    "p5": 0.248,
+    "p95": 0.527,
+    "max": 0.648,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

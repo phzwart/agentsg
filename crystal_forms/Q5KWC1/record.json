@@ -1,0 +1,60 @@
+{
+ "identity": "Q5KWC1",
+ "accessions": [
+  "Q5KWC1"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase I",
+ "clusters": [
+  {
+   "cluster_id": 651,
+   "n_members": 24,
+   "reference": "3PV8",
+   "reference_resolution": 1.52,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    93.89,
+    109.3,
+    150.42,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.617,
+    "q25": 0.42,
+    "q75": 1.939,
+    "p5": 0.302,
+    "p95": 2.157,
+    "max": 2.193,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.838,
+    "q25": 0.554,
+    "q75": 1.933,
+    "p5": 0.352,
+    "p95": 2.325,
+    "max": 2.747,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.387,
+    "q25": 0.284,
+    "q75": 1.613,
+    "p5": 0.181,
+    "p95": 1.796,
+    "max": 1.884,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

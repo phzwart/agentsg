@@ -1,0 +1,59 @@
+{
+ "identity": "O57728",
+ "accessions": [
+  "O57728"
+ ],
+ "deposition_group": null,
+ "name": "A-type ATP synthase subunit A",
+ "clusters": [
+  {
+   "cluster_id": 1026,
+   "n_members": 16,
+   "reference": "3MFY",
+   "reference_resolution": 2.35,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    127.535,
+    127.535,
+    106.785,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 2.003,
+    "q25": 1.641,
+    "q75": 4.494,
+    "p5": 1.358,
+    "p95": 4.62,
+    "max": 4.689,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.321,
+    "q25": 1.47,
+    "q75": 4.462,
+    "p5": 0.932,
+    "p95": 4.665,
+    "max": 4.817,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 2.164,
+    "q25": 1.319,
+    "q75": 4.253,
+    "p5": 0.877,
+    "p95": 4.444,
+    "max": 4.586,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

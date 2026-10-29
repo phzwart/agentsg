@@ -1,0 +1,59 @@
+{
+ "identity": "Q8SWT2",
+ "accessions": [
+  "Q8SWT2"
+ ],
+ "deposition_group": null,
+ "name": "RNA helicase",
+ "clusters": [
+  {
+   "cluster_id": 1788,
+   "n_members": 11,
+   "reference": "5N8R",
+   "reference_resolution": 2.2,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    300.866,
+    51.477,
+    164.393,
+    90.0,
+    114.22,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.952,
+    "q25": 0.606,
+    "q75": 1.015,
+    "p5": 0.367,
+    "p95": 1.266,
+    "max": 1.297,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.949,
+    "q25": 0.61,
+    "q75": 1.347,
+    "p5": 0.452,
+    "p95": 2.324,
+    "max": 2.605,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.428,
+    "q25": 0.345,
+    "q75": 0.475,
+    "p5": 0.254,
+    "p95": 0.578,
+    "max": 0.605,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0DUB6",
+ "accessions": [
+  "P0DUB6"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-amylase 1A",
+ "clusters": [
+  {
+   "cluster_id": 1521,
+   "n_members": 12,
+   "reference": "3DHP",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.736,
+    73.722,
+    134.095,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.59,
+    "q25": 0.399,
+    "q75": 1.385,
+    "p5": 0.356,
+    "p95": 6.995,
+    "max": 7.002,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.05,
+    "q25": 0.742,
+    "q75": 6.999,
+    "p5": 0.4,
+    "p95": 7.116,
+    "max": 7.208,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.417,
+    "q25": 0.307,
+    "q75": 6.975,
+    "p5": 0.193,
+    "p95": 6.997,
+    "max": 7.015,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

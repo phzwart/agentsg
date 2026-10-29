@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0K8P6T7",
+ "accessions": [
+  "A0A0K8P6T7"
+ ],
+ "deposition_group": null,
+ "name": "Poly(ethylene terephthalate) hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 947,
+   "n_members": 17,
+   "reference": "6EQE",
+   "reference_resolution": 0.92,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.114,
+    51.388,
+    84.545,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.318,
+    "q25": 0.282,
+    "q75": 0.369,
+    "p5": 0.249,
+    "p95": 0.468,
+    "max": 0.712,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.323,
+    "q25": 0.278,
+    "q75": 0.385,
+    "p5": 0.197,
+    "p95": 0.632,
+    "max": 0.747,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.202,
+    "q25": 0.166,
+    "q75": 0.248,
+    "p5": 0.118,
+    "p95": 0.298,
+    "max": 0.341,
+    "n_pairs": 136
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q75I93",
+ "accessions": [
+  "Q75I93"
+ ],
+ "deposition_group": null,
+ "name": "Beta-glucosidase 7",
+ "clusters": [
+  {
+   "cluster_id": 789,
+   "n_members": 21,
+   "reference": "3F5L",
+   "reference_resolution": 1.37,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    79.624,
+    100.804,
+    127.631,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.24,
+    "q25": 0.171,
+    "q75": 24.994,
+    "p5": 0.147,
+    "p95": 25.033,
+    "max": 25.069,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.342,
+    "q25": 0.217,
+    "q75": 24.935,
+    "p5": 0.134,
+    "p95": 25.057,
+    "max": 25.331,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.141,
+    "q25": 0.117,
+    "q75": 0.176,
+    "p5": 0.078,
+    "p95": 0.214,
+    "max": 0.245,
+    "n_pairs": 210
+   },
+   "n_low_margin": 20,
+   "n_via_neighbour": 0
+  }
+ ]
+}

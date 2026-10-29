@@ -1,0 +1,59 @@
+{
+ "identity": "G1UBD5",
+ "accessions": [
+  "G1UBD5"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c",
+ "clusters": [
+  {
+   "cluster_id": 749,
+   "n_members": 21,
+   "reference": "7ZPS",
+   "reference_resolution": 1.56,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    105.66,
+    105.66,
+    105.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.384,
+    "q25": 0.292,
+    "q75": 0.399,
+    "p5": 0.206,
+    "p95": 0.427,
+    "max": 0.437,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.51,
+    "q25": 0.262,
+    "q75": 0.761,
+    "p5": 0.157,
+    "p95": 0.908,
+    "max": 0.991,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.225,
+    "q25": 0.184,
+    "q75": 0.261,
+    "p5": 0.119,
+    "p95": 0.308,
+    "max": 0.339,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

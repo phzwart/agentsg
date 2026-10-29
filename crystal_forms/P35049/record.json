@@ -1,0 +1,59 @@
+{
+ "identity": "P35049",
+ "accessions": [
+  "P35049"
+ ],
+ "deposition_group": null,
+ "name": "Trypsin",
+ "clusters": [
+  {
+   "cluster_id": 1545,
+   "n_members": 12,
+   "reference": "1PQ7",
+   "reference_resolution": 0.8,
+   "space_group": "P 1",
+   "reference_cell": [
+    32.869,
+    37.022,
+    39.78,
+    102.89,
+    104.59,
+    102.37
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.402,
+    "q25": 0.153,
+    "q75": 0.663,
+    "p5": 0.04,
+    "p95": 0.687,
+    "max": 0.696,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.448,
+    "q25": 0.174,
+    "q75": 0.617,
+    "p5": 0.059,
+    "p95": 0.727,
+    "max": 0.752,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.13,
+    "q75": 0.39,
+    "p5": 0.054,
+    "p95": 0.401,
+    "max": 0.412,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

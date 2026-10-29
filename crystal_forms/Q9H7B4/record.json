@@ -1,0 +1,60 @@
+{
+ "identity": "Q9H7B4",
+ "accessions": [
+  "Q9H7B4"
+ ],
+ "deposition_group": null,
+ "name": "Histone-lysine N-methyltransferase SMYD3",
+ "clusters": [
+  {
+   "cluster_id": 558,
+   "n_members": 27,
+   "reference": "6P7Z",
+   "reference_resolution": 1.19,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    61.14,
+    66.179,
+    107.33,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.301,
+    "q25": 0.216,
+    "q75": 0.541,
+    "p5": 0.158,
+    "p95": 1.252,
+    "max": 1.797,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.578,
+    "q25": 0.337,
+    "q75": 1.25,
+    "p5": 0.23,
+    "p95": 1.944,
+    "max": 2.485,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.241,
+    "q75": 0.416,
+    "p5": 0.164,
+    "p95": 0.641,
+    "max": 0.795,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

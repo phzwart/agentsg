@@ -1,0 +1,258 @@
+{
+ "identity": "P68871+P69905",
+ "accessions": [
+  "P68871",
+  "P69905"
+ ],
+ "deposition_group": null,
+ "name": "Hemoglobin subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 158,
+   "n_members": 73,
+   "reference": "1THB",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    95.8,
+    97.8,
+    65.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 72,
+    "reference": 1
+   },
+   "n_pairs": 2628,
+   "rmsd_to_reference": {
+    "median": 0.364,
+    "q25": 0.304,
+    "q75": 0.673,
+    "p5": 0.253,
+    "p95": 1.332,
+    "max": 1.569,
+    "n_pairs": 72
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.678,
+    "q25": 0.36,
+    "q75": 1.076,
+    "p5": 0.181,
+    "p95": 1.682,
+    "max": 2.072,
+    "n_pairs": 2628
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.215,
+    "q75": 0.345,
+    "p5": 0.112,
+    "p95": 0.465,
+    "max": 0.827,
+    "n_pairs": 2628
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 181,
+   "n_members": 63,
+   "reference": "2W72",
+   "reference_resolution": 1.07,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    61.957,
+    82.447,
+    53.531,
+    90.0,
+    99.6,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 62,
+    "reference": 1
+   },
+   "n_pairs": 1953,
+   "rmsd_to_reference": {
+    "median": 0.567,
+    "q25": 0.536,
+    "q75": 0.63,
+    "p5": 0.485,
+    "p95": 10.063,
+    "max": 31.762,
+    "n_pairs": 62
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.523,
+    "q25": 0.324,
+    "q75": 0.754,
+    "p5": 0.199,
+    "p95": 25.182,
+    "max": 34.666,
+    "n_pairs": 1953
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.346,
+    "q25": 0.255,
+    "q75": 0.524,
+    "p5": 0.155,
+    "p95": 3.772,
+    "max": 3.93,
+    "n_pairs": 1953
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 226,
+   "n_members": 54,
+   "reference": "1IRD",
+   "reference_resolution": 1.25,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    53.27,
+    53.27,
+    190.78,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1,
+    "different_space_group": 4
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.792,
+    "q25": 0.618,
+    "q75": 1.098,
+    "p5": 0.408,
+    "p95": 1.562,
+    "max": 2.913,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.689,
+    "q25": 0.486,
+    "q75": 1.028,
+    "p5": 0.274,
+    "p95": 1.966,
+    "max": 3.134,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.374,
+    "q25": 0.282,
+    "q75": 0.473,
+    "p5": 0.181,
+    "p95": 0.685,
+    "max": 1.618,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 999,
+   "n_members": 17,
+   "reference": "2D5Z",
+   "reference_resolution": 1.45,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    63.028,
+    82.697,
+    110.343,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 7.813,
+    "q25": 1.824,
+    "q75": 7.93,
+    "p5": 0.691,
+    "p95": 8.02,
+    "max": 8.056,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 7.457,
+    "q25": 0.31,
+    "q75": 7.959,
+    "p5": 0.178,
+    "p95": 8.091,
+    "max": 8.177,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.833,
+    "q25": 0.242,
+    "q75": 0.883,
+    "p5": 0.143,
+    "p95": 0.951,
+    "max": 1.003,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1558,
+   "n_members": 12,
+   "reference": "6KA9",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    64.639,
+    94.189,
+    100.317,
+    90.0,
+    101.63,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.29,
+    "q75": 0.438,
+    "p5": 0.144,
+    "p95": 0.473,
+    "max": 0.474,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.433,
+    "q25": 0.365,
+    "q75": 0.633,
+    "p5": 0.192,
+    "p95": 0.79,
+    "max": 0.852,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.244,
+    "q25": 0.197,
+    "q75": 0.38,
+    "p5": 0.113,
+    "p95": 0.502,
+    "max": 0.507,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

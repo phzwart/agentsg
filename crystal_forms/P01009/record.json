@@ -1,0 +1,59 @@
+{
+ "identity": "P01009",
+ "accessions": [
+  "P01009"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-1-antitrypsin",
+ "clusters": [
+  {
+   "cluster_id": 811,
+   "n_members": 20,
+   "reference": "8PI2",
+   "reference_resolution": 1.48,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    114.566,
+    38.994,
+    89.247,
+    90.0,
+    103.88,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.542,
+    "q25": 0.421,
+    "q75": 1.313,
+    "p5": 0.316,
+    "p95": 2.871,
+    "max": 4.365,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.042,
+    "q25": 0.576,
+    "q75": 1.382,
+    "p5": 0.408,
+    "p95": 4.781,
+    "max": 5.325,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.833,
+    "q25": 0.409,
+    "q75": 1.208,
+    "p5": 0.292,
+    "p95": 2.436,
+    "max": 2.707,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

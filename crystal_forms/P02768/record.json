@@ -1,0 +1,208 @@
+{
+ "identity": "P02768",
+ "accessions": [
+  "P02768"
+ ],
+ "deposition_group": null,
+ "name": "Albumin",
+ "clusters": [
+  {
+   "cluster_id": 176,
+   "n_members": 65,
+   "reference": "1N5U",
+   "reference_resolution": 1.9,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    183.116,
+    37.909,
+    94.832,
+    90.0,
+    105.04,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1,
+    "different_space_group": 15
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.849,
+    "q25": 0.735,
+    "q75": 0.948,
+    "p5": 0.587,
+    "p95": 1.018,
+    "max": 1.103,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.829,
+    "q25": 0.621,
+    "q75": 1.073,
+    "p5": 0.433,
+    "p95": 1.545,
+    "max": 2.11,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.618,
+    "q25": 0.487,
+    "q75": 0.752,
+    "p5": 0.357,
+    "p95": 0.954,
+    "max": 1.175,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 814,
+   "n_members": 20,
+   "reference": "1E7A",
+   "reference_resolution": 2.2,
+   "space_group": "P 1",
+   "reference_cell": [
+    55.4,
+    55.61,
+    120.5,
+    81.11,
+    90.57,
+    65.5
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.619,
+    "q25": 0.513,
+    "q75": 0.775,
+    "p5": 0.361,
+    "p95": 0.946,
+    "max": 1.915,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.699,
+    "q25": 0.594,
+    "q75": 0.907,
+    "p5": 0.403,
+    "p95": 1.917,
+    "max": 2.268,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.591,
+    "q25": 0.507,
+    "q75": 0.659,
+    "p5": 0.359,
+    "p95": 1.387,
+    "max": 1.727,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 904,
+   "n_members": 18,
+   "reference": "9IK6",
+   "reference_resolution": 1.69,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    59.965,
+    88.964,
+    60.447,
+    90.0,
+    104.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.947,
+    "q25": 0.708,
+    "q75": 1.453,
+    "p5": 0.448,
+    "p95": 1.877,
+    "max": 2.708,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.102,
+    "q25": 0.838,
+    "q75": 1.611,
+    "p5": 0.56,
+    "p95": 2.696,
+    "max": 2.965,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.653,
+    "q25": 0.539,
+    "q75": 0.977,
+    "p5": 0.29,
+    "p95": 2.406,
+    "max": 2.775,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1665,
+   "n_members": 11,
+   "reference": "4G03",
+   "reference_resolution": 2.216,
+   "space_group": "P 1",
+   "reference_cell": [
+    58.57,
+    58.67,
+    95.675,
+    75.71,
+    88.07,
+    73.63
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.018,
+    "q25": 0.768,
+    "q75": 1.108,
+    "p5": 0.533,
+    "p95": 1.168,
+    "max": 1.178,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.358,
+    "q25": 0.932,
+    "q75": 1.61,
+    "p5": 0.726,
+    "p95": 2.295,
+    "max": 2.842,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.718,
+    "q25": 0.629,
+    "q75": 0.8,
+    "p5": 0.56,
+    "p95": 0.95,
+    "max": 0.983,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

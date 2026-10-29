@@ -1,0 +1,59 @@
+{
+ "identity": "Q25252",
+ "accessions": [
+  "Q25252"
+ ],
+ "deposition_group": null,
+ "name": "Carboxylic ester hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 530,
+   "n_members": 28,
+   "reference": "5CH5",
+   "reference_resolution": 1.53,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    51.816,
+    101.254,
+    225.818,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 4.245,
+    "q25": 4.043,
+    "q75": 4.672,
+    "p5": 1.444,
+    "p95": 5.298,
+    "max": 5.412,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.842,
+    "q25": 0.48,
+    "q75": 1.62,
+    "p5": 0.11,
+    "p95": 3.658,
+    "max": 4.324,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.334,
+    "q25": 0.214,
+    "q75": 0.424,
+    "p5": 0.098,
+    "p95": 0.568,
+    "max": 0.737,
+    "n_pairs": 378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

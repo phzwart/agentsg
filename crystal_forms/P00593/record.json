@@ -1,0 +1,59 @@
+{
+ "identity": "P00593",
+ "accessions": [
+  "P00593"
+ ],
+ "deposition_group": null,
+ "name": "Phospholipase A2",
+ "clusters": [
+  {
+   "cluster_id": 713,
+   "n_members": 22,
+   "reference": "2BAX",
+   "reference_resolution": 1.1,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    46.057,
+    46.057,
+    101.138,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.675,
+    "q25": 0.597,
+    "q75": 0.814,
+    "p5": 0.48,
+    "p95": 1.026,
+    "max": 1.123,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.673,
+    "q25": 0.525,
+    "q75": 0.873,
+    "p5": 0.331,
+    "p95": 1.131,
+    "max": 1.434,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.4,
+    "q25": 0.312,
+    "q75": 0.5,
+    "p5": 0.234,
+    "p95": 0.831,
+    "max": 1.174,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

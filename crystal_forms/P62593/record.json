@@ -1,0 +1,109 @@
+{
+ "identity": "P62593",
+ "accessions": [
+  "P62593"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase TEM",
+ "clusters": [
+  {
+   "cluster_id": 552,
+   "n_members": 27,
+   "reference": "1M40",
+   "reference_resolution": 0.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.313,
+    61.641,
+    89.252,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.681,
+    "q25": 0.567,
+    "q75": 1.531,
+    "p5": 0.292,
+    "p95": 1.601,
+    "max": 1.865,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.013,
+    "q25": 0.542,
+    "q75": 1.201,
+    "p5": 0.272,
+    "p95": 1.451,
+    "max": 1.804,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.345,
+    "q25": 0.27,
+    "q75": 0.431,
+    "p5": 0.185,
+    "p95": 0.974,
+    "max": 1.047,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1168,
+   "n_members": 15,
+   "reference": "5HW5",
+   "reference_resolution": 1.41,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    60.44,
+    84.62,
+    96.011,
+    90.0,
+    90.58,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.43,
+    "q25": 0.209,
+    "q75": 0.54,
+    "p5": 0.126,
+    "p95": 19.443,
+    "max": 26.392,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.525,
+    "q25": 0.431,
+    "q75": 14.607,
+    "p5": 0.175,
+    "p95": 26.657,
+    "max": 36.45,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.201,
+    "q75": 0.276,
+    "p5": 0.129,
+    "p95": 0.354,
+    "max": 0.397,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

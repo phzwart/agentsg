@@ -1,0 +1,59 @@
+{
+ "identity": "O58456",
+ "accessions": [
+  "O58456"
+ ],
+ "deposition_group": null,
+ "name": "Diphthine synthase",
+ "clusters": [
+  {
+   "cluster_id": 134,
+   "n_members": 81,
+   "reference": "2Z6R",
+   "reference_resolution": 1.5,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    104.501,
+    104.501,
+    137.523,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 80,
+    "reference": 1
+   },
+   "n_pairs": 3240,
+   "rmsd_to_reference": {
+    "median": 1.407,
+    "q25": 1.306,
+    "q75": 1.573,
+    "p5": 0.651,
+    "p95": 1.811,
+    "max": 2.066,
+    "n_pairs": 80
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.132,
+    "q25": 0.771,
+    "q75": 1.536,
+    "p5": 0.365,
+    "p95": 2.13,
+    "max": 3.438,
+    "n_pairs": 3240
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.296,
+    "q25": 0.211,
+    "q75": 0.369,
+    "p5": 0.142,
+    "p95": 0.616,
+    "max": 1.055,
+    "n_pairs": 3240
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

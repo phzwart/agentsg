@@ -1,0 +1,59 @@
+{
+ "identity": "P0AGD7",
+ "accessions": [
+  "P0AGD7"
+ ],
+ "deposition_group": null,
+ "name": "Signal recognition particle protein",
+ "clusters": [
+  {
+   "cluster_id": 1519,
+   "n_members": 12,
+   "reference": "1HQ1",
+   "reference_resolution": 1.52,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    136.555,
+    78.337,
+    32.872,
+    90.0,
+    96.24,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.311,
+    "q25": 1.241,
+    "q75": 1.686,
+    "p5": 0.579,
+    "p95": 1.869,
+    "max": 1.961,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.215,
+    "q25": 0.698,
+    "q75": 1.817,
+    "p5": 0.504,
+    "p95": 2.795,
+    "max": 2.845,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.508,
+    "q25": 0.398,
+    "q75": 0.591,
+    "p5": 0.311,
+    "p95": 0.731,
+    "max": 0.852,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

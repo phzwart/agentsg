@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y6A2",
+ "accessions": [
+  "Q9Y6A2"
+ ],
+ "deposition_group": null,
+ "name": "Cholesterol 24-hydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 1617,
+   "n_members": 12,
+   "reference": "7N6F",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    57.943,
+    63.585,
+    123.633,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.353,
+    "q25": 0.279,
+    "q75": 0.428,
+    "p5": 0.249,
+    "p95": 0.505,
+    "max": 0.555,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.414,
+    "q25": 0.295,
+    "q75": 0.478,
+    "p5": 0.19,
+    "p95": 0.592,
+    "max": 0.637,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.237,
+    "q75": 0.419,
+    "p5": 0.174,
+    "p95": 0.549,
+    "max": 0.598,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

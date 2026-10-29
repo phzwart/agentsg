@@ -1,0 +1,60 @@
+{
+ "identity": "P02931",
+ "accessions": [
+  "P02931"
+ ],
+ "deposition_group": null,
+ "name": "Outer membrane porin F",
+ "clusters": [
+  {
+   "cluster_id": 967,
+   "n_members": 17,
+   "reference": "2ZFG",
+   "reference_resolution": 1.59,
+   "space_group": "P 3 2 1",
+   "reference_cell": [
+    116.923,
+    116.923,
+    51.346,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1,
+    "different_space_group": 5
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.662,
+    "q25": 0.637,
+    "q75": 0.725,
+    "p5": 0.459,
+    "p95": 4.947,
+    "max": 9.115,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.573,
+    "q25": 0.25,
+    "q75": 0.811,
+    "p5": 0.131,
+    "p95": 9.141,
+    "max": 9.194,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.228,
+    "q75": 0.347,
+    "p5": 0.1,
+    "p95": 9.123,
+    "max": 9.147,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

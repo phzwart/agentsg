@@ -1,0 +1,60 @@
+{
+ "identity": "P22887",
+ "accessions": [
+  "P22887"
+ ],
+ "deposition_group": null,
+ "name": "Nucleoside diphosphate kinase, cytosolic",
+ "clusters": [
+  {
+   "cluster_id": 1265,
+   "n_members": 14,
+   "reference": "4C6A",
+   "reference_resolution": 1.25,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    71.7,
+    71.7,
+    106.78,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "placed": 8,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.992,
+    "q25": 0.876,
+    "q75": 1.105,
+    "p5": 0.546,
+    "p95": 1.197,
+    "max": 1.198,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.193,
+    "q25": 1.16,
+    "q75": 2.486,
+    "p5": 0.526,
+    "p95": 3.069,
+    "max": 3.384,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.264,
+    "q75": 0.471,
+    "p5": 0.17,
+    "p95": 0.569,
+    "max": 0.661,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

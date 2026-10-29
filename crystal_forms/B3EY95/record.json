@@ -1,0 +1,59 @@
+{
+ "identity": "B3EY95",
+ "accessions": [
+  "B3EY95"
+ ],
+ "deposition_group": null,
+ "name": "Succinyl-CoA:acetate CoA-transferase",
+ "clusters": [
+  {
+   "cluster_id": 1212,
+   "n_members": 14,
+   "reference": "4EU9",
+   "reference_resolution": 1.479,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    67.093,
+    110.099,
+    119.841,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.293,
+    "q25": 0.222,
+    "q75": 0.484,
+    "p5": 0.15,
+    "p95": 0.644,
+    "max": 0.813,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.451,
+    "q25": 0.3,
+    "q75": 0.544,
+    "p5": 0.175,
+    "p95": 0.787,
+    "max": 1.038,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.168,
+    "q75": 0.371,
+    "p5": 0.122,
+    "p95": 0.621,
+    "max": 0.657,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

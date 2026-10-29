@@ -1,0 +1,60 @@
+{
+ "identity": "O53871+O53872",
+ "accessions": [
+  "O53871",
+  "O53872"
+ ],
+ "deposition_group": null,
+ "name": "Probable fatty oxidation protein FadB",
+ "clusters": [
+  {
+   "cluster_id": 595,
+   "n_members": 25,
+   "reference": "7O4T",
+   "reference_resolution": 2.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    247.539,
+    136.253,
+    117.799,
+    90.0,
+    110.496,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 1.013,
+    "q25": 0.818,
+    "q75": 1.498,
+    "p5": 0.51,
+    "p95": 2.71,
+    "max": 2.885,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.806,
+    "q25": 0.598,
+    "q75": 1.197,
+    "p5": 0.404,
+    "p95": 2.584,
+    "max": 2.901,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.549,
+    "q25": 0.422,
+    "q75": 0.923,
+    "p5": 0.294,
+    "p95": 1.584,
+    "max": 1.999,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

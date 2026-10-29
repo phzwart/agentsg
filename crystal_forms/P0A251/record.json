@@ -1,0 +1,59 @@
+{
+ "identity": "P0A251",
+ "accessions": [
+  "P0A251"
+ ],
+ "deposition_group": null,
+ "name": "Alkyl hydroperoxide reductase C",
+ "clusters": [
+  {
+   "cluster_id": 1681,
+   "n_members": 11,
+   "reference": "4XRA",
+   "reference_resolution": 1.75,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    127.069,
+    171.92,
+    135.29,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.423,
+    "q25": 0.345,
+    "q75": 0.818,
+    "p5": 0.281,
+    "p95": 0.911,
+    "max": 0.912,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.819,
+    "q25": 0.619,
+    "q75": 1.013,
+    "p5": 0.341,
+    "p95": 1.181,
+    "max": 1.392,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.406,
+    "q25": 0.275,
+    "q75": 0.799,
+    "p5": 0.217,
+    "p95": 0.878,
+    "max": 0.915,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

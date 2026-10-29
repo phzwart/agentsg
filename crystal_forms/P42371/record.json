@@ -1,0 +1,59 @@
+{
+ "identity": "P42371",
+ "accessions": [
+  "P42371"
+ ],
+ "deposition_group": null,
+ "name": "Formamidopyrimidine-DNA glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 775,
+   "n_members": 21,
+   "reference": "4PD2",
+   "reference_resolution": 1.65,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    91.456,
+    91.456,
+    140.389,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 1.233,
+    "q25": 1.215,
+    "q75": 1.306,
+    "p5": 1.158,
+    "p95": 1.598,
+    "max": 2.459,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.758,
+    "q25": 0.39,
+    "q75": 1.057,
+    "p5": 0.22,
+    "p95": 2.677,
+    "max": 2.791,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.547,
+    "q25": 0.25,
+    "q75": 0.701,
+    "p5": 0.156,
+    "p95": 2.627,
+    "max": 2.692,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P29717",
+ "accessions": [
+  "P29717"
+ ],
+ "deposition_group": null,
+ "name": "Glucan 1,3-beta-glucosidase",
+ "clusters": [
+  {
+   "cluster_id": 1543,
+   "n_members": 12,
+   "reference": "4M82",
+   "reference_resolution": 1.592,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.785,
+    64.333,
+    94.489,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.433,
+    "q25": 0.404,
+    "q75": 0.467,
+    "p5": 0.262,
+    "p95": 0.668,
+    "max": 0.85,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.484,
+    "q25": 0.224,
+    "q75": 0.678,
+    "p5": 0.135,
+    "p95": 0.932,
+    "max": 0.999,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.139,
+    "q75": 0.332,
+    "p5": 0.095,
+    "p95": 0.42,
+    "max": 0.506,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0AAI5",
+ "accessions": [
+  "P0AAI5"
+ ],
+ "deposition_group": null,
+ "name": "3-oxoacyl-[acyl-carrier-protein] synthase 2",
+ "clusters": [
+  {
+   "cluster_id": 1515,
+   "n_members": 12,
+   "reference": "3HO9",
+   "reference_resolution": 1.9,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    76.402,
+    76.402,
+    144.449,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.668,
+    "q25": 0.62,
+    "q75": 0.746,
+    "p5": 0.4,
+    "p95": 23.015,
+    "max": 45.106,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.23,
+    "q25": 0.949,
+    "q75": 1.569,
+    "p5": 0.459,
+    "p95": 45.669,
+    "max": 46.025,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.248,
+    "q75": 0.38,
+    "p5": 0.182,
+    "p95": 21.756,
+    "max": 21.778,
+    "n_pairs": 66
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9ZIV5",
+ "accessions": [
+  "Q9ZIV5"
+ ],
+ "deposition_group": null,
+ "name": "Malonamidase E2",
+ "clusters": [
+  {
+   "cluster_id": 1618,
+   "n_members": 12,
+   "reference": "1O9P",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    103.581,
+    94.79,
+    75.065,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.316,
+    "q25": 0.24,
+    "q75": 0.406,
+    "p5": 0.207,
+    "p95": 0.475,
+    "max": 0.522,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.342,
+    "q25": 0.265,
+    "q75": 0.406,
+    "p5": 0.137,
+    "p95": 0.55,
+    "max": 0.624,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.167,
+    "q25": 0.147,
+    "q75": 0.19,
+    "p5": 0.117,
+    "p95": 0.345,
+    "max": 0.384,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "E9G5J5",
+ "accessions": [
+  "E9G5J5"
+ ],
+ "deposition_group": null,
+ "name": "Cellobiohydrolase CHBI",
+ "clusters": [
+  {
+   "cluster_id": 1474,
+   "n_members": 12,
+   "reference": "4XNN",
+   "reference_resolution": 1.9,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    128.29,
+    47.02,
+    173.5,
+    90.0,
+    108.23,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.197,
+    "q25": 0.191,
+    "q75": 0.207,
+    "p5": 0.185,
+    "p95": 0.238,
+    "max": 0.245,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.159,
+    "q25": 0.087,
+    "q75": 0.222,
+    "p5": 0.039,
+    "p95": 0.31,
+    "max": 0.365,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.001,
+    "q25": 0.001,
+    "q75": 0.001,
+    "p5": 0.0,
+    "p95": 0.149,
+    "max": 0.149,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P80176",
+ "accessions": [
+  "P80176"
+ ],
+ "deposition_group": null,
+ "name": "High-potential iron-sulfur protein",
+ "clusters": [
+  {
+   "cluster_id": 1560,
+   "n_members": 12,
+   "reference": "5D8V",
+   "reference_resolution": 0.48,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.478,
+    58.905,
+    23.436,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.146,
+    "q25": 0.087,
+    "q75": 0.242,
+    "p5": 0.074,
+    "p95": 0.791,
+    "max": 1.288,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.174,
+    "q25": 0.118,
+    "q75": 0.319,
+    "p5": 0.084,
+    "p95": 1.366,
+    "max": 1.416,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.131,
+    "q25": 0.082,
+    "q75": 0.182,
+    "p5": 0.064,
+    "p95": 0.462,
+    "max": 0.478,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

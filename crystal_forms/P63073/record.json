@@ -1,0 +1,59 @@
+{
+ "identity": "P63073",
+ "accessions": [
+  "P63073"
+ ],
+ "deposition_group": null,
+ "name": "Eukaryotic translation initiation factor 4E",
+ "clusters": [
+  {
+   "cluster_id": 1070,
+   "n_members": 16,
+   "reference": "5M7X",
+   "reference_resolution": 1.68,
+   "space_group": "P 1",
+   "reference_cell": [
+    38.11,
+    38.16,
+    147.07,
+    88.55,
+    95.32,
+    103.33
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.292,
+    "q25": 0.207,
+    "q75": 0.364,
+    "p5": 0.17,
+    "p95": 0.459,
+    "max": 0.508,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.954,
+    "q25": 0.7,
+    "q75": 1.492,
+    "p5": 0.356,
+    "p95": 2.322,
+    "max": 2.568,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.202,
+    "q75": 0.368,
+    "p5": 0.159,
+    "p95": 0.45,
+    "max": 1.246,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

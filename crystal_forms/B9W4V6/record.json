@@ -1,0 +1,59 @@
+{
+ "identity": "B9W4V6",
+ "accessions": [
+  "B9W4V6"
+ ],
+ "deposition_group": null,
+ "name": "Aromatic peroxygenase",
+ "clusters": [
+  {
+   "cluster_id": 895,
+   "n_members": 18,
+   "reference": "6EKZ",
+   "reference_resolution": 1.08,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.027,
+    57.876,
+    60.893,
+    90.0,
+    110.09,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.18,
+    "q25": 0.144,
+    "q75": 0.241,
+    "p5": 0.12,
+    "p95": 0.291,
+    "max": 0.311,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.19,
+    "q25": 0.155,
+    "q75": 0.261,
+    "p5": 0.101,
+    "p95": 0.351,
+    "max": 0.432,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.139,
+    "q25": 0.108,
+    "q75": 0.203,
+    "p5": 0.077,
+    "p95": 0.304,
+    "max": 0.339,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

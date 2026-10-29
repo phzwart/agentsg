@@ -1,0 +1,60 @@
+{
+ "identity": "P04191",
+ "accessions": [
+  "P04191"
+ ],
+ "deposition_group": null,
+ "name": "Sarcoplasmic/endoplasmic reticulum calcium ATPase 1",
+ "clusters": [
+  {
+   "cluster_id": 411,
+   "n_members": 34,
+   "reference": "27RD",
+   "reference_resolution": 2.0,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    71.458,
+    71.458,
+    587.667,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 1.173,
+    "q25": 0.581,
+    "q75": 1.299,
+    "p5": 0.256,
+    "p95": 4.407,
+    "max": 5.678,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.507,
+    "q25": 1.096,
+    "q75": 2.199,
+    "p5": 0.576,
+    "p95": 5.382,
+    "max": 6.617,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.001,
+    "q25": 0.722,
+    "q75": 1.238,
+    "p5": 0.226,
+    "p95": 1.47,
+    "max": 1.774,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

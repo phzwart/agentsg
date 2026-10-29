@@ -1,0 +1,59 @@
+{
+ "identity": "P29320",
+ "accessions": [
+  "P29320"
+ ],
+ "deposition_group": null,
+ "name": "Ephrin type-A receptor 3",
+ "clusters": [
+  {
+   "cluster_id": 550,
+   "n_members": 27,
+   "reference": "2QOL",
+   "reference_resolution": 1.07,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    54.303,
+    38.292,
+    75.877,
+    90.0,
+    102.15,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.554,
+    "q25": 0.257,
+    "q75": 0.687,
+    "p5": 0.101,
+    "p95": 0.973,
+    "max": 1.304,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.895,
+    "q25": 0.549,
+    "q75": 1.268,
+    "p5": 0.264,
+    "p95": 2.171,
+    "max": 2.92,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.517,
+    "q25": 0.346,
+    "q75": 0.732,
+    "p5": 0.14,
+    "p95": 1.383,
+    "max": 1.829,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

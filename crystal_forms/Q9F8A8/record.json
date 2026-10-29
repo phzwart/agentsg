@@ -1,0 +1,59 @@
+{
+ "identity": "Q9F8A8",
+ "accessions": [
+  "Q9F8A8"
+ ],
+ "deposition_group": null,
+ "name": "Carbon monoxide dehydrogenase 2",
+ "clusters": [
+  {
+   "cluster_id": 223,
+   "n_members": 55,
+   "reference": "9FPH",
+   "reference_resolution": 1.01,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    112.32,
+    75.24,
+    71.04,
+    90.0,
+    111.33,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 54,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 0.241,
+    "q25": 0.201,
+    "q75": 0.314,
+    "p5": 0.122,
+    "p95": 0.391,
+    "max": 0.507,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.505,
+    "q25": 0.348,
+    "q75": 0.699,
+    "p5": 0.225,
+    "p95": 0.937,
+    "max": 1.337,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.215,
+    "q25": 0.18,
+    "q75": 0.249,
+    "p5": 0.128,
+    "p95": 0.325,
+    "max": 0.437,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

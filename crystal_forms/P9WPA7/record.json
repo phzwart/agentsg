@@ -1,0 +1,59 @@
+{
+ "identity": "P9WPA7",
+ "accessions": [
+  "P9WPA7"
+ ],
+ "deposition_group": null,
+ "name": "Pantothenate kinase",
+ "clusters": [
+  {
+   "cluster_id": 833,
+   "n_members": 20,
+   "reference": "3AEZ",
+   "reference_resolution": 2.2,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    103.64,
+    103.64,
+    90.41,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.475,
+    "q25": 0.38,
+    "q75": 0.531,
+    "p5": 0.348,
+    "p95": 1.25,
+    "max": 1.31,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.556,
+    "q25": 0.432,
+    "q75": 0.933,
+    "p5": 0.321,
+    "p95": 2.299,
+    "max": 2.708,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.33,
+    "q25": 0.291,
+    "q75": 0.384,
+    "p5": 0.236,
+    "p95": 0.556,
+    "max": 0.594,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

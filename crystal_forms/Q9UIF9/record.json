@@ -1,0 +1,108 @@
+{
+ "identity": "Q9UIF9",
+ "accessions": [
+  "Q9UIF9"
+ ],
+ "deposition_group": null,
+ "name": "Bromodomain adjacent to zinc finger domain protein 2A",
+ "clusters": [
+  {
+   "cluster_id": 376,
+   "n_members": 37,
+   "reference": "4LZ2",
+   "reference_resolution": 1.76,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    95.417,
+    95.417,
+    33.054,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 36
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.373,
+    "q25": 0.297,
+    "q75": 0.484,
+    "p5": 0.224,
+    "p95": 0.835,
+    "max": 0.897,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.756,
+    "q25": 0.536,
+    "q75": 1.159,
+    "p5": 0.326,
+    "p95": 2.08,
+    "max": 3.505,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.273,
+    "q25": 0.23,
+    "q75": 0.333,
+    "p5": 0.182,
+    "p95": 0.49,
+    "max": 0.618,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1800,
+   "n_members": 11,
+   "reference": "7QYO",
+   "reference_resolution": 0.983,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    37.39,
+    35.068,
+    37.91,
+    90.0,
+    93.05,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.295,
+    "q25": 0.239,
+    "q75": 0.47,
+    "p5": 0.185,
+    "p95": 1.01,
+    "max": 1.022,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.403,
+    "q25": 0.278,
+    "q75": 0.948,
+    "p5": 0.2,
+    "p95": 1.081,
+    "max": 1.174,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.322,
+    "q25": 0.204,
+    "q75": 0.538,
+    "p5": 0.141,
+    "p95": 0.635,
+    "max": 0.731,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

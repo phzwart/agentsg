@@ -1,0 +1,108 @@
+{
+ "identity": "Q38087",
+ "accessions": [
+  "Q38087"
+ ],
+ "deposition_group": null,
+ "name": "DNA-directed DNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 103,
+   "n_members": 95,
+   "reference": "3QEX",
+   "reference_resolution": 1.73,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.991,
+    120.211,
+    130.361,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 94,
+    "reference": 1
+   },
+   "n_pairs": 4465,
+   "rmsd_to_reference": {
+    "median": 0.342,
+    "q25": 0.205,
+    "q75": 2.915,
+    "p5": 0.148,
+    "p95": 3.287,
+    "max": 6.095,
+    "n_pairs": 94
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.248,
+    "q25": 0.361,
+    "q75": 2.799,
+    "p5": 0.202,
+    "p95": 4.259,
+    "max": 6.029,
+    "n_pairs": 4465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.624,
+    "q25": 0.277,
+    "q75": 1.098,
+    "p5": 0.16,
+    "p95": 1.211,
+    "max": 1.552,
+    "n_pairs": 4465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1299,
+   "n_members": 14,
+   "reference": "2DTU",
+   "reference_resolution": 2.37,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    133.074,
+    123.061,
+    164.564,
+    90.0,
+    96.78,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 8.801,
+    "q25": 8.77,
+    "q75": 8.812,
+    "p5": 8.761,
+    "p95": 8.906,
+    "max": 8.924,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.64,
+    "q25": 1.841,
+    "q75": 3.251,
+    "p5": 1.111,
+    "p95": 9.059,
+    "max": 9.277,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.189,
+    "q25": 0.724,
+    "q75": 1.559,
+    "p5": 0.412,
+    "p95": 8.801,
+    "max": 8.864,
+    "n_pairs": 91
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

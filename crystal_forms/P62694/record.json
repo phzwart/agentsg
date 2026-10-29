@@ -1,0 +1,59 @@
+{
+ "identity": "P62694",
+ "accessions": [
+  "P62694"
+ ],
+ "deposition_group": null,
+ "name": "Exoglucanase 1",
+ "clusters": [
+  {
+   "cluster_id": 735,
+   "n_members": 22,
+   "reference": "2V3I",
+   "reference_resolution": 1.05,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    82.957,
+    82.934,
+    110.659,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.298,
+    "q25": 0.223,
+    "q75": 0.343,
+    "p5": 0.17,
+    "p95": 0.532,
+    "max": 0.541,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.71,
+    "q25": 0.424,
+    "q75": 1.244,
+    "p5": 0.275,
+    "p95": 1.844,
+    "max": 2.688,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.216,
+    "q25": 0.171,
+    "q75": 0.262,
+    "p5": 0.121,
+    "p95": 0.293,
+    "max": 0.346,
+    "n_pairs": 231
+   },
+   "n_low_margin": 21,
+   "n_via_neighbour": 0
+  }
+ ]
+}

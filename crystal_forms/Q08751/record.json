@@ -1,0 +1,59 @@
+{
+ "identity": "Q08751",
+ "accessions": [
+  "Q08751"
+ ],
+ "deposition_group": null,
+ "name": "Neopullulanase 2",
+ "clusters": [
+  {
+   "cluster_id": 1076,
+   "n_members": 16,
+   "reference": "1WZL",
+   "reference_resolution": 2.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    112.874,
+    117.907,
+    113.142,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.009,
+    "q25": 0.563,
+    "q75": 1.642,
+    "p5": 0.277,
+    "p95": 1.867,
+    "max": 2.048,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.47,
+    "q25": 1.126,
+    "q75": 1.829,
+    "p5": 0.438,
+    "p95": 2.338,
+    "max": 3.258,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.68,
+    "q25": 0.542,
+    "q75": 0.833,
+    "p5": 0.292,
+    "p95": 0.996,
+    "max": 1.015,
+    "n_pairs": 120
+   },
+   "n_low_margin": 15,
+   "n_via_neighbour": 0
+  }
+ ]
+}

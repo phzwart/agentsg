@@ -1,0 +1,59 @@
+{
+ "identity": "Q9GK12",
+ "accessions": [
+  "Q9GK12"
+ ],
+ "deposition_group": null,
+ "name": "Peptidoglycan recognition protein 1",
+ "clusters": [
+  {
+   "cluster_id": 331,
+   "n_members": 40,
+   "reference": "3RT4",
+   "reference_resolution": 1.7,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    87.14,
+    100.79,
+    161.86,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 0.629,
+    "q25": 0.539,
+    "q75": 0.855,
+    "p5": 0.414,
+    "p95": 1.372,
+    "max": 1.654,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.681,
+    "q25": 0.452,
+    "q75": 1.04,
+    "p5": 0.278,
+    "p95": 1.522,
+    "max": 2.124,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.434,
+    "q25": 0.297,
+    "q75": 0.798,
+    "p5": 0.191,
+    "p95": 1.311,
+    "max": 1.828,
+    "n_pairs": 780
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

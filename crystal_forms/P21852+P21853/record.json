@@ -1,0 +1,60 @@
+{
+ "identity": "P21852+P21853",
+ "accessions": [
+  "P21852",
+  "P21853"
+ ],
+ "deposition_group": null,
+ "name": "Periplasmic [NiFe] hydrogenase large subunit",
+ "clusters": [
+  {
+   "cluster_id": 674,
+   "n_members": 23,
+   "reference": "4U9H",
+   "reference_resolution": 0.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.53,
+    97.95,
+    125.85,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.351,
+    "q25": 0.23,
+    "q75": 0.511,
+    "p5": 0.087,
+    "p95": 0.684,
+    "max": 0.809,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.381,
+    "q25": 0.258,
+    "q75": 0.561,
+    "p5": 0.107,
+    "p95": 0.743,
+    "max": 0.948,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.14,
+    "q25": 0.104,
+    "q75": 0.227,
+    "p5": 0.064,
+    "p95": 0.411,
+    "max": 0.455,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

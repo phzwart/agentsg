@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y2J8",
+ "accessions": [
+  "Q9Y2J8"
+ ],
+ "deposition_group": null,
+ "name": "Protein-arginine deiminase type-2",
+ "clusters": [
+  {
+   "cluster_id": 656,
+   "n_members": 24,
+   "reference": "4N2K",
+   "reference_resolution": 1.57,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    202.242,
+    51.94,
+    75.969,
+    90.0,
+    105.31,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 1.061,
+    "q25": 0.44,
+    "q75": 1.188,
+    "p5": 0.197,
+    "p95": 1.61,
+    "max": 1.944,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.619,
+    "q25": 1.067,
+    "q75": 1.957,
+    "p5": 0.45,
+    "p95": 2.774,
+    "max": 4.015,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.093,
+    "q25": 0.511,
+    "q75": 1.354,
+    "p5": 0.249,
+    "p95": 1.671,
+    "max": 2.042,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

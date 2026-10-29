@@ -1,0 +1,59 @@
+{
+ "identity": "Q16769",
+ "accessions": [
+  "Q16769"
+ ],
+ "deposition_group": null,
+ "name": "Glutaminyl-peptide cyclotransferase",
+ "clusters": [
+  {
+   "cluster_id": 837,
+   "n_members": 20,
+   "reference": "2AFW",
+   "reference_resolution": 1.56,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    119.132,
+    119.132,
+    332.826,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.194,
+    "q25": 0.145,
+    "q75": 0.233,
+    "p5": 0.08,
+    "p95": 0.406,
+    "max": 0.746,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.192,
+    "q25": 0.146,
+    "q75": 0.246,
+    "p5": 0.106,
+    "p95": 0.768,
+    "max": 0.845,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.142,
+    "q25": 0.118,
+    "q75": 0.194,
+    "p5": 0.089,
+    "p95": 0.42,
+    "max": 0.477,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

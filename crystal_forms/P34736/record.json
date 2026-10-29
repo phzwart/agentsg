@@ -1,0 +1,59 @@
+{
+ "identity": "P34736",
+ "accessions": [
+  "P34736"
+ ],
+ "deposition_group": null,
+ "name": "Transketolase",
+ "clusters": [
+  {
+   "cluster_id": 607,
+   "n_members": 25,
+   "reference": "5XVT",
+   "reference_resolution": 0.85,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    101.22,
+    185.34,
+    99.17,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.12,
+    "q25": 0.086,
+    "q75": 0.225,
+    "p5": 0.047,
+    "p95": 0.388,
+    "max": 0.489,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.112,
+    "q25": 0.613,
+    "q75": 1.843,
+    "p5": 0.176,
+    "p95": 3.2,
+    "max": 4.74,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.101,
+    "q25": 0.074,
+    "q75": 0.213,
+    "p5": 0.054,
+    "p95": 0.461,
+    "max": 0.56,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

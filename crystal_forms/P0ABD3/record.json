@@ -1,0 +1,59 @@
+{
+ "identity": "P0ABD3",
+ "accessions": [
+  "P0ABD3"
+ ],
+ "deposition_group": null,
+ "name": "Bacterioferritin",
+ "clusters": [
+  {
+   "cluster_id": 1141,
+   "n_members": 15,
+   "reference": "2Y3Q",
+   "reference_resolution": 1.55,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    208.0,
+    208.0,
+    142.6,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.342,
+    "q25": 0.299,
+    "q75": 75.296,
+    "p5": 0.249,
+    "p95": 100.31,
+    "max": 100.334,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.419,
+    "q25": 0.363,
+    "q75": 100.202,
+    "p5": 0.218,
+    "p95": 100.481,
+    "max": 101.666,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.157,
+    "q75": 5.827,
+    "p5": 0.111,
+    "p95": 5.848,
+    "max": 5.864,
+    "n_pairs": 105
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

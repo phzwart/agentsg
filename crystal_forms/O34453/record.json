@@ -1,0 +1,59 @@
+{
+ "identity": "O34453",
+ "accessions": [
+  "O34453"
+ ],
+ "deposition_group": null,
+ "name": "Nitric oxide synthase oxygenase",
+ "clusters": [
+  {
+   "cluster_id": 129,
+   "n_members": 82,
+   "reference": "4D3T",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    80.421,
+    94.915,
+    62.859,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 81,
+    "reference": 1
+   },
+   "n_pairs": 3321,
+   "rmsd_to_reference": {
+    "median": 0.359,
+    "q25": 0.274,
+    "q75": 0.448,
+    "p5": 0.213,
+    "p95": 24.472,
+    "max": 24.625,
+    "n_pairs": 81
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.513,
+    "q25": 0.314,
+    "q75": 0.678,
+    "p5": 0.2,
+    "p95": 24.583,
+    "max": 24.716,
+    "n_pairs": 3321
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.205,
+    "q75": 0.313,
+    "p5": 0.15,
+    "p95": 23.821,
+    "max": 23.964,
+    "n_pairs": 3321
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

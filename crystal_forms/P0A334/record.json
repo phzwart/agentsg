@@ -1,0 +1,59 @@
+{
+ "identity": "P0A334",
+ "accessions": [
+  "P0A334"
+ ],
+ "deposition_group": null,
+ "name": "pH-gated potassium channel KcsA",
+ "clusters": [
+  {
+   "cluster_id": 202,
+   "n_members": 58,
+   "reference": "2IH3",
+   "reference_resolution": 1.72,
+   "space_group": "I 4",
+   "reference_cell": [
+    155.724,
+    155.724,
+    75.741,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 57,
+    "reference": 1
+   },
+   "n_pairs": 1653,
+   "rmsd_to_reference": {
+    "median": 0.608,
+    "q25": 0.497,
+    "q75": 0.798,
+    "p5": 0.305,
+    "p95": 4.335,
+    "max": 4.421,
+    "n_pairs": 57
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.335,
+    "q25": 0.775,
+    "q75": 3.235,
+    "p5": 0.463,
+    "p95": 4.428,
+    "max": 5.497,
+    "n_pairs": 1653
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.477,
+    "q25": 0.348,
+    "q75": 2.256,
+    "p5": 0.25,
+    "p95": 2.903,
+    "max": 3.152,
+    "n_pairs": 1653
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

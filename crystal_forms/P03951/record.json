@@ -1,0 +1,157 @@
+{
+ "identity": "P03951",
+ "accessions": [
+  "P03951"
+ ],
+ "deposition_group": null,
+ "name": "Coagulation factor XI",
+ "clusters": [
+  {
+   "cluster_id": 364,
+   "n_members": 37,
+   "reference": "5TKS",
+   "reference_resolution": 1.55,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    78.8,
+    78.8,
+    106.0,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.198,
+    "q25": 0.165,
+    "q75": 0.241,
+    "p5": 0.133,
+    "p95": 0.316,
+    "max": 0.426,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.297,
+    "q25": 0.209,
+    "q75": 0.402,
+    "p5": 0.137,
+    "p95": 0.618,
+    "max": 1.031,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.161,
+    "q25": 0.135,
+    "q75": 0.191,
+    "p5": 0.102,
+    "p95": 0.263,
+    "max": 0.325,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 456,
+   "n_members": 31,
+   "reference": "4CRG",
+   "reference_resolution": 1.25,
+   "space_group": "I 2 3",
+   "reference_cell": [
+    120.874,
+    120.874,
+    120.874,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.31,
+    "q25": 0.253,
+    "q75": 0.565,
+    "p5": 0.196,
+    "p95": 1.94,
+    "max": 2.591,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.553,
+    "q25": 0.377,
+    "q75": 0.966,
+    "p5": 0.246,
+    "p95": 2.901,
+    "max": 3.622,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.225,
+    "q25": 0.196,
+    "q75": 0.275,
+    "p5": 0.157,
+    "p95": 0.396,
+    "max": 0.475,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 631,
+   "n_members": 24,
+   "reference": "6TS4",
+   "reference_resolution": 1.17,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.32,
+    60.8,
+    66.87,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 1.101,
+    "q25": 0.876,
+    "q75": 1.216,
+    "p5": 0.277,
+    "p95": 1.358,
+    "max": 1.551,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.617,
+    "q25": 0.403,
+    "q75": 1.017,
+    "p5": 0.221,
+    "p95": 1.347,
+    "max": 1.676,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.271,
+    "q25": 0.218,
+    "q75": 0.327,
+    "p5": 0.133,
+    "p95": 0.394,
+    "max": 0.48,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

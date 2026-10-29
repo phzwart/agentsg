@@ -1,0 +1,60 @@
+{
+ "identity": "P49137",
+ "accessions": [
+  "P49137"
+ ],
+ "deposition_group": null,
+ "name": "MAP kinase-activated protein kinase 2",
+ "clusters": [
+  {
+   "cluster_id": 1724,
+   "n_members": 11,
+   "reference": "3KA0",
+   "reference_resolution": 2.9,
+   "space_group": "F 41 3 2",
+   "reference_cell": [
+    253.508,
+    253.508,
+    253.508,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 2.105,
+    "q25": 1.942,
+    "q75": 2.202,
+    "p5": 1.92,
+    "p95": 2.248,
+    "max": 2.259,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.717,
+    "q25": 1.266,
+    "q75": 2.243,
+    "p5": 0.727,
+    "p95": 2.904,
+    "max": 3.089,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.074,
+    "q25": 0.714,
+    "q75": 1.219,
+    "p5": 0.438,
+    "p95": 1.998,
+    "max": 2.021,
+    "n_pairs": 45
+   },
+   "n_low_margin": 9,
+   "n_via_neighbour": 0
+  }
+ ]
+}

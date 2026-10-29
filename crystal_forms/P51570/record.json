@@ -1,0 +1,59 @@
+{
+ "identity": "P51570",
+ "accessions": [
+  "P51570"
+ ],
+ "deposition_group": null,
+ "name": "Galactokinase",
+ "clusters": [
+  {
+   "cluster_id": 1553,
+   "n_members": 12,
+   "reference": "6ZGX",
+   "reference_resolution": 1.86,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    73.772,
+    114.447,
+    120.924,
+    90.0,
+    100.55,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.524,
+    "q25": 0.451,
+    "q75": 0.575,
+    "p5": 0.356,
+    "p95": 12.056,
+    "max": 23.497,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.554,
+    "q25": 0.507,
+    "q75": 0.758,
+    "p5": 0.386,
+    "p95": 23.553,
+    "max": 23.626,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.479,
+    "q25": 0.412,
+    "q75": 0.648,
+    "p5": 0.361,
+    "p95": 22.428,
+    "max": 22.479,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

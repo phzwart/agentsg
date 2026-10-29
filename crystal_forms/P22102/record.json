@@ -1,0 +1,59 @@
+{
+ "identity": "P22102",
+ "accessions": [
+  "P22102"
+ ],
+ "deposition_group": null,
+ "name": "Trifunctional purine biosynthetic protein adenosine-3 [Includes: Phosphoribosylamine--glycine ligase",
+ "clusters": [
+  {
+   "cluster_id": 604,
+   "n_members": 25,
+   "reference": "4ZZ1",
+   "reference_resolution": 1.351,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    75.344,
+    75.344,
+    100.736,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.508,
+    "q25": 0.307,
+    "q75": 0.703,
+    "p5": 0.137,
+    "p95": 0.933,
+    "max": 1.125,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.587,
+    "q25": 0.416,
+    "q75": 0.773,
+    "p5": 0.209,
+    "p95": 1.065,
+    "max": 1.478,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.333,
+    "q25": 0.21,
+    "q75": 0.528,
+    "p5": 0.119,
+    "p95": 0.699,
+    "max": 0.867,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

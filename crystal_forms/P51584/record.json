@@ -1,0 +1,60 @@
+{
+ "identity": "P51584",
+ "accessions": [
+  "P51584"
+ ],
+ "deposition_group": null,
+ "name": "Endo-1,4-beta-xylanase Y",
+ "clusters": [
+  {
+   "cluster_id": 1727,
+   "n_members": 11,
+   "reference": "1GKL",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.101,
+    108.233,
+    112.964,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.19,
+    "q25": 0.111,
+    "q75": 0.219,
+    "p5": 0.095,
+    "p95": 0.271,
+    "max": 0.278,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.307,
+    "q25": 0.233,
+    "q75": 0.389,
+    "p5": 0.145,
+    "p95": 0.509,
+    "max": 0.535,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.108,
+    "q25": 0.092,
+    "q75": 0.117,
+    "p5": 0.054,
+    "p95": 0.127,
+    "max": 0.132,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P93025",
+ "accessions": [
+  "P93025"
+ ],
+ "deposition_group": null,
+ "name": "Phototropin-2",
+ "clusters": [
+  {
+   "cluster_id": 1073,
+   "n_members": 16,
+   "reference": "6GPU",
+   "reference_resolution": 1.17,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    40.02,
+    40.02,
+    134.29,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.695,
+    "q25": 0.474,
+    "q75": 1.207,
+    "p5": 0.441,
+    "p95": 2.72,
+    "max": 2.987,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.021,
+    "q25": 0.527,
+    "q75": 2.438,
+    "p5": 0.269,
+    "p95": 3.045,
+    "max": 3.277,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.668,
+    "q25": 0.351,
+    "q75": 0.898,
+    "p5": 0.185,
+    "p95": 2.333,
+    "max": 2.49,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

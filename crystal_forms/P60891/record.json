@@ -1,0 +1,59 @@
+{
+ "identity": "P60891",
+ "accessions": [
+  "P60891"
+ ],
+ "deposition_group": null,
+ "name": "Ribose-phosphate pyrophosphokinase 1",
+ "clusters": [
+  {
+   "cluster_id": 1555,
+   "n_members": 12,
+   "reference": "3S5J",
+   "reference_resolution": 2.02,
+   "space_group": "H 3",
+   "reference_cell": [
+    170.536,
+    170.536,
+    61.778,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.378,
+    "q25": 0.264,
+    "q75": 0.43,
+    "p5": 0.214,
+    "p95": 0.526,
+    "max": 0.608,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.436,
+    "q25": 0.304,
+    "q75": 0.477,
+    "p5": 0.218,
+    "p95": 0.648,
+    "max": 0.703,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.405,
+    "q25": 0.263,
+    "q75": 0.439,
+    "p5": 0.189,
+    "p95": 0.603,
+    "max": 0.672,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

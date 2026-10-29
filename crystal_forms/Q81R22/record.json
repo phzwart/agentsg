@@ -1,0 +1,59 @@
+{
+ "identity": "Q81R22",
+ "accessions": [
+  "Q81R22"
+ ],
+ "deposition_group": null,
+ "name": "Dihydrofolate reductase",
+ "clusters": [
+  {
+   "cluster_id": 1595,
+   "n_members": 12,
+   "reference": "3S9U",
+   "reference_resolution": 1.9,
+   "space_group": "P 42",
+   "reference_cell": [
+    78.187,
+    78.187,
+    67.094,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.282,
+    "q25": 0.229,
+    "q75": 0.37,
+    "p5": 0.215,
+    "p95": 2.138,
+    "max": 2.19,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.35,
+    "q25": 0.273,
+    "q75": 1.89,
+    "p5": 0.214,
+    "p95": 2.119,
+    "max": 2.178,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.256,
+    "q25": 0.203,
+    "q75": 0.374,
+    "p5": 0.156,
+    "p95": 0.444,
+    "max": 0.499,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

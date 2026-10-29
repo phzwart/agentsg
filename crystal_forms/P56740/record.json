@@ -1,0 +1,59 @@
+{
+ "identity": "P56740",
+ "accessions": [
+  "P56740"
+ ],
+ "deposition_group": null,
+ "name": "Dihydroneopterin aldolase",
+ "clusters": [
+  {
+   "cluster_id": 1731,
+   "n_members": 11,
+   "reference": "1DHN",
+   "reference_resolution": 1.65,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    61.3,
+    61.3,
+    124.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.38,
+    "q25": 0.332,
+    "q75": 0.411,
+    "p5": 0.276,
+    "p95": 0.624,
+    "max": 0.793,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.329,
+    "q25": 0.231,
+    "q75": 0.417,
+    "p5": 0.188,
+    "p95": 0.815,
+    "max": 0.883,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.202,
+    "q25": 0.172,
+    "q75": 0.237,
+    "p5": 0.113,
+    "p95": 0.282,
+    "max": 0.32,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

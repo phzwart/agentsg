@@ -1,0 +1,60 @@
+{
+ "identity": "P00390",
+ "accessions": [
+  "P00390"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione reductase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 626,
+   "n_members": 24,
+   "reference": "3DK9",
+   "reference_resolution": 0.95,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    120.357,
+    62.353,
+    84.035,
+    90.0,
+    122.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 37.681,
+    "q25": 6.132,
+    "q75": 37.718,
+    "p5": 0.251,
+    "p95": 37.883,
+    "max": 37.889,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 21.499,
+    "q25": 0.411,
+    "q75": 38.114,
+    "p5": 0.16,
+    "p95": 38.379,
+    "max": 38.651,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 20.907,
+    "q25": 0.276,
+    "q75": 28.401,
+    "p5": 0.116,
+    "p95": 28.434,
+    "max": 28.46,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

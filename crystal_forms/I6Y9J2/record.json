@@ -1,0 +1,60 @@
+{
+ "identity": "I6Y9J2",
+ "accessions": [
+  "I6Y9J2"
+ ],
+ "deposition_group": null,
+ "name": "L,D-transpeptidase 2",
+ "clusters": [
+  {
+   "cluster_id": 512,
+   "n_members": 28,
+   "reference": "6RLG",
+   "reference_resolution": 1.51000183032,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    60.95,
+    93.92,
+    75.57,
+    90.0,
+    93.03,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "different_space_group": 5,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.351,
+    "q75": 0.616,
+    "p5": 0.273,
+    "p95": 0.806,
+    "max": 1.221,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.861,
+    "q25": 0.566,
+    "q75": 1.287,
+    "p5": 0.347,
+    "p95": 1.923,
+    "max": 2.656,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.351,
+    "q25": 0.297,
+    "q75": 0.423,
+    "p5": 0.217,
+    "p95": 0.949,
+    "max": 1.061,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

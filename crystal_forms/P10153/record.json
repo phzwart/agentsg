@@ -1,0 +1,59 @@
+{
+ "identity": "P10153",
+ "accessions": [
+  "P10153"
+ ],
+ "deposition_group": null,
+ "name": "Non-secretory ribonuclease",
+ "clusters": [
+  {
+   "cluster_id": 573,
+   "n_members": 26,
+   "reference": "9R6D",
+   "reference_resolution": 0.94,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.002,
+    52.527,
+    56.8,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.343,
+    "q25": 0.248,
+    "q75": 0.396,
+    "p5": 0.209,
+    "p95": 0.518,
+    "max": 0.532,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.406,
+    "q25": 0.33,
+    "q75": 0.505,
+    "p5": 0.252,
+    "p95": 0.689,
+    "max": 0.904,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.311,
+    "q25": 0.261,
+    "q75": 0.399,
+    "p5": 0.197,
+    "p95": 0.531,
+    "max": 0.651,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

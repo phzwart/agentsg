@@ -1,0 +1,59 @@
+{
+ "identity": "Q00955",
+ "accessions": [
+  "Q00955"
+ ],
+ "deposition_group": null,
+ "name": "Acetyl-CoA carboxylase",
+ "clusters": [
+  {
+   "cluster_id": 1075,
+   "n_members": 16,
+   "reference": "3K8X",
+   "reference_resolution": 2.3,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    247.303,
+    124.797,
+    145.369,
+    90.0,
+    94.32,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.717,
+    "q25": 0.634,
+    "q75": 0.942,
+    "p5": 0.404,
+    "p95": 1.033,
+    "max": 1.096,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.787,
+    "q25": 0.611,
+    "q75": 1.033,
+    "p5": 0.377,
+    "p95": 1.259,
+    "max": 1.433,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.533,
+    "q25": 0.455,
+    "q75": 0.663,
+    "p5": 0.353,
+    "p95": 0.799,
+    "max": 0.899,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

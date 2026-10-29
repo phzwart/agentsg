@@ -1,0 +1,59 @@
+{
+ "identity": "Q9NAV8",
+ "accessions": [
+  "Q9NAV8"
+ ],
+ "deposition_group": null,
+ "name": "Dehaloperoxidase A",
+ "clusters": [
+  {
+   "cluster_id": 332,
+   "n_members": 40,
+   "reference": "3LB2",
+   "reference_resolution": 1.06,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.007,
+    67.358,
+    69.42,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 0.552,
+    "q25": 0.266,
+    "q75": 0.776,
+    "p5": 0.204,
+    "p95": 1.393,
+    "max": 1.87,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.726,
+    "q25": 0.496,
+    "q75": 1.097,
+    "p5": 0.251,
+    "p95": 1.848,
+    "max": 2.372,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.375,
+    "q25": 0.299,
+    "q75": 0.461,
+    "p5": 0.196,
+    "p95": 0.586,
+    "max": 0.728,
+    "n_pairs": 780
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

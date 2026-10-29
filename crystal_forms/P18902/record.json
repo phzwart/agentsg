@@ -1,0 +1,59 @@
+{
+ "identity": "P18902",
+ "accessions": [
+  "P18902"
+ ],
+ "deposition_group": null,
+ "name": "Retinol-binding protein 4",
+ "clusters": [
+  {
+   "cluster_id": 1701,
+   "n_members": 11,
+   "reference": "1KT6",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.861,
+    48.948,
+    75.654,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.562,
+    "q25": 0.526,
+    "q75": 0.629,
+    "p5": 0.343,
+    "p95": 0.746,
+    "max": 0.828,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.881,
+    "q25": 0.558,
+    "q75": 1.232,
+    "p5": 0.311,
+    "p95": 2.04,
+    "max": 2.666,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.427,
+    "q25": 0.321,
+    "q75": 0.546,
+    "p5": 0.205,
+    "p95": 0.783,
+    "max": 0.8,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

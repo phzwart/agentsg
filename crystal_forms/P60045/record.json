@@ -1,0 +1,59 @@
+{
+ "identity": "P60045",
+ "accessions": [
+  "P60045"
+ ],
+ "deposition_group": null,
+ "name": "Acidic phospholipase A2 3",
+ "clusters": [
+  {
+   "cluster_id": 1733,
+   "n_members": 11,
+   "reference": "3NJU",
+   "reference_resolution": 1.4,
+   "space_group": "P 41",
+   "reference_cell": [
+    42.074,
+    42.074,
+    64.253,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.241,
+    "q25": 0.21,
+    "q75": 0.339,
+    "p5": 0.2,
+    "p95": 0.524,
+    "max": 0.524,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.323,
+    "q25": 0.232,
+    "q75": 0.535,
+    "p5": 0.118,
+    "p95": 0.592,
+    "max": 0.604,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.309,
+    "q25": 0.2,
+    "q75": 0.452,
+    "p5": 0.116,
+    "p95": 0.5,
+    "max": 0.505,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

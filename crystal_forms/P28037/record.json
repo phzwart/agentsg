@@ -1,0 +1,59 @@
+{
+ "identity": "P28037",
+ "accessions": [
+  "P28037"
+ ],
+ "deposition_group": null,
+ "name": "Cytosolic 10-formyltetrahydrofolate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1401,
+   "n_members": 13,
+   "reference": "2O2P",
+   "reference_resolution": 1.7,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    259.5,
+    194.4,
+    97.3,
+    90.0,
+    108.9,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.314,
+    "q75": 0.379,
+    "p5": 0.292,
+    "p95": 0.588,
+    "max": 0.81,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.372,
+    "q25": 0.31,
+    "q75": 0.898,
+    "p5": 0.179,
+    "p95": 1.557,
+    "max": 1.699,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.141,
+    "q75": 0.31,
+    "p5": 0.092,
+    "p95": 0.7,
+    "max": 0.725,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

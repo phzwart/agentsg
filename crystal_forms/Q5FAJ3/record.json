@@ -1,0 +1,59 @@
+{
+ "identity": "Q5FAJ3",
+ "accessions": [
+  "Q5FAJ3"
+ ],
+ "deposition_group": null,
+ "name": "Leucine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 1439,
+   "n_members": 13,
+   "reference": "6YKQ",
+   "reference_resolution": 1.94,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.243,
+    80.796,
+    222.916,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.345,
+    "q25": 0.317,
+    "q75": 0.509,
+    "p5": 0.269,
+    "p95": 1.422,
+    "max": 2.393,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.498,
+    "q25": 0.361,
+    "q75": 0.679,
+    "p5": 0.282,
+    "p95": 2.406,
+    "max": 2.508,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.376,
+    "q25": 0.299,
+    "q75": 0.441,
+    "p5": 0.245,
+    "p95": 2.296,
+    "max": 2.334,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

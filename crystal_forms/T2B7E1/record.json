@@ -1,0 +1,60 @@
+{
+ "identity": "T2B7E1",
+ "accessions": [
+  "T2B7E1"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin",
+ "clusters": [
+  {
+   "cluster_id": 1807,
+   "n_members": 11,
+   "reference": "6LBD",
+   "reference_resolution": 1.386,
+   "space_group": "P 4 3 2",
+   "reference_cell": [
+    118.781,
+    118.781,
+    118.781,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 7,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 1.063,
+    "q25": 0.839,
+    "q75": 1.067,
+    "p5": 0.732,
+    "p95": 1.071,
+    "max": 1.071,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.991,
+    "q25": 0.216,
+    "q75": 1.068,
+    "p5": 0.088,
+    "p95": 1.09,
+    "max": 1.095,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.971,
+    "q25": 0.155,
+    "q75": 1.035,
+    "p5": 0.08,
+    "p95": 1.045,
+    "max": 1.045,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

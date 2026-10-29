@@ -1,0 +1,158 @@
+{
+ "identity": "P00644",
+ "accessions": [
+  "P00644"
+ ],
+ "deposition_group": null,
+ "name": "Thermonuclease",
+ "clusters": [
+  {
+   "cluster_id": 57,
+   "n_members": 134,
+   "reference": "4EQP",
+   "reference_resolution": 1.35,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    31.167,
+    60.487,
+    38.124,
+    90.0,
+    94.28,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 133,
+    "reference": 1
+   },
+   "n_pairs": 8911,
+   "rmsd_to_reference": {
+    "median": 0.289,
+    "q25": 0.229,
+    "q75": 0.355,
+    "p5": 0.18,
+    "p95": 0.549,
+    "max": 1.219,
+    "n_pairs": 133
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.359,
+    "q25": 0.266,
+    "q75": 0.482,
+    "p5": 0.18,
+    "p95": 0.776,
+    "max": 1.737,
+    "n_pairs": 8911
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.185,
+    "q25": 0.152,
+    "q75": 0.233,
+    "p5": 0.118,
+    "p95": 0.298,
+    "max": 0.44,
+    "n_pairs": 8911
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 75,
+   "n_members": 114,
+   "reference": "2SNS",
+   "reference_resolution": 1.5,
+   "space_group": "P 41",
+   "reference_cell": [
+    48.19,
+    48.19,
+    63.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 113,
+    "reference": 1
+   },
+   "n_pairs": 6441,
+   "rmsd_to_reference": {
+    "median": 0.931,
+    "q25": 0.8,
+    "q75": 1.015,
+    "p5": 0.653,
+    "p95": 1.551,
+    "max": 8.237,
+    "n_pairs": 113
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.847,
+    "q25": 0.632,
+    "q75": 1.143,
+    "p5": 0.324,
+    "p95": 7.917,
+    "max": 8.872,
+    "n_pairs": 6441
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.624,
+    "q25": 0.472,
+    "q75": 0.741,
+    "p5": 0.221,
+    "p95": 7.567,
+    "max": 8.407,
+    "n_pairs": 6441
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1120,
+   "n_members": 15,
+   "reference": "3TME",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    31.12,
+    60.109,
+    78.707,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 5.961,
+    "q25": 5.582,
+    "q75": 6.17,
+    "p5": 2.842,
+    "p95": 6.5,
+    "max": 6.579,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.035,
+    "q25": 1.121,
+    "q75": 6.83,
+    "p5": 0.432,
+    "p95": 8.169,
+    "max": 8.906,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.636,
+    "q25": 0.351,
+    "q75": 2.556,
+    "p5": 0.239,
+    "p95": 2.994,
+    "max": 3.014,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P00805",
+ "accessions": [
+  "P00805"
+ ],
+ "deposition_group": null,
+ "name": "L-asparaginase 2",
+ "clusters": [
+  {
+   "cluster_id": 661,
+   "n_members": 23,
+   "reference": "7R57",
+   "reference_resolution": 1.4,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    152.139,
+    62.44,
+    143.409,
+    90.0,
+    118.191,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 2.022,
+    "q25": 0.264,
+    "q75": 2.069,
+    "p5": 0.178,
+    "p95": 2.126,
+    "max": 2.134,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.836,
+    "q25": 0.37,
+    "q75": 2.343,
+    "p5": 0.233,
+    "p95": 3.812,
+    "max": 3.953,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.213,
+    "q75": 2.047,
+    "p5": 0.143,
+    "p95": 3.352,
+    "max": 3.489,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

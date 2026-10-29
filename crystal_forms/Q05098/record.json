@@ -1,0 +1,59 @@
+{
+ "identity": "Q05098",
+ "accessions": [
+  "Q05098"
+ ],
+ "deposition_group": null,
+ "name": "Ferric enterobactin receptor",
+ "clusters": [
+  {
+   "cluster_id": 1294,
+   "n_members": 14,
+   "reference": "5M9B",
+   "reference_resolution": 2.12,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    87.89,
+    158.18,
+    77.84,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 1.231,
+    "q25": 1.163,
+    "q75": 1.317,
+    "p5": 0.75,
+    "p95": 1.633,
+    "max": 1.663,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.57,
+    "q25": 1.108,
+    "q75": 2.011,
+    "p5": 0.57,
+    "p95": 3.237,
+    "max": 3.965,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.246,
+    "q75": 0.862,
+    "p5": 0.153,
+    "p95": 1.025,
+    "max": 1.044,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

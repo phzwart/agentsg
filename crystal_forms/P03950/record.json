@@ -1,0 +1,108 @@
+{
+ "identity": "P03950",
+ "accessions": [
+  "P03950"
+ ],
+ "deposition_group": null,
+ "name": "Angiogenin",
+ "clusters": [
+  {
+   "cluster_id": 1130,
+   "n_members": 15,
+   "reference": "5M9V",
+   "reference_resolution": 1.7,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    82.539,
+    118.969,
+    37.409,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.428,
+    "q25": 0.334,
+    "q75": 0.512,
+    "p5": 0.27,
+    "p95": 8.546,
+    "max": 23.358,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.679,
+    "q25": 0.5,
+    "q75": 0.991,
+    "p5": 0.384,
+    "p95": 23.831,
+    "max": 24.029,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.411,
+    "q25": 0.342,
+    "q75": 0.483,
+    "p5": 0.244,
+    "p95": 14.51,
+    "max": 14.675,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1242,
+   "n_members": 14,
+   "reference": "4AOH",
+   "reference_resolution": 1.041,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    85.549,
+    37.505,
+    37.512,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.962,
+    "q25": 0.46,
+    "q75": 1.373,
+    "p5": 0.436,
+    "p95": 14.112,
+    "max": 33.078,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.703,
+    "q25": 0.449,
+    "q75": 0.858,
+    "p5": 0.258,
+    "p95": 35.153,
+    "max": 35.517,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.418,
+    "q25": 0.326,
+    "q75": 0.524,
+    "p5": 0.211,
+    "p95": 14.624,
+    "max": 14.689,
+    "n_pairs": 91
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 6
+  }
+ ]
+}

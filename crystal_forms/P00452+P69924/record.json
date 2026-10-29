@@ -1,0 +1,60 @@
+{
+ "identity": "P00452+P69924",
+ "accessions": [
+  "P00452",
+  "P69924"
+ ],
+ "deposition_group": null,
+ "name": "Ribonucleoside-diphosphate reductase 1 subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 957,
+   "n_members": 17,
+   "reference": "2XAP",
+   "reference_resolution": 2.1,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    223.979,
+    223.979,
+    336.027,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.53,
+    "q25": 0.327,
+    "q75": 0.734,
+    "p5": 0.274,
+    "p95": 0.899,
+    "max": 1.007,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.783,
+    "q25": 0.519,
+    "q75": 1.086,
+    "p5": 0.327,
+    "p95": 1.983,
+    "max": 2.412,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.455,
+    "q25": 0.318,
+    "q75": 0.538,
+    "p5": 0.234,
+    "p95": 0.827,
+    "max": 0.866,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

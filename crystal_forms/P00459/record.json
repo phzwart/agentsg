@@ -1,0 +1,59 @@
+{
+ "identity": "P00459",
+ "accessions": [
+  "P00459"
+ ],
+ "deposition_group": null,
+ "name": "Nitrogenase iron protein 1",
+ "clusters": [
+  {
+   "cluster_id": 809,
+   "n_members": 20,
+   "reference": "6N4L",
+   "reference_resolution": 1.13,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    45.587,
+    74.63,
+    75.398,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 19
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.397,
+    "q25": 0.337,
+    "q75": 0.477,
+    "p5": 0.226,
+    "p95": 0.561,
+    "max": 0.585,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.265,
+    "q25": 0.198,
+    "q75": 0.325,
+    "p5": 0.126,
+    "p95": 0.419,
+    "max": 0.5,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.175,
+    "q25": 0.125,
+    "q75": 0.211,
+    "p5": 0.093,
+    "p95": 0.287,
+    "max": 0.342,
+    "n_pairs": 190
+   },
+   "n_low_margin": 19,
+   "n_via_neighbour": 0
+  }
+ ]
+}

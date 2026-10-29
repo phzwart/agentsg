@@ -1,0 +1,60 @@
+{
+ "identity": "Q8ISF8",
+ "accessions": [
+  "Q8ISF8"
+ ],
+ "deposition_group": null,
+ "name": "Red fluorescent protein eqFP611",
+ "clusters": [
+  {
+   "cluster_id": 1310,
+   "n_members": 14,
+   "reference": "7QGK",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    31.338,
+    66.253,
+    96.496,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 11,
+    "placed": 2,
+    "reference": 1
+   },
+   "n_pairs": 3,
+   "rmsd_to_reference": {
+    "median": 2.648,
+    "q25": 2.286,
+    "q75": 3.009,
+    "p5": 1.997,
+    "p95": 3.299,
+    "max": 3.371,
+    "n_pairs": 2
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.376,
+    "q25": 2.646,
+    "q75": 3.654,
+    "p5": 2.062,
+    "p95": 3.876,
+    "max": 3.932,
+    "n_pairs": 3
+   },
+   "pairwise_fit_rmsd": {
+    "median": 3.334,
+    "q25": 1.826,
+    "q75": 3.345,
+    "p5": 0.619,
+    "p95": 3.353,
+    "max": 3.355,
+    "n_pairs": 3
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P00590",
+ "accessions": [
+  "P00590"
+ ],
+ "deposition_group": null,
+ "name": "Cutinase 1",
+ "clusters": [
+  {
+   "cluster_id": 452,
+   "n_members": 31,
+   "reference": "3QPA",
+   "reference_resolution": 0.85,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    35.006,
+    66.165,
+    36.755,
+    90.0,
+    93.93,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.327,
+    "q25": 0.309,
+    "q75": 0.351,
+    "p5": 0.299,
+    "p95": 0.611,
+    "max": 6.94,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.161,
+    "q25": 0.124,
+    "q75": 0.892,
+    "p5": 0.09,
+    "p95": 6.971,
+    "max": 7.149,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.14,
+    "q25": 0.111,
+    "q75": 0.866,
+    "p5": 0.083,
+    "p95": 0.924,
+    "max": 0.985,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

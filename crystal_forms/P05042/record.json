@@ -1,0 +1,59 @@
+{
+ "identity": "P05042",
+ "accessions": [
+  "P05042"
+ ],
+ "deposition_group": null,
+ "name": "Fumarate hydratase class II",
+ "clusters": [
+  {
+   "cluster_id": 1499,
+   "n_members": 12,
+   "reference": "6OS7",
+   "reference_resolution": 1.36,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    103.521,
+    217.598,
+    86.266,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.392,
+    "q25": 0.379,
+    "q75": 0.416,
+    "p5": 0.364,
+    "p95": 0.472,
+    "max": 0.483,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.46,
+    "q25": 0.359,
+    "q75": 0.605,
+    "p5": 0.218,
+    "p95": 0.87,
+    "max": 0.989,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.35,
+    "q25": 0.229,
+    "q75": 0.405,
+    "p5": 0.13,
+    "p95": 0.631,
+    "max": 0.889,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

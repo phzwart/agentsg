@@ -1,0 +1,59 @@
+{
+ "identity": "P03069",
+ "accessions": [
+  "P03069"
+ ],
+ "deposition_group": null,
+ "name": "General control transcription factor GCN4",
+ "clusters": [
+  {
+   "cluster_id": 1039,
+   "n_members": 16,
+   "reference": "1UO4",
+   "reference_resolution": 1.7,
+   "space_group": "P 41 3 2",
+   "reference_cell": [
+    79.114,
+    79.114,
+    79.114,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 119,
+   "rmsd_to_reference": {
+    "median": 0.682,
+    "q25": 0.494,
+    "q75": 0.8,
+    "p5": 0.427,
+    "p95": 1.471,
+    "max": 1.913,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.02,
+    "q25": 0.744,
+    "q75": 1.37,
+    "p5": 0.457,
+    "p95": 2.889,
+    "max": 3.801,
+    "n_pairs": 119
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.369,
+    "q25": 0.291,
+    "q75": 0.443,
+    "p5": 0.227,
+    "p95": 0.612,
+    "max": 0.726,
+    "n_pairs": 119
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

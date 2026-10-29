@@ -1,0 +1,59 @@
+{
+ "identity": "P49902",
+ "accessions": [
+  "P49902"
+ ],
+ "deposition_group": null,
+ "name": "Cytosolic purine 5'-nucleotidase",
+ "clusters": [
+  {
+   "cluster_id": 397,
+   "n_members": 35,
+   "reference": "2JC9",
+   "reference_resolution": 1.5,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    91.273,
+    127.983,
+    130.601,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.347,
+    "q75": 0.666,
+    "p5": 0.249,
+    "p95": 5.354,
+    "max": 5.377,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.564,
+    "q25": 0.435,
+    "q75": 0.994,
+    "p5": 0.3,
+    "p95": 5.468,
+    "max": 6.108,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.387,
+    "q25": 0.317,
+    "q75": 0.541,
+    "p5": 0.228,
+    "p95": 5.415,
+    "max": 5.623,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

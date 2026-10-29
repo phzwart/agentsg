@@ -1,0 +1,59 @@
+{
+ "identity": "G0S5Y9",
+ "accessions": [
+  "G0S5Y9"
+ ],
+ "deposition_group": null,
+ "name": "Uncharacterized protein",
+ "clusters": [
+  {
+   "cluster_id": 1646,
+   "n_members": 11,
+   "reference": "9R4M",
+   "reference_resolution": 1.95,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    106.524,
+    106.524,
+    127.109,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.581,
+    "q25": 0.449,
+    "q75": 0.624,
+    "p5": 0.254,
+    "p95": 1.096,
+    "max": 1.367,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.645,
+    "q25": 0.472,
+    "q75": 0.902,
+    "p5": 0.32,
+    "p95": 1.339,
+    "max": 1.6,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.194,
+    "q75": 0.237,
+    "p5": 0.151,
+    "p95": 0.281,
+    "max": 0.338,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

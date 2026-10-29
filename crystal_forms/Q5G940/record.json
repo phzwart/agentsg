@@ -1,0 +1,59 @@
+{
+ "identity": "Q5G940",
+ "accessions": [
+  "Q5G940"
+ ],
+ "deposition_group": null,
+ "name": "3-hydroxyacyl-[acyl-carrier-protein] dehydratase FabZ",
+ "clusters": [
+  {
+   "cluster_id": 1768,
+   "n_members": 11,
+   "reference": "3DP1",
+   "reference_resolution": 2.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    73.853,
+    100.21,
+    186.112,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.151,
+    "q25": 0.132,
+    "q75": 0.19,
+    "p5": 0.124,
+    "p95": 0.2,
+    "max": 0.202,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.193,
+    "q25": 0.157,
+    "q75": 0.224,
+    "p5": 0.131,
+    "p95": 0.272,
+    "max": 0.32,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.151,
+    "q25": 0.126,
+    "q75": 0.169,
+    "p5": 0.112,
+    "p95": 0.197,
+    "max": 0.227,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

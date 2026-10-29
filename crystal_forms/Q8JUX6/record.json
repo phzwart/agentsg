@@ -1,0 +1,59 @@
+{
+ "identity": "Q8JUX6",
+ "accessions": [
+  "Q8JUX6"
+ ],
+ "deposition_group": null,
+ "name": "Polyprotein P1234",
+ "clusters": [
+  {
+   "cluster_id": 48,
+   "n_members": 155,
+   "reference": "7H6Z",
+   "reference_resolution": 1.32,
+   "space_group": "P 31",
+   "reference_cell": [
+    87.467,
+    87.467,
+    85.681,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 154,
+    "reference": 1
+   },
+   "n_pairs": 11935,
+   "rmsd_to_reference": {
+    "median": 0.169,
+    "q25": 0.134,
+    "q75": 0.228,
+    "p5": 0.093,
+    "p95": 0.688,
+    "max": 1.572,
+    "n_pairs": 154
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.228,
+    "q25": 0.163,
+    "q75": 0.416,
+    "p5": 0.108,
+    "p95": 0.953,
+    "max": 1.806,
+    "n_pairs": 11935
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.137,
+    "q25": 0.108,
+    "q75": 0.213,
+    "p5": 0.072,
+    "p95": 0.381,
+    "max": 0.815,
+    "n_pairs": 11935
+   },
+   "n_low_margin": 154,
+   "n_via_neighbour": 0
+  }
+ ]
+}

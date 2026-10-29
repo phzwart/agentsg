@@ -1,0 +1,59 @@
+{
+ "identity": "P31013",
+ "accessions": [
+  "P31013"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine phenol-lyase",
+ "clusters": [
+  {
+   "cluster_id": 825,
+   "n_members": 20,
+   "reference": "6MLS",
+   "reference_resolution": 1.77,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    59.64,
+    133.51,
+    143.08,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 1.007,
+    "q25": 0.313,
+    "q75": 1.864,
+    "p5": 0.171,
+    "p95": 2.548,
+    "max": 2.628,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.235,
+    "q25": 0.638,
+    "q75": 1.987,
+    "p5": 0.273,
+    "p95": 2.536,
+    "max": 2.731,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.892,
+    "q25": 0.425,
+    "q75": 1.443,
+    "p5": 0.152,
+    "p95": 1.926,
+    "max": 2.044,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

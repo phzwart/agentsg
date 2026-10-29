@@ -1,0 +1,59 @@
+{
+ "identity": "A0AAD2UT50",
+ "accessions": [
+  "A0AAD2UT50"
+ ],
+ "deposition_group": null,
+ "name": "M23 family metallopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1627,
+   "n_members": 11,
+   "reference": "7E61",
+   "reference_resolution": 1.8,
+   "space_group": "P 61",
+   "reference_cell": [
+    115.175,
+    115.175,
+    55.34,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.591,
+    "q25": 0.512,
+    "q75": 0.669,
+    "p5": 0.459,
+    "p95": 1.066,
+    "max": 1.104,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.777,
+    "q25": 0.598,
+    "q75": 1.033,
+    "p5": 0.378,
+    "p95": 1.731,
+    "max": 2.13,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.488,
+    "q25": 0.396,
+    "q75": 0.64,
+    "p5": 0.307,
+    "p95": 0.891,
+    "max": 1.103,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

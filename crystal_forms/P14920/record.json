@@ -1,0 +1,59 @@
+{
+ "identity": "P14920",
+ "accessions": [
+  "P14920"
+ ],
+ "deposition_group": null,
+ "name": "D-amino-acid oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1697,
+   "n_members": 11,
+   "reference": "6KBP",
+   "reference_resolution": 2.25,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    149.493,
+    182.783,
+    51.039,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.857,
+    "q25": 0.572,
+    "q75": 1.114,
+    "p5": 0.462,
+    "p95": 24.224,
+    "max": 24.255,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.471,
+    "q25": 1.028,
+    "q75": 23.512,
+    "p5": 0.459,
+    "p95": 24.958,
+    "max": 25.66,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.402,
+    "q25": 0.322,
+    "q75": 0.456,
+    "p5": 0.273,
+    "p95": 0.494,
+    "max": 0.513,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

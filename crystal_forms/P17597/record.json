@@ -1,0 +1,59 @@
+{
+ "identity": "P17597",
+ "accessions": [
+  "P17597"
+ ],
+ "deposition_group": null,
+ "name": "Acetolactate synthase, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 603,
+   "n_members": 25,
+   "reference": "9C4P",
+   "reference_resolution": 2.4,
+   "space_group": "P 64 2 2",
+   "reference_cell": [
+    178.704,
+    178.704,
+    184.806,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.22,
+    "q25": 0.191,
+    "q75": 0.252,
+    "p5": 0.156,
+    "p95": 0.291,
+    "max": 0.352,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.464,
+    "q25": 0.321,
+    "q75": 0.687,
+    "p5": 0.225,
+    "p95": 0.988,
+    "max": 1.26,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.233,
+    "q25": 0.206,
+    "q75": 0.269,
+    "p5": 0.162,
+    "p95": 0.316,
+    "max": 0.374,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

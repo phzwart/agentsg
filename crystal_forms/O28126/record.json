@@ -1,0 +1,59 @@
+{
+ "identity": "O28126",
+ "accessions": [
+  "O28126"
+ ],
+ "deposition_group": null,
+ "name": "CCA-adding enzyme",
+ "clusters": [
+  {
+   "cluster_id": 851,
+   "n_members": 19,
+   "reference": "3OVA",
+   "reference_resolution": 1.98,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    57.942,
+    57.942,
+    427.945,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 3.04,
+    "q25": 0.464,
+    "q75": 3.554,
+    "p5": 0.344,
+    "p95": 3.923,
+    "max": 3.972,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.395,
+    "q25": 0.515,
+    "q75": 3.469,
+    "p5": 0.323,
+    "p95": 3.984,
+    "max": 4.309,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.755,
+    "q25": 0.282,
+    "q75": 1.076,
+    "p5": 0.217,
+    "p95": 1.171,
+    "max": 1.213,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P50440",
+ "accessions": [
+  "P50440"
+ ],
+ "deposition_group": null,
+ "name": "Glycine amidinotransferase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1725,
+   "n_members": 11,
+   "reference": "1JDW",
+   "reference_resolution": 1.9,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    83.6,
+    83.6,
+    200.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.849,
+    "q25": 0.165,
+    "q75": 0.93,
+    "p5": 0.128,
+    "p95": 1.685,
+    "max": 2.237,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.828,
+    "q25": 0.214,
+    "q75": 0.924,
+    "p5": 0.117,
+    "p95": 2.348,
+    "max": 2.374,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.79,
+    "q25": 0.14,
+    "q75": 0.833,
+    "p5": 0.102,
+    "p95": 2.329,
+    "max": 2.336,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

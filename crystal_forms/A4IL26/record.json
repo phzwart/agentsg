@@ -1,0 +1,59 @@
+{
+ "identity": "A4IL26",
+ "accessions": [
+  "A4IL26"
+ ],
+ "deposition_group": null,
+ "name": "Copper-containing nitrite reductase",
+ "clusters": [
+  {
+   "cluster_id": 621,
+   "n_members": 24,
+   "reference": "9KWT",
+   "reference_resolution": 0.96,
+   "space_group": "H 3",
+   "reference_cell": [
+    115.126,
+    115.126,
+    84.43,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.106,
+    "q25": 0.087,
+    "q75": 0.159,
+    "p5": 0.075,
+    "p95": 0.3,
+    "max": 0.324,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.132,
+    "q25": 0.099,
+    "q75": 0.27,
+    "p5": 0.071,
+    "p95": 0.354,
+    "max": 0.403,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.107,
+    "q25": 0.083,
+    "q75": 0.178,
+    "p5": 0.063,
+    "p95": 0.23,
+    "max": 0.252,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

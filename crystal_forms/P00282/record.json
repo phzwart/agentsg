@@ -1,0 +1,59 @@
+{
+ "identity": "P00282",
+ "accessions": [
+  "P00282"
+ ],
+ "deposition_group": null,
+ "name": "Azurin",
+ "clusters": [
+  {
+   "cluster_id": 1116,
+   "n_members": 15,
+   "reference": "4JKN",
+   "reference_resolution": 1.536,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.483,
+    79.228,
+    109.576,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.57,
+    "q25": 0.502,
+    "q75": 0.606,
+    "p5": 0.409,
+    "p95": 9.659,
+    "max": 26.291,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.6,
+    "q25": 0.321,
+    "q75": 0.872,
+    "p5": 0.23,
+    "p95": 25.552,
+    "max": 25.805,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.281,
+    "q25": 0.232,
+    "q75": 0.316,
+    "p5": 0.169,
+    "p95": 0.604,
+    "max": 0.643,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P78356",
+ "accessions": [
+  "P78356"
+ ],
+ "deposition_group": null,
+ "name": "Phosphatidylinositol 5-phosphate 4-kinase type-2 beta",
+ "clusters": [
+  {
+   "cluster_id": 611,
+   "n_members": 25,
+   "reference": "3X01",
+   "reference_resolution": 2.15,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    108.385,
+    181.79,
+    107.619,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.987,
+    "q25": 0.485,
+    "q75": 1.268,
+    "p5": 0.41,
+    "p95": 1.623,
+    "max": 2.26,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.167,
+    "q25": 0.755,
+    "q75": 1.594,
+    "p5": 0.5,
+    "p95": 2.497,
+    "max": 3.436,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.494,
+    "q25": 0.412,
+    "q75": 0.561,
+    "p5": 0.315,
+    "p95": 2.076,
+    "max": 2.131,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

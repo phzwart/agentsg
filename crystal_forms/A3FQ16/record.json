@@ -1,0 +1,59 @@
+{
+ "identity": "A3FQ16",
+ "accessions": [
+  "A3FQ16"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein",
+ "clusters": [
+  {
+   "cluster_id": 1210,
+   "n_members": 14,
+   "reference": "9NTZ",
+   "reference_resolution": 1.84,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    60.153,
+    56.331,
+    80.365,
+    90.0,
+    104.56,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.716,
+    "q25": 0.506,
+    "q75": 0.901,
+    "p5": 0.347,
+    "p95": 1.035,
+    "max": 1.078,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.864,
+    "q25": 0.687,
+    "q75": 1.066,
+    "p5": 0.487,
+    "p95": 1.436,
+    "max": 1.569,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.674,
+    "q25": 0.526,
+    "q75": 0.83,
+    "p5": 0.377,
+    "p95": 0.986,
+    "max": 1.05,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

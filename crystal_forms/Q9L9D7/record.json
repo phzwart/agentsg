@@ -1,0 +1,59 @@
+{
+ "identity": "Q9L9D7",
+ "accessions": [
+  "Q9L9D7"
+ ],
+ "deposition_group": null,
+ "name": "Cocaine esterase",
+ "clusters": [
+  {
+   "cluster_id": 1199,
+   "n_members": 15,
+   "reference": "3I2K",
+   "reference_resolution": 1.51,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    105.513,
+    105.513,
+    222.377,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.442,
+    "q25": 0.288,
+    "q75": 0.463,
+    "p5": 0.177,
+    "p95": 0.54,
+    "max": 0.635,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.486,
+    "q25": 0.361,
+    "q75": 0.609,
+    "p5": 0.24,
+    "p95": 1.654,
+    "max": 1.946,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.287,
+    "q25": 0.223,
+    "q75": 0.371,
+    "p5": 0.181,
+    "p95": 0.633,
+    "max": 0.687,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

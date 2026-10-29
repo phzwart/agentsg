@@ -1,0 +1,60 @@
+{
+ "identity": "O66841+O66842",
+ "accessions": [
+  "O66841",
+  "O66842"
+ ],
+ "deposition_group": null,
+ "name": "NADH-quinone oxidoreductase subunit F",
+ "clusters": [
+  {
+   "cluster_id": 513,
+   "n_members": 28,
+   "reference": "8QGW",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    63.537,
+    116.328,
+    189.621,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.346,
+    "q25": 0.284,
+    "q75": 0.517,
+    "p5": 0.186,
+    "p95": 16.462,
+    "max": 23.213,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.574,
+    "q25": 0.4,
+    "q75": 0.885,
+    "p5": 0.243,
+    "p95": 23.013,
+    "max": 23.979,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.248,
+    "q25": 0.188,
+    "q75": 0.327,
+    "p5": 0.112,
+    "p95": 0.614,
+    "max": 0.72,
+    "n_pairs": 378
+   },
+   "n_low_margin": 27,
+   "n_via_neighbour": 0
+  }
+ ]
+}

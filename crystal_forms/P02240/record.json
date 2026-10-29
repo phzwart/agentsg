@@ -1,0 +1,59 @@
+{
+ "identity": "P02240",
+ "accessions": [
+  "P02240"
+ ],
+ "deposition_group": null,
+ "name": "Leghemoglobin-2",
+ "clusters": [
+  {
+   "cluster_id": 964,
+   "n_members": 17,
+   "reference": "1GDJ",
+   "reference_resolution": 1.7,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    93.48,
+    51.6,
+    38.33,
+    90.0,
+    98.8,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 26.517,
+    "q25": 19.93,
+    "q75": 26.557,
+    "p5": 0.443,
+    "p95": 26.617,
+    "max": 26.617,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.072,
+    "q25": 0.309,
+    "q75": 26.506,
+    "p5": 0.139,
+    "p95": 26.805,
+    "max": 26.916,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.346,
+    "q25": 0.136,
+    "q75": 1.108,
+    "p5": 0.072,
+    "p95": 1.195,
+    "max": 1.254,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

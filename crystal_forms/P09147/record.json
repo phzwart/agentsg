@@ -1,0 +1,59 @@
+{
+ "identity": "P09147",
+ "accessions": [
+  "P09147"
+ ],
+ "deposition_group": null,
+ "name": "UDP-glucose 4-epimerase",
+ "clusters": [
+  {
+   "cluster_id": 1049,
+   "n_members": 16,
+   "reference": "1UDB",
+   "reference_resolution": 1.65,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    83.5,
+    83.5,
+    108.9,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.266,
+    "q25": 0.167,
+    "q75": 0.742,
+    "p5": 0.118,
+    "p95": 1.256,
+    "max": 1.424,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.691,
+    "q25": 0.301,
+    "q75": 1.149,
+    "p5": 0.144,
+    "p95": 1.468,
+    "max": 2.086,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.191,
+    "q25": 0.129,
+    "q75": 0.504,
+    "p5": 0.086,
+    "p95": 0.654,
+    "max": 0.716,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

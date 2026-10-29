@@ -1,0 +1,59 @@
+{
+ "identity": "Q9R1E6",
+ "accessions": [
+  "Q9R1E6"
+ ],
+ "deposition_group": null,
+ "name": "Autotaxin",
+ "clusters": [
+  {
+   "cluster_id": 1612,
+   "n_members": 12,
+   "reference": "5OHI",
+   "reference_resolution": 1.66,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    61.057,
+    93.779,
+    75.695,
+    90.0,
+    94.91,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.503,
+    "q25": 0.419,
+    "q75": 0.643,
+    "p5": 0.39,
+    "p95": 3.356,
+    "max": 5.92,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.679,
+    "q25": 0.497,
+    "q75": 1.042,
+    "p5": 0.26,
+    "p95": 5.913,
+    "max": 6.001,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.318,
+    "q25": 0.245,
+    "q75": 0.407,
+    "p5": 0.169,
+    "p95": 5.868,
+    "max": 5.893,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

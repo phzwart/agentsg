@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0H2ZD27",
+ "accessions": [
+  "A0A0H2ZD27"
+ ],
+ "deposition_group": null,
+ "name": "CFTR inhibitory factor",
+ "clusters": [
+  {
+   "cluster_id": 361,
+   "n_members": 37,
+   "reference": "4DM7",
+   "reference_resolution": 1.36,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    168.353,
+    84.138,
+    89.166,
+    90.0,
+    100.48,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.291,
+    "q25": 0.198,
+    "q75": 0.408,
+    "p5": 0.147,
+    "p95": 0.564,
+    "max": 0.625,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.41,
+    "q25": 0.304,
+    "q75": 0.48,
+    "p5": 0.187,
+    "p95": 0.591,
+    "max": 0.66,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.341,
+    "q25": 0.158,
+    "q75": 0.374,
+    "p5": 0.094,
+    "p95": 0.492,
+    "max": 0.534,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

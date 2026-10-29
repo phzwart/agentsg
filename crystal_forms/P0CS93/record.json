@@ -1,0 +1,60 @@
+{
+ "identity": "P0CS93",
+ "accessions": [
+  "P0CS93"
+ ],
+ "deposition_group": null,
+ "name": "Galactose oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1373,
+   "n_members": 13,
+   "reference": "9NDR",
+   "reference_resolution": 1.22,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    97.148,
+    88.913,
+    85.845,
+    90.0,
+    117.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.619,
+    "q25": 0.421,
+    "q75": 0.661,
+    "p5": 0.278,
+    "p95": 0.692,
+    "max": 0.712,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.055,
+    "q25": 0.695,
+    "q75": 2.573,
+    "p5": 0.255,
+    "p95": 2.845,
+    "max": 2.95,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.392,
+    "q25": 0.273,
+    "q75": 0.451,
+    "p5": 0.111,
+    "p95": 0.606,
+    "max": 0.669,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

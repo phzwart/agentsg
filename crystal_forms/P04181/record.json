@@ -1,0 +1,60 @@
+{
+ "identity": "P04181",
+ "accessions": [
+  "P04181"
+ ],
+ "deposition_group": null,
+ "name": "Ornithine aminotransferase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 540,
+   "n_members": 27,
+   "reference": "12AX",
+   "reference_resolution": 1.58,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    115.837,
+    115.837,
+    186.331,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.365,
+    "q25": 0.355,
+    "q75": 0.438,
+    "p5": 0.238,
+    "p95": 0.578,
+    "max": 0.742,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.469,
+    "q25": 0.366,
+    "q75": 0.636,
+    "p5": 0.267,
+    "p95": 0.967,
+    "max": 1.481,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.298,
+    "q25": 0.257,
+    "q75": 0.351,
+    "p5": 0.205,
+    "p95": 0.535,
+    "max": 0.64,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

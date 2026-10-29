@@ -1,0 +1,60 @@
+{
+ "identity": "P0ACE0+P69741",
+ "accessions": [
+  "P0ACE0",
+  "P69741"
+ ],
+ "deposition_group": null,
+ "name": "Hydrogenase-2 large chain",
+ "clusters": [
+  {
+   "cluster_id": 1516,
+   "n_members": 12,
+   "reference": "6SYO",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    100.667,
+    101.21,
+    170.826,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.244,
+    "q25": 0.171,
+    "q75": 0.272,
+    "p5": 0.117,
+    "p95": 0.344,
+    "max": 0.374,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.623,
+    "q25": 0.427,
+    "q75": 0.905,
+    "p5": 0.201,
+    "p95": 1.462,
+    "max": 1.894,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.131,
+    "q25": 0.108,
+    "q75": 0.189,
+    "p5": 0.051,
+    "p95": 0.347,
+    "max": 0.361,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

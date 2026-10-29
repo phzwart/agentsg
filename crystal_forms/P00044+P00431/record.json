@@ -1,0 +1,60 @@
+{
+ "identity": "P00044+P00431",
+ "accessions": [
+  "P00044",
+  "P00431"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c peroxidase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1114,
+   "n_members": 15,
+   "reference": "1S6V",
+   "reference_resolution": 1.88,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.24,
+    107.92,
+    88.38,
+    90.0,
+    104.42,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.265,
+    "q25": 1.166,
+    "q75": 3.216,
+    "p5": 1.09,
+    "p95": 4.01,
+    "max": 4.274,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.875,
+    "q25": 1.368,
+    "q75": 5.233,
+    "p5": 0.553,
+    "p95": 6.575,
+    "max": 7.864,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.465,
+    "q25": 0.39,
+    "q75": 0.512,
+    "p5": 0.302,
+    "p95": 1.057,
+    "max": 1.08,
+    "n_pairs": 105
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

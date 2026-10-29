@@ -1,0 +1,59 @@
+{
+ "identity": "L0DSL2",
+ "accessions": [
+  "L0DSL2"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome c-552",
+ "clusters": [
+  {
+   "cluster_id": 624,
+   "n_members": 24,
+   "reference": "3FO3",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    193.79,
+    193.79,
+    193.79,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.744,
+    "q25": 0.472,
+    "q75": 1.018,
+    "p5": 0.367,
+    "p95": 41.427,
+    "max": 41.488,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.644,
+    "q25": 1.132,
+    "q75": 41.403,
+    "p5": 0.396,
+    "p95": 42.471,
+    "max": 43.42,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.248,
+    "q25": 0.195,
+    "q75": 0.291,
+    "p5": 0.105,
+    "p95": 0.41,
+    "max": 0.613,
+    "n_pairs": 276
+   },
+   "n_low_margin": 23,
+   "n_via_neighbour": 0
+  }
+ ]
+}

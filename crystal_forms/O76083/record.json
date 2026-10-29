@@ -1,0 +1,59 @@
+{
+ "identity": "O76083",
+ "accessions": [
+  "O76083"
+ ],
+ "deposition_group": null,
+ "name": "High affinity cGMP-specific 3',5'-cyclic phosphodiesterase 9A",
+ "clusters": [
+  {
+   "cluster_id": 625,
+   "n_members": 24,
+   "reference": "4Y86",
+   "reference_resolution": 2.01,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    104.135,
+    104.135,
+    269.536,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 25.146,
+    "q25": 12.985,
+    "q75": 59.921,
+    "p5": 0.45,
+    "p95": 60.245,
+    "max": 60.342,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 25.339,
+    "q25": 1.272,
+    "q75": 53.489,
+    "p5": 0.489,
+    "p95": 60.58,
+    "max": 61.03,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.677,
+    "q25": 0.379,
+    "q75": 21.861,
+    "p5": 0.208,
+    "p95": 21.906,
+    "max": 21.939,
+    "n_pairs": 276
+   },
+   "n_low_margin": 17,
+   "n_via_neighbour": 0
+  }
+ ]
+}

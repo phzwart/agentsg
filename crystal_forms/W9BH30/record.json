@@ -1,0 +1,59 @@
+{
+ "identity": "W9BH30",
+ "accessions": [
+  "W9BH30"
+ ],
+ "deposition_group": null,
+ "name": "Bestrophin family ion channel",
+ "clusters": [
+  {
+   "cluster_id": 945,
+   "n_members": 18,
+   "reference": "4WD8",
+   "reference_resolution": 2.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    114.079,
+    160.034,
+    161.881,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.658,
+    "q25": 0.401,
+    "q75": 0.942,
+    "p5": 0.271,
+    "p95": 1.534,
+    "max": 1.797,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.951,
+    "q25": 0.64,
+    "q75": 1.335,
+    "p5": 0.348,
+    "p95": 1.822,
+    "max": 2.231,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.667,
+    "q25": 0.477,
+    "q75": 0.821,
+    "p5": 0.3,
+    "p95": 1.06,
+    "max": 1.264,
+    "n_pairs": 153
+   },
+   "n_low_margin": 17,
+   "n_via_neighbour": 0
+  }
+ ]
+}

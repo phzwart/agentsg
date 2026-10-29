@@ -1,0 +1,59 @@
+{
+ "identity": "Q9BPX1",
+ "accessions": [
+  "Q9BPX1"
+ ],
+ "deposition_group": null,
+ "name": "L-fucose dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 616,
+   "n_members": 25,
+   "reference": "6H0M",
+   "reference_resolution": 1.25,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    91.59,
+    91.59,
+    131.112,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.296,
+    "q25": 0.254,
+    "q75": 0.33,
+    "p5": 0.219,
+    "p95": 0.416,
+    "max": 0.456,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.236,
+    "q25": 0.177,
+    "q75": 0.312,
+    "p5": 0.126,
+    "p95": 0.441,
+    "max": 0.612,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.152,
+    "q25": 0.13,
+    "q75": 0.186,
+    "p5": 0.099,
+    "p95": 0.227,
+    "max": 0.29,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

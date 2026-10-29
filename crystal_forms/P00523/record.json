@@ -1,0 +1,109 @@
+{
+ "identity": "P00523",
+ "accessions": [
+  "P00523"
+ ],
+ "deposition_group": null,
+ "name": "Proto-oncogene tyrosine-protein kinase Src",
+ "clusters": [
+  {
+   "cluster_id": 219,
+   "n_members": 55,
+   "reference": "7WF5",
+   "reference_resolution": 1.798,
+   "space_group": "P 1",
+   "reference_cell": [
+    41.927,
+    63.632,
+    74.505,
+    79.14,
+    89.5,
+    88.8
+   ],
+   "status_counts": {
+    "placed": 54,
+    "reference": 1
+   },
+   "n_pairs": 1485,
+   "rmsd_to_reference": {
+    "median": 1.19,
+    "q25": 0.952,
+    "q75": 1.294,
+    "p5": 0.724,
+    "p95": 10.071,
+    "max": 26.02,
+    "n_pairs": 54
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.498,
+    "q25": 1.12,
+    "q75": 2.056,
+    "p5": 0.746,
+    "p95": 26.107,
+    "max": 26.489,
+    "n_pairs": 1485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.8,
+    "q25": 0.605,
+    "q75": 1.106,
+    "p5": 0.42,
+    "p95": 1.601,
+    "max": 7.563,
+    "n_pairs": 1485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 958,
+   "n_members": 17,
+   "reference": "4OMN",
+   "reference_resolution": 1.5,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    46.688,
+    46.688,
+    127.683,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 3,
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.385,
+    "q25": 0.355,
+    "q75": 0.487,
+    "p5": 0.244,
+    "p95": 0.583,
+    "max": 0.636,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.32,
+    "q25": 0.264,
+    "q75": 0.361,
+    "p5": 0.202,
+    "p95": 0.418,
+    "max": 0.515,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.252,
+    "q25": 0.216,
+    "q75": 0.293,
+    "p5": 0.182,
+    "p95": 0.348,
+    "max": 0.379,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

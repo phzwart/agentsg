@@ -1,0 +1,59 @@
+{
+ "identity": "Q2G036",
+ "accessions": [
+  "Q2G036"
+ ],
+ "deposition_group": null,
+ "name": "ATP-dependent Clp protease proteolytic subunit",
+ "clusters": [
+  {
+   "cluster_id": 1182,
+   "n_members": 15,
+   "reference": "8E71",
+   "reference_resolution": 1.57,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    94.68,
+    126.994,
+    145.851,
+    90.0,
+    93.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.435,
+    "q25": 0.315,
+    "q75": 0.678,
+    "p5": 0.231,
+    "p95": 1.113,
+    "max": 1.515,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.494,
+    "q25": 0.398,
+    "q75": 0.707,
+    "p5": 0.235,
+    "p95": 1.182,
+    "max": 1.565,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.222,
+    "q25": 0.191,
+    "q75": 0.276,
+    "p5": 0.144,
+    "p95": 0.408,
+    "max": 0.498,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q8IL11",
+ "accessions": [
+  "Q8IL11"
+ ],
+ "deposition_group": null,
+ "name": "Leucine aminopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1084,
+   "n_members": 16,
+   "reference": "8EZ4",
+   "reference_resolution": 1.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    173.94,
+    176.6,
+    230.901,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 2.267,
+    "q25": 0.928,
+    "q75": 2.446,
+    "p5": 0.493,
+    "p95": 3.161,
+    "max": 4.323,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.359,
+    "q25": 0.675,
+    "q75": 2.857,
+    "p5": 0.356,
+    "p95": 4.47,
+    "max": 5.571,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.345,
+    "q25": 0.304,
+    "q75": 0.366,
+    "p5": 0.221,
+    "p95": 0.438,
+    "max": 0.597,
+    "n_pairs": 105
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

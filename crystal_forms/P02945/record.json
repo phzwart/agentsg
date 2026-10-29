@@ -1,0 +1,206 @@
+{
+ "identity": "P02945",
+ "accessions": [
+  "P02945"
+ ],
+ "deposition_group": null,
+ "name": "Bacteriorhodopsin",
+ "clusters": [
+  {
+   "cluster_id": 91,
+   "n_members": 104,
+   "reference": "7Z09",
+   "reference_resolution": 1.05,
+   "space_group": "P 63",
+   "reference_cell": [
+    60.73,
+    60.73,
+    110.27,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 103,
+    "reference": 1
+   },
+   "n_pairs": 5356,
+   "rmsd_to_reference": {
+    "median": 0.787,
+    "q25": 0.323,
+    "q75": 0.817,
+    "p5": 0.154,
+    "p95": 1.225,
+    "max": 19.599,
+    "n_pairs": 103
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.84,
+    "q25": 0.408,
+    "q75": 1.242,
+    "p5": 0.175,
+    "p95": 14.998,
+    "max": 19.57,
+    "n_pairs": 5356
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.402,
+    "q25": 0.272,
+    "q75": 0.787,
+    "p5": 0.14,
+    "p95": 14.692,
+    "max": 18.479,
+    "n_pairs": 5356
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 858,
+   "n_members": 19,
+   "reference": "1PXR",
+   "reference_resolution": 1.7,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    44.967,
+    108.839,
+    55.981,
+    90.0,
+    113.6,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.243,
+    "q25": 0.218,
+    "q75": 0.452,
+    "p5": 0.197,
+    "p95": 15.735,
+    "max": 15.756,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.764,
+    "q25": 0.506,
+    "q75": 14.521,
+    "p5": 0.23,
+    "p95": 17.378,
+    "max": 17.741,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.217,
+    "q25": 0.176,
+    "q75": 0.264,
+    "p5": 0.11,
+    "p95": 0.394,
+    "max": 0.465,
+    "n_pairs": 171
+   },
+   "n_low_margin": 18,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1241,
+   "n_members": 14,
+   "reference": "2ZZL",
+   "reference_resolution": 2.03,
+   "space_group": "P 6 2 2",
+   "reference_cell": [
+    102.21,
+    102.21,
+    112.48,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.422,
+    "q25": 0.384,
+    "q75": 0.841,
+    "p5": 0.277,
+    "p95": 1.237,
+    "max": 1.575,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.653,
+    "q25": 0.386,
+    "q75": 1.385,
+    "p5": 0.266,
+    "p95": 2.008,
+    "max": 2.803,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.412,
+    "q25": 0.327,
+    "q75": 0.973,
+    "p5": 0.195,
+    "p95": 1.229,
+    "max": 1.392,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1668,
+   "n_members": 11,
+   "reference": "3HAP",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    44.951,
+    102.135,
+    128.027,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.304,
+    "q25": 0.244,
+    "q75": 0.548,
+    "p5": 0.206,
+    "p95": 0.652,
+    "max": 0.67,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.609,
+    "q25": 0.344,
+    "q75": 0.911,
+    "p5": 0.149,
+    "p95": 1.193,
+    "max": 1.285,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.242,
+    "q25": 0.203,
+    "q75": 0.289,
+    "p5": 0.108,
+    "p95": 0.371,
+    "max": 0.659,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

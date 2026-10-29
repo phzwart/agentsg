@@ -1,0 +1,60 @@
+{
+ "identity": "P01857",
+ "accessions": [
+  "P01857"
+ ],
+ "deposition_group": null,
+ "name": "Immunoglobulin heavy constant gamma 1",
+ "clusters": [
+  {
+   "cluster_id": 352,
+   "n_members": 38,
+   "reference": "5JIH",
+   "reference_resolution": 1.663,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.657,
+    79.465,
+    140.503,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "no_shared_accession": 4,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 4.969,
+    "q25": 4.876,
+    "q75": 5.893,
+    "p5": 4.751,
+    "p95": 7.129,
+    "max": 8.124,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 4.829,
+    "q25": 1.725,
+    "q75": 7.497,
+    "p5": 0.813,
+    "p95": 12.173,
+    "max": 15.726,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.174,
+    "q25": 0.553,
+    "q75": 1.438,
+    "p5": 0.333,
+    "p95": 4.764,
+    "max": 5.26,
+    "n_pairs": 561
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

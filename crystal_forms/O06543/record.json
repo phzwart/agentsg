@@ -1,0 +1,59 @@
+{
+ "identity": "O06543",
+ "accessions": [
+  "O06543"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-methylacyl-CoA racemase",
+ "clusters": [
+  {
+   "cluster_id": 563,
+   "n_members": 26,
+   "reference": "9I31",
+   "reference_resolution": 1.88,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    276.626,
+    276.626,
+    390.302,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.276,
+    "q25": 0.254,
+    "q75": 0.352,
+    "p5": 0.22,
+    "p95": 0.394,
+    "max": 0.704,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.322,
+    "q25": 0.253,
+    "q75": 0.399,
+    "p5": 0.187,
+    "p95": 0.879,
+    "max": 1.211,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.172,
+    "q25": 0.15,
+    "q75": 0.198,
+    "p5": 0.13,
+    "p95": 0.292,
+    "max": 0.331,
+    "n_pairs": 325
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

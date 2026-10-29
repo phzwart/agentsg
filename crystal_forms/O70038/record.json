@@ -1,0 +1,59 @@
+{
+ "identity": "O70038",
+ "accessions": [
+  "O70038"
+ ],
+ "deposition_group": null,
+ "name": "Penicillin-binding protein 1B",
+ "clusters": [
+  {
+   "cluster_id": 1029,
+   "n_members": 16,
+   "reference": "9SGA",
+   "reference_resolution": 1.5,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    97.163,
+    149.084,
+    98.457,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.33,
+    "q25": 0.259,
+    "q75": 0.397,
+    "p5": 0.16,
+    "p95": 1.298,
+    "max": 1.353,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.42,
+    "q25": 0.31,
+    "q75": 0.598,
+    "p5": 0.232,
+    "p95": 1.347,
+    "max": 1.445,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.262,
+    "q25": 0.205,
+    "q75": 0.344,
+    "p5": 0.154,
+    "p95": 1.047,
+    "max": 1.056,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

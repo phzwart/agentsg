@@ -1,0 +1,59 @@
+{
+ "identity": "Q16878",
+ "accessions": [
+  "Q16878"
+ ],
+ "deposition_group": null,
+ "name": "Cysteine dioxygenase type 1",
+ "clusters": [
+  {
+   "cluster_id": 1181,
+   "n_members": 15,
+   "reference": "6BPU",
+   "reference_resolution": 1.8,
+   "space_group": "P 65",
+   "reference_cell": [
+    131.385,
+    131.385,
+    34.246,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.183,
+    "q25": 0.157,
+    "q75": 0.226,
+    "p5": 0.123,
+    "p95": 0.292,
+    "max": 0.313,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.254,
+    "q25": 0.209,
+    "q75": 0.32,
+    "p5": 0.145,
+    "p95": 0.412,
+    "max": 0.491,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.153,
+    "q75": 0.225,
+    "p5": 0.128,
+    "p95": 0.278,
+    "max": 0.311,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

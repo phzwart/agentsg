@@ -1,0 +1,60 @@
+{
+ "identity": "P15090",
+ "accessions": [
+  "P15090"
+ ],
+ "deposition_group": null,
+ "name": "Fatty acid-binding protein, adipocyte",
+ "clusters": [
+  {
+   "cluster_id": 23,
+   "n_members": 241,
+   "reference": "7FXV",
+   "reference_resolution": 0.88,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    32.532,
+    53.809,
+    74.951,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 31,
+    "placed": 209,
+    "reference": 1
+   },
+   "n_pairs": 21945,
+   "rmsd_to_reference": {
+    "median": 0.4,
+    "q25": 0.352,
+    "q75": 0.449,
+    "p5": 0.224,
+    "p95": 1.0,
+    "max": 1.465,
+    "n_pairs": 209
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.421,
+    "q25": 0.302,
+    "q75": 0.547,
+    "p5": 0.194,
+    "p95": 1.056,
+    "max": 2.254,
+    "n_pairs": 21945
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.329,
+    "q25": 0.222,
+    "q75": 0.415,
+    "p5": 0.152,
+    "p95": 0.566,
+    "max": 1.185,
+    "n_pairs": 21945
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

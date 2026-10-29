@@ -1,0 +1,59 @@
+{
+ "identity": "P29375",
+ "accessions": [
+  "P29375"
+ ],
+ "deposition_group": null,
+ "name": "Lysine-specific demethylase 5A",
+ "clusters": [
+  {
+   "cluster_id": 396,
+   "n_members": 35,
+   "reference": "6BGY",
+   "reference_resolution": 1.22,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    116.685,
+    61.943,
+    46.747,
+    90.0,
+    92.22,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.31,
+    "q25": 0.248,
+    "q75": 0.408,
+    "p5": 0.183,
+    "p95": 0.499,
+    "max": 0.566,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.439,
+    "q25": 0.343,
+    "q75": 0.552,
+    "p5": 0.256,
+    "p95": 0.776,
+    "max": 1.165,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.368,
+    "q25": 0.286,
+    "q75": 0.473,
+    "p5": 0.192,
+    "p95": 0.681,
+    "max": 0.956,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

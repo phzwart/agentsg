@@ -1,0 +1,60 @@
+{
+ "identity": "P01889+P61769",
+ "accessions": [
+  "P01889",
+  "P61769"
+ ],
+ "deposition_group": null,
+ "name": "HLA class I histocompatibility antigen, B alpha chain",
+ "clusters": [
+  {
+   "cluster_id": 190,
+   "n_members": 60,
+   "reference": "1K5N",
+   "reference_resolution": 1.09,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.845,
+    82.484,
+    110.708,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 59,
+    "reference": 1
+   },
+   "n_pairs": 1770,
+   "rmsd_to_reference": {
+    "median": 1.091,
+    "q25": 0.873,
+    "q75": 1.375,
+    "p5": 0.658,
+    "p95": 2.173,
+    "max": 3.41,
+    "n_pairs": 59
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.923,
+    "q25": 0.697,
+    "q75": 1.201,
+    "p5": 0.435,
+    "p95": 2.359,
+    "max": 3.158,
+    "n_pairs": 1770
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.472,
+    "q25": 0.396,
+    "q75": 0.591,
+    "p5": 0.261,
+    "p95": 1.286,
+    "max": 1.532,
+    "n_pairs": 1770
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

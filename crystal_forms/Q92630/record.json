@@ -1,0 +1,60 @@
+{
+ "identity": "Q92630",
+ "accessions": [
+  "Q92630"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity tyrosine-phosphorylation-regulated kinase 2",
+ "clusters": [
+  {
+   "cluster_id": 1449,
+   "n_members": 13,
+   "reference": "7DH9",
+   "reference_resolution": 2.194,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    64.142,
+    128.44,
+    134.106,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.351,
+    "q25": 0.311,
+    "q75": 0.38,
+    "p5": 0.255,
+    "p95": 0.394,
+    "max": 0.396,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.694,
+    "q25": 0.478,
+    "q75": 0.801,
+    "p5": 0.331,
+    "p95": 1.154,
+    "max": 1.401,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.294,
+    "q25": 0.268,
+    "q75": 0.321,
+    "p5": 0.208,
+    "p95": 0.414,
+    "max": 0.445,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

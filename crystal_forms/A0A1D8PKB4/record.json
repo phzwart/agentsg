@@ -1,0 +1,59 @@
+{
+ "identity": "A0A1D8PKB4",
+ "accessions": [
+  "A0A1D8PKB4"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine protein kinase YCK2",
+ "clusters": [
+  {
+   "cluster_id": 1622,
+   "n_members": 11,
+   "reference": "36JD",
+   "reference_resolution": 2.0,
+   "space_group": "H 3",
+   "reference_cell": [
+    91.486,
+    91.486,
+    118.729,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.654,
+    "q25": 0.465,
+    "q75": 0.827,
+    "p5": 0.298,
+    "p95": 0.912,
+    "max": 0.921,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.702,
+    "q25": 0.583,
+    "q75": 0.836,
+    "p5": 0.405,
+    "p95": 0.917,
+    "max": 0.961,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.616,
+    "q25": 0.526,
+    "q75": 0.716,
+    "p5": 0.318,
+    "p95": 0.825,
+    "max": 0.867,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

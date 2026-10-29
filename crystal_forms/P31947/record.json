@@ -1,0 +1,108 @@
+{
+ "identity": "P31947",
+ "accessions": [
+  "P31947"
+ ],
+ "deposition_group": null,
+ "name": "14-3-3 protein sigma",
+ "clusters": [
+  {
+   "cluster_id": 253,
+   "n_members": 49,
+   "reference": "6HMT",
+   "reference_resolution": 1.1,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    81.934,
+    112.435,
+    62.394,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 48,
+    "reference": 1
+   },
+   "n_pairs": 1176,
+   "rmsd_to_reference": {
+    "median": 0.364,
+    "q25": 0.24,
+    "q75": 0.473,
+    "p5": 0.2,
+    "p95": 0.766,
+    "max": 0.871,
+    "n_pairs": 48
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.298,
+    "q75": 0.648,
+    "p5": 0.167,
+    "p95": 0.874,
+    "max": 1.072,
+    "n_pairs": 1176
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.37,
+    "q25": 0.212,
+    "q75": 0.497,
+    "p5": 0.121,
+    "p95": 0.673,
+    "max": 0.759,
+    "n_pairs": 1176
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1713,
+   "n_members": 11,
+   "reference": "8QS6",
+   "reference_resolution": 1.8,
+   "space_group": "C 2 2 2",
+   "reference_cell": [
+    62.39,
+    149.455,
+    76.526,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.214,
+    "q25": 0.183,
+    "q75": 0.893,
+    "p5": 0.156,
+    "p95": 1.205,
+    "max": 1.265,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.604,
+    "q25": 0.266,
+    "q75": 1.648,
+    "p5": 0.161,
+    "p95": 1.981,
+    "max": 2.574,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.172,
+    "q75": 0.674,
+    "p5": 0.129,
+    "p95": 0.952,
+    "max": 1.105,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

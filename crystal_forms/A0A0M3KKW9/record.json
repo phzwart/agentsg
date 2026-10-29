@@ -1,0 +1,60 @@
+{
+ "identity": "A0A0M3KKW9",
+ "accessions": [
+  "A0A0M3KKW9"
+ ],
+ "deposition_group": null,
+ "name": "clade A/E 93TH057 HIV-1 gp120 core",
+ "clusters": [
+  {
+   "cluster_id": 434,
+   "n_members": 32,
+   "reference": "9BXG",
+   "reference_resolution": 1.79,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.329,
+    67.511,
+    87.747,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 8,
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 1.685,
+    "q25": 0.86,
+    "q75": 2.909,
+    "p5": 0.666,
+    "p95": 2.97,
+    "max": 3.14,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.799,
+    "q25": 0.72,
+    "q75": 2.578,
+    "p5": 0.456,
+    "p95": 2.807,
+    "max": 3.075,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.539,
+    "q25": 0.443,
+    "q75": 0.633,
+    "p5": 0.326,
+    "p95": 0.734,
+    "max": 0.877,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

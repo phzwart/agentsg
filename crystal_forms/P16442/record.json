@@ -1,0 +1,61 @@
+{
+ "identity": "P16442",
+ "accessions": [
+  "P16442"
+ ],
+ "deposition_group": null,
+ "name": "Histo-blood group ABO system transferase",
+ "clusters": [
+  {
+   "cluster_id": 53,
+   "n_members": 141,
+   "reference": "6GX2",
+   "reference_resolution": 1.07,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    52.569,
+    148.682,
+    79.677,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 137,
+    "no_shared_accession": 1,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 9453,
+   "rmsd_to_reference": {
+    "median": 0.612,
+    "q25": 0.489,
+    "q75": 0.844,
+    "p5": 0.26,
+    "p95": 6.473,
+    "max": 11.61,
+    "n_pairs": 137
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.523,
+    "q25": 0.372,
+    "q75": 0.858,
+    "p5": 0.229,
+    "p95": 7.985,
+    "max": 11.815,
+    "n_pairs": 9453
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.455,
+    "q25": 0.305,
+    "q75": 0.743,
+    "p5": 0.177,
+    "p95": 7.888,
+    "max": 11.638,
+    "n_pairs": 9453
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

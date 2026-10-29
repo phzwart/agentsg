@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y3C8",
+ "accessions": [
+  "Q9Y3C8"
+ ],
+ "deposition_group": null,
+ "name": "Ubiquitin-fold modifier-conjugating enzyme 1",
+ "clusters": [
+  {
+   "cluster_id": 1094,
+   "n_members": 16,
+   "reference": "9GLH",
+   "reference_resolution": 1.115,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    47.16,
+    47.16,
+    143.616,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.33,
+    "q25": 0.27,
+    "q75": 0.406,
+    "p5": 0.165,
+    "p95": 0.62,
+    "max": 0.673,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.373,
+    "q25": 0.299,
+    "q75": 0.475,
+    "p5": 0.225,
+    "p95": 0.658,
+    "max": 0.817,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.295,
+    "q25": 0.216,
+    "q75": 0.389,
+    "p5": 0.151,
+    "p95": 0.551,
+    "max": 0.661,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

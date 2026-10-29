@@ -1,0 +1,59 @@
+{
+ "identity": "A0QP43",
+ "accessions": [
+  "A0QP43"
+ ],
+ "deposition_group": null,
+ "name": "Type-4 uracil-DNA glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 804,
+   "n_members": 20,
+   "reference": "6AJP",
+   "reference_resolution": 1.334,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    36.436,
+    51.209,
+    54.533,
+    90.0,
+    104.98,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.33,
+    "q25": 0.227,
+    "q75": 0.433,
+    "p5": 0.193,
+    "p95": 0.596,
+    "max": 0.741,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.392,
+    "q25": 0.278,
+    "q75": 0.556,
+    "p5": 0.186,
+    "p95": 0.847,
+    "max": 1.026,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.213,
+    "q75": 0.44,
+    "p5": 0.144,
+    "p95": 0.64,
+    "max": 0.677,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

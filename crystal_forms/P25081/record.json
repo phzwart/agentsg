@@ -1,0 +1,59 @@
+{
+ "identity": "P25081",
+ "accessions": [
+  "P25081"
+ ],
+ "deposition_group": null,
+ "name": "Mannose-6-phosphate isomerase",
+ "clusters": [
+  {
+   "cluster_id": 1398,
+   "n_members": 13,
+   "reference": "2WFP",
+   "reference_resolution": 1.67,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    35.904,
+    92.47,
+    111.87,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 1.448,
+    "q25": 0.369,
+    "q75": 2.078,
+    "p5": 0.23,
+    "p95": 2.112,
+    "max": 2.143,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.598,
+    "q25": 0.423,
+    "q75": 2.136,
+    "p5": 0.284,
+    "p95": 2.266,
+    "max": 2.361,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.836,
+    "q25": 0.341,
+    "q75": 0.985,
+    "p5": 0.244,
+    "p95": 1.085,
+    "max": 1.121,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

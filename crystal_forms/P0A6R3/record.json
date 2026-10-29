@@ -1,0 +1,59 @@
+{
+ "identity": "P0A6R3",
+ "accessions": [
+  "P0A6R3"
+ ],
+ "deposition_group": null,
+ "name": "DNA-binding protein Fis",
+ "clusters": [
+  {
+   "cluster_id": 817,
+   "n_members": 20,
+   "reference": "5DS9",
+   "reference_resolution": 2.561,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.29,
+    93.95,
+    154.51,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.535,
+    "q25": 0.462,
+    "q75": 0.592,
+    "p5": 0.351,
+    "p95": 0.682,
+    "max": 1.166,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.555,
+    "q25": 0.486,
+    "q75": 0.679,
+    "p5": 0.386,
+    "p95": 1.284,
+    "max": 1.752,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.395,
+    "q25": 0.357,
+    "q75": 0.457,
+    "p5": 0.251,
+    "p95": 0.547,
+    "max": 0.646,
+    "n_pairs": 190
+   },
+   "n_low_margin": 17,
+   "n_via_neighbour": 0
+  }
+ ]
+}

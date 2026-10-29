@@ -1,0 +1,59 @@
+{
+ "identity": "Q97VT7",
+ "accessions": [
+  "Q97VT7"
+ ],
+ "deposition_group": null,
+ "name": "Aryldialkylphosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1091,
+   "n_members": 16,
+   "reference": "4KEZ",
+   "reference_resolution": 1.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    87.13,
+    103.62,
+    151.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.5,
+    "q25": 0.274,
+    "q75": 2.976,
+    "p5": 0.197,
+    "p95": 3.465,
+    "max": 3.683,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.087,
+    "q25": 0.598,
+    "q75": 3.341,
+    "p5": 0.271,
+    "p95": 4.134,
+    "max": 5.17,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.407,
+    "q25": 0.251,
+    "q75": 0.661,
+    "p5": 0.144,
+    "p95": 1.129,
+    "max": 1.162,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

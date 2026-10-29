@@ -1,0 +1,403 @@
+{
+ "identity": "P56817",
+ "accessions": [
+  "P56817"
+ ],
+ "deposition_group": null,
+ "name": "Beta-secretase 1",
+ "clusters": [
+  {
+   "cluster_id": 74,
+   "n_members": 115,
+   "reference": "6EJ2",
+   "reference_resolution": 1.46,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    101.58,
+    101.58,
+    170.73,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 114,
+    "reference": 1
+   },
+   "n_pairs": 6555,
+   "rmsd_to_reference": {
+    "median": 1.215,
+    "q25": 0.95,
+    "q75": 1.654,
+    "p5": 0.52,
+    "p95": 2.739,
+    "max": 3.347,
+    "n_pairs": 114
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.013,
+    "q25": 0.69,
+    "q75": 1.645,
+    "p5": 0.433,
+    "p95": 2.716,
+    "max": 5.023,
+    "n_pairs": 6555
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.48,
+    "q25": 0.375,
+    "q75": 0.63,
+    "p5": 0.251,
+    "p95": 0.899,
+    "max": 1.406,
+    "n_pairs": 6555
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 165,
+   "n_members": 71,
+   "reference": "7MYI",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.156,
+    89.489,
+    131.474,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 67,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 2278,
+   "rmsd_to_reference": {
+    "median": 0.443,
+    "q25": 0.396,
+    "q75": 0.502,
+    "p5": 0.31,
+    "p95": 0.918,
+    "max": 31.469,
+    "n_pairs": 67
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.564,
+    "q25": 0.446,
+    "q75": 0.732,
+    "p5": 0.294,
+    "p95": 30.678,
+    "max": 31.576,
+    "n_pairs": 2278
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.357,
+    "q25": 0.28,
+    "q75": 0.429,
+    "p5": 0.151,
+    "p95": 0.52,
+    "max": 0.649,
+    "n_pairs": 2278
+   },
+   "n_low_margin": 66,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 169,
+   "n_members": 69,
+   "reference": "4LXA",
+   "reference_resolution": 1.95,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    81.931,
+    103.07,
+    100.227,
+    90.0,
+    104.33,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 68,
+    "reference": 1
+   },
+   "n_pairs": 2346,
+   "rmsd_to_reference": {
+    "median": 0.72,
+    "q25": 0.522,
+    "q75": 1.065,
+    "p5": 0.337,
+    "p95": 29.494,
+    "max": 29.929,
+    "n_pairs": 68
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.398,
+    "q25": 0.932,
+    "q75": 2.768,
+    "p5": 0.564,
+    "p95": 29.564,
+    "max": 43.634,
+    "n_pairs": 2346
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.467,
+    "q25": 0.356,
+    "q75": 0.684,
+    "p5": 0.268,
+    "p95": 22.383,
+    "max": 22.595,
+    "n_pairs": 2346
+   },
+   "n_low_margin": 7,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 275,
+   "n_members": 46,
+   "reference": "6EQM",
+   "reference_resolution": 1.35,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    47.66,
+    76.65,
+    104.54,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 45,
+    "reference": 1
+   },
+   "n_pairs": 1035,
+   "rmsd_to_reference": {
+    "median": 0.684,
+    "q25": 0.604,
+    "q75": 0.903,
+    "p5": 0.465,
+    "p95": 22.237,
+    "max": 23.783,
+    "n_pairs": 45
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.066,
+    "q25": 0.704,
+    "q75": 2.196,
+    "p5": 0.422,
+    "p95": 23.522,
+    "max": 24.585,
+    "n_pairs": 1035
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.595,
+    "q25": 0.375,
+    "q75": 0.712,
+    "p5": 0.207,
+    "p95": 22.296,
+    "max": 22.562,
+    "n_pairs": 1035
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 398,
+   "n_members": 35,
+   "reference": "4FM7",
+   "reference_resolution": 1.56,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    74.471,
+    103.905,
+    100.682,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.772,
+    "q25": 0.717,
+    "q75": 0.885,
+    "p5": 0.508,
+    "p95": 1.247,
+    "max": 1.378,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.858,
+    "q25": 0.6,
+    "q75": 1.082,
+    "p5": 0.295,
+    "p95": 1.516,
+    "max": 1.946,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.552,
+    "q25": 0.386,
+    "q75": 0.755,
+    "p5": 0.186,
+    "p95": 0.969,
+    "max": 1.158,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 490,
+   "n_members": 30,
+   "reference": "4FGX",
+   "reference_resolution": 1.59,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    104.71,
+    128.73,
+    76.16,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.444,
+    "q25": 0.397,
+    "q75": 0.524,
+    "p5": 0.241,
+    "p95": 0.632,
+    "max": 0.671,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.533,
+    "q25": 0.445,
+    "q75": 0.647,
+    "p5": 0.296,
+    "p95": 1.127,
+    "max": 1.407,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.457,
+    "q25": 0.355,
+    "q75": 0.549,
+    "p5": 0.224,
+    "p95": 0.704,
+    "max": 0.884,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 682,
+   "n_members": 23,
+   "reference": "4L7G",
+   "reference_resolution": 1.38,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    72.664,
+    104.471,
+    50.076,
+    90.0,
+    94.82,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.444,
+    "q25": 0.407,
+    "q75": 0.487,
+    "p5": 0.376,
+    "p95": 31.486,
+    "max": 33.166,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.466,
+    "q25": 0.404,
+    "q75": 0.585,
+    "p5": 0.286,
+    "p95": 33.316,
+    "max": 33.482,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.399,
+    "q25": 0.328,
+    "q75": 0.523,
+    "p5": 0.244,
+    "p95": 22.286,
+    "max": 22.711,
+    "n_pairs": 253
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1732,
+   "n_members": 11,
+   "reference": "2G94",
+   "reference_resolution": 1.86,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    86.628,
+    131.024,
+    88.236,
+    90.0,
+    97.39,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.671,
+    "q25": 0.518,
+    "q75": 0.705,
+    "p5": 0.406,
+    "p95": 0.791,
+    "max": 0.824,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.89,
+    "q25": 0.733,
+    "q75": 1.227,
+    "p5": 0.435,
+    "p95": 1.624,
+    "max": 2.036,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.556,
+    "q25": 0.469,
+    "q75": 0.628,
+    "p5": 0.232,
+    "p95": 0.721,
+    "max": 0.77,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P22557",
+ "accessions": [
+  "P22557"
+ ],
+ "deposition_group": null,
+ "name": "5-aminolevulinate synthase, erythroid-specific, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 548,
+   "n_members": 27,
+   "reference": "5QR1",
+   "reference_resolution": 1.44,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    125.757,
+    108.412,
+    75.74,
+    90.0,
+    109.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.14,
+    "q25": 0.13,
+    "q75": 0.2,
+    "p5": 0.094,
+    "p95": 0.321,
+    "max": 0.379,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.279,
+    "q25": 0.198,
+    "q75": 0.398,
+    "p5": 0.129,
+    "p95": 0.586,
+    "max": 0.85,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.106,
+    "q25": 0.091,
+    "q75": 0.13,
+    "p5": 0.072,
+    "p95": 0.185,
+    "max": 0.245,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

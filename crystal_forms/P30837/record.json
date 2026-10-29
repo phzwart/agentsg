@@ -1,0 +1,59 @@
+{
+ "identity": "P30837",
+ "accessions": [
+  "P30837"
+ ],
+ "deposition_group": null,
+ "name": "Aldehyde dehydrogenase family 1 member B1, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1544,
+   "n_members": 12,
+   "reference": "9Q4E",
+   "reference_resolution": 2.1,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    102.446,
+    102.446,
+    190.156,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.1,
+    "q25": 0.457,
+    "q75": 1.299,
+    "p5": 0.315,
+    "p95": 1.374,
+    "max": 1.378,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.778,
+    "q25": 0.392,
+    "q75": 1.222,
+    "p5": 0.239,
+    "p95": 1.566,
+    "max": 1.851,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.228,
+    "q25": 0.209,
+    "q75": 0.261,
+    "p5": 0.158,
+    "p95": 0.284,
+    "max": 0.29,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

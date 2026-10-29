@@ -1,0 +1,59 @@
+{
+ "identity": "P40261",
+ "accessions": [
+  "P40261"
+ ],
+ "deposition_group": null,
+ "name": "Nicotinamide N-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1718,
+   "n_members": 11,
+   "reference": "2IIP",
+   "reference_resolution": 2.05,
+   "space_group": "P 1",
+   "reference_cell": [
+    46.016,
+    62.007,
+    107.073,
+    82.35,
+    81.89,
+    68.3
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.345,
+    "q25": 0.304,
+    "q75": 0.373,
+    "p5": 0.293,
+    "p95": 0.542,
+    "max": 0.675,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.342,
+    "q75": 0.471,
+    "p5": 0.264,
+    "p95": 0.664,
+    "max": 0.751,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.357,
+    "q25": 0.306,
+    "q75": 0.433,
+    "p5": 0.24,
+    "p95": 0.639,
+    "max": 0.727,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

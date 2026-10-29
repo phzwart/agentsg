@@ -1,0 +1,110 @@
+{
+ "identity": "A8EVM5",
+ "accessions": [
+  "A8EVM5"
+ ],
+ "deposition_group": null,
+ "name": "Ion transport protein",
+ "clusters": [
+  {
+   "cluster_id": 217,
+   "n_members": 55,
+   "reference": "6MWD",
+   "reference_resolution": 2.327,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    124.495,
+    124.495,
+    189.669,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "different_space_group": 20,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 9.223,
+    "q25": 0.617,
+    "q75": 9.452,
+    "p5": 0.324,
+    "p95": 9.635,
+    "max": 9.797,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.742,
+    "q25": 1.208,
+    "q75": 11.925,
+    "p5": 0.671,
+    "p95": 12.921,
+    "max": 14.048,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.871,
+    "q25": 0.583,
+    "q75": 1.119,
+    "p5": 0.389,
+    "p95": 1.276,
+    "max": 1.92,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1103,
+   "n_members": 15,
+   "reference": "5KLB",
+   "reference_resolution": 2.7,
+   "space_group": "P 21 2 21",
+   "reference_cell": [
+    124.9,
+    125.7,
+    191.485,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 1.176,
+    "q25": 0.972,
+    "q75": 1.53,
+    "p5": 0.809,
+    "p95": 1.97,
+    "max": 2.227,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.466,
+    "q25": 1.208,
+    "q75": 2.015,
+    "p5": 0.705,
+    "p95": 5.365,
+    "max": 5.501,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.865,
+    "q25": 0.761,
+    "q75": 1.031,
+    "p5": 0.602,
+    "p95": 1.608,
+    "max": 1.81,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

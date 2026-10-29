@@ -1,0 +1,59 @@
+{
+ "identity": "P45452",
+ "accessions": [
+  "P45452"
+ ],
+ "deposition_group": null,
+ "name": "Collagenase 3",
+ "clusters": [
+  {
+   "cluster_id": 681,
+   "n_members": 23,
+   "reference": "5B5O",
+   "reference_resolution": 1.2,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    136.409,
+    36.06,
+    95.948,
+    90.0,
+    131.09,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.433,
+    "q25": 0.342,
+    "q75": 0.49,
+    "p5": 0.274,
+    "p95": 0.579,
+    "max": 0.725,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.477,
+    "q25": 0.359,
+    "q75": 0.586,
+    "p5": 0.265,
+    "p95": 0.835,
+    "max": 1.086,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.361,
+    "q25": 0.275,
+    "q75": 0.454,
+    "p5": 0.212,
+    "p95": 0.719,
+    "max": 1.007,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q8WWQ0",
+ "accessions": [
+  "Q8WWQ0"
+ ],
+ "deposition_group": null,
+ "name": "PH-interacting protein",
+ "clusters": [
+  {
+   "cluster_id": 58,
+   "n_members": 132,
+   "reference": "5S9G",
+   "reference_resolution": 1.091,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    81.442,
+    26.703,
+    55.711,
+    90.0,
+    100.61,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 131,
+    "reference": 1
+   },
+   "n_pairs": 8646,
+   "rmsd_to_reference": {
+    "median": 0.251,
+    "q25": 0.217,
+    "q75": 0.316,
+    "p5": 0.168,
+    "p95": 0.622,
+    "max": 0.89,
+    "n_pairs": 131
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.378,
+    "q25": 0.279,
+    "q75": 0.495,
+    "p5": 0.171,
+    "p95": 0.755,
+    "max": 1.187,
+    "n_pairs": 8646
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.203,
+    "q75": 0.36,
+    "p5": 0.128,
+    "p95": 0.654,
+    "max": 1.04,
+    "n_pairs": 8646
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

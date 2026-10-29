@@ -1,0 +1,109 @@
+{
+ "identity": "Q97W02",
+ "accessions": [
+  "Q97W02"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase IV",
+ "clusters": [
+  {
+   "cluster_id": 133,
+   "n_members": 82,
+   "reference": "1JX4",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    97.09,
+    102.82,
+    52.3,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 74,
+    "different_space_group": 7
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 2.976,
+    "q25": 0.847,
+    "q75": 3.227,
+    "p5": 0.494,
+    "p95": 3.367,
+    "max": 3.679,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.987,
+    "q25": 0.877,
+    "q75": 3.128,
+    "p5": 0.5,
+    "p95": 3.56,
+    "max": 4.33,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.562,
+    "q25": 0.446,
+    "q75": 0.671,
+    "p5": 0.319,
+    "p95": 0.939,
+    "max": 1.261,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1793,
+   "n_members": 11,
+   "reference": "3V6H",
+   "reference_resolution": 2.3,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    52.532,
+    111.267,
+    98.942,
+    90.0,
+    102.68,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.901,
+    "q25": 0.737,
+    "q75": 0.979,
+    "p5": 0.445,
+    "p95": 1.02,
+    "max": 1.021,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.875,
+    "q25": 0.861,
+    "q75": 2.235,
+    "p5": 0.402,
+    "p95": 3.102,
+    "max": 4.156,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.625,
+    "q25": 0.478,
+    "q75": 0.719,
+    "p5": 0.287,
+    "p95": 0.829,
+    "max": 0.894,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q7ZA32",
+ "accessions": [
+  "Q7ZA32"
+ ],
+ "deposition_group": null,
+ "name": "Pyranose 2-oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1779,
+   "n_members": 11,
+   "reference": "4MOR",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    100.242,
+    102.469,
+    137.84,
+    90.0,
+    91.09,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.416,
+    "q25": 0.403,
+    "q75": 0.57,
+    "p5": 0.241,
+    "p95": 0.668,
+    "max": 0.717,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.537,
+    "q25": 0.465,
+    "q75": 0.63,
+    "p5": 0.312,
+    "p95": 0.818,
+    "max": 0.9,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.406,
+    "q25": 0.29,
+    "q75": 0.492,
+    "p5": 0.207,
+    "p95": 0.529,
+    "max": 0.568,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

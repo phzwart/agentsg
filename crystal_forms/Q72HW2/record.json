@@ -1,0 +1,60 @@
+{
+ "identity": "Q72HW2",
+ "accessions": [
+  "Q72HW2"
+ ],
+ "deposition_group": null,
+ "name": "Laccase",
+ "clusters": [
+  {
+   "cluster_id": 582,
+   "n_members": 26,
+   "reference": "5K7A",
+   "reference_resolution": 1.5,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    93.744,
+    110.332,
+    96.484,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.174,
+    "q25": 0.157,
+    "q75": 0.198,
+    "p5": 0.107,
+    "p95": 0.232,
+    "max": 0.239,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.184,
+    "q25": 0.133,
+    "q75": 0.214,
+    "p5": 0.072,
+    "p95": 0.287,
+    "max": 0.389,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.15,
+    "q25": 0.112,
+    "q75": 0.175,
+    "p5": 0.064,
+    "p95": 0.216,
+    "max": 0.257,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

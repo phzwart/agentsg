@@ -1,0 +1,60 @@
+{
+ "identity": "P28147",
+ "accessions": [
+  "P28147"
+ ],
+ "deposition_group": null,
+ "name": "TATA-box-binding protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1542,
+   "n_members": 12,
+   "reference": "1QNA",
+   "reference_resolution": 1.8,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    41.8,
+    146.7,
+    57.4,
+    90.0,
+    90.5,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.679,
+    "q25": 0.558,
+    "q75": 0.955,
+    "p5": 0.45,
+    "p95": 1.326,
+    "max": 1.326,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.679,
+    "q25": 0.538,
+    "q75": 0.842,
+    "p5": 0.411,
+    "p95": 1.329,
+    "max": 1.464,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.298,
+    "q25": 0.224,
+    "q75": 0.383,
+    "p5": 0.17,
+    "p95": 0.411,
+    "max": 0.439,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

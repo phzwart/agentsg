@@ -1,0 +1,59 @@
+{
+ "identity": "Q8PDX2",
+ "accessions": [
+  "Q8PDX2"
+ ],
+ "deposition_group": null,
+ "name": "Acyl-CoA:acyl-CoA alkyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1312,
+   "n_members": 14,
+   "reference": "5VXF",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    82.244,
+    85.861,
+    102.961,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.411,
+    "q25": 0.312,
+    "q75": 0.453,
+    "p5": 0.202,
+    "p95": 0.553,
+    "max": 0.611,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.448,
+    "q25": 0.344,
+    "q75": 0.567,
+    "p5": 0.225,
+    "p95": 0.814,
+    "max": 0.907,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.269,
+    "q25": 0.185,
+    "q75": 0.338,
+    "p5": 0.144,
+    "p95": 0.45,
+    "max": 0.491,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

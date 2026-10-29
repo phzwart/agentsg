@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0W8ATM9",
+ "accessions": [
+  "A0A0W8ATM9"
+ ],
+ "deposition_group": null,
+ "name": "Peroxidase",
+ "clusters": [
+  {
+   "cluster_id": 1620,
+   "n_members": 11,
+   "reference": "6FIY",
+   "reference_resolution": 1.09000433235,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.62,
+    76.31,
+    75.94,
+    90.0,
+    107.92,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.215,
+    "q25": 0.207,
+    "q75": 0.23,
+    "p5": 0.183,
+    "p95": 0.325,
+    "max": 0.329,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.356,
+    "q25": 0.117,
+    "q75": 0.454,
+    "p5": 0.059,
+    "p95": 0.649,
+    "max": 0.658,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.168,
+    "q25": 0.116,
+    "q75": 0.179,
+    "p5": 0.059,
+    "p95": 0.202,
+    "max": 0.232,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

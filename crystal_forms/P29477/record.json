@@ -1,0 +1,59 @@
+{
+ "identity": "P29477",
+ "accessions": [
+  "P29477"
+ ],
+ "deposition_group": null,
+ "name": "Nitric oxide synthase, inducible",
+ "clusters": [
+  {
+   "cluster_id": 327,
+   "n_members": 40,
+   "reference": "3E7M",
+   "reference_resolution": 2.0,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    213.848,
+    213.848,
+    116.645,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 0.571,
+    "q25": 0.465,
+    "q75": 7.921,
+    "p5": 0.292,
+    "p95": 9.093,
+    "max": 43.048,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.962,
+    "q25": 1.512,
+    "q75": 8.196,
+    "p5": 0.628,
+    "p95": 19.455,
+    "max": 45.727,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.59,
+    "q25": 0.378,
+    "q75": 7.337,
+    "p5": 0.283,
+    "p95": 7.917,
+    "max": 17.806,
+    "n_pairs": 780
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

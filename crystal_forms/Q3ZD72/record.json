@@ -1,0 +1,60 @@
+{
+ "identity": "Q3ZD72",
+ "accessions": [
+  "Q3ZD72"
+ ],
+ "deposition_group": null,
+ "name": "Hax3",
+ "clusters": [
+  {
+   "cluster_id": 785,
+   "n_members": 21,
+   "reference": "4GJR",
+   "reference_resolution": 1.85,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    81.839,
+    87.625,
+    88.455,
+    90.0,
+    102.85,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1,
+    "no_shared_accession": 5
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.472,
+    "q25": 0.359,
+    "q75": 0.808,
+    "p5": 0.319,
+    "p95": 3.674,
+    "max": 5.797,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.638,
+    "q25": 0.427,
+    "q75": 1.304,
+    "p5": 0.26,
+    "p95": 6.084,
+    "max": 6.169,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.458,
+    "q25": 0.351,
+    "q75": 0.925,
+    "p5": 0.247,
+    "p95": 1.422,
+    "max": 1.572,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

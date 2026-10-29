@@ -1,0 +1,59 @@
+{
+ "identity": "Q70GK9",
+ "accessions": [
+  "Q70GK9"
+ ],
+ "deposition_group": null,
+ "name": "Fluorinase",
+ "clusters": [
+  {
+   "cluster_id": 1304,
+   "n_members": 14,
+   "reference": "1RQP",
+   "reference_resolution": 1.8,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    75.908,
+    130.302,
+    183.435,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.327,
+    "q25": 0.272,
+    "q75": 0.409,
+    "p5": 0.232,
+    "p95": 0.991,
+    "max": 1.006,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.002,
+    "q25": 0.509,
+    "q75": 1.221,
+    "p5": 0.327,
+    "p95": 1.809,
+    "max": 2.031,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.337,
+    "q25": 0.259,
+    "q75": 0.885,
+    "p5": 0.173,
+    "p95": 0.991,
+    "max": 1.052,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

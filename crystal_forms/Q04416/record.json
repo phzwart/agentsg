@@ -1,0 +1,59 @@
+{
+ "identity": "Q04416",
+ "accessions": [
+  "Q04416"
+ ],
+ "deposition_group": null,
+ "name": "4-hydroxybenzoyl-CoA thioesterase",
+ "clusters": [
+  {
+   "cluster_id": 1293,
+   "n_members": 14,
+   "reference": "1Q4T",
+   "reference_resolution": 1.6,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    112.5,
+    112.5,
+    60.6,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.356,
+    "q25": 0.264,
+    "q75": 0.462,
+    "p5": 0.256,
+    "p95": 0.662,
+    "max": 0.682,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.484,
+    "q25": 0.386,
+    "q75": 0.725,
+    "p5": 0.272,
+    "p95": 1.243,
+    "max": 1.505,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.217,
+    "q75": 0.293,
+    "p5": 0.171,
+    "p95": 0.352,
+    "max": 0.372,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

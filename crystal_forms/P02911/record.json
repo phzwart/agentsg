@@ -1,0 +1,59 @@
+{
+ "identity": "P02911",
+ "accessions": [
+  "P02911"
+ ],
+ "deposition_group": null,
+ "name": "Lysine/arginine/ornithine-binding periplasmic protein",
+ "clusters": [
+  {
+   "cluster_id": 1667,
+   "n_members": 11,
+   "reference": "6MLO",
+   "reference_resolution": 1.717,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    37.168,
+    58.653,
+    115.463,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.649,
+    "q25": 0.5,
+    "q75": 0.659,
+    "p5": 0.322,
+    "p95": 40.61,
+    "max": 40.626,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.473,
+    "q25": 0.324,
+    "q75": 40.096,
+    "p5": 0.223,
+    "p95": 40.529,
+    "max": 40.66,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.26,
+    "q25": 0.227,
+    "q75": 0.29,
+    "p5": 0.154,
+    "p95": 0.324,
+    "max": 0.34,
+    "n_pairs": 55
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

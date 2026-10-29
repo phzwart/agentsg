@@ -1,0 +1,59 @@
+{
+ "identity": "P36837",
+ "accessions": [
+  "P36837"
+ ],
+ "deposition_group": null,
+ "name": "Dipeptide and tripeptide permease B",
+ "clusters": [
+  {
+   "cluster_id": 1273,
+   "n_members": 14,
+   "reference": "8B1A",
+   "reference_resolution": 2.15,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    54.324,
+    125.742,
+    168.002,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.469,
+    "q25": 0.322,
+    "q75": 0.834,
+    "p5": 0.202,
+    "p95": 1.106,
+    "max": 1.367,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.796,
+    "q25": 0.525,
+    "q75": 1.091,
+    "p5": 0.35,
+    "p95": 1.741,
+    "max": 2.224,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.323,
+    "q25": 0.253,
+    "q75": 0.543,
+    "p5": 0.168,
+    "p95": 0.75,
+    "max": 0.852,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

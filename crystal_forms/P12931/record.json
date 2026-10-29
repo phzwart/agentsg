@@ -1,0 +1,59 @@
+{
+ "identity": "P12931",
+ "accessions": [
+  "P12931"
+ ],
+ "deposition_group": null,
+ "name": "Proto-oncogene tyrosine-protein kinase Src",
+ "clusters": [
+  {
+   "cluster_id": 546,
+   "n_members": 27,
+   "reference": "1O43",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    26.44,
+    58.656,
+    64.111,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.337,
+    "q25": 0.282,
+    "q75": 0.43,
+    "p5": 0.265,
+    "p95": 0.562,
+    "max": 0.676,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.465,
+    "q25": 0.364,
+    "q75": 0.574,
+    "p5": 0.281,
+    "p95": 0.778,
+    "max": 1.007,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.26,
+    "q25": 0.23,
+    "q75": 0.298,
+    "p5": 0.186,
+    "p95": 0.352,
+    "max": 0.416,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

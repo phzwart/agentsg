@@ -1,0 +1,59 @@
+{
+ "identity": "B1WPM8",
+ "accessions": [
+  "B1WPM8"
+ ],
+ "deposition_group": null,
+ "name": "1,4-alpha-glucan branching enzyme GlgB",
+ "clusters": [
+  {
+   "cluster_id": 1211,
+   "n_members": 14,
+   "reference": "5GQW",
+   "reference_resolution": 1.8,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    133.619,
+    133.619,
+    185.248,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.281,
+    "q25": 0.196,
+    "q75": 0.411,
+    "p5": 0.136,
+    "p95": 0.779,
+    "max": 0.962,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.49,
+    "q25": 0.36,
+    "q75": 0.768,
+    "p5": 0.235,
+    "p95": 1.424,
+    "max": 1.829,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.178,
+    "q25": 0.13,
+    "q75": 0.227,
+    "p5": 0.078,
+    "p95": 0.358,
+    "max": 0.405,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

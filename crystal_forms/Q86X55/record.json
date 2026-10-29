@@ -1,0 +1,59 @@
+{
+ "identity": "Q86X55",
+ "accessions": [
+  "Q86X55"
+ ],
+ "deposition_group": null,
+ "name": "Histone-arginine methyltransferase CARM1",
+ "clusters": [
+  {
+   "cluster_id": 843,
+   "n_members": 20,
+   "reference": "6S7A",
+   "reference_resolution": 1.86,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    74.784,
+    98.624,
+    207.137,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.454,
+    "q25": 0.375,
+    "q75": 0.545,
+    "p5": 0.288,
+    "p95": 0.766,
+    "max": 0.853,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.689,
+    "q25": 0.53,
+    "q75": 0.87,
+    "p5": 0.366,
+    "p95": 1.067,
+    "max": 1.332,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.314,
+    "q25": 0.262,
+    "q75": 0.399,
+    "p5": 0.177,
+    "p95": 0.485,
+    "max": 0.599,
+    "n_pairs": 190
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  }
+ ]
+}

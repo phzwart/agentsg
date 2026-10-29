@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UM07",
+ "accessions": [
+  "Q9UM07"
+ ],
+ "deposition_group": null,
+ "name": "Protein-arginine deiminase type-4",
+ "clusters": [
+  {
+   "cluster_id": 799,
+   "n_members": 21,
+   "reference": "2DEW",
+   "reference_resolution": 2.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    146.268,
+    60.773,
+    115.146,
+    90.0,
+    124.26,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.487,
+    "q25": 0.401,
+    "q75": 1.31,
+    "p5": 0.248,
+    "p95": 1.972,
+    "max": 2.25,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.227,
+    "q25": 0.54,
+    "q75": 1.938,
+    "p5": 0.369,
+    "p95": 2.577,
+    "max": 2.827,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.055,
+    "q25": 0.45,
+    "q75": 1.334,
+    "p5": 0.276,
+    "p95": 1.852,
+    "max": 1.894,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

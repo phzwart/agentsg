@@ -1,0 +1,61 @@
+{
+ "identity": "Q9NUW8",
+ "accessions": [
+  "Q9NUW8"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosyl-DNA phosphodiesterase 1",
+ "clusters": [
+  {
+   "cluster_id": 267,
+   "n_members": 47,
+   "reference": "6N0D",
+   "reference_resolution": 1.453,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.058,
+    105.429,
+    193.915,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 3,
+    "placed": 41,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.383,
+    "q25": 0.32,
+    "q75": 0.58,
+    "p5": 0.244,
+    "p95": 1.042,
+    "max": 1.173,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.613,
+    "q25": 0.412,
+    "q75": 0.916,
+    "p5": 0.255,
+    "p95": 1.219,
+    "max": 1.567,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.291,
+    "q25": 0.205,
+    "q75": 0.325,
+    "p5": 0.139,
+    "p95": 0.402,
+    "max": 1.208,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

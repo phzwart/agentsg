@@ -1,0 +1,109 @@
+{
+ "identity": "P02787",
+ "accessions": [
+  "P02787"
+ ],
+ "deposition_group": null,
+ "name": "Serotransferrin",
+ "clusters": [
+  {
+   "cluster_id": 857,
+   "n_members": 19,
+   "reference": "9RTB",
+   "reference_resolution": 1.93,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    136.133,
+    157.695,
+    107.218,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.424,
+    "q25": 0.378,
+    "q75": 0.534,
+    "p5": 0.282,
+    "p95": 0.61,
+    "max": 0.612,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.497,
+    "q25": 0.433,
+    "q75": 0.584,
+    "p5": 0.334,
+    "p95": 0.798,
+    "max": 0.931,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.361,
+    "q25": 0.311,
+    "q75": 0.412,
+    "p5": 0.259,
+    "p95": 0.492,
+    "max": 0.538,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1240,
+   "n_members": 14,
+   "reference": "1RYO",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    44.092,
+    57.252,
+    135.988,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.615,
+    "q25": 0.348,
+    "q75": 0.638,
+    "p5": 0.2,
+    "p95": 2.933,
+    "max": 3.232,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.019,
+    "q25": 0.621,
+    "q75": 2.504,
+    "p5": 0.23,
+    "p95": 3.457,
+    "max": 4.115,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.42,
+    "q25": 0.313,
+    "q75": 0.546,
+    "p5": 0.184,
+    "p95": 0.612,
+    "max": 0.655,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

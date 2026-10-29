@@ -1,0 +1,59 @@
+{
+ "identity": "P69834",
+ "accessions": [
+  "P69834"
+ ],
+ "deposition_group": null,
+ "name": "2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase, chloroplastic",
+ "clusters": [
+  {
+   "cluster_id": 1417,
+   "n_members": 13,
+   "reference": "2YC3",
+   "reference_resolution": 1.4,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    74.6,
+    74.6,
+    220.5,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.836,
+    "q25": 0.488,
+    "q75": 1.022,
+    "p5": 0.341,
+    "p95": 1.605,
+    "max": 1.869,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.029,
+    "q25": 0.807,
+    "q75": 1.316,
+    "p5": 0.448,
+    "p95": 2.034,
+    "max": 2.351,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.83,
+    "q25": 0.682,
+    "q75": 1.148,
+    "p5": 0.287,
+    "p95": 1.376,
+    "max": 1.546,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

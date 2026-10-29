@@ -1,0 +1,59 @@
+{
+ "identity": "Q9FEW9",
+ "accessions": [
+  "Q9FEW9"
+ ],
+ "deposition_group": null,
+ "name": "12-oxophytodienoate reductase 3",
+ "clusters": [
+  {
+   "cluster_id": 1012,
+   "n_members": 17,
+   "reference": "8AUM",
+   "reference_resolution": 1.35,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.38,
+    92.1,
+    89.96,
+    90.0,
+    99.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 1.008,
+    "q25": 0.373,
+    "q75": 1.128,
+    "p5": 0.318,
+    "p95": 7.225,
+    "max": 7.547,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.401,
+    "q25": 0.884,
+    "q75": 7.082,
+    "p5": 0.326,
+    "p95": 7.567,
+    "max": 7.819,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.355,
+    "q25": 0.249,
+    "q75": 6.963,
+    "p5": 0.164,
+    "p95": 7.455,
+    "max": 7.623,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

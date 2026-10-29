@@ -1,0 +1,61 @@
+{
+ "identity": "P66937+Q99XG5",
+ "accessions": [
+  "P66937",
+  "Q99XG5"
+ ],
+ "deposition_group": null,
+ "name": "DNA gyrase subunit A",
+ "clusters": [
+  {
+   "cluster_id": 1071,
+   "n_members": 16,
+   "reference": "5IWI",
+   "reference_resolution": 1.98,
+   "space_group": "P 61",
+   "reference_cell": [
+    92.897,
+    92.897,
+    410.784,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 2.835,
+    "q25": 0.567,
+    "q75": 25.584,
+    "p5": 0.345,
+    "p95": 26.759,
+    "max": 28.263,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 25.433,
+    "q25": 1.712,
+    "q75": 25.746,
+    "p5": 0.517,
+    "p95": 29.943,
+    "max": 30.472,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 23.182,
+    "q25": 0.454,
+    "q75": 23.327,
+    "p5": 0.274,
+    "p95": 23.405,
+    "max": 23.484,
+    "n_pairs": 91
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q8NBK3",
+ "accessions": [
+  "Q8NBK3"
+ ],
+ "deposition_group": null,
+ "name": "Formylglycine-generating enzyme",
+ "clusters": [
+  {
+   "cluster_id": 936,
+   "n_members": 18,
+   "reference": "5SSX",
+   "reference_resolution": 1.02,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    43.494,
+    61.64,
+    109.579,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "no_shared_accession": 6,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.198,
+    "q25": 0.176,
+    "q75": 0.32,
+    "p5": 0.161,
+    "p95": 0.535,
+    "max": 0.713,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.313,
+    "q25": 0.246,
+    "q75": 0.457,
+    "p5": 0.181,
+    "p95": 0.727,
+    "max": 0.908,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.167,
+    "q25": 0.136,
+    "q75": 0.232,
+    "p5": 0.099,
+    "p95": 0.604,
+    "max": 0.703,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

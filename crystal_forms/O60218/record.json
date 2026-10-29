@@ -1,0 +1,59 @@
+{
+ "identity": "O60218",
+ "accessions": [
+  "O60218"
+ ],
+ "deposition_group": null,
+ "name": "Aldo-keto reductase family 1 member B10",
+ "clusters": [
+  {
+   "cluster_id": 1655,
+   "n_members": 11,
+   "reference": "4WEV",
+   "reference_resolution": 1.453,
+   "space_group": "P 31",
+   "reference_cell": [
+    78.848,
+    78.848,
+    50.127,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.514,
+    "q25": 0.353,
+    "q75": 0.534,
+    "p5": 0.293,
+    "p95": 0.771,
+    "max": 0.958,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.446,
+    "q25": 0.353,
+    "q75": 0.598,
+    "p5": 0.264,
+    "p95": 0.85,
+    "max": 1.068,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.356,
+    "q25": 0.29,
+    "q75": 0.434,
+    "p5": 0.208,
+    "p95": 0.488,
+    "max": 0.512,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

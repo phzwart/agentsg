@@ -1,0 +1,59 @@
+{
+ "identity": "P60472",
+ "accessions": [
+  "P60472"
+ ],
+ "deposition_group": null,
+ "name": "Ditrans,polycis-undecaprenyl-diphosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 683,
+   "n_members": 23,
+   "reference": "3SGV",
+   "reference_resolution": 1.61,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    63.139,
+    69.004,
+    112.561,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 1.1,
+    "q25": 0.943,
+    "q75": 1.374,
+    "p5": 0.763,
+    "p95": 2.054,
+    "max": 2.322,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.005,
+    "q25": 0.662,
+    "q75": 1.394,
+    "p5": 0.294,
+    "p95": 1.911,
+    "max": 2.972,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.718,
+    "q25": 0.431,
+    "q75": 1.058,
+    "p5": 0.236,
+    "p95": 1.357,
+    "max": 2.781,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

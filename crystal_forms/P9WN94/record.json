@@ -1,0 +1,59 @@
+{
+ "identity": "P9WN94",
+ "accessions": [
+  "P9WN94"
+ ],
+ "deposition_group": null,
+ "name": null,
+ "clusters": [
+  {
+   "cluster_id": 52,
+   "n_members": 150,
+   "reference": "14YM",
+   "reference_resolution": 1.702,
+   "space_group": "P 65",
+   "reference_cell": [
+    88.627,
+    88.627,
+    178.659,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 149,
+    "reference": 1
+   },
+   "n_pairs": 11175,
+   "rmsd_to_reference": {
+    "median": 0.344,
+    "q25": 0.261,
+    "q75": 0.47,
+    "p5": 0.176,
+    "p95": 0.74,
+    "max": 1.124,
+    "n_pairs": 149
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.433,
+    "q25": 0.305,
+    "q75": 0.631,
+    "p5": 0.183,
+    "p95": 0.981,
+    "max": 1.81,
+    "n_pairs": 11175
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.177,
+    "q75": 0.299,
+    "p5": 0.121,
+    "p95": 0.421,
+    "max": 0.682,
+    "n_pairs": 11175
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q58380",
+ "accessions": [
+  "Q58380"
+ ],
+ "deposition_group": null,
+ "name": "Sirohydrochlorin cobaltochelatase",
+ "clusters": [
+  {
+   "cluster_id": 1437,
+   "n_members": 13,
+   "reference": "8I55",
+   "reference_resolution": 1.99,
+   "space_group": "P 41",
+   "reference_cell": [
+    67.72,
+    67.72,
+    82.48,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.559,
+    "q25": 0.364,
+    "q75": 0.723,
+    "p5": 0.312,
+    "p95": 0.844,
+    "max": 0.877,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.817,
+    "q25": 0.614,
+    "q75": 0.932,
+    "p5": 0.37,
+    "p95": 1.271,
+    "max": 1.452,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.427,
+    "q25": 0.292,
+    "q75": 0.621,
+    "p5": 0.235,
+    "p95": 0.755,
+    "max": 0.882,
+    "n_pairs": 78
+   },
+   "n_low_margin": 12,
+   "n_via_neighbour": 0
+  }
+ ]
+}

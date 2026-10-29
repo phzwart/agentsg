@@ -1,0 +1,108 @@
+{
+ "identity": "P54274",
+ "accessions": [
+  "P54274"
+ ],
+ "deposition_group": null,
+ "name": "Telomeric repeat-binding factor 1",
+ "clusters": [
+  {
+   "cluster_id": 777,
+   "n_members": 21,
+   "reference": "9HCZ",
+   "reference_resolution": 1.55,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    51.876,
+    51.876,
+    147.22,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.36,
+    "q25": 0.296,
+    "q75": 0.709,
+    "p5": 0.264,
+    "p95": 1.134,
+    "max": 1.231,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.475,
+    "q25": 0.341,
+    "q75": 0.769,
+    "p5": 0.13,
+    "p95": 1.203,
+    "max": 1.349,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.378,
+    "q25": 0.268,
+    "q75": 0.568,
+    "p5": 0.117,
+    "p95": 0.958,
+    "max": 1.023,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 830,
+   "n_members": 20,
+   "reference": "9HCL",
+   "reference_resolution": 1.87,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    85.918,
+    85.918,
+    91.11,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.743,
+    "q25": 0.653,
+    "q75": 0.843,
+    "p5": 0.565,
+    "p95": 1.623,
+    "max": 2.387,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.776,
+    "q25": 0.521,
+    "q75": 1.025,
+    "p5": 0.307,
+    "p95": 2.223,
+    "max": 2.475,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.499,
+    "q25": 0.258,
+    "q75": 0.678,
+    "p5": 0.186,
+    "p95": 2.145,
+    "max": 2.311,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

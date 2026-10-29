@@ -1,0 +1,163 @@
+{
+ "identity": "P03367",
+ "accessions": [
+  "P03367"
+ ],
+ "deposition_group": null,
+ "name": "Gag-Pol polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 125,
+   "n_members": 83,
+   "reference": "3A2O",
+   "reference_resolution": 0.88,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    58.223,
+    85.815,
+    46.484,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 80,
+    "reference": 1,
+    "different_space_group": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 3240,
+   "rmsd_to_reference": {
+    "median": 0.429,
+    "q25": 0.335,
+    "q75": 0.564,
+    "p5": 0.284,
+    "p95": 0.801,
+    "max": 1.074,
+    "n_pairs": 80
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.534,
+    "q25": 0.399,
+    "q75": 0.702,
+    "p5": 0.247,
+    "p95": 1.172,
+    "max": 2.173,
+    "n_pairs": 3240
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.251,
+    "q75": 0.385,
+    "p5": 0.139,
+    "p95": 0.511,
+    "max": 0.694,
+    "n_pairs": 3240
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 379,
+   "n_members": 36,
+   "reference": "7N6V",
+   "reference_resolution": 1.39,
+   "space_group": "P 61",
+   "reference_cell": [
+    62.804,
+    62.804,
+    82.45,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 16,
+    "too_few_paired_atoms": 11,
+    "different_space_group": 7,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.705,
+    "q25": 0.661,
+    "q75": 0.766,
+    "p5": 0.496,
+    "p95": 0.816,
+    "max": 0.861,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.699,
+    "q25": 0.568,
+    "q75": 0.87,
+    "p5": 0.35,
+    "p95": 1.237,
+    "max": 1.681,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.498,
+    "q25": 0.365,
+    "q75": 0.62,
+    "p5": 0.254,
+    "p95": 0.689,
+    "max": 0.71,
+    "n_pairs": 136
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 539,
+   "n_members": 27,
+   "reference": "3NDX",
+   "reference_resolution": 1.03,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.16,
+    58.567,
+    61.143,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.422,
+    "q25": 0.385,
+    "q75": 0.586,
+    "p5": 0.238,
+    "p95": 0.745,
+    "max": 0.89,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.627,
+    "q25": 0.368,
+    "q75": 0.783,
+    "p5": 0.186,
+    "p95": 1.077,
+    "max": 1.352,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.37,
+    "q25": 0.259,
+    "q75": 0.523,
+    "p5": 0.12,
+    "p95": 0.701,
+    "max": 0.792,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

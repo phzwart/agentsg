@@ -1,0 +1,60 @@
+{
+ "identity": "P29736",
+ "accessions": [
+  "P29736"
+ ],
+ "deposition_group": null,
+ "name": "Myrosinase MA1",
+ "clusters": [
+  {
+   "cluster_id": 920,
+   "n_members": 18,
+   "reference": "1E4M",
+   "reference_resolution": 1.2,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    135.3,
+    137.2,
+    80.6,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1,
+    "no_shared_accession": 2
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.172,
+    "q25": 0.088,
+    "q75": 0.796,
+    "p5": 0.062,
+    "p95": 0.804,
+    "max": 0.822,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.13,
+    "q25": 0.067,
+    "q75": 0.275,
+    "p5": 0.0,
+    "p95": 0.773,
+    "max": 1.198,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.084,
+    "q25": 0.06,
+    "q75": 0.125,
+    "p5": 0.0,
+    "p95": 0.23,
+    "max": 0.292,
+    "n_pairs": 120
+   },
+   "n_low_margin": 15,
+   "n_via_neighbour": 0
+  }
+ ]
+}

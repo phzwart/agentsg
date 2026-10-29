@@ -1,0 +1,59 @@
+{
+ "identity": "Q8Y5E4",
+ "accessions": [
+  "Q8Y5E4"
+ ],
+ "deposition_group": null,
+ "name": "Diadenylate cyclase",
+ "clusters": [
+  {
+   "cluster_id": 1087,
+   "n_members": 16,
+   "reference": "8C4P",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.76,
+    64.2,
+    128.78,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.772,
+    "q25": 0.614,
+    "q75": 2.248,
+    "p5": 0.469,
+    "p95": 2.886,
+    "max": 2.898,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.263,
+    "q25": 0.763,
+    "q75": 2.137,
+    "p5": 0.322,
+    "p95": 2.891,
+    "max": 3.646,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.201,
+    "q75": 0.444,
+    "p5": 0.149,
+    "p95": 0.725,
+    "max": 1.425,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

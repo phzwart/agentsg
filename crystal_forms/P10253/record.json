@@ -1,0 +1,59 @@
+{
+ "identity": "P10253",
+ "accessions": [
+  "P10253"
+ ],
+ "deposition_group": null,
+ "name": "Lysosomal alpha-glucosidase",
+ "clusters": [
+  {
+   "cluster_id": 863,
+   "n_members": 19,
+   "reference": "8CB1",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    96.75,
+    102.604,
+    129.179,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.322,
+    "q25": 0.257,
+    "q75": 0.387,
+    "p5": 0.215,
+    "p95": 0.634,
+    "max": 1.745,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.517,
+    "q25": 0.36,
+    "q75": 0.807,
+    "p5": 0.215,
+    "p95": 2.431,
+    "max": 2.789,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.168,
+    "q25": 0.15,
+    "q75": 0.195,
+    "p5": 0.11,
+    "p95": 0.238,
+    "max": 0.283,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

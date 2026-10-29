@@ -1,0 +1,61 @@
+{
+ "identity": "P00734+P09945",
+ "accessions": [
+  "P00734",
+  "P09945"
+ ],
+ "deposition_group": null,
+ "name": "Prothrombin",
+ "clusters": [
+  {
+   "cluster_id": 77,
+   "n_members": 112,
+   "reference": "5AFY",
+   "reference_resolution": 1.12,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    70.373,
+    71.5,
+    72.636,
+    90.0,
+    100.53,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 110,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 6105,
+   "rmsd_to_reference": {
+    "median": 0.245,
+    "q25": 0.206,
+    "q75": 0.315,
+    "p5": 0.12,
+    "p95": 0.531,
+    "max": 8.324,
+    "n_pairs": 110
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.565,
+    "q25": 0.356,
+    "q75": 0.923,
+    "p5": 0.21,
+    "p95": 2.737,
+    "max": 8.92,
+    "n_pairs": 6105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.211,
+    "q25": 0.165,
+    "q75": 0.294,
+    "p5": 0.115,
+    "p95": 0.422,
+    "max": 8.247,
+    "n_pairs": 6105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

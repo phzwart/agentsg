@@ -1,0 +1,109 @@
+{
+ "identity": "Q13451",
+ "accessions": [
+  "Q13451"
+ ],
+ "deposition_group": null,
+ "name": "Peptidyl-prolyl cis-trans isomerase FKBP5",
+ "clusters": [
+  {
+   "cluster_id": 254,
+   "n_members": 49,
+   "reference": "9GPQ",
+   "reference_resolution": 1.35,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    49.002,
+    49.002,
+    195.356,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.645,
+    "q25": 0.483,
+    "q75": 1.563,
+    "p5": 0.226,
+    "p95": 2.077,
+    "max": 17.239,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.929,
+    "q25": 0.563,
+    "q75": 1.772,
+    "p5": 0.33,
+    "p95": 2.58,
+    "max": 18.905,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.388,
+    "q25": 0.3,
+    "q75": 0.445,
+    "p5": 0.183,
+    "p95": 0.544,
+    "max": 0.724,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 46,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 400,
+   "n_members": 35,
+   "reference": "7APW",
+   "reference_resolution": 0.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.906,
+    54.933,
+    56.82,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.33,
+    "q25": 0.279,
+    "q75": 0.426,
+    "p5": 0.168,
+    "p95": 0.735,
+    "max": 10.528,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.391,
+    "q25": 0.274,
+    "q75": 0.555,
+    "p5": 0.158,
+    "p95": 10.509,
+    "max": 10.555,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.238,
+    "q25": 0.181,
+    "q75": 0.318,
+    "p5": 0.12,
+    "p95": 10.141,
+    "max": 10.194,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

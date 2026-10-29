@@ -1,0 +1,59 @@
+{
+ "identity": "P15424",
+ "accessions": [
+  "P15424"
+ ],
+ "deposition_group": null,
+ "name": "ATP-dependent RNA helicase MSS116, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1698,
+   "n_members": 11,
+   "reference": "3I5X",
+   "reference_resolution": 1.9,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    88.54,
+    126.524,
+    55.523,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.645,
+    "q25": 0.314,
+    "q75": 0.886,
+    "p5": 0.201,
+    "p95": 0.951,
+    "max": 0.966,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.977,
+    "q25": 0.532,
+    "q75": 1.456,
+    "p5": 0.344,
+    "p95": 1.888,
+    "max": 2.267,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.388,
+    "q25": 0.221,
+    "q75": 0.418,
+    "p5": 0.139,
+    "p95": 0.458,
+    "max": 0.466,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

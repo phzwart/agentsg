@@ -1,0 +1,59 @@
+{
+ "identity": "P71447",
+ "accessions": [
+  "P71447"
+ ],
+ "deposition_group": null,
+ "name": "Beta-phosphoglucomutase",
+ "clusters": [
+  {
+   "cluster_id": 778,
+   "n_members": 21,
+   "reference": "6I03",
+   "reference_resolution": 1.02,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    37.52,
+    54.28,
+    104.42,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.302,
+    "q25": 0.261,
+    "q75": 0.468,
+    "p5": 0.247,
+    "p95": 39.524,
+    "max": 40.522,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.42,
+    "q25": 0.267,
+    "q75": 0.575,
+    "p5": 0.193,
+    "p95": 40.599,
+    "max": 40.796,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.198,
+    "q75": 0.408,
+    "p5": 0.144,
+    "p95": 1.555,
+    "max": 1.66,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

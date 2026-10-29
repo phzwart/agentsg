@@ -1,0 +1,59 @@
+{
+ "identity": "I1VE66",
+ "accessions": [
+  "I1VE66"
+ ],
+ "deposition_group": null,
+ "name": "laccase",
+ "clusters": [
+  {
+   "cluster_id": 404,
+   "n_members": 34,
+   "reference": "6RI6",
+   "reference_resolution": 0.93,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.15,
+    84.18,
+    112.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.271,
+    "q25": 0.065,
+    "q75": 0.58,
+    "p5": 0.031,
+    "p95": 0.582,
+    "max": 0.584,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.569,
+    "q25": 0.071,
+    "q75": 0.597,
+    "p5": 0.028,
+    "p95": 0.613,
+    "max": 0.822,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.528,
+    "q25": 0.055,
+    "q75": 0.54,
+    "p5": 0.027,
+    "p95": 0.548,
+    "max": 0.621,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

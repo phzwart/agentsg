@@ -1,0 +1,59 @@
+{
+ "identity": "P06132",
+ "accessions": [
+  "P06132"
+ ],
+ "deposition_group": null,
+ "name": "Uroporphyrinogen decarboxylase",
+ "clusters": [
+  {
+   "cluster_id": 860,
+   "n_members": 19,
+   "reference": "1R3S",
+   "reference_resolution": 1.65,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    102.947,
+    102.947,
+    72.585,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.406,
+    "q25": 0.297,
+    "q75": 0.475,
+    "p5": 0.176,
+    "p95": 2.715,
+    "max": 13.517,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.13,
+    "q25": 0.65,
+    "q75": 1.811,
+    "p5": 0.391,
+    "p95": 13.602,
+    "max": 13.832,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.373,
+    "q25": 0.303,
+    "q75": 0.471,
+    "p5": 0.184,
+    "p95": 13.182,
+    "max": 13.22,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

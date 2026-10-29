@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UGP5",
+ "accessions": [
+  "Q9UGP5"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase lambda",
+ "clusters": [
+  {
+   "cluster_id": 189,
+   "n_members": 61,
+   "reference": "7M07",
+   "reference_resolution": 1.57,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.003,
+    59.665,
+    139.649,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 60,
+    "reference": 1
+   },
+   "n_pairs": 1830,
+   "rmsd_to_reference": {
+    "median": 2.189,
+    "q25": 1.906,
+    "q75": 6.907,
+    "p5": 0.303,
+    "p95": 6.985,
+    "max": 7.208,
+    "n_pairs": 60
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.95,
+    "q25": 1.023,
+    "q75": 6.858,
+    "p5": 0.415,
+    "p95": 7.16,
+    "max": 7.622,
+    "n_pairs": 1830
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.4,
+    "q25": 0.661,
+    "q75": 6.585,
+    "p5": 0.317,
+    "p95": 6.813,
+    "max": 6.983,
+    "n_pairs": 1830
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

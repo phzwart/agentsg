@@ -1,0 +1,59 @@
+{
+ "identity": "P14210",
+ "accessions": [
+  "P14210"
+ ],
+ "deposition_group": null,
+ "name": "Hepatocyte growth factor",
+ "clusters": [
+  {
+   "cluster_id": 1696,
+   "n_members": 11,
+   "reference": "5CP9",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    53.387,
+    63.649,
+    57.198,
+    90.0,
+    95.24,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.372,
+    "q25": 0.297,
+    "q75": 0.388,
+    "p5": 0.255,
+    "p95": 0.786,
+    "max": 0.973,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.459,
+    "q25": 0.396,
+    "q75": 0.655,
+    "p5": 0.285,
+    "p95": 0.996,
+    "max": 1.209,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.327,
+    "q25": 0.291,
+    "q75": 0.546,
+    "p5": 0.198,
+    "p95": 0.632,
+    "max": 0.821,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

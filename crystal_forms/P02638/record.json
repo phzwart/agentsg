@@ -1,0 +1,60 @@
+{
+ "identity": "P02638",
+ "accessions": [
+  "P02638"
+ ],
+ "deposition_group": null,
+ "name": "Protein S100-B",
+ "clusters": [
+  {
+   "cluster_id": 965,
+   "n_members": 17,
+   "reference": "5ER5",
+   "reference_resolution": 1.26,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    35.418,
+    88.279,
+    59.114,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "different_space_group": 6,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.513,
+    "q25": 1.499,
+    "q75": 1.85,
+    "p5": 1.218,
+    "p95": 2.988,
+    "max": 3.66,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.828,
+    "q25": 0.557,
+    "q75": 1.408,
+    "p5": 0.292,
+    "p95": 2.403,
+    "max": 3.434,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.4,
+    "q25": 0.325,
+    "q75": 0.465,
+    "p5": 0.246,
+    "p95": 0.629,
+    "max": 0.897,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

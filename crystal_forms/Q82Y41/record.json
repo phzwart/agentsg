@@ -1,0 +1,59 @@
+{
+ "identity": "Q82Y41",
+ "accessions": [
+  "Q82Y41"
+ ],
+ "deposition_group": null,
+ "name": "Cytidine and deoxycytidylate deaminase zinc-binding region",
+ "clusters": [
+  {
+   "cluster_id": 1596,
+   "n_members": 12,
+   "reference": "2G84",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    38.354,
+    73.789,
+    110.37,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.555,
+    "q25": 0.546,
+    "q75": 0.709,
+    "p5": 0.401,
+    "p95": 0.77,
+    "max": 0.79,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.704,
+    "q25": 0.538,
+    "q75": 0.843,
+    "p5": 0.31,
+    "p95": 1.049,
+    "max": 1.304,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.314,
+    "q25": 0.242,
+    "q75": 0.407,
+    "p5": 0.198,
+    "p95": 0.473,
+    "max": 0.536,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

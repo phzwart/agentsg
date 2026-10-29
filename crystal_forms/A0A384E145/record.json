@@ -1,0 +1,60 @@
+{
+ "identity": "A0A384E145",
+ "accessions": [
+  "A0A384E145"
+ ],
+ "deposition_group": null,
+ "name": "Glutathione transferase",
+ "clusters": [
+  {
+   "cluster_id": 1098,
+   "n_members": 15,
+   "reference": "8AWZ",
+   "reference_resolution": 1.549,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.43,
+    103.76,
+    107.59,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 11,
+    "reference": 1,
+    "placed": 3
+   },
+   "n_pairs": 6,
+   "rmsd_to_reference": {
+    "median": 0.256,
+    "q25": 0.242,
+    "q75": 0.264,
+    "p5": 0.231,
+    "p95": 0.271,
+    "max": 0.273,
+    "n_pairs": 3
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.269,
+    "q25": 0.238,
+    "q75": 0.278,
+    "p5": 0.191,
+    "p95": 0.296,
+    "max": 0.302,
+    "n_pairs": 6
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.152,
+    "q25": 0.116,
+    "q75": 0.208,
+    "p5": 0.099,
+    "p95": 0.221,
+    "max": 0.223,
+    "n_pairs": 6
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

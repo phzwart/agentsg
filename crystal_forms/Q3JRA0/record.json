@@ -1,0 +1,59 @@
+{
+ "identity": "Q3JRA0",
+ "accessions": [
+  "Q3JRA0"
+ ],
+ "deposition_group": null,
+ "name": "2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 1081,
+   "n_members": 16,
+   "reference": "6NMO",
+   "reference_resolution": 1.45,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    117.08,
+    67.6,
+    60.81,
+    90.0,
+    96.48,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.287,
+    "q25": 0.233,
+    "q75": 0.43,
+    "p5": 0.144,
+    "p95": 0.561,
+    "max": 0.642,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.466,
+    "q25": 0.328,
+    "q75": 0.607,
+    "p5": 0.199,
+    "p95": 0.775,
+    "max": 1.055,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.227,
+    "q25": 0.172,
+    "q75": 0.419,
+    "p5": 0.128,
+    "p95": 0.553,
+    "max": 0.664,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

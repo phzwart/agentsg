@@ -1,0 +1,60 @@
+{
+ "identity": "Q9KEI9",
+ "accessions": [
+  "Q9KEI9"
+ ],
+ "deposition_group": null,
+ "name": "Ribonuclease H",
+ "clusters": [
+  {
+   "cluster_id": 144,
+   "n_members": 77,
+   "reference": "6DOP",
+   "reference_resolution": 1.25,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    81.535,
+    37.625,
+    61.837,
+    90.0,
+    95.84,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 74,
+    "reference": 1
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 0.363,
+    "q25": 0.25,
+    "q75": 0.446,
+    "p5": 0.172,
+    "p95": 0.566,
+    "max": 0.66,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.454,
+    "q25": 0.327,
+    "q75": 0.627,
+    "p5": 0.203,
+    "p95": 0.868,
+    "max": 1.451,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.152,
+    "q75": 0.25,
+    "p5": 0.103,
+    "p95": 0.47,
+    "max": 1.055,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

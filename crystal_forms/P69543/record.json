@@ -1,0 +1,59 @@
+{
+ "identity": "P69543",
+ "accessions": [
+  "P69543"
+ ],
+ "deposition_group": null,
+ "name": "DNA-Binding protein G5P",
+ "clusters": [
+  {
+   "cluster_id": 1170,
+   "n_members": 15,
+   "reference": "1GVP",
+   "reference_resolution": 1.6,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    75.81,
+    27.92,
+    42.4,
+    90.0,
+    103.1,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.26,
+    "q25": 0.254,
+    "q75": 0.293,
+    "p5": 0.238,
+    "p95": 0.541,
+    "max": 0.717,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.247,
+    "q25": 0.149,
+    "q75": 0.592,
+    "p5": 0.096,
+    "p95": 0.942,
+    "max": 0.995,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.228,
+    "q25": 0.119,
+    "q75": 0.409,
+    "p5": 0.075,
+    "p95": 0.764,
+    "max": 0.777,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

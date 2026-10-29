@@ -1,0 +1,59 @@
+{
+ "identity": "A9CI81",
+ "accessions": [
+  "A9CI81"
+ ],
+ "deposition_group": null,
+ "name": "histidine kinase",
+ "clusters": [
+  {
+   "cluster_id": 1634,
+   "n_members": 11,
+   "reference": "6G1Z",
+   "reference_resolution": 2.03,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    182.377,
+    182.377,
+    179.883,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.778,
+    "q25": 0.739,
+    "q75": 0.825,
+    "p5": 0.731,
+    "p95": 0.911,
+    "max": 0.937,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.729,
+    "q25": 0.396,
+    "q75": 1.071,
+    "p5": 0.275,
+    "p95": 1.384,
+    "max": 1.522,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.357,
+    "q25": 0.264,
+    "q75": 0.642,
+    "p5": 0.201,
+    "p95": 0.841,
+    "max": 0.851,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

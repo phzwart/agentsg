@@ -1,0 +1,59 @@
+{
+ "identity": "A0A6I7U6Y2",
+ "accessions": [
+  "A0A6I7U6Y2"
+ ],
+ "deposition_group": null,
+ "name": "asparaginase",
+ "clusters": [
+  {
+   "cluster_id": 803,
+   "n_members": 20,
+   "reference": "8H4C",
+   "reference_resolution": 1.6,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    91.716,
+    91.716,
+    233.017,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.839,
+    "q25": 0.592,
+    "q75": 3.225,
+    "p5": 0.195,
+    "p95": 3.376,
+    "max": 3.378,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.526,
+    "q25": 0.526,
+    "q75": 2.895,
+    "p5": 0.282,
+    "p95": 3.261,
+    "max": 3.385,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 2.348,
+    "q25": 0.341,
+    "q75": 2.639,
+    "p5": 0.178,
+    "p95": 2.877,
+    "max": 2.927,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

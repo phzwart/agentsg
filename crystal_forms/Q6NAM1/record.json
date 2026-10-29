@@ -1,0 +1,59 @@
+{
+ "identity": "Q6NAM1",
+ "accessions": [
+  "Q6NAM1"
+ ],
+ "deposition_group": null,
+ "name": "Fluoroacetate dehalogenase",
+ "clusters": [
+  {
+   "cluster_id": 244,
+   "n_members": 51,
+   "reference": "3R40",
+   "reference_resolution": 1.05,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    41.93,
+    79.27,
+    85.08,
+    90.0,
+    103.22,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 50,
+    "reference": 1
+   },
+   "n_pairs": 1275,
+   "rmsd_to_reference": {
+    "median": 0.423,
+    "q25": 0.331,
+    "q75": 0.459,
+    "p5": 0.274,
+    "p95": 0.52,
+    "max": 0.537,
+    "n_pairs": 50
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.54,
+    "q25": 0.357,
+    "q75": 0.7,
+    "p5": 0.135,
+    "p95": 0.875,
+    "max": 1.558,
+    "n_pairs": 1275
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.31,
+    "q25": 0.211,
+    "q75": 0.412,
+    "p5": 0.106,
+    "p95": 0.512,
+    "max": 0.646,
+    "n_pairs": 1275
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

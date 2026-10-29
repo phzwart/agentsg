@@ -1,0 +1,60 @@
+{
+ "identity": "A6ZSR0",
+ "accessions": [
+  "A6ZSR0"
+ ],
+ "deposition_group": null,
+ "name": "sterol 14alpha-demethylase",
+ "clusters": [
+  {
+   "cluster_id": 534,
+   "n_members": 27,
+   "reference": "5ESG",
+   "reference_resolution": 1.981,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    78.24,
+    67.31,
+    80.83,
+    90.0,
+    98.65,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.402,
+    "q25": 0.318,
+    "q75": 0.629,
+    "p5": 0.268,
+    "p95": 0.922,
+    "max": 1.151,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.542,
+    "q25": 0.403,
+    "q75": 0.874,
+    "p5": 0.299,
+    "p95": 1.326,
+    "max": 1.685,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.361,
+    "q25": 0.303,
+    "q75": 0.449,
+    "p5": 0.241,
+    "p95": 0.62,
+    "max": 0.792,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

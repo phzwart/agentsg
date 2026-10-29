@@ -1,0 +1,60 @@
+{
+ "identity": "P62993",
+ "accessions": [
+  "P62993"
+ ],
+ "deposition_group": null,
+ "name": "Growth factor receptor-bound protein 2",
+ "clusters": [
+  {
+   "cluster_id": 1739,
+   "n_members": 11,
+   "reference": "3OV1",
+   "reference_resolution": 1.6,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    42.131,
+    42.131,
+    108.983,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.249,
+    "q25": 0.21,
+    "q75": 0.291,
+    "p5": 0.161,
+    "p95": 0.368,
+    "max": 0.397,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.257,
+    "q25": 0.216,
+    "q75": 0.319,
+    "p5": 0.173,
+    "p95": 0.42,
+    "max": 0.455,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.189,
+    "q75": 0.256,
+    "p5": 0.15,
+    "p95": 0.301,
+    "max": 0.378,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

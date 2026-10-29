@@ -1,0 +1,60 @@
+{
+ "identity": "P21836",
+ "accessions": [
+  "P21836"
+ ],
+ "deposition_group": null,
+ "name": "Acetylcholinesterase",
+ "clusters": [
+  {
+   "cluster_id": 113,
+   "n_members": 90,
+   "reference": "5DTI",
+   "reference_resolution": 2.003,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    78.411,
+    113.135,
+    227.199,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 88,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 3916,
+   "rmsd_to_reference": {
+    "median": 1.694,
+    "q25": 1.496,
+    "q75": 1.882,
+    "p5": 1.237,
+    "p95": 2.111,
+    "max": 2.313,
+    "n_pairs": 88
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.715,
+    "q25": 0.531,
+    "q75": 0.953,
+    "p5": 0.352,
+    "p95": 1.642,
+    "max": 2.723,
+    "n_pairs": 3916
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.306,
+    "q25": 0.266,
+    "q75": 0.377,
+    "p5": 0.214,
+    "p95": 0.696,
+    "max": 0.933,
+    "n_pairs": 3916
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

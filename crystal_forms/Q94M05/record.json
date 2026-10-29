@@ -1,0 +1,59 @@
+{
+ "identity": "Q94M05",
+ "accessions": [
+  "Q94M05"
+ ],
+ "deposition_group": null,
+ "name": "NTPase P4",
+ "clusters": [
+  {
+   "cluster_id": 1196,
+   "n_members": 15,
+   "reference": "2VHJ",
+   "reference_resolution": 1.8,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    104.94,
+    128.852,
+    158.266,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.586,
+    "q25": 0.574,
+    "q75": 1.715,
+    "p5": 0.511,
+    "p95": 1.773,
+    "max": 1.798,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.683,
+    "q25": 1.097,
+    "q75": 2.316,
+    "p5": 0.457,
+    "p95": 2.68,
+    "max": 2.811,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.444,
+    "q25": 0.467,
+    "q75": 1.531,
+    "p5": 0.247,
+    "p95": 2.362,
+    "max": 2.386,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

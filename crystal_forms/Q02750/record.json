@@ -1,0 +1,109 @@
+{
+ "identity": "Q02750",
+ "accessions": [
+  "Q02750"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity mitogen-activated protein kinase kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 1001,
+   "n_members": 17,
+   "reference": "3EQC",
+   "reference_resolution": 1.8,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    77.22,
+    77.22,
+    222.05,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15,
+    "different_space_group": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.698,
+    "q25": 0.614,
+    "q75": 0.784,
+    "p5": 0.545,
+    "p95": 1.001,
+    "max": 1.031,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.868,
+    "q25": 0.657,
+    "q75": 1.372,
+    "p5": 0.426,
+    "p95": 2.062,
+    "max": 2.812,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.565,
+    "q25": 0.417,
+    "q75": 0.681,
+    "p5": 0.305,
+    "p95": 0.819,
+    "max": 0.932,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1175,
+   "n_members": 15,
+   "reference": "3DV3",
+   "reference_resolution": 2.3,
+   "space_group": "P 62",
+   "reference_cell": [
+    81.596,
+    81.596,
+    129.966,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.459,
+    "q25": 0.41,
+    "q75": 0.499,
+    "p5": 0.396,
+    "p95": 0.509,
+    "max": 0.518,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.528,
+    "q25": 0.467,
+    "q75": 0.635,
+    "p5": 0.366,
+    "p95": 0.779,
+    "max": 0.966,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.408,
+    "q25": 0.351,
+    "q75": 0.486,
+    "p5": 0.284,
+    "p95": 0.654,
+    "max": 0.759,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

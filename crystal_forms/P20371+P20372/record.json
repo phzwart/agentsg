@@ -1,0 +1,60 @@
+{
+ "identity": "P20371+P20372",
+ "accessions": [
+  "P20371",
+  "P20372"
+ ],
+ "deposition_group": null,
+ "name": "Protocatechuate 3,4-dioxygenase beta chain",
+ "clusters": [
+  {
+   "cluster_id": 1060,
+   "n_members": 16,
+   "reference": "2BUM",
+   "reference_resolution": 1.8,
+   "space_group": "I 2 3",
+   "reference_cell": [
+    145.23,
+    145.23,
+    145.23,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.278,
+    "q25": 0.242,
+    "q75": 0.306,
+    "p5": 0.165,
+    "p95": 0.34,
+    "max": 0.342,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.207,
+    "q25": 0.169,
+    "q75": 0.269,
+    "p5": 0.111,
+    "p95": 0.344,
+    "max": 0.38,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.142,
+    "q75": 0.231,
+    "p5": 0.101,
+    "p95": 0.288,
+    "max": 0.324,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

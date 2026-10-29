@@ -1,0 +1,59 @@
+{
+ "identity": "Q8WY64",
+ "accessions": [
+  "Q8WY64"
+ ],
+ "deposition_group": null,
+ "name": "E3 ubiquitin-protein ligase MYLIP",
+ "clusters": [
+  {
+   "cluster_id": 432,
+   "n_members": 33,
+   "reference": "9SA2",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    44.19,
+    47.61,
+    70.54,
+    90.0,
+    90.858,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.203,
+    "q25": 0.126,
+    "q75": 0.282,
+    "p5": 0.085,
+    "p95": 1.723,
+    "max": 1.732,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.293,
+    "q25": 0.221,
+    "q75": 1.544,
+    "p5": 0.132,
+    "p95": 1.742,
+    "max": 2.007,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.198,
+    "q25": 0.138,
+    "q75": 0.488,
+    "p5": 0.084,
+    "p95": 0.572,
+    "max": 0.649,
+    "n_pairs": 528
+   },
+   "n_low_margin": 15,
+   "n_via_neighbour": 0
+  }
+ ]
+}

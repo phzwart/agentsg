@@ -1,0 +1,59 @@
+{
+ "identity": "O06291",
+ "accessions": [
+  "O06291"
+ ],
+ "deposition_group": null,
+ "name": "Probable serine protease HtrA1",
+ "clusters": [
+  {
+   "cluster_id": 1221,
+   "n_members": 14,
+   "reference": "6IEO",
+   "reference_resolution": 1.83,
+   "space_group": "H 3",
+   "reference_cell": [
+    107.114,
+    107.114,
+    61.529,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.374,
+    "q25": 0.359,
+    "q75": 0.429,
+    "p5": 0.32,
+    "p95": 0.621,
+    "max": 0.871,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.682,
+    "q25": 0.485,
+    "q75": 1.017,
+    "p5": 0.306,
+    "p95": 1.681,
+    "max": 2.095,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.348,
+    "q25": 0.305,
+    "q75": 0.395,
+    "p5": 0.245,
+    "p95": 0.471,
+    "max": 0.479,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

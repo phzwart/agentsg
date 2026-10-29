@@ -1,0 +1,59 @@
+{
+ "identity": "O60911",
+ "accessions": [
+  "O60911"
+ ],
+ "deposition_group": null,
+ "name": "Cathepsin L2",
+ "clusters": [
+  {
+   "cluster_id": 753,
+   "n_members": 21,
+   "reference": "7QGW",
+   "reference_resolution": 1.3,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    94.24,
+    94.24,
+    126.96,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.504,
+    "q25": 0.224,
+    "q75": 0.75,
+    "p5": 0.171,
+    "p95": 1.11,
+    "max": 1.492,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.634,
+    "q25": 0.416,
+    "q75": 1.002,
+    "p5": 0.196,
+    "p95": 1.58,
+    "max": 2.097,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.205,
+    "q25": 0.166,
+    "q75": 0.263,
+    "p5": 0.114,
+    "p95": 0.413,
+    "max": 0.491,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

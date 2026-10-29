@@ -1,0 +1,59 @@
+{
+ "identity": "P56216",
+ "accessions": [
+  "P56216"
+ ],
+ "deposition_group": null,
+ "name": "Vanillyl-alcohol oxidase",
+ "clusters": [
+  {
+   "cluster_id": 1284,
+   "n_members": 14,
+   "reference": "1E8G",
+   "reference_resolution": 2.1,
+   "space_group": "I 4",
+   "reference_cell": [
+    130.288,
+    130.288,
+    132.543,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.521,
+    "q25": 0.449,
+    "q75": 0.579,
+    "p5": 0.427,
+    "p95": 0.604,
+    "max": 0.607,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.168,
+    "q25": 0.761,
+    "q75": 1.84,
+    "p5": 0.35,
+    "p95": 2.666,
+    "max": 3.252,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.388,
+    "q25": 0.277,
+    "q75": 0.463,
+    "p5": 0.22,
+    "p95": 0.536,
+    "max": 0.603,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

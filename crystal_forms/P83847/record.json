@@ -1,0 +1,59 @@
+{
+ "identity": "P83847",
+ "accessions": [
+  "P83847"
+ ],
+ "deposition_group": null,
+ "name": "Adenine DNA glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 1291,
+   "n_members": 14,
+   "reference": "9BS2",
+   "reference_resolution": 1.51,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    37.5,
+    86.0,
+    140.64,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.658,
+    "q25": 0.608,
+    "q75": 0.836,
+    "p5": 0.406,
+    "p95": 1.206,
+    "max": 1.23,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.766,
+    "q25": 0.595,
+    "q75": 0.882,
+    "p5": 0.436,
+    "p95": 1.237,
+    "max": 1.385,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.51,
+    "q25": 0.432,
+    "q75": 0.618,
+    "p5": 0.317,
+    "p95": 0.708,
+    "max": 0.754,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

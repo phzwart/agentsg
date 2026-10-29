@@ -1,0 +1,59 @@
+{
+ "identity": "O92956",
+ "accessions": [
+  "O92956"
+ ],
+ "deposition_group": null,
+ "name": "Gag-Pol polyprotein [Cleaved into: Matrix protein p19; p2A; p2B; p10; Capsid protein p27, alternate cleaved 1; Capsid protein p27, alternate cleaved 2; Spacer peptide",
+ "clusters": [
+  {
+   "cluster_id": 808,
+   "n_members": 20,
+   "reference": "1CXQ",
+   "reference_resolution": 1.02,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    65.54,
+    65.54,
+    80.12,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.872,
+    "q25": 0.314,
+    "q75": 1.28,
+    "p5": 0.237,
+    "p95": 2.351,
+    "max": 7.493,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.618,
+    "q25": 1.165,
+    "q75": 2.238,
+    "p5": 0.522,
+    "p95": 7.559,
+    "max": 7.646,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.245,
+    "q25": 0.502,
+    "q75": 1.791,
+    "p5": 0.269,
+    "p95": 7.035,
+    "max": 7.093,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P00780",
+ "accessions": [
+  "P00780"
+ ],
+ "deposition_group": null,
+ "name": "Subtilisin Carlsberg",
+ "clusters": [
+  {
+   "cluster_id": 810,
+   "n_members": 20,
+   "reference": "3UNX",
+   "reference_resolution": 1.26,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.099,
+    55.159,
+    75.453,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.44,
+    "q25": 0.365,
+    "q75": 0.547,
+    "p5": 0.229,
+    "p95": 0.941,
+    "max": 1.588,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.567,
+    "q25": 0.431,
+    "q75": 0.752,
+    "p5": 0.263,
+    "p95": 1.411,
+    "max": 1.699,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.27,
+    "q25": 0.228,
+    "q75": 0.308,
+    "p5": 0.164,
+    "p95": 0.435,
+    "max": 0.486,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

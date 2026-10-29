@@ -1,0 +1,60 @@
+{
+ "identity": "Q5F4T5",
+ "accessions": [
+  "Q5F4T5"
+ ],
+ "deposition_group": null,
+ "name": "Capsid protein",
+ "clusters": [
+  {
+   "cluster_id": 691,
+   "n_members": 23,
+   "reference": "3Q39",
+   "reference_resolution": 1.25,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    65.117,
+    78.768,
+    69.49,
+    90.0,
+    99.93,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1,
+    "no_shared_accession": 2
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.36,
+    "q25": 0.292,
+    "q75": 0.564,
+    "p5": 0.215,
+    "p95": 0.819,
+    "max": 0.821,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.574,
+    "q25": 0.366,
+    "q75": 0.85,
+    "p5": 0.21,
+    "p95": 1.14,
+    "max": 1.25,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.294,
+    "q25": 0.221,
+    "q75": 0.388,
+    "p5": 0.125,
+    "p95": 0.485,
+    "max": 0.518,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

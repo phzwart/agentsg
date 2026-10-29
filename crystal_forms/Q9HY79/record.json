@@ -1,0 +1,59 @@
+{
+ "identity": "Q9HY79",
+ "accessions": [
+  "Q9HY79"
+ ],
+ "deposition_group": null,
+ "name": "Bacterioferritin BfrB",
+ "clusters": [
+  {
+   "cluster_id": 1197,
+   "n_members": 15,
+   "reference": "6NLF",
+   "reference_resolution": 1.45,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    129.727,
+    197.772,
+    204.235,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.67,
+    "q25": 0.631,
+    "q75": 0.719,
+    "p5": 0.515,
+    "p95": 6.47,
+    "max": 15.916,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.311,
+    "q25": 0.186,
+    "q75": 0.855,
+    "p5": 0.139,
+    "p95": 15.501,
+    "max": 16.318,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.112,
+    "q25": 0.082,
+    "q75": 0.182,
+    "p5": 0.063,
+    "p95": 0.211,
+    "max": 0.252,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

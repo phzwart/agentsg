@@ -1,0 +1,59 @@
+{
+ "identity": "A2RI36",
+ "accessions": [
+  "A2RI36"
+ ],
+ "deposition_group": null,
+ "name": "Transcriptional regulator, PadR-like family",
+ "clusters": [
+  {
+   "cluster_id": 1629,
+   "n_members": 11,
+   "reference": "7QZ5",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    103.624,
+    35.494,
+    70.914,
+    90.0,
+    95.16,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.276,
+    "q25": 1.059,
+    "q75": 1.452,
+    "p5": 0.786,
+    "p95": 1.579,
+    "max": 1.62,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.956,
+    "q25": 0.67,
+    "q75": 1.375,
+    "p5": 0.47,
+    "p95": 1.564,
+    "max": 1.617,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.664,
+    "q25": 0.501,
+    "q75": 0.876,
+    "p5": 0.4,
+    "p95": 1.216,
+    "max": 1.376,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

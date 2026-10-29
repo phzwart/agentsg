@@ -1,0 +1,60 @@
+{
+ "identity": "Q12830",
+ "accessions": [
+  "Q12830"
+ ],
+ "deposition_group": null,
+ "name": "Nucleosome-remodeling factor subunit BPTF",
+ "clusters": [
+  {
+   "cluster_id": 928,
+   "n_members": 18,
+   "reference": "5R4O",
+   "reference_resolution": 1.05,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    111.8,
+    27.37,
+    38.32,
+    90.0,
+    96.2,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.331,
+    "q25": 0.274,
+    "q75": 3.925,
+    "p5": 0.215,
+    "p95": 5.806,
+    "max": 5.82,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.835,
+    "q25": 0.303,
+    "q75": 5.704,
+    "p5": 0.152,
+    "p95": 5.762,
+    "max": 5.779,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 3.78,
+    "q25": 0.25,
+    "q75": 5.645,
+    "p5": 0.127,
+    "p95": 5.695,
+    "max": 5.709,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

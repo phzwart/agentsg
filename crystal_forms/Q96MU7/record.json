@@ -1,0 +1,60 @@
+{
+ "identity": "Q96MU7",
+ "accessions": [
+  "Q96MU7"
+ ],
+ "deposition_group": null,
+ "name": "YTH domain-containing protein 1",
+ "clusters": [
+  {
+   "cluster_id": 98,
+   "n_members": 100,
+   "reference": "6T02",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.647,
+    103.26,
+    42.431,
+    90.0,
+    104.933,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 98,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 4851,
+   "rmsd_to_reference": {
+    "median": 0.731,
+    "q25": 0.604,
+    "q75": 0.862,
+    "p5": 0.475,
+    "p95": 1.18,
+    "max": 1.297,
+    "n_pairs": 98
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.599,
+    "q25": 0.471,
+    "q75": 0.748,
+    "p5": 0.29,
+    "p95": 1.042,
+    "max": 1.936,
+    "n_pairs": 4851
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.457,
+    "q25": 0.329,
+    "q75": 0.582,
+    "p5": 0.207,
+    "p95": 0.75,
+    "max": 1.126,
+    "n_pairs": 4851
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

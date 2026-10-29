@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y4B6",
+ "accessions": [
+  "Q9Y4B6"
+ ],
+ "deposition_group": null,
+ "name": "DDB1- and CUL4-associated factor 1",
+ "clusters": [
+  {
+   "cluster_id": 1804,
+   "n_members": 11,
+   "reference": "9PLY",
+   "reference_resolution": 1.4,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.35,
+    88.6,
+    73.409,
+    90.0,
+    98.01,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.446,
+    "q25": 0.396,
+    "q75": 0.562,
+    "p5": 0.277,
+    "p95": 0.742,
+    "max": 0.808,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.622,
+    "q25": 0.448,
+    "q75": 0.81,
+    "p5": 0.308,
+    "p95": 1.057,
+    "max": 1.257,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.258,
+    "q75": 0.613,
+    "p5": 0.213,
+    "p95": 0.753,
+    "max": 0.79,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

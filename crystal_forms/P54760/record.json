@@ -1,0 +1,59 @@
+{
+ "identity": "P54760",
+ "accessions": [
+  "P54760"
+ ],
+ "deposition_group": null,
+ "name": "Ephrin type-B receptor 4",
+ "clusters": [
+  {
+   "cluster_id": 1283,
+   "n_members": 14,
+   "reference": "6FNK",
+   "reference_resolution": 1.049,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.522,
+    53.577,
+    61.345,
+    90.0,
+    110.55,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.371,
+    "q25": 0.312,
+    "q75": 0.545,
+    "p5": 0.299,
+    "p95": 0.808,
+    "max": 0.888,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.545,
+    "q25": 0.396,
+    "q75": 0.697,
+    "p5": 0.153,
+    "p95": 0.862,
+    "max": 0.946,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.381,
+    "q25": 0.294,
+    "q75": 0.621,
+    "p5": 0.121,
+    "p95": 0.763,
+    "max": 0.864,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

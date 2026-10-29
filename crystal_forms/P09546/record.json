@@ -1,0 +1,59 @@
+{
+ "identity": "P09546",
+ "accessions": [
+  "P09546"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional protein PutA [Includes: Proline dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1050,
+   "n_members": 16,
+   "reference": "7MWU",
+   "reference_resolution": 1.69,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    73.083,
+    141.818,
+    146.639,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.299,
+    "q75": 0.664,
+    "p5": 0.218,
+    "p95": 2.964,
+    "max": 3.012,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.673,
+    "q25": 0.473,
+    "q75": 0.919,
+    "p5": 0.277,
+    "p95": 2.99,
+    "max": 3.261,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.339,
+    "q25": 0.251,
+    "q75": 0.432,
+    "p5": 0.188,
+    "p95": 2.886,
+    "max": 2.952,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

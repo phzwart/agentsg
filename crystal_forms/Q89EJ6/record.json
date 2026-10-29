@@ -1,0 +1,59 @@
+{
+ "identity": "Q89EJ6",
+ "accessions": [
+  "Q89EJ6"
+ ],
+ "deposition_group": null,
+ "name": "Copper-containing nitrite reductase",
+ "clusters": [
+  {
+   "cluster_id": 584,
+   "n_members": 26,
+   "reference": "9RO1",
+   "reference_resolution": 1.0,
+   "space_group": "P 63",
+   "reference_cell": [
+    103.82,
+    103.82,
+    64.47,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.104,
+    "q25": 0.082,
+    "q75": 0.114,
+    "p5": 0.057,
+    "p95": 0.147,
+    "max": 0.199,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.223,
+    "q25": 0.126,
+    "q75": 0.337,
+    "p5": 0.081,
+    "p95": 0.527,
+    "max": 0.636,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.098,
+    "q25": 0.079,
+    "q75": 0.13,
+    "p5": 0.054,
+    "p95": 0.187,
+    "max": 0.242,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

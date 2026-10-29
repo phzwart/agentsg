@@ -1,0 +1,60 @@
+{
+ "identity": "P93836",
+ "accessions": [
+  "P93836"
+ ],
+ "deposition_group": null,
+ "name": "4-hydroxyphenylpyruvate dioxygenase",
+ "clusters": [
+  {
+   "cluster_id": 84,
+   "n_members": 108,
+   "reference": "8X6A",
+   "reference_resolution": 1.48,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    76.869,
+    83.882,
+    62.008,
+    90.0,
+    100.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 106,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 5671,
+   "rmsd_to_reference": {
+    "median": 0.318,
+    "q25": 0.243,
+    "q75": 0.478,
+    "p5": 0.169,
+    "p95": 1.017,
+    "max": 2.198,
+    "n_pairs": 106
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.396,
+    "q25": 0.822,
+    "q75": 2.417,
+    "p5": 0.423,
+    "p95": 4.006,
+    "max": 6.691,
+    "n_pairs": 5671
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.298,
+    "q25": 0.236,
+    "q75": 0.441,
+    "p5": 0.17,
+    "p95": 0.642,
+    "max": 2.266,
+    "n_pairs": 5671
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

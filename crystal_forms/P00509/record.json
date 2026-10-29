@@ -1,0 +1,109 @@
+{
+ "identity": "P00509",
+ "accessions": [
+  "P00509"
+ ],
+ "deposition_group": null,
+ "name": "Aspartate aminotransferase",
+ "clusters": [
+  {
+   "cluster_id": 142,
+   "n_members": 77,
+   "reference": "2Q7W",
+   "reference_resolution": 1.4,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    153.623,
+    85.135,
+    78.849,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 59,
+    "different_space_group": 17,
+    "reference": 1
+   },
+   "n_pairs": 1770,
+   "rmsd_to_reference": {
+    "median": 0.799,
+    "q25": 0.563,
+    "q75": 1.959,
+    "p5": 0.247,
+    "p95": 2.313,
+    "max": 2.357,
+    "n_pairs": 59
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.351,
+    "q25": 0.812,
+    "q75": 2.078,
+    "p5": 0.371,
+    "p95": 2.569,
+    "max": 2.864,
+    "n_pairs": 1770
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.752,
+    "q25": 0.474,
+    "q75": 0.999,
+    "p5": 0.303,
+    "p95": 1.225,
+    "max": 1.546,
+    "n_pairs": 1770
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 854,
+   "n_members": 19,
+   "reference": "8E9D",
+   "reference_resolution": 1.37,
+   "space_group": "P 63",
+   "reference_cell": [
+    141.22,
+    141.22,
+    81.24,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.577,
+    "q25": 0.469,
+    "q75": 0.61,
+    "p5": 0.383,
+    "p95": 0.757,
+    "max": 0.89,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.432,
+    "q25": 0.277,
+    "q75": 1.086,
+    "p5": 0.188,
+    "p95": 1.907,
+    "max": 2.029,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.28,
+    "q25": 0.218,
+    "q75": 0.422,
+    "p5": 0.148,
+    "p95": 0.559,
+    "max": 0.769,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

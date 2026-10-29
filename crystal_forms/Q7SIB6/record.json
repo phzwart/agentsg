@@ -1,0 +1,60 @@
+{
+ "identity": "Q7SIB6",
+ "accessions": [
+  "Q7SIB6"
+ ],
+ "deposition_group": null,
+ "name": "Serine hydroxymethyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 346,
+   "n_members": 39,
+   "reference": "2VI8",
+   "reference_resolution": 1.67,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    61.033,
+    106.52,
+    56.986,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.149,
+    "q25": 0.133,
+    "q75": 0.175,
+    "p5": 0.104,
+    "p95": 0.326,
+    "max": 0.346,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.189,
+    "q25": 0.142,
+    "q75": 0.268,
+    "p5": 0.103,
+    "p95": 0.372,
+    "max": 0.43,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.134,
+    "q25": 0.114,
+    "q75": 0.181,
+    "p5": 0.086,
+    "p95": 0.233,
+    "max": 0.302,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

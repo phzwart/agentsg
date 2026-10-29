@@ -1,0 +1,59 @@
+{
+ "identity": "P17846",
+ "accessions": [
+  "P17846"
+ ],
+ "deposition_group": null,
+ "name": "Sulfite reductase [NADPH] hemoprotein beta-component",
+ "clusters": [
+  {
+   "cluster_id": 985,
+   "n_members": 17,
+   "reference": "6C3M",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    68.398,
+    77.223,
+    87.214,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.678,
+    "q25": 0.496,
+    "q75": 0.735,
+    "p5": 0.34,
+    "p95": 0.96,
+    "max": 1.004,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.585,
+    "q25": 0.312,
+    "q75": 0.684,
+    "p5": 0.179,
+    "p95": 0.944,
+    "max": 1.191,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.328,
+    "q25": 0.221,
+    "q75": 0.49,
+    "p5": 0.146,
+    "p95": 0.621,
+    "max": 0.778,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

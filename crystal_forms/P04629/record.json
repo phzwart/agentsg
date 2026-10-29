@@ -1,0 +1,59 @@
+{
+ "identity": "P04629",
+ "accessions": [
+  "P04629"
+ ],
+ "deposition_group": null,
+ "name": "High affinity nerve growth factor receptor",
+ "clusters": [
+  {
+   "cluster_id": 663,
+   "n_members": 23,
+   "reference": "5KMI",
+   "reference_resolution": 1.87,
+   "space_group": "P 31 1 2",
+   "reference_cell": [
+    52.065,
+    52.065,
+    227.191,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 22
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 1.087,
+    "q25": 0.819,
+    "q75": 32.405,
+    "p5": 0.512,
+    "p95": 84.04,
+    "max": 84.193,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.527,
+    "q25": 0.913,
+    "q75": 84.216,
+    "p5": 0.58,
+    "p95": 84.921,
+    "max": 119.095,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.934,
+    "q25": 0.654,
+    "q75": 18.784,
+    "p5": 0.429,
+    "p95": 19.603,
+    "max": 20.148,
+    "n_pairs": 253
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

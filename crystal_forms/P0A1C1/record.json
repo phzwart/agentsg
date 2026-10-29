@@ -1,0 +1,59 @@
+{
+ "identity": "P0A1C1",
+ "accessions": [
+  "P0A1C1"
+ ],
+ "deposition_group": null,
+ "name": "Type 3 secretion system ATPase",
+ "clusters": [
+  {
+   "cluster_id": 1251,
+   "n_members": 14,
+   "reference": "5SYR",
+   "reference_resolution": 1.8,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    44.159,
+    153.664,
+    54.879,
+    90.0,
+    110.14,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.427,
+    "q25": 0.386,
+    "q75": 0.591,
+    "p5": 0.246,
+    "p95": 0.774,
+    "max": 0.782,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.772,
+    "q25": 0.514,
+    "q75": 1.204,
+    "p5": 0.295,
+    "p95": 1.844,
+    "max": 2.416,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.383,
+    "q25": 0.343,
+    "q75": 0.45,
+    "p5": 0.265,
+    "p95": 0.74,
+    "max": 0.791,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "identity": "P04050+P08518+P16370+P20433+P20434+P20435+P20436+P22139+P27999+P34087+P38902+P40422",
+ "accessions": [
+  "P04050",
+  "P08518",
+  "P16370",
+  "P20433",
+  "P20434",
+  "P20435",
+  "P20436",
+  "P22139",
+  "P27999",
+  "P34087",
+  "P38902",
+  "P40422"
+ ],
+ "deposition_group": null,
+ "name": "DNA-directed RNA polymerase II subunit RPB1",
+ "clusters": [
+  {
+   "cluster_id": 283,
+   "n_members": 44,
+   "reference": "5OT2",
+   "reference_resolution": 3.2,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    221.35,
+    394.93,
+    283.71,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 1.041,
+    "q25": 0.855,
+    "q75": 1.365,
+    "p5": 0.709,
+    "p95": 2.252,
+    "max": 6.399,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.208,
+    "q25": 0.889,
+    "q75": 1.634,
+    "p5": 0.538,
+    "p95": 2.996,
+    "max": 6.946,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.69,
+    "q25": 0.524,
+    "q75": 0.853,
+    "p5": 0.347,
+    "p95": 1.012,
+    "max": 1.3,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9HBH9",
+ "accessions": [
+  "Q9HBH9"
+ ],
+ "deposition_group": null,
+ "name": "MAP kinase-interacting serine/threonine-protein kinase 2",
+ "clusters": [
+  {
+   "cluster_id": 1320,
+   "n_members": 14,
+   "reference": "2AC3",
+   "reference_resolution": 2.1,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    104.502,
+    104.502,
+    72.351,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 43.234,
+    "q25": 42.871,
+    "q75": 43.407,
+    "p5": 25.899,
+    "p95": 43.511,
+    "max": 43.525,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 35.272,
+    "q25": 0.954,
+    "q75": 42.509,
+    "p5": 0.65,
+    "p95": 43.461,
+    "max": 43.605,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.97,
+    "q25": 0.694,
+    "q75": 18.954,
+    "p5": 0.539,
+    "p95": 19.183,
+    "max": 19.478,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P15379",
+ "accessions": [
+  "P15379"
+ ],
+ "deposition_group": null,
+ "name": "CD44 antigen",
+ "clusters": [
+  {
+   "cluster_id": 233,
+   "n_members": 52,
+   "reference": "32OA",
+   "reference_resolution": 0.775,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    30.96,
+    82.136,
+    32.225,
+    90.0,
+    117.884,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.218,
+    "q25": 0.13,
+    "q75": 0.263,
+    "p5": 0.088,
+    "p95": 0.368,
+    "max": 0.563,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.225,
+    "q25": 0.175,
+    "q75": 0.281,
+    "p5": 0.116,
+    "p95": 0.521,
+    "max": 0.696,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.19,
+    "q25": 0.142,
+    "q75": 0.231,
+    "p5": 0.092,
+    "p95": 0.434,
+    "max": 0.56,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

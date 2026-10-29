@@ -1,0 +1,59 @@
+{
+ "identity": "G0SFD1",
+ "accessions": [
+  "G0SFD1"
+ ],
+ "deposition_group": null,
+ "name": "Mannosyl-oligosaccharide glucosidase",
+ "clusters": [
+  {
+   "cluster_id": 437,
+   "n_members": 32,
+   "reference": "7R6J",
+   "reference_resolution": 1.905,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    135.839,
+    178.544,
+    179.806,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 31
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.386,
+    "q25": 0.267,
+    "q75": 0.542,
+    "p5": 0.222,
+    "p95": 0.916,
+    "max": 2.059,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.673,
+    "q25": 0.441,
+    "q75": 1.084,
+    "p5": 0.246,
+    "p95": 2.676,
+    "max": 4.1,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.201,
+    "q25": 0.175,
+    "q75": 0.239,
+    "p5": 0.138,
+    "p95": 0.321,
+    "max": 0.359,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

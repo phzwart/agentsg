@@ -1,0 +1,60 @@
+{
+ "identity": "P59071",
+ "accessions": [
+  "P59071"
+ ],
+ "deposition_group": null,
+ "name": "Basic phospholipase A2 VRV-PL-VIIIa",
+ "clusters": [
+  {
+   "cluster_id": 214,
+   "n_members": 56,
+   "reference": "2G58",
+   "reference_resolution": 0.98,
+   "space_group": "P 43",
+   "reference_cell": [
+    52.588,
+    52.588,
+    47.848,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 53,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 1431,
+   "rmsd_to_reference": {
+    "median": 0.564,
+    "q25": 0.337,
+    "q75": 0.657,
+    "p5": 0.241,
+    "p95": 0.766,
+    "max": 0.858,
+    "n_pairs": 53
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.517,
+    "q25": 0.38,
+    "q75": 0.646,
+    "p5": 0.196,
+    "p95": 0.768,
+    "max": 0.884,
+    "n_pairs": 1431
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.439,
+    "q25": 0.341,
+    "q75": 0.543,
+    "p5": 0.169,
+    "p95": 0.672,
+    "max": 0.754,
+    "n_pairs": 1431
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

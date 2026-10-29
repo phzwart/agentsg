@@ -1,0 +1,59 @@
+{
+ "identity": "P23677",
+ "accessions": [
+  "P23677"
+ ],
+ "deposition_group": null,
+ "name": "Inositol-trisphosphate 3-kinase A",
+ "clusters": [
+  {
+   "cluster_id": 1267,
+   "n_members": 14,
+   "reference": "8PP8",
+   "reference_resolution": 1.59,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    72.561,
+    97.351,
+    191.177,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.418,
+    "q25": 0.254,
+    "q75": 0.531,
+    "p5": 0.198,
+    "p95": 1.047,
+    "max": 1.093,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.732,
+    "q25": 0.571,
+    "q75": 1.024,
+    "p5": 0.331,
+    "p95": 1.274,
+    "max": 1.807,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.432,
+    "q25": 0.278,
+    "q75": 0.491,
+    "p5": 0.173,
+    "p95": 0.621,
+    "max": 0.716,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

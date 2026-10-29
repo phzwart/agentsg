@@ -1,0 +1,59 @@
+{
+ "identity": "P52333",
+ "accessions": [
+  "P52333"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine-protein kinase JAK3",
+ "clusters": [
+  {
+   "cluster_id": 776,
+   "n_members": 21,
+   "reference": "6DUD",
+   "reference_resolution": 1.66,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    47.6,
+    75.52,
+    88.95,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.551,
+    "q25": 0.493,
+    "q75": 0.599,
+    "p5": 0.406,
+    "p95": 0.655,
+    "max": 0.763,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.646,
+    "q25": 0.547,
+    "q75": 0.797,
+    "p5": 0.383,
+    "p95": 1.169,
+    "max": 1.511,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.504,
+    "q25": 0.422,
+    "q75": 0.582,
+    "p5": 0.274,
+    "p95": 0.864,
+    "max": 1.23,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

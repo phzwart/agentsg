@@ -1,0 +1,59 @@
+{
+ "identity": "O66496",
+ "accessions": [
+  "O66496"
+ ],
+ "deposition_group": null,
+ "name": "2-dehydro-3-deoxyphosphooctonate aldolase",
+ "clusters": [
+  {
+   "cluster_id": 484,
+   "n_members": 30,
+   "reference": "2NWR",
+   "reference_resolution": 1.5,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    84.406,
+    84.406,
+    159.428,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.283,
+    "q25": 0.207,
+    "q75": 0.431,
+    "p5": 0.172,
+    "p95": 0.517,
+    "max": 0.587,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.357,
+    "q25": 0.238,
+    "q75": 0.478,
+    "p5": 0.162,
+    "p95": 0.778,
+    "max": 0.841,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.178,
+    "q25": 0.141,
+    "q75": 0.384,
+    "p5": 0.096,
+    "p95": 0.728,
+    "max": 0.774,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

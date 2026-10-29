@@ -1,0 +1,109 @@
+{
+ "identity": "P07445",
+ "accessions": [
+  "P07445"
+ ],
+ "deposition_group": null,
+ "name": "Steroid Delta-isomerase",
+ "clusters": [
+  {
+   "cluster_id": 634,
+   "n_members": 24,
+   "reference": "6C1X",
+   "reference_resolution": 1.05,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    36.386,
+    95.339,
+    72.999,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.529,
+    "q25": 0.499,
+    "q75": 0.649,
+    "p5": 0.424,
+    "p95": 0.729,
+    "max": 1.181,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.544,
+    "q25": 0.906,
+    "q75": 2.18,
+    "p5": 0.438,
+    "p95": 2.778,
+    "max": 3.169,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.386,
+    "q25": 0.315,
+    "q75": 0.452,
+    "p5": 0.214,
+    "p95": 0.711,
+    "max": 0.83,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 665,
+   "n_members": 23,
+   "reference": "7RXK",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    36.266,
+    74.059,
+    96.229,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.87,
+    "q25": 0.569,
+    "q75": 1.0,
+    "p5": 0.435,
+    "p95": 1.378,
+    "max": 1.771,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.112,
+    "q25": 0.826,
+    "q75": 1.464,
+    "p5": 0.48,
+    "p95": 2.206,
+    "max": 3.389,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.542,
+    "q25": 0.449,
+    "q75": 0.718,
+    "p5": 0.32,
+    "p95": 0.858,
+    "max": 1.159,
+    "n_pairs": 253
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  }
+ ]
+}

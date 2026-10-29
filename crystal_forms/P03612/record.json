@@ -1,0 +1,60 @@
+{
+ "identity": "P03612",
+ "accessions": [
+  "P03612"
+ ],
+ "deposition_group": null,
+ "name": "Capsid protein",
+ "clusters": [
+  {
+   "cluster_id": 424,
+   "n_members": 33,
+   "reference": "2BU1",
+   "reference_resolution": 2.2,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    288.0,
+    288.0,
+    653.0,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 141.718,
+    "q25": 0.179,
+    "q75": 141.74,
+    "p5": 0.139,
+    "p95": 210.367,
+    "max": 210.392,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 174.635,
+    "q25": 0.239,
+    "q75": 175.209,
+    "p5": 0.121,
+    "p95": 426.026,
+    "max": 426.548,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 8.254,
+    "q25": 0.179,
+    "q75": 8.29,
+    "p5": 0.115,
+    "p95": 8.434,
+    "max": 10.342,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

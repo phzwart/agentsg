@@ -1,0 +1,59 @@
+{
+ "identity": "P0A2U4",
+ "accessions": [
+  "P0A2U4"
+ ],
+ "deposition_group": null,
+ "name": "Chaperone protein IpgC",
+ "clusters": [
+  {
+   "cluster_id": 1139,
+   "n_members": 15,
+   "reference": "7P42",
+   "reference_resolution": 1.5,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    57.629,
+    57.629,
+    159.246,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.499,
+    "q25": 0.37,
+    "q75": 0.807,
+    "p5": 0.231,
+    "p95": 1.573,
+    "max": 1.888,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.595,
+    "q25": 0.329,
+    "q75": 1.003,
+    "p5": 0.201,
+    "p95": 1.853,
+    "max": 2.228,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.515,
+    "q25": 0.198,
+    "q75": 0.618,
+    "p5": 0.145,
+    "p95": 1.031,
+    "max": 1.188,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

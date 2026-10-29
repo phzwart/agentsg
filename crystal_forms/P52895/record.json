@@ -1,0 +1,59 @@
+{
+ "identity": "P52895",
+ "accessions": [
+  "P52895"
+ ],
+ "deposition_group": null,
+ "name": "Aldo-keto reductase family 1 member C2",
+ "clusters": [
+  {
+   "cluster_id": 1728,
+   "n_members": 11,
+   "reference": "4JTR",
+   "reference_resolution": 1.3,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    145.051,
+    145.051,
+    202.474,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.435,
+    "q25": 0.357,
+    "q75": 0.694,
+    "p5": 0.21,
+    "p95": 0.896,
+    "max": 0.916,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.947,
+    "q25": 1.231,
+    "q75": 2.963,
+    "p5": 0.772,
+    "p95": 4.509,
+    "max": 5.917,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.212,
+    "q75": 0.311,
+    "p5": 0.153,
+    "p95": 0.366,
+    "max": 0.384,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

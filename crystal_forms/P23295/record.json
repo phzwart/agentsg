@@ -1,0 +1,59 @@
+{
+ "identity": "P23295",
+ "accessions": [
+  "P23295"
+ ],
+ "deposition_group": null,
+ "name": "NADP nitrous oxide-forming nitric oxide reductase",
+ "clusters": [
+  {
+   "cluster_id": 1062,
+   "n_members": 16,
+   "reference": "1JFB",
+   "reference_resolution": 1.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.661,
+    82.132,
+    85.843,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.278,
+    "q25": 0.175,
+    "q75": 0.469,
+    "p5": 0.139,
+    "p95": 0.956,
+    "max": 1.444,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.441,
+    "q25": 0.294,
+    "q75": 0.655,
+    "p5": 0.174,
+    "p95": 1.654,
+    "max": 1.979,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.218,
+    "q25": 0.163,
+    "q75": 0.415,
+    "p5": 0.118,
+    "p95": 0.524,
+    "max": 0.581,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

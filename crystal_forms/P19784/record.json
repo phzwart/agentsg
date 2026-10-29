@@ -1,0 +1,59 @@
+{
+ "identity": "P19784",
+ "accessions": [
+  "P19784"
+ ],
+ "deposition_group": null,
+ "name": "Casein kinase II subunit alpha'",
+ "clusters": [
+  {
+   "cluster_id": 304,
+   "n_members": 42,
+   "reference": "6TGU",
+   "reference_resolution": 0.833,
+   "space_group": "P 1",
+   "reference_cell": [
+    46.288,
+    47.532,
+    50.403,
+    66.797,
+    90.282,
+    89.594
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.346,
+    "q25": 0.275,
+    "q75": 0.385,
+    "p5": 0.199,
+    "p95": 0.876,
+    "max": 1.042,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.957,
+    "q25": 0.634,
+    "q75": 1.299,
+    "p5": 0.374,
+    "p95": 1.814,
+    "max": 2.721,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.363,
+    "q25": 0.263,
+    "q75": 0.469,
+    "p5": 0.175,
+    "p95": 0.951,
+    "max": 1.282,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

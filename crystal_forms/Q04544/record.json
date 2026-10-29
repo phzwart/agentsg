@@ -1,0 +1,59 @@
+{
+ "identity": "Q04544",
+ "accessions": [
+  "Q04544"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: NS1-2",
+ "clusters": [
+  {
+   "cluster_id": 781,
+   "n_members": 21,
+   "reference": "6T1Q",
+   "reference_resolution": 1.3,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    63.133,
+    89.359,
+    61.581,
+    90.0,
+    96.48,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 20
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.595,
+    "q25": 0.572,
+    "q75": 0.655,
+    "p5": 0.518,
+    "p95": 0.731,
+    "max": 0.83,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.912,
+    "q25": 0.629,
+    "q75": 1.281,
+    "p5": 0.372,
+    "p95": 1.763,
+    "max": 2.308,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.275,
+    "q25": 0.232,
+    "q75": 0.425,
+    "p5": 0.162,
+    "p95": 0.553,
+    "max": 0.68,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

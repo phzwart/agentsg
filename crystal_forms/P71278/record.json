@@ -1,0 +1,59 @@
+{
+ "identity": "P71278",
+ "accessions": [
+  "P71278"
+ ],
+ "deposition_group": null,
+ "name": "Pentaerythritol tetranitrate reductase",
+ "clusters": [
+  {
+   "cluster_id": 448,
+   "n_members": 32,
+   "reference": "1VYR",
+   "reference_resolution": 0.9,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.979,
+    69.058,
+    89.121,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.467,
+    "q25": 0.257,
+    "q75": 1.321,
+    "p5": 0.152,
+    "p95": 1.804,
+    "max": 1.892,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.049,
+    "q25": 0.369,
+    "q75": 1.731,
+    "p5": 0.186,
+    "p95": 2.007,
+    "max": 2.374,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.194,
+    "q75": 0.316,
+    "p5": 0.11,
+    "p95": 0.471,
+    "max": 0.618,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

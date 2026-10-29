@@ -1,0 +1,59 @@
+{
+ "identity": "P00763",
+ "accessions": [
+  "P00763"
+ ],
+ "deposition_group": null,
+ "name": "Anionic trypsin-2",
+ "clusters": [
+  {
+   "cluster_id": 1490,
+   "n_members": 12,
+   "reference": "1DPO",
+   "reference_resolution": 1.59,
+   "space_group": "I 2 3",
+   "reference_cell": [
+    123.12,
+    123.12,
+    123.12,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.46,
+    "q25": 0.4,
+    "q75": 0.636,
+    "p5": 0.33,
+    "p95": 0.956,
+    "max": 0.966,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.583,
+    "q25": 0.305,
+    "q75": 0.908,
+    "p5": 0.203,
+    "p95": 1.126,
+    "max": 1.26,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.307,
+    "q25": 0.211,
+    "q75": 0.834,
+    "p5": 0.165,
+    "p95": 0.889,
+    "max": 0.906,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

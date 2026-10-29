@@ -1,0 +1,108 @@
+{
+ "identity": "P25440",
+ "accessions": [
+  "P25440"
+ ],
+ "deposition_group": null,
+ "name": "Bromodomain-containing protein 2",
+ "clusters": [
+  {
+   "cluster_id": 120,
+   "n_members": 87,
+   "reference": "5IG6",
+   "reference_resolution": 0.91,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    32.0,
+    52.37,
+    71.46,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 86,
+    "reference": 1
+   },
+   "n_pairs": 3741,
+   "rmsd_to_reference": {
+    "median": 0.258,
+    "q25": 0.209,
+    "q75": 0.305,
+    "p5": 0.168,
+    "p95": 0.376,
+    "max": 20.099,
+    "n_pairs": 86
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.343,
+    "q25": 0.264,
+    "q75": 0.71,
+    "p5": 0.194,
+    "p95": 1.727,
+    "max": 22.607,
+    "n_pairs": 3741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.17,
+    "q75": 0.68,
+    "p5": 0.13,
+    "p95": 1.628,
+    "max": 11.259,
+    "n_pairs": 3741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 383,
+   "n_members": 36,
+   "reference": "6DDI",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    118.01,
+    55.851,
+    66.613,
+    90.0,
+    94.17,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 35,
+    "reference": 1
+   },
+   "n_pairs": 630,
+   "rmsd_to_reference": {
+    "median": 25.449,
+    "q25": 25.279,
+    "q75": 25.555,
+    "p5": 0.439,
+    "p95": 25.663,
+    "max": 25.759,
+    "n_pairs": 35
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.171,
+    "q25": 0.755,
+    "q75": 24.779,
+    "p5": 0.357,
+    "p95": 27.204,
+    "max": 28.084,
+    "n_pairs": 630
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.342,
+    "q25": 0.252,
+    "q75": 0.583,
+    "p5": 0.187,
+    "p95": 10.804,
+    "max": 10.886,
+    "n_pairs": 630
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

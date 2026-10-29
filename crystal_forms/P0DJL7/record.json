@@ -1,0 +1,59 @@
+{
+ "identity": "P0DJL7",
+ "accessions": [
+  "P0DJL7"
+ ],
+ "deposition_group": null,
+ "name": "Diphtheria toxin repressor",
+ "clusters": [
+  {
+   "cluster_id": 1254,
+   "n_members": 14,
+   "reference": "2QQ9",
+   "reference_resolution": 1.71,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    62.711,
+    62.711,
+    107.414,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 28.271,
+    "q25": 1.763,
+    "q75": 28.622,
+    "p5": 1.414,
+    "p95": 34.913,
+    "max": 35.02,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 28.284,
+    "q25": 1.398,
+    "q75": 34.942,
+    "p5": 0.676,
+    "p95": 45.123,
+    "max": 45.336,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.395,
+    "q25": 0.755,
+    "q75": 13.685,
+    "p5": 0.478,
+    "p95": 14.049,
+    "max": 14.316,
+    "n_pairs": 91
+   },
+   "n_low_margin": 8,
+   "n_via_neighbour": 0
+  }
+ ]
+}

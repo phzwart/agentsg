@@ -1,0 +1,109 @@
+{
+ "identity": "P18031",
+ "accessions": [
+  "P18031"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine-protein phosphatase non-receptor type 1",
+ "clusters": [
+  {
+   "cluster_id": 10,
+   "n_members": 359,
+   "reference": "7GTW",
+   "reference_resolution": 1.51,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    89.781,
+    89.781,
+    106.547,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 357,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 63903,
+   "rmsd_to_reference": {
+    "median": 0.46,
+    "q25": 0.221,
+    "q75": 1.138,
+    "p5": 0.095,
+    "p95": 1.611,
+    "max": 40.68,
+    "n_pairs": 357
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.05,
+    "q25": 0.51,
+    "q75": 1.756,
+    "p5": 0.243,
+    "p95": 3.355,
+    "max": 41.47,
+    "n_pairs": 63903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.61,
+    "q25": 0.307,
+    "q75": 0.945,
+    "p5": 0.052,
+    "p95": 1.111,
+    "max": 3.153,
+    "n_pairs": 63903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1264,
+   "n_members": 14,
+   "reference": "7MN9",
+   "reference_resolution": 1.24,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    88.464,
+    88.464,
+    72.429,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.32,
+    "q75": 0.429,
+    "p5": 0.248,
+    "p95": 1.163,
+    "max": 1.171,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.446,
+    "q25": 0.369,
+    "q75": 1.119,
+    "p5": 0.242,
+    "p95": 1.302,
+    "max": 1.413,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.224,
+    "q75": 0.778,
+    "p5": 0.164,
+    "p95": 0.851,
+    "max": 0.913,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

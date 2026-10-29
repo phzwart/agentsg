@@ -1,0 +1,211 @@
+{
+ "identity": "Q32ZE1",
+ "accessions": [
+  "Q32ZE1"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: Capsid protein C",
+ "clusters": [
+  {
+   "cluster_id": 43,
+   "n_members": 163,
+   "reference": "7H2G",
+   "reference_resolution": 1.25,
+   "space_group": "P 43 2 2",
+   "reference_cell": [
+    42.553,
+    42.553,
+    216.905,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 154,
+    "no_shared_accession": 1,
+    "too_few_paired_atoms": 7,
+    "reference": 1
+   },
+   "n_pairs": 11935,
+   "rmsd_to_reference": {
+    "median": 0.519,
+    "q25": 0.408,
+    "q75": 0.621,
+    "p5": 0.297,
+    "p95": 1.105,
+    "max": 3.674,
+    "n_pairs": 154
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.573,
+    "q25": 0.385,
+    "q75": 0.874,
+    "p5": 0.239,
+    "p95": 1.635,
+    "max": 5.351,
+    "n_pairs": 11935
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.217,
+    "q75": 0.329,
+    "p5": 0.15,
+    "p95": 0.461,
+    "max": 0.793,
+    "n_pairs": 11935
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 237,
+   "n_members": 52,
+   "reference": "5Y4Z",
+   "reference_resolution": 1.3,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    53.754,
+    68.779,
+    56.971,
+    90.0,
+    92.5,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.376,
+    "q25": 0.316,
+    "q75": 0.433,
+    "p5": 0.271,
+    "p95": 0.551,
+    "max": 0.601,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.373,
+    "q25": 0.289,
+    "q75": 0.48,
+    "p5": 0.188,
+    "p95": 0.645,
+    "max": 0.84,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.216,
+    "q75": 0.328,
+    "p5": 0.15,
+    "p95": 0.454,
+    "max": 0.623,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 688,
+   "n_members": 23,
+   "reference": "8AQK",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.264,
+    60.694,
+    83.044,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 3,
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 2.517,
+    "q25": 0.482,
+    "q75": 2.968,
+    "p5": 0.188,
+    "p95": 3.462,
+    "max": 3.681,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.539,
+    "q25": 0.659,
+    "q75": 2.697,
+    "p5": 0.261,
+    "p95": 3.224,
+    "max": 3.479,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.165,
+    "q75": 0.329,
+    "p5": 0.103,
+    "p95": 0.394,
+    "max": 0.504,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1183,
+   "n_members": 15,
+   "reference": "5ZMS",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.33,
+    60.35,
+    214.68,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "different_space_group": 7,
+    "placed": 6,
+    "reference": 1
+   },
+   "n_pairs": 21,
+   "rmsd_to_reference": {
+    "median": 1.56,
+    "q25": 1.31,
+    "q75": 2.111,
+    "p5": 1.144,
+    "p95": 3.92,
+    "max": 4.485,
+    "n_pairs": 6
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.764,
+    "q25": 1.347,
+    "q75": 2.969,
+    "p5": 0.999,
+    "p95": 4.375,
+    "max": 5.273,
+    "n_pairs": 21
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.673,
+    "q25": 0.537,
+    "q75": 0.744,
+    "p5": 0.431,
+    "p95": 0.93,
+    "max": 0.998,
+    "n_pairs": 21
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

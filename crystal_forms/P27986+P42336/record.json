@@ -1,0 +1,109 @@
+{
+ "identity": "P27986+P42336",
+ "accessions": [
+  "P27986",
+  "P42336"
+ ],
+ "deposition_group": null,
+ "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit alpha isoform",
+ "clusters": [
+  {
+   "cluster_id": 676,
+   "n_members": 23,
+   "reference": "3HHM",
+   "reference_resolution": 2.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    115.312,
+    121.453,
+    152.494,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 3.898,
+    "q25": 3.591,
+    "q75": 4.118,
+    "p5": 2.895,
+    "p95": 4.248,
+    "max": 4.277,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.025,
+    "q25": 1.079,
+    "q75": 3.155,
+    "p5": 0.607,
+    "p95": 5.917,
+    "max": 7.679,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.761,
+    "q25": 0.478,
+    "q75": 1.018,
+    "p5": 0.359,
+    "p95": 2.162,
+    "max": 3.662,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1269,
+   "n_members": 14,
+   "reference": "4JPS",
+   "reference_resolution": 2.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    104.865,
+    106.195,
+    133.667,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 1.201,
+    "q25": 0.739,
+    "q75": 1.769,
+    "p5": 0.542,
+    "p95": 1.923,
+    "max": 2.113,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.293,
+    "q25": 0.917,
+    "q75": 1.533,
+    "p5": 0.614,
+    "p95": 1.843,
+    "max": 2.4,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.668,
+    "q25": 0.55,
+    "q75": 0.999,
+    "p5": 0.421,
+    "p95": 1.198,
+    "max": 1.387,
+    "n_pairs": 91
+   },
+   "n_low_margin": 12,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q40577",
+ "accessions": [
+  "Q40577"
+ ],
+ "deposition_group": null,
+ "name": "5-epi-aristolochene synthase",
+ "clusters": [
+  {
+   "cluster_id": 492,
+   "n_members": 30,
+   "reference": "5IL3",
+   "reference_resolution": 1.85,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    126.73,
+    126.73,
+    123.05,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 29,
+    "reference": 1
+   },
+   "n_pairs": 435,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.336,
+    "q75": 0.672,
+    "p5": 0.208,
+    "p95": 1.001,
+    "max": 1.369,
+    "n_pairs": 29
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.836,
+    "q25": 0.623,
+    "q75": 1.072,
+    "p5": 0.38,
+    "p95": 1.806,
+    "max": 2.443,
+    "n_pairs": 435
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.451,
+    "q25": 0.365,
+    "q75": 0.581,
+    "p5": 0.23,
+    "p95": 0.804,
+    "max": 1.041,
+    "n_pairs": 435
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

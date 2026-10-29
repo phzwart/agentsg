@@ -1,0 +1,59 @@
+{
+ "identity": "Q94702",
+ "accessions": [
+  "Q94702"
+ ],
+ "deposition_group": null,
+ "name": "Intron-encoded endonuclease I-PpoI",
+ "clusters": [
+  {
+   "cluster_id": 266,
+   "n_members": 47,
+   "reference": "8VMS",
+   "reference_resolution": 1.42,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    113.58,
+    113.58,
+    87.99,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.149,
+    "q25": 0.086,
+    "q75": 0.207,
+    "p5": 0.055,
+    "p95": 0.34,
+    "max": 39.362,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.227,
+    "q25": 0.167,
+    "q75": 0.319,
+    "p5": 0.097,
+    "p95": 0.606,
+    "max": 39.641,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.133,
+    "q25": 0.1,
+    "q75": 0.179,
+    "p5": 0.064,
+    "p95": 0.547,
+    "max": 17.627,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

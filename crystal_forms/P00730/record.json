@@ -1,0 +1,59 @@
+{
+ "identity": "P00730",
+ "accessions": [
+  "P00730"
+ ],
+ "deposition_group": null,
+ "name": "Carboxypeptidase A1",
+ "clusters": [
+  {
+   "cluster_id": 1122,
+   "n_members": 15,
+   "reference": "1M4L",
+   "reference_resolution": 1.25,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.687,
+    60.267,
+    47.453,
+    90.0,
+    97.47,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.195,
+    "q25": 0.134,
+    "q75": 0.245,
+    "p5": 0.126,
+    "p95": 0.277,
+    "max": 0.289,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.251,
+    "q25": 0.2,
+    "q75": 0.293,
+    "p5": 0.132,
+    "p95": 0.344,
+    "max": 0.393,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.219,
+    "q25": 0.179,
+    "q75": 0.249,
+    "p5": 0.125,
+    "p95": 0.278,
+    "max": 0.308,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

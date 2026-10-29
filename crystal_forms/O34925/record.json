@@ -1,0 +1,60 @@
+{
+ "identity": "O34925",
+ "accessions": [
+  "O34925"
+ ],
+ "deposition_group": null,
+ "name": "Purine nucleoside phosphorylase DeoD-type",
+ "clusters": [
+  {
+   "cluster_id": 1481,
+   "n_members": 12,
+   "reference": "4DA6",
+   "reference_resolution": 1.7,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    135.551,
+    135.551,
+    57.772,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 4,
+    "placed": 7,
+    "reference": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.561,
+    "q25": 0.432,
+    "q75": 0.582,
+    "p5": 0.266,
+    "p95": 0.787,
+    "max": 0.869,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.576,
+    "q25": 0.448,
+    "q75": 0.68,
+    "p5": 0.252,
+    "p95": 0.88,
+    "max": 0.896,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.522,
+    "q25": 0.266,
+    "q75": 0.606,
+    "p5": 0.19,
+    "p95": 0.819,
+    "max": 0.844,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

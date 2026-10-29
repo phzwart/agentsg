@@ -1,0 +1,60 @@
+{
+ "identity": "Q9UI30+Q9Y5N5",
+ "accessions": [
+  "Q9UI30",
+  "Q9Y5N5"
+ ],
+ "deposition_group": null,
+ "name": "Methyltransferase HEMK2",
+ "clusters": [
+  {
+   "cluster_id": 1202,
+   "n_members": 15,
+   "reference": "8QDG",
+   "reference_resolution": 1.392,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    109.852,
+    109.852,
+    130.709,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.674,
+    "q25": 0.623,
+    "q75": 0.7,
+    "p5": 0.283,
+    "p95": 0.719,
+    "max": 0.726,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.451,
+    "q25": 0.329,
+    "q75": 0.646,
+    "p5": 0.226,
+    "p95": 0.712,
+    "max": 0.802,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.313,
+    "q25": 0.254,
+    "q75": 0.57,
+    "p5": 0.174,
+    "p95": 0.63,
+    "max": 0.674,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

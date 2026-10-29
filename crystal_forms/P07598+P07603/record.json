@@ -1,0 +1,60 @@
+{
+ "identity": "P07598+P07603",
+ "accessions": [
+  "P07598",
+  "P07603"
+ ],
+ "deposition_group": null,
+ "name": "Periplasmic [Fe] hydrogenase large subunit",
+ "clusters": [
+  {
+   "cluster_id": 760,
+   "n_members": 21,
+   "reference": "9GZ4",
+   "reference_resolution": 0.96,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.718,
+    87.713,
+    89.885,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.326,
+    "q25": 0.272,
+    "q75": 0.413,
+    "p5": 0.236,
+    "p95": 1.087,
+    "max": 1.09,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.501,
+    "q25": 0.322,
+    "q75": 1.204,
+    "p5": 0.187,
+    "p95": 1.478,
+    "max": 2.123,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.194,
+    "q75": 0.328,
+    "p5": 0.123,
+    "p95": 0.404,
+    "max": 0.472,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q91H74",
+ "accessions": [
+  "Q91H74"
+ ],
+ "deposition_group": null,
+ "name": "RNA-directed RNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 188,
+   "n_members": 61,
+   "reference": "7I29",
+   "reference_resolution": 1.5,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    82.275,
+    117.416,
+    148.916,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 60,
+    "reference": 1
+   },
+   "n_pairs": 1830,
+   "rmsd_to_reference": {
+    "median": 0.398,
+    "q25": 0.351,
+    "q75": 0.52,
+    "p5": 0.315,
+    "p95": 0.702,
+    "max": 0.852,
+    "n_pairs": 60
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.46,
+    "q25": 0.347,
+    "q75": 0.628,
+    "p5": 0.226,
+    "p95": 0.868,
+    "max": 1.29,
+    "n_pairs": 1830
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.28,
+    "q25": 0.227,
+    "q75": 0.339,
+    "p5": 0.161,
+    "p95": 0.556,
+    "max": 0.698,
+    "n_pairs": 1830
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

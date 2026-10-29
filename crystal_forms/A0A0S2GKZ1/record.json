@@ -1,0 +1,109 @@
+{
+ "identity": "A0A0S2GKZ1",
+ "accessions": [
+  "A0A0S2GKZ1"
+ ],
+ "deposition_group": null,
+ "name": "AA9 family lytic polysaccharide monooxygenase A",
+ "clusters": [
+  {
+   "cluster_id": 349,
+   "n_members": 38,
+   "reference": "7PXM",
+   "reference_resolution": 1.3,
+   "space_group": "P 41 3 2",
+   "reference_cell": [
+    125.08,
+    125.08,
+    125.08,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 5,
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.322,
+    "q25": 0.201,
+    "q75": 0.508,
+    "p5": 0.045,
+    "p95": 0.545,
+    "max": 0.588,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.371,
+    "q25": 0.282,
+    "q75": 0.459,
+    "p5": 0.162,
+    "p95": 0.534,
+    "max": 0.636,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.215,
+    "q75": 0.32,
+    "p5": 0.144,
+    "p95": 0.374,
+    "max": 0.456,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 420,
+   "n_members": 33,
+   "reference": "9TDI",
+   "reference_resolution": 1.06,
+   "space_group": "P 41",
+   "reference_cell": [
+    48.283,
+    48.283,
+    109.278,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.321,
+    "q25": 0.292,
+    "q75": 0.342,
+    "p5": 0.204,
+    "p95": 0.436,
+    "max": 0.495,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.317,
+    "q25": 0.236,
+    "q75": 0.386,
+    "p5": 0.081,
+    "p95": 0.543,
+    "max": 0.828,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.162,
+    "q25": 0.129,
+    "q75": 0.205,
+    "p5": 0.06,
+    "p95": 0.263,
+    "max": 0.353,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

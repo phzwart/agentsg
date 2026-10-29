@@ -1,0 +1,59 @@
+{
+ "identity": "Q81HW2",
+ "accessions": [
+  "Q81HW2"
+ ],
+ "deposition_group": null,
+ "name": "Potassium channel protein",
+ "clusters": [
+  {
+   "cluster_id": 280,
+   "n_members": 45,
+   "reference": "6UFE",
+   "reference_resolution": 1.2,
+   "space_group": "I 4",
+   "reference_cell": [
+    67.86,
+    67.86,
+    89.62,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 44,
+    "reference": 1
+   },
+   "n_pairs": 990,
+   "rmsd_to_reference": {
+    "median": 0.762,
+    "q25": 0.272,
+    "q75": 2.61,
+    "p5": 0.188,
+    "p95": 2.737,
+    "max": 2.914,
+    "n_pairs": 44
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.296,
+    "q25": 0.652,
+    "q75": 2.685,
+    "p5": 0.232,
+    "p95": 2.917,
+    "max": 3.912,
+    "n_pairs": 990
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.663,
+    "q25": 0.337,
+    "q75": 2.509,
+    "p5": 0.154,
+    "p95": 2.597,
+    "max": 3.716,
+    "n_pairs": 990
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q05127",
+ "accessions": [
+  "Q05127"
+ ],
+ "deposition_group": null,
+ "name": "Polymerase cofactor VP35",
+ "clusters": [
+  {
+   "cluster_id": 1569,
+   "n_members": 12,
+   "reference": "3FKE",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.49,
+    66.21,
+    72.13,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 12.487,
+    "q25": 0.344,
+    "q75": 12.892,
+    "p5": 0.285,
+    "p95": 12.963,
+    "max": 12.991,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 12.647,
+    "q25": 0.422,
+    "q75": 13.03,
+    "p5": 0.277,
+    "p95": 13.255,
+    "max": 13.449,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.251,
+    "q25": 0.193,
+    "q75": 0.3,
+    "p5": 0.142,
+    "p95": 0.486,
+    "max": 0.511,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

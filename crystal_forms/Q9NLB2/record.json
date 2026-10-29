@@ -1,0 +1,59 @@
+{
+ "identity": "Q9NLB2",
+ "accessions": [
+  "Q9NLB2"
+ ],
+ "deposition_group": null,
+ "name": "Glutaredoxin-1",
+ "clusters": [
+  {
+   "cluster_id": 796,
+   "n_members": 21,
+   "reference": "4MZC",
+   "reference_resolution": 0.949,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    47.971,
+    47.971,
+    82.473,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.199,
+    "q25": 0.11,
+    "q75": 0.247,
+    "p5": 0.076,
+    "p95": 0.328,
+    "max": 0.334,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.217,
+    "q25": 0.163,
+    "q75": 0.272,
+    "p5": 0.114,
+    "p95": 0.366,
+    "max": 0.488,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.122,
+    "q25": 0.096,
+    "q75": 0.157,
+    "p5": 0.07,
+    "p95": 0.205,
+    "max": 0.228,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

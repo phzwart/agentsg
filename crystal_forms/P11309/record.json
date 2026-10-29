@@ -1,0 +1,59 @@
+{
+ "identity": "P11309",
+ "accessions": [
+  "P11309"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase pim-1",
+ "clusters": [
+  {
+   "cluster_id": 31,
+   "n_members": 190,
+   "reference": "3A99",
+   "reference_resolution": 1.6,
+   "space_group": "P 65",
+   "reference_cell": [
+    98.156,
+    98.156,
+    80.296,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 189,
+    "reference": 1
+   },
+   "n_pairs": 17955,
+   "rmsd_to_reference": {
+    "median": 30.439,
+    "q25": 1.024,
+    "q75": 30.539,
+    "p5": 0.939,
+    "p95": 30.63,
+    "max": 30.766,
+    "n_pairs": 189
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.364,
+    "q25": 0.868,
+    "q75": 30.507,
+    "p5": 0.5,
+    "p95": 30.916,
+    "max": 31.89,
+    "n_pairs": 17955
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.326,
+    "q25": 0.521,
+    "q75": 18.233,
+    "p5": 0.346,
+    "p95": 18.311,
+    "max": 18.528,
+    "n_pairs": 17955
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

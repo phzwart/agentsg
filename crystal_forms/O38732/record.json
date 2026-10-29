@@ -1,0 +1,60 @@
+{
+ "identity": "O38732",
+ "accessions": [
+  "O38732"
+ ],
+ "deposition_group": null,
+ "name": "HIV-1 retropepsin",
+ "clusters": [
+  {
+   "cluster_id": 1340,
+   "n_members": 13,
+   "reference": "3SA7",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.922,
+    57.764,
+    61.649,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 3,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.278,
+    "q25": 0.237,
+    "q75": 0.32,
+    "p5": 0.232,
+    "p95": 0.471,
+    "max": 0.554,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.276,
+    "q75": 0.65,
+    "p5": 0.186,
+    "p95": 0.845,
+    "max": 1.006,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.144,
+    "q75": 0.233,
+    "p5": 0.096,
+    "p95": 0.292,
+    "max": 0.313,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

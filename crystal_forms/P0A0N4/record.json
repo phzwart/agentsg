@@ -1,0 +1,59 @@
+{
+ "identity": "P0A0N4",
+ "accessions": [
+  "P0A0N4"
+ ],
+ "deposition_group": null,
+ "name": "HTH-type transcriptional regulator QacR",
+ "clusters": [
+  {
+   "cluster_id": 1365,
+   "n_members": 13,
+   "reference": "1JT6",
+   "reference_resolution": 2.54,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    172.0,
+    172.0,
+    94.6,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.548,
+    "q25": 0.495,
+    "q75": 0.696,
+    "p5": 0.394,
+    "p95": 0.92,
+    "max": 0.926,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.618,
+    "q25": 0.453,
+    "q75": 0.903,
+    "p5": 0.345,
+    "p95": 1.213,
+    "max": 1.297,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.407,
+    "q25": 0.323,
+    "q75": 0.461,
+    "p5": 0.275,
+    "p95": 0.603,
+    "max": 0.636,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

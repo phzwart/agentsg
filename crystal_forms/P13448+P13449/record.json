@@ -1,0 +1,60 @@
+{
+ "identity": "P13448+P13449",
+ "accessions": [
+  "P13448",
+  "P13449"
+ ],
+ "deposition_group": null,
+ "name": "Iron-containing nitrile hydratase subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 575,
+   "n_members": 26,
+   "reference": "3A8G",
+   "reference_resolution": 1.11,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    114.411,
+    60.268,
+    81.81,
+    90.0,
+    124.92,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.133,
+    "q25": 0.12,
+    "q75": 0.16,
+    "p5": 0.094,
+    "p95": 0.223,
+    "max": 0.244,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.518,
+    "q25": 0.264,
+    "q75": 0.907,
+    "p5": 0.151,
+    "p95": 1.395,
+    "max": 1.957,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.112,
+    "q25": 0.093,
+    "q75": 0.132,
+    "p5": 0.075,
+    "p95": 0.166,
+    "max": 0.23,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

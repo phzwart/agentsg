@@ -1,0 +1,157 @@
+{
+ "identity": "P04637",
+ "accessions": [
+  "P04637"
+ ],
+ "deposition_group": null,
+ "name": "Cellular tumor antigen p53",
+ "clusters": [
+  {
+   "cluster_id": 143,
+   "n_members": 77,
+   "reference": "6GGC",
+   "reference_resolution": 1.24,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    64.894,
+    71.172,
+    105.016,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 76,
+    "reference": 1
+   },
+   "n_pairs": 2926,
+   "rmsd_to_reference": {
+    "median": 0.462,
+    "q25": 0.38,
+    "q75": 0.564,
+    "p5": 0.271,
+    "p95": 0.847,
+    "max": 8.855,
+    "n_pairs": 76
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.681,
+    "q25": 0.473,
+    "q75": 0.957,
+    "p5": 0.276,
+    "p95": 8.361,
+    "max": 9.799,
+    "n_pairs": 2926
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.233,
+    "q25": 0.182,
+    "q75": 0.28,
+    "p5": 0.118,
+    "p95": 0.404,
+    "max": 0.557,
+    "n_pairs": 2926
+   },
+   "n_low_margin": 76,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 815,
+   "n_members": 20,
+   "reference": "4KVP",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    68.656,
+    70.279,
+    83.559,
+    90.0,
+    90.06,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.759,
+    "q25": 0.459,
+    "q75": 1.133,
+    "p5": 0.389,
+    "p95": 19.392,
+    "max": 24.347,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.79,
+    "q25": 0.827,
+    "q75": 19.395,
+    "p5": 0.441,
+    "p95": 24.274,
+    "max": 32.502,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.353,
+    "q25": 0.312,
+    "q75": 0.418,
+    "p5": 0.273,
+    "p95": 19.829,
+    "max": 19.923,
+    "n_pairs": 190
+   },
+   "n_low_margin": 19,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1355,
+   "n_members": 13,
+   "reference": "7B4N",
+   "reference_resolution": 1.32,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    137.771,
+    49.982,
+    34.025,
+    90.0,
+    93.233,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.296,
+    "q25": 0.261,
+    "q75": 0.451,
+    "p5": 0.135,
+    "p95": 0.853,
+    "max": 1.089,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.135,
+    "q25": 0.682,
+    "q75": 1.606,
+    "p5": 0.41,
+    "p95": 2.184,
+    "max": 2.485,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.38,
+    "q25": 0.25,
+    "q75": 0.504,
+    "p5": 0.18,
+    "p95": 1.089,
+    "max": 1.212,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

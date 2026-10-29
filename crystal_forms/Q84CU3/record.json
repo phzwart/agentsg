@@ -1,0 +1,59 @@
+{
+ "identity": "Q84CU3",
+ "accessions": [
+  "Q84CU3"
+ ],
+ "deposition_group": null,
+ "name": "ADP-ribose pyrophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1780,
+   "n_members": 11,
+   "reference": "1V8Y",
+   "reference_resolution": 1.65,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    49.655,
+    49.655,
+    118.473,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.241,
+    "q25": 0.197,
+    "q75": 0.314,
+    "p5": 0.169,
+    "p95": 1.096,
+    "max": 1.678,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.398,
+    "q25": 0.262,
+    "q75": 0.798,
+    "p5": 0.215,
+    "p95": 2.032,
+    "max": 2.091,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.205,
+    "q25": 0.149,
+    "q75": 0.367,
+    "p5": 0.12,
+    "p95": 0.749,
+    "max": 0.898,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

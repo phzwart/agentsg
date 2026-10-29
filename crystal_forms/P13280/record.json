@@ -1,0 +1,59 @@
+{
+ "identity": "P13280",
+ "accessions": [
+  "P13280"
+ ],
+ "deposition_group": null,
+ "name": "Glycogenin-1",
+ "clusters": [
+  {
+   "cluster_id": 1382,
+   "n_members": 13,
+   "reference": "1LL2",
+   "reference_resolution": 1.9,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    57.887,
+    106.875,
+    122.253,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.68,
+    "q25": 0.623,
+    "q75": 0.759,
+    "p5": 0.503,
+    "p95": 0.925,
+    "max": 0.997,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.271,
+    "q25": 0.845,
+    "q75": 1.73,
+    "p5": 0.459,
+    "p95": 2.423,
+    "max": 3.117,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.46,
+    "q25": 0.408,
+    "q75": 0.532,
+    "p5": 0.169,
+    "p95": 0.617,
+    "max": 0.658,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

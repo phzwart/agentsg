@@ -1,0 +1,59 @@
+{
+ "identity": "P01008",
+ "accessions": [
+  "P01008"
+ ],
+ "deposition_group": null,
+ "name": "Antithrombin-III",
+ "clusters": [
+  {
+   "cluster_id": 1492,
+   "n_members": 12,
+   "reference": "1JVQ",
+   "reference_resolution": 2.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    69.144,
+    100.622,
+    87.157,
+    90.0,
+    104.42,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 2.085,
+    "q25": 1.553,
+    "q75": 2.109,
+    "p5": 0.41,
+    "p95": 2.683,
+    "max": 3.24,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.98,
+    "q25": 1.556,
+    "q75": 2.117,
+    "p5": 0.633,
+    "p95": 3.325,
+    "max": 3.616,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.51,
+    "q25": 0.951,
+    "q75": 1.63,
+    "p5": 0.546,
+    "p95": 3.152,
+    "max": 3.264,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

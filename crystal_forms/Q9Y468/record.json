@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y468",
+ "accessions": [
+  "Q9Y468"
+ ],
+ "deposition_group": null,
+ "name": "Lethal(3)malignant brain tumor-like protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1803,
+   "n_members": 11,
+   "reference": "1OZ2",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    86.68,
+    93.403,
+    58.578,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.834,
+    "q25": 1.039,
+    "q75": 2.285,
+    "p5": 0.581,
+    "p95": 3.206,
+    "max": 3.805,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.729,
+    "q25": 0.934,
+    "q75": 2.172,
+    "p5": 0.594,
+    "p95": 4.221,
+    "max": 4.47,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.609,
+    "q25": 0.499,
+    "q75": 0.825,
+    "p5": 0.366,
+    "p95": 3.82,
+    "max": 3.838,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q9K2N0",
+ "accessions": [
+  "Q9K2N0"
+ ],
+ "deposition_group": null,
+ "name": "beta-lactamase",
+ "clusters": [
+  {
+   "cluster_id": 183,
+   "n_members": 62,
+   "reference": "5N4T",
+   "reference_resolution": 1.16,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    105.903,
+    80.148,
+    79.085,
+    90.0,
+    139.49,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 16,
+    "placed": 45,
+    "reference": 1
+   },
+   "n_pairs": 1035,
+   "rmsd_to_reference": {
+    "median": 0.625,
+    "q25": 0.504,
+    "q75": 0.675,
+    "p5": 0.416,
+    "p95": 0.846,
+    "max": 28.84,
+    "n_pairs": 45
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.717,
+    "q25": 0.525,
+    "q75": 0.972,
+    "p5": 0.341,
+    "p95": 1.547,
+    "max": 28.946,
+    "n_pairs": 1035
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.307,
+    "q25": 0.254,
+    "q75": 0.376,
+    "p5": 0.177,
+    "p95": 0.509,
+    "max": 0.805,
+    "n_pairs": 1035
+   },
+   "n_low_margin": 44,
+   "n_via_neighbour": 0
+  }
+ ]
+}

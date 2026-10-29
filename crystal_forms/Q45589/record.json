@@ -1,0 +1,59 @@
+{
+ "identity": "Q45589",
+ "accessions": [
+  "Q45589"
+ ],
+ "deposition_group": null,
+ "name": "Cyclic di-AMP synthase CdaA",
+ "clusters": [
+  {
+   "cluster_id": 554,
+   "n_members": 27,
+   "reference": "8OGM",
+   "reference_resolution": 1.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    119.36,
+    39.48,
+    68.23,
+    90.0,
+    95.37,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.194,
+    "q25": 0.178,
+    "q75": 0.228,
+    "p5": 0.168,
+    "p95": 0.462,
+    "max": 0.674,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.165,
+    "q25": 0.13,
+    "q75": 0.253,
+    "p5": 0.09,
+    "p95": 0.608,
+    "max": 0.703,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.1,
+    "q25": 0.08,
+    "q75": 0.154,
+    "p5": 0.063,
+    "p95": 0.358,
+    "max": 0.448,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

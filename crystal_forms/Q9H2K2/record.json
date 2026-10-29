@@ -1,0 +1,158 @@
+{
+ "identity": "Q9H2K2",
+ "accessions": [
+  "Q9H2K2"
+ ],
+ "deposition_group": null,
+ "name": "Poly [ADP-ribose] polymerase tankyrase-2",
+ "clusters": [
+  {
+   "cluster_id": 54,
+   "n_members": 141,
+   "reference": "5NWG",
+   "reference_resolution": 1.4,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    90.69,
+    98.41,
+    119.93,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 26,
+    "placed": 114,
+    "reference": 1
+   },
+   "n_pairs": 6555,
+   "rmsd_to_reference": {
+    "median": 0.38,
+    "q25": 0.301,
+    "q75": 0.533,
+    "p5": 0.231,
+    "p95": 1.218,
+    "max": 1.807,
+    "n_pairs": 114
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.415,
+    "q25": 0.236,
+    "q75": 0.729,
+    "p5": 0.15,
+    "p95": 1.469,
+    "max": 3.385,
+    "n_pairs": 6555
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.178,
+    "q25": 0.14,
+    "q75": 0.25,
+    "p5": 0.104,
+    "p95": 0.697,
+    "max": 0.931,
+    "n_pairs": 6555
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 939,
+   "n_members": 18,
+   "reference": "5AEH",
+   "reference_resolution": 1.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.13,
+    76.07,
+    147.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 17
+   },
+   "n_pairs": 147,
+   "rmsd_to_reference": {
+    "median": 0.822,
+    "q25": 0.684,
+    "q75": 1.335,
+    "p5": 0.377,
+    "p95": 1.416,
+    "max": 1.428,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.782,
+    "q25": 0.605,
+    "q75": 1.031,
+    "p5": 0.346,
+    "p95": 1.55,
+    "max": 1.701,
+    "n_pairs": 147
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.541,
+    "q25": 0.366,
+    "q75": 0.704,
+    "p5": 0.25,
+    "p95": 1.269,
+    "max": 1.336,
+    "n_pairs": 147
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1093,
+   "n_members": 16,
+   "reference": "4PNL",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.0,
+    79.77,
+    153.74,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.268,
+    "q25": 0.226,
+    "q75": 0.433,
+    "p5": 0.19,
+    "p95": 0.765,
+    "max": 0.99,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.509,
+    "q25": 0.264,
+    "q75": 0.741,
+    "p5": 0.193,
+    "p95": 1.116,
+    "max": 1.52,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.231,
+    "q25": 0.163,
+    "q75": 0.288,
+    "p5": 0.102,
+    "p95": 0.495,
+    "max": 0.532,
+    "n_pairs": 120
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P15873",
+ "accessions": [
+  "P15873"
+ ],
+ "deposition_group": null,
+ "name": "DNA sliding clamp PCNA",
+ "clusters": [
+  {
+   "cluster_id": 1057,
+   "n_members": 16,
+   "reference": "1PLQ",
+   "reference_resolution": 2.3,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    121.2,
+    121.2,
+    121.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14,
+    "different_space_group": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.303,
+    "q25": 1.136,
+    "q75": 1.424,
+    "p5": 0.79,
+    "p95": 2.246,
+    "max": 3.084,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.376,
+    "q25": 1.048,
+    "q75": 1.741,
+    "p5": 0.775,
+    "p95": 2.538,
+    "max": 3.602,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.794,
+    "q25": 0.638,
+    "q75": 0.951,
+    "p5": 0.454,
+    "p95": 1.221,
+    "max": 1.49,
+    "n_pairs": 105
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

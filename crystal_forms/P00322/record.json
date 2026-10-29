@@ -1,0 +1,59 @@
+{
+ "identity": "P00322",
+ "accessions": [
+  "P00322"
+ ],
+ "deposition_group": null,
+ "name": "Flavodoxin",
+ "clusters": [
+  {
+   "cluster_id": 1032,
+   "n_members": 16,
+   "reference": "5NUL",
+   "reference_resolution": 1.6,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    60.88,
+    60.88,
+    69.79,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.378,
+    "q25": 0.331,
+    "q75": 0.437,
+    "p5": 0.226,
+    "p95": 0.511,
+    "max": 0.538,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.436,
+    "q25": 0.251,
+    "q75": 0.554,
+    "p5": 0.177,
+    "p95": 0.755,
+    "max": 0.888,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.206,
+    "q25": 0.159,
+    "q75": 0.237,
+    "p5": 0.114,
+    "p95": 0.253,
+    "max": 0.274,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "identity": "Q8PYK9",
+ "accessions": [
+  "Q8PYK9"
+ ],
+ "deposition_group": null,
+ "name": "Deoxyribodipyrimidine photo-lyase",
+ "clusters": [
+  {
+   "cluster_id": 479,
+   "n_members": 31,
+   "reference": "7YC7",
+   "reference_resolution": 1.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    72.44,
+    115.92,
+    169.23,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.512,
+    "q25": 0.34,
+    "q75": 1.934,
+    "p5": 0.202,
+    "p95": 2.167,
+    "max": 2.802,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.55,
+    "q25": 0.39,
+    "q75": 1.993,
+    "p5": 0.219,
+    "p95": 2.33,
+    "max": 2.968,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.346,
+    "q25": 0.243,
+    "q75": 0.379,
+    "p5": 0.17,
+    "p95": 0.735,
+    "max": 0.96,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 510,
+   "n_members": 29,
+   "reference": "2XRY",
+   "reference_resolution": 1.5,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    69.77,
+    69.77,
+    243.08,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 28
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.56,
+    "q25": 0.509,
+    "q75": 0.695,
+    "p5": 0.336,
+    "p95": 0.982,
+    "max": 1.329,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.555,
+    "q25": 0.37,
+    "q75": 0.917,
+    "p5": 0.197,
+    "p95": 1.58,
+    "max": 2.098,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.301,
+    "q25": 0.217,
+    "q75": 0.347,
+    "p5": 0.134,
+    "p95": 0.418,
+    "max": 0.466,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

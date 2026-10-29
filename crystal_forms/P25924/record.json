@@ -1,0 +1,59 @@
+{
+ "identity": "P25924",
+ "accessions": [
+  "P25924"
+ ],
+ "deposition_group": null,
+ "name": "Siroheme synthase [Includes: Uroporphyrinogen-III C-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 1539,
+   "n_members": 12,
+   "reference": "6PR1",
+   "reference_resolution": 1.82,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    59.619,
+    99.553,
+    147.516,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.654,
+    "q25": 0.385,
+    "q75": 0.749,
+    "p5": 0.334,
+    "p95": 0.91,
+    "max": 0.913,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.883,
+    "q25": 0.7,
+    "q75": 1.156,
+    "p5": 0.433,
+    "p95": 1.614,
+    "max": 1.854,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.564,
+    "q25": 0.445,
+    "q75": 0.687,
+    "p5": 0.307,
+    "p95": 0.82,
+    "max": 0.983,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

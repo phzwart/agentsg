@@ -1,0 +1,59 @@
+{
+ "identity": "Q8P9V9",
+ "accessions": [
+  "Q8P9V9"
+ ],
+ "deposition_group": null,
+ "name": "Peroxiredoxin Bcp",
+ "clusters": [
+  {
+   "cluster_id": 1195,
+   "n_members": 15,
+   "reference": "5IMA",
+   "reference_resolution": 1.04,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    35.6,
+    51.295,
+    40.025,
+    90.0,
+    103.99,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.183,
+    "q25": 0.067,
+    "q75": 0.25,
+    "p5": 0.04,
+    "p95": 0.385,
+    "max": 0.388,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.259,
+    "q25": 0.184,
+    "q75": 0.326,
+    "p5": 0.063,
+    "p95": 0.359,
+    "max": 0.389,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.18,
+    "q25": 0.138,
+    "q75": 0.225,
+    "p5": 0.056,
+    "p95": 0.271,
+    "max": 0.294,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

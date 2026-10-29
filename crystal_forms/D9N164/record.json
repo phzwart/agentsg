@@ -1,0 +1,61 @@
+{
+ "identity": "D9N164",
+ "accessions": [
+  "D9N164"
+ ],
+ "deposition_group": null,
+ "name": "Inward rectifier potassium channel Kirbac3.1",
+ "clusters": [
+  {
+   "cluster_id": 1106,
+   "n_members": 15,
+   "reference": "6O9U",
+   "reference_resolution": 2.0,
+   "space_group": "P 4 21 2",
+   "reference_cell": [
+    105.955,
+    105.955,
+    89.639,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "no_shared_accession": 4,
+    "placed": 5,
+    "reference": 1
+   },
+   "n_pairs": 15,
+   "rmsd_to_reference": {
+    "median": 1.104,
+    "q25": 0.963,
+    "q75": 1.333,
+    "p5": 0.884,
+    "p95": 3.768,
+    "max": 4.376,
+    "n_pairs": 5
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.395,
+    "q25": 0.964,
+    "q75": 4.908,
+    "p5": 0.8,
+    "p95": 5.308,
+    "max": 5.37,
+    "n_pairs": 15
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.86,
+    "q25": 0.68,
+    "q75": 2.117,
+    "p5": 0.511,
+    "p95": 2.299,
+    "max": 2.369,
+    "n_pairs": 15
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UQ84",
+ "accessions": [
+  "Q9UQ84"
+ ],
+ "deposition_group": null,
+ "name": "Exonuclease 1",
+ "clusters": [
+  {
+   "cluster_id": 655,
+   "n_members": 24,
+   "reference": "9SEB",
+   "reference_resolution": 1.9,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    69.836,
+    69.836,
+    181.661,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 3.305,
+    "q25": 1.822,
+    "q75": 3.731,
+    "p5": 1.201,
+    "p95": 4.186,
+    "max": 4.208,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.011,
+    "q25": 1.16,
+    "q75": 3.517,
+    "p5": 0.61,
+    "p95": 4.752,
+    "max": 5.701,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.778,
+    "q25": 0.594,
+    "q75": 0.952,
+    "p5": 0.371,
+    "p95": 1.263,
+    "max": 1.414,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "C6H0Y9",
+ "accessions": [
+  "C6H0Y9"
+ ],
+ "deposition_group": null,
+ "name": "Polymerase acidic protein",
+ "clusters": [
+  {
+   "cluster_id": 388,
+   "n_members": 35,
+   "reference": "6WHM",
+   "reference_resolution": 1.92,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    89.885,
+    89.885,
+    134.295,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.612,
+    "q25": 0.545,
+    "q75": 0.814,
+    "p5": 0.433,
+    "p95": 0.997,
+    "max": 1.179,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.227,
+    "q25": 2.089,
+    "q75": 4.505,
+    "p5": 0.869,
+    "p95": 6.57,
+    "max": 9.23,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.381,
+    "q25": 0.337,
+    "q75": 0.443,
+    "p5": 0.28,
+    "p95": 0.529,
+    "max": 0.676,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

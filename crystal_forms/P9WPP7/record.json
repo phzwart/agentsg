@@ -1,0 +1,59 @@
+{
+ "identity": "P9WPP7",
+ "accessions": [
+  "P9WPP7"
+ ],
+ "deposition_group": null,
+ "name": "Mycocyclosin synthase",
+ "clusters": [
+  {
+   "cluster_id": 192,
+   "n_members": 60,
+   "reference": "1N40",
+   "reference_resolution": 1.06,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    77.184,
+    77.184,
+    263.829,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 59
+   },
+   "n_pairs": 1770,
+   "rmsd_to_reference": {
+    "median": 0.221,
+    "q25": 0.191,
+    "q75": 0.288,
+    "p5": 0.146,
+    "p95": 0.35,
+    "max": 0.761,
+    "n_pairs": 59
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.286,
+    "q25": 0.225,
+    "q75": 0.376,
+    "p5": 0.163,
+    "p95": 0.591,
+    "max": 1.188,
+    "n_pairs": 1770
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.185,
+    "q25": 0.16,
+    "q75": 0.219,
+    "p5": 0.125,
+    "p95": 0.318,
+    "max": 0.572,
+    "n_pairs": 1770
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

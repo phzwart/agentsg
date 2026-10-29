@@ -1,0 +1,59 @@
+{
+ "identity": "B4RNT1",
+ "accessions": [
+  "B4RNT1"
+ ],
+ "deposition_group": null,
+ "name": "Leucine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 948,
+   "n_members": 17,
+   "reference": "7NU0",
+   "reference_resolution": 1.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.511,
+    81.441,
+    215.713,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 10.851,
+    "q25": 10.524,
+    "q75": 11.864,
+    "p5": 0.431,
+    "p95": 12.594,
+    "max": 12.78,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.267,
+    "q25": 1.443,
+    "q75": 10.899,
+    "p5": 0.395,
+    "p95": 12.609,
+    "max": 13.018,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.358,
+    "q25": 0.613,
+    "q75": 4.121,
+    "p5": 0.305,
+    "p95": 4.931,
+    "max": 5.034,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

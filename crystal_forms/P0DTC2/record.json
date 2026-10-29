@@ -1,0 +1,160 @@
+{
+ "identity": "P0DTC2",
+ "accessions": [
+  "P0DTC2"
+ ],
+ "deposition_group": null,
+ "name": "Spike glycoprotein",
+ "clusters": [
+  {
+   "cluster_id": 820,
+   "n_members": 20,
+   "reference": "7NEH",
+   "reference_resolution": 1.77,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    82.812,
+    149.712,
+    145.906,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 15,
+    "too_few_paired_atoms": 3,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.345,
+    "q25": 0.986,
+    "q75": 1.918,
+    "p5": 0.708,
+    "p95": 3.81,
+    "max": 6.825,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.595,
+    "q25": 1.093,
+    "q75": 2.297,
+    "p5": 0.769,
+    "p95": 6.621,
+    "max": 7.891,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.563,
+    "q25": 0.473,
+    "q75": 0.633,
+    "p5": 0.378,
+    "p95": 0.749,
+    "max": 0.844,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 979,
+   "n_members": 17,
+   "reference": "7BZ5",
+   "reference_resolution": 1.84,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    195.226,
+    86.417,
+    56.827,
+    90.0,
+    100.19,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 1.17,
+    "q25": 0.956,
+    "q75": 1.373,
+    "p5": 0.595,
+    "p95": 1.794,
+    "max": 2.06,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.27,
+    "q25": 1.068,
+    "q75": 1.566,
+    "p5": 0.673,
+    "p95": 2.204,
+    "max": 2.607,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.519,
+    "q25": 0.452,
+    "q75": 0.651,
+    "p5": 0.372,
+    "p95": 0.743,
+    "max": 0.919,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1687,
+   "n_members": 11,
+   "reference": "7R8L",
+   "reference_resolution": 2.6,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    109.947,
+    109.947,
+    228.554,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 1.442,
+    "q25": 1.084,
+    "q75": 1.52,
+    "p5": 0.878,
+    "p95": 1.66,
+    "max": 1.668,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.232,
+    "q25": 0.857,
+    "q75": 1.545,
+    "p5": 0.563,
+    "p95": 2.321,
+    "max": 2.632,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.512,
+    "q25": 0.407,
+    "q75": 0.585,
+    "p5": 0.357,
+    "p95": 0.661,
+    "max": 0.753,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

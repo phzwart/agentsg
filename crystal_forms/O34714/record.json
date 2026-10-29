@@ -1,0 +1,59 @@
+{
+ "identity": "O34714",
+ "accessions": [
+  "O34714"
+ ],
+ "deposition_group": null,
+ "name": "Oxalate decarboxylase OxdC",
+ "clusters": [
+  {
+   "cluster_id": 1480,
+   "n_members": 12,
+   "reference": "6TZP",
+   "reference_resolution": 1.72,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    155.073,
+    155.073,
+    123.079,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.324,
+    "q25": 0.24,
+    "q75": 0.542,
+    "p5": 0.125,
+    "p95": 1.523,
+    "max": 2.495,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.376,
+    "q25": 0.229,
+    "q75": 0.543,
+    "p5": 0.147,
+    "p95": 2.491,
+    "max": 2.498,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.371,
+    "q25": 0.207,
+    "q75": 0.539,
+    "p5": 0.139,
+    "p95": 2.484,
+    "max": 2.49,
+    "n_pairs": 66
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

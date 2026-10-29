@@ -1,0 +1,59 @@
+{
+ "identity": "P48426",
+ "accessions": [
+  "P48426"
+ ],
+ "deposition_group": null,
+ "name": "Phosphatidylinositol 5-phosphate 4-kinase type-2 alpha",
+ "clusters": [
+  {
+   "cluster_id": 1723,
+   "n_members": 11,
+   "reference": "7N7K",
+   "reference_resolution": 2.0,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    135.948,
+    135.948,
+    94.91,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.624,
+    "q25": 0.539,
+    "q75": 0.764,
+    "p5": 0.328,
+    "p95": 0.886,
+    "max": 0.895,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.951,
+    "q25": 0.731,
+    "q75": 1.167,
+    "p5": 0.591,
+    "p95": 1.618,
+    "max": 1.829,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.575,
+    "q25": 0.464,
+    "q75": 0.73,
+    "p5": 0.31,
+    "p95": 1.142,
+    "max": 1.278,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

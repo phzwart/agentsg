@@ -1,0 +1,59 @@
+{
+ "identity": "P23497",
+ "accessions": [
+  "P23497"
+ ],
+ "deposition_group": null,
+ "name": "Nuclear autoantigen Sp-100",
+ "clusters": [
+  {
+   "cluster_id": 70,
+   "n_members": 118,
+   "reference": "5PXL",
+   "reference_resolution": 1.35,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    127.72,
+    45.376,
+    83.347,
+    90.0,
+    102.18,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 117,
+    "reference": 1
+   },
+   "n_pairs": 6903,
+   "rmsd_to_reference": {
+    "median": 0.127,
+    "q25": 0.088,
+    "q75": 0.172,
+    "p5": 0.052,
+    "p95": 0.249,
+    "max": 0.724,
+    "n_pairs": 117
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.151,
+    "q25": 0.107,
+    "q75": 0.214,
+    "p5": 0.067,
+    "p95": 0.371,
+    "max": 0.966,
+    "n_pairs": 6903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.095,
+    "q25": 0.073,
+    "q75": 0.121,
+    "p5": 0.05,
+    "p95": 0.206,
+    "max": 0.494,
+    "n_pairs": 6903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

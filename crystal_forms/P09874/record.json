@@ -1,0 +1,59 @@
+{
+ "identity": "P09874",
+ "accessions": [
+  "P09874"
+ ],
+ "deposition_group": null,
+ "name": "Poly [ADP-ribose] polymerase 1",
+ "clusters": [
+  {
+   "cluster_id": 520,
+   "n_members": 28,
+   "reference": "9ETQ",
+   "reference_resolution": 1.59,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.234,
+    92.535,
+    163.544,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.509,
+    "q25": 0.398,
+    "q75": 0.59,
+    "p5": 0.345,
+    "p95": 0.974,
+    "max": 1.028,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.649,
+    "q25": 0.494,
+    "q75": 0.848,
+    "p5": 0.351,
+    "p95": 1.165,
+    "max": 1.755,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.359,
+    "q25": 0.305,
+    "q75": 0.452,
+    "p5": 0.232,
+    "p95": 0.679,
+    "max": 0.852,
+    "n_pairs": 378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

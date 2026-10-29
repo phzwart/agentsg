@@ -1,0 +1,59 @@
+{
+ "identity": "Q9NWT6",
+ "accessions": [
+  "Q9NWT6"
+ ],
+ "deposition_group": null,
+ "name": "Hypoxia-inducible factor 1-alpha inhibitor",
+ "clusters": [
+  {
+   "cluster_id": 228,
+   "n_members": 54,
+   "reference": "7A1Q",
+   "reference_resolution": 1.75,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    85.968,
+    85.968,
+    148.177,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 53,
+    "reference": 1
+   },
+   "n_pairs": 1431,
+   "rmsd_to_reference": {
+    "median": 0.61,
+    "q25": 0.497,
+    "q75": 0.825,
+    "p5": 0.351,
+    "p95": 1.05,
+    "max": 1.494,
+    "n_pairs": 53
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.761,
+    "q25": 0.588,
+    "q75": 0.963,
+    "p5": 0.405,
+    "p95": 1.378,
+    "max": 2.106,
+    "n_pairs": 1431
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.442,
+    "q25": 0.354,
+    "q75": 0.557,
+    "p5": 0.269,
+    "p95": 0.793,
+    "max": 0.939,
+    "n_pairs": 1431
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

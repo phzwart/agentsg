@@ -1,0 +1,59 @@
+{
+ "identity": "Q8U093",
+ "accessions": [
+  "Q8U093"
+ ],
+ "deposition_group": null,
+ "name": "Tryptophan synthase beta chain 1",
+ "clusters": [
+  {
+   "cluster_id": 1086,
+   "n_members": 16,
+   "reference": "6AM7",
+   "reference_resolution": 1.47,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    83.952,
+    107.822,
+    159.772,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 2.59,
+    "q25": 2.085,
+    "q75": 3.327,
+    "p5": 1.778,
+    "p95": 3.756,
+    "max": 3.85,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.207,
+    "q25": 1.241,
+    "q75": 3.643,
+    "p5": 0.591,
+    "p95": 5.78,
+    "max": 7.022,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.504,
+    "q25": 0.385,
+    "q75": 0.636,
+    "p5": 0.271,
+    "p95": 0.896,
+    "max": 1.058,
+    "n_pairs": 120
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  }
+ ]
+}

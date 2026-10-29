@@ -1,0 +1,59 @@
+{
+ "identity": "P33590",
+ "accessions": [
+  "P33590"
+ ],
+ "deposition_group": null,
+ "name": "Nickel-binding periplasmic protein",
+ "clusters": [
+  {
+   "cluster_id": 642,
+   "n_members": 24,
+   "reference": "5ON8",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.536,
+    94.092,
+    124.564,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.283,
+    "q25": 0.232,
+    "q75": 0.413,
+    "p5": 0.136,
+    "p95": 0.891,
+    "max": 2.612,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.402,
+    "q25": 0.314,
+    "q75": 0.564,
+    "p5": 0.193,
+    "p95": 2.962,
+    "max": 3.235,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.233,
+    "q75": 0.375,
+    "p5": 0.156,
+    "p95": 0.548,
+    "max": 0.648,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

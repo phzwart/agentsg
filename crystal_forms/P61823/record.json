@@ -1,0 +1,207 @@
+{
+ "identity": "P61823",
+ "accessions": [
+  "P61823"
+ ],
+ "deposition_group": null,
+ "name": "Ribonuclease pancreatic",
+ "clusters": [
+  {
+   "cluster_id": 68,
+   "n_members": 119,
+   "reference": "6F60",
+   "reference_resolution": 1.14,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    99.78,
+    32.519,
+    72.337,
+    90.0,
+    90.19,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 118,
+    "reference": 1
+   },
+   "n_pairs": 7021,
+   "rmsd_to_reference": {
+    "median": 0.616,
+    "q25": 0.519,
+    "q75": 0.814,
+    "p5": 0.385,
+    "p95": 2.034,
+    "max": 3.055,
+    "n_pairs": 118
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.579,
+    "q25": 0.933,
+    "q75": 2.789,
+    "p5": 0.517,
+    "p95": 6.548,
+    "max": 10.85,
+    "n_pairs": 7021
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.448,
+    "q25": 0.342,
+    "q75": 0.591,
+    "p5": 0.231,
+    "p95": 1.269,
+    "max": 1.665,
+    "n_pairs": 7021
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 114,
+   "n_members": 90,
+   "reference": "2E3W",
+   "reference_resolution": 1.05,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    64.167,
+    64.167,
+    63.626,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 89,
+    "reference": 1
+   },
+   "n_pairs": 4005,
+   "rmsd_to_reference": {
+    "median": 0.517,
+    "q25": 0.328,
+    "q75": 0.708,
+    "p5": 0.141,
+    "p95": 1.447,
+    "max": 24.667,
+    "n_pairs": 89
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.74,
+    "q25": 0.515,
+    "q75": 1.973,
+    "p5": 0.238,
+    "p95": 3.091,
+    "max": 25.805,
+    "n_pairs": 4005
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.371,
+    "q25": 0.292,
+    "q75": 0.473,
+    "p5": 0.176,
+    "p95": 0.711,
+    "max": 13.83,
+    "n_pairs": 4005
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 307,
+   "n_members": 42,
+   "reference": "6ETK",
+   "reference_resolution": 0.85,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    29.125,
+    37.971,
+    52.541,
+    90.0,
+    105.83,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.559,
+    "q25": 0.272,
+    "q75": 0.602,
+    "p5": 0.068,
+    "p95": 0.662,
+    "max": 0.708,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.322,
+    "q25": 0.222,
+    "q75": 0.502,
+    "p5": 0.084,
+    "p95": 0.614,
+    "max": 0.725,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.211,
+    "q25": 0.16,
+    "q75": 0.285,
+    "p5": 0.079,
+    "p95": 0.326,
+    "max": 0.369,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 504,
+   "n_members": 29,
+   "reference": "4O36",
+   "reference_resolution": 1.22,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    43.91,
+    43.91,
+    96.4,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "too_few_paired_atoms": 3,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.602,
+    "q25": 0.568,
+    "q75": 0.639,
+    "p5": 0.424,
+    "p95": 0.72,
+    "max": 6.255,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.457,
+    "q25": 0.343,
+    "q75": 0.644,
+    "p5": 0.224,
+    "p95": 6.273,
+    "max": 6.376,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.334,
+    "q25": 0.26,
+    "q75": 0.441,
+    "p5": 0.161,
+    "p95": 6.235,
+    "max": 6.264,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

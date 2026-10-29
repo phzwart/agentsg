@@ -1,0 +1,59 @@
+{
+ "identity": "Q13546",
+ "accessions": [
+  "Q13546"
+ ],
+ "deposition_group": null,
+ "name": "Receptor-interacting serine/threonine-protein kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 836,
+   "n_members": 20,
+   "reference": "4ITJ",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.841,
+    97.136,
+    128.119,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 1.692,
+    "q25": 1.424,
+    "q75": 2.669,
+    "p5": 1.311,
+    "p95": 3.181,
+    "max": 4.569,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.942,
+    "q25": 1.515,
+    "q75": 2.365,
+    "p5": 0.848,
+    "p95": 4.4,
+    "max": 5.052,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.862,
+    "q25": 0.751,
+    "q75": 0.968,
+    "p5": 0.538,
+    "p95": 1.24,
+    "max": 1.62,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

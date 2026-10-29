@@ -1,0 +1,108 @@
+{
+ "identity": "P00800",
+ "accessions": [
+  "P00800"
+ ],
+ "deposition_group": null,
+ "name": "Thermolysin",
+ "clusters": [
+  {
+   "cluster_id": 32,
+   "n_members": 187,
+   "reference": "5JVI",
+   "reference_resolution": 1.12,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    92.58,
+    92.58,
+    131.23,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 186,
+    "reference": 1
+   },
+   "n_pairs": 17391,
+   "rmsd_to_reference": {
+    "median": 0.474,
+    "q25": 0.244,
+    "q75": 52.168,
+    "p5": 0.08,
+    "p95": 52.226,
+    "max": 52.253,
+    "n_pairs": 186
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.631,
+    "q25": 0.383,
+    "q75": 53.018,
+    "p5": 0.175,
+    "p95": 53.318,
+    "max": 53.961,
+    "n_pairs": 17391
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.189,
+    "q75": 13.789,
+    "p5": 0.111,
+    "p95": 13.814,
+    "max": 13.867,
+    "n_pairs": 17391
+   },
+   "n_low_margin": 51,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1123,
+   "n_members": 15,
+   "reference": "6N4W",
+   "reference_resolution": 1.4,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    96.739,
+    96.739,
+    106.425,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.487,
+    "q25": 0.328,
+    "q75": 0.74,
+    "p5": 0.222,
+    "p95": 12.931,
+    "max": 35.542,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.036,
+    "q25": 0.647,
+    "q75": 1.62,
+    "p5": 0.215,
+    "p95": 35.617,
+    "max": 35.73,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.168,
+    "q75": 0.275,
+    "p5": 0.068,
+    "p95": 13.73,
+    "max": 13.744,
+    "n_pairs": 105
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

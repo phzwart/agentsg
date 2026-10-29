@@ -1,0 +1,59 @@
+{
+ "identity": "Q9BRQ3",
+ "accessions": [
+  "Q9BRQ3"
+ ],
+ "deposition_group": null,
+ "name": "Uridine diphosphate glucose pyrophosphatase NUDT22",
+ "clusters": [
+  {
+   "cluster_id": 481,
+   "n_members": 31,
+   "reference": "5RKZ",
+   "reference_resolution": 1.38,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.55,
+    52.39,
+    101.73,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.152,
+    "q25": 0.118,
+    "q75": 0.223,
+    "p5": 0.098,
+    "p95": 0.277,
+    "max": 0.436,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.177,
+    "q25": 0.132,
+    "q75": 0.231,
+    "p5": 0.099,
+    "p95": 0.358,
+    "max": 0.48,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.141,
+    "q25": 0.106,
+    "q75": 0.181,
+    "p5": 0.08,
+    "p95": 0.324,
+    "max": 0.387,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

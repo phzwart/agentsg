@@ -1,0 +1,159 @@
+{
+ "identity": "O26232",
+ "accessions": [
+  "O26232"
+ ],
+ "deposition_group": null,
+ "name": "Orotidine 5'-phosphate decarboxylase",
+ "clusters": [
+  {
+   "cluster_id": 245,
+   "n_members": 50,
+   "reference": "3SJ3",
+   "reference_resolution": 1.26,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    60.086,
+    63.834,
+    61.91,
+    90.0,
+    115.53,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.245,
+    "q25": 0.218,
+    "q75": 0.29,
+    "p5": 0.163,
+    "p95": 0.382,
+    "max": 0.502,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.245,
+    "q25": 0.199,
+    "q75": 0.299,
+    "p5": 0.14,
+    "p95": 0.423,
+    "max": 0.631,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.138,
+    "q75": 0.199,
+    "p5": 0.103,
+    "p95": 0.236,
+    "max": 0.294,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 438,
+   "n_members": 32,
+   "reference": "3W07",
+   "reference_resolution": 1.03,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    57.943,
+    103.233,
+    73.567,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "different_space_group": 9,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.204,
+    "q25": 0.135,
+    "q75": 0.257,
+    "p5": 0.098,
+    "p95": 0.287,
+    "max": 0.396,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.273,
+    "q25": 0.228,
+    "q75": 0.342,
+    "p5": 0.144,
+    "p95": 0.449,
+    "max": 0.571,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.172,
+    "q25": 0.137,
+    "q75": 0.208,
+    "p5": 0.088,
+    "p95": 0.286,
+    "max": 0.322,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 897,
+   "n_members": 18,
+   "reference": "3M47",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.905,
+    56.908,
+    125.452,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 7,
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.524,
+    "q25": 0.427,
+    "q75": 0.909,
+    "p5": 0.371,
+    "p95": 1.182,
+    "max": 1.21,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.61,
+    "q25": 0.444,
+    "q75": 1.13,
+    "p5": 0.325,
+    "p95": 1.306,
+    "max": 1.383,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.43,
+    "q25": 0.344,
+    "q75": 0.691,
+    "p5": 0.237,
+    "p95": 0.781,
+    "max": 0.887,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

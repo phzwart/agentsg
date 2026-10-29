@@ -1,0 +1,59 @@
+{
+ "identity": "F9VPE5",
+ "accessions": [
+  "F9VPE5"
+ ],
+ "deposition_group": null,
+ "name": "Sulerythrin",
+ "clusters": [
+  {
+   "cluster_id": 1218,
+   "n_members": 14,
+   "reference": "7O8D",
+   "reference_resolution": 1.12,
+   "space_group": "P 63",
+   "reference_cell": [
+    71.971,
+    71.971,
+    99.814,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.577,
+    "q25": 0.52,
+    "q75": 0.701,
+    "p5": 0.358,
+    "p95": 0.8,
+    "max": 0.863,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.546,
+    "q25": 0.252,
+    "q75": 0.764,
+    "p5": 0.135,
+    "p95": 0.951,
+    "max": 1.169,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.335,
+    "q25": 0.18,
+    "q75": 0.573,
+    "p5": 0.103,
+    "p95": 0.801,
+    "max": 0.955,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

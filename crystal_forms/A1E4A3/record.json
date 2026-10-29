@@ -1,0 +1,59 @@
+{
+ "identity": "A1E4A3",
+ "accessions": [
+  "A1E4A3"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: P3; Protein 3AB; P2; P1; Capsid protein VP0",
+ "clusters": [
+  {
+   "cluster_id": 1209,
+   "n_members": 14,
+   "reference": "3ZVE",
+   "reference_resolution": 1.8,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    56.3,
+    56.3,
+    170.351,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.274,
+    "q25": 0.256,
+    "q75": 0.341,
+    "p5": 0.199,
+    "p95": 0.55,
+    "max": 0.599,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.402,
+    "q25": 0.304,
+    "q75": 0.546,
+    "p5": 0.215,
+    "p95": 0.756,
+    "max": 0.825,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.187,
+    "q75": 0.26,
+    "p5": 0.143,
+    "p95": 0.296,
+    "max": 0.334,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

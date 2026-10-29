@@ -1,0 +1,59 @@
+{
+ "identity": "Q93LD7",
+ "accessions": [
+  "Q93LD7"
+ ],
+ "deposition_group": null,
+ "name": "Phosphotriesterase",
+ "clusters": [
+  {
+   "cluster_id": 937,
+   "n_members": 18,
+   "reference": "3A4J",
+   "reference_resolution": 1.25,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    108.946,
+    108.946,
+    62.884,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.347,
+    "q25": 0.308,
+    "q75": 0.389,
+    "p5": 0.276,
+    "p95": 0.674,
+    "max": 0.708,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.281,
+    "q25": 0.192,
+    "q75": 0.408,
+    "p5": 0.118,
+    "p95": 0.787,
+    "max": 0.964,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.201,
+    "q25": 0.14,
+    "q75": 0.257,
+    "p5": 0.101,
+    "p95": 0.59,
+    "max": 0.626,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

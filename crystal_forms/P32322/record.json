@@ -1,0 +1,108 @@
+{
+ "identity": "P32322",
+ "accessions": [
+  "P32322"
+ ],
+ "deposition_group": null,
+ "name": "Pyrroline-5-carboxylate reductase 1, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 470,
+   "n_members": 31,
+   "reference": "9P0R",
+   "reference_resolution": 1.49,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    110.933,
+    180.804,
+    87.945,
+    90.0,
+    106.53,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.463,
+    "q25": 0.345,
+    "q75": 21.107,
+    "p5": 0.252,
+    "p95": 21.141,
+    "max": 21.147,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.441,
+    "q25": 0.619,
+    "q75": 21.081,
+    "p5": 0.339,
+    "p95": 21.267,
+    "max": 21.515,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.39,
+    "q25": 0.252,
+    "q75": 20.852,
+    "p5": 0.17,
+    "p95": 20.972,
+    "max": 21.061,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1715,
+   "n_members": 11,
+   "reference": "9S04",
+   "reference_resolution": 1.57,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    163.78,
+    88.001,
+    116.812,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 21.281,
+    "q25": 6.259,
+    "q75": 21.385,
+    "p5": 1.082,
+    "p95": 28.942,
+    "max": 28.981,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 21.271,
+    "q25": 1.275,
+    "q75": 21.758,
+    "p5": 0.53,
+    "p95": 28.991,
+    "max": 29.093,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 20.825,
+    "q25": 0.575,
+    "q75": 20.908,
+    "p5": 0.314,
+    "p95": 21.018,
+    "max": 21.052,
+    "n_pairs": 55
+   },
+   "n_low_margin": 7,
+   "n_via_neighbour": 0
+  }
+ ]
+}

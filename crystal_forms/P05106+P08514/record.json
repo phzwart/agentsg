@@ -1,0 +1,60 @@
+{
+ "identity": "P05106+P08514",
+ "accessions": [
+  "P05106",
+  "P08514"
+ ],
+ "deposition_group": null,
+ "name": "Integrin beta-3",
+ "clusters": [
+  {
+   "cluster_id": 381,
+   "n_members": 36,
+   "reference": "7UDH",
+   "reference_resolution": 1.99998841007,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    258.33,
+    144.67,
+    105.06,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 35,
+    "reference": 1
+   },
+   "n_pairs": 630,
+   "rmsd_to_reference": {
+    "median": 0.435,
+    "q25": 0.347,
+    "q75": 0.773,
+    "p5": 0.229,
+    "p95": 1.339,
+    "max": 2.296,
+    "n_pairs": 35
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.8,
+    "q25": 0.62,
+    "q75": 1.098,
+    "p5": 0.371,
+    "p95": 2.01,
+    "max": 2.601,
+    "n_pairs": 630
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.268,
+    "q25": 0.202,
+    "q75": 0.326,
+    "p5": 0.139,
+    "p95": 0.406,
+    "max": 0.485,
+    "n_pairs": 630
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

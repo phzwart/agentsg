@@ -1,0 +1,59 @@
+{
+ "identity": "Q07599",
+ "accessions": [
+  "Q07599"
+ ],
+ "deposition_group": null,
+ "name": "Neuraminidase",
+ "clusters": [
+  {
+   "cluster_id": 1752,
+   "n_members": 11,
+   "reference": "3O9J",
+   "reference_resolution": 2.0002,
+   "space_group": "I 4",
+   "reference_cell": [
+    90.58,
+    90.58,
+    109.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.393,
+    "q25": 0.317,
+    "q75": 0.612,
+    "p5": 0.29,
+    "p95": 0.686,
+    "max": 0.693,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.33,
+    "q25": 0.293,
+    "q75": 0.631,
+    "p5": 0.258,
+    "p95": 0.69,
+    "max": 0.697,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.312,
+    "q25": 0.269,
+    "q75": 0.602,
+    "p5": 0.236,
+    "p95": 0.664,
+    "max": 0.672,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

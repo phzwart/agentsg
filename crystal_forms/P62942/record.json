@@ -1,0 +1,59 @@
+{
+ "identity": "P62942",
+ "accessions": [
+  "P62942"
+ ],
+ "deposition_group": null,
+ "name": "Peptidyl-prolyl cis-trans isomerase FKBP1A",
+ "clusters": [
+  {
+   "cluster_id": 998,
+   "n_members": 17,
+   "reference": "8X6P",
+   "reference_resolution": 1.05,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    101.85,
+    36.124,
+    54.499,
+    90.0,
+    95.99,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.265,
+    "q25": 0.229,
+    "q75": 0.358,
+    "p5": 0.113,
+    "p95": 0.421,
+    "max": 0.486,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.322,
+    "q25": 0.231,
+    "q75": 0.536,
+    "p5": 0.12,
+    "p95": 0.81,
+    "max": 1.133,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.182,
+    "q25": 0.13,
+    "q75": 0.214,
+    "p5": 0.083,
+    "p95": 0.26,
+    "max": 0.29,
+    "n_pairs": 136
+   },
+   "n_low_margin": 16,
+   "n_via_neighbour": 0
+  }
+ ]
+}

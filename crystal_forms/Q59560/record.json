@@ -1,0 +1,59 @@
+{
+ "identity": "Q59560",
+ "accessions": [
+  "Q59560"
+ ],
+ "deposition_group": null,
+ "name": "Protein RecA",
+ "clusters": [
+  {
+   "cluster_id": 614,
+   "n_members": 25,
+   "reference": "2ZR9",
+   "reference_resolution": 2.5,
+   "space_group": "P 61",
+   "reference_cell": [
+    101.959,
+    101.959,
+    75.15,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.898,
+    "q25": 0.461,
+    "q75": 1.316,
+    "p5": 0.37,
+    "p95": 14.366,
+    "max": 16.692,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.34,
+    "q25": 0.693,
+    "q75": 1.656,
+    "p5": 0.438,
+    "p95": 16.952,
+    "max": 17.288,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.041,
+    "q25": 0.648,
+    "q75": 1.175,
+    "p5": 0.372,
+    "p95": 1.69,
+    "max": 2.02,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

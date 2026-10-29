@@ -1,0 +1,60 @@
+{
+ "identity": "Q02293+Q04631",
+ "accessions": [
+  "Q02293",
+  "Q04631"
+ ],
+ "deposition_group": null,
+ "name": "Protein farnesyltransferase subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 330,
+   "n_members": 40,
+   "reference": "3E33",
+   "reference_resolution": 1.9,
+   "space_group": "P 61",
+   "reference_cell": [
+    171.036,
+    171.036,
+    69.387,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 0.633,
+    "q25": 0.342,
+    "q75": 0.765,
+    "p5": 0.184,
+    "p95": 1.136,
+    "max": 2.041,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.103,
+    "q25": 0.751,
+    "q75": 1.634,
+    "p5": 0.381,
+    "p95": 2.997,
+    "max": 5.095,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.454,
+    "q25": 0.305,
+    "q75": 0.548,
+    "p5": 0.175,
+    "p95": 0.808,
+    "max": 0.949,
+    "n_pairs": 780
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

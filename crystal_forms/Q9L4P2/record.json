@@ -1,0 +1,59 @@
+{
+ "identity": "Q9L4P2",
+ "accessions": [
+  "Q9L4P2"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase OXA-23",
+ "clusters": [
+  {
+   "cluster_id": 1455,
+   "n_members": 13,
+   "reference": "9NSW",
+   "reference_resolution": 1.4,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    82.771,
+    82.771,
+    84.892,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.293,
+    "q25": 0.161,
+    "q75": 0.396,
+    "p5": 0.084,
+    "p95": 0.491,
+    "max": 0.519,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.347,
+    "q25": 0.232,
+    "q75": 0.457,
+    "p5": 0.1,
+    "p95": 0.57,
+    "max": 0.68,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.209,
+    "q25": 0.136,
+    "q75": 0.304,
+    "p5": 0.075,
+    "p95": 0.353,
+    "max": 0.369,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

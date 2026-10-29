@@ -1,0 +1,59 @@
+{
+ "identity": "Q54727",
+ "accessions": [
+  "Q54727"
+ ],
+ "deposition_group": null,
+ "name": "Sialidase B",
+ "clusters": [
+  {
+   "cluster_id": 373,
+   "n_members": 37,
+   "reference": "4XJW",
+   "reference_resolution": 1.53,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    75.95,
+    82.85,
+    116.58,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 2.498,
+    "q25": 2.345,
+    "q75": 2.615,
+    "p5": 0.498,
+    "p95": 2.668,
+    "max": 2.684,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.498,
+    "q25": 0.327,
+    "q75": 0.87,
+    "p5": 0.214,
+    "p95": 2.513,
+    "max": 2.696,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.221,
+    "q75": 0.406,
+    "p5": 0.156,
+    "p95": 0.568,
+    "max": 0.686,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

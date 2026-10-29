@@ -1,0 +1,59 @@
+{
+ "identity": "P02701",
+ "accessions": [
+  "P02701"
+ ],
+ "deposition_group": null,
+ "name": "Avidin",
+ "clusters": [
+  {
+   "cluster_id": 1127,
+   "n_members": 15,
+   "reference": "1VYO",
+   "reference_resolution": 1.48,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    72.949,
+    78.772,
+    43.01,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 2.126,
+    "q25": 1.104,
+    "q75": 3.048,
+    "p5": 0.837,
+    "p95": 3.284,
+    "max": 3.327,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.839,
+    "q25": 0.913,
+    "q75": 2.429,
+    "p5": 0.36,
+    "p95": 3.106,
+    "max": 4.356,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.733,
+    "q25": 0.469,
+    "q75": 1.562,
+    "p5": 0.299,
+    "p95": 2.656,
+    "max": 2.825,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

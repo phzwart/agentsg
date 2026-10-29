@@ -1,0 +1,59 @@
+{
+ "identity": "P68175",
+ "accessions": [
+  "P68175"
+ ],
+ "deposition_group": null,
+ "name": "Strictosidine synthase 1",
+ "clusters": [
+  {
+   "cluster_id": 1557,
+   "n_members": 12,
+   "reference": "2FP8",
+   "reference_resolution": 2.3,
+   "space_group": "H 3",
+   "reference_cell": [
+    147.29,
+    147.29,
+    122.331,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.722,
+    "q25": 1.663,
+    "q75": 1.865,
+    "p5": 1.459,
+    "p95": 1.919,
+    "max": 1.957,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.151,
+    "q25": 0.58,
+    "q75": 1.713,
+    "p5": 0.416,
+    "p95": 2.795,
+    "max": 3.533,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.34,
+    "q25": 0.286,
+    "q75": 0.383,
+    "p5": 0.25,
+    "p95": 0.474,
+    "max": 0.52,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

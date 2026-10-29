@@ -1,0 +1,59 @@
+{
+ "identity": "P00772",
+ "accessions": [
+  "P00772"
+ ],
+ "deposition_group": null,
+ "name": "Chymotrypsin-like elastase family member 1",
+ "clusters": [
+  {
+   "cluster_id": 69,
+   "n_members": 118,
+   "reference": "5AVD",
+   "reference_resolution": 0.86,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.992,
+    58.21,
+    74.425,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 117,
+    "reference": 1
+   },
+   "n_pairs": 6903,
+   "rmsd_to_reference": {
+    "median": 0.661,
+    "q25": 0.534,
+    "q75": 0.842,
+    "p5": 0.492,
+    "p95": 1.117,
+    "max": 25.385,
+    "n_pairs": 117
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.694,
+    "q25": 0.447,
+    "q75": 0.96,
+    "p5": 0.227,
+    "p95": 1.44,
+    "max": 25.814,
+    "n_pairs": 6903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.263,
+    "q25": 0.199,
+    "q75": 0.338,
+    "p5": 0.119,
+    "p95": 0.44,
+    "max": 16.762,
+    "n_pairs": 6903
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "A0A067E666+Q9CAJ0",
+ "accessions": [
+  "A0A067E666",
+  "Q9CAJ0"
+ ],
+ "deposition_group": null,
+ "name": "Protein phosphatase 2C 16",
+ "clusters": [
+  {
+   "cluster_id": 1016,
+   "n_members": 16,
+   "reference": "9TB8",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.899,
+    64.526,
+    188.22,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.675,
+    "q25": 1.297,
+    "q75": 1.832,
+    "p5": 0.556,
+    "p95": 1.9,
+    "max": 1.961,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.725,
+    "q25": 0.44,
+    "q75": 1.383,
+    "p5": 0.269,
+    "p95": 2.406,
+    "max": 2.631,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.322,
+    "q25": 0.261,
+    "q75": 0.383,
+    "p5": 0.173,
+    "p95": 0.472,
+    "max": 0.623,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

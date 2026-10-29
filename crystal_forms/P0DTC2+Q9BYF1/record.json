@@ -1,0 +1,60 @@
+{
+ "identity": "P0DTC2+Q9BYF1",
+ "accessions": [
+  "P0DTC2",
+  "Q9BYF1"
+ ],
+ "deposition_group": null,
+ "name": "Angiotensin-converting enzyme 2",
+ "clusters": [
+  {
+   "cluster_id": 1053,
+   "n_members": 16,
+   "reference": "7EKH",
+   "reference_resolution": 2.4,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    103.639,
+    103.639,
+    227.133,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.835,
+    "q25": 0.611,
+    "q75": 1.271,
+    "p5": 0.433,
+    "p95": 7.915,
+    "max": 22.807,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.411,
+    "q25": 0.93,
+    "q75": 2.293,
+    "p5": 0.534,
+    "p95": 22.594,
+    "max": 23.307,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.411,
+    "q25": 0.313,
+    "q75": 0.586,
+    "p5": 0.183,
+    "p95": 0.801,
+    "max": 0.994,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

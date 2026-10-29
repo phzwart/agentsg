@@ -1,0 +1,60 @@
+{
+ "identity": "Q4WMJ8",
+ "accessions": [
+  "Q4WMJ8"
+ ],
+ "deposition_group": null,
+ "name": "Dipeptidase gliJ",
+ "clusters": [
+  {
+   "cluster_id": 1434,
+   "n_members": 13,
+   "reference": "5NRY",
+   "reference_resolution": 1.85,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    98.99,
+    98.99,
+    106.3,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.332,
+    "q25": 0.188,
+    "q75": 0.426,
+    "p5": 0.159,
+    "p95": 0.721,
+    "max": 0.884,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.582,
+    "q25": 0.396,
+    "q75": 0.853,
+    "p5": 0.199,
+    "p95": 1.183,
+    "max": 1.533,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.176,
+    "q25": 0.129,
+    "q75": 0.236,
+    "p5": 0.112,
+    "p95": 0.268,
+    "max": 0.329,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

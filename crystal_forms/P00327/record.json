@@ -1,0 +1,158 @@
+{
+ "identity": "P00327",
+ "accessions": [
+  "P00327"
+ ],
+ "deposition_group": null,
+ "name": "Alcohol dehydrogenase E chain",
+ "clusters": [
+  {
+   "cluster_id": 164,
+   "n_members": 71,
+   "reference": "2JHF",
+   "reference_resolution": 1.0,
+   "space_group": "P 1",
+   "reference_cell": [
+    50.87,
+    44.46,
+    94.18,
+    104.4,
+    101.4,
+    71.1
+   ],
+   "status_counts": {
+    "placed": 70,
+    "reference": 1
+   },
+   "n_pairs": 2485,
+   "rmsd_to_reference": {
+    "median": 0.262,
+    "q25": 0.221,
+    "q75": 0.305,
+    "p5": 0.159,
+    "p95": 0.353,
+    "max": 11.538,
+    "n_pairs": 70
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.344,
+    "q25": 0.192,
+    "q75": 0.587,
+    "p5": 0.115,
+    "p95": 1.057,
+    "max": 11.669,
+    "n_pairs": 2485
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.159,
+    "q25": 0.116,
+    "q75": 0.207,
+    "p5": 0.077,
+    "p95": 0.568,
+    "max": 0.702,
+    "n_pairs": 2485
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1659,
+   "n_members": 11,
+   "reference": "1YE3",
+   "reference_resolution": 1.59,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    55.78,
+    74.29,
+    181.25,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.548,
+    "q25": 0.351,
+    "q75": 0.609,
+    "p5": 0.296,
+    "p95": 0.639,
+    "max": 0.649,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.598,
+    "q25": 0.428,
+    "q75": 0.68,
+    "p5": 0.304,
+    "p95": 1.05,
+    "max": 1.298,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.405,
+    "q25": 0.327,
+    "q75": 0.443,
+    "p5": 0.248,
+    "p95": 0.543,
+    "max": 0.602,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1660,
+   "n_members": 11,
+   "reference": "5VL0",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.16,
+    180.29,
+    86.92,
+    90.0,
+    106.18,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.143,
+    "q25": 0.13,
+    "q75": 0.192,
+    "p5": 0.115,
+    "p95": 0.361,
+    "max": 0.417,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.196,
+    "q25": 0.163,
+    "q75": 0.268,
+    "p5": 0.131,
+    "p95": 0.384,
+    "max": 0.415,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.127,
+    "q25": 0.106,
+    "q75": 0.156,
+    "p5": 0.092,
+    "p95": 0.203,
+    "max": 0.222,
+    "n_pairs": 55
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

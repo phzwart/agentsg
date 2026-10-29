@@ -1,0 +1,158 @@
+{
+ "identity": "P27487",
+ "accessions": [
+  "P27487"
+ ],
+ "deposition_group": null,
+ "name": "Dipeptidyl peptidase 4",
+ "clusters": [
+  {
+   "cluster_id": 340,
+   "n_members": 39,
+   "reference": "5T4B",
+   "reference_resolution": 1.76,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    117.61,
+    125.68,
+    137.17,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.294,
+    "q25": 0.224,
+    "q75": 0.534,
+    "p5": 0.201,
+    "p95": 3.373,
+    "max": 3.388,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.577,
+    "q25": 0.378,
+    "q75": 2.521,
+    "p5": 0.218,
+    "p95": 5.361,
+    "max": 6.898,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.34,
+    "q25": 0.179,
+    "q75": 0.489,
+    "p5": 0.131,
+    "p95": 0.632,
+    "max": 0.682,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 730,
+   "n_members": 22,
+   "reference": "3SWW",
+   "reference_resolution": 2.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.534,
+    67.928,
+    423.472,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.028,
+    "q25": 0.631,
+    "q75": 1.209,
+    "p5": 0.388,
+    "p95": 1.541,
+    "max": 1.645,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.106,
+    "q25": 0.817,
+    "q75": 1.484,
+    "p5": 0.494,
+    "p95": 2.013,
+    "max": 2.275,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.361,
+    "q25": 0.314,
+    "q75": 0.437,
+    "p5": 0.24,
+    "p95": 0.676,
+    "max": 0.887,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1400,
+   "n_members": 13,
+   "reference": "1R9M",
+   "reference_resolution": 2.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    121.823,
+    124.056,
+    144.491,
+    90.0,
+    114.71,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 12
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.819,
+    "q25": 0.646,
+    "q75": 1.01,
+    "p5": 0.461,
+    "p95": 1.034,
+    "max": 1.047,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.641,
+    "q25": 0.449,
+    "q75": 0.817,
+    "p5": 0.318,
+    "p95": 1.049,
+    "max": 1.251,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.299,
+    "q25": 0.269,
+    "q75": 0.338,
+    "p5": 0.234,
+    "p95": 0.367,
+    "max": 0.386,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

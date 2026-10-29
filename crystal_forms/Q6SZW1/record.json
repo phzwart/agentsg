@@ -1,0 +1,59 @@
+{
+ "identity": "Q6SZW1",
+ "accessions": [
+  "Q6SZW1"
+ ],
+ "deposition_group": null,
+ "name": "NAD(+) hydrolase SARM1",
+ "clusters": [
+  {
+   "cluster_id": 883,
+   "n_members": 19,
+   "reference": "7NAJ",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    85.511,
+    117.063,
+    33.043,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.37,
+    "q25": 0.331,
+    "q75": 0.479,
+    "p5": 0.265,
+    "p95": 0.752,
+    "max": 0.838,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.429,
+    "q25": 0.339,
+    "q75": 0.577,
+    "p5": 0.262,
+    "p95": 0.79,
+    "max": 0.853,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.246,
+    "q25": 0.207,
+    "q75": 0.307,
+    "p5": 0.159,
+    "p95": 0.607,
+    "max": 0.642,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

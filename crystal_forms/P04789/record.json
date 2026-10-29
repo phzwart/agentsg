@@ -1,0 +1,59 @@
+{
+ "identity": "P04789",
+ "accessions": [
+  "P04789"
+ ],
+ "deposition_group": null,
+ "name": "Triosephosphate isomerase, glycosomal",
+ "clusters": [
+  {
+   "cluster_id": 1672,
+   "n_members": 11,
+   "reference": "2VEK",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    45.96,
+    87.22,
+    56.48,
+    90.0,
+    97.5,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.422,
+    "q25": 0.35,
+    "q75": 0.933,
+    "p5": 0.312,
+    "p95": 9.804,
+    "max": 9.807,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.116,
+    "q25": 0.857,
+    "q75": 9.828,
+    "p5": 0.43,
+    "p95": 9.954,
+    "max": 9.97,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.845,
+    "q25": 0.299,
+    "q75": 9.57,
+    "p5": 0.219,
+    "p95": 9.629,
+    "max": 9.655,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

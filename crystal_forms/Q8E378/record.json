@@ -1,0 +1,59 @@
+{
+ "identity": "Q8E378",
+ "accessions": [
+  "Q8E378"
+ ],
+ "deposition_group": null,
+ "name": "Peptide deformylase",
+ "clusters": [
+  {
+   "cluster_id": 1602,
+   "n_members": 12,
+   "reference": "5JF0",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.21,
+    65.43,
+    88.54,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.29,
+    "q25": 0.249,
+    "q75": 0.354,
+    "p5": 0.193,
+    "p95": 0.415,
+    "max": 0.444,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.326,
+    "q25": 0.261,
+    "q75": 0.382,
+    "p5": 0.18,
+    "p95": 0.483,
+    "max": 0.537,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.24,
+    "q25": 0.202,
+    "q75": 0.283,
+    "p5": 0.136,
+    "p95": 0.307,
+    "max": 0.352,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

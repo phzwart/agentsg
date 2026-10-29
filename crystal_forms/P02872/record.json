@@ -1,0 +1,59 @@
+{
+ "identity": "P02872",
+ "accessions": [
+  "P02872"
+ ],
+ "deposition_group": null,
+ "name": "Galactose-binding lectin",
+ "clusters": [
+  {
+   "cluster_id": 757,
+   "n_members": 21,
+   "reference": "6VAW",
+   "reference_resolution": 1.75,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    76.222,
+    125.052,
+    126.844,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.485,
+    "q25": 0.298,
+    "q75": 0.563,
+    "p5": 0.148,
+    "p95": 0.708,
+    "max": 0.712,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.605,
+    "q25": 0.414,
+    "q75": 0.888,
+    "p5": 0.272,
+    "p95": 1.326,
+    "max": 1.604,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.234,
+    "q25": 0.204,
+    "q75": 0.279,
+    "p5": 0.129,
+    "p95": 0.335,
+    "max": 0.37,
+    "n_pairs": 210
+   },
+   "n_low_margin": 20,
+   "n_via_neighbour": 0
+  }
+ ]
+}

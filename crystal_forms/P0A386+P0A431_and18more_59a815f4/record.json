@@ -1,0 +1,78 @@
+{
+ "identity": "P0A386+P0A431+P0A444+P59087+Q8CM25+Q8DHA7+Q8DHJ2+Q8DIF8+Q8DIN8+Q8DIN9+Q8DIP0+Q8DIQ0+Q8DIQ1+Q8DJ43+Q8DJI1+Q8DJZ6+Q8DKM3+Q9F1K9+Q9F1L5+Q9F1R6",
+ "accessions": [
+  "P0A386",
+  "P0A431",
+  "P0A444",
+  "P59087",
+  "Q8CM25",
+  "Q8DHA7",
+  "Q8DHJ2",
+  "Q8DIF8",
+  "Q8DIN8",
+  "Q8DIN9",
+  "Q8DIP0",
+  "Q8DIQ0",
+  "Q8DIQ1",
+  "Q8DJ43",
+  "Q8DJI1",
+  "Q8DJZ6",
+  "Q8DKM3",
+  "Q9F1K9",
+  "Q9F1L5",
+  "Q9F1R6"
+ ],
+ "deposition_group": null,
+ "name": "Photosystem II CP47 reaction center protein",
+ "clusters": [
+  {
+   "cluster_id": 284,
+   "n_members": 44,
+   "reference": "7RF1",
+   "reference_resolution": 1.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    117.0,
+    221.6,
+    307.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 43,
+    "reference": 1
+   },
+   "n_pairs": 946,
+   "rmsd_to_reference": {
+    "median": 0.171,
+    "q25": 0.118,
+    "q75": 0.273,
+    "p5": 0.108,
+    "p95": 0.368,
+    "max": 1.562,
+    "n_pairs": 43
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.066,
+    "q25": 0.526,
+    "q75": 1.794,
+    "p5": 0.161,
+    "p95": 6.208,
+    "max": 9.591,
+    "n_pairs": 946
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.172,
+    "q25": 0.129,
+    "q75": 0.192,
+    "p5": 0.102,
+    "p95": 0.278,
+    "max": 0.368,
+    "n_pairs": 946
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

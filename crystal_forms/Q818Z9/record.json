@@ -1,0 +1,59 @@
+{
+ "identity": "Q818Z9",
+ "accessions": [
+  "Q818Z9"
+ ],
+ "deposition_group": null,
+ "name": "Phosphopentomutase",
+ "clusters": [
+  {
+   "cluster_id": 1192,
+   "n_members": 15,
+   "reference": "3OT9",
+   "reference_resolution": 1.75,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    91.871,
+    76.582,
+    107.051,
+    90.0,
+    108.73,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.217,
+    "q25": 0.179,
+    "q75": 0.294,
+    "p5": 0.149,
+    "p95": 0.353,
+    "max": 0.399,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.263,
+    "q25": 0.21,
+    "q75": 0.305,
+    "p5": 0.166,
+    "p95": 0.375,
+    "max": 0.407,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.209,
+    "q25": 0.163,
+    "q75": 0.247,
+    "p5": 0.128,
+    "p95": 0.289,
+    "max": 0.341,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

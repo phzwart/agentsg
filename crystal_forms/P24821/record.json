@@ -1,0 +1,59 @@
+{
+ "identity": "P24821",
+ "accessions": [
+  "P24821"
+ ],
+ "deposition_group": null,
+ "name": "Tenascin",
+ "clusters": [
+  {
+   "cluster_id": 1537,
+   "n_members": 12,
+   "reference": "5R61",
+   "reference_resolution": 1.38,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    77.34,
+    77.34,
+    71.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.138,
+    "q25": 0.107,
+    "q75": 0.212,
+    "p5": 0.084,
+    "p95": 0.253,
+    "max": 0.265,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.169,
+    "q25": 0.115,
+    "q75": 0.227,
+    "p5": 0.087,
+    "p95": 0.39,
+    "max": 0.497,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.116,
+    "q25": 0.088,
+    "q75": 0.135,
+    "p5": 0.065,
+    "p95": 0.179,
+    "max": 0.227,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q46509",
+ "accessions": [
+  "Q46509"
+ ],
+ "deposition_group": null,
+ "name": "Aldehyde oxidoreductase",
+ "clusters": [
+  {
+   "cluster_id": 1762,
+   "n_members": 11,
+   "reference": "4USA",
+   "reference_resolution": 1.13,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    143.143,
+    143.143,
+    161.954,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.171,
+    "q25": 0.128,
+    "q75": 0.227,
+    "p5": 0.092,
+    "p95": 0.428,
+    "max": 0.546,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.257,
+    "q25": 0.186,
+    "q75": 0.422,
+    "p5": 0.111,
+    "p95": 0.81,
+    "max": 1.11,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.139,
+    "q25": 0.111,
+    "q75": 0.16,
+    "p5": 0.077,
+    "p95": 0.218,
+    "max": 0.233,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

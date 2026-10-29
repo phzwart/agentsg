@@ -1,0 +1,59 @@
+{
+ "identity": "P39045",
+ "accessions": [
+  "P39045"
+ ],
+ "deposition_group": null,
+ "name": "D-alanyl-D-alanine carboxypeptidase",
+ "clusters": [
+  {
+   "cluster_id": 996,
+   "n_members": 17,
+   "reference": "1W79",
+   "reference_resolution": 1.8,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    105.187,
+    93.369,
+    107.272,
+    90.0,
+    94.25,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 16
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.655,
+    "q25": 0.591,
+    "q75": 0.704,
+    "p5": 0.46,
+    "p95": 0.794,
+    "max": 0.86,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.751,
+    "q25": 0.533,
+    "q75": 1.014,
+    "p5": 0.34,
+    "p95": 1.499,
+    "max": 1.922,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.406,
+    "q25": 0.332,
+    "q75": 0.469,
+    "p5": 0.239,
+    "p95": 0.537,
+    "max": 0.68,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

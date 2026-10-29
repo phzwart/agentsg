@@ -1,0 +1,61 @@
+{
+ "identity": "A1BB97+P22619+Q51658",
+ "accessions": [
+  "A1BB97",
+  "P22619",
+  "Q51658"
+ ],
+ "deposition_group": null,
+ "name": "Methylamine dehydrogenase heavy chain",
+ "clusters": [
+  {
+   "cluster_id": 1100,
+   "n_members": 15,
+   "reference": "3RMZ",
+   "reference_resolution": 1.72,
+   "space_group": "P 1",
+   "reference_cell": [
+    55.527,
+    83.524,
+    107.782,
+    109.94,
+    91.54,
+    105.78
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.45,
+    "q25": 0.38,
+    "q75": 0.502,
+    "p5": 0.315,
+    "p95": 0.59,
+    "max": 0.647,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.414,
+    "q25": 0.25,
+    "q75": 0.494,
+    "p5": 0.17,
+    "p95": 0.58,
+    "max": 0.651,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.198,
+    "q75": 0.356,
+    "p5": 0.155,
+    "p95": 0.417,
+    "max": 0.469,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

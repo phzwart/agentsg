@@ -1,0 +1,60 @@
+{
+ "identity": "P30291",
+ "accessions": [
+  "P30291"
+ ],
+ "deposition_group": null,
+ "name": "Wee1-like protein kinase",
+ "clusters": [
+  {
+   "cluster_id": 1710,
+   "n_members": 11,
+   "reference": "9D0S",
+   "reference_resolution": 1.64,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    71.36,
+    71.36,
+    157.71,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.911,
+    "q25": 1.68,
+    "q75": 2.041,
+    "p5": 1.38,
+    "p95": 2.279,
+    "max": 2.314,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.775,
+    "q25": 0.459,
+    "q75": 1.026,
+    "p5": 0.299,
+    "p95": 1.608,
+    "max": 1.909,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.29,
+    "q25": 0.24,
+    "q75": 0.396,
+    "p5": 0.167,
+    "p95": 0.606,
+    "max": 0.671,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

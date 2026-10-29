@@ -1,0 +1,59 @@
+{
+ "identity": "Q6WZB0",
+ "accessions": [
+  "Q6WZB0"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-ketoglutarate-dependent L-arginine hydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 1009,
+   "n_members": 17,
+   "reference": "2WBQ",
+   "reference_resolution": 1.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    80.91,
+    66.83,
+    62.73,
+    90.0,
+    109.17,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.352,
+    "q25": 0.248,
+    "q75": 0.437,
+    "p5": 0.171,
+    "p95": 0.518,
+    "max": 0.521,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.411,
+    "q25": 0.327,
+    "q75": 0.576,
+    "p5": 0.173,
+    "p95": 0.811,
+    "max": 0.931,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.312,
+    "q25": 0.24,
+    "q75": 0.418,
+    "p5": 0.138,
+    "p95": 0.697,
+    "max": 0.79,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

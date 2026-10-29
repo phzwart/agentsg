@@ -1,0 +1,59 @@
+{
+ "identity": "Q5XX06",
+ "accessions": [
+  "Q5XX06"
+ ],
+ "deposition_group": null,
+ "name": "Matrix protein VP40",
+ "clusters": [
+  {
+   "cluster_id": 1008,
+   "n_members": 17,
+   "reference": "9S40",
+   "reference_resolution": 1.47,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    64.405,
+    91.411,
+    48.13,
+    90.0,
+    95.64,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.539,
+    "q25": 0.489,
+    "q75": 0.733,
+    "p5": 0.377,
+    "p95": 0.834,
+    "max": 0.841,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.552,
+    "q25": 0.438,
+    "q75": 0.791,
+    "p5": 0.289,
+    "p95": 1.012,
+    "max": 1.23,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.436,
+    "q25": 0.324,
+    "q75": 0.589,
+    "p5": 0.225,
+    "p95": 0.792,
+    "max": 1.106,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

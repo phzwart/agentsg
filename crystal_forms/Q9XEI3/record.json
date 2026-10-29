@@ -1,0 +1,60 @@
+{
+ "identity": "Q9XEI3",
+ "accessions": [
+  "Q9XEI3"
+ ],
+ "deposition_group": null,
+ "name": "Beta-D-glucan exohydrolase isoenzyme ExoI",
+ "clusters": [
+  {
+   "cluster_id": 250,
+   "n_members": 50,
+   "reference": "3WLI",
+   "reference_resolution": 1.45,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    99.218,
+    99.218,
+    183.455,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 9,
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.863,
+    "q25": 0.745,
+    "q75": 1.085,
+    "p5": 0.527,
+    "p95": 1.379,
+    "max": 1.407,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.549,
+    "q25": 0.387,
+    "q75": 0.752,
+    "p5": 0.22,
+    "p95": 1.105,
+    "max": 1.733,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.239,
+    "q25": 0.178,
+    "q75": 0.311,
+    "p5": 0.119,
+    "p95": 0.585,
+    "max": 0.654,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

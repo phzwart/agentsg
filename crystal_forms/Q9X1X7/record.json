@@ -1,0 +1,60 @@
+{
+ "identity": "Q9X1X7",
+ "accessions": [
+  "Q9X1X7"
+ ],
+ "deposition_group": null,
+ "name": "Quinolinate synthase",
+ "clusters": [
+  {
+   "cluster_id": 1615,
+   "n_members": 12,
+   "reference": "5F33",
+   "reference_resolution": 1.45,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    52.094,
+    49.16,
+    60.221,
+    90.0,
+    104.1,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10,
+    "different_space_group": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.118,
+    "q25": 0.819,
+    "q75": 1.188,
+    "p5": 0.403,
+    "p95": 1.318,
+    "max": 1.381,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.574,
+    "q25": 0.682,
+    "q75": 2.79,
+    "p5": 0.343,
+    "p95": 3.449,
+    "max": 3.58,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.5,
+    "q25": 0.242,
+    "q75": 0.686,
+    "p5": 0.157,
+    "p95": 0.781,
+    "max": 0.798,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

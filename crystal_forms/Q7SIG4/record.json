@@ -1,0 +1,60 @@
+{
+ "identity": "Q7SIG4",
+ "accessions": [
+  "Q7SIG4"
+ ],
+ "deposition_group": null,
+ "name": "Diisopropyl-fluorophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 652,
+   "n_members": 24,
+   "reference": "1PJX",
+   "reference_resolution": 0.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.114,
+    81.849,
+    86.467,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "reference": 1,
+    "placed": 22
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.268,
+    "q25": 0.189,
+    "q75": 0.412,
+    "p5": 0.112,
+    "p95": 4.126,
+    "max": 4.618,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.43,
+    "q25": 0.243,
+    "q75": 0.537,
+    "p5": 0.153,
+    "p95": 4.703,
+    "max": 4.815,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.245,
+    "q25": 0.176,
+    "q75": 0.273,
+    "p5": 0.127,
+    "p95": 0.468,
+    "max": 0.661,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

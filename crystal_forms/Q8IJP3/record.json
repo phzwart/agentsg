@@ -1,0 +1,59 @@
+{
+ "identity": "Q8IJP3",
+ "accessions": [
+  "Q8IJP3"
+ ],
+ "deposition_group": null,
+ "name": "cysteine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 1785,
+   "n_members": 11,
+   "reference": "9YRW",
+   "reference_resolution": 2.03,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    120.001,
+    120.001,
+    367.223,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.552,
+    "q25": 0.373,
+    "q75": 0.77,
+    "p5": 0.23,
+    "p95": 0.971,
+    "max": 1.036,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.597,
+    "q25": 0.377,
+    "q75": 0.796,
+    "p5": 0.238,
+    "p95": 1.071,
+    "max": 1.147,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.253,
+    "q25": 0.195,
+    "q75": 0.313,
+    "p5": 0.115,
+    "p95": 0.389,
+    "max": 0.473,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "identity": "P84887+P84888",
+ "accessions": [
+  "P84887",
+  "P84888"
+ ],
+ "deposition_group": null,
+ "name": "Aralkylamine dehydrogenase heavy chain",
+ "clusters": [
+  {
+   "cluster_id": 925,
+   "n_members": 18,
+   "reference": "2OIZ",
+   "reference_resolution": 1.05,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    70.944,
+    88.705,
+    80.222,
+    90.0,
+    90.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.188,
+    "q25": 0.161,
+    "q75": 0.268,
+    "p5": 0.089,
+    "p95": 0.305,
+    "max": 0.317,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.25,
+    "q25": 0.187,
+    "q75": 0.323,
+    "p5": 0.135,
+    "p95": 0.419,
+    "max": 0.472,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.14,
+    "q25": 0.107,
+    "q75": 0.169,
+    "p5": 0.085,
+    "p95": 0.207,
+    "max": 0.234,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

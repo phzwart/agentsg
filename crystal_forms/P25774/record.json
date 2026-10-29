@@ -1,0 +1,60 @@
+{
+ "identity": "P25774",
+ "accessions": [
+  "P25774"
+ ],
+ "deposition_group": null,
+ "name": "Cathepsin S",
+ "clusters": [
+  {
+   "cluster_id": 729,
+   "n_members": 22,
+   "reference": "9GJ2",
+   "reference_resolution": 1.15,
+   "space_group": "P 41 2 2",
+   "reference_cell": [
+    86.102,
+    86.102,
+    152.045,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.309,
+    "q25": 0.221,
+    "q75": 0.356,
+    "p5": 0.184,
+    "p95": 0.479,
+    "max": 0.487,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.34,
+    "q25": 0.266,
+    "q75": 0.42,
+    "p5": 0.194,
+    "p95": 0.522,
+    "max": 0.686,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.179,
+    "q25": 0.155,
+    "q75": 0.201,
+    "p5": 0.113,
+    "p95": 0.234,
+    "max": 0.283,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

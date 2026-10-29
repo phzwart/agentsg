@@ -1,0 +1,59 @@
+{
+ "identity": "P13513",
+ "accessions": [
+  "P13513"
+ ],
+ "deposition_group": null,
+ "name": "Trichodiene synthase",
+ "clusters": [
+  {
+   "cluster_id": 822,
+   "n_members": 20,
+   "reference": "1YYQ",
+   "reference_resolution": 2.1,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    122.06,
+    122.06,
+    150.34,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.399,
+    "q25": 0.259,
+    "q75": 0.605,
+    "p5": 0.178,
+    "p95": 0.681,
+    "max": 0.767,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.595,
+    "q25": 0.451,
+    "q75": 0.87,
+    "p5": 0.313,
+    "p95": 1.347,
+    "max": 2.225,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.24,
+    "q25": 0.211,
+    "q75": 0.272,
+    "p5": 0.176,
+    "p95": 0.466,
+    "max": 0.545,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

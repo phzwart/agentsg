@@ -1,0 +1,108 @@
+{
+ "identity": "Q8TEK3",
+ "accessions": [
+  "Q8TEK3"
+ ],
+ "deposition_group": null,
+ "name": "Histone-lysine N-methyltransferase, H3 lysine-79 specific",
+ "clusters": [
+  {
+   "cluster_id": 1315,
+   "n_members": 14,
+   "reference": "3UWP",
+   "reference_resolution": 2.05,
+   "space_group": "P 65",
+   "reference_cell": [
+    149.784,
+    149.784,
+    53.521,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 3.171,
+    "q25": 1.231,
+    "q75": 3.197,
+    "p5": 0.634,
+    "p95": 3.317,
+    "max": 3.377,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.364,
+    "q25": 0.787,
+    "q75": 2.611,
+    "p5": 0.318,
+    "p95": 3.027,
+    "max": 3.209,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.107,
+    "q25": 0.72,
+    "q75": 2.345,
+    "p5": 0.258,
+    "p95": 2.905,
+    "max": 3.043,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1447,
+   "n_members": 13,
+   "reference": "6TE6",
+   "reference_resolution": 1.98,
+   "space_group": "P 63",
+   "reference_cell": [
+    158.54,
+    158.54,
+    74.23,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.491,
+    "q25": 0.31,
+    "q75": 0.62,
+    "p5": 0.251,
+    "p95": 0.756,
+    "max": 0.784,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.597,
+    "q25": 0.466,
+    "q75": 0.719,
+    "p5": 0.257,
+    "p95": 0.867,
+    "max": 0.982,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.514,
+    "q25": 0.372,
+    "q75": 0.566,
+    "p5": 0.231,
+    "p95": 0.653,
+    "max": 0.732,
+    "n_pairs": 78
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

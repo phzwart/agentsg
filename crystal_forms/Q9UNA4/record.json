@@ -1,0 +1,61 @@
+{
+ "identity": "Q9UNA4",
+ "accessions": [
+  "Q9UNA4"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase iota",
+ "clusters": [
+  {
+   "cluster_id": 268,
+   "n_members": 47,
+   "reference": "3OSN",
+   "reference_resolution": 1.9,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    97.973,
+    97.973,
+    202.757,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "no_shared_accession": 1,
+    "placed": 44,
+    "reference": 1
+   },
+   "n_pairs": 990,
+   "rmsd_to_reference": {
+    "median": 49.503,
+    "q25": 0.658,
+    "q75": 50.429,
+    "p5": 0.595,
+    "p95": 50.849,
+    "max": 50.929,
+    "n_pairs": 44
+   },
+   "pairwise_frame_rmsd": {
+    "median": 46.498,
+    "q25": 0.746,
+    "q75": 49.847,
+    "p5": 0.474,
+    "p95": 50.295,
+    "max": 50.939,
+    "n_pairs": 990
+   },
+   "pairwise_fit_rmsd": {
+    "median": 22.493,
+    "q25": 0.63,
+    "q75": 22.794,
+    "p5": 0.383,
+    "p95": 22.897,
+    "max": 23.088,
+    "n_pairs": 990
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

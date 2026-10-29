@@ -1,0 +1,59 @@
+{
+ "identity": "Q9HD26",
+ "accessions": [
+  "Q9HD26"
+ ],
+ "deposition_group": null,
+ "name": "Golgi-associated PDZ and coiled-coil motif-containing protein",
+ "clusters": [
+  {
+   "cluster_id": 794,
+   "n_members": 21,
+   "reference": "4JOK",
+   "reference_resolution": 1.09,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    36.167,
+    47.824,
+    97.461,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.196,
+    "q25": 0.163,
+    "q75": 0.234,
+    "p5": 0.145,
+    "p95": 2.939,
+    "max": 4.397,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.299,
+    "q25": 0.224,
+    "q75": 0.562,
+    "p5": 0.141,
+    "p95": 4.735,
+    "max": 5.072,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.158,
+    "q25": 0.123,
+    "q75": 0.28,
+    "p5": 0.087,
+    "p95": 0.349,
+    "max": 0.441,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

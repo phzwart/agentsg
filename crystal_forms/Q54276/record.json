@@ -1,0 +1,59 @@
+{
+ "identity": "Q54276",
+ "accessions": [
+  "Q54276"
+ ],
+ "deposition_group": null,
+ "name": "Chitinase",
+ "clusters": [
+  {
+   "cluster_id": 1765,
+   "n_members": 11,
+   "reference": "1E6P",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.134,
+    104.138,
+    186.654,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.477,
+    "q25": 0.357,
+    "q75": 0.782,
+    "p5": 0.194,
+    "p95": 0.93,
+    "max": 0.972,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.954,
+    "q25": 0.72,
+    "q75": 1.376,
+    "p5": 0.356,
+    "p95": 2.279,
+    "max": 2.515,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.486,
+    "q25": 0.36,
+    "q75": 0.616,
+    "p5": 0.181,
+    "p95": 0.835,
+    "max": 1.051,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

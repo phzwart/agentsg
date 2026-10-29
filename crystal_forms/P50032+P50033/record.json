@@ -1,0 +1,60 @@
+{
+ "identity": "P50032+P50033",
+ "accessions": [
+  "P50032",
+  "P50033"
+ ],
+ "deposition_group": null,
+ "name": "C-phycocyanin beta subunit",
+ "clusters": [
+  {
+   "cluster_id": 1551,
+   "n_members": 12,
+   "reference": "6YPQ",
+   "reference_resolution": 1.29,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    187.169,
+    187.169,
+    59.927,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.249,
+    "q75": 0.344,
+    "p5": 0.144,
+    "p95": 0.358,
+    "max": 0.363,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.307,
+    "q25": 0.248,
+    "q75": 0.373,
+    "p5": 0.165,
+    "p95": 0.526,
+    "max": 0.598,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.22,
+    "q25": 0.195,
+    "q75": 0.247,
+    "p5": 0.143,
+    "p95": 0.312,
+    "max": 0.356,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

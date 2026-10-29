@@ -1,0 +1,59 @@
+{
+ "identity": "P52700",
+ "accessions": [
+  "P52700"
+ ],
+ "deposition_group": null,
+ "name": "Metallo-beta-lactamase L1 type 3",
+ "clusters": [
+  {
+   "cluster_id": 875,
+   "n_members": 19,
+   "reference": "7ZO3",
+   "reference_resolution": 1.43,
+   "space_group": "P 64 2 2",
+   "reference_cell": [
+    105.274,
+    105.274,
+    98.241,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.168,
+    "q25": 0.15,
+    "q75": 0.221,
+    "p5": 0.122,
+    "p95": 0.264,
+    "max": 0.306,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.222,
+    "q25": 0.18,
+    "q75": 0.28,
+    "p5": 0.138,
+    "p95": 0.536,
+    "max": 0.732,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.158,
+    "q25": 0.132,
+    "q75": 0.195,
+    "p5": 0.102,
+    "p95": 0.233,
+    "max": 0.268,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

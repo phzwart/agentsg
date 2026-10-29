@@ -1,0 +1,59 @@
+{
+ "identity": "P22262",
+ "accessions": [
+  "P22262"
+ ],
+ "deposition_group": null,
+ "name": "Listeriolysin regulatory protein",
+ "clusters": [
+  {
+   "cluster_id": 1533,
+   "n_members": 12,
+   "reference": "6EXM",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    47.729,
+    88.647,
+    115.997,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.476,
+    "q25": 0.292,
+    "q75": 2.079,
+    "p5": 0.222,
+    "p95": 3.171,
+    "max": 3.206,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.618,
+    "q25": 0.924,
+    "q75": 3.896,
+    "p5": 0.432,
+    "p95": 4.973,
+    "max": 5.607,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.453,
+    "q25": 0.37,
+    "q75": 0.563,
+    "p5": 0.211,
+    "p95": 0.951,
+    "max": 1.35,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

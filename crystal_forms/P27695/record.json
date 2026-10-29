@@ -1,0 +1,108 @@
+{
+ "identity": "P27695",
+ "accessions": [
+  "P27695"
+ ],
+ "deposition_group": null,
+ "name": "DNA repair nuclease/redox regulator APEX1",
+ "clusters": [
+  {
+   "cluster_id": 639,
+   "n_members": 24,
+   "reference": "5DFF",
+   "reference_resolution": 1.57,
+   "space_group": "P 1",
+   "reference_cell": [
+    44.514,
+    61.716,
+    72.053,
+    83.89,
+    78.81,
+    88.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 23
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.812,
+    "q25": 0.413,
+    "q75": 0.873,
+    "p5": 0.155,
+    "p95": 1.431,
+    "max": 1.435,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.902,
+    "q25": 0.678,
+    "q75": 1.151,
+    "p5": 0.289,
+    "p95": 1.914,
+    "max": 2.257,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.589,
+    "q25": 0.269,
+    "q75": 0.652,
+    "p5": 0.155,
+    "p95": 1.148,
+    "max": 1.197,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1708,
+   "n_members": 11,
+   "reference": "7SUV",
+   "reference_resolution": 1.99,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    71.112,
+    66.486,
+    91.983,
+    90.0,
+    110.693,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.515,
+    "q25": 0.348,
+    "q75": 0.677,
+    "p5": 0.268,
+    "p95": 0.953,
+    "max": 1.004,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.641,
+    "q25": 0.458,
+    "q75": 0.955,
+    "p5": 0.319,
+    "p95": 1.29,
+    "max": 1.519,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.242,
+    "q25": 0.194,
+    "q75": 0.309,
+    "p5": 0.153,
+    "p95": 0.36,
+    "max": 0.398,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

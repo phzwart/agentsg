@@ -1,0 +1,59 @@
+{
+ "identity": "Q02321",
+ "accessions": [
+  "Q02321"
+ ],
+ "deposition_group": null,
+ "name": "Glucanase",
+ "clusters": [
+  {
+   "cluster_id": 1568,
+   "n_members": 12,
+   "reference": "8WXC",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.534,
+    67.555,
+    88.673,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.33,
+    "q25": 0.225,
+    "q75": 0.521,
+    "p5": 0.197,
+    "p95": 0.848,
+    "max": 0.878,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.482,
+    "q25": 0.374,
+    "q75": 0.809,
+    "p5": 0.22,
+    "p95": 0.974,
+    "max": 1.032,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.349,
+    "q25": 0.294,
+    "q75": 0.614,
+    "p5": 0.187,
+    "p95": 0.72,
+    "max": 0.749,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

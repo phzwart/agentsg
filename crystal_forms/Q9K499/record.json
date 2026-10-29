@@ -1,0 +1,59 @@
+{
+ "identity": "Q9K499",
+ "accessions": [
+  "Q9K499"
+ ],
+ "deposition_group": null,
+ "name": "Epi-isozizaene synthase",
+ "clusters": [
+  {
+   "cluster_id": 695,
+   "n_members": 23,
+   "reference": "8SU3",
+   "reference_resolution": 1.29,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.593,
+    46.811,
+    75.254,
+    90.0,
+    97.898,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.769,
+    "q25": 0.396,
+    "q75": 0.863,
+    "p5": 0.124,
+    "p95": 0.955,
+    "max": 1.208,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.604,
+    "q25": 0.298,
+    "q75": 1.043,
+    "p5": 0.172,
+    "p95": 1.212,
+    "max": 1.641,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.182,
+    "q75": 0.287,
+    "p5": 0.125,
+    "p95": 0.892,
+    "max": 0.923,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

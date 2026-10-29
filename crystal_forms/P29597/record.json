@@ -1,0 +1,60 @@
+{
+ "identity": "P29597",
+ "accessions": [
+  "P29597"
+ ],
+ "deposition_group": null,
+ "name": "Non-receptor tyrosine-protein kinase TYK2",
+ "clusters": [
+  {
+   "cluster_id": 773,
+   "n_members": 21,
+   "reference": "6AAM",
+   "reference_resolution": 1.98,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    36.142,
+    70.531,
+    97.891,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 23.831,
+    "q25": 23.591,
+    "q75": 24.027,
+    "p5": 23.427,
+    "p95": 24.562,
+    "max": 24.595,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.302,
+    "q25": 1.072,
+    "q75": 36.506,
+    "p5": 0.508,
+    "p95": 37.04,
+    "max": 37.863,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.648,
+    "q25": 0.501,
+    "q75": 0.744,
+    "p5": 0.253,
+    "p95": 0.846,
+    "max": 0.969,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

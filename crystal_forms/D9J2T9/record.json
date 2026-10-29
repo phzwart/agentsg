@@ -1,0 +1,60 @@
+{
+ "identity": "D9J2T9",
+ "accessions": [
+  "D9J2T9"
+ ],
+ "deposition_group": null,
+ "name": "rRNA N-glycosylase",
+ "clusters": [
+  {
+   "cluster_id": 194,
+   "n_members": 59,
+   "reference": "3SJ6",
+   "reference_resolution": 1.6,
+   "space_group": "H 3",
+   "reference_cell": [
+    129.972,
+    129.972,
+    40.245,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 8,
+    "placed": 50,
+    "reference": 1
+   },
+   "n_pairs": 1275,
+   "rmsd_to_reference": {
+    "median": 0.221,
+    "q25": 0.14,
+    "q75": 0.314,
+    "p5": 0.107,
+    "p95": 0.459,
+    "max": 0.799,
+    "n_pairs": 50
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.246,
+    "q25": 0.182,
+    "q75": 0.347,
+    "p5": 0.116,
+    "p95": 0.546,
+    "max": 1.039,
+    "n_pairs": 1275
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.181,
+    "q25": 0.14,
+    "q75": 0.24,
+    "p5": 0.097,
+    "p95": 0.339,
+    "max": 0.619,
+    "n_pairs": 1275
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

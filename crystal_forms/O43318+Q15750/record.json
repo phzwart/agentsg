@@ -1,0 +1,60 @@
+{
+ "identity": "O43318+Q15750",
+ "accessions": [
+  "O43318",
+  "Q15750"
+ ],
+ "deposition_group": null,
+ "name": "Mitogen-activated protein kinase kinase kinase 7",
+ "clusters": [
+  {
+   "cluster_id": 703,
+   "n_members": 22,
+   "reference": "7NTH",
+   "reference_resolution": 1.97,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    58.421,
+    134.783,
+    145.449,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.705,
+    "q25": 1.495,
+    "q75": 2.069,
+    "p5": 1.238,
+    "p95": 2.426,
+    "max": 3.229,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.571,
+    "q25": 1.174,
+    "q75": 2.004,
+    "p5": 0.879,
+    "p95": 3.241,
+    "max": 5.181,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.981,
+    "q25": 0.772,
+    "q75": 1.206,
+    "p5": 0.584,
+    "p95": 1.469,
+    "max": 3.357,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

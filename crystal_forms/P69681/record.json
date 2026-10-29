@@ -1,0 +1,59 @@
+{
+ "identity": "P69681",
+ "accessions": [
+  "P69681"
+ ],
+ "deposition_group": null,
+ "name": "Ammonium transporter AmtB",
+ "clusters": [
+  {
+   "cluster_id": 1171,
+   "n_members": 15,
+   "reference": "1XQF",
+   "reference_resolution": 1.8,
+   "space_group": "P 63",
+   "reference_cell": [
+    111.8,
+    111.8,
+    86.4,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.28,
+    "q25": 0.235,
+    "q75": 0.377,
+    "p5": 0.19,
+    "p95": 0.459,
+    "max": 0.531,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.594,
+    "q25": 0.419,
+    "q75": 0.831,
+    "p5": 0.269,
+    "p95": 1.271,
+    "max": 1.882,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.369,
+    "q25": 0.245,
+    "q75": 0.468,
+    "p5": 0.161,
+    "p95": 0.694,
+    "max": 0.802,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

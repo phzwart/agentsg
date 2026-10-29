@@ -1,0 +1,59 @@
+{
+ "identity": "P00374",
+ "accessions": [
+  "P00374"
+ ],
+ "deposition_group": null,
+ "name": "Dihydrofolate reductase",
+ "clusters": [
+  {
+   "cluster_id": 229,
+   "n_members": 53,
+   "reference": "5HSR",
+   "reference_resolution": 1.21,
+   "space_group": "H 3",
+   "reference_cell": [
+    84.609,
+    84.609,
+    78.092,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 52,
+    "reference": 1
+   },
+   "n_pairs": 1378,
+   "rmsd_to_reference": {
+    "median": 0.427,
+    "q25": 0.331,
+    "q75": 0.693,
+    "p5": 0.26,
+    "p95": 0.971,
+    "max": 1.12,
+    "n_pairs": 52
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.646,
+    "q25": 0.403,
+    "q75": 0.943,
+    "p5": 0.239,
+    "p95": 1.271,
+    "max": 1.722,
+    "n_pairs": 1378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.363,
+    "q25": 0.278,
+    "q75": 0.425,
+    "p5": 0.191,
+    "p95": 0.538,
+    "max": 1.011,
+    "n_pairs": 1378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

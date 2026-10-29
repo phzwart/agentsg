@@ -1,0 +1,59 @@
+{
+ "identity": "Q5TCY1",
+ "accessions": [
+  "Q5TCY1"
+ ],
+ "deposition_group": null,
+ "name": "Tau-tubulin kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 1770,
+   "n_members": 11,
+   "reference": "4NFN",
+   "reference_resolution": 1.42,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    169.49,
+    39.91,
+    50.53,
+    90.0,
+    105.34,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.817,
+    "q25": 0.739,
+    "q75": 0.858,
+    "p5": 0.442,
+    "p95": 0.963,
+    "max": 1.024,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.767,
+    "q25": 0.568,
+    "q75": 1.075,
+    "p5": 0.329,
+    "p95": 1.439,
+    "max": 1.52,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.492,
+    "q25": 0.412,
+    "q75": 0.612,
+    "p5": 0.156,
+    "p95": 0.667,
+    "max": 0.683,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

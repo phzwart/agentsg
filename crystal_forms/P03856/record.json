@@ -1,0 +1,60 @@
+{
+ "identity": "P03856",
+ "accessions": [
+  "P03856"
+ ],
+ "deposition_group": null,
+ "name": "Replication initiation protein",
+ "clusters": [
+  {
+   "cluster_id": 282,
+   "n_members": 44,
+   "reference": "7U6K",
+   "reference_resolution": 2.38,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    75.261,
+    132.066,
+    134.986,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 20,
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 1.434,
+    "q25": 0.674,
+    "q75": 2.262,
+    "p5": 0.424,
+    "p95": 2.665,
+    "max": 41.357,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.25,
+    "q25": 0.435,
+    "q75": 2.298,
+    "p5": 0.255,
+    "p95": 41.426,
+    "max": 41.848,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.189,
+    "q75": 0.294,
+    "p5": 0.135,
+    "p95": 0.562,
+    "max": 0.654,
+    "n_pairs": 276
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

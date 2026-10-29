@@ -1,0 +1,59 @@
+{
+ "identity": "Q8L940",
+ "accessions": [
+  "Q8L940"
+ ],
+ "deposition_group": null,
+ "name": "Pyridoxal 5'-phosphate synthase subunit PDX1.3",
+ "clusters": [
+  {
+   "cluster_id": 1786,
+   "n_members": 11,
+   "reference": "5LNR",
+   "reference_resolution": 1.61,
+   "space_group": "H 3",
+   "reference_cell": [
+    178.56,
+    178.56,
+    116.881,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.037,
+    "q25": 0.907,
+    "q75": 1.119,
+    "p5": 0.377,
+    "p95": 1.157,
+    "max": 1.168,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.709,
+    "q25": 0.433,
+    "q75": 1.043,
+    "p5": 0.249,
+    "p95": 1.171,
+    "max": 1.384,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.602,
+    "q25": 0.329,
+    "q75": 0.938,
+    "p5": 0.167,
+    "p95": 1.046,
+    "max": 1.101,
+    "n_pairs": 55
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 0
+  }
+ ]
+}

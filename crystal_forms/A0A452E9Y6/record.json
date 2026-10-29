@@ -1,0 +1,59 @@
+{
+ "identity": "A0A452E9Y6",
+ "accessions": [
+  "A0A452E9Y6"
+ ],
+ "deposition_group": null,
+ "name": "Lactoperoxidase",
+ "clusters": [
+  {
+   "cluster_id": 1623,
+   "n_members": 11,
+   "reference": "6LF7",
+   "reference_resolution": 1.794,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    53.881,
+    80.731,
+    75.139,
+    90.0,
+    101.53,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.859,
+    "q25": 0.84,
+    "q75": 0.928,
+    "p5": 0.499,
+    "p95": 1.729,
+    "max": 2.368,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.936,
+    "q25": 0.765,
+    "q75": 1.275,
+    "p5": 0.596,
+    "p95": 2.404,
+    "max": 2.479,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.564,
+    "q25": 0.478,
+    "q75": 0.697,
+    "p5": 0.39,
+    "p95": 2.285,
+    "max": 2.31,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

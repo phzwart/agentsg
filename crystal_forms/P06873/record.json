@@ -1,0 +1,59 @@
+{
+ "identity": "P06873",
+ "accessions": [
+  "P06873"
+ ],
+ "deposition_group": null,
+ "name": "Proteinase K",
+ "clusters": [
+  {
+   "cluster_id": 22,
+   "n_members": 255,
+   "reference": "2PWA",
+   "reference_resolution": 0.83,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    67.302,
+    67.302,
+    106.506,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 254,
+    "reference": 1
+   },
+   "n_pairs": 32385,
+   "rmsd_to_reference": {
+    "median": 1.053,
+    "q25": 0.273,
+    "q75": 1.094,
+    "p5": 0.195,
+    "p95": 1.158,
+    "max": 1.229,
+    "n_pairs": 254
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.603,
+    "q25": 0.277,
+    "q75": 0.853,
+    "p5": 0.133,
+    "p95": 0.982,
+    "max": 1.48,
+    "n_pairs": 32385
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.232,
+    "q25": 0.183,
+    "q75": 0.286,
+    "p5": 0.093,
+    "p95": 0.557,
+    "max": 0.72,
+    "n_pairs": 32385
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P22830",
+ "accessions": [
+  "P22830"
+ ],
+ "deposition_group": null,
+ "name": "Ferrochelatase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 728,
+   "n_members": 22,
+   "reference": "3HCN",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    86.479,
+    92.964,
+    109.36,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 2.293,
+    "q25": 2.224,
+    "q75": 2.327,
+    "p5": 0.401,
+    "p95": 2.486,
+    "max": 2.742,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.294,
+    "q25": 0.965,
+    "q75": 2.688,
+    "p5": 0.417,
+    "p95": 3.551,
+    "max": 4.351,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.423,
+    "q25": 0.315,
+    "q75": 1.804,
+    "p5": 0.224,
+    "p95": 1.846,
+    "max": 1.896,
+    "n_pairs": 231
+   },
+   "n_low_margin": 21,
+   "n_via_neighbour": 0
+  }
+ ]
+}

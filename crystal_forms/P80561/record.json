@@ -1,0 +1,59 @@
+{
+ "identity": "P80561",
+ "accessions": [
+  "P80561"
+ ],
+ "deposition_group": null,
+ "name": "Aminopeptidase S",
+ "clusters": [
+  {
+   "cluster_id": 1743,
+   "n_members": 11,
+   "reference": "1TKJ",
+   "reference_resolution": 1.15,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    60.962,
+    60.962,
+    144.705,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.43,
+    "q25": 0.157,
+    "q75": 0.462,
+    "p5": 0.09,
+    "p95": 0.478,
+    "max": 0.479,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.855,
+    "q25": 0.435,
+    "q75": 1.17,
+    "p5": 0.146,
+    "p95": 1.598,
+    "max": 1.766,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.219,
+    "q25": 0.118,
+    "q75": 0.259,
+    "p5": 0.077,
+    "p95": 0.305,
+    "max": 0.316,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "H3K419",
+ "accessions": [
+  "H3K419"
+ ],
+ "deposition_group": null,
+ "name": "Glucanase",
+ "clusters": [
+  {
+   "cluster_id": 1475,
+   "n_members": 12,
+   "reference": "8W8U",
+   "reference_resolution": 0.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.926,
+    67.018,
+    88.25,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.477,
+    "q25": 0.448,
+    "q75": 0.664,
+    "p5": 0.369,
+    "p95": 0.76,
+    "max": 0.849,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.703,
+    "q25": 0.476,
+    "q75": 0.807,
+    "p5": 0.191,
+    "p95": 0.874,
+    "max": 1.116,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.456,
+    "q25": 0.311,
+    "q75": 0.64,
+    "p5": 0.161,
+    "p95": 0.699,
+    "max": 0.771,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

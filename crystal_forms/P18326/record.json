@@ -1,0 +1,59 @@
+{
+ "identity": "P18326",
+ "accessions": [
+  "P18326"
+ ],
+ "deposition_group": null,
+ "name": "Vitamin D3 dihydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 866,
+   "n_members": 19,
+   "reference": "9JHW",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    53.331,
+    53.623,
+    142.518,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 1.444,
+    "q25": 0.977,
+    "q75": 1.783,
+    "p5": 0.693,
+    "p95": 1.867,
+    "max": 1.887,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.848,
+    "q25": 0.622,
+    "q75": 1.223,
+    "p5": 0.406,
+    "p95": 1.893,
+    "max": 2.26,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.411,
+    "q25": 0.363,
+    "q75": 0.484,
+    "p5": 0.26,
+    "p95": 0.569,
+    "max": 0.639,
+    "n_pairs": 171
+   },
+   "n_low_margin": 18,
+   "n_via_neighbour": 0
+  }
+ ]
+}

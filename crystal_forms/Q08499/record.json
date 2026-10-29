@@ -1,0 +1,108 @@
+{
+ "identity": "Q08499",
+ "accessions": [
+  "Q08499"
+ ],
+ "deposition_group": null,
+ "name": "3',5'-cyclic-AMP phosphodiesterase 4D",
+ "clusters": [
+  {
+   "cluster_id": 199,
+   "n_members": 59,
+   "reference": "1Y2K",
+   "reference_resolution": 1.36,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.349,
+    78.886,
+    164.01,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 58,
+    "reference": 1
+   },
+   "n_pairs": 1677,
+   "rmsd_to_reference": {
+    "median": 1.087,
+    "q25": 0.912,
+    "q75": 1.415,
+    "p5": 0.166,
+    "p95": 45.081,
+    "max": 45.193,
+    "n_pairs": 58
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.245,
+    "q25": 0.656,
+    "q75": 2.426,
+    "p5": 0.325,
+    "p95": 44.933,
+    "max": 72.928,
+    "n_pairs": 1677
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.398,
+    "q25": 0.325,
+    "q75": 0.528,
+    "p5": 0.193,
+    "p95": 16.557,
+    "max": 17.419,
+    "n_pairs": 1677
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 312,
+   "n_members": 42,
+   "reference": "6ZBA",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    100.03,
+    111.866,
+    159.623,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.966,
+    "q25": 0.722,
+    "q75": 1.152,
+    "p5": 0.498,
+    "p95": 25.198,
+    "max": 25.922,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.806,
+    "q25": 0.526,
+    "q75": 1.445,
+    "p5": 0.333,
+    "p95": 23.674,
+    "max": 27.156,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.358,
+    "q25": 0.279,
+    "q75": 0.479,
+    "p5": 0.201,
+    "p95": 8.635,
+    "max": 13.516,
+    "n_pairs": 861
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  }
+ ]
+}

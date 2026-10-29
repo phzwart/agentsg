@@ -1,0 +1,59 @@
+{
+ "identity": "G7CNL4",
+ "accessions": [
+  "G7CNL4"
+ ],
+ "deposition_group": null,
+ "name": "Inosine-5'-monophosphate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1219,
+   "n_members": 14,
+   "reference": "6D4R",
+   "reference_resolution": 1.34,
+   "space_group": "I 4",
+   "reference_cell": [
+    88.71,
+    88.71,
+    84.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.231,
+    "q25": 0.175,
+    "q75": 0.337,
+    "p5": 0.096,
+    "p95": 0.385,
+    "max": 0.414,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.386,
+    "q25": 0.251,
+    "q75": 0.481,
+    "p5": 0.109,
+    "p95": 0.706,
+    "max": 0.872,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.153,
+    "q75": 0.25,
+    "p5": 0.087,
+    "p95": 0.39,
+    "max": 0.431,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

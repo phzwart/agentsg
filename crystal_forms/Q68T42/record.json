@@ -1,0 +1,59 @@
+{
+ "identity": "Q68T42",
+ "accessions": [
+  "Q68T42"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: P1; Capsid protein VP0",
+ "clusters": [
+  {
+   "cluster_id": 90,
+   "n_members": 105,
+   "reference": "7GPX",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.997,
+    61.244,
+    147.79,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 104,
+    "reference": 1
+   },
+   "n_pairs": 5460,
+   "rmsd_to_reference": {
+    "median": 0.503,
+    "q25": 0.45,
+    "q75": 0.563,
+    "p5": 0.266,
+    "p95": 0.651,
+    "max": 0.84,
+    "n_pairs": 104
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.226,
+    "q25": 0.165,
+    "q75": 0.378,
+    "p5": 0.113,
+    "p95": 0.708,
+    "max": 1.197,
+    "n_pairs": 5460
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.112,
+    "q25": 0.09,
+    "q75": 0.142,
+    "p5": 0.069,
+    "p95": 0.263,
+    "max": 0.727,
+    "n_pairs": 5460
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

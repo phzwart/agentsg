@@ -1,0 +1,60 @@
+{
+ "identity": "Q8GSD2",
+ "accessions": [
+  "Q8GSD2"
+ ],
+ "deposition_group": null,
+ "name": "Lectin",
+ "clusters": [
+  {
+   "cluster_id": 615,
+   "n_members": 25,
+   "reference": "1UKG",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.82,
+    83.67,
+    123.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "no_shared_accession": 5,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.22,
+    "q25": 0.183,
+    "q75": 0.289,
+    "p5": 0.167,
+    "p95": 0.589,
+    "max": 1.023,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.29,
+    "q25": 0.204,
+    "q75": 0.489,
+    "p5": 0.141,
+    "p95": 1.331,
+    "max": 1.624,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.137,
+    "q25": 0.121,
+    "q75": 0.174,
+    "p5": 0.103,
+    "p95": 0.612,
+    "max": 0.627,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

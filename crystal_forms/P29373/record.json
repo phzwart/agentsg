@@ -1,0 +1,59 @@
+{
+ "identity": "P29373",
+ "accessions": [
+  "P29373"
+ ],
+ "deposition_group": null,
+ "name": "Cellular retinoic acid-binding protein 2",
+ "clusters": [
+  {
+   "cluster_id": 341,
+   "n_members": 39,
+   "reference": "6MPK",
+   "reference_resolution": 1.58,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    58.761,
+    58.761,
+    99.174,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.701,
+    "q25": 0.617,
+    "q75": 0.88,
+    "p5": 0.523,
+    "p95": 1.101,
+    "max": 1.617,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.754,
+    "q25": 0.534,
+    "q75": 1.064,
+    "p5": 0.264,
+    "p95": 1.733,
+    "max": 2.306,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.398,
+    "q25": 0.248,
+    "q75": 0.602,
+    "p5": 0.17,
+    "p95": 1.046,
+    "max": 1.269,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

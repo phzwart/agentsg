@@ -1,0 +1,108 @@
+{
+ "identity": "W8VZW3",
+ "accessions": [
+  "W8VZW3"
+ ],
+ "deposition_group": null,
+ "name": "Chloride pumping rhodopsin",
+ "clusters": [
+  {
+   "cluster_id": 590,
+   "n_members": 26,
+   "reference": "7O8F",
+   "reference_resolution": 1.45,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    104.48,
+    51.18,
+    78.33,
+    90.0,
+    131.78,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.237,
+    "q25": 0.214,
+    "q75": 0.273,
+    "p5": 0.086,
+    "p95": 0.472,
+    "max": 0.501,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.269,
+    "q25": 0.208,
+    "q75": 0.64,
+    "p5": 0.138,
+    "p95": 0.897,
+    "max": 0.993,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.228,
+    "q25": 0.195,
+    "q75": 0.344,
+    "p5": 0.128,
+    "p95": 0.527,
+    "max": 0.568,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 657,
+   "n_members": 24,
+   "reference": "5G28",
+   "reference_resolution": 1.57,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    102.756,
+    49.402,
+    69.327,
+    90.0,
+    109.85,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 23
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.181,
+    "q25": 0.154,
+    "q75": 0.428,
+    "p5": 0.087,
+    "p95": 0.588,
+    "max": 0.776,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.532,
+    "q25": 0.193,
+    "q75": 0.771,
+    "p5": 0.083,
+    "p95": 0.956,
+    "max": 1.123,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.119,
+    "q75": 0.425,
+    "p5": 0.044,
+    "p95": 0.558,
+    "max": 0.581,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

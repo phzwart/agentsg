@@ -1,0 +1,59 @@
+{
+ "identity": "Q38C91",
+ "accessions": [
+  "Q38C91"
+ ],
+ "deposition_group": null,
+ "name": "methionine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 372,
+   "n_members": 37,
+   "reference": "4MW0",
+   "reference_resolution": 2.201,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    88.665,
+    105.884,
+    206.48,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 1.113,
+    "q25": 0.541,
+    "q75": 1.322,
+    "p5": 0.265,
+    "p95": 1.683,
+    "max": 2.22,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.005,
+    "q25": 0.404,
+    "q75": 1.285,
+    "p5": 0.261,
+    "p95": 2.037,
+    "max": 2.611,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.635,
+    "q25": 0.27,
+    "q75": 1.058,
+    "p5": 0.188,
+    "p95": 1.446,
+    "max": 1.622,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

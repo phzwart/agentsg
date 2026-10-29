@@ -1,0 +1,59 @@
+{
+ "identity": "Q9JZ55",
+ "accessions": [
+  "Q9JZ55"
+ ],
+ "deposition_group": null,
+ "name": "2-dehydro-3-deoxyphosphooctonate aldolase",
+ "clusters": [
+  {
+   "cluster_id": 940,
+   "n_members": 18,
+   "reference": "2QKF",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    81.515,
+    85.295,
+    162.686,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 17
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.344,
+    "q25": 0.301,
+    "q75": 0.484,
+    "p5": 0.202,
+    "p95": 2.896,
+    "max": 7.019,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.484,
+    "q25": 0.341,
+    "q75": 1.859,
+    "p5": 0.27,
+    "p95": 7.022,
+    "max": 7.113,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.223,
+    "q75": 1.827,
+    "p5": 0.178,
+    "p95": 6.607,
+    "max": 6.749,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

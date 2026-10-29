@@ -1,0 +1,60 @@
+{
+ "identity": "P09104",
+ "accessions": [
+  "P09104"
+ ],
+ "deposition_group": null,
+ "name": "Gamma-enolase",
+ "clusters": [
+  {
+   "cluster_id": 1137,
+   "n_members": 15,
+   "reference": "2AKZ",
+   "reference_resolution": 1.36,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    109.007,
+    118.515,
+    67.189,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 5
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.275,
+    "q25": 0.402,
+    "q75": 1.496,
+    "p5": 0.251,
+    "p95": 1.796,
+    "max": 1.881,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.998,
+    "q25": 1.726,
+    "q75": 3.836,
+    "p5": 0.55,
+    "p95": 6.597,
+    "max": 7.193,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.209,
+    "q75": 0.321,
+    "p5": 0.15,
+    "p95": 1.301,
+    "max": 1.38,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

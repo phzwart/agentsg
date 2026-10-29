@@ -1,0 +1,110 @@
+{
+ "identity": "P0C0Y7+P0C0Y8+P0C0Y9",
+ "accessions": [
+  "P0C0Y7",
+  "P0C0Y8",
+  "P0C0Y9"
+ ],
+ "deposition_group": null,
+ "name": "Reaction center protein M chain",
+ "clusters": [
+  {
+   "cluster_id": 173,
+   "n_members": 67,
+   "reference": "1RZH",
+   "reference_resolution": 1.8,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    139.353,
+    139.353,
+    184.962,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 66,
+    "reference": 1
+   },
+   "n_pairs": 2211,
+   "rmsd_to_reference": {
+    "median": 0.504,
+    "q25": 0.432,
+    "q75": 0.591,
+    "p5": 0.349,
+    "p95": 0.755,
+    "max": 2.032,
+    "n_pairs": 66
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.162,
+    "q25": 0.597,
+    "q75": 1.716,
+    "p5": 0.317,
+    "p95": 2.582,
+    "max": 4.588,
+    "n_pairs": 2211
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.382,
+    "q25": 0.297,
+    "q75": 0.493,
+    "p5": 0.197,
+    "p95": 0.663,
+    "max": 0.853,
+    "n_pairs": 2211
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 912,
+   "n_members": 18,
+   "reference": "7P0Q",
+   "reference_resolution": 1.73,
+   "space_group": "P 42 21 2",
+   "reference_cell": [
+    99.97,
+    99.97,
+    239.22,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.643,
+    "q25": 0.554,
+    "q75": 0.662,
+    "p5": 0.237,
+    "p95": 0.707,
+    "max": 0.714,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.661,
+    "q25": 0.23,
+    "q75": 0.823,
+    "p5": 0.097,
+    "p95": 0.964,
+    "max": 1.163,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.173,
+    "q75": 0.335,
+    "p5": 0.081,
+    "p95": 0.456,
+    "max": 0.613,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

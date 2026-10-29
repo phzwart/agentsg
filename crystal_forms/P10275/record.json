@@ -1,0 +1,60 @@
+{
+ "identity": "P10275",
+ "accessions": [
+  "P10275"
+ ],
+ "deposition_group": null,
+ "name": "Androgen receptor",
+ "clusters": [
+  {
+   "cluster_id": 139,
+   "n_members": 79,
+   "reference": "8E1A",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.953,
+    65.762,
+    69.128,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 75,
+    "too_few_paired_atoms": 3,
+    "reference": 1
+   },
+   "n_pairs": 2850,
+   "rmsd_to_reference": {
+    "median": 0.844,
+    "q25": 0.605,
+    "q75": 1.266,
+    "p5": 0.358,
+    "p95": 1.439,
+    "max": 1.608,
+    "n_pairs": 75
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.975,
+    "q25": 0.679,
+    "q75": 1.367,
+    "p5": 0.403,
+    "p95": 1.76,
+    "max": 2.888,
+    "n_pairs": 2850
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.43,
+    "q25": 0.351,
+    "q75": 0.536,
+    "p5": 0.258,
+    "p95": 0.903,
+    "max": 1.332,
+    "n_pairs": 2850
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

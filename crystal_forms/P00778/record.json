@@ -1,0 +1,59 @@
+{
+ "identity": "P00778",
+ "accessions": [
+  "P00778"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-lytic protease",
+ "clusters": [
+  {
+   "cluster_id": 292,
+   "n_members": 43,
+   "reference": "2H5C",
+   "reference_resolution": 0.82,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    65.68,
+    65.68,
+    79.457,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 42,
+    "reference": 1
+   },
+   "n_pairs": 903,
+   "rmsd_to_reference": {
+    "median": 0.299,
+    "q25": 0.26,
+    "q75": 0.316,
+    "p5": 0.089,
+    "p95": 0.387,
+    "max": 0.472,
+    "n_pairs": 42
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.228,
+    "q25": 0.159,
+    "q75": 0.354,
+    "p5": 0.112,
+    "p95": 0.492,
+    "max": 0.705,
+    "n_pairs": 903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.171,
+    "q25": 0.132,
+    "q75": 0.209,
+    "p5": 0.09,
+    "p95": 0.259,
+    "max": 0.317,
+    "n_pairs": 903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

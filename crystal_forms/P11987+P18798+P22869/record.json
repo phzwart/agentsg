@@ -1,0 +1,61 @@
+{
+ "identity": "P11987+P18798+P22869",
+ "accessions": [
+  "P11987",
+  "P18798",
+  "P22869"
+ ],
+ "deposition_group": null,
+ "name": "Methane monooxygenase component A alpha chain",
+ "clusters": [
+  {
+   "cluster_id": 669,
+   "n_members": 23,
+   "reference": "1XVB",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    70.632,
+    171.867,
+    220.622,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.56,
+    "q25": 0.494,
+    "q75": 0.626,
+    "p5": 0.442,
+    "p95": 0.711,
+    "max": 1.031,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.732,
+    "q25": 0.412,
+    "q75": 1.156,
+    "p5": 0.259,
+    "p95": 2.16,
+    "max": 3.379,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.198,
+    "q25": 0.172,
+    "q75": 0.318,
+    "p5": 0.119,
+    "p95": 0.422,
+    "max": 0.538,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

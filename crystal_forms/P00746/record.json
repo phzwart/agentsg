@@ -1,0 +1,59 @@
+{
+ "identity": "P00746",
+ "accessions": [
+  "P00746"
+ ],
+ "deposition_group": null,
+ "name": "Complement factor D",
+ "clusters": [
+  {
+   "cluster_id": 961,
+   "n_members": 17,
+   "reference": "5NAT",
+   "reference_resolution": 1.17,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.438,
+    49.676,
+    55.562,
+    90.0,
+    106.02,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.521,
+    "q25": 0.361,
+    "q75": 0.643,
+    "p5": 0.221,
+    "p95": 0.888,
+    "max": 0.948,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.65,
+    "q25": 0.513,
+    "q75": 0.795,
+    "p5": 0.323,
+    "p95": 1.015,
+    "max": 1.206,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.422,
+    "q25": 0.35,
+    "q75": 0.55,
+    "p5": 0.2,
+    "p95": 0.649,
+    "max": 0.769,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

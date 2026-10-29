@@ -1,0 +1,108 @@
+{
+ "identity": "Q4K977",
+ "accessions": [
+  "Q4K977"
+ ],
+ "deposition_group": null,
+ "name": "Isonitrile hydratase InhA",
+ "clusters": [
+  {
+   "cluster_id": 531,
+   "n_members": 28,
+   "reference": "9MXN",
+   "reference_resolution": 0.89,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    56.755,
+    56.634,
+    68.363,
+    90.0,
+    112.473,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.388,
+    "q25": 0.333,
+    "q75": 0.4,
+    "p5": 0.152,
+    "p95": 0.486,
+    "max": 2.12,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.374,
+    "q25": 0.173,
+    "q75": 0.631,
+    "p5": 0.071,
+    "p95": 2.25,
+    "max": 2.29,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.23,
+    "q25": 0.123,
+    "q75": 0.278,
+    "p5": 0.056,
+    "p95": 0.878,
+    "max": 0.912,
+    "n_pairs": 378
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1584,
+   "n_members": 12,
+   "reference": "6NI4",
+   "reference_resolution": 1.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    72.11,
+    59.744,
+    56.125,
+    90.0,
+    115.86,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.056,
+    "q25": 0.051,
+    "q75": 0.063,
+    "p5": 0.044,
+    "p95": 0.134,
+    "max": 0.197,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.049,
+    "q25": 0.041,
+    "q75": 0.075,
+    "p5": 0.026,
+    "p95": 0.208,
+    "max": 0.213,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.045,
+    "q25": 0.032,
+    "q75": 0.056,
+    "p5": 0.022,
+    "p95": 0.198,
+    "max": 0.202,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

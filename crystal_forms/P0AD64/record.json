@@ -1,0 +1,59 @@
+{
+ "identity": "P0AD64",
+ "accessions": [
+  "P0AD64"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase SHV-1",
+ "clusters": [
+  {
+   "cluster_id": 337,
+   "n_members": 39,
+   "reference": "2ZD8",
+   "reference_resolution": 1.05,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.291,
+    54.979,
+    85.63,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 0.635,
+    "q25": 0.559,
+    "q75": 0.706,
+    "p5": 0.338,
+    "p95": 0.917,
+    "max": 0.966,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.464,
+    "q25": 0.286,
+    "q75": 0.638,
+    "p5": 0.192,
+    "p95": 0.857,
+    "max": 1.26,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.277,
+    "q25": 0.196,
+    "q75": 0.364,
+    "p5": 0.14,
+    "p95": 0.527,
+    "max": 0.61,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

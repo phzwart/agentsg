@@ -1,0 +1,59 @@
+{
+ "identity": "A0A7U9HFU5",
+ "accessions": [
+  "A0A7U9HFU5"
+ ],
+ "deposition_group": null,
+ "name": "Dye-decolorizing peroxidase",
+ "clusters": [
+  {
+   "cluster_id": 560,
+   "n_members": 26,
+   "reference": "9HXX",
+   "reference_resolution": 1.52,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    87.475,
+    124.392,
+    193.508,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 3.413,
+    "q25": 3.232,
+    "q75": 3.482,
+    "p5": 3.125,
+    "p95": 4.202,
+    "max": 4.23,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.568,
+    "q25": 0.333,
+    "q75": 1.802,
+    "p5": 0.133,
+    "p95": 2.802,
+    "max": 3.977,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.253,
+    "q25": 0.196,
+    "q75": 0.373,
+    "p5": 0.109,
+    "p95": 0.435,
+    "max": 0.461,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

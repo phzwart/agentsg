@@ -1,0 +1,157 @@
+{
+ "identity": "P47811",
+ "accessions": [
+  "P47811"
+ ],
+ "deposition_group": null,
+ "name": "Mitogen-activated protein kinase 14",
+ "clusters": [
+  {
+   "cluster_id": 191,
+   "n_members": 60,
+   "reference": "5R97",
+   "reference_resolution": 1.438,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.085,
+    86.641,
+    127.035,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 59,
+    "reference": 1
+   },
+   "n_pairs": 1770,
+   "rmsd_to_reference": {
+    "median": 1.133,
+    "q25": 1.002,
+    "q75": 1.244,
+    "p5": 0.596,
+    "p95": 1.357,
+    "max": 1.411,
+    "n_pairs": 59
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.011,
+    "q25": 0.721,
+    "q75": 1.398,
+    "p5": 0.414,
+    "p95": 2.317,
+    "max": 4.017,
+    "n_pairs": 1770
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.569,
+    "q25": 0.372,
+    "q75": 0.8,
+    "p5": 0.171,
+    "p95": 1.047,
+    "max": 1.314,
+    "n_pairs": 1770
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 384,
+   "n_members": 36,
+   "reference": "5LAR",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    69.019,
+    70.58,
+    75.029,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 35,
+    "reference": 1
+   },
+   "n_pairs": 630,
+   "rmsd_to_reference": {
+    "median": 24.327,
+    "q25": 2.261,
+    "q75": 24.588,
+    "p5": 1.515,
+    "p95": 24.727,
+    "max": 38.116,
+    "n_pairs": 35
+   },
+   "pairwise_frame_rmsd": {
+    "median": 24.482,
+    "q25": 3.447,
+    "q75": 25.999,
+    "p5": 0.966,
+    "p95": 27.698,
+    "max": 39.884,
+    "n_pairs": 630
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.619,
+    "q25": 1.158,
+    "q75": 3.928,
+    "p5": 0.488,
+    "p95": 4.122,
+    "max": 5.399,
+    "n_pairs": 630
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1280,
+   "n_members": 14,
+   "reference": "6SP9",
+   "reference_resolution": 1.22,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    80.937,
+    102.308,
+    103.156,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.192,
+    "q25": 0.168,
+    "q75": 0.209,
+    "p5": 0.151,
+    "p95": 0.277,
+    "max": 0.314,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.636,
+    "q25": 0.36,
+    "q75": 0.98,
+    "p5": 0.193,
+    "p95": 1.647,
+    "max": 2.323,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.142,
+    "q25": 0.124,
+    "q75": 0.179,
+    "p5": 0.105,
+    "p95": 0.215,
+    "max": 0.273,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q7K4Y6",
+ "accessions": [
+  "Q7K4Y6"
+ ],
+ "deposition_group": null,
+ "name": "Sodium-dependent dopamine transporter",
+ "clusters": [
+  {
+   "cluster_id": 692,
+   "n_members": 23,
+   "reference": "7WGT",
+   "reference_resolution": 2.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    98.007,
+    135.025,
+    162.559,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "no_shared_accession": 4,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 1.645,
+    "q25": 1.575,
+    "q75": 1.835,
+    "p5": 1.384,
+    "p95": 5.243,
+    "max": 16.417,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.418,
+    "q25": 0.774,
+    "q75": 2.683,
+    "p5": 0.46,
+    "p95": 16.732,
+    "max": 16.913,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.568,
+    "q25": 0.435,
+    "q75": 2.06,
+    "p5": 0.334,
+    "p95": 16.09,
+    "max": 16.182,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

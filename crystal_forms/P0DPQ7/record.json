@@ -1,0 +1,59 @@
+{
+ "identity": "P0DPQ7",
+ "accessions": [
+  "P0DPQ7"
+ ],
+ "deposition_group": null,
+ "name": "Aromatic O-demethylase, cytochrome P450 subunit",
+ "clusters": [
+  {
+   "cluster_id": 819,
+   "n_members": 20,
+   "reference": "6HQL",
+   "reference_resolution": 1.49,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    101.986,
+    101.986,
+    109.905,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 2.171,
+    "q25": 2.079,
+    "q75": 2.329,
+    "p5": 1.585,
+    "p95": 2.424,
+    "max": 2.53,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.586,
+    "q25": 0.35,
+    "q75": 1.254,
+    "p5": 0.184,
+    "p95": 2.949,
+    "max": 3.677,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.17,
+    "q25": 0.142,
+    "q75": 0.227,
+    "p5": 0.088,
+    "p95": 0.318,
+    "max": 0.352,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

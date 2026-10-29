@@ -1,0 +1,60 @@
+{
+ "identity": "P31891+P31892",
+ "accessions": [
+  "P31891",
+  "P31892"
+ ],
+ "deposition_group": null,
+ "name": "Uptake hydrogenase large subunit",
+ "clusters": [
+  {
+   "cluster_id": 993,
+   "n_members": 17,
+   "reference": "7ODH",
+   "reference_resolution": 1.34,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    73.606,
+    95.676,
+    120.824,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.58,
+    "q25": 0.444,
+    "q75": 0.853,
+    "p5": 0.207,
+    "p95": 1.041,
+    "max": 1.095,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.47,
+    "q25": 0.333,
+    "q75": 0.69,
+    "p5": 0.193,
+    "p95": 0.956,
+    "max": 1.055,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.176,
+    "q25": 0.135,
+    "q75": 0.238,
+    "p5": 0.1,
+    "p95": 0.479,
+    "max": 0.625,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

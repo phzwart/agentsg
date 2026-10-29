@@ -1,0 +1,59 @@
+{
+ "identity": "Q84HF5",
+ "accessions": [
+  "Q84HF5"
+ ],
+ "deposition_group": null,
+ "name": "Kynurenine 3-monooxygenase",
+ "clusters": [
+  {
+   "cluster_id": 842,
+   "n_members": 20,
+   "reference": "5NAK",
+   "reference_resolution": 1.5,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    69.93,
+    52.62,
+    137.99,
+    90.0,
+    104.07,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.672,
+    "q25": 0.575,
+    "q75": 0.811,
+    "p5": 0.43,
+    "p95": 1.263,
+    "max": 1.395,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.752,
+    "q25": 0.559,
+    "q75": 0.959,
+    "p5": 0.372,
+    "p95": 1.22,
+    "max": 1.447,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.599,
+    "q25": 0.425,
+    "q75": 0.794,
+    "p5": 0.305,
+    "p95": 1.056,
+    "max": 1.369,
+    "n_pairs": 190
+   },
+   "n_low_margin": 8,
+   "n_via_neighbour": 0
+  }
+ ]
+}

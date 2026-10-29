@@ -1,0 +1,60 @@
+{
+ "identity": "P07986",
+ "accessions": [
+  "P07986"
+ ],
+ "deposition_group": null,
+ "name": "Exoglucanase/xylanase [Includes: Exoglucanase",
+ "clusters": [
+  {
+   "cluster_id": 1249,
+   "n_members": 14,
+   "reference": "3CUI",
+   "reference_resolution": 1.5,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    85.7,
+    85.7,
+    78.977,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 6,
+    "placed": 7,
+    "reference": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.229,
+    "q25": 0.133,
+    "q75": 1.565,
+    "p5": 0.108,
+    "p95": 1.859,
+    "max": 1.943,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.237,
+    "q25": 0.491,
+    "q75": 3.628,
+    "p5": 0.142,
+    "p95": 3.877,
+    "max": 4.062,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.296,
+    "q25": 0.121,
+    "q75": 0.323,
+    "p5": 0.094,
+    "p95": 0.391,
+    "max": 0.409,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

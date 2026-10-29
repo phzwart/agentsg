@@ -1,0 +1,59 @@
+{
+ "identity": "P43166",
+ "accessions": [
+  "P43166"
+ ],
+ "deposition_group": null,
+ "name": "Carbonic anhydrase 7",
+ "clusters": [
+  {
+   "cluster_id": 1721,
+   "n_members": 11,
+   "reference": "8Q3U",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    66.965,
+    89.422,
+    44.267,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.351,
+    "q25": 0.234,
+    "q75": 0.711,
+    "p5": 0.195,
+    "p95": 1.043,
+    "max": 1.177,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.481,
+    "q25": 0.311,
+    "q75": 0.704,
+    "p5": 0.195,
+    "p95": 0.993,
+    "max": 1.2,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.225,
+    "q25": 0.169,
+    "q75": 0.281,
+    "p5": 0.145,
+    "p95": 0.32,
+    "max": 0.374,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

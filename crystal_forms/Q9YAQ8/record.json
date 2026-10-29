@@ -1,0 +1,60 @@
+{
+ "identity": "Q9YAQ8",
+ "accessions": [
+  "Q9YAQ8"
+ ],
+ "deposition_group": null,
+ "name": "S-methyl-5'-thioadenosine phosphorylase",
+ "clusters": [
+  {
+   "cluster_id": 696,
+   "n_members": 23,
+   "reference": "9U79",
+   "reference_resolution": 1.19,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    77.66,
+    77.66,
+    230.798,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.445,
+    "q25": 0.435,
+    "q75": 1.097,
+    "p5": 0.338,
+    "p95": 1.107,
+    "max": 1.116,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.901,
+    "q25": 0.223,
+    "q75": 1.174,
+    "p5": 0.091,
+    "p95": 1.405,
+    "max": 1.451,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.386,
+    "q25": 0.183,
+    "q75": 1.139,
+    "p5": 0.068,
+    "p95": 1.158,
+    "max": 1.171,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

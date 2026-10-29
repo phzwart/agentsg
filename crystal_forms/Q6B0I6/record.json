@@ -1,0 +1,59 @@
+{
+ "identity": "Q6B0I6",
+ "accessions": [
+  "Q6B0I6"
+ ],
+ "deposition_group": null,
+ "name": "Lysine-specific demethylase 4D",
+ "clusters": [
+  {
+   "cluster_id": 17,
+   "n_members": 281,
+   "reference": "6H10",
+   "reference_resolution": 1.104,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    71.454,
+    71.454,
+    150.693,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 280,
+    "reference": 1
+   },
+   "n_pairs": 39340,
+   "rmsd_to_reference": {
+    "median": 0.16,
+    "q25": 0.136,
+    "q75": 0.209,
+    "p5": 0.111,
+    "p95": 0.329,
+    "max": 0.696,
+    "n_pairs": 280
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.173,
+    "q25": 0.129,
+    "q75": 0.236,
+    "p5": 0.082,
+    "p95": 0.494,
+    "max": 0.942,
+    "n_pairs": 39340
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.13,
+    "q25": 0.095,
+    "q75": 0.185,
+    "p5": 0.061,
+    "p95": 0.349,
+    "max": 0.859,
+    "n_pairs": 39340
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

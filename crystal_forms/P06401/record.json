@@ -1,0 +1,59 @@
+{
+ "identity": "P06401",
+ "accessions": [
+  "P06401"
+ ],
+ "deposition_group": null,
+ "name": "Progesterone receptor",
+ "clusters": [
+  {
+   "cluster_id": 1045,
+   "n_members": 16,
+   "reference": "1SQN",
+   "reference_resolution": 1.451,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    57.753,
+    64.142,
+    70.138,
+    90.0,
+    95.84,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.416,
+    "q25": 0.295,
+    "q75": 0.747,
+    "p5": 0.231,
+    "p95": 24.439,
+    "max": 24.447,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.903,
+    "q25": 0.471,
+    "q75": 1.428,
+    "p5": 0.272,
+    "p95": 24.736,
+    "max": 25.207,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.371,
+    "q25": 0.282,
+    "q75": 0.532,
+    "p5": 0.197,
+    "p95": 15.387,
+    "max": 15.42,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q59819",
+ "accessions": [
+  "Q59819"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome P-450",
+ "clusters": [
+  {
+   "cluster_id": 1766,
+   "n_members": 11,
+   "reference": "6ZI3",
+   "reference_resolution": 2.08,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    247.379,
+    111.149,
+    159.144,
+    90.0,
+    129.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.39,
+    "q25": 0.317,
+    "q75": 0.554,
+    "p5": 0.297,
+    "p95": 1.411,
+    "max": 1.888,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.601,
+    "q25": 0.448,
+    "q75": 1.196,
+    "p5": 0.307,
+    "p95": 2.131,
+    "max": 2.23,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.325,
+    "q25": 0.282,
+    "q75": 0.38,
+    "p5": 0.218,
+    "p95": 0.498,
+    "max": 0.626,
+    "n_pairs": 55
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  }
+ ]
+}

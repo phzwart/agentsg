@@ -1,0 +1,59 @@
+{
+ "identity": "P05112",
+ "accessions": [
+  "P05112"
+ ],
+ "deposition_group": null,
+ "name": "Interleukin-4",
+ "clusters": [
+  {
+   "cluster_id": 1500,
+   "n_members": 12,
+   "reference": "2D48",
+   "reference_resolution": 1.65,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    90.528,
+    90.528,
+    45.907,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.776,
+    "q25": 0.669,
+    "q75": 1.326,
+    "p5": 0.383,
+    "p95": 1.512,
+    "max": 1.609,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.795,
+    "q25": 0.487,
+    "q75": 0.951,
+    "p5": 0.272,
+    "p95": 1.158,
+    "max": 1.353,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.644,
+    "q25": 0.439,
+    "q75": 0.737,
+    "p5": 0.222,
+    "p95": 0.854,
+    "max": 0.941,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9BMI9",
+ "accessions": [
+  "Q9BMI9"
+ ],
+ "deposition_group": null,
+ "name": "Purine nucleoside phosphorylase",
+ "clusters": [
+  {
+   "cluster_id": 1605,
+   "n_members": 12,
+   "reference": "1TCV",
+   "reference_resolution": 1.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.755,
+    122.059,
+    129.761,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.828,
+    "q25": 1.538,
+    "q75": 2.111,
+    "p5": 1.357,
+    "p95": 2.141,
+    "max": 2.144,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.321,
+    "q25": 0.855,
+    "q75": 1.708,
+    "p5": 0.49,
+    "p95": 2.116,
+    "max": 2.358,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.445,
+    "q25": 0.366,
+    "q75": 0.608,
+    "p5": 0.22,
+    "p95": 0.965,
+    "max": 1.199,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

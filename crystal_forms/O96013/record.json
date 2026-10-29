@@ -1,0 +1,60 @@
+{
+ "identity": "O96013",
+ "accessions": [
+  "O96013"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase PAK 4",
+ "clusters": [
+  {
+   "cluster_id": 597,
+   "n_members": 25,
+   "reference": "2J0I",
+   "reference_resolution": 1.6,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    63.514,
+    63.514,
+    178.478,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "too_few_paired_atoms": 3,
+    "placed": 21
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 5.104,
+    "q25": 2.345,
+    "q75": 9.464,
+    "p5": 1.978,
+    "p95": 11.769,
+    "max": 11.914,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.677,
+    "q25": 2.458,
+    "q75": 9.933,
+    "p5": 0.595,
+    "p95": 12.46,
+    "max": 13.276,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.867,
+    "q25": 0.719,
+    "q75": 0.963,
+    "p5": 0.295,
+    "p95": 1.192,
+    "max": 1.519,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

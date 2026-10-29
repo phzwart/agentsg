@@ -1,0 +1,61 @@
+{
+ "identity": "P30822+P41920+P62826",
+ "accessions": [
+  "P30822",
+  "P41920",
+  "P62826"
+ ],
+ "deposition_group": null,
+ "name": "Exportin-1",
+ "clusters": [
+  {
+   "cluster_id": 261,
+   "n_members": 47,
+   "reference": "4HAT",
+   "reference_resolution": 1.78,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    105.678,
+    105.678,
+    305.509,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 13.655,
+    "q25": 1.122,
+    "q75": 15.576,
+    "p5": 0.378,
+    "p95": 15.819,
+    "max": 16.133,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 15.465,
+    "q25": 6.058,
+    "q75": 16.132,
+    "p5": 0.445,
+    "p95": 20.526,
+    "max": 21.067,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 13.713,
+    "q25": 5.976,
+    "q75": 15.071,
+    "p5": 0.285,
+    "p95": 17.65,
+    "max": 18.872,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

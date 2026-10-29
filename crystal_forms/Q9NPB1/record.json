@@ -1,0 +1,59 @@
+{
+ "identity": "Q9NPB1",
+ "accessions": [
+  "Q9NPB1"
+ ],
+ "deposition_group": null,
+ "name": "5'(3')-deoxyribonucleotidase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 798,
+   "n_members": 21,
+   "reference": "4MUM",
+   "reference_resolution": 1.271,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    73.372,
+    73.372,
+    106.672,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 6.284,
+    "q25": 6.273,
+    "q75": 6.294,
+    "p5": 6.262,
+    "p95": 6.315,
+    "max": 6.319,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.455,
+    "q25": 0.349,
+    "q75": 0.55,
+    "p5": 0.225,
+    "p95": 6.306,
+    "max": 6.34,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.277,
+    "q25": 0.21,
+    "q75": 0.39,
+    "p5": 0.154,
+    "p95": 6.183,
+    "max": 6.237,
+    "n_pairs": 210
+   },
+   "n_low_margin": 6,
+   "n_via_neighbour": 0
+  }
+ ]
+}

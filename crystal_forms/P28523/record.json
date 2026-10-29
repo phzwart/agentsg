@@ -1,0 +1,59 @@
+{
+ "identity": "P28523",
+ "accessions": [
+  "P28523"
+ ],
+ "deposition_group": null,
+ "name": "Casein kinase II subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 414,
+   "n_members": 34,
+   "reference": "4RLK",
+   "reference_resolution": 1.24,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    142.748,
+    59.683,
+    44.884,
+    90.0,
+    102.96,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.59,
+    "q25": 0.516,
+    "q75": 0.704,
+    "p5": 0.396,
+    "p95": 0.903,
+    "max": 1.031,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.575,
+    "q25": 0.462,
+    "q75": 0.733,
+    "p5": 0.329,
+    "p95": 0.962,
+    "max": 1.258,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.42,
+    "q25": 0.347,
+    "q75": 0.483,
+    "p5": 0.271,
+    "p95": 0.609,
+    "max": 0.746,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

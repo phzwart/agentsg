@@ -1,0 +1,59 @@
+{
+ "identity": "Q6L732",
+ "accessions": [
+  "Q6L732"
+ ],
+ "deposition_group": null,
+ "name": "Kanamycin B dioxygenase",
+ "clusters": [
+  {
+   "cluster_id": 1772,
+   "n_members": 11,
+   "reference": "7CL2",
+   "reference_resolution": 2.0,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.202,
+    182.209,
+    109.228,
+    90.0,
+    93.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.193,
+    "q25": 1.001,
+    "q75": 1.48,
+    "p5": 0.846,
+    "p95": 2.045,
+    "max": 2.202,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.21,
+    "q25": 1.335,
+    "q75": 4.005,
+    "p5": 0.758,
+    "p95": 5.845,
+    "max": 6.554,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.34,
+    "q25": 0.23,
+    "q75": 0.509,
+    "p5": 0.134,
+    "p95": 2.426,
+    "max": 2.517,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

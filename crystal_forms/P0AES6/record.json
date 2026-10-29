@@ -1,0 +1,59 @@
+{
+ "identity": "P0AES6",
+ "accessions": [
+  "P0AES6"
+ ],
+ "deposition_group": null,
+ "name": "DNA gyrase subunit B",
+ "clusters": [
+  {
+   "cluster_id": 862,
+   "n_members": 19,
+   "reference": "5Z9L",
+   "reference_resolution": 1.6,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    61.07,
+    69.065,
+    102.121,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.429,
+    "q25": 0.393,
+    "q75": 0.525,
+    "p5": 0.321,
+    "p95": 0.708,
+    "max": 0.94,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.443,
+    "q25": 0.321,
+    "q75": 0.556,
+    "p5": 0.234,
+    "p95": 0.783,
+    "max": 1.01,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.21,
+    "q25": 0.18,
+    "q75": 0.251,
+    "p5": 0.135,
+    "p95": 0.364,
+    "max": 0.489,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UJ71",
+ "accessions": [
+  "Q9UJ71"
+ ],
+ "deposition_group": null,
+ "name": "C-type lectin domain family 4 member K",
+ "clusters": [
+  {
+   "cluster_id": 847,
+   "n_members": 20,
+   "reference": "4AK8",
+   "reference_resolution": 1.4,
+   "space_group": "P 42",
+   "reference_cell": [
+    79.959,
+    79.959,
+    90.419,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.422,
+    "q25": 0.373,
+    "q75": 0.601,
+    "p5": 0.328,
+    "p95": 4.559,
+    "max": 39.171,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.466,
+    "q25": 0.341,
+    "q75": 0.628,
+    "p5": 0.192,
+    "p95": 39.369,
+    "max": 39.878,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.224,
+    "q25": 0.16,
+    "q75": 0.281,
+    "p5": 0.102,
+    "p95": 0.378,
+    "max": 0.488,
+    "n_pairs": 190
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

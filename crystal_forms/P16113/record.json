@@ -1,0 +1,109 @@
+{
+ "identity": "P16113",
+ "accessions": [
+  "P16113"
+ ],
+ "deposition_group": null,
+ "name": "Photoactive yellow protein",
+ "clusters": [
+  {
+   "cluster_id": 152,
+   "n_members": 75,
+   "reference": "1NWZ",
+   "reference_resolution": 0.82,
+   "space_group": "P 63",
+   "reference_cell": [
+    65.699,
+    65.699,
+    40.239,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 73,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 2701,
+   "rmsd_to_reference": {
+    "median": 0.536,
+    "q25": 0.512,
+    "q75": 0.569,
+    "p5": 0.274,
+    "p95": 0.616,
+    "max": 0.749,
+    "n_pairs": 73
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.397,
+    "q25": 0.241,
+    "q75": 0.6,
+    "p5": 0.158,
+    "p95": 0.715,
+    "max": 0.908,
+    "n_pairs": 2701
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.325,
+    "q25": 0.222,
+    "q75": 0.516,
+    "p5": 0.138,
+    "p95": 0.605,
+    "max": 0.719,
+    "n_pairs": 2701
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1262,
+   "n_members": 14,
+   "reference": "2QJ7",
+   "reference_resolution": 1.05,
+   "space_group": "P 65",
+   "reference_cell": [
+    40.621,
+    40.621,
+    117.734,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.517,
+    "q25": 0.381,
+    "q75": 0.709,
+    "p5": 0.246,
+    "p95": 1.002,
+    "max": 1.111,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.683,
+    "q25": 0.491,
+    "q75": 0.853,
+    "p5": 0.278,
+    "p95": 1.077,
+    "max": 1.203,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.388,
+    "q25": 0.29,
+    "q75": 0.478,
+    "p5": 0.171,
+    "p95": 0.678,
+    "max": 0.781,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

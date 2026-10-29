@@ -1,0 +1,108 @@
+{
+ "identity": "P04190",
+ "accessions": [
+  "P04190"
+ ],
+ "deposition_group": null,
+ "name": "Metallo-beta-lactamase type 2",
+ "clusters": [
+  {
+   "cluster_id": 518,
+   "n_members": 28,
+   "reference": "4C1H",
+   "reference_resolution": 1.1,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    53.009,
+    61.336,
+    69.58,
+    90.0,
+    93.03,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.268,
+    "q75": 0.526,
+    "p5": 0.19,
+    "p95": 0.699,
+    "max": 0.85,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.521,
+    "q25": 0.355,
+    "q75": 0.672,
+    "p5": 0.242,
+    "p95": 0.889,
+    "max": 1.272,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.323,
+    "q25": 0.251,
+    "q75": 0.453,
+    "p5": 0.168,
+    "p95": 0.617,
+    "max": 0.914,
+    "n_pairs": 378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1671,
+   "n_members": 11,
+   "reference": "2BC2",
+   "reference_resolution": 1.7,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    67.32,
+    67.32,
+    177.9,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.24,
+    "q25": 0.201,
+    "q75": 0.365,
+    "p5": 0.187,
+    "p95": 9.297,
+    "max": 16.545,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.404,
+    "q25": 0.293,
+    "q75": 0.718,
+    "p5": 0.235,
+    "p95": 16.537,
+    "max": 16.569,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.226,
+    "q25": 0.188,
+    "q75": 0.413,
+    "p5": 0.139,
+    "p95": 14.436,
+    "max": 14.446,
+    "n_pairs": 55
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

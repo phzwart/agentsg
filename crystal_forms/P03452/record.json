@@ -1,0 +1,60 @@
+{
+ "identity": "P03452",
+ "accessions": [
+  "P03452"
+ ],
+ "deposition_group": null,
+ "name": "Hemagglutinin [Cleaved into: Hemagglutinin HA1 chain; Hemagglutinin HA2 chain]",
+ "clusters": [
+  {
+   "cluster_id": 1129,
+   "n_members": 15,
+   "reference": "8VQQ",
+   "reference_resolution": 2.05,
+   "space_group": "I 21 3",
+   "reference_cell": [
+    159.758,
+    159.758,
+    159.758,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 1.54,
+    "q25": 0.643,
+    "q75": 2.187,
+    "p5": 0.129,
+    "p95": 3.013,
+    "max": 3.193,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.576,
+    "q25": 0.754,
+    "q75": 2.394,
+    "p5": 0.344,
+    "p95": 3.478,
+    "max": 3.96,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.291,
+    "q25": 0.227,
+    "q75": 0.348,
+    "p5": 0.183,
+    "p95": 0.474,
+    "max": 0.527,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

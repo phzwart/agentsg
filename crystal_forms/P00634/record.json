@@ -1,0 +1,108 @@
+{
+ "identity": "P00634",
+ "accessions": [
+  "P00634"
+ ],
+ "deposition_group": null,
+ "name": "Alkaline phosphatase",
+ "clusters": [
+  {
+   "cluster_id": 627,
+   "n_members": 24,
+   "reference": "1Y6V",
+   "reference_resolution": 1.6,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    76.475,
+    164.257,
+    192.819,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.709,
+    "q25": 0.643,
+    "q75": 0.787,
+    "p5": 0.262,
+    "p95": 0.958,
+    "max": 1.197,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.654,
+    "q25": 0.431,
+    "q75": 1.834,
+    "p5": 0.287,
+    "p95": 2.455,
+    "max": 3.211,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.25,
+    "q25": 0.2,
+    "q75": 0.326,
+    "p5": 0.156,
+    "p95": 0.6,
+    "max": 0.725,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 959,
+   "n_members": 17,
+   "reference": "1KH5",
+   "reference_resolution": 2.0,
+   "space_group": "P 63 2 2",
+   "reference_cell": [
+    163.62,
+    163.62,
+    138.88,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.483,
+    "q25": 0.39,
+    "q75": 0.621,
+    "p5": 0.242,
+    "p95": 0.783,
+    "max": 0.807,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.087,
+    "q25": 0.495,
+    "q75": 1.86,
+    "p5": 0.303,
+    "p95": 2.423,
+    "max": 3.127,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.299,
+    "q25": 0.245,
+    "q75": 0.423,
+    "p5": 0.183,
+    "p95": 0.486,
+    "max": 0.55,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

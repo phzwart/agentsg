@@ -1,0 +1,62 @@
+{
+ "identity": "Q00456+Q00457+Q00459+Q00460",
+ "accessions": [
+  "Q00456",
+  "Q00457",
+  "Q00459",
+  "Q00460"
+ ],
+ "deposition_group": null,
+ "name": "Toluene-4-monooxygenase system, hydroxylase component subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 1748,
+   "n_members": 11,
+   "reference": "3GE3",
+   "reference_resolution": 1.52,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    100.26,
+    115.966,
+    180.137,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.509,
+    "q25": 0.436,
+    "q75": 0.563,
+    "p5": 0.413,
+    "p95": 0.667,
+    "max": 0.672,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.404,
+    "q25": 0.275,
+    "q75": 0.464,
+    "p5": 0.2,
+    "p95": 0.604,
+    "max": 0.77,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.201,
+    "q25": 0.165,
+    "q75": 0.233,
+    "p5": 0.132,
+    "p95": 0.322,
+    "max": 0.349,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

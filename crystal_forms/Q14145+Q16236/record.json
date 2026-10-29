@@ -1,0 +1,60 @@
+{
+ "identity": "Q14145+Q16236",
+ "accessions": [
+  "Q14145",
+  "Q16236"
+ ],
+ "deposition_group": null,
+ "name": "Kelch-like ECH-associated protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1758,
+   "n_members": 11,
+   "reference": "7K2A",
+   "reference_resolution": 1.9,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    162.078,
+    68.972,
+    78.259,
+    90.0,
+    117.81,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.351,
+    "q25": 0.287,
+    "q75": 0.384,
+    "p5": 0.239,
+    "p95": 0.43,
+    "max": 0.456,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.281,
+    "q25": 0.232,
+    "q75": 0.33,
+    "p5": 0.178,
+    "p95": 0.412,
+    "max": 0.471,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.183,
+    "q25": 0.167,
+    "q75": 0.207,
+    "p5": 0.142,
+    "p95": 0.265,
+    "max": 0.292,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

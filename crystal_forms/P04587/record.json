@@ -1,0 +1,110 @@
+{
+ "identity": "P04587",
+ "accessions": [
+  "P04587"
+ ],
+ "deposition_group": null,
+ "name": "Gag-Pol polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 317,
+   "n_members": 41,
+   "reference": "3D1X",
+   "reference_resolution": 1.05,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    58.9,
+    86.02,
+    46.39,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 19,
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.468,
+    "q25": 0.407,
+    "q75": 0.651,
+    "p5": 0.299,
+    "p95": 0.77,
+    "max": 0.783,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.524,
+    "q25": 0.394,
+    "q75": 0.717,
+    "p5": 0.272,
+    "p95": 0.896,
+    "max": 1.253,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.322,
+    "q25": 0.252,
+    "q75": 0.405,
+    "p5": 0.145,
+    "p95": 0.531,
+    "max": 0.633,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1131,
+   "n_members": 15,
+   "reference": "2NMZ",
+   "reference_resolution": 0.97,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    51.131,
+    58.588,
+    61.61,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 8,
+    "placed": 6,
+    "reference": 1
+   },
+   "n_pairs": 21,
+   "rmsd_to_reference": {
+    "median": 0.248,
+    "q25": 0.2,
+    "q75": 0.256,
+    "p5": 0.163,
+    "p95": 0.406,
+    "max": 0.456,
+    "n_pairs": 6
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.634,
+    "q25": 0.44,
+    "q75": 0.875,
+    "p5": 0.257,
+    "p95": 1.2,
+    "max": 1.281,
+    "n_pairs": 21
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.233,
+    "q75": 0.303,
+    "p5": 0.174,
+    "p95": 0.357,
+    "max": 0.428,
+    "n_pairs": 21
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

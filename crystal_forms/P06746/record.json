@@ -1,0 +1,157 @@
+{
+ "identity": "P06746",
+ "accessions": [
+  "P06746"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase beta",
+ "clusters": [
+  {
+   "cluster_id": 37,
+   "n_members": 182,
+   "reference": "9Y1J",
+   "reference_resolution": 1.55,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.772,
+    79.178,
+    55.525,
+    90.0,
+    107.57,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 181,
+    "reference": 1
+   },
+   "n_pairs": 16471,
+   "rmsd_to_reference": {
+    "median": 0.319,
+    "q25": 0.269,
+    "q75": 0.395,
+    "p5": 0.217,
+    "p95": 1.695,
+    "max": 3.814,
+    "n_pairs": 181
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.392,
+    "q25": 0.308,
+    "q75": 0.759,
+    "p5": 0.23,
+    "p95": 1.841,
+    "max": 4.956,
+    "n_pairs": 16471
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.314,
+    "q25": 0.254,
+    "q75": 0.484,
+    "p5": 0.195,
+    "p95": 0.939,
+    "max": 2.978,
+    "n_pairs": 16471
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 50,
+   "n_members": 151,
+   "reference": "8VFG",
+   "reference_resolution": 1.54,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    54.38,
+    79.24,
+    54.88,
+    90.0,
+    105.49,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 150,
+    "reference": 1
+   },
+   "n_pairs": 11325,
+   "rmsd_to_reference": {
+    "median": 0.695,
+    "q25": 0.437,
+    "q75": 1.923,
+    "p5": 0.301,
+    "p95": 4.876,
+    "max": 32.313,
+    "n_pairs": 150
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.489,
+    "q25": 0.69,
+    "q75": 3.017,
+    "p5": 0.367,
+    "p95": 6.126,
+    "max": 34.249,
+    "n_pairs": 11325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.715,
+    "q25": 0.474,
+    "q75": 1.644,
+    "p5": 0.291,
+    "p95": 2.484,
+    "max": 2.944,
+    "n_pairs": 11325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 11
+  },
+  {
+   "cluster_id": 119,
+   "n_members": 88,
+   "reference": "3OGU",
+   "reference_resolution": 1.845,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    175.474,
+    56.782,
+    47.602,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 87,
+    "reference": 1
+   },
+   "n_pairs": 3828,
+   "rmsd_to_reference": {
+    "median": 0.893,
+    "q25": 0.874,
+    "q75": 0.945,
+    "p5": 0.849,
+    "p95": 1.052,
+    "max": 1.88,
+    "n_pairs": 87
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.494,
+    "q25": 0.372,
+    "q75": 0.663,
+    "p5": 0.237,
+    "p95": 1.391,
+    "max": 2.443,
+    "n_pairs": 3828
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.334,
+    "q25": 0.275,
+    "q75": 0.385,
+    "p5": 0.179,
+    "p95": 0.505,
+    "max": 1.032,
+    "n_pairs": 3828
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P30613",
+ "accessions": [
+  "P30613"
+ ],
+ "deposition_group": null,
+ "name": "Pyruvate kinase PKLR",
+ "clusters": [
+  {
+   "cluster_id": 322,
+   "n_members": 41,
+   "reference": "7FS3",
+   "reference_resolution": 1.655,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    209.686,
+    113.23,
+    189.296,
+    90.0,
+    91.71,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 1.207,
+    "q25": 0.923,
+    "q75": 1.499,
+    "p5": 0.647,
+    "p95": 56.531,
+    "max": 62.754,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.728,
+    "q25": 0.464,
+    "q75": 53.264,
+    "p5": 0.289,
+    "p95": 60.997,
+    "max": 81.015,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.307,
+    "q25": 0.216,
+    "q75": 20.2,
+    "p5": 0.148,
+    "p95": 23.648,
+    "max": 23.688,
+    "n_pairs": 780
+   },
+   "n_low_margin": 39,
+   "n_via_neighbour": 0
+  }
+ ]
+}

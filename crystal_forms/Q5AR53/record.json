@@ -1,0 +1,59 @@
+{
+ "identity": "Q5AR53",
+ "accessions": [
+  "Q5AR53"
+ ],
+ "deposition_group": null,
+ "name": "Iron/alpha-ketoglutarate-dependent dioxygenase asqJ",
+ "clusters": [
+  {
+   "cluster_id": 690,
+   "n_members": 23,
+   "reference": "7OLT",
+   "reference_resolution": 1.5,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    72.62,
+    120.75,
+    67.29,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.496,
+    "q25": 0.313,
+    "q75": 0.597,
+    "p5": 0.196,
+    "p95": 0.813,
+    "max": 1.378,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.597,
+    "q25": 0.418,
+    "q75": 0.785,
+    "p5": 0.243,
+    "p95": 1.346,
+    "max": 1.674,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.19,
+    "q75": 0.278,
+    "p5": 0.137,
+    "p95": 0.327,
+    "max": 0.375,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

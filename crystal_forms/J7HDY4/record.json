@@ -1,0 +1,59 @@
+{
+ "identity": "J7HDY4",
+ "accessions": [
+  "J7HDY4"
+ ],
+ "deposition_group": null,
+ "name": "Beta-fructofuranosidase",
+ "clusters": [
+  {
+   "cluster_id": 950,
+   "n_members": 17,
+   "reference": "5NSL",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    74.86,
+    206.124,
+    145.529,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.228,
+    "q25": 0.198,
+    "q75": 0.259,
+    "p5": 0.137,
+    "p95": 0.31,
+    "max": 0.324,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.259,
+    "q25": 0.196,
+    "q75": 0.373,
+    "p5": 0.124,
+    "p95": 0.596,
+    "max": 0.761,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.104,
+    "q25": 0.084,
+    "q75": 0.118,
+    "p5": 0.063,
+    "p95": 0.132,
+    "max": 0.142,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

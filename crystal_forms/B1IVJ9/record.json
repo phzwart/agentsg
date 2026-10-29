@@ -1,0 +1,59 @@
+{
+ "identity": "B1IVJ9",
+ "accessions": [
+  "B1IVJ9"
+ ],
+ "deposition_group": null,
+ "name": "Glutarate 2-hydroxylase",
+ "clusters": [
+  {
+   "cluster_id": 1468,
+   "n_members": 12,
+   "reference": "9N8L",
+   "reference_resolution": 1.42,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    96.335,
+    96.335,
+    184.22,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.379,
+    "q25": 0.307,
+    "q75": 0.453,
+    "p5": 0.261,
+    "p95": 0.495,
+    "max": 0.505,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.268,
+    "q25": 0.217,
+    "q75": 0.336,
+    "p5": 0.17,
+    "p95": 0.428,
+    "max": 0.477,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.19,
+    "q25": 0.166,
+    "q75": 0.206,
+    "p5": 0.129,
+    "p95": 0.245,
+    "max": 0.258,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q05603",
+ "accessions": [
+  "Q05603"
+ ],
+ "deposition_group": null,
+ "name": "Nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 416,
+   "n_members": 34,
+   "reference": "4KQI",
+   "reference_resolution": 1.4,
+   "space_group": "P 2 21 21",
+   "reference_cell": [
+    46.753,
+    71.278,
+    89.444,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 0.384,
+    "q25": 0.356,
+    "q75": 0.408,
+    "p5": 0.322,
+    "p95": 0.502,
+    "max": 0.713,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.288,
+    "q25": 0.196,
+    "q75": 0.795,
+    "p5": 0.134,
+    "p95": 1.312,
+    "max": 1.584,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.166,
+    "q25": 0.135,
+    "q75": 0.238,
+    "p5": 0.102,
+    "p95": 0.643,
+    "max": 0.675,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

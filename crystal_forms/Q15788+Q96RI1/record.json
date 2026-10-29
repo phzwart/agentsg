@@ -1,0 +1,110 @@
+{
+ "identity": "Q15788+Q96RI1",
+ "accessions": [
+  "Q15788",
+  "Q96RI1"
+ ],
+ "deposition_group": null,
+ "name": "Bile acid receptor",
+ "clusters": [
+  {
+   "cluster_id": 553,
+   "n_members": 27,
+   "reference": "5Q0P",
+   "reference_resolution": 1.8,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    71.88,
+    84.86,
+    190.65,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.687,
+    "q25": 0.593,
+    "q75": 0.745,
+    "p5": 0.474,
+    "p95": 1.094,
+    "max": 1.176,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.54,
+    "q25": 0.427,
+    "q75": 0.688,
+    "p5": 0.337,
+    "p95": 1.012,
+    "max": 1.263,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.359,
+    "q25": 0.293,
+    "q75": 0.44,
+    "p5": 0.221,
+    "p95": 0.527,
+    "max": 0.636,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1580,
+   "n_members": 12,
+   "reference": "5Q0K",
+   "reference_resolution": 1.8,
+   "space_group": "P 65",
+   "reference_cell": [
+    93.52,
+    93.52,
+    47.83,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.976,
+    "q25": 0.588,
+    "q75": 1.261,
+    "p5": 0.478,
+    "p95": 1.474,
+    "max": 1.586,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.143,
+    "q25": 0.81,
+    "q75": 1.323,
+    "p5": 0.451,
+    "p95": 1.695,
+    "max": 1.919,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.93,
+    "q25": 0.662,
+    "q75": 1.18,
+    "p5": 0.366,
+    "p95": 1.316,
+    "max": 1.464,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

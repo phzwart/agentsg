@@ -1,0 +1,60 @@
+{
+ "identity": "P27540+Q99814",
+ "accessions": [
+  "P27540",
+  "Q99814"
+ ],
+ "deposition_group": null,
+ "name": "Aryl hydrocarbon receptor nuclear translocator",
+ "clusters": [
+  {
+   "cluster_id": 824,
+   "n_members": 20,
+   "reference": "3F1P",
+   "reference_resolution": 1.17,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    73.916,
+    82.565,
+    41.032,
+    90.0,
+    106.02,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.745,
+    "q25": 0.455,
+    "q75": 1.215,
+    "p5": 0.303,
+    "p95": 1.826,
+    "max": 2.4,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.676,
+    "q25": 0.497,
+    "q75": 1.616,
+    "p5": 0.287,
+    "p95": 1.788,
+    "max": 2.531,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.437,
+    "q25": 0.315,
+    "q75": 1.468,
+    "p5": 0.201,
+    "p95": 1.552,
+    "max": 2.31,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P00959",
+ "accessions": [
+  "P00959"
+ ],
+ "deposition_group": null,
+ "name": "Methionine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 717,
+   "n_members": 22,
+   "reference": "6SPO",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    78.29,
+    45.19,
+    85.89,
+    90.0,
+    107.39,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.208,
+    "q25": 0.145,
+    "q75": 0.249,
+    "p5": 0.103,
+    "p95": 1.281,
+    "max": 1.343,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.344,
+    "q25": 0.266,
+    "q75": 0.764,
+    "p5": 0.162,
+    "p95": 2.047,
+    "max": 2.193,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.255,
+    "q25": 0.195,
+    "q75": 0.44,
+    "p5": 0.129,
+    "p95": 0.719,
+    "max": 0.783,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

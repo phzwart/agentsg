@@ -1,0 +1,59 @@
+{
+ "identity": "G4VLE5",
+ "accessions": [
+  "G4VLE5"
+ ],
+ "deposition_group": null,
+ "name": "Sulfotransferase oxamniquine resistance protein",
+ "clusters": [
+  {
+   "cluster_id": 1108,
+   "n_members": 15,
+   "reference": "5BYK",
+   "reference_resolution": 1.28,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    140.587,
+    39.433,
+    54.003,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.361,
+    "q25": 0.273,
+    "q75": 0.406,
+    "p5": 0.238,
+    "p95": 0.592,
+    "max": 0.613,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.711,
+    "q25": 0.528,
+    "q75": 0.972,
+    "p5": 0.315,
+    "p95": 1.318,
+    "max": 1.669,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.286,
+    "q25": 0.223,
+    "q75": 0.346,
+    "p5": 0.168,
+    "p95": 0.427,
+    "max": 0.478,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

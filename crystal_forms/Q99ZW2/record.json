@@ -1,0 +1,59 @@
+{
+ "identity": "Q99ZW2",
+ "accessions": [
+  "Q99ZW2"
+ ],
+ "deposition_group": null,
+ "name": "CRISPR-associated endonuclease Cas9/Csn1",
+ "clusters": [
+  {
+   "cluster_id": 359,
+   "n_members": 38,
+   "reference": "5B2R",
+   "reference_resolution": 2.0,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    177.764,
+    67.744,
+    187.594,
+    90.0,
+    111.23,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.97,
+    "q25": 0.865,
+    "q75": 1.473,
+    "p5": 0.678,
+    "p95": 2.755,
+    "max": 4.183,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.246,
+    "q25": 0.885,
+    "q75": 1.954,
+    "p5": 0.464,
+    "p95": 3.531,
+    "max": 4.543,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.017,
+    "q25": 0.615,
+    "q75": 1.365,
+    "p5": 0.335,
+    "p95": 2.973,
+    "max": 4.008,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

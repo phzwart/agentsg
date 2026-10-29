@@ -1,0 +1,60 @@
+{
+ "identity": "P0DTH5",
+ "accessions": [
+  "P0DTH5"
+ ],
+ "deposition_group": null,
+ "name": "Thymidine kinase",
+ "clusters": [
+  {
+   "cluster_id": 488,
+   "n_members": 30,
+   "reference": "1E2K",
+   "reference_resolution": 1.7,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    114.0,
+    117.7,
+    108.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1,
+    "no_shared_accession": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.561,
+    "q25": 0.485,
+    "q75": 0.637,
+    "p5": 0.371,
+    "p95": 0.736,
+    "max": 1.06,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.595,
+    "q25": 0.489,
+    "q75": 0.709,
+    "p5": 0.374,
+    "p95": 0.948,
+    "max": 1.36,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.429,
+    "q25": 0.369,
+    "q75": 0.491,
+    "p5": 0.295,
+    "p95": 0.565,
+    "max": 0.654,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

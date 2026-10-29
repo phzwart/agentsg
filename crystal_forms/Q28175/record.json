@@ -1,0 +1,60 @@
+{
+ "identity": "Q28175",
+ "accessions": [
+  "Q28175"
+ ],
+ "deposition_group": null,
+ "name": "Retinoid isomerohydrolase",
+ "clusters": [
+  {
+   "cluster_id": 838,
+   "n_members": 20,
+   "reference": "9OA5",
+   "reference_resolution": 1.75,
+   "space_group": "P 65",
+   "reference_cell": [
+    175.72,
+    175.72,
+    86.59,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "different_space_group": 4,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.452,
+    "q25": 0.214,
+    "q75": 0.493,
+    "p5": 0.136,
+    "p95": 0.52,
+    "max": 0.527,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.498,
+    "q25": 0.318,
+    "q75": 0.626,
+    "p5": 0.192,
+    "p95": 0.823,
+    "max": 0.929,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.384,
+    "q25": 0.19,
+    "q75": 0.486,
+    "p5": 0.127,
+    "p95": 0.657,
+    "max": 0.709,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

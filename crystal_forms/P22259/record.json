@@ -1,0 +1,59 @@
+{
+ "identity": "P22259",
+ "accessions": [
+  "P22259"
+ ],
+ "deposition_group": null,
+ "name": "Phosphoenolpyruvate carboxykinase",
+ "clusters": [
+  {
+   "cluster_id": 988,
+   "n_members": 17,
+   "reference": "6AT2",
+   "reference_resolution": 1.444,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    125.171,
+    94.36,
+    46.559,
+    90.0,
+    96.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.598,
+    "q25": 0.4,
+    "q75": 0.809,
+    "p5": 0.353,
+    "p95": 1.336,
+    "max": 1.988,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.293,
+    "q25": 0.716,
+    "q75": 1.85,
+    "p5": 0.335,
+    "p95": 3.287,
+    "max": 3.806,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.475,
+    "q25": 0.349,
+    "q75": 0.644,
+    "p5": 0.202,
+    "p95": 1.781,
+    "max": 1.845,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

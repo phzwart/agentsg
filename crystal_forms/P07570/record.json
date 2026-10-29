@@ -1,0 +1,60 @@
+{
+ "identity": "P07570",
+ "accessions": [
+  "P07570"
+ ],
+ "deposition_group": null,
+ "name": "Gag-Pro polyprotein",
+ "clusters": [
+  {
+   "cluster_id": 1047,
+   "n_members": 16,
+   "reference": "3TQ5",
+   "reference_resolution": 1.4,
+   "space_group": "P 63",
+   "reference_cell": [
+    60.714,
+    60.714,
+    63.775,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.244,
+    "q25": 0.212,
+    "q75": 0.29,
+    "p5": 0.134,
+    "p95": 0.354,
+    "max": 0.37,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.37,
+    "q25": 0.304,
+    "q75": 0.501,
+    "p5": 0.224,
+    "p95": 0.745,
+    "max": 1.037,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.201,
+    "q75": 0.273,
+    "p5": 0.141,
+    "p95": 0.36,
+    "max": 0.462,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

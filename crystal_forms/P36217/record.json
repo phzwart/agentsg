@@ -1,0 +1,59 @@
+{
+ "identity": "P36217",
+ "accessions": [
+  "P36217"
+ ],
+ "deposition_group": null,
+ "name": "Endo-1,4-beta-xylanase 2",
+ "clusters": [
+  {
+   "cluster_id": 471,
+   "n_members": 31,
+   "reference": "6K9O",
+   "reference_resolution": 1.06,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    47.96,
+    59.334,
+    69.845,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.454,
+    "q25": 0.235,
+    "q75": 0.608,
+    "p5": 0.161,
+    "p95": 0.833,
+    "max": 0.969,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.766,
+    "q25": 0.452,
+    "q75": 1.011,
+    "p5": 0.209,
+    "p95": 1.602,
+    "max": 1.869,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.318,
+    "q25": 0.231,
+    "q75": 0.425,
+    "p5": 0.106,
+    "p95": 0.623,
+    "max": 0.703,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

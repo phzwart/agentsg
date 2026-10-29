@@ -1,0 +1,59 @@
+{
+ "identity": "Q10714",
+ "accessions": [
+  "Q10714"
+ ],
+ "deposition_group": null,
+ "name": "Angiotensin-converting enzyme",
+ "clusters": [
+  {
+   "cluster_id": 880,
+   "n_members": 19,
+   "reference": "4CA7",
+   "reference_resolution": 1.82,
+   "space_group": "H 3",
+   "reference_cell": [
+    173.743,
+    173.743,
+    102.178,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.286,
+    "q25": 0.229,
+    "q75": 0.36,
+    "p5": 0.171,
+    "p95": 0.419,
+    "max": 0.425,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.322,
+    "q25": 0.21,
+    "q75": 0.429,
+    "p5": 0.156,
+    "p95": 0.624,
+    "max": 0.755,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.159,
+    "q25": 0.132,
+    "q75": 0.194,
+    "p5": 0.102,
+    "p95": 0.27,
+    "max": 0.299,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

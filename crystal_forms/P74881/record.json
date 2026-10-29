@@ -1,0 +1,59 @@
+{
+ "identity": "P74881",
+ "accessions": [
+  "P74881"
+ ],
+ "deposition_group": null,
+ "name": "Phosphoribosylformylglycinamidine synthase",
+ "clusters": [
+  {
+   "cluster_id": 1000,
+   "n_members": 17,
+   "reference": "4LGY",
+   "reference_resolution": 1.48,
+   "space_group": "P 65",
+   "reference_cell": [
+    146.329,
+    146.329,
+    140.841,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.285,
+    "q25": 0.258,
+    "q75": 0.354,
+    "p5": 0.194,
+    "p95": 3.628,
+    "max": 3.637,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.414,
+    "q25": 0.308,
+    "q75": 1.148,
+    "p5": 0.225,
+    "p95": 3.655,
+    "max": 3.772,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.218,
+    "q75": 0.421,
+    "p5": 0.162,
+    "p95": 3.634,
+    "max": 3.655,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9XAY4",
+ "accessions": [
+  "Q9XAY4"
+ ],
+ "deposition_group": null,
+ "name": "beta-lactamase",
+ "clusters": [
+  {
+   "cluster_id": 159,
+   "n_members": 73,
+   "reference": "8PGP",
+   "reference_resolution": 0.97,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.26,
+    67.47,
+    40.09,
+    90.0,
+    93.66,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 72,
+    "reference": 1
+   },
+   "n_pairs": 2628,
+   "rmsd_to_reference": {
+    "median": 0.233,
+    "q25": 0.159,
+    "q75": 0.277,
+    "p5": 0.105,
+    "p95": 0.466,
+    "max": 0.846,
+    "n_pairs": 72
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.286,
+    "q25": 0.228,
+    "q75": 0.369,
+    "p5": 0.137,
+    "p95": 1.175,
+    "max": 2.153,
+    "n_pairs": 2628
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.23,
+    "q25": 0.145,
+    "q75": 0.268,
+    "p5": 0.095,
+    "p95": 0.381,
+    "max": 0.539,
+    "n_pairs": 2628
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "O57978",
+ "accessions": [
+  "O57978"
+ ],
+ "deposition_group": null,
+ "name": "Phosphoribosylaminoimidazole-succinocarboxamide synthase",
+ "clusters": [
+  {
+   "cluster_id": 1654,
+   "n_members": 11,
+   "reference": "3U55",
+   "reference_resolution": 1.9,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    44.1,
+    155.39,
+    78.35,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.39,
+    "q25": 0.343,
+    "q75": 0.446,
+    "p5": 0.3,
+    "p95": 0.542,
+    "max": 0.596,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.33,
+    "q25": 0.26,
+    "q75": 0.41,
+    "p5": 0.21,
+    "p95": 0.576,
+    "max": 0.731,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.226,
+    "q25": 0.19,
+    "q75": 0.266,
+    "p5": 0.153,
+    "p95": 0.322,
+    "max": 0.353,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "K7PQ54",
+ "accessions": [
+  "K7PQ54"
+ ],
+ "deposition_group": null,
+ "name": null,
+ "clusters": [
+  {
+   "cluster_id": 849,
+   "n_members": 19,
+   "reference": "9QLC",
+   "reference_resolution": 1.07,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.627,
+    91.816,
+    142.896,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.174,
+    "q25": 0.145,
+    "q75": 0.295,
+    "p5": 0.105,
+    "p95": 0.495,
+    "max": 0.593,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.269,
+    "q25": 0.194,
+    "q75": 0.411,
+    "p5": 0.131,
+    "p95": 0.596,
+    "max": 0.685,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.177,
+    "q25": 0.14,
+    "q75": 0.297,
+    "p5": 0.107,
+    "p95": 0.496,
+    "max": 0.535,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

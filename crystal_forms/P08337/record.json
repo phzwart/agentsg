@@ -1,0 +1,59 @@
+{
+ "identity": "P08337",
+ "accessions": [
+  "P08337"
+ ],
+ "deposition_group": null,
+ "name": "8-oxo-dGTP diphosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1136,
+   "n_members": 15,
+   "reference": "7WW6",
+   "reference_resolution": 1.36,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    38.04,
+    55.9,
+    59.24,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.148,
+    "q25": 0.128,
+    "q75": 0.179,
+    "p5": 0.111,
+    "p95": 0.244,
+    "max": 0.267,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.144,
+    "q25": 0.111,
+    "q75": 0.227,
+    "p5": 0.085,
+    "p95": 0.281,
+    "max": 0.295,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.099,
+    "q25": 0.081,
+    "q75": 0.169,
+    "p5": 0.063,
+    "p95": 0.26,
+    "max": 0.279,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

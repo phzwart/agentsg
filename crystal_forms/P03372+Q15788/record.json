@@ -1,0 +1,60 @@
+{
+ "identity": "P03372+Q15788",
+ "accessions": [
+  "P03372",
+  "Q15788"
+ ],
+ "deposition_group": null,
+ "name": "Estrogen receptor",
+ "clusters": [
+  {
+   "cluster_id": 1128,
+   "n_members": 15,
+   "reference": "3UUD",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    56.23,
+    82.01,
+    58.93,
+    90.0,
+    111.06,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.904,
+    "q25": 0.715,
+    "q75": 0.995,
+    "p5": 0.531,
+    "p95": 5.868,
+    "max": 5.949,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.644,
+    "q25": 0.426,
+    "q75": 5.38,
+    "p5": 0.3,
+    "p95": 5.723,
+    "max": 5.965,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.433,
+    "q25": 0.333,
+    "q75": 0.503,
+    "p5": 0.242,
+    "p95": 0.643,
+    "max": 0.756,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

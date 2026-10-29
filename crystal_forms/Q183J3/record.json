@@ -1,0 +1,59 @@
+{
+ "identity": "Q183J3",
+ "accessions": [
+  "Q183J3"
+ ],
+ "deposition_group": null,
+ "name": "site-specific DNA-methyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 687,
+   "n_members": 23,
+   "reference": "7RFK",
+   "reference_resolution": 2.05,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    82.155,
+    160.446,
+    231.304,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.878,
+    "q25": 0.766,
+    "q75": 1.088,
+    "p5": 0.598,
+    "p95": 1.382,
+    "max": 1.441,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.559,
+    "q25": 0.366,
+    "q75": 0.692,
+    "p5": 0.255,
+    "p95": 1.051,
+    "max": 1.47,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.343,
+    "q25": 0.259,
+    "q75": 0.534,
+    "p5": 0.164,
+    "p95": 0.656,
+    "max": 1.223,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

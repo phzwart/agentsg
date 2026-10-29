@@ -1,0 +1,59 @@
+{
+ "identity": "P51531",
+ "accessions": [
+  "P51531"
+ ],
+ "deposition_group": null,
+ "name": "SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily A member 2",
+ "clusters": [
+  {
+   "cluster_id": 1552,
+   "n_members": 12,
+   "reference": "7Z78",
+   "reference_resolution": 1.32,
+   "space_group": "P 31",
+   "reference_cell": [
+    61.064,
+    61.064,
+    89.275,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.6,
+    "q25": 1.563,
+    "q75": 1.898,
+    "p5": 0.672,
+    "p95": 4.714,
+    "max": 5.103,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.989,
+    "q25": 2.142,
+    "q75": 3.949,
+    "p5": 0.647,
+    "p95": 6.066,
+    "max": 6.375,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.554,
+    "q25": 0.445,
+    "q75": 0.711,
+    "p5": 0.337,
+    "p95": 0.932,
+    "max": 1.312,
+    "n_pairs": 66
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  }
+ ]
+}

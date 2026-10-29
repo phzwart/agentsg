@@ -1,0 +1,59 @@
+{
+ "identity": "P07798",
+ "accessions": [
+  "P07798"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin, middle subunit",
+ "clusters": [
+  {
+   "cluster_id": 303,
+   "n_members": 42,
+   "reference": "5J93",
+   "reference_resolution": 1.1,
+   "space_group": "F 4 3 2",
+   "reference_cell": [
+    183.782,
+    183.782,
+    183.782,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.178,
+    "q25": 0.155,
+    "q75": 0.206,
+    "p5": 0.093,
+    "p95": 0.459,
+    "max": 0.654,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.226,
+    "q25": 0.165,
+    "q75": 0.338,
+    "p5": 0.106,
+    "p95": 0.622,
+    "max": 0.804,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.173,
+    "q25": 0.128,
+    "q75": 0.284,
+    "p5": 0.083,
+    "p95": 0.606,
+    "max": 0.789,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

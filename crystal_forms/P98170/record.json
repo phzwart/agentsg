@@ -1,0 +1,59 @@
+{
+ "identity": "P98170",
+ "accessions": [
+  "P98170"
+ ],
+ "deposition_group": null,
+ "name": "E3 ubiquitin-protein ligase XIAP",
+ "clusters": [
+  {
+   "cluster_id": 926,
+   "n_members": 18,
+   "reference": "5C3K",
+   "reference_resolution": 2.02,
+   "space_group": "P 41 2 2",
+   "reference_cell": [
+    71.616,
+    71.616,
+    105.104,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.323,
+    "q75": 0.364,
+    "p5": 0.28,
+    "p95": 0.428,
+    "max": 0.433,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.344,
+    "q25": 0.286,
+    "q75": 0.39,
+    "p5": 0.205,
+    "p95": 0.494,
+    "max": 0.642,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.283,
+    "q25": 0.223,
+    "q75": 0.332,
+    "p5": 0.148,
+    "p95": 0.381,
+    "max": 0.459,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

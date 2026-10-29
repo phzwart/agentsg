@@ -1,0 +1,60 @@
+{
+ "identity": "P23946",
+ "accessions": [
+  "P23946"
+ ],
+ "deposition_group": null,
+ "name": "Chymase",
+ "clusters": [
+  {
+   "cluster_id": 527,
+   "n_members": 28,
+   "reference": "7H66",
+   "reference_resolution": 1.13,
+   "space_group": "P 43",
+   "reference_cell": [
+    73.71,
+    73.71,
+    48.6,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.577,
+    "q25": 0.509,
+    "q75": 0.613,
+    "p5": 0.342,
+    "p95": 0.65,
+    "max": 1.091,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.479,
+    "q25": 0.346,
+    "q75": 0.679,
+    "p5": 0.213,
+    "p95": 1.086,
+    "max": 1.581,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.332,
+    "q25": 0.273,
+    "q75": 0.501,
+    "p5": 0.172,
+    "p95": 0.883,
+    "max": 1.042,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

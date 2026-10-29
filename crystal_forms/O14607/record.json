@@ -1,0 +1,59 @@
+{
+ "identity": "O14607",
+ "accessions": [
+  "O14607"
+ ],
+ "deposition_group": null,
+ "name": "Histone demethylase UTY",
+ "clusters": [
+  {
+   "cluster_id": 1479,
+   "n_members": 12,
+   "reference": "4UF0",
+   "reference_resolution": 1.78,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    90.494,
+    110.458,
+    119.23,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.318,
+    "q25": 0.304,
+    "q75": 0.421,
+    "p5": 0.27,
+    "p95": 0.572,
+    "max": 0.69,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.487,
+    "q25": 0.381,
+    "q75": 0.589,
+    "p5": 0.235,
+    "p95": 0.753,
+    "max": 0.82,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.317,
+    "q25": 0.235,
+    "q75": 0.351,
+    "p5": 0.163,
+    "p95": 0.536,
+    "max": 0.56,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

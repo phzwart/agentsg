@@ -1,0 +1,59 @@
+{
+ "identity": "P07751",
+ "accessions": [
+  "P07751"
+ ],
+ "deposition_group": null,
+ "name": "Spectrin alpha chain, non-erythrocytic 1",
+ "clusters": [
+  {
+   "cluster_id": 635,
+   "n_members": 24,
+   "reference": "3M0R",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    34.811,
+    42.234,
+    48.41,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.613,
+    "q25": 0.479,
+    "q75": 0.756,
+    "p5": 0.318,
+    "p95": 1.342,
+    "max": 1.388,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.629,
+    "q25": 0.495,
+    "q75": 0.804,
+    "p5": 0.346,
+    "p95": 1.18,
+    "max": 1.452,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.331,
+    "q25": 0.257,
+    "q75": 0.414,
+    "p5": 0.17,
+    "p95": 0.536,
+    "max": 1.273,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q5SHX3",
+ "accessions": [
+  "Q5SHX3"
+ ],
+ "deposition_group": null,
+ "name": "Thymidylate kinase",
+ "clusters": [
+  {
+   "cluster_id": 1302,
+   "n_members": 14,
+   "reference": "5X86",
+   "reference_resolution": 1.19,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.901,
+    47.435,
+    152.062,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.389,
+    "q25": 0.305,
+    "q75": 0.533,
+    "p5": 0.232,
+    "p95": 0.713,
+    "max": 0.914,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.5,
+    "q25": 0.353,
+    "q75": 0.582,
+    "p5": 0.193,
+    "p95": 0.844,
+    "max": 0.924,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.309,
+    "q25": 0.263,
+    "q75": 0.403,
+    "p5": 0.154,
+    "p95": 0.684,
+    "max": 0.709,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

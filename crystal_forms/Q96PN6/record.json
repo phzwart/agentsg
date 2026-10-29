@@ -1,0 +1,59 @@
+{
+ "identity": "Q96PN6",
+ "accessions": [
+  "Q96PN6"
+ ],
+ "deposition_group": null,
+ "name": "Adenylate cyclase type 10",
+ "clusters": [
+  {
+   "cluster_id": 375,
+   "n_members": 37,
+   "reference": "4CLF",
+   "reference_resolution": 1.7,
+   "space_group": "P 63",
+   "reference_cell": [
+    99.66,
+    99.66,
+    97.93,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 36
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.761,
+    "q25": 0.557,
+    "q75": 0.902,
+    "p5": 0.373,
+    "p95": 1.202,
+    "max": 1.351,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.081,
+    "q25": 0.794,
+    "q75": 1.393,
+    "p5": 0.495,
+    "p95": 1.834,
+    "max": 2.741,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.809,
+    "q25": 0.652,
+    "q75": 0.931,
+    "p5": 0.384,
+    "p95": 1.399,
+    "max": 1.57,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

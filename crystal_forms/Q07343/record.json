@@ -1,0 +1,59 @@
+{
+ "identity": "Q07343",
+ "accessions": [
+  "Q07343"
+ ],
+ "deposition_group": null,
+ "name": "3',5'-cyclic-AMP phosphodiesterase 4B",
+ "clusters": [
+  {
+   "cluster_id": 1751,
+   "n_members": 11,
+   "reference": "1XM6",
+   "reference_resolution": 1.92,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    89.221,
+    94.062,
+    105.236,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.627,
+    "q25": 0.443,
+    "q75": 0.78,
+    "p5": 0.334,
+    "p95": 0.904,
+    "max": 0.916,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.496,
+    "q25": 0.382,
+    "q75": 0.571,
+    "p5": 0.303,
+    "p95": 0.744,
+    "max": 0.971,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.256,
+    "q25": 0.228,
+    "q75": 0.285,
+    "p5": 0.194,
+    "p95": 0.309,
+    "max": 0.33,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P05618",
+ "accessions": [
+  "P05618"
+ ],
+ "deposition_group": null,
+ "name": "Cyclomaltodextrin glucanotransferase",
+ "clusters": [
+  {
+   "cluster_id": 1674,
+   "n_members": 11,
+   "reference": "1PAM",
+   "reference_resolution": 1.8,
+   "space_group": "P 1",
+   "reference_cell": [
+    64.93,
+    74.45,
+    79.12,
+    85.2,
+    105.0,
+    101.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.128,
+    "q25": 0.12,
+    "q75": 0.199,
+    "p5": 0.095,
+    "p95": 0.269,
+    "max": 0.273,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.737,
+    "q25": 0.233,
+    "q75": 0.858,
+    "p5": 0.14,
+    "p95": 1.229,
+    "max": 1.591,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.289,
+    "q25": 0.163,
+    "q75": 0.344,
+    "p5": 0.125,
+    "p95": 0.403,
+    "max": 0.488,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

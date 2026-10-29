@@ -1,0 +1,59 @@
+{
+ "identity": "Q16873",
+ "accessions": [
+  "Q16873"
+ ],
+ "deposition_group": null,
+ "name": "Leukotriene C4 synthase",
+ "clusters": [
+  {
+   "cluster_id": 1298,
+   "n_members": 14,
+   "reference": "3PCV",
+   "reference_resolution": 1.9,
+   "space_group": "F 2 3",
+   "reference_cell": [
+    168.03,
+    168.03,
+    168.03,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.624,
+    "q25": 0.616,
+    "q75": 0.642,
+    "p5": 0.378,
+    "p95": 0.862,
+    "max": 1.011,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.774,
+    "q25": 0.495,
+    "q75": 0.979,
+    "p5": 0.333,
+    "p95": 1.361,
+    "max": 1.595,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.409,
+    "q25": 0.303,
+    "q75": 0.596,
+    "p5": 0.219,
+    "p95": 0.734,
+    "max": 0.821,
+    "n_pairs": 91
+   },
+   "n_low_margin": 13,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P0ACP7",
+ "accessions": [
+  "P0ACP7"
+ ],
+ "deposition_group": null,
+ "name": "HTH-type transcriptional repressor PurR",
+ "clusters": [
+  {
+   "cluster_id": 725,
+   "n_members": 22,
+   "reference": "1JFT",
+   "reference_resolution": 2.5,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    175.918,
+    95.25,
+    81.349,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.285,
+    "q25": 0.263,
+    "q75": 0.324,
+    "p5": 0.245,
+    "p95": 0.412,
+    "max": 0.47,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.314,
+    "q25": 0.26,
+    "q75": 0.393,
+    "p5": 0.178,
+    "p95": 0.543,
+    "max": 0.685,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.236,
+    "q25": 0.2,
+    "q75": 0.27,
+    "p5": 0.16,
+    "p95": 0.423,
+    "max": 0.477,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

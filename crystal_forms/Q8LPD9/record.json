@@ -1,0 +1,59 @@
+{
+ "identity": "Q8LPD9",
+ "accessions": [
+  "Q8LPD9"
+ ],
+ "deposition_group": null,
+ "name": "Phototropin",
+ "clusters": [
+  {
+   "cluster_id": 653,
+   "n_members": 24,
+   "reference": "8QI8",
+   "reference_resolution": 1.35,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    121.09,
+    121.09,
+    46.04,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.503,
+    "q25": 0.458,
+    "q75": 0.804,
+    "p5": 0.338,
+    "p95": 0.837,
+    "max": 0.841,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.202,
+    "q25": 0.163,
+    "q75": 0.548,
+    "p5": 0.119,
+    "p95": 0.758,
+    "max": 1.06,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.19,
+    "q25": 0.158,
+    "q75": 0.282,
+    "p5": 0.116,
+    "p95": 0.675,
+    "max": 0.713,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

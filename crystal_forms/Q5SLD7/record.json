@@ -1,0 +1,59 @@
+{
+ "identity": "Q5SLD7",
+ "accessions": [
+  "Q5SLD7"
+ ],
+ "deposition_group": null,
+ "name": "ABC transporter, periplasmic substrate-binding protein",
+ "clusters": [
+  {
+   "cluster_id": 930,
+   "n_members": 18,
+   "reference": "6J9Y",
+   "reference_resolution": 1.63,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    85.24,
+    85.24,
+    145.68,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.237,
+    "q25": 0.183,
+    "q75": 0.306,
+    "p5": 0.153,
+    "p95": 0.443,
+    "max": 0.475,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.301,
+    "q25": 0.203,
+    "q75": 0.443,
+    "p5": 0.132,
+    "p95": 0.671,
+    "max": 0.871,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.141,
+    "q25": 0.119,
+    "q75": 0.169,
+    "p5": 0.092,
+    "p95": 0.199,
+    "max": 0.26,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

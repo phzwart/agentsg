@@ -1,0 +1,60 @@
+{
+ "identity": "P0ABE7+P29274",
+ "accessions": [
+  "P0ABE7",
+  "P29274"
+ ],
+ "deposition_group": null,
+ "name": "Adenosine receptor A2a",
+ "clusters": [
+  {
+   "cluster_id": 63,
+   "n_members": 124,
+   "reference": "5NM4",
+   "reference_resolution": 1.7,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    39.89,
+    179.15,
+    141.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 123,
+    "reference": 1
+   },
+   "n_pairs": 7626,
+   "rmsd_to_reference": {
+    "median": 0.34,
+    "q25": 0.324,
+    "q75": 0.406,
+    "p5": 0.292,
+    "p95": 0.657,
+    "max": 10.914,
+    "n_pairs": 123
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.534,
+    "q25": 0.304,
+    "q75": 1.0,
+    "p5": 0.163,
+    "p95": 1.509,
+    "max": 3.174,
+    "n_pairs": 7626
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.226,
+    "q25": 0.133,
+    "q75": 0.362,
+    "p5": 0.093,
+    "p95": 0.443,
+    "max": 0.616,
+    "n_pairs": 7626
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

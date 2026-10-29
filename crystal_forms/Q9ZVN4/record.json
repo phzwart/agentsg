@@ -1,0 +1,59 @@
+{
+ "identity": "Q9ZVN4",
+ "accessions": [
+  "Q9ZVN4"
+ ],
+ "deposition_group": null,
+ "name": "Inositol diphosphatase DSP1",
+ "clusters": [
+  {
+   "cluster_id": 1619,
+   "n_members": 12,
+   "reference": "7MOD",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    125.356,
+    125.356,
+    125.356,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.346,
+    "q75": 0.444,
+    "p5": 0.261,
+    "p95": 0.573,
+    "max": 0.58,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.472,
+    "q25": 0.358,
+    "q75": 0.586,
+    "p5": 0.241,
+    "p95": 0.85,
+    "max": 1.016,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.286,
+    "q25": 0.176,
+    "q75": 0.464,
+    "p5": 0.141,
+    "p95": 0.708,
+    "max": 0.793,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

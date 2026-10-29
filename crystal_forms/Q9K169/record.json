@@ -1,0 +1,59 @@
+{
+ "identity": "Q9K169",
+ "accessions": [
+  "Q9K169"
+ ],
+ "deposition_group": null,
+ "name": "Phospho-2-dehydro-3-deoxyheptonate aldolase",
+ "clusters": [
+  {
+   "cluster_id": 1198,
+   "n_members": 15,
+   "reference": "5D05",
+   "reference_resolution": 1.75,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    75.331,
+    141.027,
+    76.028,
+    90.0,
+    97.02,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 3.914,
+    "q25": 2.984,
+    "q75": 4.06,
+    "p5": 0.806,
+    "p95": 4.163,
+    "max": 4.322,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.172,
+    "q25": 0.677,
+    "q75": 3.387,
+    "p5": 0.262,
+    "p95": 4.684,
+    "max": 4.836,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.5,
+    "q25": 0.251,
+    "q75": 0.586,
+    "p5": 0.137,
+    "p95": 0.662,
+    "max": 0.747,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

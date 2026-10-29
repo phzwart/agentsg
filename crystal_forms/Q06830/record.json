@@ -1,0 +1,59 @@
+{
+ "identity": "Q06830",
+ "accessions": [
+  "Q06830"
+ ],
+ "deposition_group": null,
+ "name": "Peroxiredoxin-1",
+ "clusters": [
+  {
+   "cluster_id": 1571,
+   "n_members": 12,
+   "reference": "9VQ5",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    65.697,
+    78.709,
+    81.346,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.53,
+    "q25": 0.478,
+    "q75": 0.657,
+    "p5": 0.362,
+    "p95": 0.901,
+    "max": 0.942,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.658,
+    "q25": 0.481,
+    "q75": 0.843,
+    "p5": 0.279,
+    "p95": 1.29,
+    "max": 1.62,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.219,
+    "q25": 0.133,
+    "q75": 0.457,
+    "p5": 0.096,
+    "p95": 0.589,
+    "max": 0.654,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P09391+P42287",
+ "accessions": [
+  "P09391",
+  "P42287"
+ ],
+ "deposition_group": null,
+ "name": "Rhomboid protease GlpG",
+ "clusters": [
+  {
+   "cluster_id": 1680,
+   "n_members": 11,
+   "reference": "6PJ4",
+   "reference_resolution": 2.3,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    70.91,
+    98.89,
+    62.69,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.523,
+    "q25": 0.414,
+    "q75": 0.622,
+    "p5": 0.366,
+    "p95": 0.696,
+    "max": 0.716,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.534,
+    "q25": 0.41,
+    "q75": 0.591,
+    "p5": 0.307,
+    "p95": 0.659,
+    "max": 0.755,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.381,
+    "q25": 0.312,
+    "q75": 0.481,
+    "p5": 0.249,
+    "p95": 0.596,
+    "max": 0.704,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

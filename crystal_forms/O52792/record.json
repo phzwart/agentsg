@@ -1,0 +1,59 @@
+{
+ "identity": "O52792",
+ "accessions": [
+  "O52792"
+ ],
+ "deposition_group": null,
+ "name": "4-hydroxymandelate oxidase",
+ "clusters": [
+  {
+   "cluster_id": 315,
+   "n_members": 41,
+   "reference": "5ZZR",
+   "reference_resolution": 1.31,
+   "space_group": "I 4 2 2",
+   "reference_cell": [
+    137.702,
+    137.702,
+    111.621,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.273,
+    "q25": 0.192,
+    "q75": 0.334,
+    "p5": 0.159,
+    "p95": 0.76,
+    "max": 0.924,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.398,
+    "q25": 0.311,
+    "q75": 0.993,
+    "p5": 0.182,
+    "p95": 2.014,
+    "max": 2.437,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.284,
+    "q25": 0.199,
+    "q75": 0.334,
+    "p5": 0.132,
+    "p95": 0.409,
+    "max": 0.626,
+    "n_pairs": 820
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

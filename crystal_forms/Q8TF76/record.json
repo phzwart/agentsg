@@ -1,0 +1,108 @@
+{
+ "identity": "Q8TF76",
+ "accessions": [
+  "Q8TF76"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase haspin",
+ "clusters": [
+  {
+   "cluster_id": 587,
+   "n_members": 26,
+   "reference": "4QTC",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    77.89,
+    78.36,
+    81.75,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.949,
+    "q25": 0.752,
+    "q75": 1.039,
+    "p5": 0.454,
+    "p95": 35.221,
+    "max": 35.606,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.115,
+    "q25": 0.806,
+    "q75": 2.645,
+    "p5": 0.465,
+    "p95": 34.807,
+    "max": 35.901,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.572,
+    "q25": 0.42,
+    "q75": 0.776,
+    "p5": 0.213,
+    "p95": 1.017,
+    "max": 1.599,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1789,
+   "n_members": 11,
+   "reference": "7AVQ",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    70.349,
+    78.009,
+    86.15,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.568,
+    "q25": 0.417,
+    "q75": 0.642,
+    "p5": 0.264,
+    "p95": 19.904,
+    "max": 35.312,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.307,
+    "q25": 1.097,
+    "q75": 4.978,
+    "p5": 0.713,
+    "p95": 33.695,
+    "max": 35.543,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.506,
+    "q25": 0.403,
+    "q75": 0.749,
+    "p5": 0.18,
+    "p95": 1.131,
+    "max": 1.177,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

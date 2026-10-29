@@ -1,0 +1,60 @@
+{
+ "identity": "P02766",
+ "accessions": [
+  "P02766"
+ ],
+ "deposition_group": null,
+ "name": "Transthyretin",
+ "clusters": [
+  {
+   "cluster_id": 8,
+   "n_members": 396,
+   "reference": "1F86",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    42.68,
+    85.77,
+    63.69,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 394,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 77815,
+   "rmsd_to_reference": {
+    "median": 0.475,
+    "q25": 0.363,
+    "q75": 0.607,
+    "p5": 0.233,
+    "p95": 1.214,
+    "max": 21.617,
+    "n_pairs": 394
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.968,
+    "q25": 0.649,
+    "q75": 1.482,
+    "p5": 0.37,
+    "p95": 20.325,
+    "max": 23.184,
+    "n_pairs": 77815
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.335,
+    "q25": 0.252,
+    "q75": 0.435,
+    "p5": 0.177,
+    "p95": 11.727,
+    "max": 13.394,
+    "n_pairs": 77815
+   },
+   "n_low_margin": 35,
+   "n_via_neighbour": 0
+  }
+ ]
+}

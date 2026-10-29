@@ -1,0 +1,59 @@
+{
+ "identity": "O75530",
+ "accessions": [
+  "O75530"
+ ],
+ "deposition_group": null,
+ "name": "Polycomb protein EED",
+ "clusters": [
+  {
+   "cluster_id": 807,
+   "n_members": 20,
+   "reference": "5U69",
+   "reference_resolution": 1.28,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    58.047,
+    85.4,
+    91.977,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 0.408,
+    "q25": 0.321,
+    "q75": 0.537,
+    "p5": 0.15,
+    "p95": 0.659,
+    "max": 0.744,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.462,
+    "q25": 0.351,
+    "q75": 0.574,
+    "p5": 0.174,
+    "p95": 0.773,
+    "max": 1.035,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.322,
+    "q25": 0.267,
+    "q75": 0.393,
+    "p5": 0.139,
+    "p95": 0.505,
+    "max": 0.647,
+    "n_pairs": 190
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P07617",
+ "accessions": [
+  "P07617"
+ ],
+ "deposition_group": null,
+ "name": "Cap-specific mRNA",
+ "clusters": [
+  {
+   "cluster_id": 1048,
+   "n_members": 16,
+   "reference": "1V39",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    84.6,
+    67.3,
+    79.6,
+    90.0,
+    117.3,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.238,
+    "q25": 0.182,
+    "q75": 0.298,
+    "p5": 0.126,
+    "p95": 0.329,
+    "max": 0.341,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.395,
+    "q25": 0.224,
+    "q75": 0.507,
+    "p5": 0.15,
+    "p95": 0.61,
+    "max": 0.658,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.177,
+    "q25": 0.151,
+    "q75": 0.207,
+    "p5": 0.117,
+    "p95": 0.265,
+    "max": 0.334,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "identity": "O14965",
+ "accessions": [
+  "O14965"
+ ],
+ "deposition_group": null,
+ "name": "Aurora kinase A",
+ "clusters": [
+  {
+   "cluster_id": 67,
+   "n_members": 120,
+   "reference": "5ORL",
+   "reference_resolution": 1.69,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    81.62,
+    81.62,
+    175.21,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 117,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 6903,
+   "rmsd_to_reference": {
+    "median": 1.72,
+    "q25": 1.097,
+    "q75": 2.628,
+    "p5": 0.597,
+    "p95": 3.905,
+    "max": 4.204,
+    "n_pairs": 117
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.577,
+    "q25": 1.143,
+    "q75": 2.183,
+    "p5": 0.635,
+    "p95": 3.371,
+    "max": 5.002,
+    "n_pairs": 6903
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.739,
+    "q25": 0.605,
+    "q75": 0.901,
+    "p5": 0.307,
+    "p95": 1.111,
+    "max": 1.867,
+    "n_pairs": 6903
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  },
+  {
+   "cluster_id": 1337,
+   "n_members": 13,
+   "reference": "9BZG",
+   "reference_resolution": 1.8,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    84.648,
+    84.648,
+    78.873,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 6,
+    "different_space_group": 6,
+    "reference": 1
+   },
+   "n_pairs": 21,
+   "rmsd_to_reference": {
+    "median": 33.427,
+    "q25": 32.778,
+    "q75": 33.678,
+    "p5": 8.593,
+    "p95": 33.874,
+    "max": 33.926,
+    "n_pairs": 6
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.241,
+    "q25": 1.409,
+    "q75": 32.902,
+    "p5": 0.901,
+    "p95": 33.335,
+    "max": 33.542,
+    "n_pairs": 21
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.145,
+    "q25": 1.0,
+    "q75": 1.297,
+    "p5": 0.744,
+    "p95": 1.457,
+    "max": 1.469,
+    "n_pairs": 21
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

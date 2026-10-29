@@ -1,0 +1,59 @@
+{
+ "identity": "P11073",
+ "accessions": [
+  "P11073"
+ ],
+ "deposition_group": null,
+ "name": "Pectate lyase C",
+ "clusters": [
+  {
+   "cluster_id": 1144,
+   "n_members": 15,
+   "reference": "1AIR",
+   "reference_resolution": 2.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    72.0,
+    83.0,
+    95.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.995,
+    "q25": 0.909,
+    "q75": 1.034,
+    "p5": 0.837,
+    "p95": 2.102,
+    "max": 3.027,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.426,
+    "q25": 0.284,
+    "q75": 1.499,
+    "p5": 0.134,
+    "p95": 2.076,
+    "max": 2.186,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.137,
+    "q75": 0.295,
+    "p5": 0.104,
+    "p95": 0.347,
+    "max": 0.396,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

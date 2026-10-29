@@ -1,0 +1,60 @@
+{
+ "identity": "Q72EJ0+Q72EJ1",
+ "accessions": [
+  "Q72EJ0",
+  "Q72EJ1"
+ ],
+ "deposition_group": null,
+ "name": "Formate dehydrogenase, alpha subunit, selenocysteine-containing",
+ "clusters": [
+  {
+   "cluster_id": 555,
+   "n_members": 27,
+   "reference": "7Z5O",
+   "reference_resolution": 1.527,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    64.811,
+    124.15,
+    149.666,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 1.627,
+    "q25": 0.493,
+    "q75": 1.824,
+    "p5": 0.251,
+    "p95": 2.391,
+    "max": 2.645,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.816,
+    "q25": 0.504,
+    "q75": 2.069,
+    "p5": 0.301,
+    "p95": 3.019,
+    "max": 3.342,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.323,
+    "q25": 0.265,
+    "q75": 0.397,
+    "p5": 0.188,
+    "p95": 1.147,
+    "max": 1.231,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

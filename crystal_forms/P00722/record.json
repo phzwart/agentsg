@@ -1,0 +1,59 @@
+{
+ "identity": "P00722",
+ "accessions": [
+  "P00722"
+ ],
+ "deposition_group": null,
+ "name": "Beta-galactosidase",
+ "clusters": [
+  {
+   "cluster_id": 269,
+   "n_members": 46,
+   "reference": "1JZ7",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    149.59,
+    168.53,
+    200.55,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 45,
+    "reference": 1
+   },
+   "n_pairs": 1035,
+   "rmsd_to_reference": {
+    "median": 1.719,
+    "q25": 0.247,
+    "q75": 2.573,
+    "p5": 0.167,
+    "p95": 2.762,
+    "max": 2.795,
+    "n_pairs": 45
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.608,
+    "q25": 0.615,
+    "q75": 2.44,
+    "p5": 0.217,
+    "p95": 2.737,
+    "max": 2.885,
+    "n_pairs": 1035
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.393,
+    "q25": 0.25,
+    "q75": 0.57,
+    "p5": 0.166,
+    "p95": 0.632,
+    "max": 0.755,
+    "n_pairs": 1035
+   },
+   "n_low_margin": 45,
+   "n_via_neighbour": 0
+  }
+ ]
+}

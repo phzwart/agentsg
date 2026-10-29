@@ -1,0 +1,59 @@
+{
+ "identity": "P61615",
+ "accessions": [
+  "P61615"
+ ],
+ "deposition_group": null,
+ "name": "Isopentenyl-diphosphate delta-isomerase",
+ "clusters": [
+  {
+   "cluster_id": 1735,
+   "n_members": 11,
+   "reference": "3VKJ",
+   "reference_resolution": 1.7,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    100.841,
+    100.841,
+    336.651,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.758,
+    "q25": 1.353,
+    "q75": 1.767,
+    "p5": 0.586,
+    "p95": 1.795,
+    "max": 1.813,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.75,
+    "q25": 0.421,
+    "q75": 1.019,
+    "p5": 0.213,
+    "p95": 1.782,
+    "max": 1.943,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.366,
+    "q25": 0.198,
+    "q75": 0.559,
+    "p5": 0.132,
+    "p95": 1.745,
+    "max": 1.765,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

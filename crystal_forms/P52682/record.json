@@ -1,0 +1,59 @@
+{
+ "identity": "P52682",
+ "accessions": [
+  "P52682"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase SME-1",
+ "clusters": [
+  {
+   "cluster_id": 1554,
+   "n_members": 12,
+   "reference": "9W7O",
+   "reference_resolution": 1.93,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    70.817,
+    51.512,
+    74.697,
+    90.0,
+    113.075,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.688,
+    "q25": 0.506,
+    "q75": 0.902,
+    "p5": 0.247,
+    "p95": 1.222,
+    "max": 1.408,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.513,
+    "q25": 0.402,
+    "q75": 0.656,
+    "p5": 0.251,
+    "p95": 0.92,
+    "max": 1.277,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.251,
+    "q25": 0.225,
+    "q75": 0.292,
+    "p5": 0.198,
+    "p95": 0.342,
+    "max": 0.382,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

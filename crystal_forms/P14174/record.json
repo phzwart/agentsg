@@ -1,0 +1,108 @@
+{
+ "identity": "P14174",
+ "accessions": [
+  "P14174"
+ ],
+ "deposition_group": null,
+ "name": "Macrophage migration inhibitory factor",
+ "clusters": [
+  {
+   "cluster_id": 136,
+   "n_members": 80,
+   "reference": "9JIT",
+   "reference_resolution": 1.08,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    67.789,
+    67.932,
+    86.771,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 79,
+    "reference": 1
+   },
+   "n_pairs": 3160,
+   "rmsd_to_reference": {
+    "median": 0.879,
+    "q25": 0.422,
+    "q75": 1.427,
+    "p5": 0.208,
+    "p95": 1.771,
+    "max": 2.294,
+    "n_pairs": 79
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.989,
+    "q25": 0.633,
+    "q75": 1.469,
+    "p5": 0.292,
+    "p95": 2.188,
+    "max": 4.479,
+    "n_pairs": 3160
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.177,
+    "q75": 0.257,
+    "p5": 0.12,
+    "p95": 0.377,
+    "max": 0.692,
+    "n_pairs": 3160
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 547,
+   "n_members": 27,
+   "reference": "4GRN",
+   "reference_resolution": 1.25,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    95.517,
+    95.517,
+    103.907,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.385,
+    "q25": 0.307,
+    "q75": 0.479,
+    "p5": 0.202,
+    "p95": 0.689,
+    "max": 0.743,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.45,
+    "q25": 0.33,
+    "q75": 0.691,
+    "p5": 0.227,
+    "p95": 1.004,
+    "max": 1.336,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.231,
+    "q25": 0.191,
+    "q75": 0.27,
+    "p5": 0.14,
+    "p95": 0.305,
+    "max": 0.387,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q9HV14",
+ "accessions": [
+  "Q9HV14"
+ ],
+ "deposition_group": null,
+ "name": "N-acetyltransferase domain-containing protein",
+ "clusters": [
+  {
+   "cluster_id": 795,
+   "n_members": 21,
+   "reference": "4L8A",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    57.207,
+    76.669,
+    39.4,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.347,
+    "q25": 0.312,
+    "q75": 0.37,
+    "p5": 0.254,
+    "p95": 0.457,
+    "max": 0.617,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.48,
+    "q25": 0.378,
+    "q75": 0.62,
+    "p5": 0.26,
+    "p95": 0.842,
+    "max": 0.984,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.24,
+    "q75": 0.374,
+    "p5": 0.163,
+    "p95": 0.547,
+    "max": 0.687,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

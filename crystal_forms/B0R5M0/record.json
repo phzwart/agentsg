@@ -1,0 +1,59 @@
+{
+ "identity": "B0R5M0",
+ "accessions": [
+  "B0R5M0"
+ ],
+ "deposition_group": null,
+ "name": "Dodecin",
+ "clusters": [
+  {
+   "cluster_id": 1636,
+   "n_members": 11,
+   "reference": "2CC6",
+   "reference_resolution": 1.27,
+   "space_group": "F 41 3 2",
+   "reference_cell": [
+    141.72,
+    141.72,
+    141.72,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.199,
+    "q25": 0.186,
+    "q75": 0.221,
+    "p5": 0.149,
+    "p95": 1.918,
+    "max": 3.293,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.199,
+    "q25": 0.175,
+    "q75": 0.241,
+    "p5": 0.12,
+    "p95": 3.336,
+    "max": 3.343,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.16,
+    "q25": 0.145,
+    "q75": 0.185,
+    "p5": 0.091,
+    "p95": 2.984,
+    "max": 2.994,
+    "n_pairs": 55
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

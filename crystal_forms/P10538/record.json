@@ -1,0 +1,60 @@
+{
+ "identity": "P10538",
+ "accessions": [
+  "P10538"
+ ],
+ "deposition_group": null,
+ "name": "Beta-amylase",
+ "clusters": [
+  {
+   "cluster_id": 980,
+   "n_members": 17,
+   "reference": "1WDP",
+   "reference_resolution": 1.27,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    84.888,
+    84.888,
+    143.397,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.968,
+    "q25": 0.895,
+    "q75": 1.139,
+    "p5": 0.636,
+    "p95": 1.171,
+    "max": 1.18,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.891,
+    "q25": 0.48,
+    "q75": 1.023,
+    "p5": 0.215,
+    "p95": 1.417,
+    "max": 1.495,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.465,
+    "q25": 0.335,
+    "q75": 0.877,
+    "p5": 0.165,
+    "p95": 0.968,
+    "max": 1.004,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

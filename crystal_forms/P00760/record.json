@@ -1,0 +1,158 @@
+{
+ "identity": "P00760",
+ "accessions": [
+  "P00760"
+ ],
+ "deposition_group": null,
+ "name": "Serine protease 1",
+ "clusters": [
+  {
+   "cluster_id": 18,
+   "n_members": 270,
+   "reference": "4I8H",
+   "reference_resolution": 0.75,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.342,
+    58.44,
+    66.476,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 269,
+    "reference": 1
+   },
+   "n_pairs": 36315,
+   "rmsd_to_reference": {
+    "median": 0.316,
+    "q25": 0.221,
+    "q75": 0.705,
+    "p5": 0.141,
+    "p95": 1.602,
+    "max": 2.526,
+    "n_pairs": 269
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.321,
+    "q25": 0.223,
+    "q75": 1.065,
+    "p5": 0.148,
+    "p95": 1.382,
+    "max": 3.066,
+    "n_pairs": 36315
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.198,
+    "q25": 0.16,
+    "q75": 0.246,
+    "p5": 0.111,
+    "p95": 0.557,
+    "max": 2.541,
+    "n_pairs": 36315
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 85,
+   "n_members": 107,
+   "reference": "4NIV",
+   "reference_resolution": 1.0,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    54.51,
+    54.51,
+    107.082,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 104,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 5460,
+   "rmsd_to_reference": {
+    "median": 0.586,
+    "q25": 0.521,
+    "q75": 0.88,
+    "p5": 0.406,
+    "p95": 34.957,
+    "max": 35.077,
+    "n_pairs": 104
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.838,
+    "q25": 0.534,
+    "q75": 1.524,
+    "p5": 0.247,
+    "p95": 36.467,
+    "max": 36.949,
+    "n_pairs": 5460
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.372,
+    "q25": 0.222,
+    "q75": 1.252,
+    "p5": 0.147,
+    "p95": 18.056,
+    "max": 18.291,
+    "n_pairs": 5460
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 88,
+   "n_members": 105,
+   "reference": "30ZS",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    62.309,
+    63.643,
+    68.757,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 104,
+    "reference": 1
+   },
+   "n_pairs": 5460,
+   "rmsd_to_reference": {
+    "median": 0.429,
+    "q25": 0.369,
+    "q75": 0.513,
+    "p5": 0.302,
+    "p95": 10.903,
+    "max": 28.307,
+    "n_pairs": 104
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.501,
+    "q25": 0.256,
+    "q75": 0.801,
+    "p5": 0.155,
+    "p95": 12.795,
+    "max": 28.998,
+    "n_pairs": 5460
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.186,
+    "q25": 0.149,
+    "q75": 0.226,
+    "p5": 0.103,
+    "p95": 12.609,
+    "max": 19.176,
+    "n_pairs": 5460
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

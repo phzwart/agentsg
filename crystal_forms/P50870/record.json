@@ -1,0 +1,59 @@
+{
+ "identity": "P50870",
+ "accessions": [
+  "P50870"
+ ],
+ "deposition_group": null,
+ "name": "Streptogramin A acetyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 288,
+   "n_members": 44,
+   "reference": "7I0R",
+   "reference_resolution": 1.73,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.98,
+    101.687,
+    146.479,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 43,
+    "reference": 1
+   },
+   "n_pairs": 946,
+   "rmsd_to_reference": {
+    "median": 0.287,
+    "q25": 0.243,
+    "q75": 0.415,
+    "p5": 0.198,
+    "p95": 0.807,
+    "max": 0.893,
+    "n_pairs": 43
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.406,
+    "q25": 0.275,
+    "q75": 0.65,
+    "p5": 0.197,
+    "p95": 1.0,
+    "max": 1.514,
+    "n_pairs": 946
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.181,
+    "q25": 0.153,
+    "q75": 0.216,
+    "p5": 0.12,
+    "p95": 0.287,
+    "max": 0.369,
+    "n_pairs": 946
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

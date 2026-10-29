@@ -1,0 +1,60 @@
+{
+ "identity": "P00489",
+ "accessions": [
+  "P00489"
+ ],
+ "deposition_group": null,
+ "name": "Glycogen phosphorylase, muscle form",
+ "clusters": [
+  {
+   "cluster_id": 26,
+   "n_members": 221,
+   "reference": "7P7D",
+   "reference_resolution": 1.45,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    126.279,
+    126.279,
+    115.361,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 218,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 23871,
+   "rmsd_to_reference": {
+    "median": 0.663,
+    "q25": 0.633,
+    "q75": 0.694,
+    "p5": 0.294,
+    "p95": 0.782,
+    "max": 7.277,
+    "n_pairs": 218
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.377,
+    "q25": 0.281,
+    "q75": 0.558,
+    "p5": 0.182,
+    "p95": 2.727,
+    "max": 7.311,
+    "n_pairs": 23871
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.215,
+    "q75": 0.396,
+    "p5": 0.148,
+    "p95": 2.647,
+    "max": 7.202,
+    "n_pairs": 23871
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q1K8B6",
+ "accessions": [
+  "Q1K8B6"
+ ],
+ "deposition_group": null,
+ "name": "Lytic polysaccharide monooxygenase NCU01050",
+ "clusters": [
+  {
+   "cluster_id": 264,
+   "n_members": 47,
+   "reference": "4EIR",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    67.17,
+    41.99,
+    69.25,
+    90.0,
+    97.94,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 46
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.347,
+    "q25": 0.345,
+    "q75": 0.348,
+    "p5": 0.342,
+    "p95": 0.351,
+    "max": 0.402,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.042,
+    "q25": 0.032,
+    "q75": 0.072,
+    "p5": 0.025,
+    "p95": 0.52,
+    "max": 0.657,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.029,
+    "q25": 0.026,
+    "q75": 0.035,
+    "p5": 0.023,
+    "p95": 0.214,
+    "max": 0.286,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

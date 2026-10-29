@@ -1,0 +1,59 @@
+{
+ "identity": "Q39054",
+ "accessions": [
+  "Q39054"
+ ],
+ "deposition_group": null,
+ "name": "Molybdopterin biosynthesis protein CNX1",
+ "clusters": [
+  {
+   "cluster_id": 1582,
+   "n_members": 12,
+   "reference": "6Q32",
+   "reference_resolution": 1.39,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    65.01,
+    123.29,
+    133.14,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.404,
+    "q25": 0.381,
+    "q75": 0.56,
+    "p5": 0.35,
+    "p95": 0.953,
+    "max": 1.023,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.562,
+    "q25": 0.376,
+    "q75": 0.869,
+    "p5": 0.255,
+    "p95": 1.193,
+    "max": 1.318,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.313,
+    "q25": 0.253,
+    "q75": 0.802,
+    "p5": 0.196,
+    "p95": 0.87,
+    "max": 0.894,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

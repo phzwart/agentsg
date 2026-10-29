@@ -1,0 +1,59 @@
+{
+ "identity": "Q89ZI2",
+ "accessions": [
+  "Q89ZI2"
+ ],
+ "deposition_group": null,
+ "name": "O-GlcNAcase BT_4395",
+ "clusters": [
+  {
+   "cluster_id": 1600,
+   "n_members": 12,
+   "reference": "5FKY",
+   "reference_resolution": 1.8,
+   "space_group": "P 1",
+   "reference_cell": [
+    51.44,
+    93.69,
+    99.02,
+    104.07,
+    94.18,
+    102.97
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.297,
+    "q25": 0.246,
+    "q75": 0.343,
+    "p5": 0.209,
+    "p95": 0.599,
+    "max": 0.778,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.624,
+    "q25": 0.412,
+    "q75": 0.887,
+    "p5": 0.285,
+    "p95": 2.583,
+    "max": 2.735,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.277,
+    "q25": 0.235,
+    "q75": 0.315,
+    "p5": 0.195,
+    "p95": 0.442,
+    "max": 0.525,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

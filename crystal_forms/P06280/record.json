@@ -1,0 +1,59 @@
+{
+ "identity": "P06280",
+ "accessions": [
+  "P06280"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-galactosidase A",
+ "clusters": [
+  {
+   "cluster_id": 664,
+   "n_members": 23,
+   "reference": "8K7F",
+   "reference_resolution": 1.98,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    90.605,
+    90.605,
+    216.663,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.283,
+    "q75": 0.583,
+    "p5": 0.248,
+    "p95": 0.875,
+    "max": 0.948,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.591,
+    "q25": 0.373,
+    "q75": 0.952,
+    "p5": 0.257,
+    "p95": 1.84,
+    "max": 2.185,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.265,
+    "q25": 0.221,
+    "q75": 0.377,
+    "p5": 0.154,
+    "p95": 0.473,
+    "max": 0.488,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

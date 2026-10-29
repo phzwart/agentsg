@@ -1,0 +1,59 @@
+{
+ "identity": "O76242",
+ "accessions": [
+  "O76242"
+ ],
+ "deposition_group": null,
+ "name": "Neural hemoglobin",
+ "clusters": [
+  {
+   "cluster_id": 954,
+   "n_members": 17,
+   "reference": "2XKI",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.503,
+    43.197,
+    60.168,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.333,
+    "q25": 0.271,
+    "q75": 0.422,
+    "p5": 0.153,
+    "p95": 0.649,
+    "max": 0.66,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.412,
+    "q25": 0.3,
+    "q75": 0.605,
+    "p5": 0.169,
+    "p95": 0.831,
+    "max": 1.042,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.197,
+    "q25": 0.155,
+    "q75": 0.246,
+    "p5": 0.106,
+    "p95": 0.325,
+    "max": 0.38,
+    "n_pairs": 136
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  }
+ ]
+}

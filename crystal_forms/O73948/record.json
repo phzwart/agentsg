@@ -1,0 +1,59 @@
+{
+ "identity": "O73948",
+ "accessions": [
+  "O73948"
+ ],
+ "deposition_group": null,
+ "name": "DNA repair and recombination protein RadA",
+ "clusters": [
+  {
+   "cluster_id": 1485,
+   "n_members": 12,
+   "reference": "2I1Q",
+   "reference_resolution": 1.9,
+   "space_group": "P 61",
+   "reference_cell": [
+    84.2,
+    84.2,
+    104.7,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.707,
+    "q25": 0.62,
+    "q75": 0.739,
+    "p5": 0.479,
+    "p95": 0.883,
+    "max": 0.889,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.844,
+    "q25": 0.637,
+    "q75": 0.979,
+    "p5": 0.412,
+    "p95": 1.339,
+    "max": 1.496,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.521,
+    "q25": 0.351,
+    "q75": 0.641,
+    "p5": 0.246,
+    "p95": 0.682,
+    "max": 0.715,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

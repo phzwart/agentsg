@@ -1,0 +1,59 @@
+{
+ "identity": "Q6VPE5",
+ "accessions": [
+  "Q6VPE5"
+ ],
+ "deposition_group": null,
+ "name": "Cis-3-chloroacrylic acid dehalogenase",
+ "clusters": [
+  {
+   "cluster_id": 1188,
+   "n_members": 15,
+   "reference": "9NF1",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    59.997,
+    100.294,
+    147.226,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 14
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.653,
+    "q25": 0.412,
+    "q75": 8.487,
+    "p5": 0.292,
+    "p95": 12.674,
+    "max": 12.724,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.99,
+    "q25": 1.531,
+    "q75": 11.142,
+    "p5": 0.399,
+    "p95": 12.799,
+    "max": 13.152,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.377,
+    "q25": 0.281,
+    "q75": 0.465,
+    "p5": 0.204,
+    "p95": 0.762,
+    "max": 0.792,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

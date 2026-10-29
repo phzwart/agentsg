@@ -1,0 +1,60 @@
+{
+ "identity": "P23141",
+ "accessions": [
+  "P23141"
+ ],
+ "deposition_group": null,
+ "name": "Liver carboxylesterase 1",
+ "clusters": [
+  {
+   "cluster_id": 1703,
+   "n_members": 11,
+   "reference": "2HRR",
+   "reference_resolution": 2.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    55.57,
+    181.05,
+    202.92,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 3,
+    "placed": 7,
+    "reference": 1
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 1.612,
+    "q25": 1.09,
+    "q75": 2.238,
+    "p5": 0.561,
+    "p95": 2.524,
+    "max": 2.643,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.32,
+    "q25": 0.825,
+    "q75": 1.988,
+    "p5": 0.498,
+    "p95": 2.344,
+    "max": 2.418,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.394,
+    "q25": 0.319,
+    "q75": 0.424,
+    "p5": 0.284,
+    "p95": 0.503,
+    "max": 0.528,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

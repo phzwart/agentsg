@@ -1,0 +1,59 @@
+{
+ "identity": "P29317",
+ "accessions": [
+  "P29317"
+ ],
+ "deposition_group": null,
+ "name": "Ephrin type-A receptor 2",
+ "clusters": [
+  {
+   "cluster_id": 260,
+   "n_members": 47,
+   "reference": "6Q7D",
+   "reference_resolution": 0.978,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    32.725,
+    107.16,
+    40.463,
+    90.0,
+    108.42,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 1.577,
+    "q25": 0.502,
+    "q75": 2.05,
+    "p5": 0.244,
+    "p95": 2.216,
+    "max": 2.8,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.59,
+    "q25": 0.894,
+    "q75": 2.226,
+    "p5": 0.407,
+    "p95": 3.213,
+    "max": 4.68,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.09,
+    "q25": 0.406,
+    "q75": 1.527,
+    "p5": 0.195,
+    "p95": 2.05,
+    "max": 2.485,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

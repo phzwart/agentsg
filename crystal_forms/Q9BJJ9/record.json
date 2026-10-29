@@ -1,0 +1,59 @@
+{
+ "identity": "Q9BJJ9",
+ "accessions": [
+  "Q9BJJ9"
+ ],
+ "deposition_group": null,
+ "name": "Enoyl-ACP reductase",
+ "clusters": [
+  {
+   "cluster_id": 1604,
+   "n_members": 12,
+   "reference": "3LT0",
+   "reference_resolution": 1.96,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    131.063,
+    131.063,
+    82.919,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.328,
+    "q25": 0.242,
+    "q75": 0.671,
+    "p5": 0.168,
+    "p95": 0.77,
+    "max": 0.803,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.813,
+    "q25": 0.377,
+    "q75": 1.333,
+    "p5": 0.217,
+    "p95": 1.801,
+    "max": 2.043,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.244,
+    "q75": 0.36,
+    "p5": 0.156,
+    "p95": 0.453,
+    "max": 0.496,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

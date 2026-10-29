@@ -1,0 +1,60 @@
+{
+ "identity": "Q15119",
+ "accessions": [
+  "Q15119"
+ ],
+ "deposition_group": null,
+ "name": "[Pyruvate dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 505,
+   "n_members": 29,
+   "reference": "6TN2",
+   "reference_resolution": 1.768,
+   "space_group": "P 64",
+   "reference_cell": [
+    108.516,
+    108.516,
+    83.676,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 0.641,
+    "q25": 0.6,
+    "q75": 0.84,
+    "p5": 0.478,
+    "p95": 0.967,
+    "max": 1.019,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.839,
+    "q25": 0.658,
+    "q75": 1.1,
+    "p5": 0.468,
+    "p95": 1.521,
+    "max": 2.434,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.609,
+    "q25": 0.51,
+    "q75": 0.756,
+    "p5": 0.326,
+    "p95": 1.015,
+    "max": 1.472,
+    "n_pairs": 378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q75WH8",
+ "accessions": [
+  "Q75WH8"
+ ],
+ "deposition_group": null,
+ "name": "L-rhamnose isomerase",
+ "clusters": [
+  {
+   "cluster_id": 932,
+   "n_members": 18,
+   "reference": "3M0M",
+   "reference_resolution": 1.45,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    74.625,
+    104.26,
+    111.447,
+    90.0,
+    106.2,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 1.715,
+    "q25": 1.261,
+    "q75": 1.929,
+    "p5": 0.213,
+    "p95": 2.109,
+    "max": 2.449,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.604,
+    "q25": 0.405,
+    "q75": 0.798,
+    "p5": 0.21,
+    "p95": 1.16,
+    "max": 1.565,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.217,
+    "q75": 0.359,
+    "p5": 0.127,
+    "p95": 0.669,
+    "max": 0.698,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

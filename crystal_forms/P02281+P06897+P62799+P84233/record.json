@@ -1,0 +1,62 @@
+{
+ "identity": "P02281+P06897+P62799+P84233",
+ "accessions": [
+  "P02281",
+  "P06897",
+  "P62799",
+  "P84233"
+ ],
+ "deposition_group": null,
+ "name": "Histone H3.2",
+ "clusters": [
+  {
+   "cluster_id": 246,
+   "n_members": 50,
+   "reference": "1KX5",
+   "reference_resolution": 1.94,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    105.95,
+    181.17,
+    109.49,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.676,
+    "q25": 0.479,
+    "q75": 1.994,
+    "p5": 0.34,
+    "p95": 4.559,
+    "max": 31.023,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.274,
+    "q25": 0.686,
+    "q75": 6.537,
+    "p5": 0.396,
+    "p95": 28.663,
+    "max": 31.461,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.34,
+    "q25": 0.246,
+    "q75": 0.532,
+    "p5": 0.173,
+    "p95": 8.33,
+    "max": 8.851,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P48147",
+ "accessions": [
+  "P48147"
+ ],
+ "deposition_group": null,
+ "name": "Prolyl endopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1066,
+   "n_members": 16,
+   "reference": "9Q5X",
+   "reference_resolution": 1.41,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    103.822,
+    66.473,
+    156.856,
+    90.0,
+    102.067,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 1.435,
+    "q25": 0.169,
+    "q75": 1.951,
+    "p5": 0.12,
+    "p95": 2.086,
+    "max": 2.193,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.868,
+    "q25": 0.415,
+    "q75": 2.728,
+    "p5": 0.205,
+    "p95": 2.963,
+    "max": 3.079,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.333,
+    "q25": 0.26,
+    "q75": 0.353,
+    "p5": 0.124,
+    "p95": 0.393,
+    "max": 0.41,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

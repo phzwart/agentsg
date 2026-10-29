@@ -1,0 +1,59 @@
+{
+ "identity": "P00519",
+ "accessions": [
+  "P00519"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine-protein kinase ABL1",
+ "clusters": [
+  {
+   "cluster_id": 1226,
+   "n_members": 14,
+   "reference": "2HZI",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    106.475,
+    131.533,
+    56.459,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.817,
+    "q25": 0.719,
+    "q75": 1.147,
+    "p5": 0.632,
+    "p95": 1.398,
+    "max": 1.551,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.878,
+    "q25": 0.546,
+    "q75": 1.282,
+    "p5": 0.385,
+    "p95": 1.602,
+    "max": 1.914,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.614,
+    "q25": 0.419,
+    "q75": 0.96,
+    "p5": 0.288,
+    "p95": 1.072,
+    "max": 1.137,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

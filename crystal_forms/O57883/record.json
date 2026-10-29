@@ -1,0 +1,59 @@
+{
+ "identity": "O57883",
+ "accessions": [
+  "O57883"
+ ],
+ "deposition_group": null,
+ "name": "235aa long hypothetical biotin--[acetyl-CoA-carboxylase] ligase",
+ "clusters": [
+  {
+   "cluster_id": 705,
+   "n_members": 22,
+   "reference": "2DXU",
+   "reference_resolution": 1.28,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    38.236,
+    82.851,
+    72.354,
+    90.0,
+    101.37,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.529,
+    "q25": 0.355,
+    "q75": 0.605,
+    "p5": 0.278,
+    "p95": 0.724,
+    "max": 0.74,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.47,
+    "q25": 0.384,
+    "q75": 0.572,
+    "p5": 0.258,
+    "p95": 0.918,
+    "max": 1.314,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.379,
+    "q25": 0.315,
+    "q75": 0.443,
+    "p5": 0.218,
+    "p95": 0.642,
+    "max": 0.784,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

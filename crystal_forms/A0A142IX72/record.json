@@ -1,0 +1,59 @@
+{
+ "identity": "A0A142IX72",
+ "accessions": [
+  "A0A142IX72"
+ ],
+ "deposition_group": null,
+ "name": "RNA-directed RNA polymerase",
+ "clusters": [
+  {
+   "cluster_id": 1018,
+   "n_members": 16,
+   "reference": "7IAW",
+   "reference_resolution": 1.45,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    60.22,
+    60.22,
+    214.54,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.313,
+    "q25": 0.242,
+    "q75": 0.391,
+    "p5": 0.216,
+    "p95": 0.537,
+    "max": 0.728,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.298,
+    "q25": 0.24,
+    "q75": 0.386,
+    "p5": 0.173,
+    "p95": 0.629,
+    "max": 0.796,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.131,
+    "q25": 0.111,
+    "q75": 0.156,
+    "p5": 0.092,
+    "p95": 0.497,
+    "max": 0.519,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "Q8N1Q1",
+ "accessions": [
+  "Q8N1Q1"
+ ],
+ "deposition_group": null,
+ "name": "Carbonic anhydrase 13",
+ "clusters": [
+  {
+   "cluster_id": 1311,
+   "n_members": 14,
+   "reference": "5OGJ",
+   "reference_resolution": 1.06,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.445,
+    57.244,
+    159.782,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.318,
+    "q25": 0.263,
+    "q75": 1.323,
+    "p5": 0.206,
+    "p95": 1.697,
+    "max": 2.003,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.926,
+    "q25": 0.331,
+    "q75": 1.213,
+    "p5": 0.197,
+    "p95": 2.351,
+    "max": 3.134,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.27,
+    "q25": 0.191,
+    "q75": 0.4,
+    "p5": 0.146,
+    "p95": 0.444,
+    "max": 0.476,
+    "n_pairs": 78
+   },
+   "n_low_margin": 10,
+   "n_via_neighbour": 0
+  }
+ ]
+}

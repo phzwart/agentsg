@@ -1,0 +1,59 @@
+{
+ "identity": "Q91XB0",
+ "accessions": [
+  "Q91XB0"
+ ],
+ "deposition_group": null,
+ "name": "Three-prime repair exonuclease 1",
+ "clusters": [
+  {
+   "cluster_id": 1316,
+   "n_members": 14,
+   "reference": "9KJE",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    75.362,
+    83.186,
+    88.479,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.653,
+    "q25": 0.618,
+    "q75": 0.704,
+    "p5": 0.192,
+    "p95": 0.775,
+    "max": 0.786,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.632,
+    "q25": 0.494,
+    "q75": 0.801,
+    "p5": 0.335,
+    "p95": 0.892,
+    "max": 1.01,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.567,
+    "q25": 0.405,
+    "q75": 0.66,
+    "p5": 0.234,
+    "p95": 0.808,
+    "max": 0.846,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P02699",
+ "accessions": [
+  "P02699"
+ ],
+ "deposition_group": null,
+ "name": "Rhodopsin",
+ "clusters": [
+  {
+   "cluster_id": 966,
+   "n_members": 17,
+   "reference": "4X1H",
+   "reference_resolution": 2.29,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    242.136,
+    242.136,
+    109.721,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.129,
+    "q25": 0.588,
+    "q75": 1.232,
+    "p5": 0.386,
+    "p95": 1.264,
+    "max": 1.316,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.213,
+    "q25": 0.528,
+    "q75": 1.399,
+    "p5": 0.309,
+    "p95": 1.956,
+    "max": 2.206,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.97,
+    "q25": 0.358,
+    "q75": 1.09,
+    "p5": 0.232,
+    "p95": 1.164,
+    "max": 1.213,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P00517+P61926",
+ "accessions": [
+  "P00517",
+  "P61926"
+ ],
+ "deposition_group": null,
+ "name": "cAMP-dependent protein kinase catalytic subunit alpha",
+ "clusters": [
+  {
+   "cluster_id": 1662,
+   "n_members": 11,
+   "reference": "2GFC",
+   "reference_resolution": 1.87,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    72.492,
+    75.533,
+    80.387,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.876,
+    "q25": 0.717,
+    "q75": 1.299,
+    "p5": 0.694,
+    "p95": 41.275,
+    "max": 42.081,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.207,
+    "q25": 0.769,
+    "q75": 37.947,
+    "p5": 0.438,
+    "p95": 40.759,
+    "max": 40.958,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.526,
+    "q25": 0.418,
+    "q75": 0.806,
+    "p5": 0.306,
+    "p95": 0.949,
+    "max": 1.103,
+    "n_pairs": 55
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

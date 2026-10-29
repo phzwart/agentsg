@@ -1,0 +1,60 @@
+{
+ "identity": "F1NHE9",
+ "accessions": [
+  "F1NHE9"
+ ],
+ "deposition_group": null,
+ "name": "ATP-sensitive inward rectifier potassium channel 12",
+ "clusters": [
+  {
+   "cluster_id": 1643,
+   "n_members": 11,
+   "reference": "5KUK",
+   "reference_resolution": 2.0,
+   "space_group": "I 4",
+   "reference_cell": [
+    82.695,
+    82.695,
+    182.441,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 1,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.995,
+    "q25": 0.937,
+    "q75": 1.639,
+    "p5": 0.503,
+    "p95": 21.183,
+    "max": 34.108,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.867,
+    "q25": 0.789,
+    "q75": 2.442,
+    "p5": 0.49,
+    "p95": 35.011,
+    "max": 35.125,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.73,
+    "q25": 0.586,
+    "q75": 2.238,
+    "p5": 0.27,
+    "p95": 11.114,
+    "max": 11.144,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

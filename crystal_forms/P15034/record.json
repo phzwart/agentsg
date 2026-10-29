@@ -1,0 +1,59 @@
+{
+ "identity": "P15034",
+ "accessions": [
+  "P15034"
+ ],
+ "deposition_group": null,
+ "name": "Xaa-Pro aminopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1523,
+   "n_members": 12,
+   "reference": "2BWU",
+   "reference_resolution": 2.2,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    138.589,
+    138.589,
+    232.056,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.251,
+    "q25": 0.216,
+    "q75": 0.422,
+    "p5": 0.187,
+    "p95": 0.566,
+    "max": 0.569,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.428,
+    "q25": 0.32,
+    "q75": 0.584,
+    "p5": 0.171,
+    "p95": 0.829,
+    "max": 1.08,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.194,
+    "q25": 0.142,
+    "q75": 0.229,
+    "p5": 0.103,
+    "p95": 0.273,
+    "max": 0.29,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "A0A0S4TER9",
+ "accessions": [
+  "A0A0S4TER9"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional dihydrofolate reductase-thymidylate synthase",
+ "clusters": [
+  {
+   "cluster_id": 745,
+   "n_members": 21,
+   "reference": "6PF8",
+   "reference_resolution": 2.533,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    214.777,
+    117.537,
+    222.817,
+    90.0,
+    95.65,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.504,
+    "q25": 0.336,
+    "q75": 0.668,
+    "p5": 0.273,
+    "p95": 0.968,
+    "max": 1.004,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.366,
+    "q25": 0.913,
+    "q75": 2.077,
+    "p5": 0.5,
+    "p95": 3.449,
+    "max": 4.469,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.348,
+    "q25": 0.287,
+    "q75": 0.4,
+    "p5": 0.196,
+    "p95": 0.499,
+    "max": 0.541,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

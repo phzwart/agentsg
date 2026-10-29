@@ -1,0 +1,59 @@
+{
+ "identity": "Q7LBC6",
+ "accessions": [
+  "Q7LBC6"
+ ],
+ "deposition_group": null,
+ "name": "Lysine-specific demethylase 3B",
+ "clusters": [
+  {
+   "cluster_id": 401,
+   "n_members": 35,
+   "reference": "5R7X",
+   "reference_resolution": 1.44,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    57.81,
+    93.79,
+    93.25,
+    90.0,
+    107.96,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 34
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.222,
+    "q25": 0.138,
+    "q75": 0.364,
+    "p5": 0.095,
+    "p95": 0.636,
+    "max": 0.811,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.645,
+    "q25": 0.477,
+    "q75": 0.863,
+    "p5": 0.257,
+    "p95": 2.81,
+    "max": 3.978,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.244,
+    "q25": 0.141,
+    "q75": 0.437,
+    "p5": 0.086,
+    "p95": 0.687,
+    "max": 0.899,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

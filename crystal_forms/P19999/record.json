@@ -1,0 +1,59 @@
+{
+ "identity": "P19999",
+ "accessions": [
+  "P19999"
+ ],
+ "deposition_group": null,
+ "name": "Mannose-binding protein A",
+ "clusters": [
+  {
+   "cluster_id": 867,
+   "n_members": 19,
+   "reference": "1RTM",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    80.0,
+    85.1,
+    98.5,
+    90.0,
+    106.3,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 0.696,
+    "q25": 0.45,
+    "q75": 6.073,
+    "p5": 0.3,
+    "p95": 6.196,
+    "max": 6.335,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.939,
+    "q25": 0.66,
+    "q75": 6.428,
+    "p5": 0.324,
+    "p95": 6.778,
+    "max": 6.892,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.53,
+    "q25": 0.259,
+    "q75": 5.938,
+    "p5": 0.131,
+    "p95": 5.981,
+    "max": 5.998,
+    "n_pairs": 171
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

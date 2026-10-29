@@ -1,0 +1,59 @@
+{
+ "identity": "P11021",
+ "accessions": [
+  "P11021"
+ ],
+ "deposition_group": null,
+ "name": "Endoplasmic reticulum chaperone BiP",
+ "clusters": [
+  {
+   "cluster_id": 1054,
+   "n_members": 16,
+   "reference": "5F0X",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    56.347,
+    74.448,
+    85.882,
+    90.0,
+    97.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 3.582,
+    "q25": 3.463,
+    "q75": 3.612,
+    "p5": 1.158,
+    "p95": 3.674,
+    "max": 3.69,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.079,
+    "q25": 0.573,
+    "q75": 3.457,
+    "p5": 0.356,
+    "p95": 4.21,
+    "max": 4.277,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.706,
+    "q25": 0.455,
+    "q75": 0.863,
+    "p5": 0.298,
+    "p95": 1.121,
+    "max": 1.218,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

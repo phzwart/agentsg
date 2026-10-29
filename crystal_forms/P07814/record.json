@@ -1,0 +1,59 @@
+{
+ "identity": "P07814",
+ "accessions": [
+  "P07814"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional glutamate/proline--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 969,
+   "n_members": 17,
+   "reference": "7F99",
+   "reference_resolution": 1.979,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    70.471,
+    91.518,
+    83.335,
+    90.0,
+    110.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 4.237,
+    "q25": 3.969,
+    "q75": 4.448,
+    "p5": 0.64,
+    "p95": 4.668,
+    "max": 4.787,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.469,
+    "q25": 1.517,
+    "q75": 3.88,
+    "p5": 0.606,
+    "p95": 5.005,
+    "max": 5.557,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.693,
+    "q25": 0.572,
+    "q75": 0.789,
+    "p5": 0.364,
+    "p95": 0.97,
+    "max": 1.137,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

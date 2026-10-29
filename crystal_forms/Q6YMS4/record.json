@@ -1,0 +1,59 @@
+{
+ "identity": "Q6YMS4",
+ "accessions": [
+  "Q6YMS4"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: Capsid protein C",
+ "clusters": [
+  {
+   "cluster_id": 1010,
+   "n_members": 17,
+   "reference": "4HHJ",
+   "reference_resolution": 1.79,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    161.32,
+    177.61,
+    57.82,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.409,
+    "q25": 0.293,
+    "q75": 0.619,
+    "p5": 0.213,
+    "p95": 0.89,
+    "max": 1.079,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.972,
+    "q25": 0.574,
+    "q75": 1.546,
+    "p5": 0.289,
+    "p95": 2.232,
+    "max": 2.682,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.408,
+    "q25": 0.275,
+    "q75": 0.55,
+    "p5": 0.187,
+    "p95": 0.961,
+    "max": 1.557,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "K9N7C7",
+ "accessions": [
+  "K9N7C7"
+ ],
+ "deposition_group": null,
+ "name": "Replicase polyprotein 1ab",
+ "clusters": [
+  {
+   "cluster_id": 1109,
+   "n_members": 15,
+   "reference": "9ATJ",
+   "reference_resolution": 1.4,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    101.219,
+    58.01,
+    49.855,
+    90.0,
+    112.47,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.269,
+    "q25": 0.221,
+    "q75": 0.329,
+    "p5": 0.157,
+    "p95": 0.44,
+    "max": 0.488,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.348,
+    "q25": 0.285,
+    "q75": 0.427,
+    "p5": 0.232,
+    "p95": 0.545,
+    "max": 0.65,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.261,
+    "q25": 0.224,
+    "q75": 0.297,
+    "p5": 0.161,
+    "p95": 0.418,
+    "max": 0.48,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

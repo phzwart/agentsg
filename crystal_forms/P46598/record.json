@@ -1,0 +1,60 @@
+{
+ "identity": "P46598",
+ "accessions": [
+  "P46598"
+ ],
+ "deposition_group": null,
+ "name": "Heat shock protein 90 homolog",
+ "clusters": [
+  {
+   "cluster_id": 1550,
+   "n_members": 12,
+   "reference": "9MSU",
+   "reference_resolution": 1.56,
+   "space_group": "P 43 2 2",
+   "reference_cell": [
+    74.225,
+    74.225,
+    107.712,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.648,
+    "q25": 0.619,
+    "q75": 1.05,
+    "p5": 0.451,
+    "p95": 1.215,
+    "max": 1.227,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.724,
+    "q25": 0.622,
+    "q75": 1.001,
+    "p5": 0.296,
+    "p95": 1.221,
+    "max": 1.243,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.596,
+    "q25": 0.459,
+    "q75": 0.923,
+    "p5": 0.221,
+    "p95": 1.151,
+    "max": 1.166,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

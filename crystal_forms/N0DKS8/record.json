@@ -1,0 +1,108 @@
+{
+ "identity": "N0DKS8",
+ "accessions": [
+  "N0DKS8"
+ ],
+ "deposition_group": null,
+ "name": "Sodium pumping rhodopsin",
+ "clusters": [
+  {
+   "cluster_id": 701,
+   "n_members": 22,
+   "reference": "4XTL",
+   "reference_resolution": 1.45,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    40.18,
+    80.84,
+    232.84,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.767,
+    "q25": 0.453,
+    "q75": 0.903,
+    "p5": 0.327,
+    "p95": 1.006,
+    "max": 1.011,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.014,
+    "q25": 0.594,
+    "q75": 1.371,
+    "p5": 0.341,
+    "p95": 1.825,
+    "max": 2.125,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.366,
+    "q25": 0.29,
+    "q75": 0.467,
+    "p5": 0.208,
+    "p95": 0.573,
+    "max": 0.66,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 951,
+   "n_members": 17,
+   "reference": "6YC3",
+   "reference_resolution": 2.0,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    131.866,
+    240.323,
+    135.513,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.496,
+    "q25": 0.205,
+    "q75": 0.646,
+    "p5": 0.134,
+    "p95": 0.87,
+    "max": 1.144,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.941,
+    "q25": 0.423,
+    "q75": 1.115,
+    "p5": 0.188,
+    "p95": 1.661,
+    "max": 2.082,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.316,
+    "q25": 0.201,
+    "q75": 0.398,
+    "p5": 0.112,
+    "p95": 0.644,
+    "max": 0.892,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "identity": "P00636",
+ "accessions": [
+  "P00636"
+ ],
+ "deposition_group": null,
+ "name": "Fructose-1,6-bisphosphatase 1",
+ "clusters": [
+  {
+   "cluster_id": 538,
+   "n_members": 27,
+   "reference": "2QVU",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    59.173,
+    165.627,
+    79.618,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 1.157,
+    "q25": 0.495,
+    "q75": 1.46,
+    "p5": 0.461,
+    "p95": 1.538,
+    "max": 3.532,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.833,
+    "q25": 0.581,
+    "q75": 1.379,
+    "p5": 0.255,
+    "p95": 2.151,
+    "max": 3.654,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.453,
+    "q25": 0.386,
+    "q75": 0.911,
+    "p5": 0.2,
+    "p95": 1.943,
+    "max": 3.297,
+    "n_pairs": 351
+   },
+   "n_low_margin": 14,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 598,
+   "n_members": 25,
+   "reference": "1NUW",
+   "reference_resolution": 1.3,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    53.6,
+    83.017,
+    165.378,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 24,
+    "reference": 1
+   },
+   "n_pairs": 300,
+   "rmsd_to_reference": {
+    "median": 0.463,
+    "q25": 0.376,
+    "q75": 0.566,
+    "p5": 0.335,
+    "p95": 0.725,
+    "max": 1.742,
+    "n_pairs": 24
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.563,
+    "q25": 0.34,
+    "q75": 0.751,
+    "p5": 0.253,
+    "p95": 1.948,
+    "max": 2.123,
+    "n_pairs": 300
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.387,
+    "q25": 0.299,
+    "q75": 0.535,
+    "p5": 0.226,
+    "p95": 0.709,
+    "max": 0.931,
+    "n_pairs": 300
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1488,
+   "n_members": 12,
+   "reference": "5FBP",
+   "reference_resolution": 2.1,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    131.1,
+    131.1,
+    69.7,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.734,
+    "q25": 0.451,
+    "q75": 1.002,
+    "p5": 0.37,
+    "p95": 1.504,
+    "max": 1.693,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.857,
+    "q25": 0.494,
+    "q75": 1.4,
+    "p5": 0.378,
+    "p95": 1.702,
+    "max": 2.189,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.557,
+    "q25": 0.416,
+    "q75": 1.247,
+    "p5": 0.297,
+    "p95": 1.502,
+    "max": 2.025,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

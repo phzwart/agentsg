@@ -1,0 +1,61 @@
+{
+ "identity": "P06202",
+ "accessions": [
+  "P06202"
+ ],
+ "deposition_group": null,
+ "name": "Periplasmic oligopeptide-binding protein OppA",
+ "clusters": [
+  {
+   "cluster_id": 458,
+   "n_members": 31,
+   "reference": "1JET",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    109.19,
+    76.04,
+    70.28,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 26,
+    "different_space_group": 2,
+    "unreadable_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 351,
+   "rmsd_to_reference": {
+    "median": 0.297,
+    "q25": 0.22,
+    "q75": 0.439,
+    "p5": 0.17,
+    "p95": 0.542,
+    "max": 0.569,
+    "n_pairs": 26
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.384,
+    "q25": 0.267,
+    "q75": 0.537,
+    "p5": 0.168,
+    "p95": 0.814,
+    "max": 1.166,
+    "n_pairs": 351
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.192,
+    "q25": 0.148,
+    "q75": 0.26,
+    "p5": 0.104,
+    "p95": 0.34,
+    "max": 0.401,
+    "n_pairs": 351
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

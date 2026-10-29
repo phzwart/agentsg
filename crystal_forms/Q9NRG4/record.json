@@ -1,0 +1,60 @@
+{
+ "identity": "Q9NRG4",
+ "accessions": [
+  "Q9NRG4"
+ ],
+ "deposition_group": null,
+ "name": "N-lysine methyltransferase SMYD2",
+ "clusters": [
+  {
+   "cluster_id": 1798,
+   "n_members": 11,
+   "reference": "5KJK",
+   "reference_resolution": 1.93,
+   "space_group": "I 4",
+   "reference_cell": [
+    155.865,
+    155.865,
+    52.477,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.096,
+    "q25": 0.281,
+    "q75": 3.536,
+    "p5": 0.254,
+    "p95": 3.738,
+    "max": 3.783,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.296,
+    "q25": 1.064,
+    "q75": 3.717,
+    "p5": 0.305,
+    "p95": 4.218,
+    "max": 4.345,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.379,
+    "q25": 0.317,
+    "q75": 0.43,
+    "p5": 0.181,
+    "p95": 0.495,
+    "max": 0.551,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

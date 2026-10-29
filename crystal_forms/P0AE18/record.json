@@ -1,0 +1,59 @@
+{
+ "identity": "P0AE18",
+ "accessions": [
+  "P0AE18"
+ ],
+ "deposition_group": null,
+ "name": "Methionine aminopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1252,
+   "n_members": 14,
+   "reference": "2GG2",
+   "reference_resolution": 1.0,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.372,
+    63.204,
+    52.508,
+    90.0,
+    109.55,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.393,
+    "q25": 0.261,
+    "q75": 0.672,
+    "p5": 0.231,
+    "p95": 1.178,
+    "max": 1.438,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.453,
+    "q25": 0.342,
+    "q75": 0.598,
+    "p5": 0.222,
+    "p95": 0.95,
+    "max": 1.019,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.262,
+    "q25": 0.219,
+    "q75": 0.308,
+    "p5": 0.156,
+    "p95": 0.393,
+    "max": 0.442,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

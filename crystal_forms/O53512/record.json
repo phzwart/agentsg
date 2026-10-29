@@ -1,0 +1,59 @@
+{
+ "identity": "O53512",
+ "accessions": [
+  "O53512"
+ ],
+ "deposition_group": null,
+ "name": "Phospho-2-dehydro-3-deoxyheptonate aldolase AroG",
+ "clusters": [
+  {
+   "cluster_id": 898,
+   "n_members": 18,
+   "reference": "6PBJ",
+   "reference_resolution": 1.9,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    204.251,
+    204.251,
+    66.551,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.857,
+    "q25": 0.667,
+    "q75": 0.972,
+    "p5": 0.528,
+    "p95": 1.025,
+    "max": 1.122,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.894,
+    "q25": 0.688,
+    "q75": 1.129,
+    "p5": 0.422,
+    "p95": 1.971,
+    "max": 2.562,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.612,
+    "q25": 0.396,
+    "q75": 0.694,
+    "p5": 0.295,
+    "p95": 0.833,
+    "max": 0.93,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

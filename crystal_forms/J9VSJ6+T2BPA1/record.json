@@ -1,0 +1,61 @@
+{
+ "identity": "J9VSJ6+T2BPA1",
+ "accessions": [
+  "J9VSJ6",
+  "T2BPA1"
+ ],
+ "deposition_group": null,
+ "name": "Protein farnesyltransferase subunit beta",
+ "clusters": [
+  {
+   "cluster_id": 1024,
+   "n_members": 16,
+   "reference": "7T08",
+   "reference_resolution": 1.803,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    141.915,
+    141.915,
+    130.226,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "no_shared_accession": 8,
+    "reference": 1,
+    "placed": 7
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.181,
+    "q25": 0.159,
+    "q75": 0.329,
+    "p5": 0.147,
+    "p95": 0.471,
+    "max": 0.512,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.377,
+    "q25": 0.21,
+    "q75": 0.461,
+    "p5": 0.14,
+    "p95": 0.582,
+    "max": 0.658,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.214,
+    "q25": 0.138,
+    "q75": 0.337,
+    "p5": 0.113,
+    "p95": 0.391,
+    "max": 0.408,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

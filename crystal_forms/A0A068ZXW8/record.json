@@ -1,0 +1,59 @@
+{
+ "identity": "A0A068ZXW8",
+ "accessions": [
+  "A0A068ZXW8"
+ ],
+ "deposition_group": null,
+ "name": null,
+ "clusters": [
+  {
+   "cluster_id": 1207,
+   "n_members": 14,
+   "reference": "6EDM",
+   "reference_resolution": 1.4,
+   "space_group": "P 43 3 2",
+   "reference_cell": [
+    123.201,
+    123.201,
+    123.201,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.442,
+    "q25": 0.374,
+    "q75": 0.458,
+    "p5": 0.304,
+    "p95": 0.479,
+    "max": 0.496,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.195,
+    "q25": 0.134,
+    "q75": 0.318,
+    "p5": 0.088,
+    "p95": 0.497,
+    "max": 0.56,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.148,
+    "q25": 0.101,
+    "q75": 0.224,
+    "p5": 0.072,
+    "p95": 0.355,
+    "max": 0.373,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

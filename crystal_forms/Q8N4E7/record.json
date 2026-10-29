@@ -1,0 +1,60 @@
+{
+ "identity": "Q8N4E7",
+ "accessions": [
+  "Q8N4E7"
+ ],
+ "deposition_group": null,
+ "name": "Ferritin, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 654,
+   "n_members": 24,
+   "reference": "7O63",
+   "reference_resolution": 1.16,
+   "space_group": "F 4 3 2",
+   "reference_cell": [
+    184.133,
+    184.133,
+    184.133,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.285,
+    "q25": 0.128,
+    "q75": 0.352,
+    "p5": 0.094,
+    "p95": 0.438,
+    "max": 1.753,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.258,
+    "q25": 0.203,
+    "q75": 0.337,
+    "p5": 0.11,
+    "p95": 0.459,
+    "max": 0.641,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.175,
+    "q25": 0.142,
+    "q75": 0.218,
+    "p5": 0.082,
+    "p95": 0.253,
+    "max": 0.303,
+    "n_pairs": 253
+   },
+   "n_low_margin": 22,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P95468",
+ "accessions": [
+  "P95468"
+ ],
+ "deposition_group": null,
+ "name": "Aromatic-amino-acid aminotransferase",
+ "clusters": [
+  {
+   "cluster_id": 1561,
+   "n_members": 12,
+   "reference": "2AY1",
+   "reference_resolution": 2.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    124.14,
+    121.74,
+    55.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.219,
+    "q25": 0.172,
+    "q75": 0.229,
+    "p5": 0.164,
+    "p95": 0.345,
+    "max": 0.375,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.301,
+    "q25": 0.233,
+    "q75": 0.4,
+    "p5": 0.182,
+    "p95": 0.522,
+    "max": 0.743,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.196,
+    "q25": 0.169,
+    "q75": 0.224,
+    "p5": 0.15,
+    "p95": 0.282,
+    "max": 0.303,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

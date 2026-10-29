@@ -1,0 +1,60 @@
+{
+ "identity": "Q07820",
+ "accessions": [
+  "Q07820"
+ ],
+ "deposition_group": null,
+ "name": "Induced myeloid leukemia cell differentiation protein Mcl-1",
+ "clusters": [
+  {
+   "cluster_id": 1423,
+   "n_members": 13,
+   "reference": "9PQ7",
+   "reference_resolution": 1.24,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    99.433,
+    136.936,
+    38.653,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.304,
+    "q25": 0.239,
+    "q75": 1.812,
+    "p5": 0.223,
+    "p95": 2.244,
+    "max": 2.54,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.789,
+    "q25": 0.321,
+    "q75": 1.889,
+    "p5": 0.142,
+    "p95": 2.512,
+    "max": 2.545,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.739,
+    "q25": 0.123,
+    "q75": 1.844,
+    "p5": 0.094,
+    "p95": 2.334,
+    "max": 2.349,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

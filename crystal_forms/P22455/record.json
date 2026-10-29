@@ -1,0 +1,109 @@
+{
+ "identity": "P22455",
+ "accessions": [
+  "P22455"
+ ],
+ "deposition_group": null,
+ "name": "Fibroblast growth factor receptor 4",
+ "clusters": [
+  {
+   "cluster_id": 675,
+   "n_members": 23,
+   "reference": "8KH9",
+   "reference_resolution": 1.42,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    42.398,
+    61.605,
+    60.605,
+    90.0,
+    97.93,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.344,
+    "q25": 0.296,
+    "q75": 0.616,
+    "p5": 0.21,
+    "p95": 1.217,
+    "max": 2.011,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.899,
+    "q25": 1.239,
+    "q75": 3.08,
+    "p5": 0.436,
+    "p95": 4.364,
+    "max": 5.905,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.503,
+    "q25": 0.272,
+    "q75": 0.723,
+    "p5": 0.208,
+    "p95": 1.65,
+    "max": 1.972,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1534,
+   "n_members": 12,
+   "reference": "6NVH",
+   "reference_resolution": 1.9,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    64.127,
+    64.127,
+    181.924,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 10.563,
+    "q25": 0.604,
+    "q75": 10.586,
+    "p5": 0.511,
+    "p95": 12.695,
+    "max": 13.665,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 10.379,
+    "q25": 1.346,
+    "q75": 11.452,
+    "p5": 0.484,
+    "p95": 13.563,
+    "max": 14.195,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 10.019,
+    "q25": 1.158,
+    "q75": 10.109,
+    "p5": 0.284,
+    "p95": 10.885,
+    "max": 11.237,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P08661",
+ "accessions": [
+  "P08661"
+ ],
+ "deposition_group": null,
+ "name": "Mannose-binding protein C",
+ "clusters": [
+  {
+   "cluster_id": 1509,
+   "n_members": 12,
+   "reference": "1RDL",
+   "reference_resolution": 1.7,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.6,
+    75.4,
+    57.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.186,
+    "q25": 0.121,
+    "q75": 0.211,
+    "p5": 0.09,
+    "p95": 0.239,
+    "max": 0.259,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.163,
+    "q25": 0.116,
+    "q75": 0.211,
+    "p5": 0.088,
+    "p95": 0.256,
+    "max": 0.289,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.104,
+    "q25": 0.092,
+    "q75": 0.114,
+    "p5": 0.072,
+    "p95": 0.132,
+    "max": 0.143,
+    "n_pairs": 66
+   },
+   "n_low_margin": 11,
+   "n_via_neighbour": 0
+  }
+ ]
+}

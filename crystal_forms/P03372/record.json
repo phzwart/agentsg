@@ -1,0 +1,160 @@
+{
+ "identity": "P03372",
+ "accessions": [
+  "P03372"
+ ],
+ "deposition_group": null,
+ "name": "Estrogen receptor",
+ "clusters": [
+  {
+   "cluster_id": 335,
+   "n_members": 39,
+   "reference": "7RS7",
+   "reference_resolution": 1.58,
+   "space_group": "P 1",
+   "reference_cell": [
+    53.665,
+    58.621,
+    93.932,
+    87.27,
+    74.87,
+    62.91
+   ],
+   "status_counts": {
+    "different_space_group": 7,
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 0.497,
+    "q25": 0.405,
+    "q75": 0.669,
+    "p5": 0.301,
+    "p95": 0.907,
+    "max": 2.079,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.647,
+    "q25": 0.529,
+    "q75": 0.997,
+    "p5": 0.371,
+    "p95": 2.165,
+    "max": 2.469,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.49,
+    "q25": 0.413,
+    "q75": 0.679,
+    "p5": 0.292,
+    "p95": 0.995,
+    "max": 1.832,
+    "n_pairs": 496
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 380,
+   "n_members": 36,
+   "reference": "7R62",
+   "reference_resolution": 1.5,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    58.709,
+    58.709,
+    274.292,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "different_space_group": 10,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 1.087,
+    "q25": 0.55,
+    "q75": 1.17,
+    "p5": 0.385,
+    "p95": 1.256,
+    "max": 29.206,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.903,
+    "q25": 0.566,
+    "q75": 1.181,
+    "p5": 0.269,
+    "p95": 29.173,
+    "max": 29.385,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.818,
+    "q25": 0.485,
+    "q75": 1.121,
+    "p5": 0.195,
+    "p95": 5.986,
+    "max": 6.119,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 600,
+   "n_members": 25,
+   "reference": "8DU8",
+   "reference_resolution": 1.47,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    102.664,
+    57.675,
+    87.434,
+    90.0,
+    103.2,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.475,
+    "q25": 0.414,
+    "q75": 0.692,
+    "p5": 0.283,
+    "p95": 1.615,
+    "max": 24.532,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.701,
+    "q25": 0.53,
+    "q75": 1.056,
+    "p5": 0.345,
+    "p95": 22.756,
+    "max": 24.664,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.384,
+    "q25": 0.317,
+    "q75": 0.701,
+    "p5": 0.222,
+    "p95": 15.432,
+    "max": 16.112,
+    "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

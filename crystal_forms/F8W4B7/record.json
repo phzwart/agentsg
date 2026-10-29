@@ -1,0 +1,108 @@
+{
+ "identity": "F8W4B7",
+ "accessions": [
+  "F8W4B7"
+ ],
+ "deposition_group": null,
+ "name": "Protein deacetylase HDAC6",
+ "clusters": [
+  {
+   "cluster_id": 623,
+   "n_members": 24,
+   "reference": "6CSP",
+   "reference_resolution": 1.237,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.7,
+    91.83,
+    96.549,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 23,
+    "reference": 1
+   },
+   "n_pairs": 276,
+   "rmsd_to_reference": {
+    "median": 0.357,
+    "q25": 0.223,
+    "q75": 0.512,
+    "p5": 0.139,
+    "p95": 1.39,
+    "max": 23.142,
+    "n_pairs": 23
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.569,
+    "q25": 0.356,
+    "q75": 1.159,
+    "p5": 0.226,
+    "p95": 22.846,
+    "max": 23.352,
+    "n_pairs": 276
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.204,
+    "q25": 0.164,
+    "q75": 0.258,
+    "p5": 0.126,
+    "p95": 0.386,
+    "max": 0.506,
+    "n_pairs": 276
+   },
+   "n_low_margin": 23,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1217,
+   "n_members": 14,
+   "reference": "6THV",
+   "reference_resolution": 1.1,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    84.278,
+    93.713,
+    51.574,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.37,
+    "q25": 0.321,
+    "q75": 0.386,
+    "p5": 0.211,
+    "p95": 0.45,
+    "max": 0.463,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.358,
+    "q25": 0.295,
+    "q75": 0.444,
+    "p5": 0.202,
+    "p95": 0.557,
+    "max": 0.666,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.19,
+    "q25": 0.138,
+    "q75": 0.23,
+    "p5": 0.107,
+    "p95": 0.286,
+    "max": 0.323,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

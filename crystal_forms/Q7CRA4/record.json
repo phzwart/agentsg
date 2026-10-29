@@ -1,0 +1,59 @@
+{
+ "identity": "Q7CRA4",
+ "accessions": [
+  "Q7CRA4"
+ ],
+ "deposition_group": null,
+ "name": "Penicillin-binding protein 1b",
+ "clusters": [
+  {
+   "cluster_id": 1306,
+   "n_members": 14,
+   "reference": "7ZUH",
+   "reference_resolution": 1.467,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    95.681,
+    147.016,
+    98.709,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.679,
+    "q25": 0.659,
+    "q75": 0.973,
+    "p5": 0.605,
+    "p95": 1.123,
+    "max": 1.159,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.781,
+    "q25": 0.492,
+    "q75": 1.028,
+    "p5": 0.279,
+    "p95": 1.177,
+    "max": 1.288,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.387,
+    "q25": 0.326,
+    "q75": 0.46,
+    "p5": 0.163,
+    "p95": 0.605,
+    "max": 0.635,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

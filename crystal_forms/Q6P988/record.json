@@ -1,0 +1,59 @@
+{
+ "identity": "Q6P988",
+ "accessions": [
+  "Q6P988"
+ ],
+ "deposition_group": null,
+ "name": "Palmitoleoyl-protein carboxylesterase NOTUM",
+ "clusters": [
+  {
+   "cluster_id": 61,
+   "n_members": 129,
+   "reference": "7BNB",
+   "reference_resolution": 1.16,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    60.577,
+    72.992,
+    79.079,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 128,
+    "reference": 1
+   },
+   "n_pairs": 8256,
+   "rmsd_to_reference": {
+    "median": 0.354,
+    "q25": 0.298,
+    "q75": 0.42,
+    "p5": 0.217,
+    "p95": 0.518,
+    "max": 1.623,
+    "n_pairs": 128
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.425,
+    "q25": 0.334,
+    "q75": 0.547,
+    "p5": 0.216,
+    "p95": 0.932,
+    "max": 2.066,
+    "n_pairs": 8256
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.345,
+    "q25": 0.274,
+    "q75": 0.432,
+    "p5": 0.16,
+    "p95": 0.764,
+    "max": 1.495,
+    "n_pairs": 8256
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

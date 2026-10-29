@@ -1,0 +1,59 @@
+{
+ "identity": "G9I933",
+ "accessions": [
+  "G9I933"
+ ],
+ "deposition_group": null,
+ "name": "Putative hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 1023,
+   "n_members": 16,
+   "reference": "7Y0L",
+   "reference_resolution": 1.29,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.219,
+    139.863,
+    58.101,
+    90.0,
+    101.6,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.212,
+    "q25": 0.16,
+    "q75": 0.278,
+    "p5": 0.119,
+    "p95": 0.396,
+    "max": 0.417,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.412,
+    "q25": 0.326,
+    "q75": 0.612,
+    "p5": 0.186,
+    "p95": 0.815,
+    "max": 1.096,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.156,
+    "q25": 0.119,
+    "q75": 0.318,
+    "p5": 0.081,
+    "p95": 0.346,
+    "max": 0.426,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

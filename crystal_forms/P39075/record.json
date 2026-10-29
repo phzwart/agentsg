@@ -1,0 +1,59 @@
+{
+ "identity": "P39075",
+ "accessions": [
+  "P39075"
+ ],
+ "deposition_group": null,
+ "name": "Multidrug-efflux transporter 1 regulator",
+ "clusters": [
+  {
+   "cluster_id": 1407,
+   "n_members": 13,
+   "reference": "1R8E",
+   "reference_resolution": 2.4,
+   "space_group": "P 43 2 2",
+   "reference_cell": [
+    107.28,
+    107.28,
+    145.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.813,
+    "q25": 0.713,
+    "q75": 0.86,
+    "p5": 0.551,
+    "p95": 0.948,
+    "max": 0.969,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.842,
+    "q25": 0.584,
+    "q75": 2.112,
+    "p5": 0.449,
+    "p95": 2.923,
+    "max": 3.58,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.532,
+    "q25": 0.462,
+    "q75": 0.776,
+    "p5": 0.38,
+    "p95": 0.918,
+    "max": 1.027,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

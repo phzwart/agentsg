@@ -1,0 +1,158 @@
+{
+ "identity": "P61964",
+ "accessions": [
+  "P61964"
+ ],
+ "deposition_group": null,
+ "name": "WD repeat-containing protein 5",
+ "clusters": [
+  {
+   "cluster_id": 923,
+   "n_members": 18,
+   "reference": "8E9F",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    81.361,
+    86.04,
+    41.032,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.694,
+    "q25": 0.551,
+    "q75": 0.794,
+    "p5": 0.411,
+    "p95": 1.141,
+    "max": 1.279,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.585,
+    "q25": 0.422,
+    "q75": 0.782,
+    "p5": 0.232,
+    "p95": 1.137,
+    "max": 1.373,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.209,
+    "q75": 0.341,
+    "p5": 0.152,
+    "p95": 0.393,
+    "max": 0.416,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1167,
+   "n_members": 15,
+   "reference": "7WVK",
+   "reference_resolution": 1.42,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    78.33,
+    98.38,
+    79.806,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "different_space_group": 2,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.4,
+    "q25": 0.325,
+    "q75": 0.522,
+    "p5": 0.238,
+    "p95": 0.599,
+    "max": 0.675,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.408,
+    "q25": 0.32,
+    "q75": 0.676,
+    "p5": 0.204,
+    "p95": 0.895,
+    "max": 1.186,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.247,
+    "q25": 0.197,
+    "q75": 0.424,
+    "p5": 0.158,
+    "p95": 0.506,
+    "max": 0.527,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1287,
+   "n_members": 14,
+   "reference": "6UHZ",
+   "reference_resolution": 1.258,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    134.374,
+    46.903,
+    112.462,
+    90.0,
+    117.61,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.465,
+    "q25": 0.208,
+    "q75": 0.843,
+    "p5": 0.11,
+    "p95": 0.963,
+    "max": 1.066,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.636,
+    "q25": 0.429,
+    "q75": 1.064,
+    "p5": 0.246,
+    "p95": 1.487,
+    "max": 1.776,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.26,
+    "q25": 0.212,
+    "q75": 0.328,
+    "p5": 0.118,
+    "p95": 0.388,
+    "max": 0.418,
+    "n_pairs": 91
+   },
+   "n_low_margin": 12,
+   "n_via_neighbour": 0
+  }
+ ]
+}

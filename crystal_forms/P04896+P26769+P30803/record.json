@@ -1,0 +1,61 @@
+{
+ "identity": "P04896+P26769+P30803",
+ "accessions": [
+  "P04896",
+  "P26769",
+  "P30803"
+ ],
+ "deposition_group": null,
+ "name": "Guanine nucleotide-binding protein G(s) subunit alpha isoforms short",
+ "clusters": [
+  {
+   "cluster_id": 1042,
+   "n_members": 16,
+   "reference": "1AZS",
+   "reference_resolution": 2.3,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    119.0,
+    134.05,
+    70.65,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.654,
+    "q25": 0.509,
+    "q75": 0.694,
+    "p5": 0.425,
+    "p95": 5.918,
+    "max": 17.815,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.693,
+    "q25": 0.567,
+    "q75": 0.871,
+    "p5": 0.363,
+    "p95": 17.782,
+    "max": 17.878,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.528,
+    "q25": 0.404,
+    "q75": 0.58,
+    "p5": 0.291,
+    "p95": 17.677,
+    "max": 17.765,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

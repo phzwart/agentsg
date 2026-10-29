@@ -1,0 +1,109 @@
+{
+ "identity": "Q8PWY1",
+ "accessions": [
+  "Q8PWY1"
+ ],
+ "deposition_group": null,
+ "name": "Pyrrolysine--tRNA ligase",
+ "clusters": [
+  {
+   "cluster_id": 431,
+   "n_members": 33,
+   "reference": "6LYA",
+   "reference_resolution": 1.59070211581,
+   "space_group": "P 64",
+   "reference_cell": [
+    105.45,
+    105.45,
+    71.824,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.473,
+    "q25": 0.268,
+    "q75": 0.695,
+    "p5": 0.192,
+    "p95": 1.014,
+    "max": 1.536,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.821,
+    "q25": 0.609,
+    "q75": 1.105,
+    "p5": 0.354,
+    "p95": 1.866,
+    "max": 2.658,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.518,
+    "q25": 0.381,
+    "q75": 0.694,
+    "p5": 0.183,
+    "p95": 1.403,
+    "max": 2.208,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1313,
+   "n_members": 14,
+   "reference": "30XL",
+   "reference_resolution": 1.25,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    102.09,
+    43.93,
+    72.75,
+    90.0,
+    119.28,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 13
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.436,
+    "q25": 0.371,
+    "q75": 0.459,
+    "p5": 0.346,
+    "p95": 0.471,
+    "max": 0.479,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.391,
+    "q25": 0.294,
+    "q75": 0.45,
+    "p5": 0.153,
+    "p95": 0.501,
+    "max": 0.542,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.32,
+    "q25": 0.244,
+    "q75": 0.381,
+    "p5": 0.141,
+    "p95": 0.42,
+    "max": 0.44,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

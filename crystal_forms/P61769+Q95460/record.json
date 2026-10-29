@@ -1,0 +1,60 @@
+{
+ "identity": "P61769+Q95460",
+ "accessions": [
+  "P61769",
+  "Q95460"
+ ],
+ "deposition_group": null,
+ "name": "Major histocompatibility complex class I-related protein 1",
+ "clusters": [
+  {
+   "cluster_id": 215,
+   "n_members": 56,
+   "reference": "6PUD",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    216.922,
+    69.974,
+    142.826,
+    90.0,
+    104.311,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 55,
+    "reference": 1
+   },
+   "n_pairs": 1540,
+   "rmsd_to_reference": {
+    "median": 0.527,
+    "q25": 0.395,
+    "q75": 0.729,
+    "p5": 0.259,
+    "p95": 0.959,
+    "max": 1.026,
+    "n_pairs": 55
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.01,
+    "q25": 1.282,
+    "q75": 2.796,
+    "p5": 0.677,
+    "p95": 4.23,
+    "max": 6.22,
+    "n_pairs": 1540
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.389,
+    "q25": 0.29,
+    "q75": 0.463,
+    "p5": 0.219,
+    "p95": 0.57,
+    "max": 0.735,
+    "n_pairs": 1540
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

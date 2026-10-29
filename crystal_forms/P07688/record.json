@@ -1,0 +1,60 @@
+{
+ "identity": "P07688",
+ "accessions": [
+  "P07688"
+ ],
+ "deposition_group": null,
+ "name": "Cathepsin B",
+ "clusters": [
+  {
+   "cluster_id": 1676,
+   "n_members": 11,
+   "reference": "1QDQ",
+   "reference_resolution": 2.18,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    73.06,
+    73.06,
+    141.79,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 2,
+    "reference": 1,
+    "no_shared_accession": 8
+   },
+   "n_pairs": 3,
+   "rmsd_to_reference": {
+    "median": 0.44,
+    "q25": 0.361,
+    "q75": 0.52,
+    "p5": 0.297,
+    "p95": 0.584,
+    "max": 0.6,
+    "n_pairs": 2
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.726,
+    "q25": 0.504,
+    "q75": 0.727,
+    "p5": 0.326,
+    "p95": 0.729,
+    "max": 0.729,
+    "n_pairs": 3
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.406,
+    "q25": 0.344,
+    "q75": 0.421,
+    "p5": 0.293,
+    "p95": 0.434,
+    "max": 0.437,
+    "n_pairs": 3
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P16932",
+ "accessions": [
+  "P16932"
+ ],
+ "deposition_group": null,
+ "name": "2,2-dialkylglycine decarboxylase",
+ "clusters": [
+  {
+   "cluster_id": 1059,
+   "n_members": 16,
+   "reference": "1ZOD",
+   "reference_resolution": 1.8,
+   "space_group": "P 64 2 2",
+   "reference_cell": [
+    150.524,
+    150.524,
+    84.859,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.399,
+    "q25": 0.257,
+    "q75": 0.422,
+    "p5": 0.207,
+    "p95": 0.449,
+    "max": 0.465,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.67,
+    "q25": 0.328,
+    "q75": 0.96,
+    "p5": 0.212,
+    "p95": 1.18,
+    "max": 1.335,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.307,
+    "q25": 0.26,
+    "q75": 0.348,
+    "p5": 0.168,
+    "p95": 0.426,
+    "max": 0.456,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

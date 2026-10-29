@@ -1,0 +1,59 @@
+{
+ "identity": "P27708",
+ "accessions": [
+  "P27708"
+ ],
+ "deposition_group": null,
+ "name": "Multifunctional protein CAD",
+ "clusters": [
+  {
+   "cluster_id": 235,
+   "n_members": 52,
+   "reference": "9FS2",
+   "reference_resolution": 1.12,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    82.142,
+    158.579,
+    61.95,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.612,
+    "q25": 0.233,
+    "q75": 0.654,
+    "p5": 0.132,
+    "p95": 0.999,
+    "max": 3.235,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.59,
+    "q25": 0.225,
+    "q75": 0.637,
+    "p5": 0.125,
+    "p95": 3.23,
+    "max": 3.278,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.569,
+    "q25": 0.156,
+    "q75": 0.613,
+    "p5": 0.096,
+    "p95": 3.205,
+    "max": 3.245,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P13631",
+ "accessions": [
+  "P13631"
+ ],
+ "deposition_group": null,
+ "name": "Retinoic acid receptor gamma",
+ "clusters": [
+  {
+   "cluster_id": 1695,
+   "n_members": 11,
+   "reference": "1FCY",
+   "reference_resolution": 1.3,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    59.849,
+    59.849,
+    155.158,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.35,
+    "q25": 0.197,
+    "q75": 0.528,
+    "p5": 0.15,
+    "p95": 0.742,
+    "max": 0.866,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.594,
+    "q25": 0.347,
+    "q75": 1.137,
+    "p5": 0.249,
+    "p95": 1.498,
+    "max": 1.659,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.293,
+    "q25": 0.229,
+    "q75": 0.483,
+    "p5": 0.145,
+    "p95": 0.536,
+    "max": 0.547,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

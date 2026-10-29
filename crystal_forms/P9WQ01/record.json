@@ -1,0 +1,59 @@
+{
+ "identity": "P9WQ01",
+ "accessions": [
+  "P9WQ01"
+ ],
+ "deposition_group": null,
+ "name": "Acetylglutamate kinase",
+ "clusters": [
+  {
+   "cluster_id": 1074,
+   "n_members": 16,
+   "reference": "7NLO",
+   "reference_resolution": 1.82,
+   "space_group": "H 3 2",
+   "reference_cell": [
+    175.298,
+    175.298,
+    70.537,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.77,
+    "q25": 0.739,
+    "q75": 0.79,
+    "p5": 0.582,
+    "p95": 0.806,
+    "max": 0.821,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.645,
+    "q25": 0.468,
+    "q75": 0.861,
+    "p5": 0.298,
+    "p95": 1.644,
+    "max": 2.065,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.258,
+    "q25": 0.228,
+    "q75": 0.332,
+    "p5": 0.183,
+    "p95": 0.572,
+    "max": 0.602,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

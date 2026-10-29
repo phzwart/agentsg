@@ -1,0 +1,110 @@
+{
+ "identity": "Q6XEC0",
+ "accessions": [
+  "Q6XEC0"
+ ],
+ "deposition_group": null,
+ "name": "Beta-lactamase OXA-48",
+ "clusters": [
+  {
+   "cluster_id": 265,
+   "n_members": 47,
+   "reference": "8QNZ",
+   "reference_resolution": 1.53,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    81.31,
+    105.965,
+    124.679,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 45,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 1035,
+   "rmsd_to_reference": {
+    "median": 28.544,
+    "q25": 28.438,
+    "q75": 28.659,
+    "p5": 21.539,
+    "p95": 28.808,
+    "max": 30.366,
+    "n_pairs": 45
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.573,
+    "q25": 0.337,
+    "q75": 28.632,
+    "p5": 0.19,
+    "p95": 46.953,
+    "max": 48.369,
+    "n_pairs": 1035
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.245,
+    "q25": 0.156,
+    "q75": 0.317,
+    "p5": 0.099,
+    "p95": 0.433,
+    "max": 0.518,
+    "n_pairs": 1035
+   },
+   "n_low_margin": 45,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1591,
+   "n_members": 12,
+   "reference": "9H11",
+   "reference_resolution": 1.38,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    123.513,
+    123.513,
+    161.564,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.476,
+    "q25": 0.439,
+    "q75": 0.565,
+    "p5": 0.425,
+    "p95": 0.797,
+    "max": 0.843,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.691,
+    "q25": 0.478,
+    "q75": 1.052,
+    "p5": 0.273,
+    "p95": 1.857,
+    "max": 2.13,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.229,
+    "q25": 0.204,
+    "q75": 0.257,
+    "p5": 0.162,
+    "p95": 0.295,
+    "max": 0.302,
+    "n_pairs": 36
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

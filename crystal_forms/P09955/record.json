@@ -1,0 +1,59 @@
+{
+ "identity": "P09955",
+ "accessions": [
+  "P09955"
+ ],
+ "deposition_group": null,
+ "name": "Carboxypeptidase B",
+ "clusters": [
+  {
+   "cluster_id": 1051,
+   "n_members": 16,
+   "reference": "1Z5R",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.815,
+    96.055,
+    135.821,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.252,
+    "q25": 0.239,
+    "q75": 0.989,
+    "p5": 0.173,
+    "p95": 1.095,
+    "max": 1.212,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.538,
+    "q25": 0.292,
+    "q75": 0.955,
+    "p5": 0.216,
+    "p95": 1.268,
+    "max": 1.34,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.2,
+    "q25": 0.151,
+    "q75": 0.238,
+    "p5": 0.124,
+    "p95": 0.266,
+    "max": 0.31,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

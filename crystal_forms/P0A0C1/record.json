@@ -1,0 +1,59 @@
+{
+ "identity": "P0A0C1",
+ "accessions": [
+  "P0A0C1"
+ ],
+ "deposition_group": null,
+ "name": "Bifunctional AAC/APH [Includes: 6'-aminoglycoside N-acetyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 972,
+   "n_members": 17,
+   "reference": "5BYL",
+   "reference_resolution": 2.15,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    90.29,
+    99.9,
+    93.62,
+    90.0,
+    105.09,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.371,
+    "q25": 0.301,
+    "q75": 0.497,
+    "p5": 0.231,
+    "p95": 0.93,
+    "max": 1.16,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.497,
+    "q25": 0.329,
+    "q75": 0.818,
+    "p5": 0.241,
+    "p95": 1.427,
+    "max": 1.552,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.331,
+    "q25": 0.236,
+    "q75": 0.422,
+    "p5": 0.191,
+    "p95": 0.862,
+    "max": 0.939,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}
