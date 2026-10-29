@@ -9,7 +9,9 @@ IT number is placed on the reference in three steps.
    whose strain price is within the band, grouped into classes of the
    reference's point group (proper operators only, since the molecules are
    chiral). Each class is one physically distinct indexing; the cell cannot
-   choose between them. The band starts at 7 % and widens to 15 % and 20 % when
+   choose between them. The band is 3 degrees of obliquity (strain price 14.8 %), so that an
+   indexing just outside the 7 % clustering band is still scored near a higher lattice
+   symmetry; it widens to 20 % when
    nothing is found (chained clusters).
 2. **Operators and origin.** For each class representative the entry's
    space-group operators are carried into the reference basis
@@ -53,7 +55,11 @@ import warnings
 from dataclasses import dataclass, field
 from fractions import Fraction
 
-BAND_STEPS = (0.07, 0.15, 0.20)
+BAND_STEPS = (0.148, 0.20)
+"""Strain-price bands for the reindexing coset. The first is Le Page's 3 degrees
+(``strain_closure.LEPAGE_PRICE`` = 2 sqrt(2) artanh(sin 3 deg) = 0.148): every class within
+it is scored on the Cα, so an indexing just outside the 7 % clustering band is not missed
+when the lattice is close to a higher symmetry. 20 % is the fallback when nothing is found."""
 MIN_PAIRED = 20
 PROBE_MAX = 200
 """Largest number of probe Cα used to rank candidates; the reported RMSD uses all pairs."""
