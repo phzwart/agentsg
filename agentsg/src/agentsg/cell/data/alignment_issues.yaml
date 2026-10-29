@@ -194,7 +194,7 @@ terms:
     kind: placement
     definition: "Several copies in the asymmetric unit; the entry's chain may correspond to any reference copy or symmetry mate."
     signature: "member_chain differs from ref_chain; asu_rmsd > rmsd_to_ref."
-    remedy: "try every chain of the entry against the probe under all group operators; report asu_rmsd for the rest."
+    remedy: "try every chain of the entry against the probe under all group operators, ranked by the RMSD after the origin snap; report asu_rmsd for the rest."
     status: handled
 
   # ------------------------------------------------------------------ biology
@@ -264,6 +264,16 @@ terms:
     examples:
       - "P212121 clusters with a ≈ b (every margin 0)"
     remedy: "distinct placements by where the Cα land (0.5 Å, modulo lattice and centring); one candidate per distinct score."
+    status: handled
+
+  translation_free_ranking:
+    parent: method_defect
+    kind: method
+    definition: "Candidates were ranked by the RMSD after the best continuous shift, but placed with the shift snapped to an allowed origin; a second copy in the asymmetric unit on a non-crystallographic shift tied on the score and could win while landing far away."
+    examples:
+      - "1TWW (0.55 or 10.5 Å depending on which copy won)"
+      - "cluster 433 (9 placements over 3 Å, 32 margins under 1 Å)"
+    remedy: "make candidates exact in score order and rank by the snapped placement's RMSD (the score is a lower bound, so the search stops exactly)."
     status: handled
 
   pairwise_without_centring:

@@ -140,3 +140,20 @@ def test_register_shift_found_from_structure():
     p = place(_Reference(ref), mem)
     assert p.status == "placed" and not p.acc_fallback
     assert p.unp_offset == -37 and p.rmsd < 1e-6
+
+
+def test_second_copy_on_noncrystallographic_shift_is_not_chosen():
+    """Two copies in the asymmetric unit, B = A moved by a non-crystallographic shift. Both
+    score the same before the origin snap; only A sits on an allowed origin."""
+    rng = np.random.default_rng(21)
+    cell = (42.2, 41.3, 72.0, 90, 104.3, 90)
+    ref = _make(cell, "P 1 21 1", _chain(rng), "REF")
+    acc, unp, x = ref.chains["A"]
+    shifted = x + np.array([0.13, 0.0, 0.27])          # not an allowed origin of P21
+    noisy = x + rng.normal(scale=0.2, size=x.shape) @ np.linalg.inv(_orth(cell)).T
+    # B scores better before the snap (an exact copy), A after it (0.2 A of noise)
+    mem = Model("MEM", cell, "P 1 21 1", 2.0, {"B": (acc, unp.copy(), shifted),
+                                                "A": (acc, unp.copy(), noisy)})
+    p = place(_Reference(ref), mem)
+    assert p.member_chain == "A" and p.rmsd < 0.5
+    assert p.margin is not None and p.margin > 1.0

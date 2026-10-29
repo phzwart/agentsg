@@ -57,6 +57,11 @@ from fractions import Fraction
 
 BAND_STEPS = (0.148, 0.20)
 FALLBACK_RMSD = 3.0
+MARGIN_CAP = 5.0
+"""Candidates are examined until their lower-bound score exceeds the best placement by this
+much (Å); a margin reported at this value is a lower bound."""
+MAX_EXACT = 80
+"""Most candidates made exact per entry; a margin reached at this cap is a lower bound."""
 REGISTER_FIT = 1.5
 """Superposed Cα RMSD (Å) below which a residue-number register is taken as right."""
 REGISTER_SEARCH = 200
@@ -412,27 +417,58 @@ def _place_classes(ref, member, member_ops, accept, classes):
                 return True
         return False
 
-    cand, Lx, t = exact(pool[0])
-    best_img = image(pool[0], Lx, t)
-    P, price, mc, base = pool[0][2], pool[0][3], pool[0][4], pool[0][5]
-    # Many operator combinations reach one placement with the same score (group operators,
-    # origin shifts, equivalent classes); one candidate per distinct score is examined.
-    second = None
-    seen = 0
-    last = pool[0][0]
-    for item in pool[1:]:
-        if abs(item[0] - last) < 1e-6:
+    def actual(item, Lx, t):
+        """RMSD of the probe Cα after the exact placement (origin snapped), no fitting."""
+        d = item[6] - (item[9] @ _mat(Lx).T + t)
+        best_r = None
+        for c in cens:
+            dd = d + c
+            dd = dd - np.round(dd.mean(0))
+            r = float(np.sqrt(((dd @ ref.orth.T) ** 2).sum(1).mean()))
+            best_r = r if best_r is None else min(best_r, r)
+        return best_r
+
+    # The pool is ranked by the RMSD after the best continuous shift, a lower bound on the
+    # RMSD of the exact placement, whose shift is snapped to an allowed origin (they differ
+    # when, say, a second copy in the asymmetric unit sits on a non-crystallographic shift).
+    # Candidates are made exact in score order until the score passes the second-best
+    # distinct placement; many operator combinations reach one placement with one score,
+    # so equal scores on the same chain and register are examined once.
+    found = []            # [actual, item, cand, Lx, t, image], distinct placements
+    examined = set()
+    n_exact = 0
+    bound = None
+    for item in pool:
+        key = (round(item[0], 6), item[4], item[5])
+        if key in examined:
             continue
-        last = item[0]
-        seen += 1
-        if seen > 60:                    # bound: the true second is no lower than this score
-            second = item[0]
+        examined.add(key)
+        if len(found) >= 2 and item[0] >= found[1][0]:
             break
-        _c, L2, t2 = exact(item)
-        if not same_place(best_img, image(item, L2, t2)):
-            second = item[0]
+        if found and item[0] >= found[0][0] + MARGIN_CAP:
+            bound = item[0]
             break
-    margin = None if second is None else second - pool[0][0]
+        if n_exact >= MAX_EXACT:
+            bound = item[0]
+            break
+        n_exact += 1
+        c, L2, t2 = exact(item)
+        r = actual(item, L2, t2)
+        img = image(item, L2, t2)
+        same = next((f for f in found if same_place(f[5], img)), None)
+        if same is not None:
+            if r < same[0]:
+                same[:] = [r, item, c, L2, t2, img]
+        else:
+            found.append([r, item, c, L2, t2, img])
+        found.sort(key=lambda f: f[0])
+    r0, item0, cand, Lx, t, _img = found[0]
+    P, price, mc, base = item0[2], item0[3], item0[4], item0[5]
+    if len(found) > 1:
+        second = found[1][0] if bound is None else min(found[1][0], bound)
+    else:
+        second = bound
+    margin = None if second is None else second - r0
 
     out.second_rmsd, out.margin = second, margin
     out.class_price, out.member_chain, out.ref_chain = float(price), mc, probe
