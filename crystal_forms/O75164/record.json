@@ -101,7 +101,7 @@
     "max": 0.67,
     "n_pairs": 351
    },
-   "n_low_margin": 1,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

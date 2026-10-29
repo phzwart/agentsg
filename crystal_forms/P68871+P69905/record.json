@@ -77,21 +77,21 @@
    },
    "n_pairs": 1953,
    "rmsd_to_reference": {
-    "median": 0.567,
-    "q25": 0.536,
+    "median": 0.566,
+    "q25": 0.535,
     "q75": 0.63,
-    "p5": 0.485,
-    "p95": 10.063,
-    "max": 31.762,
+    "p5": 0.484,
+    "p95": 6.316,
+    "max": 25.208,
     "n_pairs": 62
    },
    "pairwise_frame_rmsd": {
-    "median": 0.523,
+    "median": 0.519,
     "q25": 0.324,
-    "q75": 0.754,
+    "q75": 0.748,
     "p5": 0.199,
-    "p95": 25.182,
-    "max": 34.666,
+    "p95": 24.932,
+    "max": 26.149,
     "n_pairs": 1953
    },
    "pairwise_fit_rmsd": {
@@ -103,7 +103,7 @@
     "max": 3.93,
     "n_pairs": 1953
    },
-   "n_low_margin": 6,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   },
   {
@@ -203,7 +203,7 @@
     "max": 1.003,
     "n_pairs": 105
    },
-   "n_low_margin": 0,
+   "n_low_margin": 9,
    "n_via_neighbour": 0
   },
   {
@@ -235,12 +235,12 @@
     "n_pairs": 11
    },
    "pairwise_frame_rmsd": {
-    "median": 0.433,
-    "q25": 0.365,
-    "q75": 0.633,
-    "p5": 0.192,
-    "p95": 0.79,
-    "max": 0.852,
+    "median": 0.436,
+    "q25": 0.367,
+    "q75": 0.626,
+    "p5": 0.194,
+    "p95": 0.776,
+    "max": 0.841,
     "n_pairs": 66
    },
    "pairwise_fit_rmsd": {

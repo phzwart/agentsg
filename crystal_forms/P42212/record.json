@@ -27,35 +27,35 @@
     "different_space_group": 17,
     "reference": 1
    },
-   "n_pairs": 19698,
+   "n_pairs": 19701,
    "rmsd_to_reference": {
-    "median": 0.923,
+    "median": 0.912,
     "q25": 0.744,
-    "q75": 1.283,
+    "q75": 1.268,
     "p5": 0.619,
-    "p95": 3.346,
+    "p95": 3.336,
     "max": 24.076,
     "n_pairs": 198
    },
    "pairwise_frame_rmsd": {
-    "median": 1.192,
-    "q25": 0.859,
-    "q75": 2.114,
-    "p5": 0.5,
-    "p95": 4.973,
-    "max": 27.934,
-    "n_pairs": 19698
+    "median": 1.169,
+    "q25": 0.849,
+    "q75": 1.958,
+    "p5": 0.497,
+    "p95": 3.858,
+    "max": 25.567,
+    "n_pairs": 19701
    },
    "pairwise_fit_rmsd": {
-    "median": 0.508,
-    "q25": 0.389,
-    "q75": 0.698,
-    "p5": 0.245,
-    "p95": 3.42,
-    "max": 17.564,
-    "n_pairs": 19698
+    "median": 0.51,
+    "q25": 0.391,
+    "q75": 0.672,
+    "p5": 0.255,
+    "p95": 3.327,
+    "max": 5.328,
+    "n_pairs": 19701
    },
-   "n_low_margin": 2,
+   "n_low_margin": 4,
    "n_via_neighbour": 0
   }
  ]

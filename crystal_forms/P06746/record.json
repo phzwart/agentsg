@@ -35,7 +35,7 @@
     "n_pairs": 337
    },
    "pairwise_frame_rmsd": {
-    "median": 6.175,
+    "median": 6.174,
     "q25": 0.638,
     "q75": 7.324,
     "p5": 0.28,

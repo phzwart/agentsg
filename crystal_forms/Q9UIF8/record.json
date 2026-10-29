@@ -21,37 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "too_few_paired_atoms": 45,
-    "placed": 210,
+    "placed": 255,
     "reference": 1
    },
-   "n_pairs": 22155,
+   "n_pairs": 32640,
    "rmsd_to_reference": {
-    "median": 0.178,
-    "q25": 0.131,
-    "q75": 0.275,
-    "p5": 0.082,
-    "p95": 0.491,
-    "max": 0.791,
-    "n_pairs": 210
+    "median": 0.2,
+    "q25": 0.141,
+    "q75": 0.355,
+    "p5": 0.084,
+    "p95": 0.627,
+    "max": 0.856,
+    "n_pairs": 255
    },
    "pairwise_frame_rmsd": {
-    "median": 0.331,
-    "q25": 0.23,
-    "q75": 0.463,
-    "p5": 0.134,
-    "p95": 0.703,
-    "max": 1.306,
-    "n_pairs": 22155
+    "median": 0.402,
+    "q25": 0.269,
+    "q75": 0.575,
+    "p5": 0.149,
+    "p95": 0.84,
+    "max": 1.792,
+    "n_pairs": 32640
    },
    "pairwise_fit_rmsd": {
-    "median": 0.133,
-    "q25": 0.098,
-    "q75": 0.19,
-    "p5": 0.063,
-    "p95": 0.391,
-    "max": 0.564,
-    "n_pairs": 22155
+    "median": 0.172,
+    "q25": 0.114,
+    "q75": 0.323,
+    "p5": 0.068,
+    "p95": 0.459,
+    "max": 0.683,
+    "n_pairs": 32640
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

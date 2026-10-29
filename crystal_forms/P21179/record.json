@@ -31,7 +31,7 @@
     "q75": 0.436,
     "p5": 0.238,
     "p95": 0.773,
-    "max": 15.739,
+    "max": 2.356,
     "n_pairs": 39
    },
    "pairwise_frame_rmsd": {
@@ -39,8 +39,8 @@
     "q25": 0.203,
     "q75": 0.447,
     "p5": 0.127,
-    "p95": 3.483,
-    "max": 18.481,
+    "p95": 2.201,
+    "max": 2.81,
     "n_pairs": 780
    },
    "pairwise_fit_rmsd": {
@@ -52,7 +52,7 @@
     "max": 0.58,
     "n_pairs": 780
    },
-   "n_low_margin": 16,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

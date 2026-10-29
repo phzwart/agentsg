@@ -1,5 +1,5 @@
 pdb_id	status	resolution	sg_hm	a	b	c	alpha	beta	gamma	L	t	rmsd_to_ref	n_paired	margin	asu_rmsd	accept	n_classes	class_price	via	member_chain	ref_chain	unp_offset	acc_fallback	ambiguous_snap
-4B3C	placed	1.90	P 21 21 2	70.560	74.540	41.170	90.000	90.000	90.000	1,0,0;0,1,0;0,0,1	0.000000,0.000000,0.000000	6.540	206	16.733	6.540	0.15	1	0.0129		A	A	0	0	0
+4B3C	placed	1.90	P 21 21 2	70.560	74.540	41.170	90.000	90.000	90.000	1,0,0;0,1,0;0,0,1	0.000000,0.000000,0.000000	6.540	206	16.608	6.540	0.15	1	0.0129		A	A	0	0	0
 5QUB	no_shared_accession	1.35	P 21 21 2	68.989	72.823	40.411	90.000	90.000	90.000							0.20	2					0	1	0
 5QUC	no_shared_accession	1.43	P 21 21 2	69.186	73.079	40.466	90.000	90.000	90.000							0.20	2					0	1	0
 5QUD	no_shared_accession	1.30	P 21 21 2	68.988	72.852	40.314	90.000	90.000	90.000							0.20	2					0	1	0

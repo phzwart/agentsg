@@ -26,7 +26,7 @@
    },
    "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 2.764,
+    "median": 2.756,
     "q25": 1.467,
     "q75": 3.195,
     "p5": 0.694,
@@ -35,12 +35,12 @@
     "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 1.699,
+    "median": 1.71,
     "q25": 1.197,
-    "q75": 2.708,
+    "q75": 2.711,
     "p5": 0.413,
     "p95": 3.692,
-    "max": 4.761,
+    "max": 4.768,
     "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
@@ -101,7 +101,7 @@
     "max": 0.732,
     "n_pairs": 78
    },
-   "n_low_margin": 2,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

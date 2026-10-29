@@ -14,9 +14,9 @@ The reference of a cluster is its highest-resolution entry among those whose spa
 
 - the reindexing operators within Le Page's 3° (strain price 14.8 %), one per class of the reference's point group; every class is scored on the Cα, so an indexing near a higher lattice symmetry is not missed. When none is found, or the best placement is still more than 3 Å from the reference, the classes up to 20 % are scored as well;
 - the origin shift that turns the entry's operators into the reference's, solved exactly;
-- among the allowed origins, the proper Euclidean normalizer elements and the group operators, the placement with the lowest Cα RMSD, with Cα paired by UniProt residue number (a chain mapped to several accessions is paired one accession at a time, named `chain:accession`).
+- among the allowed origins, the proper Euclidean normalizer elements and the group operators, the placement with the lowest Cα RMSD, with Cα paired by UniProt residue number (a chain mapped to several accessions is paired one accession at a time, named `chain:accession`; when the deposited numbering superposes worse than 2.5 Å, the whole-chain register is found from the structure and stored in `unp_offset`). Candidates are ranked by the RMSD of the exact placement after the origin snap, so a second copy in the asymmetric unit on a non-crystallographic shift does not win.
 
-An entry with no reindexing within 20 % of the reference is placed on an already-placed neighbour and the two frames are composed (`via`). Entries with another IT number are listed and not placed.
+An entry with no reindexing within 20 % of the reference is placed on an already-placed neighbour (the best of the three nearest), the two frames are composed (`via`), and the composed frame is brought back onto the reference copy by the right group operator. Entries with another IT number are listed and not placed.
 
 ## Files
 
@@ -73,12 +73,12 @@ One quality flag per placed entry: `pdb_id`, `identity_dir`, `cluster_id`, `rmsd
 
 | flag | rule | count |
 |---|---|---|
-| `ok` | otherwise | 53,233 |
-| `low_margin` | margin below 1 Å: the coordinates barely decide between two placements | 2,219 |
-| `far_same_structure` | more than 3 Å from the reference without fitting, below 1.5 Å after superposition: the same structure in another packing. Example: TTK (P33981), I222 with a pseudo-tetragonal cell; after the best indexing (b↔c, 9.4 %) the molecule is still rotated 14.6° about a relative to the reference, which no lattice operator removes | 1,666 |
-| `far_mispaired` | more than 3 Å from the reference without fitting and at least 1.5 Å after superposition: the Cα atoms are probably paired wrongly, most likely a residue-numbering mismatch between depositions | 2,839 |
+| `ok` | otherwise | 56,064 |
+| `low_margin` | margin below 1 Å: the coordinates barely decide between two placements | 753 |
+| `far_same_structure` | more than 3 Å from the reference without fitting, below 1.5 Å after superposition: the same structure in another packing. Example: TTK (P33981), I222 with a pseudo-tetragonal cell; after the best indexing (b↔c, 9.4 %) the molecule is still rotated 14.6° about a relative to the reference, which no lattice operator removes | 1,742 |
+| `far_different_structure` | more than 3 Å from the reference without fitting and still at least 1.5 Å after superposition at the best residue register: the structures differ (conformation, construct, or a different chain) | 1,444 |
 
-The two `far_` flags are open problems, not settled results; use `ok` entries for anything quantitative.
+`far_same_structure` and `far_different_structure` mostly mark real differences between crystals, not alignment errors; the ontology of issues (agentsg `cell/data/alignment_issues.yaml`) lists what each flag can mean. Use `ok` entries for anything quantitative.
 
 ## Caveats
 

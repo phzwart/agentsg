@@ -199,7 +199,7 @@
     "max": 0.436,
     "n_pairs": 4371
    },
-   "n_low_margin": 25,
+   "n_low_margin": 16,
    "n_via_neighbour": 0
   }
  ]
