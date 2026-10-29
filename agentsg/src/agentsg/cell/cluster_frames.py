@@ -517,7 +517,7 @@ def _chain_rmsd(ref, rchain, mchain, Lf, t, ops):
     return best
 
 
-def _evaluate(ref, member, out):
+def _evaluate(ref, member, out, asu=True):
     """Fill rmsd, n_paired, unp_offset (probe chain, centring translations allowed) and
     asu_rmsd (every chain, every operator of the group) for the frame in ``out``."""
     from ..group import centering_translations
@@ -535,7 +535,8 @@ def _evaluate(ref, member, out):
             best = (r, mc)
     if best is not None:
         (out.rmsd, out.n_paired, out.unp_offset), out.member_chain = best
-    out.asu_rmsd = _asu_rmsd(ref, member, Lf, out.t)
+    if asu:
+        out.asu_rmsd = _asu_rmsd(ref, member, Lf, out.t)
 
 
 def _asu_rmsd(ref, member, Lf, t):
@@ -615,6 +616,23 @@ def choose_reference(models):
     return min(pool, key=lambda m: (m.resolution if m.resolution is not None else 99.0, m.pdb_id))
 
 
+def _onto_reference_copy(ref, member, out):
+    """A composed frame is right up to the reference group: it can put the molecule on a
+    symmetry mate of the reference copy. Multiply by the group operator (W, w) that brings
+    it back onto the reference copy: L -> W L, t -> W t + w."""
+    np = _np()
+    best = None
+    for op in ref.ops:
+        L2 = op.W @ out.L
+        t2 = _mat(op.W) @ out.t + _vec(op.w)
+        q = Placement(out.pdb_id, out.reference, out.status, L=L2, t=t2)
+        _evaluate(ref, member, q, asu=False)
+        if q.rmsd is not None and (best is None or q.rmsd < best[0]):
+            best = (q.rmsd, L2, t2)
+    if best is not None:
+        out.L, out.t = best[1], best[2]
+
+
 def compose(outer_L, outer_t, inner_L, inner_t):
     """Frame of ``x -> outer(inner(x))``: ``(Lo Li, Lo ti + to)``."""
     return outer_L @ inner_L, _mat(outer_L) @ inner_t + outer_t
@@ -674,6 +692,7 @@ def frame_cluster(con, ids, max_anchors=3):
                 q.reference, q.via = ref_model.pdb_id, a
                 q.member_chain = None
                 q.ref_chain = None
+                _onto_reference_copy(ref, m, q)
                 _evaluate(ref, m, q)
                 if best_q is None or (q.rmsd is not None and q.rmsd < best_q.rmsd):
                     best_q = q

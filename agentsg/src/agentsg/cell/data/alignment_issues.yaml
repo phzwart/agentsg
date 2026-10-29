@@ -285,6 +285,15 @@ terms:
     remedy: "search registers only when the deposited numbering superposes worse than 2.5 Å, and accept a shift only when it at least halves that RMSD; place through the neighbour whose composed frame lands closest to the reference."
     status: handled
 
+  composed_frame_on_mate:
+    parent: method_defect
+    kind: method
+    definition: "A frame composed through a neighbour is right only up to the reference group, and can put the molecule on a symmetry mate of the reference copy (whole-asymmetric-unit RMSD small, probe RMSD tens of Å)."
+    examples:
+      - "7YDA, 7Y0S, 7WDG, 7WDH (65 Å probe RMSD, 6 Å asu RMSD)"
+    remedy: "multiply the composed frame by the reference group operator that brings the molecule back onto the reference copy."
+    status: handled
+
   pairwise_without_centring:
     parent: method_defect
     kind: method

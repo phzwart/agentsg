@@ -157,3 +157,22 @@ def test_second_copy_on_noncrystallographic_shift_is_not_chosen():
     p = place(_Reference(ref), mem)
     assert p.member_chain == "A" and p.rmsd < 0.5
     assert p.margin is not None and p.margin > 1.0
+
+
+def test_composed_frame_brought_back_onto_reference_copy():
+    """A frame that puts the molecule on a symmetry mate is moved back by a group operator."""
+    from agentsg.cell.cluster_frames import Placement, _onto_reference_copy
+    from fractions import Fraction
+    rng = np.random.default_rng(4)
+    ref = _make((58.5, 147.0, 64.5, 90, 99.96, 90), "P 1 21 1", _chain(rng), "REF")
+    mem = Model("MEM", ref.cell, "P 1 21 1", 2.0, {"A": ref.chains["A"]})
+    R = _Reference(ref)
+    screw = next(op for op in R.ops if op.W.rows != Matrix3([[Fraction(int(i == j)) for j in range(3)] for i in range(3)]).rows)
+    W = np.array([[float(v) for v in r] for r in screw.W.rows]); w = np.array([float(v) for v in screw.w.v])
+    q = Placement("MEM", "REF", "placed", L=screw.W, t=w)        # lands on the 2_1 mate
+    from agentsg.cell.cluster_frames import _evaluate
+    _evaluate(R, mem, q)
+    assert q.rmsd > 5
+    _onto_reference_copy(R, mem, q)
+    _evaluate(R, mem, q)
+    assert q.rmsd < 1e-6
