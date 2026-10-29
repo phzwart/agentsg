@@ -83,8 +83,8 @@ terms:
     definition: "Numbering differs by insertions or deletions along the chain, so no single shift pairs the residues."
     signature: "no constant shift brings fit_to_ref below 1.5 Å, yet a sequence alignment would."
     remedy: "sequence alignment on residue types."
-    status: open
-    note: "hypothesised part of far_different_structure; not yet separated from real conformational differences."
+    status: deferred
+    note: "hypothesised part of far_different_structure; not yet separated from real conformational differences. Deferred (2026-10-29); docs/crystal_forms_ledger.md, item L5."
 
   sequence_variant:
     parent: input_issue
@@ -94,7 +94,8 @@ terms:
     examples:
       - "carbonic anhydrase II P00918 cluster 1: Phe131 is Val in 116 entries (also Ala 18, Tyr 13, Leu 4, Cys 3); His64 is Ala, Cys, Tyr or Trp in 28; Thr200 and Val143 variants"
     remedy: "compare residue types per position and leave variant entries out of that position's statistics; keep in mind that neighbours of a variant site are compared across sequences."
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L2."
 
   space_group_annotation:
     parent: input_issue
@@ -223,7 +224,8 @@ terms:
     examples:
       - "carbonic anhydrase II P00918 cluster 1: His64 (altlocs in 487 entries, letters agree with geometry 53 % of the time); 50-71 % at Glu14, Asp175, Ser217, Ser220"
     remedy: "match conformers by geometry (optimal assignment on RMSD), never by letter; the Cα cache keeps the first altloc only, which is a letter choice."
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L2."
 
   resolution_dependent_modelling:
     parent: comparison_issue
@@ -233,7 +235,8 @@ terms:
     examples:
       - "carbonic anhydrase II P00918 cluster 1, His64: both states modelled in about half the entries below 1.6 Å and in 9 % above 2 Å"
     remedy: "estimate populations within resolution strata, or treat single-state models at low resolution as censored."
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L2."
 
   # ------------------------------------------------------------------ biology
   real_difference:
@@ -280,7 +283,8 @@ terms:
     examples:
       - "carbonic anhydrase II P00918 cluster 1: His64 in/out (3.0 Å apart; pair RMSD quartiles 0.43 and 2.97 Å); Glu14, Asp52, Asp165, Asp175, Asn253, Glu239, Thr37, Asn67"
     remedy: "classify each entry's conformers into the states and model the populations; whole-chain RMSD thresholds do not see it (no far_ flag in this cluster)."
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L3."
 
   coherent_subangstrom_deformation:
     parent: conformational_difference
@@ -289,7 +293,8 @@ terms:
     signature: "fitting entry pairs on short sequence windows, residues away from the window deviate at several times the RMSD expected for rigid attachment (anchor fit residual times lever arm)."
     examples:
       - "carbonic anhydrase II P00918 cluster 1: 2-5 times the rigid-attachment expectation from every five-residue anchor; His64 backbone, the 170s and 230s loops co-move"
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L4."
 
   thermal_state:
     parent: lattice_strain
@@ -299,7 +304,8 @@ terms:
     examples:
       - "carbonic anhydrase II P00918 cluster 1: median c 72.91 Å at room temperature, 72.10 Å cryogenic; His64 'in' fraction 0.45 at room temperature and 0.26 cryogenic, entries at 1.6-2.0 Å"
     remedy: "stratify by data-collection temperature before reading conformer populations or cell trends."
-    status: open
+    status: deferred
+    note: "deferred (2026-10-29); docs/crystal_forms_ledger.md, item L3."
 
   # ------------------------------------------------------------------ method
   method_defect:
