@@ -85,6 +85,16 @@ terms:
     status: open
     note: "hypothesised part of far_different_structure; not yet separated from real conformational differences."
 
+  sequence_variant:
+    parent: input_issue
+    kind: input
+    definition: "Engineered or natural point variants filed under one UniProt accession, so entries paired on accession and residue number differ in residue type at some positions. Whole-chain Cα placement is unaffected; residue-level comparison mixes sequence with conformation."
+    signature: "residue name at a UniProt position differs from the cluster majority (needs residue names, not in the Cα cache)."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1: Phe131 is Val in 116 entries (also Ala 18, Tyr 13, Leu 4, Cys 3); His64 is Ala, Cys, Tyr or Trp in 28; Thr200 and Val143 variants"
+    remedy: "compare residue types per position and leave variant entries out of that position's statistics; keep in mind that neighbours of a variant site are compared across sequences."
+    status: open
+
   space_group_annotation:
     parent: input_issue
     kind: input
@@ -197,6 +207,32 @@ terms:
     remedy: "try every chain of the entry against the probe under all group operators, ranked by the RMSD after the origin snap; report asu_rmsd for the rest."
     status: handled
 
+  # ------------------------------------------------------------------ comparison
+  comparison_issue:
+    parent: alignment_issue
+    kind: comparison
+    definition: "The placement is right, but comparing entries atom by atom or residue by residue mixes in differences of annotation or modelling convention, so a real difference looks larger, smaller or different in kind than it is."
+
+  altloc_label_permutation:
+    parent: comparison_issue
+    kind: comparison
+    definition: "Alternate-location letters are arbitrary between entries: conformer A of one entry is often conformer B of another, so pairing atoms by altloc letter mixes the states."
+    signature: "matching the conformers of two entries by geometry agrees with matching them by letter about half the time."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1: His64 (altlocs in 487 entries, letters agree with geometry 53 % of the time); 50-71 % at Glu14, Asp175, Ser217, Ser220"
+    remedy: "match conformers by geometry (optimal assignment on RMSD), never by letter; the Cα cache keeps the first altloc only, which is a letter choice."
+    status: open
+
+  resolution_dependent_modelling:
+    parent: comparison_issue
+    kind: comparison
+    definition: "Whether a minor conformer is modelled depends on resolution, so modelled occupancies are not population estimates: lower-resolution entries are forced into one state."
+    signature: "the fraction of entries modelling both states of a two-state residue falls with resolution."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1, His64: both states modelled in about half the entries below 1.6 Å and in 9 % above 2 Å"
+    remedy: "estimate populations within resolution strata, or treat single-state models at low resolution as censored."
+    status: open
+
   # ------------------------------------------------------------------ biology
   real_difference:
     parent: alignment_issue
@@ -233,6 +269,35 @@ terms:
     flag: far_different_structure
     count: "1444 (far_different_structure)"
     status: flagged
+
+  discrete_conformer_population:
+    parent: conformational_difference
+    kind: biology
+    definition: "A residue switches between the same few discrete states in every crystal and the crystals differ in how those states are populated; between-crystal variance at the site is a mixture-weight variance, not a displacement."
+    signature: "the all-pairs RMSD distribution of the residue is bimodal and its upper mode equals the separation between altloc conformers within single entries."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1: His64 in/out (3.0 Å apart; pair RMSD quartiles 0.43 and 2.97 Å); Glu14, Asp52, Asp165, Asp175, Asn253, Glu239, Thr37, Asn67"
+    remedy: "classify each entry's conformers into the states and model the populations; whole-chain RMSD thresholds do not see it (no far_ flag in this cluster)."
+    status: open
+
+  coherent_subangstrom_deformation:
+    parent: conformational_difference
+    kind: biology
+    definition: "Smooth between-crystal displacements of a few tenths of an Å that are coherent over the molecule, larger than any short window's internal residual explains: no segment moves as a rigid body with a local anchor at the precision of the models."
+    signature: "fitting entry pairs on short sequence windows, residues away from the window deviate at several times the RMSD expected for rigid attachment (anchor fit residual times lever arm)."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1: 2-5 times the rigid-attachment expectation from every five-residue anchor; His64 backbone, the 170s and 230s loops co-move"
+    status: open
+
+  thermal_state:
+    parent: lattice_strain
+    kind: biology
+    definition: "Room-temperature and cryogenic crystals of one form: a separate cell population, and conformer populations that shift with the temperature of data collection."
+    signature: "a cell-edge island that matches _diffrn.ambient_temp; within matched resolution, state populations differ between the two."
+    examples:
+      - "carbonic anhydrase II P00918 cluster 1: median c 72.91 Å at room temperature, 72.10 Å cryogenic; His64 'in' fraction 0.45 at room temperature and 0.26 cryogenic, entries at 1.6-2.0 Å"
+    remedy: "stratify by data-collection temperature before reading conformer populations or cell trends."
+    status: open
 
   # ------------------------------------------------------------------ method
   method_defect:
