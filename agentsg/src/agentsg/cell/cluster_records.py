@@ -107,8 +107,11 @@ def _placed_chains(ca, frames, ref_chain):
         chain = f["member_chain"] if f["status"] != "reference" else ref_chain
         if chain is None or f["L"] is None:
             continue
+        # "chain:accession" names one accession of a chain mapped to several (a fusion)
+        ch, _, acc = chain.partition(":")
         pts = ca.execute("SELECT unp, fx, fy, fz FROM ca WHERE pdb_id = ? AND chain = ? "
-                         "AND unp IS NOT NULL ORDER BY unp", [f["pdb_id"], chain]).fetchnumpy()
+                         "AND unp IS NOT NULL AND (? = '' OR acc = ?) ORDER BY acc, unp",
+                         [f["pdb_id"], ch, acc, acc]).fetchnumpy()
         if not len(pts["unp"]):
             continue
         unp = pts["unp"].astype(int) + int(f["unp_offset"] or 0)

@@ -82,7 +82,7 @@ Connectivity can chain: a run of intermediate cells can carry one cluster from a
 
 Each entry is placed in three steps:
 
-- **Reindexing.** The coset of reindexing operators from the reference to the entry within the band, grouped into classes of the reference's point group (proper operators only). Each class is one indexing the cell cannot decide; all are tried. The band is 7 %, widened to 15 % and then 20 % when nothing is found.
+- **Reindexing.** The coset of reindexing operators from the reference to the entry within the band, grouped into classes of the reference's point group (proper operators only). Each class is one indexing the cell cannot decide; all are tried. The band is Le Page's 3° (strain price 14.8 %), wider than the 7 % clustering band so that an indexing just outside it is not missed when the lattice is close to a higher symmetry; it widens to 20 % when nothing is found.
 - **Operators and origin.** The entry's space-group operators are written in the reference basis, and the origin shift that turns them into the reference's operators is solved exactly. A class with no such shift does not describe the reference's group and is dropped.
 - **Allowed origins.** Among the allowed origin shifts, the proper elements of the Euclidean normalizer and the operators of the group, the placement with the lowest Cα RMSD is kept. Cα atoms are paired by UniProt accession and residue number, so renumbered constructs and different chain labels pair correctly. Floating origin components are fitted, not searched.
 
