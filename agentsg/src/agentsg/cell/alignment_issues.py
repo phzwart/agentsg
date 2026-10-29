@@ -10,7 +10,7 @@ from functools import lru_cache
 
 _PATH = os.path.join(os.path.dirname(__file__), "data", "alignment_issues.yaml")
 KINDS = ("input", "lattice", "placement", "comparison", "biology", "method")
-STATUSES = ("handled", "flagged", "open")
+STATUSES = ("handled", "flagged", "open", "deferred", "dropped")
 
 
 @lru_cache(maxsize=1)

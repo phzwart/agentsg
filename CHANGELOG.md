@@ -2,6 +2,7 @@
 
 ## Unreleased (library)
 
+- `docs/crystal_forms_ledger.md`: ledger of open questions on the crystal-form records; L1 is the 1,257 entries in another space-group type than their cluster reference (deferred). The issue ontology gains the statuses `deferred` and `dropped`; `different_space_group_type` is deferred and `missing_mapping` dropped. No HTTP or MCP change.
 - `agentsg.cell.cluster_frames`: a frame composed through a neighbour is multiplied by the reference group operator that brings the molecule back onto the reference copy, instead of possibly leaving it on a symmetry mate. No HTTP or MCP change.
 - `agentsg.cell.cluster_frames`: the residue-register search runs only when the deposited numbering superposes worse than 2.5 Å and takes a shift only when it at least halves that RMSD (a one-turn shift on a helix otherwise mimics the register); an entry placed through neighbours keeps the anchor whose composed frame lands closest to the reference. No HTTP or MCP change.
 - `agentsg.cell.cluster_frames`: candidate placements are ranked by the RMSD of the exact placement (origin snapped to an allowed origin), searched in order of the continuous-shift RMSD, which bounds it from below; a second copy in the asymmetric unit on a non-crystallographic shift no longer wins a tie. The margin is measured the same way. No HTTP or MCP change.
