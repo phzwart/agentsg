@@ -15,7 +15,7 @@
 #   flag        status or flag it ends up under
 #   examples    PDB ids or clusters where it was seen
 #   remedy      what handles it
-#   status      handled | flagged | open
+#   status      handled | flagged | open | deferred (on the ledger, docs/crystal_forms_ledger.md) | dropped (not pursued)
 
 version: 1
 terms:
@@ -74,7 +74,8 @@ terms:
       - "6VKG"
     count: "343 no_shared_accession, 143 too_few_paired_atoms"
     remedy: "sequence alignment on residue types (needs residue names, not in the Cα cache)."
-    status: open
+    status: dropped
+    note: "not pursued (decided 2026-10-29): too few entries to matter."
 
   nonuniform_renumbering:
     parent: input_issue
@@ -110,7 +111,8 @@ terms:
       - "7Q0C (P1 in the P21 carbonic anhydrase II cluster)"
     count: "1257"
     remedy: "place on the common subgroup."
-    status: open
+    status: deferred
+    note: "postponed (2026-10-29); docs/crystal_forms_ledger.md, item L1."
 
   # ------------------------------------------------------------------ lattice
   lattice_issue:
