@@ -7,8 +7,8 @@
  "name": "Cell division protein FtsZ",
  "clusters": [
   {
-   "cluster_id": 1581,
-   "n_members": 12,
+   "cluster_id": 1107,
+   "n_members": 16,
    "reference": "7OHH",
    "reference_resolution": 1.45,
    "space_group": "C 1 2 1",
@@ -22,35 +22,35 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 11
+    "placed": 15
    },
-   "n_pairs": 66,
+   "n_pairs": 120,
    "rmsd_to_reference": {
-    "median": 0.721,
-    "q25": 0.547,
-    "q75": 0.841,
-    "p5": 0.401,
-    "p95": 0.957,
-    "max": 1.003,
-    "n_pairs": 11
+    "median": 0.819,
+    "q25": 0.65,
+    "q75": 1.098,
+    "p5": 0.411,
+    "p95": 1.637,
+    "max": 1.894,
+    "n_pairs": 15
    },
    "pairwise_frame_rmsd": {
-    "median": 0.569,
-    "q25": 0.414,
-    "q75": 0.785,
-    "p5": 0.266,
-    "p95": 1.184,
-    "max": 1.422,
-    "n_pairs": 66
+    "median": 0.841,
+    "q25": 0.532,
+    "q75": 1.4,
+    "p5": 0.268,
+    "p95": 2.434,
+    "max": 3.267,
+    "n_pairs": 120
    },
    "pairwise_fit_rmsd": {
-    "median": 0.237,
-    "q25": 0.195,
-    "q75": 0.288,
-    "p5": 0.159,
-    "p95": 0.353,
-    "max": 0.394,
-    "n_pairs": 66
+    "median": 0.256,
+    "q25": 0.209,
+    "q75": 0.328,
+    "p5": 0.173,
+    "p95": 0.548,
+    "max": 0.593,
+    "n_pairs": 120
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

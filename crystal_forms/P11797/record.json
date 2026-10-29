@@ -7,7 +7,7 @@
  "name": "Chitinase B",
  "clusters": [
   {
-   "cluster_id": 1257,
+   "cluster_id": 1288,
    "n_members": 14,
    "reference": "3WD0",
    "reference_resolution": 1.7,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1522,
+   "cluster_id": 1561,
    "n_members": 12,
    "reference": "1GOI",
    "reference_resolution": 1.45,

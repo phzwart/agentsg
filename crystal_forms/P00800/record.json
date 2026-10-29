@@ -7,7 +7,7 @@
  "name": "Thermolysin",
  "clusters": [
   {
-   "cluster_id": 32,
+   "cluster_id": 34,
    "n_members": 187,
    "reference": "5JVI",
    "reference_resolution": 1.12,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1123,
+   "cluster_id": 1146,
    "n_members": 15,
    "reference": "6N4W",
    "reference_resolution": 1.4,

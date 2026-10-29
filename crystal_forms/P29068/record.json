@@ -7,7 +7,7 @@
  "name": "Carboxypeptidase T",
  "clusters": [
   {
-   "cluster_id": 640,
+   "cluster_id": 653,
    "n_members": 24,
    "reference": "4IHM",
    "reference_resolution": 1.29,

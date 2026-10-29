@@ -7,8 +7,8 @@
  "name": "Ketohexokinase",
  "clusters": [
   {
-   "cluster_id": 503,
-   "n_members": 29,
+   "cluster_id": 459,
+   "n_members": 32,
    "reference": "9FHD",
    "reference_resolution": 1.845,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 28,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 406,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 0.804,
-    "q25": 0.699,
-    "q75": 1.176,
-    "p5": 0.422,
-    "p95": 1.792,
-    "max": 2.203,
-    "n_pairs": 28
+    "median": 0.897,
+    "q25": 0.708,
+    "q75": 1.264,
+    "p5": 0.423,
+    "p95": 3.426,
+    "max": 3.904,
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 0.822,
-    "q25": 0.588,
-    "q75": 1.126,
-    "p5": 0.357,
-    "p95": 1.538,
-    "max": 1.954,
-    "n_pairs": 406
+    "median": 0.935,
+    "q25": 0.64,
+    "q75": 1.424,
+    "p5": 0.363,
+    "p95": 4.534,
+    "max": 5.244,
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 0.313,
-    "q25": 0.268,
-    "q75": 0.377,
-    "p5": 0.212,
-    "p95": 0.464,
-    "max": 0.582,
-    "n_pairs": 406
+    "median": 0.33,
+    "q25": 0.278,
+    "q75": 0.404,
+    "p5": 0.215,
+    "p95": 0.536,
+    "max": 0.626,
+    "n_pairs": 496
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

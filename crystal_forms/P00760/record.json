@@ -7,8 +7,8 @@
  "name": "Serine protease 1",
  "clusters": [
   {
-   "cluster_id": 18,
-   "n_members": 270,
+   "cluster_id": 20,
+   "n_members": 271,
    "reference": "4I8H",
    "reference_resolution": 0.75,
    "space_group": "P 21 21 21",
@@ -21,43 +21,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 269,
+    "placed": 270,
     "reference": 1
    },
-   "n_pairs": 36315,
+   "n_pairs": 36585,
    "rmsd_to_reference": {
-    "median": 0.316,
+    "median": 0.317,
     "q25": 0.221,
-    "q75": 0.705,
+    "q75": 0.744,
     "p5": 0.141,
     "p95": 1.602,
     "max": 2.526,
-    "n_pairs": 269
+    "n_pairs": 270
    },
    "pairwise_frame_rmsd": {
-    "median": 0.321,
+    "median": 0.325,
     "q25": 0.223,
     "q75": 1.065,
     "p5": 0.148,
-    "p95": 1.382,
+    "p95": 1.384,
     "max": 3.066,
-    "n_pairs": 36315
+    "n_pairs": 36585
    },
    "pairwise_fit_rmsd": {
     "median": 0.198,
     "q25": 0.16,
     "q75": 0.246,
     "p5": 0.111,
-    "p95": 0.557,
+    "p95": 0.556,
     "max": 2.541,
-    "n_pairs": 36315
+    "n_pairs": 36585
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
    "cluster_id": 85,
-   "n_members": 107,
+   "n_members": 108,
    "reference": "4NIV",
    "reference_resolution": 1.0,
    "space_group": "P 31 2 1",
@@ -70,44 +70,44 @@
     120.0
    ],
    "status_counts": {
-    "placed": 104,
+    "placed": 105,
     "different_space_group": 2,
     "reference": 1
    },
-   "n_pairs": 5460,
+   "n_pairs": 5565,
    "rmsd_to_reference": {
-    "median": 0.586,
+    "median": 0.593,
     "q25": 0.521,
-    "q75": 0.88,
-    "p5": 0.406,
-    "p95": 34.957,
+    "q75": 0.9,
+    "p5": 0.407,
+    "p95": 34.929,
     "max": 35.077,
-    "n_pairs": 104
+    "n_pairs": 105
    },
    "pairwise_frame_rmsd": {
-    "median": 0.838,
-    "q25": 0.534,
-    "q75": 1.524,
-    "p5": 0.247,
-    "p95": 36.467,
+    "median": 0.852,
+    "q25": 0.54,
+    "q75": 1.726,
+    "p5": 0.25,
+    "p95": 36.456,
     "max": 36.949,
-    "n_pairs": 5460
+    "n_pairs": 5565
    },
    "pairwise_fit_rmsd": {
-    "median": 0.372,
-    "q25": 0.222,
+    "median": 0.405,
+    "q25": 0.224,
     "q75": 1.252,
-    "p5": 0.147,
+    "p5": 0.148,
     "p95": 18.056,
-    "max": 18.291,
-    "n_pairs": 5460
+    "max": 18.315,
+    "n_pairs": 5565
    },
    "n_low_margin": 11,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 88,
-   "n_members": 105,
+   "cluster_id": 89,
+   "n_members": 106,
    "reference": "30ZS",
    "reference_resolution": 0.95,
    "space_group": "P 21 21 21",
@@ -120,36 +120,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 104,
+    "placed": 105,
     "reference": 1
    },
-   "n_pairs": 5460,
+   "n_pairs": 5565,
    "rmsd_to_reference": {
     "median": 0.429,
-    "q25": 0.369,
-    "q75": 0.513,
+    "q25": 0.37,
+    "q75": 0.514,
     "p5": 0.302,
-    "p95": 10.903,
+    "p95": 10.399,
     "max": 28.307,
-    "n_pairs": 104
+    "n_pairs": 105
    },
    "pairwise_frame_rmsd": {
-    "median": 0.501,
-    "q25": 0.256,
-    "q75": 0.801,
-    "p5": 0.155,
+    "median": 0.511,
+    "q25": 0.259,
+    "q75": 0.825,
+    "p5": 0.156,
     "p95": 12.795,
     "max": 28.998,
-    "n_pairs": 5460
+    "n_pairs": 5565
    },
    "pairwise_fit_rmsd": {
-    "median": 0.186,
-    "q25": 0.149,
-    "q75": 0.226,
-    "p5": 0.103,
+    "median": 0.187,
+    "q25": 0.15,
+    "q75": 0.228,
+    "p5": 0.104,
     "p95": 12.609,
     "max": 19.176,
-    "n_pairs": 5460
+    "n_pairs": 5565
    },
    "n_low_margin": 1,
    "n_via_neighbour": 0

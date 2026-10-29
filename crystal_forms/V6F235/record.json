@@ -7,7 +7,7 @@
  "name": "Magnetosome protein MamM",
  "clusters": [
   {
-   "cluster_id": 589,
+   "cluster_id": 598,
    "n_members": 26,
    "reference": "6H8G",
    "reference_resolution": 1.35,

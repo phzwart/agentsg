@@ -80,17 +80,17 @@
     "q25": 0.497,
     "q75": 0.66,
     "p5": 0.371,
-    "p95": 23.046,
-    "max": 38.243,
+    "p95": 17.12,
+    "max": 28.081,
     "n_pairs": 49
    },
    "pairwise_frame_rmsd": {
     "median": 0.579,
-    "q25": 0.461,
+    "q25": 0.46,
     "q75": 0.789,
     "p5": 0.256,
-    "p95": 38.58,
-    "max": 39.055,
+    "p95": 28.979,
+    "max": 29.37,
     "n_pairs": 1225
    },
    "pairwise_fit_rmsd": {
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 902,
+   "cluster_id": 924,
    "n_members": 18,
    "reference": "1GJ7",
    "reference_resolution": 1.5,

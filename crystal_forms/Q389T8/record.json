@@ -7,7 +7,7 @@
  "name": "Trypanothione reductase",
  "clusters": [
   {
-   "cluster_id": 784,
+   "cluster_id": 799,
    "n_members": 21,
    "reference": "9IFJ",
    "reference_resolution": 1.62,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1430,
+   "cluster_id": 1462,
    "n_members": 13,
    "reference": "5SMJ",
    "reference_resolution": 1.65,

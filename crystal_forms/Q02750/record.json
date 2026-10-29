@@ -7,7 +7,7 @@
  "name": "Dual specificity mitogen-activated protein kinase kinase 1",
  "clusters": [
   {
-   "cluster_id": 1001,
+   "cluster_id": 1029,
    "n_members": 17,
    "reference": "3EQC",
    "reference_resolution": 1.8,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1175,
+   "cluster_id": 1202,
    "n_members": 15,
    "reference": "3DV3",
    "reference_resolution": 2.3,

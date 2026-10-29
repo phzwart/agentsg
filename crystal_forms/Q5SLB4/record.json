@@ -1,0 +1,60 @@
+{
+ "identity": "Q5SLB4",
+ "accessions": [
+  "Q5SLB4"
+ ],
+ "deposition_group": null,
+ "name": "Sugar ABC transporter, periplasmic sugar-binding protein",
+ "clusters": [
+  {
+   "cluster_id": 1820,
+   "n_members": 11,
+   "reference": "7C0R",
+   "reference_resolution": 1.77,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    58.39,
+    121.58,
+    66.19,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 2,
+    "too_few_paired_atoms": 8,
+    "reference": 1
+   },
+   "n_pairs": 3,
+   "rmsd_to_reference": {
+    "median": 0.386,
+    "q25": 0.373,
+    "q75": 0.398,
+    "p5": 0.364,
+    "p95": 0.408,
+    "max": 0.41,
+    "n_pairs": 2
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.389,
+    "q25": 0.378,
+    "q75": 0.471,
+    "p5": 0.369,
+    "p95": 0.536,
+    "max": 0.553,
+    "n_pairs": 3
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.29,
+    "q25": 0.261,
+    "q75": 0.319,
+    "p5": 0.238,
+    "p95": 0.342,
+    "max": 0.348,
+    "n_pairs": 3
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

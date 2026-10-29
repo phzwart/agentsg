@@ -7,8 +7,8 @@
  "name": "235aa long hypothetical biotin--[acetyl-CoA-carboxylase] ligase",
  "clusters": [
   {
-   "cluster_id": 705,
-   "n_members": 22,
+   "cluster_id": 675,
+   "n_members": 23,
    "reference": "2DXU",
    "reference_resolution": 1.28,
    "space_group": "P 1 21 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 21,
+    "placed": 22,
     "reference": 1
    },
-   "n_pairs": 231,
+   "n_pairs": 253,
    "rmsd_to_reference": {
-    "median": 0.529,
-    "q25": 0.355,
-    "q75": 0.605,
-    "p5": 0.278,
-    "p95": 0.724,
-    "max": 0.74,
-    "n_pairs": 21
+    "median": 0.545,
+    "q25": 0.37,
+    "q75": 0.606,
+    "p5": 0.279,
+    "p95": 0.739,
+    "max": 2.923,
+    "n_pairs": 22
    },
    "pairwise_frame_rmsd": {
-    "median": 0.47,
-    "q25": 0.384,
-    "q75": 0.572,
-    "p5": 0.258,
-    "p95": 0.918,
-    "max": 1.314,
-    "n_pairs": 231
+    "median": 0.489,
+    "q25": 0.39,
+    "q75": 0.628,
+    "p5": 0.26,
+    "p95": 2.867,
+    "max": 3.021,
+    "n_pairs": 253
    },
    "pairwise_fit_rmsd": {
-    "median": 0.379,
-    "q25": 0.315,
-    "q75": 0.443,
-    "p5": 0.218,
-    "p95": 0.642,
-    "max": 0.784,
-    "n_pairs": 231
+    "median": 0.396,
+    "q25": 0.328,
+    "q75": 0.474,
+    "p5": 0.219,
+    "p95": 0.87,
+    "max": 1.083,
+    "n_pairs": 253
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

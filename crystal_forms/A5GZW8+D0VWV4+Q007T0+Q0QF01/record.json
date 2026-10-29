@@ -10,7 +10,7 @@
  "name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 658,
+   "cluster_id": 672,
    "n_members": 23,
    "reference": "1ZOY",
    "reference_resolution": 2.4,

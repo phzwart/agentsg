@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 81,
+   "cluster_id": 82,
    "n_members": 110,
    "reference": "7H51",
    "reference_resolution": 1.05,
@@ -106,7 +106,7 @@
   },
   {
    "cluster_id": 83,
-   "n_members": 109,
+   "n_members": 110,
    "reference": "7H47",
    "reference_resolution": 1.01,
    "space_group": "C 1 2 1",
@@ -119,42 +119,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 108,
+    "placed": 109,
     "reference": 1
    },
-   "n_pairs": 5886,
+   "n_pairs": 5995,
    "rmsd_to_reference": {
-    "median": 1.155,
-    "q25": 0.243,
-    "q75": 1.537,
+    "median": 1.168,
+    "q25": 0.244,
+    "q75": 1.555,
     "p5": 0.089,
-    "p95": 1.798,
+    "p95": 1.801,
     "max": 2.292,
-    "n_pairs": 108
+    "n_pairs": 109
    },
    "pairwise_frame_rmsd": {
-    "median": 1.143,
-    "q25": 0.589,
-    "q75": 1.578,
-    "p5": 0.208,
+    "median": 1.156,
+    "q25": 0.599,
+    "q75": 1.585,
+    "p5": 0.21,
     "p95": 2.063,
     "max": 2.811,
-    "n_pairs": 5886
+    "n_pairs": 5995
    },
    "pairwise_fit_rmsd": {
-    "median": 0.568,
+    "median": 0.567,
     "q25": 0.32,
-    "q75": 0.742,
-    "p5": 0.131,
-    "p95": 1.011,
+    "q75": 0.74,
+    "p5": 0.133,
+    "p95": 1.009,
     "max": 1.614,
-    "n_pairs": 5886
+    "n_pairs": 5995
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 105,
+   "cluster_id": 107,
    "n_members": 94,
    "reference": "7I7R",
    "reference_resolution": 1.15,

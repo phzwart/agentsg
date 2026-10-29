@@ -7,8 +7,8 @@
  "name": "Cellular retinoic acid-binding protein 2",
  "clusters": [
   {
-   "cluster_id": 341,
-   "n_members": 39,
+   "cluster_id": 291,
+   "n_members": 44,
    "reference": "6MPK",
    "reference_resolution": 1.58,
    "space_group": "P 31 2 1",
@@ -21,36 +21,85 @@
     120.0
    ],
    "status_counts": {
-    "placed": 38,
+    "placed": 43,
     "reference": 1
    },
-   "n_pairs": 741,
+   "n_pairs": 946,
    "rmsd_to_reference": {
-    "median": 0.701,
-    "q25": 0.617,
-    "q75": 0.88,
-    "p5": 0.523,
-    "p95": 1.101,
-    "max": 1.617,
-    "n_pairs": 38
+    "median": 0.719,
+    "q25": 0.627,
+    "q75": 0.948,
+    "p5": 0.529,
+    "p95": 2.216,
+    "max": 2.414,
+    "n_pairs": 43
    },
    "pairwise_frame_rmsd": {
-    "median": 0.754,
-    "q25": 0.534,
-    "q75": 1.064,
-    "p5": 0.264,
-    "p95": 1.733,
-    "max": 2.306,
-    "n_pairs": 741
+    "median": 0.873,
+    "q25": 0.6,
+    "q75": 1.696,
+    "p5": 0.274,
+    "p95": 3.23,
+    "max": 4.191,
+    "n_pairs": 946
    },
    "pairwise_fit_rmsd": {
-    "median": 0.398,
-    "q25": 0.248,
-    "q75": 0.602,
-    "p5": 0.17,
-    "p95": 1.046,
-    "max": 1.269,
-    "n_pairs": 741
+    "median": 0.548,
+    "q25": 0.269,
+    "q75": 0.661,
+    "p5": 0.178,
+    "p95": 1.135,
+    "max": 1.322,
+    "n_pairs": 946
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 5
+  },
+  {
+   "cluster_id": 1018,
+   "n_members": 17,
+   "reference": "3D95",
+   "reference_resolution": 1.2,
+   "space_group": "P 1",
+   "reference_cell": [
+    34.591,
+    36.897,
+    57.811,
+    73.28,
+    75.91,
+    87.76
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 1.056,
+    "q25": 0.512,
+    "q75": 1.141,
+    "p5": 0.384,
+    "p95": 1.315,
+    "max": 1.422,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.025,
+    "q25": 0.684,
+    "q75": 1.152,
+    "p5": 0.256,
+    "p95": 1.294,
+    "max": 1.618,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.709,
+    "q25": 0.506,
+    "q75": 1.042,
+    "p5": 0.231,
+    "p95": 1.149,
+    "max": 1.214,
+    "n_pairs": 136
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

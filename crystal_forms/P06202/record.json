@@ -7,7 +7,7 @@
  "name": "Periplasmic oligopeptide-binding protein OppA",
  "clusters": [
   {
-   "cluster_id": 458,
+   "cluster_id": 469,
    "n_members": 31,
    "reference": "1JET",
    "reference_resolution": 1.2,

@@ -7,7 +7,7 @@
  "name": "Ferredoxin--NADP reductase",
  "clusters": [
   {
-   "cluster_id": 525,
+   "cluster_id": 532,
    "n_members": 28,
    "reference": "2BMW",
    "reference_resolution": 1.5,

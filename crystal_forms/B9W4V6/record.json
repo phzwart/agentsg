@@ -7,8 +7,8 @@
  "name": "Aromatic peroxygenase",
  "clusters": [
   {
-   "cluster_id": 895,
-   "n_members": 18,
+   "cluster_id": 868,
+   "n_members": 19,
    "reference": "6EKZ",
    "reference_resolution": 1.08,
    "space_group": "P 1 21 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 17,
+    "placed": 18,
     "reference": 1
    },
-   "n_pairs": 153,
+   "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 0.18,
+    "median": 0.193,
     "q25": 0.144,
-    "q75": 0.241,
-    "p5": 0.12,
-    "p95": 0.291,
-    "max": 0.311,
-    "n_pairs": 17
+    "q75": 0.251,
+    "p5": 0.121,
+    "p95": 0.464,
+    "max": 1.334,
+    "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 0.19,
-    "q25": 0.155,
-    "q75": 0.261,
-    "p5": 0.101,
-    "p95": 0.351,
+    "median": 0.192,
+    "q25": 0.161,
+    "q75": 0.265,
+    "p5": 0.103,
+    "p95": 0.352,
     "max": 0.432,
-    "n_pairs": 153
+    "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
     "median": 0.139,
-    "q25": 0.108,
-    "q75": 0.203,
-    "p5": 0.077,
-    "p95": 0.304,
+    "q25": 0.11,
+    "q75": 0.202,
+    "p5": 0.078,
+    "p95": 0.303,
     "max": 0.339,
-    "n_pairs": 153
+    "n_pairs": 171
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

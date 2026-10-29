@@ -8,7 +8,7 @@
  "name": "Protein farnesyltransferase subunit beta",
  "clusters": [
   {
-   "cluster_id": 330,
+   "cluster_id": 337,
    "n_members": 40,
    "reference": "3E33",
    "reference_resolution": 1.9,

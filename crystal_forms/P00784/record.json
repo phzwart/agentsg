@@ -7,53 +7,53 @@
  "name": "Papain",
  "clusters": [
   {
-   "cluster_id": 487,
-   "n_members": 30,
-   "reference": "9CKY",
+   "cluster_id": 446,
+   "n_members": 32,
+   "reference": "9CKW",
    "reference_resolution": 1.4,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    42.47,
-    48.95,
-    101.58,
+    43.88,
+    49.3,
+    90.69,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 29,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 435,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 0.662,
-    "q25": 0.459,
-    "q75": 0.793,
-    "p5": 0.227,
-    "p95": 1.923,
-    "max": 1.956,
-    "n_pairs": 29
+    "median": 2.21,
+    "q25": 2.114,
+    "q75": 2.471,
+    "p5": 1.677,
+    "p95": 2.536,
+    "max": 2.541,
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 0.78,
-    "q25": 0.511,
-    "q75": 1.534,
-    "p5": 0.161,
-    "p95": 2.25,
-    "max": 2.863,
-    "n_pairs": 435
+    "median": 0.617,
+    "q25": 0.437,
+    "q75": 1.493,
+    "p5": 0.159,
+    "p95": 2.387,
+    "max": 2.79,
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 0.233,
-    "q25": 0.199,
-    "q75": 0.29,
-    "p5": 0.095,
-    "p95": 0.373,
+    "median": 0.238,
+    "q25": 0.203,
+    "q75": 0.292,
+    "p5": 0.096,
+    "p95": 0.365,
     "max": 0.421,
-    "n_pairs": 435
+    "n_pairs": 496
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 23
   }
  ]
 }

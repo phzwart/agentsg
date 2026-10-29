@@ -7,7 +7,7 @@
  "name": "Stimulator of interferon genes protein",
  "clusters": [
   {
-   "cluster_id": 583,
+   "cluster_id": 595,
    "n_members": 26,
    "reference": "8STI",
    "reference_resolution": 1.72,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1309,
+   "cluster_id": 1339,
    "n_members": 14,
    "reference": "9KYA",
    "reference_resolution": 1.89,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1442,
+   "cluster_id": 1476,
    "n_members": 13,
    "reference": "7KW1",
    "reference_resolution": 1.8,

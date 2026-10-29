@@ -7,7 +7,7 @@
  "name": "Protein ENL",
  "clusters": [
   {
-   "cluster_id": 1176,
+   "cluster_id": 1203,
    "n_members": 15,
    "reference": "8PJI",
    "reference_resolution": 1.7,

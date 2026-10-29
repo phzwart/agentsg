@@ -7,7 +7,7 @@
  "name": "Gag-Pol polyprotein [Cleaved into: Matrix protein p19; p2A; p2B; p10; Capsid protein p27, alternate cleaved 1; Capsid protein p27, alternate cleaved 2; Spacer peptide",
  "clusters": [
   {
-   "cluster_id": 808,
+   "cluster_id": 825,
    "n_members": 20,
    "reference": "1CXQ",
    "reference_resolution": 1.02,

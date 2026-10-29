@@ -10,7 +10,7 @@
  "name": "Tubulin alpha-1B chain",
  "clusters": [
   {
-   "cluster_id": 591,
+   "cluster_id": 600,
    "n_members": 25,
    "reference": "5YL2",
    "reference_resolution": 2.09,

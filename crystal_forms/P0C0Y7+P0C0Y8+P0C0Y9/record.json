@@ -54,11 +54,11 @@
     "max": 0.853,
     "n_pairs": 2211
    },
-   "n_low_margin": 0,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 912,
+   "cluster_id": 930,
    "n_members": 18,
    "reference": "7P0Q",
    "reference_resolution": 1.73,

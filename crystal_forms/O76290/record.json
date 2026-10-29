@@ -7,7 +7,7 @@
  "name": "Pteridine reductase",
  "clusters": [
   {
-   "cluster_id": 147,
+   "cluster_id": 151,
    "n_members": 75,
    "reference": "2X9G",
    "reference_resolution": 1.1,
@@ -30,29 +30,29 @@
     "q25": 0.368,
     "q75": 0.711,
     "p5": 0.268,
-    "p95": 15.941,
-    "max": 16.456,
+    "p95": 1.339,
+    "max": 1.691,
     "n_pairs": 74
    },
    "pairwise_frame_rmsd": {
-    "median": 0.641,
-    "q25": 0.387,
-    "q75": 0.894,
-    "p5": 0.237,
-    "p95": 16.031,
-    "max": 16.288,
+    "median": 0.624,
+    "q25": 0.385,
+    "q75": 0.829,
+    "p5": 0.236,
+    "p95": 1.131,
+    "max": 2.603,
     "n_pairs": 2775
    },
    "pairwise_fit_rmsd": {
-    "median": 0.354,
-    "q25": 0.234,
-    "q75": 0.604,
+    "median": 0.351,
+    "q25": 0.233,
+    "q75": 0.599,
     "p5": 0.161,
-    "p95": 0.698,
-    "max": 0.917,
+    "p95": 0.685,
+    "max": 0.901,
     "n_pairs": 2775
    },
-   "n_low_margin": 14,
+   "n_low_margin": 9,
    "n_via_neighbour": 0
   }
  ]

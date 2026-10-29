@@ -7,7 +7,7 @@
  "name": "Cyclic di-AMP synthase CdaA",
  "clusters": [
   {
-   "cluster_id": 554,
+   "cluster_id": 566,
    "n_members": 27,
    "reference": "8OGM",
    "reference_resolution": 1.1,

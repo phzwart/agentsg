@@ -7,7 +7,7 @@
  "name": "Chloride pumping rhodopsin",
  "clusters": [
   {
-   "cluster_id": 590,
+   "cluster_id": 599,
    "n_members": 26,
    "reference": "7O8F",
    "reference_resolution": 1.45,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 657,
+   "cluster_id": 671,
    "n_members": 24,
    "reference": "5G28",
    "reference_resolution": 1.57,

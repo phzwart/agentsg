@@ -7,7 +7,7 @@
  "name": "Acetylcholinesterase",
  "clusters": [
   {
-   "cluster_id": 121,
+   "cluster_id": 122,
    "n_members": 85,
    "reference": "1EA5",
    "reference_resolution": 1.8,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 441,
+   "cluster_id": 447,
    "n_members": 32,
    "reference": "7AIS",
    "reference_resolution": 1.75,

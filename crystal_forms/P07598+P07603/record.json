@@ -8,7 +8,7 @@
  "name": "Periplasmic [Fe] hydrogenase large subunit",
  "clusters": [
   {
-   "cluster_id": 760,
+   "cluster_id": 776,
    "n_members": 21,
    "reference": "9GZ4",
    "reference_resolution": 0.96,

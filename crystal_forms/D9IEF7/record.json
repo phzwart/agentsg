@@ -7,7 +7,7 @@
  "name": "Endolysin",
  "clusters": [
   {
-   "cluster_id": 402,
+   "cluster_id": 407,
    "n_members": 34,
    "reference": "7LOG",
    "reference_resolution": 0.99,

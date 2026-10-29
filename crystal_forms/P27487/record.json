@@ -7,7 +7,7 @@
  "name": "Dipeptidyl peptidase 4",
  "clusters": [
   {
-   "cluster_id": 340,
+   "cluster_id": 349,
    "n_members": 39,
    "reference": "5T4B",
    "reference_resolution": 1.76,
@@ -57,8 +57,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 730,
-   "n_members": 22,
+   "cluster_id": 693,
+   "n_members": 23,
    "reference": "3SWW",
    "reference_resolution": 2.0,
    "space_group": "P 21 21 21",
@@ -72,6 +72,7 @@
    ],
    "status_counts": {
     "placed": 21,
+    "different_space_group": 1,
     "reference": 1
    },
    "n_pairs": 231,
@@ -106,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1400,
+   "cluster_id": 1432,
    "n_members": 13,
    "reference": "1R9M",
    "reference_resolution": 2.1,

@@ -8,8 +8,8 @@
  "name": "Terminal oxygenase component of carbazole",
  "clusters": [
   {
-   "cluster_id": 1083,
-   "n_members": 16,
+   "cluster_id": 960,
+   "n_members": 18,
    "reference": "3VMH",
    "reference_resolution": 1.85,
    "space_group": "P 1 21 1",
@@ -23,36 +23,36 @@
    ],
    "status_counts": {
     "no_shared_accession": 3,
-    "placed": 12,
+    "placed": 14,
     "reference": 1
    },
-   "n_pairs": 78,
+   "n_pairs": 105,
    "rmsd_to_reference": {
-    "median": 0.208,
-    "q25": 0.177,
-    "q75": 0.253,
-    "p5": 0.14,
-    "p95": 0.304,
-    "max": 0.313,
-    "n_pairs": 12
+    "median": 0.215,
+    "q25": 0.188,
+    "q75": 0.293,
+    "p5": 0.143,
+    "p95": 1.779,
+    "max": 1.808,
+    "n_pairs": 14
    },
    "pairwise_frame_rmsd": {
-    "median": 0.267,
-    "q25": 0.225,
-    "q75": 0.324,
-    "p5": 0.151,
-    "p95": 0.456,
-    "max": 0.547,
-    "n_pairs": 78
+    "median": 0.306,
+    "q25": 0.236,
+    "q75": 0.547,
+    "p5": 0.16,
+    "p95": 3.52,
+    "max": 3.582,
+    "n_pairs": 105
    },
    "pairwise_fit_rmsd": {
-    "median": 0.16,
-    "q25": 0.14,
-    "q75": 0.184,
-    "p5": 0.106,
-    "p95": 0.297,
-    "max": 0.313,
-    "n_pairs": 78
+    "median": 0.175,
+    "q25": 0.146,
+    "q75": 0.266,
+    "p5": 0.114,
+    "p95": 0.316,
+    "max": 0.403,
+    "n_pairs": 105
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -1,0 +1,59 @@
+{
+ "identity": "P0CG48",
+ "accessions": [
+  "P0CG48"
+ ],
+ "deposition_group": null,
+ "name": "Polyubiquitin-C [Cleaved into: Ubiquitin]",
+ "clusters": [
+  {
+   "cluster_id": 1738,
+   "n_members": 11,
+   "reference": "5NL4",
+   "reference_resolution": 1.32,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    44.17,
+    50.33,
+    93.85,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.506,
+    "q25": 0.282,
+    "q75": 0.599,
+    "p5": 0.202,
+    "p95": 4.54,
+    "max": 7.623,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.481,
+    "q25": 0.346,
+    "q75": 0.657,
+    "p5": 0.183,
+    "p95": 7.565,
+    "max": 7.593,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.291,
+    "q25": 0.202,
+    "q75": 0.511,
+    "p5": 0.12,
+    "p95": 6.57,
+    "max": 6.597,
+    "n_pairs": 55
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

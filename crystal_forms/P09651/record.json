@@ -7,7 +7,7 @@
  "name": "Heterogeneous nuclear ribonucleoprotein A1",
  "clusters": [
   {
-   "cluster_id": 318,
+   "cluster_id": 323,
    "n_members": 41,
    "reference": "1L3K",
    "reference_resolution": 1.1,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1364,
+   "cluster_id": 1392,
    "n_members": 13,
    "reference": "8RZV",
    "reference_resolution": 1.51,

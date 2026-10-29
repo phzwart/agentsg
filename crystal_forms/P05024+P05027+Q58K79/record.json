@@ -9,7 +9,7 @@
  "name": "Sodium/potassium-transporting ATPase subunit alpha-1",
  "clusters": [
   {
-   "cluster_id": 1132,
+   "cluster_id": 1157,
    "n_members": 15,
    "reference": "7WYT",
    "reference_resolution": 2.9,
@@ -54,7 +54,7 @@
     "max": 1.604,
     "n_pairs": 105
    },
-   "n_low_margin": 12,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

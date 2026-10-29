@@ -7,7 +7,7 @@
  "name": "N-formimidoyl fortimicin A synthase",
  "clusters": [
   {
-   "cluster_id": 1621,
+   "cluster_id": 1662,
    "n_members": 11,
    "reference": "7XQA",
    "reference_resolution": 1.93,
@@ -52,7 +52,7 @@
     "max": 0.567,
     "n_pairs": 55
    },
-   "n_low_margin": 10,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

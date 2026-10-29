@@ -7,7 +7,7 @@
  "name": "DNA ligase 1",
  "clusters": [
   {
-   "cluster_id": 1148,
+   "cluster_id": 1172,
    "n_members": 15,
    "reference": "6P0C",
    "reference_resolution": 1.55,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1700,
+   "cluster_id": 1753,
    "n_members": 11,
    "reference": "8VDN",
    "reference_resolution": 2.39,

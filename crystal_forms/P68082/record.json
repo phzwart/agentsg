@@ -7,8 +7,8 @@
  "name": "Myoglobin",
  "clusters": [
   {
-   "cluster_id": 72,
-   "n_members": 117,
+   "cluster_id": 70,
+   "n_members": 120,
    "reference": "2FRF",
    "reference_resolution": 1.2,
    "space_group": "P 1 21 1",
@@ -21,43 +21,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 116,
+    "placed": 119,
     "reference": 1
    },
-   "n_pairs": 6786,
+   "n_pairs": 7140,
    "rmsd_to_reference": {
     "median": 0.329,
-    "q25": 0.284,
-    "q75": 0.34,
-    "p5": 0.254,
-    "p95": 0.427,
-    "max": 0.647,
-    "n_pairs": 116
+    "q25": 0.285,
+    "q75": 0.344,
+    "p5": 0.255,
+    "p95": 0.495,
+    "max": 1.186,
+    "n_pairs": 119
    },
    "pairwise_frame_rmsd": {
-    "median": 0.334,
-    "q25": 0.285,
-    "q75": 0.413,
+    "median": 0.346,
+    "q25": 0.287,
+    "q75": 0.428,
     "p5": 0.0,
-    "p95": 0.623,
-    "max": 1.232,
-    "n_pairs": 6786
+    "p95": 1.011,
+    "max": 1.54,
+    "n_pairs": 7140
    },
    "pairwise_fit_rmsd": {
-    "median": 0.217,
-    "q25": 0.162,
-    "q75": 0.287,
+    "median": 0.224,
+    "q25": 0.163,
+    "q75": 0.313,
     "p5": 0.0,
-    "p95": 0.46,
-    "max": 0.886,
-    "n_pairs": 6786
+    "p95": 0.722,
+    "max": 0.948,
+    "n_pairs": 7140
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1740,
-   "n_members": 11,
+   "cluster_id": 1595,
+   "n_members": 12,
    "reference": "3VM9",
    "reference_resolution": 1.05,
    "space_group": "P 21 21 21",
@@ -71,35 +71,35 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 10
+    "placed": 11
    },
-   "n_pairs": 55,
+   "n_pairs": 66,
    "rmsd_to_reference": {
-    "median": 0.892,
-    "q25": 0.598,
-    "q75": 1.252,
-    "p5": 0.215,
-    "p95": 1.519,
-    "max": 1.632,
-    "n_pairs": 10
+    "median": 1.007,
+    "q25": 0.649,
+    "q75": 1.35,
+    "p5": 0.221,
+    "p95": 2.209,
+    "max": 2.786,
+    "n_pairs": 11
    },
    "pairwise_frame_rmsd": {
-    "median": 0.906,
-    "q25": 0.727,
-    "q75": 1.151,
-    "p5": 0.442,
-    "p95": 1.458,
-    "max": 1.621,
-    "n_pairs": 55
+    "median": 1.005,
+    "q25": 0.763,
+    "q75": 1.366,
+    "p5": 0.531,
+    "p95": 2.292,
+    "max": 2.597,
+    "n_pairs": 66
    },
    "pairwise_fit_rmsd": {
-    "median": 0.668,
-    "q25": 0.511,
-    "q75": 0.804,
-    "p5": 0.327,
-    "p95": 0.855,
-    "max": 0.904,
-    "n_pairs": 55
+    "median": 0.713,
+    "q25": 0.554,
+    "q75": 0.84,
+    "p5": 0.38,
+    "p95": 1.314,
+    "max": 1.381,
+    "n_pairs": 66
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

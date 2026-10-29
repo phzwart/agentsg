@@ -8,8 +8,8 @@
  "name": "Geranylgeranyl transferase type-2 subunit beta",
  "clusters": [
   {
-   "cluster_id": 927,
-   "n_members": 18,
+   "cluster_id": 902,
+   "n_members": 19,
    "reference": "3DSS",
    "reference_resolution": 1.8,
    "space_group": "P 21 21 21",
@@ -22,36 +22,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 17,
+    "placed": 18,
     "reference": 1
    },
-   "n_pairs": 153,
+   "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 0.823,
-    "q25": 0.784,
-    "q75": 0.855,
-    "p5": 0.653,
-    "p95": 0.972,
-    "max": 1.118,
-    "n_pairs": 17
+    "median": 0.831,
+    "q25": 0.788,
+    "q75": 0.894,
+    "p5": 0.658,
+    "p95": 1.192,
+    "max": 1.612,
+    "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 0.458,
-    "q25": 0.343,
-    "q75": 0.632,
-    "p5": 0.26,
-    "p95": 0.858,
-    "max": 1.082,
-    "n_pairs": 153
+    "median": 0.494,
+    "q25": 0.364,
+    "q75": 0.736,
+    "p5": 0.262,
+    "p95": 1.998,
+    "max": 2.282,
+    "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
-    "median": 0.292,
-    "q25": 0.242,
-    "q75": 0.404,
-    "p5": 0.171,
+    "median": 0.311,
+    "q25": 0.245,
+    "q75": 0.44,
+    "p5": 0.172,
     "p95": 0.69,
     "max": 0.924,
-    "n_pairs": 153
+    "n_pairs": 171
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

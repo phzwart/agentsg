@@ -7,7 +7,7 @@
  "name": "Basic phospholipase A2 VRV-PL-VIIIa",
  "clusters": [
   {
-   "cluster_id": 214,
+   "cluster_id": 216,
    "n_members": 56,
    "reference": "2G58",
    "reference_resolution": 0.98,

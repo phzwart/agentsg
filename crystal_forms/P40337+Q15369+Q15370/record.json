@@ -9,7 +9,7 @@
  "name": "von Hippel-Lindau disease tumor suppressor",
  "clusters": [
   {
-   "cluster_id": 198,
+   "cluster_id": 202,
    "n_members": 59,
    "reference": "6GMN",
    "reference_resolution": 1.94,
@@ -55,7 +55,7 @@
     "max": 0.718,
     "n_pairs": 1540
    },
-   "n_low_margin": 38,
+   "n_low_margin": 55,
    "n_via_neighbour": 0
   }
  ]

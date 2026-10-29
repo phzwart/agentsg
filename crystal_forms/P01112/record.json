@@ -7,8 +7,8 @@
  "name": "GTPase HRas",
  "clusters": [
   {
-   "cluster_id": 243,
-   "n_members": 51,
+   "cluster_id": 232,
+   "n_members": 52,
    "reference": "5WDQ",
    "reference_resolution": 1.25,
    "space_group": "H 3 2",
@@ -21,42 +21,42 @@
     120.0
    ],
    "status_counts": {
-    "placed": 50,
+    "placed": 51,
     "reference": 1
    },
-   "n_pairs": 1275,
+   "n_pairs": 1326,
    "rmsd_to_reference": {
-    "median": 0.42,
-    "q25": 0.308,
-    "q75": 0.977,
+    "median": 0.437,
+    "q25": 0.309,
+    "q75": 0.98,
     "p5": 0.255,
-    "p95": 1.045,
-    "max": 1.204,
-    "n_pairs": 50
+    "p95": 1.061,
+    "max": 1.381,
+    "n_pairs": 51
    },
    "pairwise_frame_rmsd": {
-    "median": 1.113,
-    "q25": 0.8,
-    "q75": 1.428,
-    "p5": 0.386,
-    "p95": 2.123,
-    "max": 3.353,
-    "n_pairs": 1275
+    "median": 1.143,
+    "q25": 0.822,
+    "q75": 1.48,
+    "p5": 0.393,
+    "p95": 2.615,
+    "max": 7.786,
+    "n_pairs": 1326
    },
    "pairwise_fit_rmsd": {
-    "median": 0.567,
-    "q25": 0.242,
-    "q75": 0.768,
-    "p5": 0.155,
-    "p95": 0.874,
+    "median": 0.593,
+    "q25": 0.246,
+    "q75": 0.775,
+    "p5": 0.156,
+    "p95": 0.929,
     "max": 1.18,
-    "n_pairs": 1275
+    "n_pairs": 1326
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 270,
+   "cluster_id": 274,
    "n_members": 46,
    "reference": "1CTQ",
    "reference_resolution": 1.26,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 718,
+   "cluster_id": 734,
    "n_members": 22,
    "reference": "8BWG",
    "reference_resolution": 1.32,

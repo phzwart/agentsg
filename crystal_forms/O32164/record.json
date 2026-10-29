@@ -7,7 +7,7 @@
  "name": "Cysteine desulfurase SufS",
  "clusters": [
   {
-   "cluster_id": 564,
+   "cluster_id": 578,
    "n_members": 26,
    "reference": "5J8Q",
    "reference_resolution": 1.702,

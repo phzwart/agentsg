@@ -7,7 +7,7 @@
  "name": "Enoyl-[acyl-carrier-protein] reductase [NADH] FabI",
  "clusters": [
   {
-   "cluster_id": 726,
+   "cluster_id": 742,
    "n_members": 22,
    "reference": "7UMW",
    "reference_resolution": 1.54,
@@ -52,7 +52,7 @@
     "max": 1.103,
     "n_pairs": 231
    },
-   "n_low_margin": 0,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

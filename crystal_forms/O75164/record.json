@@ -7,7 +7,7 @@
  "name": "Lysine-specific demethylase 4A",
  "clusters": [
   {
-   "cluster_id": 391,
+   "cluster_id": 396,
    "n_members": 35,
    "reference": "6G5X",
    "reference_resolution": 1.78,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 536,
+   "cluster_id": 546,
    "n_members": 27,
    "reference": "5F32",
    "reference_resolution": 2.05,
@@ -101,7 +101,7 @@
     "max": 0.67,
     "n_pairs": 351
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

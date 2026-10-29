@@ -7,8 +7,8 @@
  "name": "Biotin carboxylase",
  "clusters": [
   {
-   "cluster_id": 1268,
-   "n_members": 14,
+   "cluster_id": 1017,
+   "n_members": 17,
    "reference": "2W70",
    "reference_resolution": 1.77,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 16,
     "reference": 1
    },
-   "n_pairs": 91,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 0.502,
+    "median": 0.517,
     "q25": 0.449,
-    "q75": 0.52,
-    "p5": 0.382,
-    "p95": 0.756,
-    "max": 0.78,
-    "n_pairs": 13
+    "q75": 0.75,
+    "p5": 0.402,
+    "p95": 2.126,
+    "max": 2.23,
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 0.468,
-    "q25": 0.373,
-    "q75": 0.621,
-    "p5": 0.257,
-    "p95": 0.839,
-    "max": 1.228,
-    "n_pairs": 91
+    "median": 0.621,
+    "q25": 0.411,
+    "q75": 1.399,
+    "p5": 0.273,
+    "p95": 1.616,
+    "max": 1.677,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.302,
-    "q25": 0.241,
-    "q75": 0.428,
-    "p5": 0.168,
-    "p95": 0.551,
-    "max": 0.572,
-    "n_pairs": 91
+    "median": 0.428,
+    "q25": 0.271,
+    "q75": 0.596,
+    "p5": 0.182,
+    "p95": 0.821,
+    "max": 0.89,
+    "n_pairs": 136
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

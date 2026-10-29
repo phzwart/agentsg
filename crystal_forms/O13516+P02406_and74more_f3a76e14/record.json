@@ -82,7 +82,7 @@
  "name": "Large ribosomal subunit protein uL3",
  "clusters": [
   {
-   "cluster_id": 1336,
+   "cluster_id": 1364,
    "n_members": 13,
    "reference": "4U4R",
    "reference_resolution": 2.801,

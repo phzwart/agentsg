@@ -7,7 +7,7 @@
  "name": "Ribose 1,5-bisphosphate isomerase",
  "clusters": [
   {
-   "cluster_id": 1483,
+   "cluster_id": 1515,
    "n_members": 12,
    "reference": "5YFJ",
    "reference_resolution": 2.2,
@@ -52,7 +52,7 @@
     "max": 0.229,
     "n_pairs": 66
    },
-   "n_low_margin": 11,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

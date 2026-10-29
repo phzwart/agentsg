@@ -7,7 +7,7 @@
  "name": "Proprotein convertase subtilisin/kexin type 9",
  "clusters": [
   {
-   "cluster_id": 791,
+   "cluster_id": 807,
    "n_members": 21,
    "reference": "9HZ3",
    "reference_resolution": 1.432,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1787,
+   "cluster_id": 1838,
    "n_members": 11,
    "reference": "6XIC",
    "reference_resolution": 1.377,

@@ -7,7 +7,7 @@
  "name": "Protein mono-ADP-ribosyltransferase PARP15",
  "clusters": [
   {
-   "cluster_id": 297,
+   "cluster_id": 303,
    "n_members": 43,
    "reference": "7OTF",
    "reference_resolution": 1.3,

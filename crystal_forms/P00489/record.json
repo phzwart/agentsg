@@ -7,7 +7,7 @@
  "name": "Glycogen phosphorylase, muscle form",
  "clusters": [
   {
-   "cluster_id": 26,
+   "cluster_id": 29,
    "n_members": 221,
    "reference": "7P7D",
    "reference_resolution": 1.45,

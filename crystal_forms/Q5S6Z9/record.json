@@ -7,7 +7,7 @@
  "name": "Green to red photoconvertible GFP-like protein EosFP",
  "clusters": [
   {
-   "cluster_id": 788,
+   "cluster_id": 803,
    "n_members": 21,
    "reference": "7QLJ",
    "reference_resolution": 1.02,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1440,
+   "cluster_id": 1473,
    "n_members": 13,
    "reference": "2VVH",
    "reference_resolution": 1.8,

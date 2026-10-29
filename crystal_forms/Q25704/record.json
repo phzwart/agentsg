@@ -7,7 +7,7 @@
  "name": "7,8-dihydro-6-hydroxymethylpterin pyrophosphokinase-dihydropteroate synthase",
  "clusters": [
   {
-   "cluster_id": 1428,
+   "cluster_id": 1460,
    "n_members": 13,
    "reference": "6JWS",
    "reference_resolution": 2.3,
@@ -52,7 +52,7 @@
     "max": 1.83,
     "n_pairs": 78
    },
-   "n_low_margin": 12,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

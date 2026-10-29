@@ -7,8 +7,8 @@
  "name": "Homoprotocatechuate 2,3-dioxygenase",
  "clusters": [
   {
-   "cluster_id": 507,
-   "n_members": 29,
+   "cluster_id": 485,
+   "n_members": 31,
    "reference": "4Z6M",
    "reference_resolution": 1.35,
    "space_group": "P 21 21 2",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 28,
+    "placed": 30,
     "reference": 1
    },
-   "n_pairs": 406,
+   "n_pairs": 465,
    "rmsd_to_reference": {
-    "median": 0.443,
-    "q25": 0.375,
-    "q75": 0.479,
-    "p5": 0.128,
-    "p95": 0.637,
-    "max": 0.816,
-    "n_pairs": 28
+    "median": 0.446,
+    "q25": 0.381,
+    "q75": 0.505,
+    "p5": 0.131,
+    "p95": 10.629,
+    "max": 18.682,
+    "n_pairs": 30
    },
    "pairwise_frame_rmsd": {
-    "median": 0.308,
-    "q25": 0.219,
-    "q75": 0.437,
-    "p5": 0.128,
-    "p95": 1.268,
-    "max": 1.643,
-    "n_pairs": 406
+    "median": 0.335,
+    "q25": 0.234,
+    "q75": 0.69,
+    "p5": 0.129,
+    "p95": 18.991,
+    "max": 19.391,
+    "n_pairs": 465
    },
    "pairwise_fit_rmsd": {
-    "median": 0.113,
-    "q25": 0.093,
-    "q75": 0.149,
-    "p5": 0.066,
+    "median": 0.122,
+    "q25": 0.096,
+    "q75": 0.154,
+    "p5": 0.067,
     "p95": 0.28,
     "max": 0.315,
-    "n_pairs": 406
+    "n_pairs": 465
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -7,7 +7,7 @@
  "name": "Protein mono-ADP-ribosyltransferase PARP3",
  "clusters": [
   {
-   "cluster_id": 1206,
+   "cluster_id": 1236,
    "n_members": 15,
    "reference": "4GV2",
    "reference_resolution": 1.8,
@@ -30,8 +30,8 @@
     "q25": 0.188,
     "q75": 0.455,
     "p5": 0.142,
-    "p95": 14.136,
-    "max": 39.321,
+    "p95": 0.78,
+    "max": 1.159,
     "n_pairs": 14
    },
    "pairwise_frame_rmsd": {
@@ -39,17 +39,17 @@
     "q25": 0.331,
     "q75": 0.581,
     "p5": 0.182,
-    "p95": 40.227,
-    "max": 40.796,
+    "p95": 0.865,
+    "max": 0.983,
     "n_pairs": 105
    },
    "pairwise_fit_rmsd": {
-    "median": 0.378,
+    "median": 0.373,
     "q25": 0.226,
-    "q75": 0.505,
+    "q75": 0.442,
     "p5": 0.159,
-    "p95": 7.714,
-    "max": 7.769,
+    "p95": 0.554,
+    "max": 0.586,
     "n_pairs": 105
    },
    "n_low_margin": 0,

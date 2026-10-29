@@ -8,7 +8,7 @@
  "name": "Scaffold protein ILK",
  "clusters": [
   {
-   "cluster_id": 1756,
+   "cluster_id": 1805,
    "n_members": 11,
    "reference": "9TP9",
    "reference_resolution": 1.45,

@@ -7,7 +7,7 @@
  "name": "Sensor protein FixL",
  "clusters": [
   {
-   "cluster_id": 1266,
+   "cluster_id": 1299,
    "n_members": 14,
    "reference": "1XJ3",
    "reference_resolution": 1.9,

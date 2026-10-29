@@ -7,7 +7,7 @@
  "name": "Histo-blood group ABO system transferase",
  "clusters": [
   {
-   "cluster_id": 53,
+   "cluster_id": 54,
    "n_members": 141,
    "reference": "6GX2",
    "reference_resolution": 1.07,

@@ -9,7 +9,7 @@
  "name": "DNA damage-binding protein 1",
  "clusters": [
   {
-   "cluster_id": 485,
+   "cluster_id": 494,
    "n_members": 30,
    "reference": "8BU1",
    "reference_resolution": 2.98,
@@ -29,7 +29,7 @@
    "n_pairs": 435,
    "rmsd_to_reference": {
     "median": 0.438,
-    "q25": 0.371,
+    "q25": 0.377,
     "q75": 0.908,
     "p5": 0.285,
     "p95": 1.527,
@@ -40,17 +40,17 @@
     "median": 0.57,
     "q25": 0.422,
     "q75": 0.861,
-    "p5": 0.294,
+    "p5": 0.295,
     "p95": 1.707,
     "max": 2.463,
     "n_pairs": 435
    },
    "pairwise_fit_rmsd": {
-    "median": 0.245,
+    "median": 0.243,
     "q25": 0.187,
     "q75": 0.415,
     "p5": 0.135,
-    "p95": 0.484,
+    "p95": 0.489,
     "max": 0.626,
     "n_pairs": 435
    },

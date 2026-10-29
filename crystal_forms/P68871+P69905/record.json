@@ -8,8 +8,8 @@
  "name": "Hemoglobin subunit beta",
  "clusters": [
   {
-   "cluster_id": 158,
-   "n_members": 73,
+   "cluster_id": 129,
+   "n_members": 83,
    "reference": "1THB",
    "reference_resolution": 1.5,
    "space_group": "P 21 21 2",
@@ -23,6 +23,7 @@
    ],
    "status_counts": {
     "placed": 72,
+    "different_space_group": 10,
     "reference": 1
    },
    "n_pairs": 2628,
@@ -57,7 +58,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 181,
+   "cluster_id": 183,
    "n_members": 63,
    "reference": "2W72",
    "reference_resolution": 1.07,
@@ -106,8 +107,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 226,
-   "n_members": 54,
+   "cluster_id": 184,
+   "n_members": 63,
    "reference": "1IRD",
    "reference_resolution": 1.25,
    "space_group": "P 41 21 2",
@@ -120,43 +121,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 49,
+    "placed": 50,
     "reference": 1,
-    "different_space_group": 4
+    "different_space_group": 12
    },
-   "n_pairs": 1225,
+   "n_pairs": 1275,
    "rmsd_to_reference": {
-    "median": 0.792,
-    "q25": 0.618,
-    "q75": 1.098,
-    "p5": 0.408,
-    "p95": 1.562,
-    "max": 2.913,
-    "n_pairs": 49
+    "median": 0.793,
+    "q25": 0.625,
+    "q75": 1.099,
+    "p5": 0.417,
+    "p95": 1.919,
+    "max": 6.795,
+    "n_pairs": 50
    },
    "pairwise_frame_rmsd": {
-    "median": 0.689,
-    "q25": 0.486,
-    "q75": 1.028,
-    "p5": 0.274,
-    "p95": 1.966,
-    "max": 3.134,
-    "n_pairs": 1225
+    "median": 0.704,
+    "q25": 0.495,
+    "q75": 1.083,
+    "p5": 0.277,
+    "p95": 2.726,
+    "max": 5.619,
+    "n_pairs": 1275
    },
    "pairwise_fit_rmsd": {
-    "median": 0.374,
-    "q25": 0.282,
-    "q75": 0.473,
-    "p5": 0.181,
-    "p95": 0.685,
-    "max": 1.618,
-    "n_pairs": 1225
+    "median": 0.38,
+    "q25": 0.287,
+    "q75": 0.486,
+    "p5": 0.182,
+    "p95": 0.723,
+    "max": 1.621,
+    "n_pairs": 1275
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 999,
+   "cluster_id": 1026,
    "n_members": 17,
    "reference": "2D5Z",
    "reference_resolution": 1.45,
@@ -206,7 +207,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1558,
+   "cluster_id": 1597,
    "n_members": 12,
    "reference": "6KA9",
    "reference_resolution": 1.4,

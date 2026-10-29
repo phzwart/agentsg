@@ -7,8 +7,8 @@
  "name": "Spermidine N(1)-acetyltransferase",
  "clusters": [
   {
-   "cluster_id": 1454,
-   "n_members": 13,
+   "cluster_id": 1230,
+   "n_members": 15,
    "reference": "4MI4",
    "reference_resolution": 1.848,
    "space_group": "I 2 2 2",
@@ -21,7 +21,7 @@
     90.0
    ],
    "status_counts": {
-    "different_space_group": 3,
+    "different_space_group": 5,
     "placed": 9,
     "reference": 1
    },

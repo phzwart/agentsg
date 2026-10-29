@@ -7,7 +7,7 @@
  "name": "UDP-glucose 4-epimerase",
  "clusters": [
   {
-   "cluster_id": 1049,
+   "cluster_id": 1077,
    "n_members": 16,
    "reference": "1UDB",
    "reference_resolution": 1.65,

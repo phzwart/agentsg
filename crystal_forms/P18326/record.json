@@ -7,7 +7,7 @@
  "name": "Vitamin D3 dihydroxylase",
  "clusters": [
   {
-   "cluster_id": 866,
+   "cluster_id": 889,
    "n_members": 19,
    "reference": "9JHW",
    "reference_resolution": 1.4,
@@ -52,7 +52,7 @@
     "max": 0.639,
     "n_pairs": 171
    },
-   "n_low_margin": 18,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

@@ -7,7 +7,7 @@
  "name": "Protein RecA",
  "clusters": [
   {
-   "cluster_id": 614,
+   "cluster_id": 627,
    "n_members": 25,
    "reference": "2ZR9",
    "reference_resolution": 2.5,

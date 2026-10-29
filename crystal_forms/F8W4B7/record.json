@@ -7,7 +7,7 @@
  "name": "Protein deacetylase HDAC6",
  "clusters": [
   {
-   "cluster_id": 623,
+   "cluster_id": 637,
    "n_members": 24,
    "reference": "6CSP",
    "reference_resolution": 1.237,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1217,
+   "cluster_id": 1249,
    "n_members": 14,
    "reference": "6THV",
    "reference_resolution": 1.1,

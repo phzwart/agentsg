@@ -1,0 +1,60 @@
+{
+ "identity": "P08037+P29752",
+ "accessions": [
+  "P08037",
+  "P29752"
+ ],
+ "deposition_group": null,
+ "name": "Beta-1,4-galactosyltransferase 1",
+ "clusters": [
+  {
+   "cluster_id": 1545,
+   "n_members": 12,
+   "reference": "1YRO",
+   "reference_resolution": 1.9,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    57.334,
+    94.087,
+    99.705,
+    90.0,
+    101.64,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 57,
+   "rmsd_to_reference": {
+    "median": 24.498,
+    "q25": 22.146,
+    "q75": 25.512,
+    "p5": 8.922,
+    "p95": 26.02,
+    "max": 26.486,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 26.046,
+    "q25": 20.653,
+    "q75": 28.962,
+    "p5": 0.599,
+    "p95": 31.474,
+    "max": 32.081,
+    "n_pairs": 57
+   },
+   "pairwise_fit_rmsd": {
+    "median": 9.945,
+    "q25": 7.967,
+    "q75": 19.315,
+    "p5": 0.295,
+    "p95": 19.597,
+    "max": 19.689,
+    "n_pairs": 57
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  }
+ ]
+}

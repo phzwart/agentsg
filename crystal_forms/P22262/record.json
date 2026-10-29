@@ -7,8 +7,8 @@
  "name": "Listeriolysin regulatory protein",
  "clusters": [
   {
-   "cluster_id": 1533,
-   "n_members": 12,
+   "cluster_id": 1423,
+   "n_members": 13,
    "reference": "6EXM",
    "reference_resolution": 1.6,
    "space_group": "P 21 21 21",
@@ -22,6 +22,7 @@
    ],
    "status_counts": {
     "placed": 11,
+    "different_space_group": 1,
     "reference": 1
    },
    "n_pairs": 66,

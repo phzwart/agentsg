@@ -8,7 +8,7 @@
  "name": "Coagulation factor VII",
  "clusters": [
   {
-   "cluster_id": 499,
+   "cluster_id": 507,
    "n_members": 29,
    "reference": "6R2W",
    "reference_resolution": 1.25,

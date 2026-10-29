@@ -7,7 +7,7 @@
  "name": "Phenylethylamine oxidase",
  "clusters": [
   {
-   "cluster_id": 127,
+   "cluster_id": 128,
    "n_members": 83,
    "reference": "3X3Y",
    "reference_resolution": 1.499,
@@ -52,11 +52,11 @@
     "max": 0.7,
     "n_pairs": 3403
    },
-   "n_low_margin": 56,
+   "n_low_margin": 54,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 734,
+   "cluster_id": 749,
    "n_members": 22,
    "reference": "3WA2",
    "reference_resolution": 1.08,

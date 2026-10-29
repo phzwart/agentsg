@@ -7,7 +7,7 @@
  "name": "Peptidylglycine alpha-amidating monooxygenase",
  "clusters": [
   {
-   "cluster_id": 983,
+   "cluster_id": 1010,
    "n_members": 17,
    "reference": "1SDW",
    "reference_resolution": 1.85,
@@ -52,7 +52,7 @@
     "max": 0.818,
     "n_pairs": 136
    },
-   "n_low_margin": 16,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

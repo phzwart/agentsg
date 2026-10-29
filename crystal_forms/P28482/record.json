@@ -7,7 +7,7 @@
  "name": "Mitogen-activated protein kinase 1",
  "clusters": [
   {
-   "cluster_id": 111,
+   "cluster_id": 112,
    "n_members": 91,
    "reference": "8AOJ",
    "reference_resolution": 1.12,
@@ -56,8 +56,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1063,
-   "n_members": 16,
+   "cluster_id": 941,
+   "n_members": 18,
    "reference": "5K4I",
    "reference_resolution": 1.76,
    "space_group": "P 21 21 21",
@@ -70,36 +70,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 17,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 0.74,
-    "q25": 0.588,
-    "q75": 0.843,
-    "p5": 0.493,
-    "p95": 1.406,
-    "max": 1.558,
-    "n_pairs": 15
+    "median": 0.742,
+    "q25": 0.6,
+    "q75": 1.278,
+    "p5": 0.51,
+    "p95": 11.141,
+    "max": 11.481,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.821,
-    "q25": 0.644,
-    "q75": 1.499,
-    "p5": 0.387,
-    "p95": 1.795,
-    "max": 2.506,
-    "n_pairs": 120
+    "median": 0.935,
+    "q25": 0.668,
+    "q75": 1.794,
+    "p5": 0.471,
+    "p95": 10.454,
+    "max": 10.718,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.563,
-    "q25": 0.486,
-    "q75": 0.653,
-    "p5": 0.334,
-    "p95": 1.377,
-    "max": 1.416,
-    "n_pairs": 120
+    "median": 0.607,
+    "q25": 0.517,
+    "q75": 0.986,
+    "p5": 0.357,
+    "p95": 1.38,
+    "max": 1.585,
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

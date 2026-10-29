@@ -7,8 +7,8 @@
  "name": "YTH domain-containing family protein 2",
  "clusters": [
   {
-   "cluster_id": 588,
-   "n_members": 26,
+   "cluster_id": 571,
+   "n_members": 27,
    "reference": "7Z5M",
    "reference_resolution": 1.7,
    "space_group": "P 65",
@@ -22,6 +22,7 @@
    ],
    "status_counts": {
     "placed": 25,
+    "different_space_group": 1,
     "reference": 1
    },
    "n_pairs": 325,

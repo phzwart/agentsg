@@ -7,8 +7,8 @@
  "name": "Histone-lysine N-methyltransferase EHMT2",
  "clusters": [
   {
-   "cluster_id": 938,
-   "n_members": 18,
+   "cluster_id": 909,
+   "n_members": 19,
    "reference": "5VSC",
    "reference_resolution": 1.4,
    "space_group": "P 1 21 1",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 16,
+    "placed": 17,
     "different_space_group": 1,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 1.272,
-    "q25": 0.683,
-    "q75": 1.849,
-    "p5": 0.403,
-    "p95": 26.68,
-    "max": 29.662,
-    "n_pairs": 16
+    "median": 1.502,
+    "q25": 0.715,
+    "q75": 1.963,
+    "p5": 0.409,
+    "p95": 30.711,
+    "max": 34.905,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.98,
-    "q25": 0.698,
-    "q75": 1.337,
-    "p5": 0.452,
-    "p95": 29.553,
-    "max": 29.674,
-    "n_pairs": 136
+    "median": 1.056,
+    "q25": 0.715,
+    "q75": 25.949,
+    "p5": 0.473,
+    "p95": 34.043,
+    "max": 46.947,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.653,
-    "q25": 0.465,
-    "q75": 0.995,
-    "p5": 0.358,
-    "p95": 22.306,
+    "median": 0.683,
+    "q25": 0.482,
+    "q75": 0.991,
+    "p5": 0.36,
+    "p95": 22.297,
     "max": 22.521,
-    "n_pairs": 136
+    "n_pairs": 153
    },
-   "n_low_margin": 4,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

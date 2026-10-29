@@ -7,7 +7,7 @@
  "name": "Aldo-keto reductase family 1 member B1",
  "clusters": [
   {
-   "cluster_id": 66,
+   "cluster_id": 68,
    "n_members": 121,
    "reference": "1US0",
    "reference_resolution": 0.66,
@@ -27,12 +27,12 @@
    },
    "n_pairs": 6903,
    "rmsd_to_reference": {
-    "median": 0.334,
-    "q25": 0.227,
-    "q75": 0.389,
-    "p5": 0.142,
-    "p95": 0.585,
-    "max": 41.703,
+    "median": 0.331,
+    "q25": 0.223,
+    "q75": 0.387,
+    "p5": 0.138,
+    "p95": 0.527,
+    "max": 3.471,
     "n_pairs": 117
    },
    "pairwise_frame_rmsd": {
@@ -40,8 +40,8 @@
     "q25": 0.305,
     "q75": 0.51,
     "p5": 0.188,
-    "p95": 2.225,
-    "max": 42.698,
+    "p95": 2.169,
+    "max": 3.541,
     "n_pairs": 6903
    },
    "pairwise_fit_rmsd": {
@@ -57,8 +57,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 466,
-   "n_members": 31,
+   "cluster_id": 452,
+   "n_members": 32,
    "reference": "4GCA",
    "reference_resolution": 0.9,
    "space_group": "P 1",
@@ -71,42 +71,42 @@
     76.15
    ],
    "status_counts": {
-    "placed": 30,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 465,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 0.283,
-    "q25": 0.227,
-    "q75": 0.345,
+    "median": 0.286,
+    "q25": 0.23,
+    "q75": 0.354,
     "p5": 0.181,
-    "p95": 0.538,
+    "p95": 0.653,
     "max": 0.68,
-    "n_pairs": 30
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 0.322,
-    "q25": 0.248,
-    "q75": 0.388,
-    "p5": 0.172,
-    "p95": 0.638,
+    "median": 0.323,
+    "q25": 0.252,
+    "q75": 0.39,
+    "p5": 0.175,
+    "p95": 0.637,
     "max": 0.755,
-    "n_pairs": 465
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
     "median": 0.288,
-    "q25": 0.215,
+    "q25": 0.226,
     "q75": 0.359,
-    "p5": 0.152,
-    "p95": 0.615,
+    "p5": 0.157,
+    "p95": 0.613,
     "max": 0.751,
-    "n_pairs": 465
+    "n_pairs": 496
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1261,
+   "cluster_id": 1293,
    "n_members": 14,
    "reference": "1ADS",
    "reference_resolution": 1.65,

@@ -7,7 +7,7 @@
  "name": "NTPase P4",
  "clusters": [
   {
-   "cluster_id": 1196,
+   "cluster_id": 1225,
    "n_members": 15,
    "reference": "2VHJ",
    "reference_resolution": 1.8,

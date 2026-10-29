@@ -1,0 +1,59 @@
+{
+ "identity": "P49759",
+ "accessions": [
+  "P49759"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity protein kinase CLK1",
+ "clusters": [
+  {
+   "cluster_id": 945,
+   "n_members": 18,
+   "reference": "6FT8",
+   "reference_resolution": 1.45,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    91.64,
+    64.21,
+    88.36,
+    90.0,
+    127.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.942,
+    "q25": 0.708,
+    "q75": 4.279,
+    "p5": 0.279,
+    "p95": 4.538,
+    "max": 4.77,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.198,
+    "q25": 0.954,
+    "q75": 3.199,
+    "p5": 0.353,
+    "p95": 3.625,
+    "max": 3.779,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.905,
+    "q25": 0.658,
+    "q75": 1.732,
+    "p5": 0.283,
+    "p95": 2.169,
+    "max": 2.489,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  }
+ ]
+}

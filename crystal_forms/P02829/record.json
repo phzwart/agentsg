@@ -7,7 +7,7 @@
  "name": "ATP-dependent molecular chaperone HSP82",
  "clusters": [
   {
-   "cluster_id": 409,
+   "cluster_id": 414,
    "n_members": 34,
    "reference": "2IWX",
    "reference_resolution": 1.5,

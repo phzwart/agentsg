@@ -7,7 +7,7 @@
  "name": "NADPH--cytochrome P450 reductase",
  "clusters": [
   {
-   "cluster_id": 853,
+   "cluster_id": 873,
    "n_members": 19,
    "reference": "1JA1",
    "reference_resolution": 1.8,

@@ -7,8 +7,8 @@
  "name": "choline-phosphate cytidylyltransferase",
  "clusters": [
   {
-   "cluster_id": 585,
-   "n_members": 26,
+   "cluster_id": 568,
+   "n_members": 27,
    "reference": "7Q9V",
    "reference_resolution": 1.5,
    "space_group": "I 2 2 2",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 25,
+    "placed": 26,
     "reference": 1
    },
-   "n_pairs": 325,
+   "n_pairs": 351,
    "rmsd_to_reference": {
-    "median": 0.695,
-    "q25": 0.35,
-    "q75": 0.838,
-    "p5": 0.242,
-    "p95": 0.948,
-    "max": 1.05,
-    "n_pairs": 25
+    "median": 0.705,
+    "q25": 0.357,
+    "q75": 0.839,
+    "p5": 0.244,
+    "p95": 1.026,
+    "max": 18.679,
+    "n_pairs": 26
    },
    "pairwise_frame_rmsd": {
-    "median": 0.554,
-    "q25": 0.38,
-    "q75": 0.797,
-    "p5": 0.276,
-    "p95": 0.961,
-    "max": 1.14,
-    "n_pairs": 325
+    "median": 0.585,
+    "q25": 0.397,
+    "q75": 0.822,
+    "p5": 0.28,
+    "p95": 18.439,
+    "max": 18.797,
+    "n_pairs": 351
    },
    "pairwise_fit_rmsd": {
-    "median": 0.352,
-    "q25": 0.289,
-    "q75": 0.424,
-    "p5": 0.207,
-    "p95": 0.731,
-    "max": 0.817,
-    "n_pairs": 325
+    "median": 0.36,
+    "q25": 0.296,
+    "q75": 0.456,
+    "p5": 0.214,
+    "p95": 0.739,
+    "max": 0.992,
+    "n_pairs": 351
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

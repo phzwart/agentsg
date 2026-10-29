@@ -7,8 +7,8 @@
  "name": "3',5'-cyclic-AMP phosphodiesterase 4D",
  "clusters": [
   {
-   "cluster_id": 199,
-   "n_members": 59,
+   "cluster_id": 192,
+   "n_members": 61,
    "reference": "1Y2K",
    "reference_resolution": 1.36,
    "space_group": "P 21 21 21",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 58,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 2
    },
    "n_pairs": 1677,
    "rmsd_to_reference": {
@@ -56,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 312,
+   "cluster_id": 318,
    "n_members": 42,
    "reference": "6ZBA",
    "reference_resolution": 1.6,

@@ -7,53 +7,53 @@
  "name": "Immunoglobulin gamma-1 heavy chain",
  "clusters": [
   {
-   "cluster_id": 1143,
-   "n_members": 15,
-   "reference": "8ZCK",
-   "reference_resolution": 2.0,
+   "cluster_id": 1005,
+   "n_members": 17,
+   "reference": "6YTB",
+   "reference_resolution": 1.65,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    50.47,
-    79.99,
-    143.19,
+    49.158,
+    75.218,
+    149.476,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 14,
+    "placed": 16,
     "reference": 1
    },
-   "n_pairs": 105,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 1.031,
-    "q25": 0.772,
-    "q75": 1.464,
-    "p5": 0.381,
-    "p95": 1.594,
-    "max": 1.601,
-    "n_pairs": 14
+    "median": 3.354,
+    "q25": 3.083,
+    "q75": 3.526,
+    "p5": 2.313,
+    "p95": 8.746,
+    "max": 23.527,
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 1.072,
-    "q25": 0.712,
-    "q75": 1.887,
-    "p5": 0.454,
-    "p95": 2.416,
-    "max": 2.536,
-    "n_pairs": 105
+    "median": 1.825,
+    "q25": 0.824,
+    "q75": 4.885,
+    "p5": 0.52,
+    "p95": 23.312,
+    "max": 24.127,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.414,
-    "q25": 0.331,
-    "q75": 0.491,
+    "median": 0.466,
+    "q25": 0.366,
+    "q75": 1.169,
     "p5": 0.253,
-    "p95": 1.095,
-    "max": 1.19,
-    "n_pairs": 105
+    "p95": 21.85,
+    "max": 22.003,
+    "n_pairs": 136
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 4
   }
  ]
 }

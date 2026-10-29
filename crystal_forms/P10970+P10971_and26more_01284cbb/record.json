@@ -34,7 +34,7 @@
  "name": "Large ribosomal subunit protein uL10",
  "clusters": [
   {
-   "cluster_id": 914,
+   "cluster_id": 933,
    "n_members": 18,
    "reference": "1JJ2",
    "reference_resolution": 2.4,

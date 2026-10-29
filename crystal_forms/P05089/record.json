@@ -7,7 +7,7 @@
  "name": "Arginase-1",
  "clusters": [
   {
-   "cluster_id": 354,
+   "cluster_id": 361,
    "n_members": 38,
    "reference": "2AEB",
    "reference_resolution": 1.29,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1133,
+   "cluster_id": 1158,
    "n_members": 15,
    "reference": "7K4H",
    "reference_resolution": 1.65,

@@ -26,7 +26,7 @@
  "name": "Small ribosomal subunit protein uS2",
  "clusters": [
   {
-   "cluster_id": 1645,
+   "cluster_id": 1689,
    "n_members": 11,
    "reference": "4LFB",
    "reference_resolution": 3.009,

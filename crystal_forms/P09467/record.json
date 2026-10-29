@@ -7,7 +7,7 @@
  "name": "Fructose-1,6-bisphosphatase 1",
  "clusters": [
   {
-   "cluster_id": 601,
+   "cluster_id": 610,
    "n_members": 25,
    "reference": "7WJV",
    "reference_resolution": 1.724,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 971,
+   "cluster_id": 999,
    "n_members": 17,
    "reference": "5Q09",
    "reference_resolution": 1.9,

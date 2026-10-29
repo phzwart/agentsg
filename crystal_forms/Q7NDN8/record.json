@@ -7,7 +7,7 @@
  "name": "Proton-gated ion channel",
  "clusters": [
   {
-   "cluster_id": 100,
+   "cluster_id": 99,
    "n_members": 97,
    "reference": "6HZW",
    "reference_resolution": 2.22,

@@ -7,8 +7,8 @@
  "name": "Interleukin-1 receptor-associated kinase 4",
  "clusters": [
   {
-   "cluster_id": 145,
-   "n_members": 77,
+   "cluster_id": 134,
+   "n_members": 82,
    "reference": "9NA5",
    "reference_resolution": 1.73,
    "space_group": "I 1 2 1",
@@ -21,40 +21,40 @@
     90.0
    ],
    "status_counts": {
-    "placed": 46,
-    "different_space_group": 30,
+    "placed": 47,
+    "different_space_group": 34,
     "reference": 1
    },
-   "n_pairs": 1081,
+   "n_pairs": 1128,
    "rmsd_to_reference": {
-    "median": 2.457,
-    "q25": 2.188,
-    "q75": 2.979,
-    "p5": 0.582,
-    "p95": 36.717,
-    "max": 44.867,
-    "n_pairs": 46
+    "median": 2.461,
+    "q25": 2.191,
+    "q75": 3.254,
+    "p5": 0.616,
+    "p95": 29.452,
+    "max": 44.768,
+    "n_pairs": 47
    },
    "pairwise_frame_rmsd": {
-    "median": 2.52,
-    "q25": 1.618,
-    "q75": 29.146,
-    "p5": 0.872,
-    "p95": 44.281,
-    "max": 82.268,
-    "n_pairs": 1081
+    "median": 2.662,
+    "q25": 1.657,
+    "q75": 28.041,
+    "p5": 0.885,
+    "p95": 44.266,
+    "max": 81.973,
+    "n_pairs": 1128
    },
    "pairwise_fit_rmsd": {
-    "median": 0.962,
-    "q25": 0.71,
-    "q75": 16.473,
-    "p5": 0.454,
-    "p95": 17.205,
+    "median": 0.977,
+    "q25": 0.718,
+    "q75": 16.468,
+    "p5": 0.458,
+    "p95": 17.198,
     "max": 17.331,
-    "n_pairs": 1081
+    "n_pairs": 1128
    },
-   "n_low_margin": 34,
-   "n_via_neighbour": 0
+   "n_low_margin": 33,
+   "n_via_neighbour": 1
   }
  ]
 }

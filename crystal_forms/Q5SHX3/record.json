@@ -7,7 +7,7 @@
  "name": "Thymidylate kinase",
  "clusters": [
   {
-   "cluster_id": 1302,
+   "cluster_id": 1331,
    "n_members": 14,
    "reference": "5X86",
    "reference_resolution": 1.19,
@@ -52,7 +52,7 @@
     "max": 0.709,
     "n_pairs": 91
    },
-   "n_low_margin": 13,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

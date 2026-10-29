@@ -7,8 +7,8 @@
  "name": "Threonine--tRNA ligase",
  "clusters": [
   {
-   "cluster_id": 1514,
-   "n_members": 12,
+   "cluster_id": 1283,
+   "n_members": 14,
    "reference": "1FYF",
    "reference_resolution": 1.65,
    "space_group": "P 21 21 21",
@@ -23,38 +23,38 @@
    "status_counts": {
     "different_space_group": 1,
     "reference": 1,
-    "placed": 10
+    "placed": 12
    },
-   "n_pairs": 55,
+   "n_pairs": 78,
    "rmsd_to_reference": {
-    "median": 0.911,
-    "q25": 0.792,
-    "q75": 1.453,
-    "p5": 0.453,
-    "p95": 1.853,
-    "max": 1.967,
-    "n_pairs": 10
+    "median": 0.933,
+    "q25": 0.821,
+    "q75": 1.777,
+    "p5": 0.46,
+    "p95": 4.277,
+    "max": 4.293,
+    "n_pairs": 12
    },
    "pairwise_frame_rmsd": {
-    "median": 1.067,
-    "q25": 0.603,
-    "q75": 2.12,
-    "p5": 0.373,
-    "p95": 2.536,
-    "max": 2.56,
-    "n_pairs": 55
+    "median": 2.061,
+    "q25": 0.902,
+    "q75": 3.254,
+    "p5": 0.396,
+    "p95": 5.044,
+    "max": 5.137,
+    "n_pairs": 78
    },
    "pairwise_fit_rmsd": {
-    "median": 0.473,
-    "q25": 0.398,
-    "q75": 1.05,
-    "p5": 0.14,
-    "p95": 1.144,
-    "max": 1.211,
-    "n_pairs": 55
+    "median": 1.034,
+    "q25": 0.423,
+    "q75": 1.249,
+    "p5": 0.144,
+    "p95": 1.824,
+    "max": 1.925,
+    "n_pairs": 78
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

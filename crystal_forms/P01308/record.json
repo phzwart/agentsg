@@ -7,7 +7,7 @@
  "name": "Insulin [Cleaved into: Insulin B chain; Insulin A chain]",
  "clusters": [
   {
-   "cluster_id": 99,
+   "cluster_id": 98,
    "n_members": 99,
    "reference": "3W7Y",
    "reference_resolution": 0.92,
@@ -58,7 +58,7 @@
    "n_via_neighbour": 27
   },
   {
-   "cluster_id": 277,
+   "cluster_id": 283,
    "n_members": 45,
    "reference": "5HQI",
    "reference_resolution": 0.97,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 856,
+   "cluster_id": 877,
    "n_members": 19,
    "reference": "4AJX",
    "reference_resolution": 1.2,
@@ -126,30 +126,30 @@
    },
    "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 11.07,
-    "q25": 4.255,
-    "q75": 11.478,
+    "median": 1.917,
+    "q25": 1.417,
+    "q75": 2.044,
     "p5": 1.073,
-    "p95": 12.021,
+    "p95": 4.077,
     "max": 13.697,
     "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 11.351,
-    "q25": 1.522,
-    "q75": 12.993,
-    "p5": 0.709,
-    "p95": 22.686,
-    "max": 24.49,
+    "median": 1.522,
+    "q25": 1.14,
+    "q75": 2.315,
+    "p5": 0.472,
+    "p95": 11.758,
+    "max": 14.087,
     "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
-    "median": 0.5,
-    "q25": 0.401,
-    "q75": 0.882,
-    "p5": 0.255,
-    "p95": 1.359,
-    "max": 1.584,
+    "median": 0.682,
+    "q25": 0.428,
+    "q75": 1.099,
+    "p5": 0.216,
+    "p95": 1.332,
+    "max": 1.692,
     "n_pairs": 171
    },
    "n_low_margin": 0,

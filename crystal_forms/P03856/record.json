@@ -7,54 +7,55 @@
  "name": "Replication initiation protein",
  "clusters": [
   {
-   "cluster_id": 282,
-   "n_members": 44,
-   "reference": "7U6K",
-   "reference_resolution": 2.38,
-   "space_group": "I 2 2 2",
+   "cluster_id": 253,
+   "n_members": 49,
+   "reference": "9YZJ",
+   "reference_resolution": 2.97,
+   "space_group": "I 1 2 1",
    "reference_cell": [
-    75.261,
-    132.066,
-    134.986,
+    73.782,
+    132.646,
+    126.768,
     90.0,
-    90.0,
+    90.259,
     90.0
    ],
    "status_counts": {
-    "different_space_group": 20,
-    "placed": 23,
+    "placed": 15,
+    "different_space_group": 24,
+    "too_few_paired_atoms": 9,
     "reference": 1
    },
-   "n_pairs": 276,
+   "n_pairs": 120,
    "rmsd_to_reference": {
-    "median": 1.434,
-    "q25": 0.674,
-    "q75": 2.262,
-    "p5": 0.424,
-    "p95": 2.665,
-    "max": 41.357,
-    "n_pairs": 23
+    "median": 1.236,
+    "q25": 1.041,
+    "q75": 2.159,
+    "p5": 0.855,
+    "p95": 2.355,
+    "max": 2.44,
+    "n_pairs": 15
    },
    "pairwise_frame_rmsd": {
-    "median": 1.25,
-    "q25": 0.435,
-    "q75": 2.298,
-    "p5": 0.255,
-    "p95": 41.426,
-    "max": 41.848,
-    "n_pairs": 276
+    "median": 4.895,
+    "q25": 2.503,
+    "q75": 7.507,
+    "p5": 1.153,
+    "p95": 10.5,
+    "max": 14.697,
+    "n_pairs": 120
    },
    "pairwise_fit_rmsd": {
-    "median": 0.236,
-    "q25": 0.189,
-    "q75": 0.294,
-    "p5": 0.135,
-    "p95": 0.562,
-    "max": 0.654,
-    "n_pairs": 276
+    "median": 0.529,
+    "q25": 0.451,
+    "q75": 0.605,
+    "p5": 0.366,
+    "p95": 0.762,
+    "max": 0.884,
+    "n_pairs": 120
    },
-   "n_low_margin": 1,
-   "n_via_neighbour": 0
+   "n_low_margin": 0,
+   "n_via_neighbour": 3
   }
  ]
 }

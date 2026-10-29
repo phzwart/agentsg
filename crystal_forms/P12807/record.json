@@ -7,7 +7,7 @@
  "name": "Peroxisomal primary amine oxidase",
  "clusters": [
   {
-   "cluster_id": 1692,
+   "cluster_id": 1745,
    "n_members": 11,
    "reference": "3SXX",
    "reference_resolution": 1.27,
@@ -53,7 +53,7 @@
     "max": 0.448,
     "n_pairs": 21
    },
-   "n_low_margin": 6,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

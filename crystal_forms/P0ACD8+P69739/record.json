@@ -8,7 +8,7 @@
  "name": "Hydrogenase-1 large chain",
  "clusters": [
   {
-   "cluster_id": 666,
+   "cluster_id": 685,
    "n_members": 23,
    "reference": "6FPO",
    "reference_resolution": 1.05,

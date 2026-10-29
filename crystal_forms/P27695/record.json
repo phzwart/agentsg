@@ -7,8 +7,8 @@
  "name": "DNA repair nuclease/redox regulator APEX1",
  "clusters": [
   {
-   "cluster_id": 639,
-   "n_members": 24,
+   "cluster_id": 616,
+   "n_members": 25,
    "reference": "5DFF",
    "reference_resolution": 1.57,
    "space_group": "P 1",
@@ -22,41 +22,41 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 23
+    "placed": 24
    },
-   "n_pairs": 276,
+   "n_pairs": 300,
    "rmsd_to_reference": {
-    "median": 0.812,
-    "q25": 0.413,
-    "q75": 0.873,
-    "p5": 0.155,
-    "p95": 1.431,
+    "median": 0.816,
+    "q25": 0.424,
+    "q75": 0.883,
+    "p5": 0.159,
+    "p95": 1.429,
     "max": 1.435,
-    "n_pairs": 23
+    "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 0.902,
+    "median": 0.908,
     "q25": 0.678,
-    "q75": 1.151,
-    "p5": 0.289,
-    "p95": 1.914,
+    "q75": 1.149,
+    "p5": 0.306,
+    "p95": 1.897,
     "max": 2.257,
-    "n_pairs": 276
+    "n_pairs": 300
    },
    "pairwise_fit_rmsd": {
-    "median": 0.589,
-    "q25": 0.269,
-    "q75": 0.652,
-    "p5": 0.155,
-    "p95": 1.148,
+    "median": 0.591,
+    "q25": 0.283,
+    "q75": 0.659,
+    "p5": 0.168,
+    "p95": 1.131,
     "max": 1.197,
-    "n_pairs": 276
+    "n_pairs": 300
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1708,
+   "cluster_id": 1760,
    "n_members": 11,
    "reference": "7SUV",
    "reference_resolution": 1.99,

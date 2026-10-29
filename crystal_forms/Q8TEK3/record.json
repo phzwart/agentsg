@@ -7,8 +7,8 @@
  "name": "Histone-lysine N-methyltransferase, H3 lysine-79 specific",
  "clusters": [
   {
-   "cluster_id": 1315,
-   "n_members": 14,
+   "cluster_id": 906,
+   "n_members": 19,
    "reference": "3UWP",
    "reference_resolution": 2.05,
    "space_group": "P 65",
@@ -21,42 +21,42 @@
     120.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 18,
     "reference": 1
    },
-   "n_pairs": 91,
+   "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 3.171,
-    "q25": 1.231,
-    "q75": 3.197,
-    "p5": 0.634,
-    "p95": 3.317,
-    "max": 3.377,
-    "n_pairs": 13
+    "median": 2.764,
+    "q25": 1.467,
+    "q75": 3.195,
+    "p5": 0.694,
+    "p95": 3.585,
+    "max": 4.763,
+    "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 1.364,
-    "q25": 0.787,
-    "q75": 2.611,
-    "p5": 0.318,
-    "p95": 3.027,
-    "max": 3.209,
-    "n_pairs": 91
+    "median": 1.699,
+    "q25": 1.197,
+    "q75": 2.708,
+    "p5": 0.413,
+    "p95": 3.692,
+    "max": 4.761,
+    "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
-    "median": 1.107,
-    "q25": 0.72,
-    "q75": 2.345,
-    "p5": 0.258,
-    "p95": 2.905,
+    "median": 1.222,
+    "q25": 0.879,
+    "q75": 1.759,
+    "p5": 0.36,
+    "p95": 2.85,
     "max": 3.043,
-    "n_pairs": 91
+    "n_pairs": 171
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 4
   },
   {
-   "cluster_id": 1447,
+   "cluster_id": 1481,
    "n_members": 13,
    "reference": "6TE6",
    "reference_resolution": 1.98,

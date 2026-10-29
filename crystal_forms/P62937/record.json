@@ -7,7 +7,7 @@
  "name": "Peptidyl-prolyl cis-trans isomerase A",
  "clusters": [
   {
-   "cluster_id": 137,
+   "cluster_id": 139,
    "n_members": 80,
    "reference": "4N1M",
    "reference_resolution": 1.15,
@@ -56,50 +56,50 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1738,
-   "n_members": 11,
-   "reference": "1MIK",
-   "reference_resolution": 1.76,
+   "cluster_id": 1195,
+   "n_members": 15,
+   "reference": "1W8M",
+   "reference_resolution": 1.65,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    36.439,
-    61.32,
-    72.575,
+    36.307,
+    54.536,
+    71.099,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 14,
     "reference": 1
    },
-   "n_pairs": 55,
+   "n_pairs": 105,
    "rmsd_to_reference": {
-    "median": 0.279,
-    "q25": 0.224,
-    "q75": 0.323,
-    "p5": 0.172,
-    "p95": 0.399,
-    "max": 0.404,
-    "n_pairs": 10
+    "median": 1.804,
+    "q25": 1.562,
+    "q75": 1.84,
+    "p5": 0.443,
+    "p95": 1.9,
+    "max": 1.907,
+    "n_pairs": 14
    },
    "pairwise_frame_rmsd": {
-    "median": 0.298,
-    "q25": 0.237,
-    "q75": 0.388,
-    "p5": 0.167,
-    "p95": 0.55,
-    "max": 0.686,
-    "n_pairs": 55
+    "median": 0.883,
+    "q25": 0.473,
+    "q75": 5.931,
+    "p5": 0.306,
+    "p95": 7.94,
+    "max": 8.226,
+    "n_pairs": 105
    },
    "pairwise_fit_rmsd": {
-    "median": 0.192,
-    "q25": 0.12,
-    "q75": 0.237,
-    "p5": 0.091,
-    "p95": 0.259,
-    "max": 0.262,
-    "n_pairs": 55
+    "median": 0.235,
+    "q25": 0.151,
+    "q75": 0.262,
+    "p5": 0.095,
+    "p95": 0.328,
+    "max": 0.348,
+    "n_pairs": 105
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

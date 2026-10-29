@@ -7,7 +7,7 @@
  "name": "Peroxisome proliferator-activated receptor gamma",
  "clusters": [
   {
-   "cluster_id": 28,
+   "cluster_id": 30,
    "n_members": 210,
    "reference": "4CI5",
    "reference_resolution": 1.77,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1274,
+   "cluster_id": 1306,
    "n_members": 14,
    "reference": "6T1S",
    "reference_resolution": 1.65,
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1405,
+   "cluster_id": 1438,
    "n_members": 13,
    "reference": "9R6I",
    "reference_resolution": 1.7,
@@ -155,7 +155,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1546,
+   "cluster_id": 1583,
    "n_members": 12,
    "reference": "5Y2T",
    "reference_resolution": 1.7,

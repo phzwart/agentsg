@@ -7,7 +7,7 @@
  "name": "N-glycosylase/DNA lyase [Includes: 8-oxoguanine DNA glycosylase",
  "clusters": [
   {
-   "cluster_id": 405,
+   "cluster_id": 410,
    "n_members": 34,
    "reference": "2XHI",
    "reference_resolution": 1.55,

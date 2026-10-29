@@ -55,7 +55,7 @@
  "name": "Large ribosomal subunit protein uL2",
  "clusters": [
   {
-   "cluster_id": 82,
+   "cluster_id": 84,
    "n_members": 109,
    "reference": "8CVL",
    "reference_resolution": 2.3,

@@ -7,7 +7,7 @@
  "name": "Genome polyprotein [Cleaved into: P1; Capsid protein VP0",
  "clusters": [
   {
-   "cluster_id": 90,
+   "cluster_id": 91,
    "n_members": 105,
    "reference": "7GPX",
    "reference_resolution": 1.2,

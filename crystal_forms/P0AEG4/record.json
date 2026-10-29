@@ -7,7 +7,7 @@
  "name": "Thiol:disulfide interchange protein DsbA",
  "clusters": [
   {
-   "cluster_id": 30,
+   "cluster_id": 32,
    "n_members": 201,
    "reference": "8CXE",
    "reference_resolution": 1.47,

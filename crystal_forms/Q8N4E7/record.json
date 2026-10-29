@@ -7,7 +7,7 @@
  "name": "Ferritin, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 654,
+   "cluster_id": 667,
    "n_members": 24,
    "reference": "7O63",
    "reference_resolution": 1.16,
@@ -53,7 +53,7 @@
     "max": 0.303,
     "n_pairs": 253
    },
-   "n_low_margin": 22,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

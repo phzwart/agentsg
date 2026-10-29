@@ -7,7 +7,7 @@
  "name": "Chemotaxis protein CheY",
  "clusters": [
   {
-   "cluster_id": 976,
+   "cluster_id": 1004,
    "n_members": 17,
    "reference": "3F7N",
    "reference_resolution": 2.0,
@@ -52,11 +52,11 @@
     "max": 0.355,
     "n_pairs": 136
    },
-   "n_low_margin": 16,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1517,
+   "cluster_id": 1557,
    "n_members": 12,
    "reference": "1JBE",
    "reference_resolution": 1.08,

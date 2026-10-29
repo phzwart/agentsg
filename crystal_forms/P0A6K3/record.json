@@ -1,0 +1,59 @@
+{
+ "identity": "P0A6K3",
+ "accessions": [
+  "P0A6K3"
+ ],
+ "deposition_group": null,
+ "name": "Peptide deformylase",
+ "clusters": [
+  {
+   "cluster_id": 1552,
+   "n_members": 12,
+   "reference": "2AI8",
+   "reference_resolution": 1.7,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    139.178,
+    63.35,
+    85.672,
+    90.0,
+    121.23,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.081,
+    "q25": 0.515,
+    "q75": 1.13,
+    "p5": 0.344,
+    "p95": 1.234,
+    "max": 1.293,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.06,
+    "q25": 0.685,
+    "q75": 1.215,
+    "p5": 0.219,
+    "p95": 1.586,
+    "max": 1.781,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.305,
+    "q25": 0.269,
+    "q75": 0.345,
+    "p5": 0.161,
+    "p95": 0.398,
+    "max": 0.45,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

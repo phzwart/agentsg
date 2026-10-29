@@ -7,8 +7,8 @@
  "name": "DNA polymerase",
  "clusters": [
   {
-   "cluster_id": 1330,
-   "n_members": 13,
+   "cluster_id": 1246,
+   "n_members": 14,
    "reference": "7RSR",
    "reference_resolution": 1.98,
    "space_group": "P 2 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 12,
+    "placed": 13,
     "reference": 1
    },
-   "n_pairs": 78,
+   "n_pairs": 91,
    "rmsd_to_reference": {
-    "median": 1.404,
-    "q25": 1.059,
-    "q75": 2.0,
-    "p5": 0.558,
-    "p95": 3.008,
-    "max": 4.065,
-    "n_pairs": 12
+    "median": 1.472,
+    "q25": 1.06,
+    "q75": 2.096,
+    "p5": 0.576,
+    "p95": 4.483,
+    "max": 5.111,
+    "n_pairs": 13
    },
    "pairwise_frame_rmsd": {
-    "median": 4.758,
-    "q25": 3.207,
-    "q75": 6.066,
-    "p5": 1.424,
-    "p95": 9.839,
+    "median": 5.545,
+    "q25": 3.431,
+    "q75": 6.742,
+    "p5": 1.48,
+    "p95": 10.131,
     "max": 12.042,
-    "n_pairs": 78
+    "n_pairs": 91
    },
    "pairwise_fit_rmsd": {
-    "median": 1.025,
-    "q25": 0.728,
-    "q75": 1.259,
-    "p5": 0.57,
-    "p95": 2.437,
-    "max": 2.739,
-    "n_pairs": 78
+    "median": 1.115,
+    "q25": 0.764,
+    "q75": 2.151,
+    "p5": 0.577,
+    "p95": 2.598,
+    "max": 2.848,
+    "n_pairs": 91
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

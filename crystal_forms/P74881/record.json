@@ -7,7 +7,7 @@
  "name": "Phosphoribosylformylglycinamidine synthase",
  "clusters": [
   {
-   "cluster_id": 1000,
+   "cluster_id": 1027,
    "n_members": 17,
    "reference": "4LGY",
    "reference_resolution": 1.48,

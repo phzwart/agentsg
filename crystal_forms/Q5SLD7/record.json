@@ -7,7 +7,7 @@
  "name": "ABC transporter, periplasmic substrate-binding protein",
  "clusters": [
   {
-   "cluster_id": 930,
+   "cluster_id": 955,
    "n_members": 18,
    "reference": "6J9Y",
    "reference_resolution": 1.63,

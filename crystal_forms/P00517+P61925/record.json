@@ -8,7 +8,7 @@
  "name": "cAMP-dependent protein kinase catalytic subunit alpha",
  "clusters": [
   {
-   "cluster_id": 392,
+   "cluster_id": 397,
    "n_members": 35,
    "reference": "1XH8",
    "reference_resolution": 1.6,
@@ -27,33 +27,33 @@
    },
    "n_pairs": 595,
    "rmsd_to_reference": {
-    "median": 40.713,
-    "q25": 40.558,
-    "q75": 40.764,
-    "p5": 39.043,
-    "p95": 40.894,
-    "max": 40.954,
+    "median": 5.258,
+    "q25": 5.168,
+    "q75": 5.315,
+    "p5": 5.026,
+    "p95": 18.025,
+    "max": 40.758,
     "n_pairs": 34
    },
    "pairwise_frame_rmsd": {
-    "median": 3.86,
-    "q25": 0.842,
-    "q75": 41.323,
-    "p5": 0.475,
-    "p95": 64.487,
-    "max": 65.071,
+    "median": 0.686,
+    "q25": 0.518,
+    "q75": 1.049,
+    "p5": 0.377,
+    "p95": 41.634,
+    "max": 42.661,
     "n_pairs": 595
    },
    "pairwise_fit_rmsd": {
-    "median": 0.602,
-    "q25": 0.418,
-    "q75": 3.805,
-    "p5": 0.292,
-    "p95": 3.836,
+    "median": 0.449,
+    "q25": 0.378,
+    "q75": 0.568,
+    "p5": 0.279,
+    "p95": 3.81,
     "max": 4.081,
     "n_pairs": 595
    },
-   "n_low_margin": 29,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

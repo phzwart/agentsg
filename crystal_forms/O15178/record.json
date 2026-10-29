@@ -7,7 +7,7 @@
  "name": "T-box transcription factor T",
  "clusters": [
   {
-   "cluster_id": 495,
+   "cluster_id": 502,
    "n_members": 29,
    "reference": "7HI8",
    "reference_resolution": 1.54,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 702,
+   "cluster_id": 720,
    "n_members": 22,
    "reference": "7HI9",
    "reference_resolution": 1.42,

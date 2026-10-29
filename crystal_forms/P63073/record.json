@@ -7,8 +7,8 @@
  "name": "Eukaryotic translation initiation factor 4E",
  "clusters": [
   {
-   "cluster_id": 1070,
-   "n_members": 16,
+   "cluster_id": 947,
+   "n_members": 18,
    "reference": "5M7X",
    "reference_resolution": 1.68,
    "space_group": "P 1",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 15,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 2
    },
    "n_pairs": 120,
    "rmsd_to_reference": {

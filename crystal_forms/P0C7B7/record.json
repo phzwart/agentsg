@@ -7,7 +7,7 @@
  "name": "Cys-loop ligand-gated ion channel",
  "clusters": [
   {
-   "cluster_id": 1520,
+   "cluster_id": 1559,
    "n_members": 12,
    "reference": "4TWD",
    "reference_resolution": 3.2,

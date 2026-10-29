@@ -7,8 +7,8 @@
  "name": "Decaprenylphosphoryl-beta-D-ribose oxidase",
  "clusters": [
   {
-   "cluster_id": 876,
-   "n_members": 19,
+   "cluster_id": 753,
+   "n_members": 22,
    "reference": "4P8N",
    "reference_resolution": 1.79,
    "space_group": "P 1 21 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 18,
+    "placed": 21,
     "reference": 1
    },
-   "n_pairs": 171,
+   "n_pairs": 231,
    "rmsd_to_reference": {
-    "median": 0.657,
-    "q25": 0.364,
-    "q75": 0.835,
-    "p5": 0.264,
-    "p95": 1.141,
-    "max": 1.253,
-    "n_pairs": 18
+    "median": 0.685,
+    "q25": 0.444,
+    "q75": 0.963,
+    "p5": 0.274,
+    "p95": 1.765,
+    "max": 2.557,
+    "n_pairs": 21
    },
    "pairwise_frame_rmsd": {
-    "median": 0.603,
-    "q25": 0.453,
-    "q75": 0.779,
-    "p5": 0.32,
-    "p95": 1.051,
-    "max": 1.275,
-    "n_pairs": 171
+    "median": 0.722,
+    "q25": 0.497,
+    "q75": 1.173,
+    "p5": 0.326,
+    "p95": 2.209,
+    "max": 2.713,
+    "n_pairs": 231
    },
    "pairwise_fit_rmsd": {
-    "median": 0.389,
-    "q25": 0.324,
-    "q75": 0.453,
-    "p5": 0.25,
-    "p95": 0.565,
-    "max": 0.834,
-    "n_pairs": 171
+    "median": 0.424,
+    "q25": 0.352,
+    "q75": 0.518,
+    "p5": 0.26,
+    "p95": 0.773,
+    "max": 0.913,
+    "n_pairs": 231
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -7,7 +7,7 @@
  "name": "Inosine-5'-monophosphate dehydrogenase",
  "clusters": [
   {
-   "cluster_id": 1219,
+   "cluster_id": 1251,
    "n_members": 14,
    "reference": "6D4R",
    "reference_resolution": 1.34,

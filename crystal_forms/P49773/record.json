@@ -7,8 +7,8 @@
  "name": "Adenosine 5'-monophosphoramidase HINT1",
  "clusters": [
   {
-   "cluster_id": 287,
-   "n_members": 44,
+   "cluster_id": 285,
+   "n_members": 45,
    "reference": "6J64",
    "reference_resolution": 0.95,
    "space_group": "C 1 2 1",
@@ -22,7 +22,7 @@
    ],
    "status_counts": {
     "placed": 42,
-    "different_space_group": 1,
+    "different_space_group": 2,
     "reference": 1
    },
    "n_pairs": 903,

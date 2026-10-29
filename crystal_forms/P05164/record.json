@@ -7,7 +7,7 @@
  "name": "Myeloperoxidase",
  "clusters": [
   {
-   "cluster_id": 1246,
+   "cluster_id": 1275,
    "n_members": 14,
    "reference": "5FIW",
    "reference_resolution": 1.7,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1501,
+   "cluster_id": 1537,
    "n_members": 12,
    "reference": "1D2V",
    "reference_resolution": 1.75,

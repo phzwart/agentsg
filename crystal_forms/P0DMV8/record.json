@@ -7,8 +7,8 @@
  "name": "Heat shock 70 kDa protein 1A",
  "clusters": [
   {
-   "cluster_id": 977,
-   "n_members": 17,
+   "cluster_id": 834,
+   "n_members": 20,
    "reference": "5AQY",
    "reference_resolution": 1.56,
    "space_group": "P 21 21 21",
@@ -22,41 +22,41 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 16
+    "placed": 19
    },
-   "n_pairs": 136,
+   "n_pairs": 190,
    "rmsd_to_reference": {
-    "median": 0.902,
-    "q25": 0.897,
-    "q75": 0.91,
-    "p5": 0.817,
-    "p95": 0.916,
-    "max": 0.918,
-    "n_pairs": 16
+    "median": 0.905,
+    "q25": 0.898,
+    "q75": 0.915,
+    "p5": 0.864,
+    "p95": 9.223,
+    "max": 45.81,
+    "n_pairs": 19
    },
    "pairwise_frame_rmsd": {
-    "median": 0.099,
-    "q25": 0.062,
-    "q75": 0.175,
-    "p5": 0.038,
-    "p95": 0.843,
-    "max": 0.854,
-    "n_pairs": 136
+    "median": 0.156,
+    "q25": 0.069,
+    "q75": 5.36,
+    "p5": 0.041,
+    "p95": 45.194,
+    "max": 45.559,
+    "n_pairs": 190
    },
    "pairwise_fit_rmsd": {
-    "median": 0.096,
-    "q25": 0.061,
-    "q75": 0.169,
-    "p5": 0.037,
-    "p95": 0.473,
-    "max": 0.492,
-    "n_pairs": 136
+    "median": 0.15,
+    "q25": 0.067,
+    "q75": 0.679,
+    "p5": 0.04,
+    "p95": 0.829,
+    "max": 0.843,
+    "n_pairs": 190
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1052,
+   "cluster_id": 1081,
    "n_members": 16,
    "reference": "5AQX",
    "reference_resolution": 2.12,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1374,
+   "cluster_id": 1402,
    "n_members": 13,
    "reference": "5BN8",
    "reference_resolution": 1.34,

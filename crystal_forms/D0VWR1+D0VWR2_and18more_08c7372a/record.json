@@ -26,7 +26,7 @@
  "name": "Photosystem II CP47 reaction center protein",
  "clusters": [
   {
-   "cluster_id": 435,
+   "cluster_id": 440,
    "n_members": 32,
    "reference": "4UB6",
    "reference_resolution": 1.95,

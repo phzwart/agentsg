@@ -7,7 +7,7 @@
  "name": "Replicase polyprotein 1ab",
  "clusters": [
   {
-   "cluster_id": 464,
+   "cluster_id": 476,
    "n_members": 31,
    "reference": "6WCO",
    "reference_resolution": 1.48,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1372,
+   "cluster_id": 1400,
    "n_members": 13,
    "reference": "2Z9K",
    "reference_resolution": 1.85,

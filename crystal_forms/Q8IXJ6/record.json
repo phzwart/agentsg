@@ -7,50 +7,50 @@
  "name": "NAD-dependent protein deacetylase sirtuin-2",
  "clusters": [
   {
-   "cluster_id": 374,
-   "n_members": 37,
-   "reference": "9FDR",
-   "reference_resolution": 1.25,
+   "cluster_id": 355,
+   "n_members": 39,
+   "reference": "9S1Z",
+   "reference_resolution": 1.1,
    "space_group": "P 1 21 1",
    "reference_cell": [
-    35.932,
-    73.251,
-    54.76,
+    34.827,
+    72.743,
+    54.89,
     90.0,
-    95.52,
+    91.31,
     90.0
    ],
    "status_counts": {
-    "placed": 36,
+    "placed": 38,
     "reference": 1
    },
-   "n_pairs": 666,
+   "n_pairs": 741,
    "rmsd_to_reference": {
-    "median": 0.952,
-    "q25": 0.648,
-    "q75": 2.075,
-    "p5": 0.351,
-    "p95": 2.805,
-    "max": 2.859,
-    "n_pairs": 36
+    "median": 1.928,
+    "q25": 1.735,
+    "q75": 2.212,
+    "p5": 1.502,
+    "p95": 3.06,
+    "max": 3.062,
+    "n_pairs": 38
    },
    "pairwise_frame_rmsd": {
-    "median": 1.159,
-    "q25": 0.77,
-    "q75": 2.482,
-    "p5": 0.42,
-    "p95": 3.152,
-    "max": 3.497,
-    "n_pairs": 666
+    "median": 1.268,
+    "q25": 0.723,
+    "q75": 2.271,
+    "p5": 0.406,
+    "p95": 2.809,
+    "max": 3.579,
+    "n_pairs": 741
    },
    "pairwise_fit_rmsd": {
-    "median": 0.804,
-    "q25": 0.595,
-    "q75": 1.431,
-    "p5": 0.343,
-    "p95": 1.906,
-    "max": 2.127,
-    "n_pairs": 666
+    "median": 0.852,
+    "q25": 0.611,
+    "q75": 1.509,
+    "p5": 0.349,
+    "p95": 1.945,
+    "max": 2.657,
+    "n_pairs": 741
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -7,7 +7,7 @@
  "name": "Beta-secretase 1",
  "clusters": [
   {
-   "cluster_id": 74,
+   "cluster_id": 76,
    "n_members": 115,
    "reference": "6EJ2",
    "reference_resolution": 1.46,
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 169,
+   "cluster_id": 168,
    "n_members": 69,
    "reference": "4LXA",
    "reference_resolution": 1.95,
@@ -155,7 +155,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 275,
+   "cluster_id": 280,
    "n_members": 46,
    "reference": "6EQM",
    "reference_resolution": 1.35,
@@ -204,7 +204,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 398,
+   "cluster_id": 402,
    "n_members": 35,
    "reference": "4FM7",
    "reference_resolution": 1.56,
@@ -253,7 +253,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 490,
+   "cluster_id": 498,
    "n_members": 30,
    "reference": "4FGX",
    "reference_resolution": 1.59,
@@ -302,7 +302,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 682,
+   "cluster_id": 701,
    "n_members": 23,
    "reference": "4L7G",
    "reference_resolution": 1.38,
@@ -351,7 +351,56 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1732,
+   "cluster_id": 1315,
+   "n_members": 14,
+   "reference": "3MSJ",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    229.196,
+    98.829,
+    63.132,
+    90.0,
+    103.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 3.878,
+    "q25": 1.178,
+    "q75": 4.343,
+    "p5": 0.644,
+    "p95": 4.58,
+    "max": 4.64,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.28,
+    "q25": 3.55,
+    "q75": 6.781,
+    "p5": 1.27,
+    "p95": 9.237,
+    "max": 9.958,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.645,
+    "q25": 0.544,
+    "q75": 0.728,
+    "p5": 0.471,
+    "p95": 0.927,
+    "max": 1.656,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1786,
    "n_members": 11,
    "reference": "2G94",
    "reference_resolution": 1.86,

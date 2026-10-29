@@ -7,7 +7,7 @@
  "name": "histone deacetylase",
  "clusters": [
   {
-   "cluster_id": 483,
+   "cluster_id": 492,
    "n_members": 30,
    "reference": "6HSH",
    "reference_resolution": 1.545,
@@ -52,7 +52,7 @@
     "max": 0.599,
     "n_pairs": 435
    },
-   "n_low_margin": 0,
+   "n_low_margin": 29,
    "n_via_neighbour": 0
   }
  ]

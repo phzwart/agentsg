@@ -7,7 +7,7 @@
  "name": "Neutrophil gelatinase-associated lipocalin",
  "clusters": [
   {
-   "cluster_id": 370,
+   "cluster_id": 375,
    "n_members": 37,
    "reference": "8UYN",
    "reference_resolution": 2.0,
@@ -21,38 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 31,
+    "placed": 32,
     "different_space_group": 4,
-    "too_few_paired_atoms": 1,
     "reference": 1
    },
-   "n_pairs": 496,
+   "n_pairs": 528,
    "rmsd_to_reference": {
-    "median": 0.744,
-    "q25": 0.641,
-    "q75": 0.841,
+    "median": 0.748,
+    "q25": 0.654,
+    "q75": 0.854,
     "p5": 0.48,
-    "p95": 1.249,
-    "max": 1.761,
-    "n_pairs": 31
+    "p95": 1.58,
+    "max": 2.225,
+    "n_pairs": 32
    },
    "pairwise_frame_rmsd": {
-    "median": 0.779,
-    "q25": 0.506,
-    "q75": 1.195,
-    "p5": 0.296,
-    "p95": 2.176,
-    "max": 3.334,
-    "n_pairs": 496
+    "median": 0.819,
+    "q25": 0.523,
+    "q75": 1.335,
+    "p5": 0.298,
+    "p95": 5.83,
+    "max": 7.584,
+    "n_pairs": 528
    },
    "pairwise_fit_rmsd": {
-    "median": 0.264,
-    "q25": 0.224,
-    "q75": 0.304,
-    "p5": 0.173,
-    "p95": 1.222,
+    "median": 0.267,
+    "q25": 0.225,
+    "q75": 0.307,
+    "p5": 0.174,
+    "p95": 1.221,
     "max": 1.315,
-    "n_pairs": 496
+    "n_pairs": 528
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

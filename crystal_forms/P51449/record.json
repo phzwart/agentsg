@@ -7,57 +7,57 @@
  "name": "Nuclear receptor ROR-gamma",
  "clusters": [
   {
-   "cluster_id": 473,
-   "n_members": 31,
-   "reference": "4WQP",
-   "reference_resolution": 1.99,
+   "cluster_id": 364,
+   "n_members": 38,
+   "reference": "5M96",
+   "reference_resolution": 1.77,
    "space_group": "P 61",
    "reference_cell": [
-    99.735,
-    99.735,
-    129.606,
+    100.017,
+    100.017,
+    115.686,
     90.0,
     90.0,
     120.0
    ],
    "status_counts": {
-    "placed": 25,
-    "reference": 1,
-    "different_space_group": 5
+    "different_space_group": 10,
+    "placed": 27,
+    "reference": 1
    },
-   "n_pairs": 325,
+   "n_pairs": 378,
    "rmsd_to_reference": {
-    "median": 1.652,
-    "q25": 0.718,
-    "q75": 2.763,
-    "p5": 0.422,
-    "p95": 45.483,
-    "max": 49.537,
-    "n_pairs": 25
+    "median": 2.796,
+    "q25": 2.534,
+    "q75": 47.429,
+    "p5": 2.141,
+    "p95": 72.14,
+    "max": 72.772,
+    "n_pairs": 27
    },
    "pairwise_frame_rmsd": {
-    "median": 2.228,
-    "q25": 1.191,
-    "q75": 4.856,
-    "p5": 0.566,
-    "p95": 48.755,
-    "max": 51.895,
-    "n_pairs": 325
+    "median": 40.361,
+    "q25": 1.923,
+    "q75": 66.727,
+    "p5": 0.647,
+    "p95": 84.143,
+    "max": 119.443,
+    "n_pairs": 378
    },
    "pairwise_fit_rmsd": {
-    "median": 0.567,
-    "q25": 0.462,
-    "q75": 1.624,
-    "p5": 0.354,
-    "p95": 20.319,
-    "max": 20.404,
-    "n_pairs": 325
+    "median": 0.676,
+    "q25": 0.52,
+    "q75": 2.256,
+    "p5": 0.356,
+    "p95": 20.234,
+    "max": 20.379,
+    "n_pairs": 378
    },
-   "n_low_margin": 12,
-   "n_via_neighbour": 0
+   "n_low_margin": 20,
+   "n_via_neighbour": 10
   },
   {
-   "cluster_id": 644,
+   "cluster_id": 658,
    "n_members": 24,
    "reference": "7NPC",
    "reference_resolution": 1.47,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 828,
+   "cluster_id": 843,
    "n_members": 20,
    "reference": "6LO9",
    "reference_resolution": 1.8600494706,

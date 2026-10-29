@@ -7,8 +7,8 @@
  "name": "Endoplasmic reticulum aminopeptidase 1",
  "clusters": [
   {
-   "cluster_id": 1321,
-   "n_members": 14,
+   "cluster_id": 1042,
+   "n_members": 17,
    "reference": "9GK6",
    "reference_resolution": 1.327,
    "space_group": "P 21 21 2",
@@ -21,36 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 15,
+    "different_space_group": 1,
     "reference": 1
    },
-   "n_pairs": 91,
+   "n_pairs": 120,
    "rmsd_to_reference": {
-    "median": 0.439,
-    "q25": 0.315,
-    "q75": 12.155,
-    "p5": 0.249,
-    "p95": 13.46,
-    "max": 13.474,
-    "n_pairs": 13
+    "median": 0.46,
+    "q25": 0.332,
+    "q75": 13.42,
+    "p5": 0.263,
+    "p95": 15.061,
+    "max": 15.103,
+    "n_pairs": 15
    },
    "pairwise_frame_rmsd": {
-    "median": 0.719,
-    "q25": 0.483,
-    "q75": 13.405,
-    "p5": 0.209,
-    "p95": 13.536,
-    "max": 13.582,
-    "n_pairs": 91
+    "median": 12.223,
+    "q25": 0.544,
+    "q75": 13.558,
+    "p5": 0.229,
+    "p95": 18.491,
+    "max": 19.732,
+    "n_pairs": 120
    },
    "pairwise_fit_rmsd": {
-    "median": 0.545,
-    "q25": 0.304,
-    "q75": 13.088,
-    "p5": 0.126,
-    "p95": 13.145,
+    "median": 0.543,
+    "q25": 0.371,
+    "q75": 13.082,
+    "p5": 0.132,
+    "p95": 13.142,
     "max": 13.15,
-    "n_pairs": 91
+    "n_pairs": 120
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

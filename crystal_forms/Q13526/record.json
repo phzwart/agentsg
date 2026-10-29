@@ -7,7 +7,7 @@
  "name": "Peptidyl-prolyl cis-trans isomerase NIMA-interacting 1",
  "clusters": [
   {
-   "cluster_id": 106,
+   "cluster_id": 108,
    "n_members": 93,
    "reference": "3TC5",
    "reference_resolution": 1.4,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 738,
+   "cluster_id": 756,
    "n_members": 22,
    "reference": "3I6C",
    "reference_resolution": 1.3,

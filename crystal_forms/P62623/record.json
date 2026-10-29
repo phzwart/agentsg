@@ -7,8 +7,8 @@
  "name": "4-hydroxy-3-methylbut-2-enyl diphosphate reductase",
  "clusters": [
   {
-   "cluster_id": 645,
-   "n_members": 24,
+   "cluster_id": 622,
+   "n_members": 25,
    "reference": "4H4D",
    "reference_resolution": 1.35,
    "space_group": "P 21 21 21",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 23,
+    "placed": 24,
     "reference": 1
    },
-   "n_pairs": 276,
+   "n_pairs": 300,
    "rmsd_to_reference": {
-    "median": 0.439,
-    "q25": 0.303,
-    "q75": 0.531,
+    "median": 0.449,
+    "q25": 0.304,
+    "q75": 0.544,
     "p5": 0.18,
-    "p95": 0.726,
+    "p95": 3.241,
     "max": 3.745,
-    "n_pairs": 23
+    "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 0.486,
-    "q25": 0.336,
-    "q75": 0.733,
-    "p5": 0.211,
-    "p95": 2.258,
-    "max": 2.732,
-    "n_pairs": 276
+    "median": 0.52,
+    "q25": 0.349,
+    "q75": 0.816,
+    "p5": 0.213,
+    "p95": 2.495,
+    "max": 3.276,
+    "n_pairs": 300
    },
    "pairwise_fit_rmsd": {
-    "median": 0.205,
-    "q25": 0.172,
-    "q75": 0.235,
-    "p5": 0.129,
-    "p95": 0.539,
-    "max": 0.579,
-    "n_pairs": 276
+    "median": 0.208,
+    "q25": 0.175,
+    "q75": 0.247,
+    "p5": 0.131,
+    "p95": 0.563,
+    "max": 0.588,
+    "n_pairs": 300
    },
-   "n_low_margin": 23,
+   "n_low_margin": 24,
    "n_via_neighbour": 0
   }
  ]

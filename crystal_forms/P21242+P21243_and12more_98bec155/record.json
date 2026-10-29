@@ -20,7 +20,7 @@
  "name": "Probable proteasome subunit alpha type-7",
  "clusters": [
   {
-   "cluster_id": 20,
+   "cluster_id": 22,
    "n_members": 256,
    "reference": "1RYP",
    "reference_resolution": 1.9,

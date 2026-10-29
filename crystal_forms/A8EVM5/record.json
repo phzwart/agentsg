@@ -7,7 +7,7 @@
  "name": "Ion transport protein",
  "clusters": [
   {
-   "cluster_id": 217,
+   "cluster_id": 218,
    "n_members": 55,
    "reference": "6MWD",
    "reference_resolution": 2.327,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1103,
+   "cluster_id": 1129,
    "n_members": 15,
    "reference": "5KLB",
    "reference_resolution": 2.7,

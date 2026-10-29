@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 109,
+   "cluster_id": 111,
    "n_members": 91,
    "reference": "5YCE",
    "reference_resolution": 0.77,
@@ -106,8 +106,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 167,
-   "n_members": 69,
+   "cluster_id": 144,
+   "n_members": 78,
    "reference": "1U7R",
    "reference_resolution": 1.15,
    "space_group": "P 21 21 21",
@@ -120,43 +120,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 68,
+    "placed": 77,
     "reference": 1
    },
-   "n_pairs": 2346,
+   "n_pairs": 3003,
    "rmsd_to_reference": {
-    "median": 0.708,
-    "q25": 0.628,
-    "q75": 0.838,
-    "p5": 0.538,
-    "p95": 1.321,
-    "max": 1.76,
-    "n_pairs": 68
+    "median": 0.716,
+    "q25": 0.636,
+    "q75": 1.232,
+    "p5": 0.541,
+    "p95": 24.32,
+    "max": 24.335,
+    "n_pairs": 77
    },
    "pairwise_frame_rmsd": {
-    "median": 1.132,
-    "q25": 0.769,
-    "q75": 1.523,
-    "p5": 0.437,
-    "p95": 2.487,
-    "max": 4.422,
-    "n_pairs": 2346
+    "median": 1.335,
+    "q25": 0.854,
+    "q75": 2.464,
+    "p5": 0.462,
+    "p95": 23.45,
+    "max": 23.974,
+    "n_pairs": 3003
    },
    "pairwise_fit_rmsd": {
-    "median": 0.478,
-    "q25": 0.395,
-    "q75": 0.563,
-    "p5": 0.276,
-    "p95": 1.02,
-    "max": 1.243,
-    "n_pairs": 2346
+    "median": 0.514,
+    "q25": 0.416,
+    "q75": 1.009,
+    "p5": 0.29,
+    "p95": 7.266,
+    "max": 7.346,
+    "n_pairs": 3003
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   },
   {
-   "cluster_id": 1664,
-   "n_members": 11,
+   "cluster_id": 1529,
+   "n_members": 12,
    "reference": "1J3F",
    "reference_resolution": 1.45,
    "space_group": "P 21 21 21",
@@ -169,36 +169,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 11,
     "reference": 1
    },
-   "n_pairs": 55,
+   "n_pairs": 66,
    "rmsd_to_reference": {
-    "median": 1.023,
-    "q25": 0.892,
-    "q75": 1.523,
-    "p5": 0.739,
-    "p95": 2.295,
-    "max": 2.66,
-    "n_pairs": 10
+    "median": 1.103,
+    "q25": 0.907,
+    "q75": 1.719,
+    "p5": 0.743,
+    "p95": 15.461,
+    "max": 28.261,
+    "n_pairs": 11
    },
    "pairwise_frame_rmsd": {
-    "median": 1.167,
-    "q25": 0.851,
-    "q75": 1.59,
-    "p5": 0.504,
-    "p95": 2.748,
-    "max": 2.938,
-    "n_pairs": 55
+    "median": 1.274,
+    "q25": 0.95,
+    "q75": 2.642,
+    "p5": 0.526,
+    "p95": 28.921,
+    "max": 29.181,
+    "n_pairs": 66
    },
    "pairwise_fit_rmsd": {
-    "median": 0.692,
-    "q25": 0.575,
-    "q75": 0.979,
-    "p5": 0.324,
-    "p95": 2.295,
-    "max": 2.342,
-    "n_pairs": 55
+    "median": 0.784,
+    "q25": 0.611,
+    "q75": 2.222,
+    "p5": 0.336,
+    "p95": 3.892,
+    "max": 4.214,
+    "n_pairs": 66
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

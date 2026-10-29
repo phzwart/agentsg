@@ -7,7 +7,7 @@
  "name": "Kelch-like ECH-associated protein 1",
  "clusters": [
   {
-   "cluster_id": 686,
+   "cluster_id": 704,
    "n_members": 23,
    "reference": "8PKW",
    "reference_resolution": 1.54,
@@ -56,8 +56,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1296,
-   "n_members": 14,
+   "cluster_id": 1207,
+   "n_members": 15,
    "reference": "3ZGD",
    "reference_resolution": 1.98,
    "space_group": "P 21 21 21",
@@ -71,7 +71,8 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 13
+    "placed": 13,
+    "different_space_group": 1
    },
    "n_pairs": 91,
    "rmsd_to_reference": {
@@ -101,11 +102,11 @@
     "max": 0.495,
     "n_pairs": 91
    },
-   "n_low_margin": 13,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1297,
+   "cluster_id": 1327,
    "n_members": 14,
    "reference": "9R1Z",
    "reference_resolution": 1.5,
@@ -154,7 +155,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1757,
+   "cluster_id": 1806,
    "n_members": 11,
    "reference": "9PHR",
    "reference_resolution": 1.801,

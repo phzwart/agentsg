@@ -7,7 +7,7 @@
  "name": "Beta-lactamase",
  "clusters": [
   {
-   "cluster_id": 1013,
+   "cluster_id": 1041,
    "n_members": 17,
    "reference": "6MZ2",
    "reference_resolution": 0.83,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1610,
+   "cluster_id": 1651,
    "n_members": 12,
    "reference": "8DON",
    "reference_resolution": 1.36,
@@ -101,7 +101,7 @@
     "max": 1.583,
     "n_pairs": 66
    },
-   "n_low_margin": 0,
+   "n_low_margin": 3,
    "n_via_neighbour": 0
   }
  ]

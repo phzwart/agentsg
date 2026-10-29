@@ -7,7 +7,7 @@
  "name": "Exoglucanase 1",
  "clusters": [
   {
-   "cluster_id": 735,
+   "cluster_id": 750,
    "n_members": 22,
    "reference": "2V3I",
    "reference_resolution": 1.05,
@@ -52,7 +52,7 @@
     "max": 0.346,
     "n_pairs": 231
    },
-   "n_low_margin": 21,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

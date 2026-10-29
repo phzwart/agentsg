@@ -7,8 +7,8 @@
  "name": "Diadenylate cyclase",
  "clusters": [
   {
-   "cluster_id": 1087,
-   "n_members": 16,
+   "cluster_id": 1038,
+   "n_members": 17,
    "reference": "8C4P",
    "reference_resolution": 1.2,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 16,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 0.772,
-    "q25": 0.614,
-    "q75": 2.248,
+    "median": 0.855,
+    "q25": 0.625,
+    "q75": 2.333,
     "p5": 0.469,
-    "p95": 2.886,
+    "p95": 2.885,
     "max": 2.898,
-    "n_pairs": 15
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 1.263,
-    "q25": 0.763,
-    "q75": 2.137,
-    "p5": 0.322,
-    "p95": 2.891,
-    "max": 3.646,
-    "n_pairs": 120
+    "median": 1.333,
+    "q25": 0.809,
+    "q75": 2.237,
+    "p5": 0.348,
+    "p95": 3.44,
+    "max": 4.32,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.235,
-    "q25": 0.201,
-    "q75": 0.444,
-    "p5": 0.149,
-    "p95": 0.725,
-    "max": 1.425,
-    "n_pairs": 120
+    "median": 0.245,
+    "q25": 0.205,
+    "q75": 0.634,
+    "p5": 0.151,
+    "p95": 1.319,
+    "max": 2.475,
+    "n_pairs": 136
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

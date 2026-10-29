@@ -7,53 +7,53 @@
  "name": "Ubiquitin C-terminal hydrolase 7",
  "clusters": [
   {
-   "cluster_id": 742,
-   "n_members": 22,
-   "reference": "4M5X",
-   "reference_resolution": 2.187,
+   "cluster_id": 540,
+   "n_members": 28,
+   "reference": "5N9T",
+   "reference_resolution": 1.73,
    "space_group": "P 1 21 1",
    "reference_cell": [
-    74.951,
-    67.579,
-    76.805,
+    75.507,
+    67.623,
+    81.046,
     90.0,
-    96.21,
+    105.9,
     90.0
    ],
    "status_counts": {
-    "placed": 21,
+    "placed": 27,
     "reference": 1
    },
-   "n_pairs": 231,
+   "n_pairs": 378,
    "rmsd_to_reference": {
-    "median": 1.644,
-    "q25": 1.324,
-    "q75": 21.828,
-    "p5": 0.906,
-    "p95": 35.451,
-    "max": 36.291,
-    "n_pairs": 21
+    "median": 41.866,
+    "q25": 41.35,
+    "q75": 42.56,
+    "p5": 0.746,
+    "p95": 52.803,
+    "max": 54.648,
+    "n_pairs": 27
    },
    "pairwise_frame_rmsd": {
-    "median": 21.631,
-    "q25": 3.134,
-    "q75": 27.741,
-    "p5": 1.544,
-    "p95": 36.824,
-    "max": 38.656,
-    "n_pairs": 231
+    "median": 41.125,
+    "q25": 23.298,
+    "q75": 53.091,
+    "p5": 1.355,
+    "p95": 74.59,
+    "max": 82.921,
+    "n_pairs": 378
    },
    "pairwise_fit_rmsd": {
-    "median": 1.536,
-    "q25": 0.752,
-    "q75": 21.282,
-    "p5": 0.548,
-    "p95": 23.249,
-    "max": 23.51,
-    "n_pairs": 231
+    "median": 1.503,
+    "q25": 0.836,
+    "q75": 23.039,
+    "p5": 0.576,
+    "p95": 23.429,
+    "max": 23.686,
+    "n_pairs": 378
    },
-   "n_low_margin": 21,
-   "n_via_neighbour": 0
+   "n_low_margin": 20,
+   "n_via_neighbour": 23
   }
  ]
 }

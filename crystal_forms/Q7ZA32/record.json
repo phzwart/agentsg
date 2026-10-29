@@ -7,8 +7,8 @@
  "name": "Pyranose 2-oxidase",
  "clusters": [
   {
-   "cluster_id": 1779,
-   "n_members": 11,
+   "cluster_id": 758,
+   "n_members": 22,
    "reference": "4MOR",
    "reference_resolution": 1.5,
    "space_group": "P 1 21 1",
@@ -22,6 +22,7 @@
    ],
    "status_counts": {
     "no_shared_accession": 1,
+    "different_space_group": 11,
     "placed": 9,
     "reference": 1
    },

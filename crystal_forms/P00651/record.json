@@ -7,7 +7,7 @@
  "name": "Guanyl-specific ribonuclease T1",
  "clusters": [
   {
-   "cluster_id": 300,
+   "cluster_id": 306,
    "n_members": 42,
    "reference": "1I0V",
    "reference_resolution": 1.234,
@@ -27,33 +27,33 @@
    },
    "n_pairs": 666,
    "rmsd_to_reference": {
-    "median": 6.146,
+    "median": 1.656,
     "q25": 0.517,
-    "q75": 24.422,
+    "q75": 6.161,
     "p5": 0.146,
-    "p95": 26.568,
-    "max": 26.637,
+    "p95": 6.522,
+    "max": 25.514,
     "n_pairs": 36
    },
    "pairwise_frame_rmsd": {
-    "median": 6.262,
+    "median": 6.171,
     "q25": 1.063,
-    "q75": 24.952,
+    "q75": 6.36,
     "p5": 0.227,
-    "p95": 26.316,
-    "max": 26.618,
+    "p95": 25.838,
+    "max": 27.199,
     "n_pairs": 666
    },
    "pairwise_fit_rmsd": {
-    "median": 5.952,
+    "median": 0.519,
     "q25": 0.287,
-    "q75": 5.99,
+    "q75": 5.98,
     "p5": 0.141,
-    "p95": 13.853,
-    "max": 13.937,
+    "p95": 6.025,
+    "max": 6.054,
     "n_pairs": 666
    },
-   "n_low_margin": 9,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

@@ -7,7 +7,7 @@
  "name": "Protein S100-B",
  "clusters": [
   {
-   "cluster_id": 965,
+   "cluster_id": 992,
    "n_members": 17,
    "reference": "5ER5",
    "reference_resolution": 1.26,

@@ -7,8 +7,8 @@
  "name": "Spectrin alpha chain, non-erythrocytic 1",
  "clusters": [
   {
-   "cluster_id": 635,
-   "n_members": 24,
+   "cluster_id": 529,
+   "n_members": 28,
    "reference": "3M0R",
    "reference_resolution": 1.1,
    "space_group": "P 21 21 21",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 23,
+    "placed": 27,
     "reference": 1
    },
-   "n_pairs": 276,
+   "n_pairs": 378,
    "rmsd_to_reference": {
-    "median": 0.613,
-    "q25": 0.479,
-    "q75": 0.756,
-    "p5": 0.318,
-    "p95": 1.342,
-    "max": 1.388,
-    "n_pairs": 23
+    "median": 0.648,
+    "q25": 0.497,
+    "q75": 1.163,
+    "p5": 0.32,
+    "p95": 2.868,
+    "max": 2.917,
+    "n_pairs": 27
    },
    "pairwise_frame_rmsd": {
-    "median": 0.629,
-    "q25": 0.495,
-    "q75": 0.804,
-    "p5": 0.346,
-    "p95": 1.18,
-    "max": 1.452,
-    "n_pairs": 276
+    "median": 0.728,
+    "q25": 0.545,
+    "q75": 2.013,
+    "p5": 0.365,
+    "p95": 2.999,
+    "max": 4.549,
+    "n_pairs": 378
    },
    "pairwise_fit_rmsd": {
-    "median": 0.331,
-    "q25": 0.257,
-    "q75": 0.414,
-    "p5": 0.17,
-    "p95": 0.536,
-    "max": 1.273,
-    "n_pairs": 276
+    "median": 0.38,
+    "q25": 0.284,
+    "q75": 0.485,
+    "p5": 0.183,
+    "p95": 1.028,
+    "max": 3.06,
+    "n_pairs": 378
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 4
   }
  ]
 }

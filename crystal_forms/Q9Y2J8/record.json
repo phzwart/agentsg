@@ -7,7 +7,7 @@
  "name": "Protein-arginine deiminase type-2",
  "clusters": [
   {
-   "cluster_id": 656,
+   "cluster_id": 670,
    "n_members": 24,
    "reference": "4N2K",
    "reference_resolution": 1.57,

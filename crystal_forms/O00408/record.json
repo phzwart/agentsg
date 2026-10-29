@@ -7,8 +7,8 @@
  "name": "cGMP-dependent 3',5'-cyclic phosphodiesterase",
  "clusters": [
   {
-   "cluster_id": 594,
-   "n_members": 25,
+   "cluster_id": 576,
+   "n_members": 26,
    "reference": "5U00",
    "reference_resolution": 1.41,
    "space_group": "P 1",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 24,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 1
    },
    "n_pairs": 300,
    "rmsd_to_reference": {
@@ -30,17 +31,17 @@
     "q25": 0.173,
     "q75": 19.963,
     "p5": 0.133,
-    "p95": 22.936,
-    "max": 23.334,
+    "p95": 22.738,
+    "max": 22.968,
     "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 19.973,
+    "median": 19.989,
     "q25": 0.281,
-    "q75": 22.724,
+    "q75": 22.02,
     "p5": 0.184,
-    "p95": 35.817,
-    "max": 45.552,
+    "p95": 40.096,
+    "max": 53.143,
     "n_pairs": 300
    },
    "pairwise_fit_rmsd": {

@@ -8,7 +8,7 @@
  "name": "Bile acid receptor",
  "clusters": [
   {
-   "cluster_id": 553,
+   "cluster_id": 565,
    "n_members": 27,
    "reference": "5Q0P",
    "reference_resolution": 1.8,
@@ -58,7 +58,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1580,
+   "cluster_id": 1621,
    "n_members": 12,
    "reference": "5Q0K",
    "reference_resolution": 1.8,

@@ -9,8 +9,8 @@
  "name": "ATP synthase F(1) complex subunit alpha, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 1233,
-   "n_members": 14,
+   "cluster_id": 1147,
+   "n_members": 15,
    "reference": "1W0J",
    "reference_resolution": 2.2,
    "space_group": "P 21 21 21",
@@ -23,37 +23,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 11,
     "reference": 1,
     "different_space_group": 3
    },
-   "n_pairs": 55,
+   "n_pairs": 66,
    "rmsd_to_reference": {
-    "median": 0.919,
-    "q25": 0.553,
-    "q75": 1.007,
-    "p5": 0.463,
-    "p95": 1.327,
-    "max": 1.434,
-    "n_pairs": 10
+    "median": 0.987,
+    "q25": 0.59,
+    "q75": 1.102,
+    "p5": 0.467,
+    "p95": 2.983,
+    "max": 4.533,
+    "n_pairs": 11
    },
    "pairwise_frame_rmsd": {
-    "median": 1.135,
-    "q25": 0.819,
-    "q75": 1.41,
-    "p5": 0.497,
-    "p95": 1.659,
-    "max": 1.892,
-    "n_pairs": 55
+    "median": 1.236,
+    "q25": 0.841,
+    "q75": 1.574,
+    "p5": 0.524,
+    "p95": 3.225,
+    "max": 3.635,
+    "n_pairs": 66
    },
    "pairwise_fit_rmsd": {
-    "median": 0.329,
-    "q25": 0.29,
-    "q75": 0.357,
-    "p5": 0.088,
+    "median": 0.319,
+    "q25": 0.265,
+    "q75": 0.356,
+    "p5": 0.004,
     "p95": 0.569,
     "max": 0.581,
-    "n_pairs": 55
+    "n_pairs": 66
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

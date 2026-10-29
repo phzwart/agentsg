@@ -7,7 +7,7 @@
  "name": "Oxidized purine nucleoside triphosphate hydrolase",
  "clusters": [
   {
-   "cluster_id": 323,
+   "cluster_id": 329,
    "n_members": 41,
    "reference": "5WS7",
    "reference_resolution": 1.0,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 328,
+   "cluster_id": 335,
    "n_members": 40,
    "reference": "7N03",
    "reference_resolution": 1.13,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 415,
+   "cluster_id": 421,
    "n_members": 34,
    "reference": "6F22",
    "reference_resolution": 1.55,

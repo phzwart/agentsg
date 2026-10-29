@@ -7,7 +7,7 @@
  "name": "Aspartate 1-decarboxylase",
  "clusters": [
   {
-   "cluster_id": 1368,
+   "cluster_id": 1396,
    "n_members": 13,
    "reference": "1PQH",
    "reference_resolution": 1.29,
@@ -52,7 +52,7 @@
     "max": 2.371,
     "n_pairs": 78
    },
-   "n_low_margin": 0,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

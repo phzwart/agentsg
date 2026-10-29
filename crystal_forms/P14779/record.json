@@ -7,7 +7,7 @@
  "name": "Bifunctional cytochrome P450/NADPH--P450 reductase",
  "clusters": [
   {
-   "cluster_id": 76,
+   "cluster_id": 77,
    "n_members": 113,
    "reference": "2IJ2",
    "reference_resolution": 1.2,
@@ -56,8 +56,8 @@
    "n_via_neighbour": 34
   },
   {
-   "cluster_id": 395,
-   "n_members": 35,
+   "cluster_id": 299,
+   "n_members": 43,
    "reference": "6K58",
    "reference_resolution": 1.41,
    "space_group": "P 21 21 21",
@@ -70,39 +70,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 33,
+    "placed": 41,
     "different_space_group": 1,
     "reference": 1
    },
-   "n_pairs": 561,
+   "n_pairs": 861,
    "rmsd_to_reference": {
-    "median": 11.047,
-    "q25": 10.817,
-    "q75": 11.717,
-    "p5": 0.527,
-    "p95": 11.891,
-    "max": 12.404,
-    "n_pairs": 33
+    "median": 11.285,
+    "q25": 10.867,
+    "q75": 11.881,
+    "p5": 0.75,
+    "p95": 29.583,
+    "max": 29.685,
+    "n_pairs": 41
    },
    "pairwise_frame_rmsd": {
-    "median": 1.496,
-    "q25": 1.09,
-    "q75": 10.816,
-    "p5": 0.265,
-    "p95": 12.161,
-    "max": 13.479,
-    "n_pairs": 561
+    "median": 10.699,
+    "q25": 1.302,
+    "q75": 28.862,
+    "p5": 0.328,
+    "p95": 29.296,
+    "max": 30.032,
+    "n_pairs": 861
    },
    "pairwise_fit_rmsd": {
-    "median": 0.694,
-    "q25": 0.382,
-    "q75": 1.076,
-    "p5": 0.175,
-    "p95": 1.145,
-    "max": 1.281,
-    "n_pairs": 561
+    "median": 1.012,
+    "q25": 0.493,
+    "q75": 1.121,
+    "p5": 0.203,
+    "p95": 3.898,
+    "max": 3.963,
+    "n_pairs": 861
    },
-   "n_low_margin": 33,
+   "n_low_margin": 37,
    "n_via_neighbour": 0
   }
  ]

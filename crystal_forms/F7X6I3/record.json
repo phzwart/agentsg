@@ -7,7 +7,7 @@
  "name": "Bifunctional protein PutA [Includes: Proline dehydrogenase",
  "clusters": [
   {
-   "cluster_id": 494,
+   "cluster_id": 501,
    "n_members": 29,
    "reference": "9DL9",
    "reference_resolution": 1.32,

@@ -7,7 +7,7 @@
  "name": "Prothrombin",
  "clusters": [
   {
-   "cluster_id": 454,
+   "cluster_id": 466,
    "n_members": 31,
    "reference": "6FJT",
    "reference_resolution": 1.27,
@@ -54,6 +54,55 @@
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1522,
+   "n_members": 12,
+   "reference": "11RI",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.161,
+    80.861,
+    84.57,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 30.2,
+    "q25": 29.937,
+    "q75": 32.728,
+    "p5": 24.435,
+    "p95": 34.656,
+    "max": 34.675,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 34.116,
+    "q25": 28.237,
+    "q75": 37.127,
+    "p5": 0.613,
+    "p95": 51.031,
+    "max": 51.438,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.697,
+    "q25": 0.558,
+    "q75": 8.453,
+    "p5": 0.309,
+    "p95": 8.505,
+    "max": 8.53,
+    "n_pairs": 66
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 9
   }
  ]
 }

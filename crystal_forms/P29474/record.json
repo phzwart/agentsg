@@ -7,7 +7,7 @@
  "name": "Nitric oxide synthase 3",
  "clusters": [
   {
-   "cluster_id": 108,
+   "cluster_id": 110,
    "n_members": 92,
    "reference": "9CWI",
    "reference_resolution": 1.73,
@@ -53,7 +53,7 @@
     "max": 0.694,
     "n_pairs": 3570
    },
-   "n_low_margin": 78,
+   "n_low_margin": 77,
    "n_via_neighbour": 0
   }
  ]

@@ -9,7 +9,7 @@
  "name": "Integrin alpha-2",
  "clusters": [
   {
-   "cluster_id": 1641,
+   "cluster_id": 1685,
    "n_members": 11,
    "reference": "6ND8",
    "reference_resolution": 2.9,
@@ -54,7 +54,7 @@
     "max": 0.7,
     "n_pairs": 55
    },
-   "n_low_margin": 10,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

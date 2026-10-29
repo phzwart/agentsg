@@ -8,53 +8,53 @@
  "name": "Glutamate receptor ionotropic, NMDA 1",
  "clusters": [
   {
-   "cluster_id": 995,
-   "n_members": 17,
-   "reference": "6UZ6",
-   "reference_resolution": 1.66,
+   "cluster_id": 589,
+   "n_members": 26,
+   "reference": "5U8C",
+   "reference_resolution": 1.598,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    54.635,
-    90.063,
-    125.151,
+    59.55,
+    84.227,
+    121.218,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 16,
+    "placed": 25,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 325,
    "rmsd_to_reference": {
-    "median": 3.11,
-    "q25": 2.218,
-    "q75": 9.791,
-    "p5": 0.7,
-    "p95": 24.452,
-    "max": 32.643,
-    "n_pairs": 16
+    "median": 21.05,
+    "q25": 7.55,
+    "q75": 21.379,
+    "p5": 2.813,
+    "p95": 22.249,
+    "max": 33.158,
+    "n_pairs": 25
    },
    "pairwise_frame_rmsd": {
-    "median": 5.436,
-    "q25": 3.172,
-    "q75": 21.514,
-    "p5": 0.632,
-    "p95": 35.428,
-    "max": 40.06,
-    "n_pairs": 136
+    "median": 19.696,
+    "q25": 3.177,
+    "q75": 21.538,
+    "p5": 0.838,
+    "p95": 34.825,
+    "max": 37.417,
+    "n_pairs": 325
    },
    "pairwise_fit_rmsd": {
-    "median": 2.557,
-    "q25": 0.529,
-    "q75": 20.024,
-    "p5": 0.275,
-    "p95": 20.681,
-    "max": 21.026,
-    "n_pairs": 136
+    "median": 8.427,
+    "q25": 0.644,
+    "q75": 20.47,
+    "p5": 0.361,
+    "p95": 21.015,
+    "max": 21.634,
+    "n_pairs": 325
    },
    "n_low_margin": 2,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 12
   }
  ]
 }

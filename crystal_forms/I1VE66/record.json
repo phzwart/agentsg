@@ -7,7 +7,7 @@
  "name": "laccase",
  "clusters": [
   {
-   "cluster_id": 404,
+   "cluster_id": 409,
    "n_members": 34,
    "reference": "6RI6",
    "reference_resolution": 0.93,

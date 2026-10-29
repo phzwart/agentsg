@@ -7,7 +7,7 @@
  "name": "NADPH dehydrogenase 1",
  "clusters": [
   {
-   "cluster_id": 647,
+   "cluster_id": 660,
    "n_members": 24,
    "reference": "4GBU",
    "reference_resolution": 1.179,

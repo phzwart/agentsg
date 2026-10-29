@@ -7,7 +7,7 @@
  "name": "Dihydrofolate reductase",
  "clusters": [
   {
-   "cluster_id": 229,
+   "cluster_id": 228,
    "n_members": 53,
    "reference": "5HSR",
    "reference_resolution": 1.21,
@@ -51,6 +51,56 @@
     "p95": 0.538,
     "max": 1.011,
     "n_pairs": 1378
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1710,
+   "n_members": 11,
+   "reference": "2W3B",
+   "reference_resolution": 1.27,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    87.725,
+    94.387,
+    95.439,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 8,
+    "reference": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.348,
+    "q25": 0.319,
+    "q75": 0.383,
+    "p5": 0.28,
+    "p95": 0.453,
+    "max": 0.479,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.375,
+    "q25": 0.308,
+    "q75": 0.446,
+    "p5": 0.219,
+    "p95": 0.525,
+    "max": 0.643,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.246,
+    "q25": 0.214,
+    "q75": 0.298,
+    "p5": 0.162,
+    "p95": 0.338,
+    "max": 0.413,
+    "n_pairs": 36
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

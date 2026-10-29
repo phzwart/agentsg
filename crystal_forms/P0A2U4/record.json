@@ -7,7 +7,7 @@
  "name": "Chaperone protein IpgC",
  "clusters": [
   {
-   "cluster_id": 1139,
+   "cluster_id": 1165,
    "n_members": 15,
    "reference": "7P42",
    "reference_resolution": 1.5,

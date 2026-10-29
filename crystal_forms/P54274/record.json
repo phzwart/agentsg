@@ -7,7 +7,7 @@
  "name": "Telomeric repeat-binding factor 1",
  "clusters": [
   {
-   "cluster_id": 777,
+   "cluster_id": 793,
    "n_members": 21,
    "reference": "9HCZ",
    "reference_resolution": 1.55,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 830,
+   "cluster_id": 845,
    "n_members": 20,
    "reference": "9HCL",
    "reference_resolution": 1.87,

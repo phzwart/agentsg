@@ -1,0 +1,59 @@
+{
+ "identity": "P06875",
+ "accessions": [
+  "P06875"
+ ],
+ "deposition_group": null,
+ "name": "Penicillin G acylase",
+ "clusters": [
+  {
+   "cluster_id": 1543,
+   "n_members": 12,
+   "reference": "1E3A",
+   "reference_resolution": 1.8,
+   "space_group": "P 1",
+   "reference_cell": [
+    50.71,
+    64.27,
+    72.0,
+    66.14,
+    74.18,
+    74.23
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 40.537,
+    "q25": 40.524,
+    "q75": 40.553,
+    "p5": 40.512,
+    "p95": 40.596,
+    "max": 40.633,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.542,
+    "q25": 0.353,
+    "q75": 0.705,
+    "p5": 0.085,
+    "p95": 40.969,
+    "max": 40.978,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.169,
+    "q25": 0.123,
+    "q75": 0.372,
+    "p5": 0.063,
+    "p95": 0.524,
+    "max": 0.575,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

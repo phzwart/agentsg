@@ -7,8 +7,8 @@
  "name": "Mast/stem cell growth factor receptor Kit",
  "clusters": [
   {
-   "cluster_id": 913,
-   "n_members": 18,
+   "cluster_id": 782,
+   "n_members": 21,
    "reference": "8PQD",
    "reference_resolution": 1.5,
    "space_group": "P 21 21 21",
@@ -22,38 +22,39 @@
    ],
    "status_counts": {
     "different_space_group": 1,
-    "placed": 16,
+    "no_shared_accession": 2,
+    "placed": 17,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 0.449,
-    "q25": 0.34,
-    "q75": 0.595,
-    "p5": 0.248,
-    "p95": 3.493,
+    "median": 0.451,
+    "q25": 0.348,
+    "q75": 0.601,
+    "p5": 0.249,
+    "p95": 3.776,
     "max": 11.643,
-    "n_pairs": 16
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.541,
-    "q25": 0.41,
-    "q75": 0.773,
-    "p5": 0.299,
-    "p95": 11.759,
-    "max": 12.0,
-    "n_pairs": 136
+    "median": 0.575,
+    "q25": 0.425,
+    "q75": 0.878,
+    "p5": 0.302,
+    "p95": 11.76,
+    "max": 13.261,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.323,
-    "q25": 0.245,
-    "q75": 0.467,
-    "p5": 0.194,
-    "p95": 0.703,
-    "max": 0.745,
-    "n_pairs": 136
+    "median": 0.344,
+    "q25": 0.251,
+    "q75": 0.654,
+    "p5": 0.196,
+    "p95": 0.898,
+    "max": 1.035,
+    "n_pairs": 153
    },
-   "n_low_margin": 16,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

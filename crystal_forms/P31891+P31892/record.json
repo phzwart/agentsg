@@ -8,7 +8,7 @@
  "name": "Uptake hydrogenase large subunit",
  "clusters": [
   {
-   "cluster_id": 993,
+   "cluster_id": 1019,
    "n_members": 17,
    "reference": "7ODH",
    "reference_resolution": 1.34,

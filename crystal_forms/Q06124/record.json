@@ -7,8 +7,8 @@
  "name": "Tyrosine-protein phosphatase non-receptor type 11",
  "clusters": [
   {
-   "cluster_id": 222,
-   "n_members": 55,
+   "cluster_id": 171,
+   "n_members": 68,
    "reference": "5EHR",
    "reference_resolution": 1.7,
    "space_group": "P 1 21 1",
@@ -22,8 +22,8 @@
    ],
    "status_counts": {
     "placed": 53,
-    "reference": 1,
-    "different_space_group": 1
+    "different_space_group": 14,
+    "reference": 1
    },
    "n_pairs": 1431,
    "rmsd_to_reference": {

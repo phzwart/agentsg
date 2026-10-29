@@ -7,8 +7,8 @@
  "name": "Ribonuclease pancreatic",
  "clusters": [
   {
-   "cluster_id": 68,
-   "n_members": 119,
+   "cluster_id": 66,
+   "n_members": 122,
    "reference": "6F60",
    "reference_resolution": 1.14,
    "space_group": "C 1 2 1",
@@ -21,42 +21,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 118,
+    "placed": 119,
+    "different_space_group": 2,
     "reference": 1
    },
-   "n_pairs": 7021,
+   "n_pairs": 7140,
    "rmsd_to_reference": {
-    "median": 0.616,
+    "median": 0.618,
     "q25": 0.519,
-    "q75": 0.814,
+    "q75": 0.819,
     "p5": 0.385,
-    "p95": 2.034,
+    "p95": 2.068,
     "max": 3.055,
-    "n_pairs": 118
+    "n_pairs": 119
    },
    "pairwise_frame_rmsd": {
-    "median": 1.579,
-    "q25": 0.933,
-    "q75": 2.789,
-    "p5": 0.517,
-    "p95": 6.548,
-    "max": 10.85,
-    "n_pairs": 7021
+    "median": 1.607,
+    "q25": 0.944,
+    "q75": 2.947,
+    "p5": 0.519,
+    "p95": 6.81,
+    "max": 13.259,
+    "n_pairs": 7140
    },
    "pairwise_fit_rmsd": {
-    "median": 0.448,
-    "q25": 0.342,
-    "q75": 0.591,
-    "p5": 0.231,
+    "median": 0.451,
+    "q25": 0.344,
+    "q75": 0.596,
+    "p5": 0.232,
     "p95": 1.269,
     "max": 1.665,
-    "n_pairs": 7021
+    "n_pairs": 7140
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 114,
+   "cluster_id": 115,
    "n_members": 90,
    "reference": "2E3W",
    "reference_resolution": 1.05,
@@ -105,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 307,
+   "cluster_id": 313,
    "n_members": 42,
    "reference": "6ETK",
    "reference_resolution": 0.85,
@@ -154,7 +155,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 504,
+   "cluster_id": 513,
    "n_members": 29,
    "reference": "4O36",
    "reference_resolution": 1.22,

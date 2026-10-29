@@ -7,7 +7,7 @@
  "name": "Galactose-binding lectin",
  "clusters": [
   {
-   "cluster_id": 757,
+   "cluster_id": 773,
    "n_members": 21,
    "reference": "6VAW",
    "reference_resolution": 1.75,
@@ -52,7 +52,7 @@
     "max": 0.37,
     "n_pairs": 210
    },
-   "n_low_margin": 20,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

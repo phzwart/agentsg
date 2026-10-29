@@ -8,7 +8,7 @@
  "name": "Nuclear receptor ROR-gamma",
  "clusters": [
   {
-   "cluster_id": 1726,
+   "cluster_id": 1779,
    "n_members": 11,
    "reference": "6W9I",
    "reference_resolution": 1.608,
@@ -29,27 +29,27 @@
    "n_pairs": 45,
    "rmsd_to_reference": {
     "median": 0.403,
-    "q25": 0.315,
-    "q75": 0.526,
-    "p5": 0.27,
-    "p95": 0.696,
+    "q25": 0.306,
+    "q75": 0.527,
+    "p5": 0.265,
+    "p95": 0.692,
     "max": 0.698,
     "n_pairs": 9
    },
    "pairwise_frame_rmsd": {
     "median": 0.463,
-    "q25": 0.367,
+    "q25": 0.357,
     "q75": 0.685,
-    "p5": 0.285,
-    "p95": 0.871,
+    "p5": 0.272,
+    "p95": 0.868,
     "max": 1.101,
     "n_pairs": 45
    },
    "pairwise_fit_rmsd": {
-    "median": 0.27,
-    "q25": 0.244,
+    "median": 0.262,
+    "q25": 0.237,
     "q75": 0.355,
-    "p5": 0.179,
+    "p5": 0.175,
     "p95": 0.494,
     "max": 0.543,
     "n_pairs": 45

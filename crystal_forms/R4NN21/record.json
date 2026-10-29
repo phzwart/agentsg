@@ -7,7 +7,7 @@
  "name": "Hemagglutinin [Cleaved into: Hemagglutinin HA1 chain; Hemagglutinin HA2 chain]",
  "clusters": [
   {
-   "cluster_id": 1461,
+   "cluster_id": 1495,
    "n_members": 13,
    "reference": "6ICX",
    "reference_resolution": 2.399,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1806,
+   "cluster_id": 1856,
    "n_members": 11,
    "reference": "4N62",
    "reference_resolution": 2.5026,

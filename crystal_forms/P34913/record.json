@@ -7,7 +7,7 @@
  "name": "Bifunctional epoxide hydrolase 2 [Includes: Cytosolic epoxide hydrolase 2",
  "clusters": [
   {
-   "cluster_id": 79,
+   "cluster_id": 80,
    "n_members": 112,
    "reference": "9EXM",
    "reference_resolution": 1.64,
@@ -53,6 +53,56 @@
     "n_pairs": 6216
    },
    "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1020,
+   "n_members": 17,
+   "reference": "4X6X",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    129.406,
+    80.544,
+    88.253,
+    90.0,
+    125.7,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1,
+    "different_space_group": 5
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.982,
+    "q25": 0.677,
+    "q75": 1.482,
+    "p5": 0.396,
+    "p95": 17.382,
+    "max": 33.208,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.342,
+    "q25": 0.886,
+    "q75": 1.851,
+    "p5": 0.522,
+    "p95": 33.174,
+    "max": 33.627,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.425,
+    "q25": 0.368,
+    "q75": 0.587,
+    "p5": 0.272,
+    "p95": 22.781,
+    "max": 22.963,
+    "n_pairs": 66
+   },
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

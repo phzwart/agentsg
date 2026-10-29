@@ -8,7 +8,7 @@
  "name": "Antigen-presenting glycoprotein CD1d1",
  "clusters": [
   {
-   "cluster_id": 963,
+   "cluster_id": 990,
    "n_members": 17,
    "reference": "3G08",
    "reference_resolution": 1.6,
@@ -53,11 +53,11 @@
     "max": 15.182,
     "n_pairs": 136
    },
-   "n_low_margin": 16,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1126,
+   "cluster_id": 1151,
    "n_members": 15,
    "reference": "6CW9",
    "reference_resolution": 2.0,
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1352,
+   "cluster_id": 1381,
    "n_members": 13,
    "reference": "3GMO",
    "reference_resolution": 1.6,

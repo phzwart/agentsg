@@ -7,7 +7,7 @@
  "name": "Ribonucleoside-diphosphate reductase 1 subunit beta",
  "clusters": [
   {
-   "cluster_id": 831,
+   "cluster_id": 846,
    "n_members": 20,
    "reference": "1MXR",
    "reference_resolution": 1.42,

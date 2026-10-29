@@ -7,7 +7,7 @@
  "name": "14-3-3 protein sigma",
  "clusters": [
   {
-   "cluster_id": 253,
+   "cluster_id": 256,
    "n_members": 49,
    "reference": "6HMT",
    "reference_resolution": 1.1,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1713,
+   "cluster_id": 1766,
    "n_members": 11,
    "reference": "8QS6",
    "reference_resolution": 1.8,

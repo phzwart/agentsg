@@ -7,7 +7,7 @@
  "name": "2-dehydro-3-deoxyphosphooctonate aldolase",
  "clusters": [
   {
-   "cluster_id": 940,
+   "cluster_id": 965,
    "n_members": 18,
    "reference": "2QKF",
    "reference_resolution": 1.75,
@@ -30,8 +30,8 @@
     "q25": 0.301,
     "q75": 0.484,
     "p5": 0.202,
-    "p95": 2.896,
-    "max": 7.019,
+    "p95": 2.953,
+    "max": 7.305,
     "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
@@ -39,8 +39,8 @@
     "q25": 0.341,
     "q75": 1.859,
     "p5": 0.27,
-    "p95": 7.022,
-    "max": 7.113,
+    "p95": 7.121,
+    "max": 7.318,
     "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
@@ -48,11 +48,11 @@
     "q25": 0.223,
     "q75": 1.827,
     "p5": 0.178,
-    "p95": 6.607,
-    "max": 6.749,
+    "p95": 5.37,
+    "max": 5.552,
     "n_pairs": 153
    },
-   "n_low_margin": 0,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

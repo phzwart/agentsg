@@ -1,0 +1,60 @@
+{
+ "identity": "P05725",
+ "accessions": [
+  "P05725"
+ ],
+ "deposition_group": null,
+ "name": "DNA endonuclease I-CreI",
+ "clusters": [
+  {
+   "cluster_id": 1276,
+   "n_members": 14,
+   "reference": "1T9I",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    43.8,
+    67.31,
+    89.35,
+    90.0,
+    92.4,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "no_shared_accession": 4
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.158,
+    "q25": 0.97,
+    "q75": 1.643,
+    "p5": 0.887,
+    "p95": 4.282,
+    "max": 4.328,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.886,
+    "q25": 0.609,
+    "q75": 4.332,
+    "p5": 0.388,
+    "p95": 4.812,
+    "max": 4.906,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.555,
+    "q25": 0.423,
+    "q75": 0.631,
+    "p5": 0.281,
+    "p95": 0.728,
+    "max": 0.756,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

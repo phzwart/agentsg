@@ -7,7 +7,7 @@
  "name": "Macrophage metalloelastase",
  "clusters": [
   {
-   "cluster_id": 501,
+   "cluster_id": 510,
    "n_members": 29,
    "reference": "1Y93",
    "reference_resolution": 1.03,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 826,
+   "cluster_id": 841,
    "n_members": 20,
    "reference": "4GQL",
    "reference_resolution": 1.15,

@@ -7,7 +7,7 @@
  "name": "Cytochrome P450 3A4",
  "clusters": [
   {
-   "cluster_id": 86,
+   "cluster_id": 87,
    "n_members": 107,
    "reference": "5VCC",
    "reference_resolution": 1.7,
@@ -51,6 +51,55 @@
     "p95": 21.368,
     "max": 22.087,
     "n_pairs": 5671
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1729,
+   "n_members": 11,
+   "reference": "3NXU",
+   "reference_resolution": 2.0,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    162.123,
+    94.69,
+    93.13,
+    90.0,
+    124.25,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 21.561,
+    "q25": 21.517,
+    "q75": 21.598,
+    "p5": 2.662,
+    "p95": 21.673,
+    "max": 21.689,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.954,
+    "q25": 0.632,
+    "q75": 21.615,
+    "p5": 0.467,
+    "p95": 21.803,
+    "max": 21.863,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.458,
+    "q25": 0.376,
+    "q75": 21.188,
+    "p5": 0.299,
+    "p95": 21.281,
+    "max": 21.327,
+    "n_pairs": 55
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

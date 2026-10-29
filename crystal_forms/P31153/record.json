@@ -7,7 +7,7 @@
  "name": "S-adenosylmethionine synthase isoform type-2",
  "clusters": [
   {
-   "cluster_id": 306,
+   "cluster_id": 312,
    "n_members": 42,
    "reference": "7RWG",
    "reference_resolution": 0.97,

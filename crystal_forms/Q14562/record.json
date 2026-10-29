@@ -7,7 +7,7 @@
  "name": "ATP-dependent RNA helicase DHX8",
  "clusters": [
   {
-   "cluster_id": 1579,
+   "cluster_id": 1620,
    "n_members": 12,
    "reference": "28ZQ",
    "reference_resolution": 2.2,
@@ -53,7 +53,7 @@
     "max": 0.666,
     "n_pairs": 55
    },
-   "n_low_margin": 0,
+   "n_low_margin": 10,
    "n_via_neighbour": 0
   }
  ]

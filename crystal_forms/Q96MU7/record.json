@@ -7,7 +7,7 @@
  "name": "YTH domain-containing protein 1",
  "clusters": [
   {
-   "cluster_id": 98,
+   "cluster_id": 97,
    "n_members": 100,
    "reference": "6T02",
    "reference_resolution": 1.1,

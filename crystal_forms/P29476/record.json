@@ -7,7 +7,7 @@
  "name": "Nitric oxide synthase 1",
  "clusters": [
   {
-   "cluster_id": 16,
+   "cluster_id": 17,
    "n_members": 284,
    "reference": "6NGM",
    "reference_resolution": 1.693,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 305,
+   "cluster_id": 311,
    "n_members": 42,
    "reference": "7UAN",
    "reference_resolution": 1.6969,

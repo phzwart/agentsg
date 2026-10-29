@@ -18,7 +18,7 @@
  "name": "DNA-directed RNA polymerase II subunit RPB1",
  "clusters": [
   {
-   "cluster_id": 283,
+   "cluster_id": 288,
    "n_members": 44,
    "reference": "5OT2",
    "reference_resolution": 3.2,

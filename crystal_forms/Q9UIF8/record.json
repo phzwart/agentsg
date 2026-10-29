@@ -7,7 +7,7 @@
  "name": "Bromodomain adjacent to zinc finger domain protein 2B",
  "clusters": [
   {
-   "cluster_id": 21,
+   "cluster_id": 23,
    "n_members": 256,
    "reference": "5PG1",
    "reference_resolution": 1.49,

@@ -7,7 +7,7 @@
  "name": "Matrix protein VP40",
  "clusters": [
   {
-   "cluster_id": 1008,
+   "cluster_id": 1035,
    "n_members": 17,
    "reference": "9S40",
    "reference_resolution": 1.47,

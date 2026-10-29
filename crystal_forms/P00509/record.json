@@ -7,7 +7,7 @@
  "name": "Aspartate aminotransferase",
  "clusters": [
   {
-   "cluster_id": 142,
+   "cluster_id": 147,
    "n_members": 77,
    "reference": "2Q7W",
    "reference_resolution": 1.4,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 854,
+   "cluster_id": 874,
    "n_members": 19,
    "reference": "8E9D",
    "reference_resolution": 1.37,

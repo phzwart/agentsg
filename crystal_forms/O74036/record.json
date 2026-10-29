@@ -7,7 +7,7 @@
  "name": "DNA repair and recombination protein RadA",
  "clusters": [
   {
-   "cluster_id": 514,
+   "cluster_id": 524,
    "n_members": 28,
    "reference": "5J4L",
    "reference_resolution": 1.13,
@@ -58,7 +58,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1344,
+   "cluster_id": 1372,
    "n_members": 13,
    "reference": "6XUJ",
    "reference_resolution": 1.54,

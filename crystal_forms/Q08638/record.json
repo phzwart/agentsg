@@ -7,50 +7,50 @@
  "name": "Beta-glucosidase A",
  "clusters": [
   {
-   "cluster_id": 648,
-   "n_members": 24,
-   "reference": "5OSS",
-   "reference_resolution": 1.7,
+   "cluster_id": 625,
+   "n_members": 25,
+   "reference": "2J78",
+   "reference_resolution": 1.65,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    94.316,
-    94.616,
-    113.443,
+    96.95,
+    91.459,
+    111.527,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 23,
+    "placed": 24,
     "reference": 1
    },
-   "n_pairs": 276,
+   "n_pairs": 300,
    "rmsd_to_reference": {
-    "median": 0.217,
-    "q25": 0.17,
-    "q75": 0.315,
-    "p5": 0.127,
-    "p95": 0.445,
-    "max": 0.506,
-    "n_pairs": 23
+    "median": 1.587,
+    "q25": 1.518,
+    "q75": 1.644,
+    "p5": 1.418,
+    "p95": 1.742,
+    "max": 1.757,
+    "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 0.276,
-    "q25": 0.205,
-    "q75": 0.39,
-    "p5": 0.146,
-    "p95": 0.552,
-    "max": 0.665,
-    "n_pairs": 276
+    "median": 0.301,
+    "q25": 0.213,
+    "q75": 0.437,
+    "p5": 0.147,
+    "p95": 1.255,
+    "max": 1.489,
+    "n_pairs": 300
    },
    "pairwise_fit_rmsd": {
-    "median": 0.157,
-    "q25": 0.132,
-    "q75": 0.183,
-    "p5": 0.108,
-    "p95": 0.217,
-    "max": 0.376,
-    "n_pairs": 276
+    "median": 0.16,
+    "q25": 0.137,
+    "q75": 0.193,
+    "p5": 0.109,
+    "p95": 0.293,
+    "max": 0.423,
+    "n_pairs": 300
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -9,7 +9,7 @@
  "name": "Methane monooxygenase component A alpha chain",
  "clusters": [
   {
-   "cluster_id": 669,
+   "cluster_id": 689,
    "n_members": 23,
    "reference": "1XVB",
    "reference_resolution": 1.8,

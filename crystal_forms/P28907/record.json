@@ -7,8 +7,8 @@
  "name": "ADP-ribosyl cyclase/cyclic ADP-ribose hydrolase 1",
  "clusters": [
   {
-   "cluster_id": 1064,
-   "n_members": 16,
+   "cluster_id": 535,
+   "n_members": 28,
    "reference": "2O3S",
    "reference_resolution": 1.5,
    "space_group": "P 1",
@@ -21,36 +21,36 @@
     95.04
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 27,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 378,
    "rmsd_to_reference": {
-    "median": 0.453,
-    "q25": 0.362,
-    "q75": 0.526,
-    "p5": 0.329,
-    "p95": 0.58,
-    "max": 0.606,
-    "n_pairs": 15
+    "median": 0.569,
+    "q25": 0.45,
+    "q75": 1.189,
+    "p5": 0.333,
+    "p95": 1.435,
+    "max": 1.511,
+    "n_pairs": 27
    },
    "pairwise_frame_rmsd": {
-    "median": 0.493,
-    "q25": 0.368,
-    "q75": 0.565,
-    "p5": 0.285,
-    "p95": 0.626,
-    "max": 0.691,
-    "n_pairs": 120
+    "median": 0.805,
+    "q25": 0.548,
+    "q75": 1.036,
+    "p5": 0.32,
+    "p95": 1.265,
+    "max": 1.365,
+    "n_pairs": 378
    },
    "pairwise_fit_rmsd": {
-    "median": 0.482,
-    "q25": 0.352,
-    "q75": 0.548,
-    "p5": 0.269,
-    "p95": 0.602,
-    "max": 0.681,
-    "n_pairs": 120
+    "median": 0.649,
+    "q25": 0.488,
+    "q75": 0.77,
+    "p5": 0.297,
+    "p95": 0.89,
+    "max": 1.002,
+    "n_pairs": 378
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

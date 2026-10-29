@@ -7,8 +7,8 @@
  "name": "Procathepsin L",
  "clusters": [
   {
-   "cluster_id": 722,
-   "n_members": 22,
+   "cluster_id": 684,
+   "n_members": 23,
    "reference": "3HHA",
    "reference_resolution": 1.27,
    "space_group": "P 1",
@@ -21,36 +21,36 @@
     115.55
    ],
    "status_counts": {
-    "placed": 21,
+    "placed": 22,
     "reference": 1
    },
-   "n_pairs": 231,
+   "n_pairs": 253,
    "rmsd_to_reference": {
-    "median": 0.195,
-    "q25": 0.171,
-    "q75": 0.23,
+    "median": 0.206,
+    "q25": 0.173,
+    "q75": 0.256,
     "p5": 0.164,
-    "p95": 0.277,
-    "max": 0.321,
-    "n_pairs": 21
+    "p95": 0.319,
+    "max": 0.886,
+    "n_pairs": 22
    },
    "pairwise_frame_rmsd": {
-    "median": 0.203,
-    "q25": 0.16,
-    "q75": 0.27,
-    "p5": 0.113,
-    "p95": 0.329,
-    "max": 0.428,
-    "n_pairs": 231
+    "median": 0.218,
+    "q25": 0.162,
+    "q75": 0.286,
+    "p5": 0.115,
+    "p95": 0.891,
+    "max": 0.964,
+    "n_pairs": 253
    },
    "pairwise_fit_rmsd": {
-    "median": 0.142,
-    "q25": 0.121,
-    "q75": 0.174,
-    "p5": 0.096,
-    "p95": 0.282,
-    "max": 0.317,
-    "n_pairs": 231
+    "median": 0.149,
+    "q25": 0.123,
+    "q75": 0.185,
+    "p5": 0.097,
+    "p95": 0.607,
+    "max": 0.618,
+    "n_pairs": 253
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

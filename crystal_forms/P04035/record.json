@@ -7,8 +7,8 @@
  "name": "3-hydroxy-3-methylglutaryl-coenzyme A reductase",
  "clusters": [
   {
-   "cluster_id": 1495,
-   "n_members": 12,
+   "cluster_id": 995,
+   "n_members": 17,
    "reference": "1DQA",
    "reference_resolution": 2.0,
    "space_group": "P 1 21 1",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "reference": 1,
-    "placed": 11
+    "placed": 16,
+    "reference": 1
    },
-   "n_pairs": 66,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 1.731,
-    "q25": 1.467,
-    "q75": 31.669,
-    "p5": 0.659,
-    "p95": 31.722,
-    "max": 31.726,
-    "n_pairs": 11
+    "median": 1.708,
+    "q25": 1.513,
+    "q75": 2.184,
+    "p5": 0.675,
+    "p95": 2.253,
+    "max": 2.305,
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 31.072,
-    "q25": 0.963,
-    "q75": 31.387,
-    "p5": 0.592,
-    "p95": 32.021,
-    "max": 32.147,
-    "n_pairs": 66
+    "median": 1.163,
+    "q25": 0.925,
+    "q75": 1.491,
+    "p5": 0.286,
+    "p95": 1.9,
+    "max": 2.501,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.412,
-    "q25": 0.342,
-    "q75": 0.474,
-    "p5": 0.234,
-    "p95": 0.592,
-    "max": 0.742,
-    "n_pairs": 66
+    "median": 0.419,
+    "q25": 0.333,
+    "q75": 0.592,
+    "p5": 0.179,
+    "p95": 0.688,
+    "max": 0.77,
+    "n_pairs": 136
    },
-   "n_low_margin": 5,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

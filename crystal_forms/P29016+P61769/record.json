@@ -1,0 +1,60 @@
+{
+ "identity": "P29016+P61769",
+ "accessions": [
+  "P29016",
+  "P61769"
+ ],
+ "deposition_group": null,
+ "name": "T-cell surface glycoprotein CD1b",
+ "clusters": [
+  {
+   "cluster_id": 1579,
+   "n_members": 12,
+   "reference": "5WL1",
+   "reference_resolution": 1.38,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    57.889,
+    80.28,
+    92.7,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 1.122,
+    "q25": 0.611,
+    "q75": 1.215,
+    "p5": 0.164,
+    "p95": 2.073,
+    "max": 2.075,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.208,
+    "q25": 0.573,
+    "q75": 1.803,
+    "p5": 0.242,
+    "p95": 2.374,
+    "max": 2.402,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.603,
+    "q25": 0.425,
+    "q75": 0.671,
+    "p5": 0.188,
+    "p95": 0.738,
+    "max": 0.807,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

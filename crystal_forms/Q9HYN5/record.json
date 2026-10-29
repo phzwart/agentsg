@@ -7,8 +7,8 @@
  "name": "Fucose-binding lectin PA-IIL",
  "clusters": [
   {
-   "cluster_id": 1797,
-   "n_members": 11,
+   "cluster_id": 1648,
+   "n_members": 12,
    "reference": "4CE8",
    "reference_resolution": 0.9,
    "space_group": "P 1 21 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 11,
     "reference": 1
    },
-   "n_pairs": 55,
+   "n_pairs": 66,
    "rmsd_to_reference": {
-    "median": 0.22,
-    "q25": 0.16,
-    "q75": 0.293,
-    "p5": 0.134,
-    "p95": 0.31,
-    "max": 0.317,
-    "n_pairs": 10
+    "median": 0.249,
+    "q25": 0.161,
+    "q75": 0.3,
+    "p5": 0.136,
+    "p95": 2.754,
+    "max": 5.19,
+    "n_pairs": 11
    },
    "pairwise_frame_rmsd": {
-    "median": 0.395,
-    "q25": 0.277,
-    "q75": 0.589,
-    "p5": 0.196,
-    "p95": 0.815,
-    "max": 0.93,
-    "n_pairs": 55
+    "median": 0.487,
+    "q25": 0.307,
+    "q75": 0.773,
+    "p5": 0.197,
+    "p95": 6.661,
+    "max": 6.992,
+    "n_pairs": 66
    },
    "pairwise_fit_rmsd": {
-    "median": 0.117,
-    "q25": 0.088,
-    "q75": 0.145,
-    "p5": 0.068,
+    "median": 0.125,
+    "q25": 0.096,
+    "q75": 0.153,
+    "p5": 0.071,
     "p95": 0.232,
-    "max": 0.25,
-    "n_pairs": 55
+    "max": 0.269,
+    "n_pairs": 66
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

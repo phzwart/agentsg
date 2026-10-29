@@ -7,7 +7,7 @@
  "name": "Globin-1",
  "clusters": [
   {
-   "cluster_id": 377,
+   "cluster_id": 382,
    "n_members": 36,
    "reference": "3G46",
    "reference_resolution": 0.91,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 628,
+   "cluster_id": 642,
    "n_members": 24,
    "reference": "2Z85",
    "reference_resolution": 1.6,

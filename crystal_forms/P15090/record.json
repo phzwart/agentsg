@@ -7,7 +7,7 @@
  "name": "Fatty acid-binding protein, adipocyte",
  "clusters": [
   {
-   "cluster_id": 23,
+   "cluster_id": 25,
    "n_members": 241,
    "reference": "7FXV",
    "reference_resolution": 0.88,

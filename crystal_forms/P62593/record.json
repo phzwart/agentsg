@@ -7,7 +7,7 @@
  "name": "Beta-lactamase TEM",
  "clusters": [
   {
-   "cluster_id": 552,
+   "cluster_id": 564,
    "n_members": 27,
    "reference": "1M40",
    "reference_resolution": 0.85,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1168,
+   "cluster_id": 1194,
    "n_members": 15,
    "reference": "5HW5",
    "reference_resolution": 1.41,

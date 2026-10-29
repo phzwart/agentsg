@@ -7,7 +7,57 @@
  "name": "DDB1- and CUL4-associated factor 1",
  "clusters": [
   {
-   "cluster_id": 1804,
+   "cluster_id": 1349,
+   "n_members": 14,
+   "reference": "8OOD",
+   "reference_resolution": 1.497,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    81.496,
+    81.496,
+    232.723,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.769,
+    "q25": 0.459,
+    "q75": 0.99,
+    "p5": 0.284,
+    "p95": 2.577,
+    "max": 3.782,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.092,
+    "q25": 0.713,
+    "q75": 1.359,
+    "p5": 0.374,
+    "p95": 4.88,
+    "max": 5.089,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.509,
+    "q25": 0.449,
+    "q75": 0.604,
+    "p5": 0.286,
+    "p95": 0.982,
+    "max": 1.075,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1854,
    "n_members": 11,
    "reference": "9PLY",
    "reference_resolution": 1.4,

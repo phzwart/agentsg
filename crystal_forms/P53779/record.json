@@ -7,8 +7,8 @@
  "name": "Mitogen-activated protein kinase 10",
  "clusters": [
   {
-   "cluster_id": 274,
-   "n_members": 46,
+   "cluster_id": 266,
+   "n_members": 47,
    "reference": "3OY1",
    "reference_resolution": 1.7,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 45,
+    "placed": 46,
     "reference": 1
    },
-   "n_pairs": 1035,
+   "n_pairs": 1081,
    "rmsd_to_reference": {
-    "median": 0.727,
+    "median": 0.735,
     "q25": 0.638,
-    "q75": 1.041,
+    "q75": 1.08,
     "p5": 0.511,
-    "p95": 17.926,
+    "p95": 21.421,
     "max": 24.79,
-    "n_pairs": 45
+    "n_pairs": 46
    },
    "pairwise_frame_rmsd": {
-    "median": 1.177,
-    "q25": 0.856,
-    "q75": 1.817,
-    "p5": 0.568,
-    "p95": 22.895,
-    "max": 29.956,
-    "n_pairs": 1035
+    "median": 1.209,
+    "q25": 0.868,
+    "q75": 1.938,
+    "p5": 0.575,
+    "p95": 23.548,
+    "max": 31.338,
+    "n_pairs": 1081
    },
    "pairwise_fit_rmsd": {
-    "median": 0.672,
-    "q25": 0.564,
-    "q75": 0.891,
-    "p5": 0.432,
-    "p95": 2.357,
+    "median": 0.678,
+    "q25": 0.568,
+    "q75": 0.901,
+    "p5": 0.434,
+    "p95": 2.341,
     "max": 22.705,
-    "n_pairs": 1035
+    "n_pairs": 1081
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

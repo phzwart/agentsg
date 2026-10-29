@@ -8,7 +8,7 @@
  "clusters": [
   {
    "cluster_id": 69,
-   "n_members": 118,
+   "n_members": 120,
    "reference": "5AVD",
    "reference_resolution": 0.86,
    "space_group": "P 21 21 21",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 117,
+    "placed": 119,
     "reference": 1
    },
-   "n_pairs": 6903,
+   "n_pairs": 7140,
    "rmsd_to_reference": {
-    "median": 0.661,
+    "median": 0.682,
     "q25": 0.534,
-    "q75": 0.842,
+    "q75": 0.849,
     "p5": 0.492,
-    "p95": 1.117,
+    "p95": 1.143,
     "max": 25.385,
-    "n_pairs": 117
+    "n_pairs": 119
    },
    "pairwise_frame_rmsd": {
-    "median": 0.694,
-    "q25": 0.447,
-    "q75": 0.96,
-    "p5": 0.227,
-    "p95": 1.44,
+    "median": 0.708,
+    "q25": 0.456,
+    "q75": 1.0,
+    "p5": 0.23,
+    "p95": 1.633,
     "max": 25.814,
-    "n_pairs": 6903
+    "n_pairs": 7140
    },
    "pairwise_fit_rmsd": {
-    "median": 0.263,
-    "q25": 0.199,
-    "q75": 0.338,
-    "p5": 0.119,
-    "p95": 0.44,
+    "median": 0.268,
+    "q25": 0.202,
+    "q75": 0.347,
+    "p5": 0.12,
+    "p95": 0.471,
     "max": 16.762,
-    "n_pairs": 6903
+    "n_pairs": 7140
    },
    "n_low_margin": 1,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

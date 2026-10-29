@@ -7,7 +7,56 @@
  "name": "Cyclic GMP-AMP synthase",
  "clusters": [
   {
-   "cluster_id": 509,
+   "cluster_id": 487,
+   "n_members": 31,
+   "reference": "8IMG",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    214.057,
+    46.045,
+    86.849,
+    90.0,
+    113.94,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.865,
+    "q25": 1.454,
+    "q75": 2.076,
+    "p5": 0.574,
+    "p95": 3.333,
+    "max": 3.441,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.844,
+    "q25": 1.895,
+    "q75": 4.95,
+    "p5": 0.945,
+    "p95": 8.399,
+    "max": 10.44,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.129,
+    "q25": 0.848,
+    "q75": 1.4,
+    "p5": 0.521,
+    "p95": 1.791,
+    "max": 2.063,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 4
+  },
+  {
+   "cluster_id": 518,
    "n_members": 29,
    "reference": "9MDC",
    "reference_resolution": 1.25,
@@ -56,57 +105,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 556,
-   "n_members": 27,
-   "reference": "8IMG",
-   "reference_resolution": 1.8,
-   "space_group": "C 1 2 1",
-   "reference_cell": [
-    214.057,
-    46.045,
-    86.849,
-    90.0,
-    113.94,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 26,
-    "reference": 1
-   },
-   "n_pairs": 351,
-   "rmsd_to_reference": {
-    "median": 1.757,
-    "q25": 0.981,
-    "q75": 2.032,
-    "p5": 0.55,
-    "p95": 2.19,
-    "max": 2.362,
-    "n_pairs": 26
-   },
-   "pairwise_frame_rmsd": {
-    "median": 2.359,
-    "q25": 1.74,
-    "q75": 3.366,
-    "p5": 0.821,
-    "p95": 4.512,
-    "max": 6.371,
-    "n_pairs": 351
-   },
-   "pairwise_fit_rmsd": {
-    "median": 1.082,
-    "q25": 0.794,
-    "q75": 1.378,
-    "p5": 0.489,
-    "p95": 1.768,
-    "max": 2.063,
-    "n_pairs": 351
-   },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 741,
-   "n_members": 22,
+   "cluster_id": 711,
+   "n_members": 23,
    "reference": "7FU8",
    "reference_resolution": 1.718,
    "space_group": "P 21 2 21",
@@ -120,7 +120,8 @@
    ],
    "status_counts": {
     "placed": 21,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 1
    },
    "n_pairs": 231,
    "rmsd_to_reference": {

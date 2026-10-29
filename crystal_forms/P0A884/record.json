@@ -7,7 +7,7 @@
  "name": "Thymidylate synthase",
  "clusters": [
   {
-   "cluster_id": 425,
+   "cluster_id": 431,
    "n_members": 33,
    "reference": "6NNR",
    "reference_resolution": 1.05,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 762,
+   "cluster_id": 777,
    "n_members": 21,
    "reference": "1QQQ",
    "reference_resolution": 1.5,

@@ -7,8 +7,8 @@
  "name": "Cytochrome P450",
  "clusters": [
   {
-   "cluster_id": 156,
-   "n_members": 74,
+   "cluster_id": 106,
+   "n_members": 94,
    "reference": "9DOE",
    "reference_resolution": 1.265,
    "space_group": "P 1 21 1",
@@ -21,89 +21,40 @@
     90.0
    ],
    "status_counts": {
-    "placed": 70,
+    "placed": 90,
     "no_shared_accession": 3,
     "reference": 1
    },
-   "n_pairs": 2485,
+   "n_pairs": 4095,
    "rmsd_to_reference": {
-    "median": 0.213,
-    "q25": 0.174,
-    "q75": 0.29,
-    "p5": 0.11,
-    "p95": 0.455,
-    "max": 0.606,
-    "n_pairs": 70
+    "median": 0.25,
+    "q25": 0.185,
+    "q75": 0.549,
+    "p5": 0.12,
+    "p95": 0.945,
+    "max": 1.714,
+    "n_pairs": 90
    },
    "pairwise_frame_rmsd": {
-    "median": 0.329,
-    "q25": 0.247,
-    "q75": 0.45,
-    "p5": 0.169,
-    "p95": 0.787,
-    "max": 1.059,
-    "n_pairs": 2485
+    "median": 0.43,
+    "q25": 0.287,
+    "q75": 0.588,
+    "p5": 0.18,
+    "p95": 0.987,
+    "max": 1.376,
+    "n_pairs": 4095
    },
    "pairwise_fit_rmsd": {
-    "median": 0.214,
-    "q25": 0.167,
-    "q75": 0.265,
-    "p5": 0.125,
-    "p95": 0.347,
-    "max": 0.453,
-    "n_pairs": 2485
+    "median": 0.266,
+    "q25": 0.19,
+    "q75": 0.321,
+    "p5": 0.132,
+    "p95": 0.413,
+    "max": 0.575,
+    "n_pairs": 4095
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 839,
-   "n_members": 20,
-   "reference": "8D39",
-   "reference_resolution": 1.268,
-   "space_group": "P 1 21 1",
-   "reference_cell": [
-    41.165,
-    51.387,
-    79.229,
-    90.0,
-    92.0,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 19,
-    "reference": 1
-   },
-   "n_pairs": 190,
-   "rmsd_to_reference": {
-    "median": 0.194,
-    "q25": 0.168,
-    "q75": 0.325,
-    "p5": 0.145,
-    "p95": 0.692,
-    "max": 1.068,
-    "n_pairs": 19
-   },
-   "pairwise_frame_rmsd": {
-    "median": 0.299,
-    "q25": 0.202,
-    "q75": 0.384,
-    "p5": 0.149,
-    "p95": 1.166,
-    "max": 1.278,
-    "n_pairs": 190
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.258,
-    "q25": 0.16,
-    "q75": 0.324,
-    "p5": 0.121,
-    "p95": 0.427,
-    "max": 0.453,
-    "n_pairs": 190
-   },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

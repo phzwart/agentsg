@@ -8,7 +8,7 @@
  "name": "Protocatechuate 3,4-dioxygenase beta chain",
  "clusters": [
   {
-   "cluster_id": 756,
+   "cluster_id": 771,
    "n_members": 21,
    "reference": "3PCG",
    "reference_resolution": 1.96,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1117,
+   "cluster_id": 1142,
    "n_members": 15,
    "reference": "4WHS",
    "reference_resolution": 1.35,

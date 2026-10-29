@@ -7,7 +7,7 @@
  "name": "Rhomboid protease GlpG",
  "clusters": [
   {
-   "cluster_id": 570,
+   "cluster_id": 583,
    "n_members": 26,
    "reference": "2XOV",
    "reference_resolution": 1.65,

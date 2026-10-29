@@ -7,8 +7,8 @@
  "name": "Circadian input-output histidine kinase CikA",
  "clusters": [
   {
-   "cluster_id": 1104,
-   "n_members": 15,
+   "cluster_id": 867,
+   "n_members": 19,
    "reference": "6RHF",
    "reference_resolution": 1.07,
    "space_group": "P 21 21 2",
@@ -21,36 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 14,
-    "reference": 1
+    "placed": 17,
+    "reference": 1,
+    "different_space_group": 1
    },
-   "n_pairs": 105,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 0.331,
-    "q25": 0.22,
-    "q75": 0.395,
-    "p5": 0.166,
-    "p95": 0.684,
-    "max": 0.884,
-    "n_pairs": 14
+    "median": 0.36,
+    "q25": 0.236,
+    "q75": 0.576,
+    "p5": 0.168,
+    "p95": 10.952,
+    "max": 11.057,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.486,
-    "q25": 0.357,
-    "q75": 0.758,
-    "p5": 0.259,
-    "p95": 1.082,
-    "max": 1.532,
-    "n_pairs": 105
+    "median": 0.668,
+    "q25": 0.404,
+    "q75": 12.409,
+    "p5": 0.267,
+    "p95": 12.991,
+    "max": 13.319,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.199,
-    "q25": 0.149,
-    "q75": 0.252,
+    "median": 0.249,
+    "q25": 0.168,
+    "q75": 0.702,
     "p5": 0.118,
-    "p95": 0.291,
-    "max": 0.331,
-    "n_pairs": 105
+    "p95": 1.176,
+    "max": 1.195,
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

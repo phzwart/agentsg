@@ -7,7 +7,7 @@
  "name": "Outer surface protein A",
  "clusters": [
   {
-   "cluster_id": 544,
+   "cluster_id": 555,
    "n_members": 27,
    "reference": "2I5V",
    "reference_resolution": 1.1,

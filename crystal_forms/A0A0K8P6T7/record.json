@@ -7,7 +7,7 @@
  "name": "Poly(ethylene terephthalate) hydrolase",
  "clusters": [
   {
-   "cluster_id": 947,
+   "cluster_id": 971,
    "n_members": 17,
    "reference": "6EQE",
    "reference_resolution": 0.92,
@@ -52,7 +52,7 @@
     "max": 0.341,
     "n_pairs": 136
    },
-   "n_low_margin": 16,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

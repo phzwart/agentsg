@@ -7,7 +7,7 @@
  "name": "Dihydrofolate reductase",
  "clusters": [
   {
-   "cluster_id": 135,
+   "cluster_id": 137,
    "n_members": 80,
    "reference": "45PC",
    "reference_resolution": 0.85,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 861,
+   "cluster_id": 884,
    "n_members": 19,
    "reference": "4DFR",
    "reference_resolution": 1.7,

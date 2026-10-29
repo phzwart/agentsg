@@ -7,7 +7,7 @@
  "name": "pH-gated potassium channel KcsA",
  "clusters": [
   {
-   "cluster_id": 202,
+   "cluster_id": 204,
    "n_members": 58,
    "reference": "2IH3",
    "reference_resolution": 1.72,

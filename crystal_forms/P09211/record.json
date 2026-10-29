@@ -7,8 +7,8 @@
  "name": "Glutathione S-transferase P",
  "clusters": [
   {
-   "cluster_id": 256,
-   "n_members": 48,
+   "cluster_id": 254,
+   "n_members": 49,
    "reference": "5J41",
    "reference_resolution": 1.19035345576,
    "space_group": "C 1 2 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 47,
+    "placed": 48,
     "reference": 1
    },
-   "n_pairs": 1128,
+   "n_pairs": 1176,
    "rmsd_to_reference": {
-    "median": 0.485,
-    "q25": 0.406,
-    "q75": 0.557,
-    "p5": 0.306,
-    "p95": 0.79,
+    "median": 0.486,
+    "q25": 0.407,
+    "q75": 0.561,
+    "p5": 0.308,
+    "p95": 0.838,
     "max": 2.061,
-    "n_pairs": 47
+    "n_pairs": 48
    },
    "pairwise_frame_rmsd": {
-    "median": 0.937,
-    "q25": 0.665,
-    "q75": 1.315,
-    "p5": 0.377,
-    "p95": 1.906,
-    "max": 2.982,
-    "n_pairs": 1128
+    "median": 0.966,
+    "q25": 0.677,
+    "q75": 1.368,
+    "p5": 0.38,
+    "p95": 2.129,
+    "max": 3.276,
+    "n_pairs": 1176
    },
    "pairwise_fit_rmsd": {
-    "median": 0.23,
-    "q25": 0.186,
-    "q75": 0.263,
+    "median": 0.233,
+    "q25": 0.189,
+    "q75": 0.267,
     "p5": 0.137,
-    "p95": 0.317,
-    "max": 0.402,
-    "n_pairs": 1128
+    "p95": 0.345,
+    "max": 0.522,
+    "n_pairs": 1176
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

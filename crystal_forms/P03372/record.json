@@ -7,8 +7,8 @@
  "name": "Estrogen receptor",
  "clusters": [
   {
-   "cluster_id": 335,
-   "n_members": 39,
+   "cluster_id": 332,
+   "n_members": 40,
    "reference": "7RS7",
    "reference_resolution": 1.58,
    "space_group": "P 1",
@@ -22,42 +22,42 @@
    ],
    "status_counts": {
     "different_space_group": 7,
-    "placed": 31,
+    "placed": 32,
     "reference": 1
    },
-   "n_pairs": 496,
+   "n_pairs": 528,
    "rmsd_to_reference": {
-    "median": 0.497,
-    "q25": 0.405,
-    "q75": 0.669,
-    "p5": 0.301,
-    "p95": 0.907,
+    "median": 0.5,
+    "q25": 0.413,
+    "q75": 0.711,
+    "p5": 0.303,
+    "p95": 0.963,
     "max": 2.079,
-    "n_pairs": 31
+    "n_pairs": 32
    },
    "pairwise_frame_rmsd": {
-    "median": 0.647,
-    "q25": 0.529,
-    "q75": 0.997,
-    "p5": 0.371,
-    "p95": 2.165,
-    "max": 2.469,
-    "n_pairs": 496
+    "median": 0.664,
+    "q25": 0.54,
+    "q75": 1.232,
+    "p5": 0.375,
+    "p95": 2.465,
+    "max": 2.951,
+    "n_pairs": 528
    },
    "pairwise_fit_rmsd": {
-    "median": 0.49,
-    "q25": 0.413,
-    "q75": 0.679,
-    "p5": 0.292,
-    "p95": 0.995,
+    "median": 0.5,
+    "q25": 0.418,
+    "q75": 0.664,
+    "p5": 0.297,
+    "p95": 0.989,
     "max": 1.832,
-    "n_pairs": 496
+    "n_pairs": 528
    },
-   "n_low_margin": 3,
+   "n_low_margin": 29,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 380,
+   "cluster_id": 384,
    "n_members": 36,
    "reference": "7R62",
    "reference_resolution": 1.5,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 600,
+   "cluster_id": 608,
    "n_members": 25,
    "reference": "8DU8",
    "reference_resolution": 1.47,
@@ -152,6 +152,55 @@
     "p95": 15.432,
     "max": 16.112,
     "n_pairs": 276
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1719,
+   "n_members": 11,
+   "reference": "7QVJ",
+   "reference_resolution": 1.68,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    106.9,
+    51.79,
+    85.51,
+    90.0,
+    93.86,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.45,
+    "q25": 0.427,
+    "q75": 2.089,
+    "p5": 0.312,
+    "p95": 2.463,
+    "max": 2.575,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.294,
+    "q25": 0.637,
+    "q75": 3.743,
+    "p5": 0.365,
+    "p95": 4.198,
+    "max": 4.413,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.45,
+    "q25": 0.353,
+    "q75": 0.561,
+    "p5": 0.275,
+    "p95": 0.697,
+    "max": 0.757,
+    "n_pairs": 55
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

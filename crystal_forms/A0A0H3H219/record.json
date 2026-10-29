@@ -7,7 +7,7 @@
  "name": "Beta-lactamase",
  "clusters": [
   {
-   "cluster_id": 299,
+   "cluster_id": 305,
    "n_members": 42,
    "reference": "7ZPV",
    "reference_resolution": 1.4,

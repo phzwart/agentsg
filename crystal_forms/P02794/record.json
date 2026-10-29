@@ -7,8 +7,8 @@
  "name": "Ferritin heavy chain",
  "clusters": [
   {
-   "cluster_id": 155,
-   "n_members": 74,
+   "cluster_id": 145,
+   "n_members": 78,
    "reference": "6B8F",
    "reference_resolution": 1.06,
    "space_group": "F 4 3 2",
@@ -22,7 +22,7 @@
    ],
    "status_counts": {
     "placed": 72,
-    "different_space_group": 1,
+    "different_space_group": 5,
     "reference": 1
    },
    "n_pairs": 2628,

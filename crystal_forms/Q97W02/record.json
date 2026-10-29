@@ -7,8 +7,8 @@
  "name": "DNA polymerase IV",
  "clusters": [
   {
-   "cluster_id": 133,
-   "n_members": 82,
+   "cluster_id": 119,
+   "n_members": 88,
    "reference": "1JX4",
    "reference_resolution": 1.7,
    "space_group": "P 21 21 2",
@@ -22,42 +22,92 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 74,
-    "different_space_group": 7
+    "placed": 78,
+    "different_space_group": 9
    },
-   "n_pairs": 2775,
+   "n_pairs": 3081,
    "rmsd_to_reference": {
-    "median": 2.976,
-    "q25": 0.847,
-    "q75": 3.227,
-    "p5": 0.494,
-    "p95": 3.367,
-    "max": 3.679,
-    "n_pairs": 74
+    "median": 3.003,
+    "q25": 0.951,
+    "q75": 3.247,
+    "p5": 0.495,
+    "p95": 7.792,
+    "max": 31.511,
+    "n_pairs": 78
    },
    "pairwise_frame_rmsd": {
-    "median": 1.987,
-    "q25": 0.877,
-    "q75": 3.128,
-    "p5": 0.5,
-    "p95": 3.56,
-    "max": 4.33,
-    "n_pairs": 2775
+    "median": 2.188,
+    "q25": 0.946,
+    "q75": 3.275,
+    "p5": 0.508,
+    "p95": 32.403,
+    "max": 34.604,
+    "n_pairs": 3081
    },
    "pairwise_fit_rmsd": {
-    "median": 0.562,
-    "q25": 0.446,
-    "q75": 0.671,
-    "p5": 0.319,
-    "p95": 0.939,
-    "max": 1.261,
-    "n_pairs": 2775
+    "median": 0.58,
+    "q25": 0.459,
+    "q75": 0.718,
+    "p5": 0.326,
+    "p95": 0.953,
+    "max": 1.34,
+    "n_pairs": 3081
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1793,
+   "cluster_id": 1841,
+   "n_members": 11,
+   "reference": "1RYS",
+   "reference_resolution": 2.03,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    98.732,
+    102.29,
+    106.069,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.855,
+    "q25": 0.733,
+    "q75": 0.894,
+    "p5": 0.615,
+    "p95": 1.706,
+    "max": 2.13,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.904,
+    "q25": 0.721,
+    "q75": 1.235,
+    "p5": 0.466,
+    "p95": 3.068,
+    "max": 3.178,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.466,
+    "q25": 0.432,
+    "q75": 0.568,
+    "p5": 0.349,
+    "p95": 0.754,
+    "max": 0.783,
+    "n_pairs": 36
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1842,
    "n_members": 11,
    "reference": "3V6H",
    "reference_resolution": 2.3,

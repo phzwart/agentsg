@@ -7,8 +7,8 @@
  "name": "Dual specificity mitogen-activated protein kinase kinase 7",
  "clusters": [
   {
-   "cluster_id": 750,
-   "n_members": 21,
+   "cluster_id": 674,
+   "n_members": 23,
    "reference": "7OVI",
    "reference_resolution": 1.95,
    "space_group": "P 21 21 21",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 20,
+    "placed": 22,
     "reference": 1
    },
-   "n_pairs": 210,
+   "n_pairs": 253,
    "rmsd_to_reference": {
-    "median": 1.237,
-    "q25": 0.982,
-    "q75": 19.677,
-    "p5": 0.539,
-    "p95": 40.4,
-    "max": 40.588,
-    "n_pairs": 20
+    "median": 1.384,
+    "q25": 0.99,
+    "q75": 19.996,
+    "p5": 0.544,
+    "p95": 44.81,
+    "max": 45.15,
+    "n_pairs": 22
    },
    "pairwise_frame_rmsd": {
-    "median": 3.957,
-    "q25": 1.377,
-    "q75": 37.873,
-    "p5": 0.728,
-    "p95": 41.083,
-    "max": 44.875,
-    "n_pairs": 210
+    "median": 19.634,
+    "q25": 1.633,
+    "q75": 40.207,
+    "p5": 0.744,
+    "p95": 48.325,
+    "max": 71.444,
+    "n_pairs": 253
    },
    "pairwise_fit_rmsd": {
-    "median": 1.269,
-    "q25": 0.716,
-    "q75": 19.384,
-    "p5": 0.472,
-    "p95": 20.064,
+    "median": 1.112,
+    "q25": 0.774,
+    "q75": 18.119,
+    "p5": 0.487,
+    "p95": 20.062,
     "max": 20.499,
-    "n_pairs": 210
+    "n_pairs": 253
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

@@ -7,7 +7,7 @@
  "name": "Aminopeptidase N",
  "clusters": [
   {
-   "cluster_id": 196,
+   "cluster_id": 199,
    "n_members": 59,
    "reference": "6SBQ",
    "reference_resolution": 1.33,

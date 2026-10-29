@@ -7,7 +7,7 @@
  "name": "Pyruvate kinase PKLR",
  "clusters": [
   {
-   "cluster_id": 322,
+   "cluster_id": 328,
    "n_members": 41,
    "reference": "7FS3",
    "reference_resolution": 1.655,
@@ -31,29 +31,29 @@
     "q25": 0.923,
     "q75": 1.499,
     "p5": 0.647,
-    "p95": 56.531,
-    "max": 62.754,
+    "p95": 62.788,
+    "max": 63.397,
     "n_pairs": 39
    },
    "pairwise_frame_rmsd": {
-    "median": 0.728,
-    "q25": 0.464,
-    "q75": 53.264,
+    "median": 0.733,
+    "q25": 0.466,
+    "q75": 23.269,
     "p5": 0.289,
-    "p95": 60.997,
-    "max": 81.015,
+    "p95": 61.208,
+    "max": 61.719,
     "n_pairs": 780
    },
    "pairwise_fit_rmsd": {
-    "median": 0.307,
+    "median": 0.305,
     "q25": 0.216,
-    "q75": 20.2,
+    "q75": 20.201,
     "p5": 0.148,
-    "p95": 23.648,
-    "max": 23.688,
+    "p95": 23.645,
+    "max": 23.695,
     "n_pairs": 780
    },
-   "n_low_margin": 39,
+   "n_low_margin": 37,
    "n_via_neighbour": 0
   }
  ]

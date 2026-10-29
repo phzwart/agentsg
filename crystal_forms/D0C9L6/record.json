@@ -7,8 +7,8 @@
  "name": "Peptidyl-tRNA hydrolase",
  "clusters": [
   {
-   "cluster_id": 1022,
-   "n_members": 16,
+   "cluster_id": 973,
+   "n_members": 17,
    "reference": "6J93",
    "reference_resolution": 0.95,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 16,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 0.229,
-    "q25": 0.138,
-    "q75": 0.282,
-    "p5": 0.065,
-    "p95": 0.374,
-    "max": 0.401,
-    "n_pairs": 15
+    "median": 0.236,
+    "q25": 0.139,
+    "q75": 0.324,
+    "p5": 0.066,
+    "p95": 0.663,
+    "max": 1.447,
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 0.255,
-    "q25": 0.2,
-    "q75": 0.314,
-    "p5": 0.121,
-    "p95": 0.392,
-    "max": 0.419,
-    "n_pairs": 120
+    "median": 0.261,
+    "q25": 0.211,
+    "q75": 0.356,
+    "p5": 0.122,
+    "p95": 1.326,
+    "max": 1.48,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.211,
-    "q25": 0.149,
-    "q75": 0.269,
-    "p5": 0.097,
-    "p95": 0.325,
-    "max": 0.349,
-    "n_pairs": 120
+    "median": 0.221,
+    "q25": 0.154,
+    "q75": 0.288,
+    "p5": 0.103,
+    "p95": 0.52,
+    "max": 0.562,
+    "n_pairs": 136
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

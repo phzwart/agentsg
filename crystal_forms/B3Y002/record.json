@@ -1,0 +1,59 @@
+{
+ "identity": "B3Y002",
+ "accessions": [
+  "B3Y002"
+ ],
+ "deposition_group": null,
+ "name": "Endoglucanase V-like protein",
+ "clusters": [
+  {
+   "cluster_id": 1680,
+   "n_members": 11,
+   "reference": "3X2M",
+   "reference_resolution": 0.64,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    45.938,
+    57.554,
+    63.431,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.383,
+    "q25": 0.34,
+    "q75": 0.483,
+    "p5": 0.274,
+    "p95": 1.174,
+    "max": 1.441,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.44,
+    "q25": 0.323,
+    "q75": 0.829,
+    "p5": 0.221,
+    "p95": 1.152,
+    "max": 1.297,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.2,
+    "q75": 0.28,
+    "p5": 0.156,
+    "p95": 0.777,
+    "max": 0.817,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

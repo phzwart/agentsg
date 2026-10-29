@@ -7,7 +7,7 @@
  "name": "Uncharacterized protein",
  "clusters": [
   {
-   "cluster_id": 592,
+   "cluster_id": 601,
    "n_members": 25,
    "reference": "5ZM0",
    "reference_resolution": 1.6,

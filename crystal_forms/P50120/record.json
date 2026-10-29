@@ -7,58 +7,8 @@
  "name": "Retinol-binding protein 2",
  "clusters": [
   {
-   "cluster_id": 580,
-   "n_members": 26,
-   "reference": "8VZZ",
-   "reference_resolution": 1.22,
-   "space_group": "P 1",
-   "reference_cell": [
-    29.329,
-    36.432,
-    64.083,
-    89.74,
-    89.36,
-    66.38
-   ],
-   "status_counts": {
-    "different_space_group": 11,
-    "placed": 14,
-    "reference": 1
-   },
-   "n_pairs": 105,
-   "rmsd_to_reference": {
-    "median": 0.722,
-    "q25": 0.675,
-    "q75": 0.769,
-    "p5": 0.503,
-    "p95": 0.812,
-    "max": 0.852,
-    "n_pairs": 14
-   },
-   "pairwise_frame_rmsd": {
-    "median": 0.689,
-    "q25": 0.484,
-    "q75": 0.89,
-    "p5": 0.269,
-    "p95": 1.073,
-    "max": 1.302,
-    "n_pairs": 105
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.41,
-    "q25": 0.301,
-    "q75": 0.532,
-    "p5": 0.202,
-    "p95": 0.638,
-    "max": 0.685,
-    "n_pairs": 105
-   },
-   "n_low_margin": 14,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 1163,
-   "n_members": 15,
+   "cluster_id": 331,
+   "n_members": 41,
    "reference": "9D8M",
    "reference_resolution": 1.201,
    "space_group": "P 1",
@@ -71,38 +21,39 @@
     65.17
    ],
    "status_counts": {
-    "placed": 14,
+    "different_space_group": 11,
+    "placed": 29,
     "reference": 1
    },
-   "n_pairs": 105,
+   "n_pairs": 435,
    "rmsd_to_reference": {
-    "median": 0.255,
-    "q25": 0.21,
-    "q75": 0.312,
-    "p5": 0.189,
-    "p95": 0.453,
-    "max": 0.468,
-    "n_pairs": 14
+    "median": 1.134,
+    "q25": 0.256,
+    "q75": 1.449,
+    "p5": 0.197,
+    "p95": 1.635,
+    "max": 32.505,
+    "n_pairs": 29
    },
    "pairwise_frame_rmsd": {
-    "median": 0.367,
-    "q25": 0.298,
-    "q75": 0.496,
-    "p5": 0.215,
-    "p95": 0.583,
-    "max": 0.783,
-    "n_pairs": 105
+    "median": 1.72,
+    "q25": 0.526,
+    "q75": 2.127,
+    "p5": 0.265,
+    "p95": 32.244,
+    "max": 33.288,
+    "n_pairs": 435
    },
    "pairwise_fit_rmsd": {
-    "median": 0.27,
-    "q25": 0.213,
-    "q75": 0.372,
-    "p5": 0.174,
-    "p95": 0.484,
-    "max": 0.531,
-    "n_pairs": 105
+    "median": 0.591,
+    "q25": 0.367,
+    "q75": 0.695,
+    "p5": 0.201,
+    "p95": 8.809,
+    "max": 8.858,
+    "n_pairs": 435
    },
-   "n_low_margin": 0,
+   "n_low_margin": 13,
    "n_via_neighbour": 0
   }
  ]

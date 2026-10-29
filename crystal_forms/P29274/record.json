@@ -7,7 +7,7 @@
  "name": "Adenosine receptor A2a",
  "clusters": [
   {
-   "cluster_id": 447,
+   "cluster_id": 456,
    "n_members": 32,
    "reference": "9H37",
    "reference_resolution": 1.715,
@@ -29,10 +29,10 @@
    "rmsd_to_reference": {
     "median": 0.233,
     "q25": 0.221,
-    "q75": 0.549,
+    "q75": 0.278,
     "p5": 0.194,
-    "p95": 26.574,
-    "max": 26.909,
+    "p95": 0.564,
+    "max": 0.616,
     "n_pairs": 30
    },
    "pairwise_frame_rmsd": {

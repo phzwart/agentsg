@@ -8,7 +8,7 @@
  "name": "cAMP-dependent protein kinase catalytic subunit alpha",
  "clusters": [
   {
-   "cluster_id": 727,
+   "cluster_id": 743,
    "n_members": 22,
    "reference": "4WB8",
    "reference_resolution": 1.55,
@@ -27,12 +27,12 @@
    },
    "n_pairs": 231,
    "rmsd_to_reference": {
-    "median": 0.629,
-    "q25": 0.574,
-    "q75": 0.798,
-    "p5": 0.501,
-    "p95": 2.759,
-    "max": 44.982,
+    "median": 0.619,
+    "q25": 0.534,
+    "q75": 0.685,
+    "p5": 0.493,
+    "p95": 1.177,
+    "max": 2.759,
     "n_pairs": 21
    },
    "pairwise_frame_rmsd": {
@@ -40,8 +40,8 @@
     "q25": 0.558,
     "q75": 1.032,
     "p5": 0.327,
-    "p95": 45.059,
-    "max": 45.273,
+    "p95": 2.679,
+    "max": 3.551,
     "n_pairs": 231
    },
    "pairwise_fit_rmsd": {
@@ -53,7 +53,7 @@
     "max": 2.645,
     "n_pairs": 231
    },
-   "n_low_margin": 1,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

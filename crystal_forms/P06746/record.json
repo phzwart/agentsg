@@ -7,57 +7,8 @@
  "name": "DNA polymerase beta",
  "clusters": [
   {
-   "cluster_id": 37,
-   "n_members": 182,
-   "reference": "9Y1J",
-   "reference_resolution": 1.55,
-   "space_group": "P 1 21 1",
-   "reference_cell": [
-    50.772,
-    79.178,
-    55.525,
-    90.0,
-    107.57,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 181,
-    "reference": 1
-   },
-   "n_pairs": 16471,
-   "rmsd_to_reference": {
-    "median": 0.319,
-    "q25": 0.269,
-    "q75": 0.395,
-    "p5": 0.217,
-    "p95": 1.695,
-    "max": 3.814,
-    "n_pairs": 181
-   },
-   "pairwise_frame_rmsd": {
-    "median": 0.392,
-    "q25": 0.308,
-    "q75": 0.759,
-    "p5": 0.23,
-    "p95": 1.841,
-    "max": 4.956,
-    "n_pairs": 16471
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.314,
-    "q25": 0.254,
-    "q75": 0.484,
-    "p5": 0.195,
-    "p95": 0.939,
-    "max": 2.978,
-    "n_pairs": 16471
-   },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 50,
-   "n_members": 151,
+   "cluster_id": 11,
+   "n_members": 338,
    "reference": "8VFG",
    "reference_resolution": 1.54,
    "space_group": "P 1 21 1",
@@ -70,42 +21,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 150,
+    "placed": 337,
     "reference": 1
    },
-   "n_pairs": 11325,
+   "n_pairs": 56953,
    "rmsd_to_reference": {
-    "median": 0.695,
-    "q25": 0.437,
-    "q75": 1.923,
-    "p5": 0.301,
-    "p95": 4.876,
+    "median": 6.207,
+    "q25": 0.827,
+    "q75": 6.305,
+    "p5": 0.345,
+    "p95": 7.101,
     "max": 32.313,
-    "n_pairs": 150
+    "n_pairs": 337
    },
    "pairwise_frame_rmsd": {
-    "median": 1.489,
-    "q25": 0.69,
-    "q75": 3.017,
-    "p5": 0.367,
-    "p95": 6.126,
-    "max": 34.249,
-    "n_pairs": 11325
+    "median": 6.175,
+    "q25": 0.638,
+    "q75": 7.324,
+    "p5": 0.28,
+    "p95": 8.099,
+    "max": 34.571,
+    "n_pairs": 56953
    },
    "pairwise_fit_rmsd": {
-    "median": 0.715,
-    "q25": 0.474,
-    "q75": 1.644,
-    "p5": 0.291,
-    "p95": 2.484,
-    "max": 2.944,
-    "n_pairs": 11325
+    "median": 1.349,
+    "q25": 0.443,
+    "q75": 2.703,
+    "p5": 0.232,
+    "p95": 2.926,
+    "max": 3.374,
+    "n_pairs": 56953
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 11
+   "n_via_neighbour": 17
   },
   {
-   "cluster_id": 119,
+   "cluster_id": 118,
    "n_members": 88,
    "reference": "3OGU",
    "reference_resolution": 1.845,

@@ -7,8 +7,8 @@
  "name": "Carbonic anhydrase 1",
  "clusters": [
   {
-   "cluster_id": 258,
-   "n_members": 47,
+   "cluster_id": 259,
+   "n_members": 48,
    "reference": "7Q0D",
    "reference_resolution": 1.24,
    "space_group": "P 21 21 21",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 46,
+    "placed": 47,
     "reference": 1
    },
-   "n_pairs": 1081,
+   "n_pairs": 1128,
    "rmsd_to_reference": {
-    "median": 1.52,
-    "q25": 1.361,
-    "q75": 24.616,
-    "p5": 1.062,
-    "p95": 24.749,
+    "median": 1.534,
+    "q25": 1.363,
+    "q75": 24.604,
+    "p5": 1.065,
+    "p95": 24.748,
     "max": 24.872,
-    "n_pairs": 46
+    "n_pairs": 47
    },
    "pairwise_frame_rmsd": {
-    "median": 1.554,
-    "q25": 0.498,
-    "q75": 25.692,
-    "p5": 0.264,
-    "p95": 25.949,
-    "max": 26.173,
-    "n_pairs": 1081
+    "median": 1.752,
+    "q25": 0.514,
+    "q75": 25.699,
+    "p5": 0.27,
+    "p95": 25.968,
+    "max": 28.443,
+    "n_pairs": 1128
    },
    "pairwise_fit_rmsd": {
-    "median": 0.283,
-    "q25": 0.236,
-    "q75": 0.331,
-    "p5": 0.147,
-    "p95": 0.455,
+    "median": 0.288,
+    "q25": 0.239,
+    "q75": 0.339,
+    "p5": 0.148,
+    "p95": 0.454,
     "max": 3.762,
-    "n_pairs": 1081
+    "n_pairs": 1128
    },
-   "n_low_margin": 45,
+   "n_low_margin": 46,
    "n_via_neighbour": 0
   }
  ]

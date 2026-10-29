@@ -7,7 +7,7 @@
  "name": "Parathion hydrolase",
  "clusters": [
   {
-   "cluster_id": 1366,
+   "cluster_id": 1394,
    "n_members": 13,
    "reference": "6AML",
    "reference_resolution": 1.46,
@@ -53,11 +53,11 @@
     "max": 0.739,
     "n_pairs": 45
    },
-   "n_low_margin": 9,
+   "n_low_margin": 3,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1367,
+   "cluster_id": 1395,
    "n_members": 13,
    "reference": "8P7U",
    "reference_resolution": 1.38,

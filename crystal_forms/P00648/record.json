@@ -7,8 +7,8 @@
  "name": "Ribonuclease",
  "clusters": [
   {
-   "cluster_id": 515,
-   "n_members": 28,
+   "cluster_id": 505,
+   "n_members": 29,
    "reference": "1A2P",
    "reference_resolution": 1.5,
    "space_group": "P 32",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 27
+    "placed": 27,
+    "different_space_group": 1
    },
    "n_pairs": 378,
    "rmsd_to_reference": {

@@ -7,7 +7,7 @@
  "name": "DNA polymerase IV",
  "clusters": [
   {
-   "cluster_id": 508,
+   "cluster_id": 517,
    "n_members": 29,
    "reference": "5YUY",
    "reference_resolution": 1.74,
@@ -31,7 +31,7 @@
     "q75": 0.629,
     "p5": 0.193,
     "p95": 2.185,
-    "max": 41.322,
+    "max": 2.525,
     "n_pairs": 28
    },
    "pairwise_frame_rmsd": {
@@ -39,8 +39,8 @@
     "q25": 0.598,
     "q75": 4.309,
     "p5": 0.331,
-    "p95": 43.542,
-    "max": 44.179,
+    "p95": 14.329,
+    "max": 15.66,
     "n_pairs": 406
    },
    "pairwise_fit_rmsd": {

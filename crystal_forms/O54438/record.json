@@ -7,7 +7,7 @@
  "name": "3-oxoacyl-[acyl-carrier-protein] reductase FabG",
  "clusters": [
   {
-   "cluster_id": 1025,
+   "cluster_id": 1053,
    "n_members": 16,
    "reference": "4BNW",
    "reference_resolution": 1.6,

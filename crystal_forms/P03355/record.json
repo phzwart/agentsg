@@ -7,8 +7,8 @@
  "name": "Gag-Pol polyprotein",
  "clusters": [
   {
-   "cluster_id": 423,
-   "n_members": 33,
+   "cluster_id": 398,
+   "n_members": 35,
    "reference": "7UYP",
    "reference_resolution": 1.5,
    "space_group": "P 21 21 2",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 32,
+    "placed": 34,
     "reference": 1
    },
-   "n_pairs": 528,
+   "n_pairs": 595,
    "rmsd_to_reference": {
-    "median": 0.646,
-    "q25": 0.476,
-    "q75": 0.793,
-    "p5": 0.177,
-    "p95": 0.956,
-    "max": 1.203,
-    "n_pairs": 32
+    "median": 0.669,
+    "q25": 0.493,
+    "q75": 0.811,
+    "p5": 0.181,
+    "p95": 1.581,
+    "max": 2.4,
+    "n_pairs": 34
    },
    "pairwise_frame_rmsd": {
-    "median": 0.875,
-    "q25": 0.682,
-    "q75": 1.121,
-    "p5": 0.473,
-    "p95": 1.583,
-    "max": 2.55,
-    "n_pairs": 528
+    "median": 0.918,
+    "q25": 0.708,
+    "q75": 1.264,
+    "p5": 0.477,
+    "p95": 2.265,
+    "max": 2.85,
+    "n_pairs": 595
    },
    "pairwise_fit_rmsd": {
-    "median": 0.508,
-    "q25": 0.398,
-    "q75": 0.619,
-    "p5": 0.183,
-    "p95": 0.8,
-    "max": 0.993,
-    "n_pairs": 528
+    "median": 0.532,
+    "q25": 0.415,
+    "q75": 0.654,
+    "p5": 0.188,
+    "p95": 0.835,
+    "max": 1.165,
+    "n_pairs": 595
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

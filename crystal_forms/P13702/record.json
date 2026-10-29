@@ -7,7 +7,7 @@
  "name": "3-hydroxy-3-methylglutaryl-coenzyme A reductase",
  "clusters": [
   {
-   "cluster_id": 982,
+   "cluster_id": 1009,
    "n_members": 17,
    "reference": "4I6Y",
    "reference_resolution": 1.45,

@@ -7,7 +7,7 @@
  "name": "Macrophage migration inhibitory factor",
  "clusters": [
   {
-   "cluster_id": 136,
+   "cluster_id": 138,
    "n_members": 80,
    "reference": "9JIT",
    "reference_resolution": 1.08,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 547,
+   "cluster_id": 558,
    "n_members": 27,
    "reference": "4GRN",
    "reference_resolution": 1.25,

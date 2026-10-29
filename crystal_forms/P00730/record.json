@@ -7,7 +7,7 @@
  "name": "Carboxypeptidase A1",
  "clusters": [
   {
-   "cluster_id": 1122,
+   "cluster_id": 1145,
    "n_members": 15,
    "reference": "1M4L",
    "reference_resolution": 1.25,

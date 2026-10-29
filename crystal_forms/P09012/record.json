@@ -7,7 +7,7 @@
  "name": "U1 small nuclear ribonucleoprotein A",
  "clusters": [
   {
-   "cluster_id": 1250,
+   "cluster_id": 1281,
    "n_members": 14,
    "reference": "1SJ3",
    "reference_resolution": 2.2,
@@ -51,6 +51,55 @@
     "p95": 0.742,
     "max": 0.767,
     "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1731,
+   "n_members": 11,
+   "reference": "4YB1",
+   "reference_resolution": 2.081,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.738,
+    46.836,
+    80.791,
+    90.0,
+    90.44,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 3.147,
+    "q25": 2.972,
+    "q75": 3.237,
+    "p5": 2.404,
+    "p95": 3.288,
+    "max": 3.296,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.45,
+    "q25": 2.063,
+    "q75": 4.858,
+    "p5": 0.758,
+    "p95": 7.896,
+    "max": 9.084,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.695,
+    "q25": 0.596,
+    "q75": 0.812,
+    "p5": 0.441,
+    "p95": 0.939,
+    "max": 1.039,
+    "n_pairs": 55
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

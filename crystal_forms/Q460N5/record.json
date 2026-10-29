@@ -7,7 +7,7 @@
  "name": "Protein mono-ADP-ribosyltransferase PARP14",
  "clusters": [
   {
-   "cluster_id": 786,
+   "cluster_id": 801,
    "n_members": 21,
    "reference": "5QHT",
    "reference_resolution": 1.05,

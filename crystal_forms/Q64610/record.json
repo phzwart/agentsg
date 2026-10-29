@@ -7,7 +7,7 @@
  "name": "Autotaxin",
  "clusters": [
   {
-   "cluster_id": 29,
+   "cluster_id": 31,
    "n_members": 205,
    "reference": "7G2W",
    "reference_resolution": 1.25,

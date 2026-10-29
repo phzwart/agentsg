@@ -7,7 +7,7 @@
  "name": "Gag-Pol polyprotein",
  "clusters": [
   {
-   "cluster_id": 1403,
+   "cluster_id": 1436,
    "n_members": 13,
    "reference": "3OU4",
    "reference_resolution": 1.6,
@@ -53,7 +53,7 @@
     "max": 0.27,
     "n_pairs": 36
    },
-   "n_low_margin": 8,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

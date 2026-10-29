@@ -7,8 +7,8 @@
  "name": "B-cell lymphoma 6 protein",
  "clusters": [
   {
-   "cluster_id": 39,
-   "n_members": 174,
+   "cluster_id": 38,
+   "n_members": 185,
    "reference": "7OKL",
    "reference_resolution": 1.2,
    "space_group": "P 61 2 2",
@@ -21,42 +21,43 @@
     120.0
    ],
    "status_counts": {
-    "placed": 173,
+    "placed": 183,
+    "different_space_group": 1,
     "reference": 1
    },
-   "n_pairs": 15051,
+   "n_pairs": 16836,
    "rmsd_to_reference": {
-    "median": 0.45,
-    "q25": 0.316,
-    "q75": 0.595,
+    "median": 0.452,
+    "q25": 0.324,
+    "q75": 0.602,
     "p5": 0.243,
-    "p95": 1.179,
-    "max": 1.632,
-    "n_pairs": 173
+    "p95": 2.356,
+    "max": 3.407,
+    "n_pairs": 183
    },
    "pairwise_frame_rmsd": {
-    "median": 0.458,
-    "q25": 0.256,
-    "q75": 0.703,
-    "p5": 0.099,
-    "p95": 1.069,
-    "max": 2.763,
-    "n_pairs": 15051
+    "median": 0.518,
+    "q25": 0.269,
+    "q75": 0.803,
+    "p5": 0.123,
+    "p95": 3.421,
+    "max": 5.129,
+    "n_pairs": 16836
    },
    "pairwise_fit_rmsd": {
-    "median": 0.17,
-    "q25": 0.12,
-    "q75": 0.221,
-    "p5": 0.048,
-    "p95": 0.562,
-    "max": 1.245,
-    "n_pairs": 15051
+    "median": 0.179,
+    "q25": 0.124,
+    "q75": 0.303,
+    "p5": 0.056,
+    "p95": 0.775,
+    "max": 1.419,
+    "n_pairs": 16836
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 502,
+   "cluster_id": 511,
    "n_members": 29,
    "reference": "7LWE",
    "reference_resolution": 1.17,
@@ -80,77 +81,27 @@
     "q25": 0.234,
     "q75": 0.68,
     "p5": 0.167,
-    "p95": 22.681,
-    "max": 26.963,
+    "p95": 1.413,
+    "max": 1.634,
     "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 0.503,
-    "q25": 0.351,
-    "q75": 0.754,
+    "median": 0.499,
+    "q25": 0.35,
+    "q75": 0.71,
     "p5": 0.227,
-    "p95": 27.037,
-    "max": 27.259,
+    "p95": 1.38,
+    "max": 1.625,
     "n_pairs": 300
    },
    "pairwise_fit_rmsd": {
-    "median": 0.347,
+    "median": 0.346,
     "q25": 0.228,
-    "q75": 0.473,
+    "q75": 0.443,
     "p5": 0.16,
-    "p95": 6.874,
-    "max": 6.938,
+    "p95": 0.575,
+    "max": 1.076,
     "n_pairs": 300
-   },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 1720,
-   "n_members": 11,
-   "reference": "5X9O",
-   "reference_resolution": 1.58,
-   "space_group": "P 61 2 2",
-   "reference_cell": [
-    66.618,
-    66.618,
-    151.996,
-    90.0,
-    90.0,
-    120.0
-   ],
-   "status_counts": {
-    "placed": 9,
-    "reference": 1,
-    "different_space_group": 1
-   },
-   "n_pairs": 45,
-   "rmsd_to_reference": {
-    "median": 0.646,
-    "q25": 0.536,
-    "q75": 0.729,
-    "p5": 0.32,
-    "p95": 0.866,
-    "max": 0.923,
-    "n_pairs": 9
-   },
-   "pairwise_frame_rmsd": {
-    "median": 0.739,
-    "q25": 0.616,
-    "q75": 1.052,
-    "p5": 0.275,
-    "p95": 1.291,
-    "max": 1.461,
-    "n_pairs": 45
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.541,
-    "q25": 0.273,
-    "q75": 0.634,
-    "p5": 0.18,
-    "p95": 0.704,
-    "max": 0.718,
-    "n_pairs": 45
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

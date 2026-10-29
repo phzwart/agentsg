@@ -7,7 +7,7 @@
  "name": "Lysosomal acid glucosylceramidase",
  "clusters": [
   {
-   "cluster_id": 498,
+   "cluster_id": 506,
    "n_members": 29,
    "reference": "6TJJ",
    "reference_resolution": 1.59,
@@ -58,7 +58,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1354,
+   "cluster_id": 1384,
    "n_members": 13,
    "reference": "9FB2",
    "reference_resolution": 1.14,

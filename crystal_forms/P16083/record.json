@@ -7,8 +7,8 @@
  "name": "Ribosyldihydronicotinamide dehydrogenase [quinone]",
  "clusters": [
   {
-   "cluster_id": 182,
-   "n_members": 62,
+   "cluster_id": 177,
+   "n_members": 66,
    "reference": "4FGJ",
    "reference_resolution": 1.346,
    "space_group": "P 21 21 21",
@@ -21,37 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 60,
+    "placed": 64,
     "reference": 1,
     "different_space_group": 1
    },
-   "n_pairs": 1830,
+   "n_pairs": 2080,
    "rmsd_to_reference": {
-    "median": 0.524,
-    "q25": 0.383,
-    "q75": 0.663,
-    "p5": 0.256,
-    "p95": 1.819,
-    "max": 1.988,
-    "n_pairs": 60
+    "median": 0.541,
+    "q25": 0.394,
+    "q75": 0.673,
+    "p5": 0.257,
+    "p95": 3.138,
+    "max": 3.51,
+    "n_pairs": 64
    },
    "pairwise_frame_rmsd": {
-    "median": 0.597,
-    "q25": 0.48,
-    "q75": 0.733,
-    "p5": 0.313,
-    "p95": 2.047,
-    "max": 2.469,
-    "n_pairs": 1830
+    "median": 0.626,
+    "q25": 0.5,
+    "q75": 0.924,
+    "p5": 0.32,
+    "p95": 3.822,
+    "max": 4.342,
+    "n_pairs": 2080
    },
    "pairwise_fit_rmsd": {
-    "median": 0.408,
-    "q25": 0.307,
-    "q75": 0.492,
-    "p5": 0.234,
-    "p95": 0.607,
+    "median": 0.42,
+    "q25": 0.317,
+    "q75": 0.501,
+    "p5": 0.238,
+    "p95": 0.64,
     "max": 1.02,
-    "n_pairs": 1830
+    "n_pairs": 2080
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

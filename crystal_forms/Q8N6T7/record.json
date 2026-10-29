@@ -7,8 +7,8 @@
  "name": "NAD-dependent protein deacylase sirtuin-6",
  "clusters": [
   {
-   "cluster_id": 478,
-   "n_members": 31,
+   "cluster_id": 406,
+   "n_members": 35,
    "reference": "6HOY",
    "reference_resolution": 1.7,
    "space_group": "P 63",
@@ -21,6 +21,7 @@
     120.0
    ],
    "status_counts": {
+    "different_space_group": 4,
     "placed": 30,
     "reference": 1
    },

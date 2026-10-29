@@ -7,7 +7,7 @@
  "name": "ATP-dependent dethiobiotin synthetase BioD 1",
  "clusters": [
   {
-   "cluster_id": 1380,
+   "cluster_id": 1408,
    "n_members": 13,
    "reference": "1BYI",
    "reference_resolution": 0.97,

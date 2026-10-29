@@ -8,7 +8,7 @@
  "name": "Naphthalene 1,2-dioxygenase system, large oxygenase component",
  "clusters": [
   {
-   "cluster_id": 973,
+   "cluster_id": 1001,
    "n_members": 17,
    "reference": "4HM8",
    "reference_resolution": 1.3,

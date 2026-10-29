@@ -7,7 +7,7 @@
  "name": "Sirohydrochlorin cobaltochelatase",
  "clusters": [
   {
-   "cluster_id": 1437,
+   "cluster_id": 1470,
    "n_members": 13,
    "reference": "8I55",
    "reference_resolution": 1.99,
@@ -52,7 +52,7 @@
     "max": 0.882,
     "n_pairs": 78
    },
-   "n_low_margin": 12,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

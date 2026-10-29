@@ -8,7 +8,7 @@
  "name": "Cyclin-dependent kinase 2",
  "clusters": [
   {
-   "cluster_id": 321,
+   "cluster_id": 327,
    "n_members": 41,
    "reference": "3DDQ",
    "reference_resolution": 1.8,

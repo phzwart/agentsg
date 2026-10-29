@@ -6,17 +6,17 @@ Produced with agentsg (branch `crystal-form-clusters`, modules `cell.clusters`, 
 
 ## How the clusters were made
 
-Two entries are joined when they carry the same identity (the exact set of UniProt accessions, or the deposition group of an entry with none), their strain price over the widened Selling closure is at most 7 %, and their primitive volumes agree within 7 %. A cluster is a connected component of these joins (single linkage), so it can chain: two members of one cluster may differ by more than 7 %.
+Two entries are joined when they carry the same identity (the exact set of UniProt accessions, or the deposition group of an entry with none), their strain price over the widened Selling closure is at most 14.8 % (Le Page's 3°), and their primitive volumes agree within 7 %. A cluster is a connected component of these joins (single linkage), so it can chain: two members of one cluster may differ by more than 14.8 %. Because edges need the same identity, a wider band only merges crystal forms of the same protein; the volume gate keeps most of those apart.
 
 ## How the frames were made
 
 The reference of a cluster is its highest-resolution entry among those whose space group has the cluster's most common IT number. Every other entry with that IT number is placed on it:
 
-- the reindexing operators within the band (7 %, widened to 15 % and 20 % when none are found), one per class of the reference's point group;
+- the reindexing operators within Le Page's 3° (strain price 14.8 %), one per class of the reference's point group; every class is scored on the Cα, so an indexing near a higher lattice symmetry is not missed. When none is found, or the best placement is still more than 3 Å from the reference, the classes up to 20 % are scored as well;
 - the origin shift that turns the entry's operators into the reference's, solved exactly;
-- among the allowed origins, the proper Euclidean normalizer elements and the group operators, the placement with the lowest Cα RMSD, with Cα paired by UniProt residue number.
+- among the allowed origins, the proper Euclidean normalizer elements and the group operators, the placement with the lowest Cα RMSD, with Cα paired by UniProt residue number (a chain mapped to several accessions is paired one accession at a time, named `chain:accession`).
 
-An entry more than 20 % from the reference is placed on an already-placed neighbour and the two frames are composed (`via`). Entries with another IT number are listed and not placed.
+An entry with no reindexing within 20 % of the reference is placed on an already-placed neighbour and the two frames are composed (`via`). Entries with another IT number are listed and not placed.
 
 ## Files
 
@@ -55,7 +55,7 @@ $$
 | n_paired | Cα pairs used for `rmsd_to_ref` |
 | margin | RMSD of the next distinct placement minus the best (Å); below about 1 Å the coordinates barely decide; a lower bound when above 3 Å |
 | asu_rmsd | worst chain of the entry against its nearest reference chain under the group's operators, no fitting (Å) |
-| accept | strain band at which the reindexing was found |
+| accept | band whose classes produced the chosen placement (0.148 or 0.20) |
 | n_classes, class_price | number of reindexing classes tried, strain price of the chosen one |
 | via | anchor entry when placed through a neighbour |
 | member_chain, ref_chain | chains used for the placement |
@@ -73,10 +73,10 @@ One quality flag per placed entry: `pdb_id`, `identity_dir`, `cluster_id`, `rmsd
 
 | flag | rule | count |
 |---|---|---|
-| `ok` | otherwise | 51,877 |
-| `low_margin` | margin below 1 Å: the coordinates barely decide between two placements | 3,091 |
-| `far_same_structure` | more than 3 Å from the reference without fitting, below 1.5 Å after superposition: the same structure elsewhere in the lattice, either another packing at the far end of a chained cluster (BRD4 cluster 15) or a missed origin or setting (seen in TTK cluster 171, I222) | 1,390 (227 clusters) |
-| `far_mispaired` | more than 3 Å from the reference without fitting and at least 1.5 Å after superposition: the Cα atoms are probably paired wrongly, most likely a residue-numbering mismatch (BTK cluster 116) | 2,452 (288 clusters) |
+| `ok` | otherwise | 53,233 |
+| `low_margin` | margin below 1 Å: the coordinates barely decide between two placements | 2,219 |
+| `far_same_structure` | more than 3 Å from the reference without fitting, below 1.5 Å after superposition: the same structure in another packing. Example: TTK (P33981), I222 with a pseudo-tetragonal cell; after the best indexing (b↔c, 9.4 %) the molecule is still rotated 14.6° about a relative to the reference, which no lattice operator removes | 1,666 |
+| `far_mispaired` | more than 3 Å from the reference without fitting and at least 1.5 Å after superposition: the Cα atoms are probably paired wrongly, most likely a residue-numbering mismatch between depositions | 2,839 |
 
 The two `far_` flags are open problems, not settled results; use `ok` entries for anything quantitative.
 

@@ -7,8 +7,8 @@
  "name": "Bacteriorhodopsin",
  "clusters": [
   {
-   "cluster_id": 91,
-   "n_members": 104,
+   "cluster_id": 79,
+   "n_members": 112,
    "reference": "7Z09",
    "reference_resolution": 1.05,
    "space_group": "P 63",
@@ -21,42 +21,43 @@
     120.0
    ],
    "status_counts": {
-    "placed": 103,
+    "placed": 105,
+    "different_space_group": 6,
     "reference": 1
    },
-   "n_pairs": 5356,
+   "n_pairs": 5565,
    "rmsd_to_reference": {
-    "median": 0.787,
-    "q25": 0.323,
+    "median": 0.788,
+    "q25": 0.328,
     "q75": 0.817,
-    "p5": 0.154,
-    "p95": 1.225,
+    "p5": 0.157,
+    "p95": 1.791,
     "max": 19.599,
-    "n_pairs": 103
+    "n_pairs": 105
    },
    "pairwise_frame_rmsd": {
-    "median": 0.84,
-    "q25": 0.408,
-    "q75": 1.242,
-    "p5": 0.175,
-    "p95": 14.998,
+    "median": 0.877,
+    "q25": 0.428,
+    "q75": 1.261,
+    "p5": 0.176,
+    "p95": 14.975,
     "max": 19.57,
-    "n_pairs": 5356
+    "n_pairs": 5565
    },
    "pairwise_fit_rmsd": {
-    "median": 0.402,
-    "q25": 0.272,
-    "q75": 0.787,
+    "median": 0.42,
+    "q25": 0.285,
+    "q75": 0.807,
     "p5": 0.14,
-    "p95": 14.692,
+    "p95": 14.688,
     "max": 18.479,
-    "n_pairs": 5356
+    "n_pairs": 5565
    },
    "n_low_margin": 3,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 858,
+   "cluster_id": 880,
    "n_members": 19,
    "reference": "1PXR",
    "reference_resolution": 1.7,
@@ -105,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1241,
+   "cluster_id": 1270,
    "n_members": 14,
    "reference": "2ZZL",
    "reference_resolution": 2.03,
@@ -154,7 +155,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1668,
+   "cluster_id": 1716,
    "n_members": 11,
    "reference": "3HAP",
    "reference_resolution": 1.6,

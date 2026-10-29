@@ -7,7 +7,7 @@
  "name": "Bis(5'-nucleosyl)-tetraphosphatase [symmetrical]",
  "clusters": [
   {
-   "cluster_id": 568,
+   "cluster_id": 581,
    "n_members": 26,
    "reference": "9OP2",
    "reference_resolution": 1.5,

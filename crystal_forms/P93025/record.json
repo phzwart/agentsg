@@ -7,8 +7,8 @@
  "name": "Phototropin-2",
  "clusters": [
   {
-   "cluster_id": 1073,
-   "n_members": 16,
+   "cluster_id": 1028,
+   "n_members": 17,
    "reference": "6GPU",
    "reference_resolution": 1.17,
    "space_group": "P 43 21 2",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 15,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 1
    },
    "n_pairs": 120,
    "rmsd_to_reference": {

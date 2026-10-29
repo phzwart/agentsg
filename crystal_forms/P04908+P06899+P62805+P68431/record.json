@@ -10,7 +10,7 @@
  "name": "Histone H3.1",
  "clusters": [
   {
-   "cluster_id": 302,
+   "cluster_id": 308,
    "n_members": 42,
    "reference": "5Y0D",
    "reference_resolution": 1.99,

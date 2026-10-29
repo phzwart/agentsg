@@ -7,7 +7,7 @@
  "name": "Nitric oxide synthase, inducible",
  "clusters": [
   {
-   "cluster_id": 327,
+   "cluster_id": 334,
    "n_members": 40,
    "reference": "3E7M",
    "reference_resolution": 2.0,
@@ -52,7 +52,7 @@
     "max": 17.806,
     "n_pairs": 780
    },
-   "n_low_margin": 2,
+   "n_low_margin": 3,
    "n_via_neighbour": 0
   }
  ]

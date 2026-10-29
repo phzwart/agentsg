@@ -8,7 +8,7 @@
  "name": "Telomere-binding protein subunit alpha",
  "clusters": [
   {
-   "cluster_id": 1263,
+   "cluster_id": 1295,
    "n_members": 14,
    "reference": "1JB7",
    "reference_resolution": 1.86,

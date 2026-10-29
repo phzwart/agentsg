@@ -7,8 +7,8 @@
  "name": "E-selectin",
  "clusters": [
   {
-   "cluster_id": 1527,
-   "n_members": 12,
+   "cluster_id": 1418,
+   "n_members": 13,
    "reference": "6EYI",
    "reference_resolution": 2.04,
    "space_group": "C 1 2 1",
@@ -21,7 +21,7 @@
     90.0
    ],
    "status_counts": {
-    "different_space_group": 1,
+    "different_space_group": 2,
     "reference": 1,
     "placed": 10
    },

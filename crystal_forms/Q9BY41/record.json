@@ -7,8 +7,8 @@
  "name": "Histone deacetylase 8",
  "clusters": [
   {
-   "cluster_id": 1092,
-   "n_members": 16,
+   "cluster_id": 630,
+   "n_members": 25,
    "reference": "7JVU",
    "reference_resolution": 1.5004765401,
    "space_group": "P 1 21 1",
@@ -21,36 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 21,
+    "different_space_group": 3,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 231,
    "rmsd_to_reference": {
-    "median": 0.866,
-    "q25": 0.555,
-    "q75": 1.513,
-    "p5": 0.429,
-    "p95": 1.796,
-    "max": 2.021,
-    "n_pairs": 15
+    "median": 1.436,
+    "q25": 0.585,
+    "q75": 1.789,
+    "p5": 0.467,
+    "p95": 2.602,
+    "max": 2.908,
+    "n_pairs": 21
    },
    "pairwise_frame_rmsd": {
-    "median": 1.449,
-    "q25": 0.823,
-    "q75": 1.819,
-    "p5": 0.529,
-    "p95": 2.753,
-    "max": 3.255,
-    "n_pairs": 120
+    "median": 1.938,
+    "q25": 1.304,
+    "q75": 2.536,
+    "p5": 0.571,
+    "p95": 3.195,
+    "max": 3.948,
+    "n_pairs": 231
    },
    "pairwise_fit_rmsd": {
-    "median": 0.488,
-    "q25": 0.411,
-    "q75": 0.609,
-    "p5": 0.305,
-    "p95": 1.02,
+    "median": 0.48,
+    "q25": 0.414,
+    "q75": 0.571,
+    "p5": 0.327,
+    "p95": 1.019,
     "max": 1.155,
-    "n_pairs": 120
+    "n_pairs": 231
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -7,7 +7,7 @@
  "name": "Glycoside hydrolase family 57 N-terminal domain-containing protein",
  "clusters": [
   {
-   "cluster_id": 1028,
+   "cluster_id": 1056,
    "n_members": 16,
    "reference": "9II1",
    "reference_resolution": 1.501,

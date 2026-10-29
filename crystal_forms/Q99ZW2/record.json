@@ -7,7 +7,7 @@
  "name": "CRISPR-associated endonuclease Cas9/Csn1",
  "clusters": [
   {
-   "cluster_id": 359,
+   "cluster_id": 365,
    "n_members": 38,
    "reference": "5B2R",
    "reference_resolution": 2.0,

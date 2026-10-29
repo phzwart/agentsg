@@ -7,8 +7,8 @@
  "name": "Multidrug efflux pump subunit AcrB",
  "clusters": [
   {
-   "cluster_id": 469,
-   "n_members": 31,
+   "cluster_id": 457,
+   "n_members": 32,
    "reference": "4DX5",
    "reference_resolution": 1.9,
    "space_group": "P 21 21 21",
@@ -21,42 +21,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 30,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 465,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 0.803,
-    "q25": 0.692,
-    "q75": 1.116,
-    "p5": 0.47,
-    "p95": 1.355,
+    "median": 0.822,
+    "q25": 0.702,
+    "q75": 1.101,
+    "p5": 0.473,
+    "p95": 1.346,
     "max": 1.966,
-    "n_pairs": 30
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 1.166,
-    "q25": 0.814,
-    "q75": 1.432,
-    "p5": 0.528,
-    "p95": 2.007,
-    "max": 2.969,
-    "n_pairs": 465
+    "median": 1.199,
+    "q25": 0.837,
+    "q75": 1.505,
+    "p5": 0.535,
+    "p95": 2.088,
+    "max": 3.167,
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 0.608,
-    "q25": 0.453,
-    "q75": 1.008,
-    "p5": 0.336,
-    "p95": 1.518,
-    "max": 1.767,
-    "n_pairs": 465
+    "median": 0.632,
+    "q25": 0.463,
+    "q75": 1.031,
+    "p5": 0.338,
+    "p95": 1.517,
+    "max": 1.918,
+    "n_pairs": 496
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 641,
+   "cluster_id": 654,
    "n_members": 24,
    "reference": "1T9X",
    "reference_resolution": 3.08,

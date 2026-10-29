@@ -7,7 +7,7 @@
  "name": "Acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase",
  "clusters": [
   {
-   "cluster_id": 1633,
+   "cluster_id": 1675,
    "n_members": 11,
    "reference": "5DEM",
    "reference_resolution": 1.81,
@@ -52,7 +52,7 @@
     "max": 0.926,
     "n_pairs": 55
    },
-   "n_low_margin": 0,
+   "n_low_margin": 10,
    "n_via_neighbour": 0
   }
  ]

@@ -7,7 +7,7 @@
  "name": "Mismatch repair endonuclease PMS2",
  "clusters": [
   {
-   "cluster_id": 1730,
+   "cluster_id": 1784,
    "n_members": 11,
    "reference": "1H7S",
    "reference_resolution": 1.95,
@@ -52,7 +52,7 @@
     "max": 0.912,
     "n_pairs": 55
    },
-   "n_low_margin": 10,
+   "n_low_margin": 9,
    "n_via_neighbour": 0
   }
  ]

@@ -7,7 +7,7 @@
  "name": "Nuclear autoantigen Sp-100",
  "clusters": [
   {
-   "cluster_id": 70,
+   "cluster_id": 71,
    "n_members": 118,
    "reference": "5PXL",
    "reference_resolution": 1.35,

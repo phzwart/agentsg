@@ -7,8 +7,8 @@
  "name": "TGF-beta receptor type-1",
  "clusters": [
   {
-   "cluster_id": 472,
-   "n_members": 31,
+   "cluster_id": 458,
+   "n_members": 32,
    "reference": "9J9D",
    "reference_resolution": 1.337,
    "space_group": "P 21 21 21",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 30,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 465,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 1.063,
-    "q25": 0.731,
-    "q75": 1.184,
-    "p5": 0.472,
-    "p95": 14.013,
+    "median": 1.083,
+    "q25": 0.739,
+    "q75": 1.208,
+    "p5": 0.477,
+    "p95": 13.269,
     "max": 27.966,
-    "n_pairs": 30
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 0.831,
-    "q25": 0.598,
-    "q75": 1.121,
-    "p5": 0.364,
-    "p95": 27.191,
+    "median": 0.855,
+    "q25": 0.616,
+    "q75": 1.215,
+    "p5": 0.367,
+    "p95": 27.189,
     "max": 34.396,
-    "n_pairs": 465
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 0.549,
-    "q25": 0.438,
-    "q75": 0.73,
-    "p5": 0.253,
+    "median": 0.565,
+    "q25": 0.45,
+    "q75": 0.858,
+    "p5": 0.258,
     "p95": 18.988,
     "max": 19.206,
-    "n_pairs": 465
+    "n_pairs": 496
    },
    "n_low_margin": 1,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

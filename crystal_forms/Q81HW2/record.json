@@ -7,7 +7,7 @@
  "name": "Potassium channel protein",
  "clusters": [
   {
-   "cluster_id": 280,
+   "cluster_id": 286,
    "n_members": 45,
    "reference": "6UFE",
    "reference_resolution": 1.2,
@@ -52,7 +52,7 @@
     "max": 3.716,
     "n_pairs": 990
    },
-   "n_low_margin": 10,
+   "n_low_margin": 12,
    "n_via_neighbour": 0
   }
  ]

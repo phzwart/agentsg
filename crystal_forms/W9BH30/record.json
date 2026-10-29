@@ -7,7 +7,7 @@
  "name": "Bestrophin family ion channel",
  "clusters": [
   {
-   "cluster_id": 945,
+   "cluster_id": 969,
    "n_members": 18,
    "reference": "4WD8",
    "reference_resolution": 2.3,
@@ -52,7 +52,7 @@
     "max": 1.264,
     "n_pairs": 153
    },
-   "n_low_margin": 17,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

@@ -7,8 +7,8 @@
  "name": "Intron-encoded endonuclease I-PpoI",
  "clusters": [
   {
-   "cluster_id": 266,
-   "n_members": 47,
+   "cluster_id": 260,
+   "n_members": 48,
    "reference": "8VMS",
    "reference_resolution": 1.42,
    "space_group": "P 31 2 1",
@@ -21,36 +21,36 @@
     120.0
    ],
    "status_counts": {
-    "placed": 46,
+    "placed": 47,
     "reference": 1
    },
-   "n_pairs": 1081,
+   "n_pairs": 1128,
    "rmsd_to_reference": {
-    "median": 0.149,
+    "median": 0.153,
     "q25": 0.086,
-    "q75": 0.207,
+    "q75": 0.213,
     "p5": 0.055,
-    "p95": 0.34,
+    "p95": 0.485,
     "max": 39.362,
-    "n_pairs": 46
+    "n_pairs": 47
    },
    "pairwise_frame_rmsd": {
-    "median": 0.227,
-    "q25": 0.167,
-    "q75": 0.319,
+    "median": 0.232,
+    "q25": 0.169,
+    "q75": 0.333,
     "p5": 0.097,
-    "p95": 0.606,
-    "max": 39.641,
-    "n_pairs": 1081
+    "p95": 2.566,
+    "max": 40.93,
+    "n_pairs": 1128
    },
    "pairwise_fit_rmsd": {
-    "median": 0.133,
-    "q25": 0.1,
-    "q75": 0.179,
-    "p5": 0.064,
+    "median": 0.136,
+    "q25": 0.102,
+    "q75": 0.187,
+    "p5": 0.065,
     "p95": 0.547,
-    "max": 17.627,
-    "n_pairs": 1081
+    "max": 17.706,
+    "n_pairs": 1128
    },
    "n_low_margin": 1,
    "n_via_neighbour": 0

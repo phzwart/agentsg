@@ -7,7 +7,7 @@
  "name": "Coagulation factor X",
  "clusters": [
   {
-   "cluster_id": 97,
+   "cluster_id": 96,
    "n_members": 100,
    "reference": "2PR3",
    "reference_resolution": 1.5,
@@ -51,6 +51,56 @@
     "p95": 0.484,
     "max": 0.607,
     "n_pairs": 4950
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1523,
+   "n_members": 12,
+   "reference": "2JKH",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    48.91,
+    74.12,
+    77.18,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.377,
+    "q25": 0.227,
+    "q75": 1.219,
+    "p5": 0.156,
+    "p95": 12.843,
+    "max": 19.317,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.406,
+    "q25": 0.304,
+    "q75": 3.111,
+    "p5": 0.159,
+    "p95": 19.132,
+    "max": 19.373,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.333,
+    "q25": 0.247,
+    "q75": 0.407,
+    "p5": 0.121,
+    "p95": 0.485,
+    "max": 0.493,
+    "n_pairs": 45
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

@@ -1,0 +1,60 @@
+{
+ "identity": "O59245",
+ "accessions": [
+  "O59245"
+ ],
+ "deposition_group": null,
+ "name": "tRNA-splicing ligase RtcB",
+ "clusters": [
+  {
+   "cluster_id": 1702,
+   "n_members": 11,
+   "reference": "1UC2",
+   "reference_resolution": 2.15,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    81.251,
+    137.586,
+    148.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 9,
+    "different_space_group": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 1.014,
+    "q25": 0.623,
+    "q75": 1.265,
+    "p5": 0.532,
+    "p95": 1.393,
+    "max": 1.413,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.635,
+    "q25": 0.455,
+    "q75": 0.894,
+    "p5": 0.333,
+    "p95": 1.052,
+    "max": 1.301,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.413,
+    "q25": 0.302,
+    "q75": 0.548,
+    "p5": 0.216,
+    "p95": 0.687,
+    "max": 0.779,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -8,7 +8,7 @@
  "name": "Peptidyl-prolyl cis-trans isomerase A",
  "clusters": [
   {
-   "cluster_id": 813,
+   "cluster_id": 829,
    "n_members": 20,
    "reference": "8TBK",
    "reference_resolution": 1.26,
@@ -57,8 +57,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1038,
-   "n_members": 16,
+   "cluster_id": 876,
+   "n_members": 19,
    "reference": "9E3S",
    "reference_resolution": 1.08,
    "space_group": "P 1 21 1",
@@ -72,7 +72,7 @@
    ],
    "status_counts": {
     "placed": 14,
-    "different_space_group": 1,
+    "different_space_group": 4,
     "reference": 1
    },
    "n_pairs": 105,

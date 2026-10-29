@@ -7,8 +7,8 @@
  "name": "Son of sevenless homolog 1",
  "clusters": [
   {
-   "cluster_id": 1003,
-   "n_members": 17,
+   "cluster_id": 851,
+   "n_members": 20,
    "reference": "5OVE",
    "reference_resolution": 1.85,
    "space_group": "P 21 21 21",
@@ -21,37 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 13,
     "reference": 1,
     "different_space_group": 6
    },
-   "n_pairs": 55,
+   "n_pairs": 91,
    "rmsd_to_reference": {
-    "median": 1.73,
-    "q25": 0.762,
-    "q75": 3.759,
-    "p5": 0.461,
-    "p95": 4.396,
-    "max": 4.664,
-    "n_pairs": 10
+    "median": 2.928,
+    "q25": 0.948,
+    "q75": 4.069,
+    "p5": 0.464,
+    "p95": 7.077,
+    "max": 7.298,
+    "n_pairs": 13
    },
    "pairwise_frame_rmsd": {
-    "median": 2.582,
-    "q25": 0.87,
-    "q75": 3.462,
-    "p5": 0.489,
-    "p95": 4.611,
-    "max": 5.0,
-    "n_pairs": 55
+    "median": 3.269,
+    "q25": 2.067,
+    "q75": 4.223,
+    "p5": 0.513,
+    "p95": 6.106,
+    "max": 6.497,
+    "n_pairs": 91
    },
    "pairwise_fit_rmsd": {
-    "median": 0.494,
-    "q25": 0.429,
-    "q75": 0.674,
-    "p5": 0.319,
-    "p95": 0.851,
-    "max": 0.893,
-    "n_pairs": 55
+    "median": 0.754,
+    "q25": 0.467,
+    "q75": 1.389,
+    "p5": 0.337,
+    "p95": 1.899,
+    "max": 2.718,
+    "n_pairs": 91
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

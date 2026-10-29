@@ -7,8 +7,8 @@
  "name": "Cyclin-dependent kinase 2",
  "clusters": [
   {
-   "cluster_id": 11,
-   "n_members": 328,
+   "cluster_id": 12,
+   "n_members": 329,
    "reference": "6Q4G",
    "reference_resolution": 0.98,
    "space_group": "P 21 21 21",
@@ -21,37 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 326,
+    "placed": 327,
     "no_shared_accession": 1,
     "reference": 1
    },
-   "n_pairs": 53301,
+   "n_pairs": 53628,
    "rmsd_to_reference": {
     "median": 1.294,
     "q25": 1.079,
-    "q75": 1.554,
-    "p5": 0.766,
-    "p95": 2.051,
+    "q75": 1.557,
+    "p5": 0.767,
+    "p95": 2.127,
     "max": 4.817,
-    "n_pairs": 326
+    "n_pairs": 327
    },
    "pairwise_frame_rmsd": {
-    "median": 1.004,
-    "q25": 0.757,
-    "q75": 1.356,
-    "p5": 0.484,
-    "p95": 2.346,
+    "median": 1.007,
+    "q25": 0.759,
+    "q75": 1.365,
+    "p5": 0.485,
+    "p95": 2.478,
     "max": 5.081,
-    "n_pairs": 53301
+    "n_pairs": 53628
    },
    "pairwise_fit_rmsd": {
-    "median": 0.723,
-    "q25": 0.562,
-    "q75": 0.923,
+    "median": 0.725,
+    "q25": 0.563,
+    "q75": 0.928,
     "p5": 0.377,
-    "p95": 1.833,
+    "p95": 1.878,
     "max": 2.577,
-    "n_pairs": 53301
+    "n_pairs": 53628
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

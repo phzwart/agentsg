@@ -7,7 +7,7 @@
  "name": "Aldo-keto reductase family 1 member C3",
  "clusters": [
   {
-   "cluster_id": 578,
+   "cluster_id": 590,
    "n_members": 26,
    "reference": "1S1P",
    "reference_resolution": 1.2,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1548,
+   "cluster_id": 1585,
    "n_members": 12,
    "reference": "6F78",
    "reference_resolution": 1.3,

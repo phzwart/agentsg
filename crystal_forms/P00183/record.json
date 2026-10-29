@@ -7,7 +7,7 @@
  "name": "Camphor 5-monooxygenase",
  "clusters": [
   {
-   "cluster_id": 422,
+   "cluster_id": 429,
    "n_members": 33,
    "reference": "4L4E",
    "reference_resolution": 1.261,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 567,
+   "cluster_id": 580,
    "n_members": 26,
    "reference": "2A1O",
    "reference_resolution": 1.55,
@@ -106,8 +106,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 755,
-   "n_members": 21,
+   "cluster_id": 679,
+   "n_members": 23,
    "reference": "1RE9",
    "reference_resolution": 1.45,
    "space_group": "P 21 21 21",
@@ -121,7 +121,8 @@
    ],
    "status_counts": {
     "placed": 20,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 2
    },
    "n_pairs": 210,
    "rmsd_to_reference": {
@@ -155,7 +156,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1115,
+   "cluster_id": 1140,
    "n_members": 15,
    "reference": "2ZWU",
    "reference_resolution": 1.3,

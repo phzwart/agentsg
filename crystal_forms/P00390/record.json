@@ -7,7 +7,7 @@
  "name": "Glutathione reductase, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 626,
+   "cluster_id": 640,
    "n_members": 24,
    "reference": "3DK9",
    "reference_resolution": 0.95,

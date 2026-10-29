@@ -7,8 +7,8 @@
  "name": "Ribonuclease H",
  "clusters": [
   {
-   "cluster_id": 144,
-   "n_members": 77,
+   "cluster_id": 146,
+   "n_members": 78,
    "reference": "6DOP",
    "reference_resolution": 1.25,
    "space_group": "C 1 2 1",
@@ -22,36 +22,36 @@
    ],
    "status_counts": {
     "different_space_group": 2,
-    "placed": 74,
+    "placed": 75,
     "reference": 1
    },
-   "n_pairs": 2775,
+   "n_pairs": 2850,
    "rmsd_to_reference": {
-    "median": 0.363,
+    "median": 0.37,
     "q25": 0.25,
-    "q75": 0.446,
-    "p5": 0.172,
-    "p95": 0.566,
-    "max": 0.66,
-    "n_pairs": 74
+    "q75": 0.447,
+    "p5": 0.173,
+    "p95": 0.596,
+    "max": 0.866,
+    "n_pairs": 75
    },
    "pairwise_frame_rmsd": {
-    "median": 0.454,
-    "q25": 0.327,
-    "q75": 0.627,
-    "p5": 0.203,
-    "p95": 0.868,
+    "median": 0.462,
+    "q25": 0.33,
+    "q75": 0.643,
+    "p5": 0.204,
+    "p95": 0.872,
     "max": 1.451,
-    "n_pairs": 2775
+    "n_pairs": 2850
    },
    "pairwise_fit_rmsd": {
-    "median": 0.194,
-    "q25": 0.152,
-    "q75": 0.25,
-    "p5": 0.103,
-    "p95": 0.47,
+    "median": 0.197,
+    "q25": 0.154,
+    "q75": 0.256,
+    "p5": 0.104,
+    "p95": 0.468,
     "max": 1.055,
-    "n_pairs": 2775
+    "n_pairs": 2850
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

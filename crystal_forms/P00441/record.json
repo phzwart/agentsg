@@ -7,7 +7,7 @@
  "name": "Superoxide dismutase [Cu-Zn]",
  "clusters": [
   {
-   "cluster_id": 440,
+   "cluster_id": 445,
    "n_members": 32,
    "reference": "4A7U",
    "reference_resolution": 0.98,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1118,
+   "cluster_id": 1143,
    "n_members": 15,
    "reference": "1UXL",
    "reference_resolution": 1.6,

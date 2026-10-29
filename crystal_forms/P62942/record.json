@@ -7,7 +7,7 @@
  "name": "Peptidyl-prolyl cis-trans isomerase FKBP1A",
  "clusters": [
   {
-   "cluster_id": 998,
+   "cluster_id": 1025,
    "n_members": 17,
    "reference": "8X6P",
    "reference_resolution": 1.05,
@@ -52,7 +52,7 @@
     "max": 0.29,
     "n_pairs": 136
    },
-   "n_low_margin": 16,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

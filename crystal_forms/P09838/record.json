@@ -7,8 +7,8 @@
  "name": "DNA nucleotidylexotransferase",
  "clusters": [
   {
-   "cluster_id": 910,
-   "n_members": 18,
+   "cluster_id": 883,
+   "n_members": 19,
    "reference": "4I2A",
    "reference_resolution": 1.9,
    "space_group": "P 21 21 21",
@@ -21,37 +21,37 @@
     90.0
    ],
    "status_counts": {
-    "placed": 16,
+    "placed": 17,
     "no_shared_accession": 1,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 0.447,
-    "q25": 0.312,
-    "q75": 1.064,
-    "p5": 0.218,
-    "p95": 3.921,
-    "max": 4.014,
-    "n_pairs": 16
+    "median": 0.449,
+    "q25": 0.314,
+    "q75": 1.173,
+    "p5": 0.22,
+    "p95": 4.246,
+    "max": 5.176,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.936,
-    "q25": 0.507,
-    "q75": 3.623,
-    "p5": 0.248,
-    "p95": 4.241,
-    "max": 4.743,
-    "n_pairs": 136
+    "median": 1.116,
+    "q25": 0.539,
+    "q75": 3.98,
+    "p5": 0.255,
+    "p95": 5.431,
+    "max": 7.723,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.476,
-    "q25": 0.202,
-    "q75": 1.419,
-    "p5": 0.147,
-    "p95": 3.721,
+    "median": 0.466,
+    "q25": 0.197,
+    "q75": 1.416,
+    "p5": 0.144,
+    "p95": 3.72,
     "max": 4.036,
-    "n_pairs": 136
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

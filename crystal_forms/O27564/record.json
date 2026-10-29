@@ -1,0 +1,60 @@
+{
+ "identity": "O27564",
+ "accessions": [
+  "O27564"
+ ],
+ "deposition_group": null,
+ "name": "Calcium-gated potassium channel MthK",
+ "clusters": [
+  {
+   "cluster_id": 1367,
+   "n_members": 13,
+   "reference": "3LDC",
+   "reference_resolution": 1.45,
+   "space_group": "P 4 21 2",
+   "reference_cell": [
+    63.811,
+    63.811,
+    44.05,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10,
+    "different_space_group": 2
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.236,
+    "q25": 0.186,
+    "q75": 1.437,
+    "p5": 0.16,
+    "p95": 1.85,
+    "max": 1.862,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.325,
+    "q25": 0.177,
+    "q75": 2.25,
+    "p5": 0.123,
+    "p95": 2.394,
+    "max": 2.425,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.155,
+    "q25": 0.132,
+    "q75": 0.379,
+    "p5": 0.082,
+    "p95": 0.398,
+    "max": 0.414,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

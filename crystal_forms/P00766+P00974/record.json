@@ -8,7 +8,7 @@
  "name": "Chymotrypsinogen A",
  "clusters": [
   {
-   "cluster_id": 1230,
+   "cluster_id": 1261,
    "n_members": 14,
    "reference": "1T8O",
    "reference_resolution": 1.7,
@@ -53,7 +53,7 @@
     "max": 0.426,
     "n_pairs": 87
    },
-   "n_low_margin": 1,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

@@ -8,7 +8,7 @@
  "name": "Serine protease 1",
  "clusters": [
   {
-   "cluster_id": 1489,
+   "cluster_id": 1524,
    "n_members": 12,
    "reference": "4XOJ",
    "reference_resolution": 0.91,
@@ -53,7 +53,7 @@
     "max": 0.257,
     "n_pairs": 66
    },
-   "n_low_margin": 9,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

@@ -7,7 +7,7 @@
  "name": "Isoaspartyl peptidase/L-asparaginase",
  "clusters": [
   {
-   "cluster_id": 1593,
+   "cluster_id": 1634,
    "n_members": 12,
    "reference": "4O0C",
    "reference_resolution": 1.5,
@@ -52,7 +52,7 @@
     "max": 0.923,
     "n_pairs": 66
    },
-   "n_low_margin": 11,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

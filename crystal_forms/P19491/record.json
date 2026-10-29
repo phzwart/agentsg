@@ -7,7 +7,7 @@
  "name": "Glutamate receptor 2",
  "clusters": [
   {
-   "cluster_id": 197,
+   "cluster_id": 201,
    "n_members": 59,
    "reference": "1M5E",
    "reference_resolution": 1.46,
@@ -58,8 +58,58 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 576,
-   "n_members": 26,
+   "cluster_id": 386,
+   "n_members": 36,
+   "reference": "6YK4",
+   "reference_resolution": 0.999,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    59.213,
+    96.542,
+    48.543,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 32,
+    "different_space_group": 3,
+    "reference": 1
+   },
+   "n_pairs": 528,
+   "rmsd_to_reference": {
+    "median": 24.571,
+    "q25": 0.903,
+    "q75": 24.77,
+    "p5": 0.174,
+    "p95": 24.982,
+    "max": 25.263,
+    "n_pairs": 32
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.31,
+    "q25": 0.685,
+    "q75": 24.382,
+    "p5": 0.291,
+    "p95": 24.879,
+    "max": 26.075,
+    "n_pairs": 528
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.621,
+    "q25": 0.424,
+    "q75": 0.857,
+    "p5": 0.188,
+    "p95": 10.127,
+    "max": 10.31,
+    "n_pairs": 528
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 16
+  },
+  {
+   "cluster_id": 559,
+   "n_members": 27,
    "reference": "4U21",
    "reference_resolution": 1.3908,
    "space_group": "P 21 21 2",
@@ -73,8 +123,8 @@
    ],
    "status_counts": {
     "placed": 24,
-    "reference": 1,
-    "different_space_group": 1
+    "different_space_group": 2,
+    "reference": 1
    },
    "n_pairs": 300,
    "rmsd_to_reference": {
@@ -105,105 +155,6 @@
     "n_pairs": 300
    },
    "n_low_margin": 24,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 673,
-   "n_members": 23,
-   "reference": "5NG9",
-   "reference_resolution": 1.15,
-   "space_group": "P 21 21 2",
-   "reference_cell": [
-    62.218,
-    88.14,
-    47.958,
-    90.0,
-    90.0,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 21,
-    "different_space_group": 1,
-    "reference": 1
-   },
-   "n_pairs": 231,
-   "rmsd_to_reference": {
-    "median": 1.092,
-    "q25": 0.997,
-    "q75": 1.113,
-    "p5": 0.937,
-    "p95": 1.289,
-    "max": 1.372,
-    "n_pairs": 21
-   },
-   "pairwise_frame_rmsd": {
-    "median": 2.742,
-    "q25": 1.329,
-    "q75": 3.758,
-    "p5": 0.617,
-    "p95": 5.139,
-    "max": 6.345,
-    "n_pairs": 231
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.473,
-    "q25": 0.279,
-    "q75": 0.609,
-    "p5": 0.165,
-    "p95": 0.858,
-    "max": 0.918,
-    "n_pairs": 231
-   },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 1702,
-   "n_members": 11,
-   "reference": "6YK4",
-   "reference_resolution": 0.999,
-   "space_group": "P 21 21 2",
-   "reference_cell": [
-    59.213,
-    96.542,
-    48.543,
-    90.0,
-    90.0,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 10,
-    "reference": 1
-   },
-   "n_pairs": 55,
-   "rmsd_to_reference": {
-    "median": 0.569,
-    "q25": 0.233,
-    "q75": 0.855,
-    "p5": 0.128,
-    "p95": 7.16,
-    "max": 12.279,
-    "n_pairs": 10
-   },
-   "pairwise_frame_rmsd": {
-    "median": 1.175,
-    "q25": 0.498,
-    "q75": 1.507,
-    "p5": 0.214,
-    "p95": 12.372,
-    "max": 12.601,
-    "n_pairs": 55
-   },
-   "pairwise_fit_rmsd": {
-    "median": 0.375,
-    "q25": 0.28,
-    "q75": 0.773,
-    "p5": 0.12,
-    "p95": 10.139,
-    "max": 10.172,
-    "n_pairs": 55
-   },
-   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

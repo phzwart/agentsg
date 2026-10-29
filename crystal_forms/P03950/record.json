@@ -7,7 +7,7 @@
  "name": "Angiogenin",
  "clusters": [
   {
-   "cluster_id": 1130,
+   "cluster_id": 1155,
    "n_members": 15,
    "reference": "5M9V",
    "reference_resolution": 1.7,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1242,
+   "cluster_id": 1271,
    "n_members": 14,
    "reference": "4AOH",
    "reference_resolution": 1.041,

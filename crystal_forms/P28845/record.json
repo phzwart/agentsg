@@ -7,7 +7,7 @@
  "name": "11-beta-hydroxysteroid dehydrogenase 1",
  "clusters": [
   {
-   "cluster_id": 1402,
+   "cluster_id": 1434,
    "n_members": 13,
    "reference": "1XU9",
    "reference_resolution": 1.55,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1709,
+   "cluster_id": 1761,
    "n_members": 11,
    "reference": "3TFQ",
    "reference_resolution": 1.8,

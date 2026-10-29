@@ -1,0 +1,59 @@
+{
+ "identity": "P05093",
+ "accessions": [
+  "P05093"
+ ],
+ "deposition_group": null,
+ "name": "Steroid 17-alpha-hydroxylase/17,20 lyase",
+ "clusters": [
+  {
+   "cluster_id": 1071,
+   "n_members": 16,
+   "reference": "6WW0",
+   "reference_resolution": 2.01,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    85.722,
+    151.182,
+    169.944,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 5.947,
+    "q25": 2.157,
+    "q75": 6.751,
+    "p5": 1.035,
+    "p95": 6.891,
+    "max": 6.929,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.188,
+    "q25": 1.113,
+    "q75": 5.14,
+    "p5": 0.422,
+    "p95": 6.259,
+    "max": 6.735,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.339,
+    "q25": 0.299,
+    "q75": 0.381,
+    "p5": 0.255,
+    "p95": 0.421,
+    "max": 0.482,
+    "n_pairs": 120
+   },
+   "n_low_margin": 15,
+   "n_via_neighbour": 0
+  }
+ ]
+}

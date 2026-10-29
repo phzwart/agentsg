@@ -7,7 +7,7 @@
  "name": "Mitogen-activated protein kinase 14",
  "clusters": [
   {
-   "cluster_id": 191,
+   "cluster_id": 195,
    "n_members": 60,
    "reference": "5R97",
    "reference_resolution": 1.438,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 384,
+   "cluster_id": 389,
    "n_members": 36,
    "reference": "5LAR",
    "reference_resolution": 1.5,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1280,
+   "cluster_id": 1311,
    "n_members": 14,
    "reference": "6SP9",
    "reference_resolution": 1.22,
@@ -150,7 +150,7 @@
     "max": 0.273,
     "n_pairs": 91
    },
-   "n_low_margin": 13,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

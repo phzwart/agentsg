@@ -7,8 +7,8 @@
  "name": "Angiotensin-converting enzyme",
  "clusters": [
   {
-   "cluster_id": 326,
-   "n_members": 40,
+   "cluster_id": 324,
+   "n_members": 41,
    "reference": "6H5W",
    "reference_resolution": 1.37,
    "space_group": "P 21 21 21",
@@ -21,43 +21,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 30,
+    "placed": 31,
     "too_few_paired_atoms": 9,
     "reference": 1
    },
-   "n_pairs": 465,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 0.447,
-    "q25": 0.374,
-    "q75": 0.634,
-    "p5": 0.3,
-    "p95": 4.314,
-    "max": 4.428,
-    "n_pairs": 30
+    "median": 0.453,
+    "q25": 0.375,
+    "q75": 0.728,
+    "p5": 0.301,
+    "p95": 4.373,
+    "max": 9.126,
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 0.648,
-    "q25": 0.467,
-    "q75": 1.171,
-    "p5": 0.327,
-    "p95": 4.586,
-    "max": 4.823,
-    "n_pairs": 465
+    "median": 0.674,
+    "q25": 0.476,
+    "q75": 4.293,
+    "p5": 0.33,
+    "p95": 8.929,
+    "max": 9.24,
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 0.364,
-    "q25": 0.298,
-    "q75": 0.465,
-    "p5": 0.233,
-    "p95": 0.832,
-    "max": 1.011,
-    "n_pairs": 465
+    "median": 0.374,
+    "q25": 0.3,
+    "q75": 0.517,
+    "p5": 0.235,
+    "p95": 0.84,
+    "max": 1.276,
+    "n_pairs": 496
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 465,
+   "cluster_id": 477,
    "n_members": 31,
    "reference": "7Q25",
    "reference_resolution": 1.6,

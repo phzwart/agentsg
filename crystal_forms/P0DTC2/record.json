@@ -7,8 +7,8 @@
  "name": "Spike glycoprotein",
  "clusters": [
   {
-   "cluster_id": 820,
-   "n_members": 20,
+   "cluster_id": 687,
+   "n_members": 23,
    "reference": "7NEH",
    "reference_resolution": 1.77,
    "space_group": "C 2 2 21",
@@ -22,44 +22,43 @@
    ],
    "status_counts": {
     "different_space_group": 1,
-    "placed": 15,
-    "too_few_paired_atoms": 3,
+    "placed": 21,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 231,
    "rmsd_to_reference": {
-    "median": 1.345,
-    "q25": 0.986,
-    "q75": 1.918,
-    "p5": 0.708,
-    "p95": 3.81,
+    "median": 1.644,
+    "q25": 1.044,
+    "q75": 2.276,
+    "p5": 0.76,
+    "p95": 3.21,
     "max": 6.825,
-    "n_pairs": 15
+    "n_pairs": 21
    },
    "pairwise_frame_rmsd": {
-    "median": 1.595,
-    "q25": 1.093,
-    "q75": 2.297,
-    "p5": 0.769,
-    "p95": 6.621,
-    "max": 7.891,
-    "n_pairs": 120
+    "median": 1.866,
+    "q25": 1.325,
+    "q75": 2.564,
+    "p5": 0.812,
+    "p95": 6.441,
+    "max": 7.946,
+    "n_pairs": 231
    },
    "pairwise_fit_rmsd": {
-    "median": 0.563,
-    "q25": 0.473,
-    "q75": 0.633,
-    "p5": 0.378,
-    "p95": 0.749,
-    "max": 0.844,
-    "n_pairs": 120
+    "median": 0.592,
+    "q25": 0.501,
+    "q75": 0.755,
+    "p5": 0.391,
+    "p95": 1.277,
+    "max": 1.393,
+    "n_pairs": 231
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 979,
-   "n_members": 17,
+   "cluster_id": 931,
+   "n_members": 18,
    "reference": "7BZ5",
    "reference_resolution": 1.84,
    "space_group": "C 1 2 1",
@@ -72,42 +71,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 16,
+    "placed": 17,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 1.17,
-    "q25": 0.956,
-    "q75": 1.373,
+    "median": 1.179,
+    "q25": 1.01,
+    "q75": 1.407,
     "p5": 0.595,
-    "p95": 1.794,
-    "max": 2.06,
-    "n_pairs": 16
+    "p95": 8.238,
+    "max": 32.949,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 1.27,
-    "q25": 1.068,
-    "q75": 1.566,
-    "p5": 0.673,
-    "p95": 2.204,
-    "max": 2.607,
-    "n_pairs": 136
+    "median": 1.349,
+    "q25": 1.097,
+    "q75": 1.837,
+    "p5": 0.687,
+    "p95": 32.42,
+    "max": 33.151,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.519,
-    "q25": 0.452,
-    "q75": 0.651,
-    "p5": 0.372,
-    "p95": 0.743,
+    "median": 0.54,
+    "q25": 0.456,
+    "q75": 0.682,
+    "p5": 0.378,
+    "p95": 0.773,
     "max": 0.919,
-    "n_pairs": 136
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1687,
+   "cluster_id": 1740,
    "n_members": 11,
    "reference": "7R8L",
    "reference_resolution": 2.6,

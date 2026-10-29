@@ -8,7 +8,7 @@
  "clusters": [
   {
    "cluster_id": 27,
-   "n_members": 216,
+   "n_members": 233,
    "reference": "6L27",
    "reference_resolution": 0.77,
    "space_group": "P 21 21 21",
@@ -21,41 +21,41 @@
     90.0
    ],
    "status_counts": {
-    "placed": 197,
+    "placed": 198,
     "no_shared_accession": 12,
     "too_few_paired_atoms": 5,
-    "different_space_group": 1,
+    "different_space_group": 17,
     "reference": 1
    },
-   "n_pairs": 19500,
+   "n_pairs": 19698,
    "rmsd_to_reference": {
     "median": 0.923,
-    "q25": 0.743,
-    "q75": 1.279,
+    "q25": 0.744,
+    "q75": 1.283,
     "p5": 0.619,
-    "p95": 3.347,
+    "p95": 3.346,
     "max": 24.076,
-    "n_pairs": 197
+    "n_pairs": 198
    },
    "pairwise_frame_rmsd": {
-    "median": 1.185,
-    "q25": 0.857,
-    "q75": 2.043,
-    "p5": 0.498,
+    "median": 1.192,
+    "q25": 0.859,
+    "q75": 2.114,
+    "p5": 0.5,
     "p95": 4.973,
     "max": 27.934,
-    "n_pairs": 19500
+    "n_pairs": 19698
    },
    "pairwise_fit_rmsd": {
-    "median": 0.505,
-    "q25": 0.388,
-    "q75": 0.687,
-    "p5": 0.244,
-    "p95": 3.346,
+    "median": 0.508,
+    "q25": 0.389,
+    "q75": 0.698,
+    "p5": 0.245,
+    "p95": 3.42,
     "max": 17.564,
-    "n_pairs": 19500
+    "n_pairs": 19698
    },
-   "n_low_margin": 1,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   }
  ]

@@ -7,8 +7,8 @@
  "name": "Bifunctional 3'-5' exonuclease/ATP-dependent helicase WRN",
  "clusters": [
   {
-   "cluster_id": 1077,
-   "n_members": 16,
+   "cluster_id": 1031,
+   "n_members": 17,
    "reference": "10AK",
    "reference_resolution": 1.37,
    "space_group": "P 21 21 21",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 14,
     "reference": 1,
     "different_space_group": 2
    },
-   "n_pairs": 91,
+   "n_pairs": 105,
    "rmsd_to_reference": {
-    "median": 0.915,
-    "q25": 0.815,
-    "q75": 1.148,
-    "p5": 0.607,
-    "p95": 1.23,
-    "max": 1.254,
-    "n_pairs": 13
+    "median": 0.923,
+    "q25": 0.816,
+    "q75": 1.195,
+    "p5": 0.608,
+    "p95": 2.049,
+    "max": 3.525,
+    "n_pairs": 14
    },
    "pairwise_frame_rmsd": {
-    "median": 1.008,
-    "q25": 0.8,
-    "q75": 1.221,
-    "p5": 0.548,
-    "p95": 1.57,
-    "max": 1.69,
-    "n_pairs": 91
+    "median": 1.066,
+    "q25": 0.828,
+    "q75": 1.417,
+    "p5": 0.58,
+    "p95": 3.638,
+    "max": 3.777,
+    "n_pairs": 105
    },
    "pairwise_fit_rmsd": {
-    "median": 0.747,
-    "q25": 0.639,
-    "q75": 0.906,
-    "p5": 0.444,
-    "p95": 1.058,
-    "max": 1.199,
-    "n_pairs": 91
+    "median": 0.788,
+    "q25": 0.656,
+    "q75": 0.989,
+    "p5": 0.451,
+    "p95": 1.475,
+    "max": 1.625,
+    "n_pairs": 105
    },
-   "n_low_margin": 13,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

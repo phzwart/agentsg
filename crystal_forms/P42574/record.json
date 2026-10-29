@@ -7,8 +7,8 @@
  "name": "Caspase-3",
  "clusters": [
   {
-   "cluster_id": 126,
-   "n_members": 83,
+   "cluster_id": 121,
+   "n_members": 86,
    "reference": "2DKO",
    "reference_resolution": 1.06,
    "space_group": "I 2 2 2",
@@ -22,7 +22,7 @@
    ],
    "status_counts": {
     "placed": 62,
-    "different_space_group": 20,
+    "different_space_group": 23,
     "reference": 1
    },
    "n_pairs": 1953,

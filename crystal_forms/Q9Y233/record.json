@@ -7,7 +7,7 @@
  "name": "cAMP and cAMP-inhibited cGMP 3',5'-cyclic phosphodiesterase 10A",
  "clusters": [
   {
-   "cluster_id": 24,
+   "cluster_id": 26,
    "n_members": 239,
    "reference": "5SFE",
    "reference_resolution": 1.86,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 112,
+   "cluster_id": 113,
    "n_members": 91,
    "reference": "2OUR",
    "reference_resolution": 1.45,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 943,
+   "cluster_id": 967,
    "n_members": 18,
    "reference": "5SI1",
    "reference_resolution": 1.75,

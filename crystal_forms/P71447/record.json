@@ -7,8 +7,8 @@
  "name": "Beta-phosphoglucomutase",
  "clusters": [
   {
-   "cluster_id": 778,
-   "n_members": 21,
+   "cluster_id": 752,
+   "n_members": 22,
    "reference": "6I03",
    "reference_resolution": 1.02,
    "space_group": "P 21 21 21",
@@ -22,6 +22,7 @@
    ],
    "status_counts": {
     "placed": 20,
+    "different_space_group": 1,
     "reference": 1
    },
    "n_pairs": 210,
@@ -54,6 +55,56 @@
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1599,
+   "n_members": 12,
+   "reference": "5OJZ",
+   "reference_resolution": 1.3,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.76,
+    53.8,
+    81.55,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.472,
+    "q25": 0.552,
+    "q75": 2.083,
+    "p5": 0.359,
+    "p95": 2.39,
+    "max": 2.481,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.545,
+    "q25": 0.897,
+    "q75": 2.072,
+    "p5": 0.455,
+    "p95": 2.458,
+    "max": 2.663,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.849,
+    "q25": 0.616,
+    "q75": 0.951,
+    "p5": 0.364,
+    "p95": 1.039,
+    "max": 1.169,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
   }
  ]
 }

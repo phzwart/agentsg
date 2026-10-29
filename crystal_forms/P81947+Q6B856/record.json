@@ -8,8 +8,8 @@
  "name": "Tubulin alpha-1B chain",
  "clusters": [
   {
-   "cluster_id": 491,
-   "n_members": 30,
+   "cluster_id": 481,
+   "n_members": 31,
    "reference": "6S8K",
    "reference_resolution": 1.52,
    "space_group": "P 1 21 1",
@@ -22,36 +22,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 29,
+    "placed": 30,
     "reference": 1
    },
-   "n_pairs": 435,
+   "n_pairs": 465,
    "rmsd_to_reference": {
     "median": 0.547,
-    "q25": 0.523,
-    "q75": 0.602,
+    "q25": 0.526,
+    "q75": 0.607,
     "p5": 0.454,
-    "p95": 0.644,
-    "max": 0.701,
-    "n_pairs": 29
+    "p95": 0.676,
+    "max": 3.865,
+    "n_pairs": 30
    },
    "pairwise_frame_rmsd": {
-    "median": 0.625,
-    "q25": 0.387,
-    "q75": 0.879,
-    "p5": 0.194,
-    "p95": 1.156,
-    "max": 1.359,
-    "n_pairs": 435
+    "median": 0.667,
+    "q25": 0.398,
+    "q75": 0.925,
+    "p5": 0.208,
+    "p95": 4.179,
+    "max": 4.869,
+    "n_pairs": 465
    },
    "pairwise_fit_rmsd": {
-    "median": 0.432,
-    "q25": 0.343,
-    "q75": 0.485,
-    "p5": 0.173,
-    "p95": 0.546,
+    "median": 0.439,
+    "q25": 0.346,
+    "q75": 0.498,
+    "p5": 0.176,
+    "p95": 0.552,
     "max": 0.641,
-    "n_pairs": 435
+    "n_pairs": 465
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

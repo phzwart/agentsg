@@ -7,7 +7,7 @@
  "name": "Dual specificity protein kinase TTK",
  "clusters": [
   {
-   "cluster_id": 171,
+   "cluster_id": 170,
    "n_members": 68,
    "reference": "4JS8",
    "reference_resolution": 1.94,
@@ -29,28 +29,28 @@
    "rmsd_to_reference": {
     "median": 2.656,
     "q25": 0.931,
-    "q75": 22.736,
+    "q75": 4.517,
     "p5": 0.619,
-    "p95": 23.48,
-    "max": 23.948,
+    "p95": 5.131,
+    "max": 5.462,
     "n_pairs": 66
    },
    "pairwise_frame_rmsd": {
-    "median": 3.502,
-    "q25": 1.519,
-    "q75": 24.295,
-    "p5": 0.729,
-    "p95": 26.453,
-    "max": 28.164,
+    "median": 2.882,
+    "q25": 1.449,
+    "q75": 3.636,
+    "p5": 0.678,
+    "p95": 4.813,
+    "max": 6.082,
     "n_pairs": 2211
    },
    "pairwise_fit_rmsd": {
-    "median": 0.814,
-    "q25": 0.635,
-    "q75": 1.068,
-    "p5": 0.452,
-    "p95": 3.831,
-    "max": 4.043,
+    "median": 0.787,
+    "q25": 0.616,
+    "q75": 0.984,
+    "p5": 0.433,
+    "p95": 1.742,
+    "max": 2.631,
     "n_pairs": 2211
    },
    "n_low_margin": 0,

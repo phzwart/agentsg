@@ -7,7 +7,7 @@
  "name": "Serine/threonine-protein kinase PLK1",
  "clusters": [
   {
-   "cluster_id": 1068,
+   "cluster_id": 1096,
    "n_members": 16,
    "reference": "2RKU",
    "reference_resolution": 1.95,
@@ -51,6 +51,55 @@
     "p95": 0.704,
     "max": 0.868,
     "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1782,
+   "n_members": 11,
+   "reference": "4X9R",
+   "reference_resolution": 1.398,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    37.813,
+    50.979,
+    57.59,
+    90.0,
+    100.24,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.005,
+    "q25": 0.88,
+    "q75": 1.053,
+    "p5": 0.634,
+    "p95": 1.179,
+    "max": 1.226,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.267,
+    "q25": 0.787,
+    "q75": 2.345,
+    "p5": 0.5,
+    "p95": 4.553,
+    "max": 4.932,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.498,
+    "q25": 0.406,
+    "q75": 0.608,
+    "p5": 0.312,
+    "p95": 0.778,
+    "max": 0.931,
+    "n_pairs": 55
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

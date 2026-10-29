@@ -7,7 +7,7 @@
  "name": "High affinity cGMP-specific 3',5'-cyclic phosphodiesterase 9A",
  "clusters": [
   {
-   "cluster_id": 625,
+   "cluster_id": 639,
    "n_members": 24,
    "reference": "4Y86",
    "reference_resolution": 2.01,

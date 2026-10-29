@@ -7,7 +7,7 @@
  "name": "3-dehydroquinate dehydratase",
  "clusters": [
   {
-   "cluster_id": 834,
+   "cluster_id": 850,
    "n_members": 20,
    "reference": "1H05",
    "reference_resolution": 1.5,
@@ -52,7 +52,7 @@
     "max": 0.953,
     "n_pairs": 190
    },
-   "n_low_margin": 19,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

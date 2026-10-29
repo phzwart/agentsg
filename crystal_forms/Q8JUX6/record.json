@@ -52,7 +52,7 @@
     "max": 0.815,
     "n_pairs": 11935
    },
-   "n_low_margin": 154,
+   "n_low_margin": 48,
    "n_via_neighbour": 0
   }
  ]

@@ -8,7 +8,7 @@
  "name": "Periplasmic [NiFe] hydrogenase large subunit",
  "clusters": [
   {
-   "cluster_id": 1776,
+   "cluster_id": 1828,
    "n_members": 11,
    "reference": "5JSK",
    "reference_resolution": 0.95,

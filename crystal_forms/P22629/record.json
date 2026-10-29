@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 212,
+   "cluster_id": 214,
    "n_members": 56,
    "reference": "2F01",
    "reference_resolution": 0.85,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 320,
+   "cluster_id": 326,
    "n_members": 41,
    "reference": "3RY1",
    "reference_resolution": 1.03,
@@ -156,7 +156,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 870,
+   "cluster_id": 893,
    "n_members": 19,
    "reference": "6GH7",
    "reference_resolution": 1.08,
@@ -202,7 +202,7 @@
     "max": 0.539,
     "n_pairs": 105
    },
-   "n_low_margin": 1,
+   "n_low_margin": 14,
    "n_via_neighbour": 0
   }
  ]

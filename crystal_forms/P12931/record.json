@@ -7,7 +7,7 @@
  "name": "Proto-oncogene tyrosine-protein kinase Src",
  "clusters": [
   {
-   "cluster_id": 546,
+   "cluster_id": 557,
    "n_members": 27,
    "reference": "1O43",
    "reference_resolution": 1.5,

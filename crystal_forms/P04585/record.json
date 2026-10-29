@@ -7,7 +7,7 @@
  "name": "Gag-Pol polyprotein",
  "clusters": [
   {
-   "cluster_id": 272,
+   "cluster_id": 276,
    "n_members": 46,
    "reference": "7SLS",
    "reference_resolution": 2.078,
@@ -56,8 +56,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 353,
-   "n_members": 38,
+   "cluster_id": 344,
+   "n_members": 39,
    "reference": "1RTH",
    "reference_resolution": 2.2,
    "space_group": "P 21 21 21",
@@ -70,42 +70,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 37,
+    "placed": 38,
     "reference": 1
    },
-   "n_pairs": 703,
+   "n_pairs": 741,
    "rmsd_to_reference": {
-    "median": 1.057,
-    "q25": 0.927,
-    "q75": 1.301,
-    "p5": 0.749,
-    "p95": 42.767,
+    "median": 1.074,
+    "q25": 0.931,
+    "q75": 1.341,
+    "p5": 0.75,
+    "p95": 42.756,
     "max": 43.333,
-    "n_pairs": 37
+    "n_pairs": 38
    },
    "pairwise_frame_rmsd": {
-    "median": 1.276,
-    "q25": 0.993,
-    "q75": 39.964,
-    "p5": 0.707,
-    "p95": 42.495,
+    "median": 1.312,
+    "q25": 1.002,
+    "q75": 39.779,
+    "p5": 0.711,
+    "p95": 42.49,
     "max": 43.271,
-    "n_pairs": 703
+    "n_pairs": 741
    },
    "pairwise_fit_rmsd": {
-    "median": 1.06,
-    "q25": 0.867,
-    "q75": 18.762,
-    "p5": 0.578,
-    "p95": 19.091,
+    "median": 1.075,
+    "q25": 0.878,
+    "q75": 18.692,
+    "p5": 0.585,
+    "p95": 19.087,
     "max": 19.558,
-    "n_pairs": 703
+    "n_pairs": 741
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 442,
+   "cluster_id": 448,
    "n_members": 32,
    "reference": "4U7V",
    "reference_resolution": 1.38,
@@ -151,11 +151,11 @@
     "max": 0.617,
     "n_pairs": 465
    },
-   "n_low_margin": 18,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 632,
+   "cluster_id": 645,
    "n_members": 24,
    "reference": "5J2M",
    "reference_resolution": 2.432,
@@ -204,7 +204,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 905,
+   "cluster_id": 926,
    "n_members": 18,
    "reference": "1VRT",
    "reference_resolution": 2.2,
@@ -253,7 +253,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1041,
+   "cluster_id": 1068,
    "n_members": 16,
    "reference": "6DV4",
    "reference_resolution": 1.14,

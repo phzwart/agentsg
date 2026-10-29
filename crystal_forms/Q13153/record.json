@@ -7,8 +7,8 @@
  "name": "Serine/threonine-protein kinase PAK 1",
  "clusters": [
   {
-   "cluster_id": 881,
-   "n_members": 19,
+   "cluster_id": 853,
+   "n_members": 20,
    "reference": "9D4V",
    "reference_resolution": 1.84,
    "space_group": "P 1 21 1",
@@ -21,42 +21,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 18,
+    "placed": 19,
     "reference": 1
    },
-   "n_pairs": 171,
+   "n_pairs": 190,
    "rmsd_to_reference": {
-    "median": 1.783,
-    "q25": 1.23,
-    "q75": 2.105,
-    "p5": 0.5,
-    "p95": 2.792,
+    "median": 1.84,
+    "q25": 1.25,
+    "q75": 2.178,
+    "p5": 0.509,
+    "p95": 2.786,
     "max": 2.897,
-    "n_pairs": 18
+    "n_pairs": 19
    },
    "pairwise_frame_rmsd": {
-    "median": 1.426,
-    "q25": 0.987,
-    "q75": 1.758,
-    "p5": 0.635,
-    "p95": 2.469,
+    "median": 1.517,
+    "q25": 1.056,
+    "q75": 1.812,
+    "p5": 0.688,
+    "p95": 2.497,
     "max": 3.026,
-    "n_pairs": 171
+    "n_pairs": 190
    },
    "pairwise_fit_rmsd": {
-    "median": 0.931,
-    "q25": 0.621,
-    "q75": 1.143,
-    "p5": 0.442,
-    "p95": 1.404,
+    "median": 0.968,
+    "q25": 0.64,
+    "q75": 1.153,
+    "p5": 0.444,
+    "p95": 1.401,
     "max": 1.752,
-    "n_pairs": 171
+    "n_pairs": 190
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1755,
+   "cluster_id": 1804,
    "n_members": 11,
    "reference": "3FXZ",
    "reference_resolution": 1.64,

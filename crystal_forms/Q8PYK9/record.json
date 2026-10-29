@@ -7,7 +7,7 @@
  "name": "Deoxyribodipyrimidine photo-lyase",
  "clusters": [
   {
-   "cluster_id": 479,
+   "cluster_id": 488,
    "n_members": 31,
    "reference": "7YC7",
    "reference_resolution": 1.95,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 510,
+   "cluster_id": 519,
    "n_members": 29,
    "reference": "2XRY",
    "reference_resolution": 1.5,

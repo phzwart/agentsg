@@ -7,7 +7,7 @@
  "name": "Dye-decolorizing peroxidase",
  "clusters": [
   {
-   "cluster_id": 560,
+   "cluster_id": 573,
    "n_members": 26,
    "reference": "9HXX",
    "reference_resolution": 1.52,
@@ -52,7 +52,7 @@
     "max": 0.461,
     "n_pairs": 325
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

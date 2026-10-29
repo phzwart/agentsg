@@ -7,8 +7,8 @@
  "name": "Epithelial discoidin domain-containing receptor 1",
  "clusters": [
   {
-   "cluster_id": 1424,
-   "n_members": 13,
+   "cluster_id": 1204,
+   "n_members": 15,
    "reference": "5SB1",
    "reference_resolution": 1.53,
    "space_group": "P 21 21 21",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 12,
+    "placed": 14,
     "reference": 1
    },
-   "n_pairs": 78,
+   "n_pairs": 105,
    "rmsd_to_reference": {
-    "median": 17.734,
-    "q25": 1.757,
-    "q75": 21.181,
-    "p5": 0.599,
-    "p95": 30.256,
-    "max": 30.321,
-    "n_pairs": 12
+    "median": 13.306,
+    "q25": 1.882,
+    "q75": 17.899,
+    "p5": 0.606,
+    "p95": 21.231,
+    "max": 21.552,
+    "n_pairs": 14
    },
    "pairwise_frame_rmsd": {
-    "median": 20.279,
-    "q25": 11.525,
-    "q75": 30.113,
-    "p5": 0.789,
-    "p95": 32.087,
-    "max": 34.258,
-    "n_pairs": 78
+    "median": 17.939,
+    "q25": 2.538,
+    "q75": 20.345,
+    "p5": 0.949,
+    "p95": 21.635,
+    "max": 21.842,
+    "n_pairs": 105
    },
    "pairwise_fit_rmsd": {
-    "median": 17.022,
-    "q25": 1.493,
-    "q75": 19.021,
-    "p5": 0.52,
-    "p95": 19.455,
-    "max": 19.502,
-    "n_pairs": 78
+    "median": 17.024,
+    "q25": 1.495,
+    "q75": 19.011,
+    "p5": 0.663,
+    "p95": 19.468,
+    "max": 19.779,
+    "n_pairs": 105
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

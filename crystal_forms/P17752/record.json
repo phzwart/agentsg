@@ -1,0 +1,59 @@
+{
+ "identity": "P17752",
+ "accessions": [
+  "P17752"
+ ],
+ "deposition_group": null,
+ "name": "Tryptophan 5-hydroxylase 1",
+ "clusters": [
+  {
+   "cluster_id": 1296,
+   "n_members": 14,
+   "reference": "8CJK",
+   "reference_resolution": 1.45914977372,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    46.96,
+    57.875,
+    59.054,
+    90.0,
+    97.741,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.377,
+    "q25": 0.283,
+    "q75": 41.035,
+    "p5": 0.247,
+    "p95": 41.399,
+    "max": 41.467,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 40.59,
+    "q25": 0.335,
+    "q75": 41.221,
+    "p5": 0.19,
+    "p95": 41.54,
+    "max": 41.66,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.425,
+    "q25": 0.285,
+    "q75": 0.576,
+    "p5": 0.161,
+    "p95": 0.837,
+    "max": 0.869,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  }
+ ]
+}

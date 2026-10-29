@@ -7,8 +7,8 @@
  "name": "Tyrosine-protein kinase Mer",
  "clusters": [
   {
-   "cluster_id": 1004,
-   "n_members": 17,
+   "cluster_id": 952,
+   "n_members": 18,
    "reference": "3BRB",
    "reference_resolution": 1.9,
    "space_group": "P 1 21 1",
@@ -21,42 +21,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 16,
+    "placed": 17,
     "reference": 1
    },
-   "n_pairs": 136,
+   "n_pairs": 153,
    "rmsd_to_reference": {
     "median": 4.067,
-    "q25": 4.002,
-    "q75": 4.109,
-    "p5": 3.888,
-    "p95": 4.179,
+    "q25": 4.013,
+    "q75": 4.107,
+    "p5": 3.893,
+    "p95": 4.175,
     "max": 4.232,
-    "n_pairs": 16
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 1.139,
-    "q25": 0.818,
-    "q75": 1.532,
-    "p5": 0.525,
-    "p95": 4.342,
+    "median": 1.196,
+    "q25": 0.862,
+    "q75": 1.991,
+    "p5": 0.538,
+    "p95": 4.316,
     "max": 4.739,
-    "n_pairs": 136
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.709,
-    "q25": 0.555,
-    "q75": 1.066,
-    "p5": 0.391,
-    "p95": 3.905,
+    "median": 0.748,
+    "q25": 0.574,
+    "q75": 1.169,
+    "p5": 0.395,
+    "p95": 3.906,
     "max": 4.032,
-    "n_pairs": 136
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1425,
+   "cluster_id": 1458,
    "n_members": 13,
    "reference": "7AB0",
    "reference_resolution": 1.74,
@@ -101,7 +101,7 @@
     "max": 0.83,
     "n_pairs": 78
    },
-   "n_low_margin": 12,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

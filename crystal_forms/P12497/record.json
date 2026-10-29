@@ -53,11 +53,11 @@
     "max": 0.702,
     "n_pairs": 4095
    },
-   "n_low_margin": 89,
+   "n_low_margin": 2,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 132,
+   "cluster_id": 133,
    "n_members": 82,
    "reference": "7LE8",
    "reference_resolution": 1.644,
@@ -107,7 +107,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 767,
+   "cluster_id": 783,
    "n_members": 21,
    "reference": "9Q13",
    "reference_resolution": 1.72,
@@ -153,11 +153,11 @@
     "max": 0.667,
     "n_pairs": 105
    },
-   "n_low_margin": 14,
+   "n_low_margin": 6,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1258,
+   "cluster_id": 1289,
    "n_members": 14,
    "reference": "6KDN",
    "reference_resolution": 2.303,

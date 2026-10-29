@@ -7,7 +7,7 @@
  "name": "Serotransferrin",
  "clusters": [
   {
-   "cluster_id": 857,
+   "cluster_id": 879,
    "n_members": 19,
    "reference": "9RTB",
    "reference_resolution": 1.93,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1240,
+   "cluster_id": 1269,
    "n_members": 14,
    "reference": "1RYO",
    "reference_resolution": 1.2,

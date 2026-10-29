@@ -7,7 +7,7 @@
  "name": "Phosphoenolpyruvate carboxykinase, cytosolic [GTP]",
  "clusters": [
   {
-   "cluster_id": 412,
+   "cluster_id": 418,
    "n_members": 34,
    "reference": "3MOE",
    "reference_resolution": 1.25,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1506,
+   "cluster_id": 1544,
    "n_members": 12,
    "reference": "4GMU",
    "reference_resolution": 1.2,
@@ -102,6 +102,55 @@
     "n_pairs": 66
    },
    "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1724,
+   "n_members": 11,
+   "reference": "3DTB",
+   "reference_resolution": 1.3,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    62.154,
+    119.683,
+    86.849,
+    90.0,
+    107.05,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.783,
+    "q25": 0.499,
+    "q75": 1.278,
+    "p5": 0.337,
+    "p95": 44.027,
+    "max": 54.598,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.906,
+    "q25": 0.512,
+    "q75": 31.933,
+    "p5": 0.354,
+    "p95": 54.613,
+    "max": 60.338,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.505,
+    "q25": 0.363,
+    "q75": 0.807,
+    "p5": 0.279,
+    "p95": 1.007,
+    "max": 1.085,
+    "n_pairs": 55
+   },
+   "n_low_margin": 8,
    "n_via_neighbour": 0
   }
  ]

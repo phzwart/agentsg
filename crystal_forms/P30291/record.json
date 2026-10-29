@@ -7,7 +7,7 @@
  "name": "Wee1-like protein kinase",
  "clusters": [
   {
-   "cluster_id": 1710,
+   "cluster_id": 1762,
    "n_members": 11,
    "reference": "9D0S",
    "reference_resolution": 1.64,
@@ -52,6 +52,55 @@
     "p95": 0.606,
     "max": 0.671,
     "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1763,
+   "n_members": 11,
+   "reference": "5VD8",
+   "reference_resolution": 1.85,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    50.29,
+    44.56,
+    64.98,
+    90.0,
+    101.94,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.389,
+    "q25": 0.31,
+    "q75": 1.104,
+    "p5": 0.223,
+    "p95": 1.508,
+    "max": 1.526,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.687,
+    "q25": 0.475,
+    "q75": 1.651,
+    "p5": 0.25,
+    "p95": 1.879,
+    "max": 2.169,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.531,
+    "q25": 0.352,
+    "q75": 0.686,
+    "p5": 0.218,
+    "p95": 0.79,
+    "max": 0.831,
+    "n_pairs": 55
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

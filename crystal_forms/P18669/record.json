@@ -7,8 +7,8 @@
  "name": "Phosphoglycerate mutase 1",
  "clusters": [
   {
-   "cluster_id": 986,
-   "n_members": 17,
+   "cluster_id": 650,
+   "n_members": 24,
    "reference": "22RB",
    "reference_resolution": 1.75,
    "space_group": "P 21 21 21",
@@ -22,38 +22,38 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 16
+    "placed": 23
    },
-   "n_pairs": 136,
+   "n_pairs": 276,
    "rmsd_to_reference": {
-    "median": 0.649,
-    "q25": 0.512,
-    "q75": 0.757,
-    "p5": 0.379,
-    "p95": 1.323,
-    "max": 1.924,
-    "n_pairs": 16
+    "median": 0.714,
+    "q25": 0.617,
+    "q75": 2.553,
+    "p5": 0.391,
+    "p95": 2.774,
+    "max": 3.078,
+    "n_pairs": 23
    },
    "pairwise_frame_rmsd": {
-    "median": 1.375,
-    "q25": 0.856,
-    "q75": 2.471,
-    "p5": 0.24,
-    "p95": 3.825,
-    "max": 5.219,
-    "n_pairs": 136
+    "median": 2.48,
+    "q25": 1.282,
+    "q75": 3.738,
+    "p5": 0.299,
+    "p95": 5.952,
+    "max": 7.067,
+    "n_pairs": 276
    },
    "pairwise_fit_rmsd": {
-    "median": 0.212,
-    "q25": 0.167,
-    "q75": 0.351,
-    "p5": 0.123,
-    "p95": 0.427,
-    "max": 0.475,
-    "n_pairs": 136
+    "median": 0.315,
+    "q25": 0.211,
+    "q75": 0.407,
+    "p5": 0.141,
+    "p95": 0.546,
+    "max": 0.585,
+    "n_pairs": 276
    },
-   "n_low_margin": 10,
-   "n_via_neighbour": 0
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
   }
  ]
 }

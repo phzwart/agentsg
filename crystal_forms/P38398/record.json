@@ -7,7 +7,7 @@
  "name": "Breast cancer type 1 susceptibility protein",
  "clusters": [
   {
-   "cluster_id": 1547,
+   "cluster_id": 1584,
    "n_members": 12,
    "reference": "1JNX",
    "reference_resolution": 2.5,

@@ -19,7 +19,7 @@
  "name": "Cytochrome c oxidase subunit 1",
  "clusters": [
   {
-   "cluster_id": 148,
+   "cluster_id": 152,
    "n_members": 75,
    "reference": "7COH",
    "reference_resolution": 1.3,

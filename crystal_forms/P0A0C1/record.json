@@ -7,7 +7,7 @@
  "name": "Bifunctional AAC/APH [Includes: 6'-aminoglycoside N-acetyltransferase",
  "clusters": [
   {
-   "cluster_id": 972,
+   "cluster_id": 1000,
    "n_members": 17,
    "reference": "5BYL",
    "reference_resolution": 2.15,

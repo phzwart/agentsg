@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1536,
+   "cluster_id": 1572,
    "n_members": 12,
    "reference": "5AVN",
    "reference_resolution": 1.03,
@@ -81,7 +81,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1705,
+   "cluster_id": 1757,
    "n_members": 11,
    "reference": "6RND",
    "reference_resolution": 1.7,

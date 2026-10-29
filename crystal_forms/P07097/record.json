@@ -7,7 +7,7 @@
  "name": "Acetyl-CoA acetyltransferase",
  "clusters": [
   {
-   "cluster_id": 459,
+   "cluster_id": 470,
    "n_members": 31,
    "reference": "2VU1",
    "reference_resolution": 1.51,
@@ -52,7 +52,7 @@
     "max": 2.867,
     "n_pairs": 465
    },
-   "n_low_margin": 0,
+   "n_low_margin": 15,
    "n_via_neighbour": 0
   }
  ]

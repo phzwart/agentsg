@@ -7,7 +7,7 @@
  "name": "Pyrrolysine--tRNA ligase",
  "clusters": [
   {
-   "cluster_id": 431,
+   "cluster_id": 436,
    "n_members": 33,
    "reference": "6LYA",
    "reference_resolution": 1.59070211581,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1313,
+   "cluster_id": 1343,
    "n_members": 14,
    "reference": "30XL",
    "reference_resolution": 1.25,

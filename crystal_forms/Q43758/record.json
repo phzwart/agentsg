@@ -7,8 +7,8 @@
  "name": "NAD(P)H oxidase",
  "clusters": [
   {
-   "cluster_id": 427,
-   "n_members": 33,
+   "cluster_id": 424,
+   "n_members": 34,
    "reference": "2VCN",
    "reference_resolution": 1.2,
    "space_group": "P 42 21 2",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 32,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 1
    },
    "n_pairs": 528,
    "rmsd_to_reference": {

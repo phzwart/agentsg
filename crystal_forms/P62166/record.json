@@ -7,8 +7,8 @@
  "name": "Neuronal calcium sensor 1",
  "clusters": [
   {
-   "cluster_id": 1737,
-   "n_members": 11,
+   "cluster_id": 898,
+   "n_members": 19,
    "reference": "9QKH",
    "reference_resolution": 1.73,
    "space_group": "P 1 21 1",
@@ -21,39 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 10,
+    "placed": 18,
     "reference": 1
    },
-   "n_pairs": 55,
+   "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 0.418,
-    "q25": 0.39,
-    "q75": 0.583,
-    "p5": 0.193,
-    "p95": 0.847,
-    "max": 0.95,
-    "n_pairs": 10
+    "median": 0.836,
+    "q25": 0.408,
+    "q75": 2.854,
+    "p5": 0.267,
+    "p95": 3.124,
+    "max": 3.244,
+    "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 0.994,
-    "q25": 0.64,
-    "q75": 1.399,
-    "p5": 0.419,
-    "p95": 2.019,
-    "max": 2.365,
-    "n_pairs": 55
+    "median": 5.383,
+    "q25": 0.95,
+    "q75": 6.932,
+    "p5": 0.52,
+    "p95": 7.974,
+    "max": 9.069,
+    "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
-    "median": 0.321,
-    "q25": 0.281,
-    "q75": 0.434,
-    "p5": 0.243,
-    "p95": 0.545,
-    "max": 0.604,
-    "n_pairs": 55
+    "median": 0.512,
+    "q25": 0.335,
+    "q75": 1.01,
+    "p5": 0.234,
+    "p95": 1.19,
+    "max": 1.315,
+    "n_pairs": 171
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 3
   }
  ]
 }

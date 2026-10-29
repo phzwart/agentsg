@@ -7,7 +7,7 @@
  "name": "Serine/threonine-protein kinase B-raf",
  "clusters": [
   {
-   "cluster_id": 672,
+   "cluster_id": 692,
    "n_members": 23,
    "reference": "6N0Q",
    "reference_resolution": 2.04,
@@ -56,8 +56,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1146,
-   "n_members": 15,
+   "cluster_id": 1086,
+   "n_members": 16,
    "reference": "5VAM",
    "reference_resolution": 2.1,
    "space_group": "P 41 21 2",
@@ -70,88 +70,88 @@
     90.0
    ],
    "status_counts": {
-    "placed": 14,
+    "placed": 15,
     "reference": 1
    },
-   "n_pairs": 105,
+   "n_pairs": 120,
    "rmsd_to_reference": {
-    "median": 3.806,
-    "q25": 3.011,
-    "q75": 4.128,
-    "p5": 2.633,
-    "p95": 4.469,
-    "max": 4.616,
-    "n_pairs": 14
+    "median": 3.82,
+    "q25": 3.178,
+    "q75": 4.229,
+    "p5": 2.64,
+    "p95": 4.628,
+    "max": 4.656,
+    "n_pairs": 15
    },
    "pairwise_frame_rmsd": {
-    "median": 2.299,
-    "q25": 0.894,
-    "q75": 3.018,
-    "p5": 0.618,
-    "p95": 4.513,
-    "max": 5.602,
-    "n_pairs": 105
+    "median": 2.413,
+    "q25": 0.966,
+    "q75": 3.279,
+    "p5": 0.633,
+    "p95": 4.533,
+    "max": 6.045,
+    "n_pairs": 120
    },
    "pairwise_fit_rmsd": {
-    "median": 1.473,
-    "q25": 0.645,
-    "q75": 1.917,
-    "p5": 0.427,
-    "p95": 3.902,
+    "median": 1.533,
+    "q25": 0.685,
+    "q75": 2.06,
+    "p5": 0.445,
+    "p95": 3.894,
     "max": 3.943,
-    "n_pairs": 105
+    "n_pairs": 120
    },
    "n_low_margin": 0,
-   "n_via_neighbour": 5
+   "n_via_neighbour": 6
   },
   {
-   "cluster_id": 1524,
-   "n_members": 12,
-   "reference": "5ITA",
-   "reference_resolution": 1.95,
+   "cluster_id": 1292,
+   "n_members": 14,
+   "reference": "8C7X",
+   "reference_resolution": 1.65,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    52.105,
-    103.817,
-    110.567,
+    49.129,
+    97.56,
+    114.9,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "placed": 11,
+    "placed": 13,
     "reference": 1
    },
-   "n_pairs": 66,
+   "n_pairs": 91,
    "rmsd_to_reference": {
-    "median": 1.865,
-    "q25": 1.376,
-    "q75": 6.006,
-    "p5": 0.816,
-    "p95": 28.719,
-    "max": 29.232,
-    "n_pairs": 11
+    "median": 28.227,
+    "q25": 27.908,
+    "q75": 28.665,
+    "p5": 1.354,
+    "p95": 30.666,
+    "max": 31.564,
+    "n_pairs": 13
    },
    "pairwise_frame_rmsd": {
-    "median": 5.817,
-    "q25": 1.299,
-    "q75": 27.094,
-    "p5": 0.599,
-    "p95": 28.498,
-    "max": 31.393,
-    "n_pairs": 66
+    "median": 6.801,
+    "q25": 4.023,
+    "q75": 27.017,
+    "p5": 1.223,
+    "p95": 29.052,
+    "max": 30.882,
+    "n_pairs": 91
    },
    "pairwise_fit_rmsd": {
-    "median": 1.517,
-    "q25": 0.776,
-    "q75": 5.789,
-    "p5": 0.463,
-    "p95": 9.835,
-    "max": 11.087,
-    "n_pairs": 66
+    "median": 3.852,
+    "q25": 1.247,
+    "q75": 5.929,
+    "p5": 0.638,
+    "p95": 6.791,
+    "max": 8.918,
+    "n_pairs": 91
    },
    "n_low_margin": 3,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

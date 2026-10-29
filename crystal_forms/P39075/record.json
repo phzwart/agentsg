@@ -7,7 +7,7 @@
  "name": "Multidrug-efflux transporter 1 regulator",
  "clusters": [
   {
-   "cluster_id": 1407,
+   "cluster_id": 1440,
    "n_members": 13,
    "reference": "1R8E",
    "reference_resolution": 2.4,

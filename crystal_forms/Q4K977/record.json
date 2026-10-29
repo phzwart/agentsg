@@ -7,7 +7,7 @@
  "name": "Isonitrile hydratase InhA",
  "clusters": [
   {
-   "cluster_id": 531,
+   "cluster_id": 539,
    "n_members": 28,
    "reference": "9MXN",
    "reference_resolution": 0.89,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1584,
+   "cluster_id": 1624,
    "n_members": 12,
    "reference": "6NI4",
    "reference_resolution": 1.1,

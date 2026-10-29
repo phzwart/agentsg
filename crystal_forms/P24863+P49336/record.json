@@ -8,8 +8,8 @@
  "name": "Cyclin-dependent kinase 8",
  "clusters": [
   {
-   "cluster_id": 468,
-   "n_members": 31,
+   "cluster_id": 455,
+   "n_members": 32,
    "reference": "5XS2",
    "reference_resolution": 2.04,
    "space_group": "P 21 21 21",
@@ -22,39 +22,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 30,
+    "placed": 31,
     "reference": 1
    },
-   "n_pairs": 465,
+   "n_pairs": 496,
    "rmsd_to_reference": {
-    "median": 2.605,
-    "q25": 2.203,
-    "q75": 56.203,
-    "p5": 0.658,
-    "p95": 56.742,
-    "max": 56.793,
-    "n_pairs": 30
+    "median": 2.585,
+    "q25": 2.25,
+    "q75": 2.7,
+    "p5": 0.661,
+    "p95": 3.033,
+    "max": 14.18,
+    "n_pairs": 31
    },
    "pairwise_frame_rmsd": {
-    "median": 7.535,
-    "q25": 1.674,
-    "q75": 56.003,
-    "p5": 0.798,
-    "p95": 56.765,
-    "max": 86.218,
-    "n_pairs": 465
+    "median": 1.704,
+    "q25": 1.094,
+    "q75": 2.373,
+    "p5": 0.602,
+    "p95": 13.145,
+    "max": 15.434,
+    "n_pairs": 496
    },
    "pairwise_fit_rmsd": {
-    "median": 1.183,
-    "q25": 0.795,
-    "q75": 7.509,
-    "p5": 0.472,
-    "p95": 7.625,
-    "max": 7.856,
-    "n_pairs": 465
+    "median": 0.945,
+    "q25": 0.667,
+    "q75": 1.235,
+    "p5": 0.408,
+    "p95": 1.595,
+    "max": 2.04,
+    "n_pairs": 496
    },
-   "n_low_margin": 10,
-   "n_via_neighbour": 0
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
   }
  ]
 }

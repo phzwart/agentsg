@@ -7,7 +7,7 @@
  "name": "Orotidine 5'-phosphate decarboxylase",
  "clusters": [
   {
-   "cluster_id": 245,
+   "cluster_id": 244,
    "n_members": 50,
    "reference": "3SJ3",
    "reference_resolution": 1.26,
@@ -52,11 +52,11 @@
     "max": 0.294,
     "n_pairs": 1225
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 438,
+   "cluster_id": 443,
    "n_members": 32,
    "reference": "3W07",
    "reference_resolution": 1.03,
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 897,
+   "cluster_id": 919,
    "n_members": 18,
    "reference": "3M47",
    "reference_resolution": 1.2,
@@ -152,7 +152,7 @@
     "max": 0.887,
     "n_pairs": 55
    },
-   "n_low_margin": 10,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

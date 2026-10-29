@@ -7,7 +7,7 @@
  "name": "Serine/threonine-protein kinase VRK1",
  "clusters": [
   {
-   "cluster_id": 887,
+   "cluster_id": 910,
    "n_members": 19,
    "reference": "6BRU",
    "reference_resolution": 1.8,
@@ -52,7 +52,7 @@
     "max": 1.091,
     "n_pairs": 171
    },
-   "n_low_margin": 0,
+   "n_low_margin": 12,
    "n_via_neighbour": 0
   }
  ]

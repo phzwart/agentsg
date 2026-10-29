@@ -7,7 +7,7 @@
  "name": "Enoyl-[acyl-carrier-protein] reductase [NADH]",
  "clusters": [
   {
-   "cluster_id": 296,
+   "cluster_id": 302,
    "n_members": 43,
    "reference": "4TRO",
    "reference_resolution": 1.4,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1173,
+   "cluster_id": 1200,
    "n_members": 15,
    "reference": "9RJL",
    "reference_resolution": 1.699,
@@ -106,7 +106,57 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1745,
+   "cluster_id": 1606,
+   "n_members": 12,
+   "reference": "28IT",
+   "reference_resolution": 1.514,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    90.83,
+    90.83,
+    185.07,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 7,
+    "different_space_group": 4
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 0.475,
+    "q25": 0.411,
+    "q75": 0.86,
+    "p5": 0.297,
+    "p95": 1.119,
+    "max": 1.119,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.116,
+    "q25": 1.489,
+    "q75": 5.096,
+    "p5": 0.743,
+    "p95": 5.803,
+    "max": 5.867,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.571,
+    "q25": 0.384,
+    "q75": 0.632,
+    "p5": 0.254,
+    "p95": 0.752,
+    "max": 0.796,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1794,
    "n_members": 11,
    "reference": "28IP",
    "reference_resolution": 1.588,
@@ -155,7 +205,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1746,
+   "cluster_id": 1795,
    "n_members": 11,
    "reference": "5G0T",
    "reference_resolution": 1.54,

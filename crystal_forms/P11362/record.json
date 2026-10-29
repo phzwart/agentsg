@@ -7,8 +7,8 @@
  "name": "Fibroblast growth factor receptor 1",
  "clusters": [
   {
-   "cluster_id": 357,
-   "n_members": 38,
+   "cluster_id": 176,
+   "n_members": 66,
    "reference": "5EW8",
    "reference_resolution": 1.63,
    "space_group": "C 1 2 1",
@@ -21,88 +21,39 @@
     90.0
    ],
    "status_counts": {
-    "placed": 37,
+    "placed": 65,
     "reference": 1
    },
-   "n_pairs": 703,
+   "n_pairs": 2145,
    "rmsd_to_reference": {
-    "median": 0.656,
-    "q25": 0.54,
-    "q75": 0.961,
-    "p5": 0.33,
-    "p95": 1.302,
-    "max": 1.499,
-    "n_pairs": 37
+    "median": 1.161,
+    "q25": 0.63,
+    "q75": 37.738,
+    "p5": 0.351,
+    "p95": 39.486,
+    "max": 44.586,
+    "n_pairs": 65
    },
    "pairwise_frame_rmsd": {
-    "median": 0.948,
-    "q25": 0.671,
-    "q75": 1.227,
-    "p5": 0.421,
-    "p95": 1.718,
-    "max": 2.448,
-    "n_pairs": 703
+    "median": 35.82,
+    "q25": 1.142,
+    "q75": 36.847,
+    "p5": 0.541,
+    "p95": 42.852,
+    "max": 56.519,
+    "n_pairs": 2145
    },
    "pairwise_fit_rmsd": {
-    "median": 0.565,
-    "q25": 0.424,
-    "q75": 0.768,
-    "p5": 0.318,
-    "p95": 1.061,
-    "max": 1.512,
-    "n_pairs": 703
+    "median": 1.081,
+    "q25": 0.652,
+    "q75": 7.424,
+    "p5": 0.371,
+    "p95": 18.792,
+    "max": 20.744,
+    "n_pairs": 2145
    },
-   "n_low_margin": 0,
-   "n_via_neighbour": 0
-  },
-  {
-   "cluster_id": 522,
-   "n_members": 28,
-   "reference": "4WUN",
-   "reference_resolution": 1.65,
-   "space_group": "I 1 2 1",
-   "reference_cell": [
-    65.486,
-    50.517,
-    201.28,
-    90.0,
-    91.23,
-    90.0
-   ],
-   "status_counts": {
-    "placed": 27,
-    "reference": 1
-   },
-   "n_pairs": 378,
-   "rmsd_to_reference": {
-    "median": 23.265,
-    "q25": 23.123,
-    "q75": 23.602,
-    "p5": 22.147,
-    "p95": 40.875,
-    "max": 44.485,
-    "n_pairs": 27
-   },
-   "pairwise_frame_rmsd": {
-    "median": 6.483,
-    "q25": 1.032,
-    "q75": 22.84,
-    "p5": 0.59,
-    "p95": 75.118,
-    "max": 92.327,
-    "n_pairs": 378
-   },
-   "pairwise_fit_rmsd": {
-    "median": 5.829,
-    "q25": 0.64,
-    "q75": 5.939,
-    "p5": 0.345,
-    "p95": 20.059,
-    "max": 20.578,
-    "n_pairs": 378
-   },
-   "n_low_margin": 13,
-   "n_via_neighbour": 0
+   "n_low_margin": 3,
+   "n_via_neighbour": 27
   }
  ]
 }

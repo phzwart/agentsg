@@ -7,8 +7,8 @@
  "name": "Cellular tumor antigen p53",
  "clusters": [
   {
-   "cluster_id": 143,
-   "n_members": 77,
+   "cluster_id": 136,
+   "n_members": 80,
    "reference": "6GGC",
    "reference_resolution": 1.24,
    "space_group": "P 21 21 21",
@@ -21,42 +21,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 76,
+    "placed": 77,
+    "different_space_group": 2,
     "reference": 1
    },
-   "n_pairs": 2926,
+   "n_pairs": 3003,
    "rmsd_to_reference": {
-    "median": 0.462,
-    "q25": 0.38,
-    "q75": 0.564,
-    "p5": 0.271,
-    "p95": 0.847,
-    "max": 8.855,
-    "n_pairs": 76
+    "median": 0.463,
+    "q25": 0.382,
+    "q75": 0.569,
+    "p5": 0.278,
+    "p95": 0.971,
+    "max": 20.318,
+    "n_pairs": 77
    },
    "pairwise_frame_rmsd": {
-    "median": 0.681,
-    "q25": 0.473,
-    "q75": 0.957,
-    "p5": 0.276,
-    "p95": 8.361,
-    "max": 9.799,
-    "n_pairs": 2926
+    "median": 0.697,
+    "q25": 0.479,
+    "q75": 0.992,
+    "p5": 0.278,
+    "p95": 9.135,
+    "max": 32.024,
+    "n_pairs": 3003
    },
    "pairwise_fit_rmsd": {
-    "median": 0.233,
-    "q25": 0.182,
-    "q75": 0.28,
-    "p5": 0.118,
-    "p95": 0.404,
-    "max": 0.557,
-    "n_pairs": 2926
+    "median": 0.235,
+    "q25": 0.185,
+    "q75": 0.286,
+    "p5": 0.119,
+    "p95": 0.44,
+    "max": 1.046,
+    "n_pairs": 3003
    },
-   "n_low_margin": 76,
+   "n_low_margin": 77,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 815,
+   "cluster_id": 831,
    "n_members": 20,
    "reference": "4KVP",
    "reference_resolution": 1.5,
@@ -105,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1355,
+   "cluster_id": 1386,
    "n_members": 13,
    "reference": "7B4N",
    "reference_resolution": 1.32,

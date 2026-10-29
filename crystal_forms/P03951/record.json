@@ -7,7 +7,7 @@
  "name": "Coagulation factor XI",
  "clusters": [
   {
-   "cluster_id": 364,
+   "cluster_id": 371,
    "n_members": 37,
    "reference": "5TKS",
    "reference_resolution": 1.55,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 456,
+   "cluster_id": 468,
    "n_members": 31,
    "reference": "4CRG",
    "reference_resolution": 1.25,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 631,
+   "cluster_id": 644,
    "n_members": 24,
    "reference": "6TS4",
    "reference_resolution": 1.17,

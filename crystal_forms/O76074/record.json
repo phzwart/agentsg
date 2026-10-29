@@ -7,7 +7,7 @@
  "name": "cGMP-specific 3',5'-cyclic phosphodiesterase",
  "clusters": [
   {
-   "cluster_id": 596,
+   "cluster_id": 604,
    "n_members": 25,
    "reference": "8W4S",
    "reference_resolution": 1.848,

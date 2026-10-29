@@ -7,8 +7,8 @@
  "name": "Prostaglandin G/H synthase 2",
  "clusters": [
   {
-   "cluster_id": 685,
-   "n_members": 23,
+   "cluster_id": 514,
+   "n_members": 29,
    "reference": "3NT1",
    "reference_resolution": 1.73,
    "space_group": "I 2 2 2",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 22,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 6
    },
    "n_pairs": 253,
    "rmsd_to_reference": {
@@ -56,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1002,
+   "cluster_id": 1030,
    "n_members": 17,
    "reference": "4M10",
    "reference_resolution": 2.01,

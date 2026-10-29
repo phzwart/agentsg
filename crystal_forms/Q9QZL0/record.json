@@ -1,0 +1,59 @@
+{
+ "identity": "Q9QZL0",
+ "accessions": [
+  "Q9QZL0"
+ ],
+ "deposition_group": null,
+ "name": "Receptor-interacting serine/threonine-protein kinase 3",
+ "clusters": [
+  {
+   "cluster_id": 1847,
+   "n_members": 11,
+   "reference": "9IWZ",
+   "reference_resolution": 1.82,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    149.79,
+    49.101,
+    103.434,
+    90.0,
+    131.38,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 2.693,
+    "q25": 2.432,
+    "q75": 2.713,
+    "p5": 0.369,
+    "p95": 2.761,
+    "max": 2.769,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.773,
+    "q25": 0.805,
+    "q75": 2.852,
+    "p5": 0.421,
+    "p95": 3.331,
+    "max": 3.425,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.86,
+    "q25": 0.7,
+    "q75": 1.07,
+    "p5": 0.27,
+    "p95": 1.195,
+    "max": 1.402,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

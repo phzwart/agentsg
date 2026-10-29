@@ -7,7 +7,7 @@
  "name": "Myrosinase MA1",
  "clusters": [
   {
-   "cluster_id": 920,
+   "cluster_id": 942,
    "n_members": 18,
    "reference": "1E4M",
    "reference_resolution": 1.2,
@@ -53,7 +53,7 @@
     "max": 0.292,
     "n_pairs": 120
    },
-   "n_low_margin": 15,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

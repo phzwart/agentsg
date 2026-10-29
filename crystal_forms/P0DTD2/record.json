@@ -7,7 +7,7 @@
  "name": "ORF9b protein",
  "clusters": [
   {
-   "cluster_id": 230,
+   "cluster_id": 229,
    "n_members": 53,
    "reference": "13TX",
    "reference_resolution": 1.37,

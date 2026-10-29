@@ -7,7 +7,7 @@
  "name": "Anthranilate phosphoribosyltransferase",
  "clusters": [
   {
-   "cluster_id": 1172,
+   "cluster_id": 1199,
    "n_members": 15,
    "reference": "3QR9",
    "reference_resolution": 1.87,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1563,
+   "cluster_id": 1604,
    "n_members": 12,
    "reference": "3R88",
    "reference_resolution": 1.73,

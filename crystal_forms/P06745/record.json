@@ -7,7 +7,7 @@
  "name": "Glucose-6-phosphate isomerase",
  "clusters": [
   {
-   "cluster_id": 1505,
+   "cluster_id": 1541,
    "n_members": 12,
    "reference": "2CXN",
    "reference_resolution": 1.4,

@@ -7,7 +7,7 @@
  "name": "Fructose-1,6-bisphosphatase/inositol-1-monophosphatase",
  "clusters": [
   {
-   "cluster_id": 1653,
+   "cluster_id": 1700,
    "n_members": 11,
    "reference": "1LBW",
    "reference_resolution": 2.0,
@@ -52,7 +52,7 @@
     "max": 0.587,
     "n_pairs": 55
    },
-   "n_low_margin": 10,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

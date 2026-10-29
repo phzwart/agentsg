@@ -7,7 +7,7 @@
  "name": "Isocitrate dehydrogenase [NADP]",
  "clusters": [
   {
-   "cluster_id": 443,
+   "cluster_id": 449,
    "n_members": 32,
    "reference": "1PB1",
    "reference_resolution": 1.7,

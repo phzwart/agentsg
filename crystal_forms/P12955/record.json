@@ -7,7 +7,7 @@
  "name": "Xaa-Pro dipeptidase",
  "clusters": [
   {
-   "cluster_id": 768,
+   "cluster_id": 784,
    "n_members": 21,
    "reference": "6SRE",
    "reference_resolution": 1.39,

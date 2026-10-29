@@ -7,7 +7,7 @@
  "name": "Sulfite reductase [NADPH] hemoprotein beta-component",
  "clusters": [
   {
-   "cluster_id": 985,
+   "cluster_id": 1011,
    "n_members": 17,
    "reference": "6C3M",
    "reference_resolution": 1.5,

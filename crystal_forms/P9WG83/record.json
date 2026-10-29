@@ -1,0 +1,61 @@
+{
+ "identity": "P9WG83",
+ "accessions": [
+  "P9WG83"
+ ],
+ "deposition_group": null,
+ "name": "(3R)-3-[(carboxymethyl)amino]fatty acid oxygenase/decarboxylase",
+ "clusters": [
+  {
+   "cluster_id": 1451,
+   "n_members": 13,
+   "reference": "9P9O",
+   "reference_resolution": 1.12,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    57.113,
+    63.622,
+    90.264,
+    90.0,
+    97.2,
+    90.0
+   ],
+   "status_counts": {
+    "too_few_paired_atoms": 1,
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.397,
+    "q25": 0.199,
+    "q75": 0.439,
+    "p5": 0.163,
+    "p95": 2.659,
+    "max": 4.078,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.25,
+    "q25": 0.213,
+    "q75": 0.53,
+    "p5": 0.157,
+    "p95": 4.038,
+    "max": 4.062,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.205,
+    "q25": 0.154,
+    "q75": 0.444,
+    "p5": 0.121,
+    "p95": 0.511,
+    "max": 0.529,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

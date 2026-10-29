@@ -7,8 +7,8 @@
  "name": "Protein argonaute-2",
  "clusters": [
   {
-   "cluster_id": 941,
-   "n_members": 18,
+   "cluster_id": 914,
+   "n_members": 19,
    "reference": "9BF2",
    "reference_resolution": 1.59,
    "space_group": "P 1",
@@ -21,42 +21,42 @@
     85.87
    ],
    "status_counts": {
-    "placed": 17,
+    "placed": 18,
     "reference": 1
    },
-   "n_pairs": 153,
+   "n_pairs": 171,
    "rmsd_to_reference": {
-    "median": 0.944,
-    "q25": 0.826,
+    "median": 0.947,
+    "q25": 0.842,
     "q75": 0.983,
-    "p5": 0.661,
+    "p5": 0.688,
     "p95": 1.124,
     "max": 1.135,
-    "n_pairs": 17
+    "n_pairs": 18
    },
    "pairwise_frame_rmsd": {
-    "median": 1.154,
-    "q25": 0.769,
-    "q75": 1.668,
-    "p5": 0.386,
-    "p95": 2.559,
+    "median": 1.226,
+    "q25": 0.796,
+    "q75": 1.769,
+    "p5": 0.439,
+    "p95": 2.526,
     "max": 3.138,
-    "n_pairs": 153
+    "n_pairs": 171
    },
    "pairwise_fit_rmsd": {
-    "median": 0.341,
-    "q25": 0.275,
-    "q75": 0.504,
-    "p5": 0.182,
-    "p95": 0.766,
-    "max": 0.943,
-    "n_pairs": 153
+    "median": 0.384,
+    "q25": 0.287,
+    "q75": 0.557,
+    "p5": 0.184,
+    "p95": 0.818,
+    "max": 1.009,
+    "n_pairs": 171
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1458,
+   "cluster_id": 1492,
    "n_members": 13,
    "reference": "9OBD",
    "reference_resolution": 2.02,
@@ -105,7 +105,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1613,
+   "cluster_id": 1654,
    "n_members": 12,
    "reference": "4Z4D",
    "reference_resolution": 1.6,

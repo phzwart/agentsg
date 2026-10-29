@@ -7,7 +7,7 @@
  "name": "Replicase polyprotein 1ab",
  "clusters": [
   {
-   "cluster_id": 1109,
+   "cluster_id": 1134,
    "n_members": 15,
    "reference": "9ATJ",
    "reference_resolution": 1.4,
@@ -53,6 +53,57 @@
     "n_pairs": 105
    },
    "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1692,
+   "n_members": 11,
+   "reference": "8HUT",
+   "reference_resolution": 1.98,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    80.201,
+    95.284,
+    98.678,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 8,
+    "no_shared_accession": 1,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 36,
+   "rmsd_to_reference": {
+    "median": 0.887,
+    "q25": 0.518,
+    "q75": 1.612,
+    "p5": 0.45,
+    "p95": 3.512,
+    "max": 3.518,
+    "n_pairs": 8
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.92,
+    "q25": 0.6,
+    "q75": 3.387,
+    "p5": 0.501,
+    "p95": 3.736,
+    "max": 3.924,
+    "n_pairs": 36
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.459,
+    "q25": 0.407,
+    "q75": 0.562,
+    "p5": 0.295,
+    "p95": 0.654,
+    "max": 0.729,
+    "n_pairs": 36
+   },
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

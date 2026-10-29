@@ -7,7 +7,7 @@
  "name": "Proteinase K",
  "clusters": [
   {
-   "cluster_id": 22,
+   "cluster_id": 24,
    "n_members": 255,
    "reference": "2PWA",
    "reference_resolution": 0.83,

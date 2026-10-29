@@ -7,8 +7,8 @@
  "name": "Methionine aminopeptidase",
  "clusters": [
   {
-   "cluster_id": 1252,
-   "n_members": 14,
+   "cluster_id": 648,
+   "n_members": 24,
    "reference": "2GG2",
    "reference_resolution": 1.0,
    "space_group": "P 1 21 1",
@@ -21,36 +21,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 23,
     "reference": 1
    },
-   "n_pairs": 91,
+   "n_pairs": 276,
    "rmsd_to_reference": {
-    "median": 0.393,
-    "q25": 0.261,
-    "q75": 0.672,
-    "p5": 0.231,
-    "p95": 1.178,
-    "max": 1.438,
-    "n_pairs": 13
+    "median": 1.005,
+    "q25": 0.389,
+    "q75": 1.189,
+    "p5": 0.242,
+    "p95": 1.418,
+    "max": 29.207,
+    "n_pairs": 23
    },
    "pairwise_frame_rmsd": {
-    "median": 0.453,
-    "q25": 0.342,
-    "q75": 0.598,
-    "p5": 0.222,
-    "p95": 0.95,
-    "max": 1.019,
-    "n_pairs": 91
+    "median": 0.822,
+    "q25": 0.397,
+    "q75": 1.098,
+    "p5": 0.225,
+    "p95": 29.096,
+    "max": 29.384,
+    "n_pairs": 276
    },
    "pairwise_fit_rmsd": {
-    "median": 0.262,
-    "q25": 0.219,
-    "q75": 0.308,
-    "p5": 0.156,
-    "p95": 0.393,
-    "max": 0.442,
-    "n_pairs": 91
+    "median": 0.302,
+    "q25": 0.254,
+    "q75": 0.346,
+    "p5": 0.168,
+    "p95": 0.466,
+    "max": 0.56,
+    "n_pairs": 276
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

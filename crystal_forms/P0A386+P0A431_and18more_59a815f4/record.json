@@ -26,8 +26,8 @@
  "name": "Photosystem II CP47 reaction center protein",
  "clusters": [
   {
-   "cluster_id": 284,
-   "n_members": 44,
+   "cluster_id": 277,
+   "n_members": 46,
    "reference": "7RF1",
    "reference_resolution": 1.89,
    "space_group": "P 21 21 21",
@@ -40,36 +40,36 @@
     90.0
    ],
    "status_counts": {
-    "placed": 43,
+    "placed": 45,
     "reference": 1
    },
-   "n_pairs": 946,
+   "n_pairs": 1035,
    "rmsd_to_reference": {
-    "median": 0.171,
-    "q25": 0.118,
-    "q75": 0.273,
+    "median": 0.178,
+    "q25": 0.12,
+    "q75": 0.292,
     "p5": 0.108,
-    "p95": 0.368,
-    "max": 1.562,
-    "n_pairs": 43
+    "p95": 1.545,
+    "max": 5.446,
+    "n_pairs": 45
    },
    "pairwise_frame_rmsd": {
-    "median": 1.066,
-    "q25": 0.526,
-    "q75": 1.794,
-    "p5": 0.161,
-    "p95": 6.208,
-    "max": 9.591,
-    "n_pairs": 946
+    "median": 1.229,
+    "q25": 0.574,
+    "q75": 2.187,
+    "p5": 0.168,
+    "p95": 27.872,
+    "max": 35.173,
+    "n_pairs": 1035
    },
    "pairwise_fit_rmsd": {
-    "median": 0.172,
-    "q25": 0.129,
-    "q75": 0.192,
+    "median": 0.177,
+    "q25": 0.133,
+    "q75": 0.201,
     "p5": 0.102,
-    "p95": 0.278,
-    "max": 0.368,
-    "n_pairs": 946
+    "p95": 0.318,
+    "max": 0.473,
+    "n_pairs": 1035
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

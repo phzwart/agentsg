@@ -7,7 +7,7 @@
  "name": "Na(+):neurotransmitter symporter",
  "clusters": [
   {
-   "cluster_id": 333,
+   "cluster_id": 341,
    "n_members": 39,
    "reference": "2A65",
    "reference_resolution": 1.65,

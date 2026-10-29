@@ -7,50 +7,50 @@
  "name": "Diphosphoinositol polyphosphate phosphohydrolase 1",
  "clusters": [
   {
-   "cluster_id": 710,
-   "n_members": 22,
-   "reference": "2FVV",
-   "reference_resolution": 1.25,
+   "cluster_id": 677,
+   "n_members": 23,
+   "reference": "6PCK",
+   "reference_resolution": 1.2,
    "space_group": "P 21 21 21",
    "reference_cell": [
-    48.653,
-    59.9,
-    61.735,
+    46.411,
+    56.612,
+    62.556,
     90.0,
     90.0,
     90.0
    ],
    "status_counts": {
-    "reference": 1,
-    "placed": 21
+    "placed": 22,
+    "reference": 1
    },
-   "n_pairs": 231,
+   "n_pairs": 253,
    "rmsd_to_reference": {
-    "median": 0.681,
-    "q25": 0.552,
-    "q75": 0.757,
-    "p5": 0.357,
-    "p95": 0.906,
-    "max": 0.919,
-    "n_pairs": 21
+    "median": 0.334,
+    "q25": 0.262,
+    "q75": 0.386,
+    "p5": 0.227,
+    "p95": 0.554,
+    "max": 0.572,
+    "n_pairs": 22
    },
    "pairwise_frame_rmsd": {
-    "median": 0.337,
-    "q25": 0.272,
-    "q75": 0.46,
-    "p5": 0.167,
-    "p95": 0.587,
-    "max": 0.734,
-    "n_pairs": 231
+    "median": 0.357,
+    "q25": 0.279,
+    "q75": 0.491,
+    "p5": 0.171,
+    "p95": 0.689,
+    "max": 0.92,
+    "n_pairs": 253
    },
    "pairwise_fit_rmsd": {
-    "median": 0.194,
-    "q25": 0.154,
-    "q75": 0.229,
-    "p5": 0.105,
-    "p95": 0.35,
-    "max": 0.388,
-    "n_pairs": 231
+    "median": 0.2,
+    "q25": 0.161,
+    "q75": 0.245,
+    "p5": 0.109,
+    "p95": 0.444,
+    "max": 0.583,
+    "n_pairs": 253
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

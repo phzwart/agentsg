@@ -7,7 +7,7 @@
  "name": "Carbapenem-hydrolyzing beta-lactamase OXA-40",
  "clusters": [
   {
-   "cluster_id": 493,
+   "cluster_id": 500,
    "n_members": 30,
    "reference": "5TG4",
    "reference_resolution": 1.44,

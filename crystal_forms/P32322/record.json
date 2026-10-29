@@ -7,7 +7,7 @@
  "name": "Pyrroline-5-carboxylate reductase 1, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 470,
+   "cluster_id": 479,
    "n_members": 31,
    "reference": "9P0R",
    "reference_resolution": 1.49,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1715,
+   "cluster_id": 1768,
    "n_members": 11,
    "reference": "9S04",
    "reference_resolution": 1.57,

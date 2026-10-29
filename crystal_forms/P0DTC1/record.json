@@ -7,8 +7,8 @@
  "name": "Replicase polyprotein 1a",
  "clusters": [
   {
-   "cluster_id": 325,
-   "n_members": 40,
+   "cluster_id": 298,
+   "n_members": 43,
    "reference": "9HJH",
    "reference_resolution": 1.2,
    "space_group": "P 21 21 21",
@@ -22,6 +22,7 @@
    ],
    "status_counts": {
     "placed": 39,
+    "different_space_group": 3,
     "reference": 1
    },
    "n_pairs": 780,
@@ -56,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 766,
+   "cluster_id": 781,
    "n_members": 21,
    "reference": "7P51",
    "reference_resolution": 1.474,

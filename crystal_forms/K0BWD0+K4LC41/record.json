@@ -8,7 +8,7 @@
  "name": "ORF1ab polyprotein",
  "clusters": [
   {
-   "cluster_id": 1478,
+   "cluster_id": 1510,
    "n_members": 12,
    "reference": "5YNM",
    "reference_resolution": 1.68,

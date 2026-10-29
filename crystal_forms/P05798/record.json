@@ -7,7 +7,7 @@
  "name": "Guanyl-specific ribonuclease Sa",
  "clusters": [
   {
-   "cluster_id": 759,
+   "cluster_id": 775,
    "n_members": 21,
    "reference": "1LNI",
    "reference_resolution": 1.0,

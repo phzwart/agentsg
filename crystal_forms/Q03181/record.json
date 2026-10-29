@@ -7,7 +7,7 @@
  "name": "Peroxisome proliferator-activated receptor delta",
  "clusters": [
   {
-   "cluster_id": 310,
+   "cluster_id": 316,
    "n_members": 42,
    "reference": "5U3Q",
    "reference_resolution": 1.5,
@@ -35,24 +35,24 @@
     "n_pairs": 41
    },
    "pairwise_frame_rmsd": {
-    "median": 24.903,
-    "q25": 6.742,
-    "q75": 28.083,
+    "median": 24.989,
+    "q25": 6.898,
+    "q75": 28.133,
     "p5": 0.95,
-    "p95": 37.979,
+    "p95": 31.89,
     "max": 42.878,
     "n_pairs": 861
    },
    "pairwise_fit_rmsd": {
     "median": 16.902,
-    "q25": 0.813,
-    "q75": 18.718,
+    "q25": 0.72,
+    "q75": 18.732,
     "p5": 0.371,
-    "p95": 18.928,
+    "p95": 18.935,
     "max": 19.123,
     "n_pairs": 861
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

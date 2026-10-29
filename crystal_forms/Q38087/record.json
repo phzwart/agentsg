@@ -7,7 +7,7 @@
  "name": "DNA-directed DNA polymerase",
  "clusters": [
   {
-   "cluster_id": 103,
+   "cluster_id": 104,
    "n_members": 95,
    "reference": "3QEX",
    "reference_resolution": 1.73,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1299,
+   "cluster_id": 1329,
    "n_members": 14,
    "reference": "2DTU",
    "reference_resolution": 2.37,

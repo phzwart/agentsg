@@ -7,7 +7,7 @@
  "name": "Neuroglobin",
  "clusters": [
   {
-   "cluster_id": 387,
+   "cluster_id": 392,
    "n_members": 36,
    "reference": "1Q1F",
    "reference_resolution": 1.5,
@@ -22,36 +22,35 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 34,
-    "too_few_paired_atoms": 1
+    "placed": 35
    },
-   "n_pairs": 595,
+   "n_pairs": 630,
    "rmsd_to_reference": {
-    "median": 0.601,
+    "median": 0.603,
     "q25": 0.481,
-    "q75": 0.737,
+    "q75": 0.75,
     "p5": 0.435,
-    "p95": 1.046,
+    "p95": 1.08,
     "max": 1.136,
-    "n_pairs": 34
+    "n_pairs": 35
    },
    "pairwise_frame_rmsd": {
-    "median": 1.014,
-    "q25": 0.74,
-    "q75": 1.353,
-    "p5": 0.427,
-    "p95": 2.15,
+    "median": 1.06,
+    "q25": 0.754,
+    "q75": 1.386,
+    "p5": 0.434,
+    "p95": 2.153,
     "max": 3.425,
-    "n_pairs": 595
+    "n_pairs": 630
    },
    "pairwise_fit_rmsd": {
-    "median": 0.501,
-    "q25": 0.371,
-    "q75": 0.652,
-    "p5": 0.27,
+    "median": 0.511,
+    "q25": 0.376,
+    "q75": 0.668,
+    "p5": 0.271,
     "p95": 0.85,
     "max": 1.012,
-    "n_pairs": 595
+    "n_pairs": 630
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

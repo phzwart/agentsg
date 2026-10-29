@@ -7,7 +7,7 @@
  "name": "Phosphatidylinositol 3,4,5-trisphosphate 5-phosphatase 1",
  "clusters": [
   {
-   "cluster_id": 101,
+   "cluster_id": 100,
    "n_members": 97,
    "reference": "6XY7",
    "reference_resolution": 1.086,

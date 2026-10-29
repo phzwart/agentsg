@@ -7,8 +7,8 @@
  "name": "Tryptophan 2,3-dioxygenase",
  "clusters": [
   {
-   "cluster_id": 1067,
-   "n_members": 16,
+   "cluster_id": 1023,
+   "n_members": 17,
    "reference": "6PYZ",
    "reference_resolution": 2.02,
    "space_group": "P 21 21 2",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 15,
+    "placed": 16,
     "reference": 1
    },
-   "n_pairs": 120,
+   "n_pairs": 136,
    "rmsd_to_reference": {
-    "median": 0.906,
-    "q25": 0.69,
-    "q75": 0.941,
+    "median": 0.908,
+    "q25": 0.744,
+    "q75": 0.978,
     "p5": 0.223,
-    "p95": 2.715,
-    "max": 2.849,
-    "n_pairs": 15
+    "p95": 12.394,
+    "max": 41.03,
+    "n_pairs": 16
    },
    "pairwise_frame_rmsd": {
-    "median": 1.032,
-    "q25": 0.69,
-    "q75": 1.416,
-    "p5": 0.273,
-    "p95": 2.745,
-    "max": 3.451,
-    "n_pairs": 120
+    "median": 1.076,
+    "q25": 0.74,
+    "q75": 2.478,
+    "p5": 0.283,
+    "p95": 39.454,
+    "max": 39.865,
+    "n_pairs": 136
    },
    "pairwise_fit_rmsd": {
-    "median": 0.754,
-    "q25": 0.39,
-    "q75": 0.853,
-    "p5": 0.166,
-    "p95": 1.033,
-    "max": 1.238,
-    "n_pairs": 120
+    "median": 0.791,
+    "q25": 0.402,
+    "q75": 0.919,
+    "p5": 0.179,
+    "p95": 6.238,
+    "max": 6.287,
+    "n_pairs": 136
    },
-   "n_low_margin": 0,
+   "n_low_margin": 1,
    "n_via_neighbour": 0
   }
  ]

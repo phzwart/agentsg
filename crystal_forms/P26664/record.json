@@ -7,7 +7,7 @@
  "name": "Genome polyprotein [Cleaved into: Core protein precursor",
  "clusters": [
   {
-   "cluster_id": 873,
+   "cluster_id": 896,
    "n_members": 19,
    "reference": "7MME",
    "reference_resolution": 1.56,

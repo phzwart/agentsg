@@ -7,8 +7,8 @@
  "name": "Platelet-activating factor acetylhydrolase",
  "clusters": [
   {
-   "cluster_id": 1179,
-   "n_members": 15,
+   "cluster_id": 953,
+   "n_members": 18,
    "reference": "5LP1",
    "reference_resolution": 1.91,
    "space_group": "C 1 2 1",
@@ -21,42 +21,42 @@
     90.0
    ],
    "status_counts": {
-    "placed": 14,
+    "placed": 17,
     "reference": 1
    },
-   "n_pairs": 105,
+   "n_pairs": 153,
    "rmsd_to_reference": {
-    "median": 0.232,
-    "q25": 0.209,
-    "q75": 0.275,
-    "p5": 0.182,
-    "p95": 0.341,
-    "max": 0.392,
-    "n_pairs": 14
+    "median": 0.254,
+    "q25": 0.211,
+    "q75": 0.313,
+    "p5": 0.187,
+    "p95": 1.215,
+    "max": 1.223,
+    "n_pairs": 17
    },
    "pairwise_frame_rmsd": {
-    "median": 0.254,
-    "q25": 0.213,
-    "q75": 0.322,
-    "p5": 0.165,
-    "p95": 0.37,
-    "max": 0.412,
-    "n_pairs": 105
+    "median": 0.312,
+    "q25": 0.236,
+    "q75": 0.866,
+    "p5": 0.181,
+    "p95": 1.158,
+    "max": 1.275,
+    "n_pairs": 153
    },
    "pairwise_fit_rmsd": {
-    "median": 0.202,
-    "q25": 0.172,
-    "q75": 0.237,
-    "p5": 0.144,
-    "p95": 0.302,
-    "max": 0.351,
-    "n_pairs": 105
+    "median": 0.227,
+    "q25": 0.182,
+    "q75": 0.303,
+    "p5": 0.147,
+    "p95": 0.38,
+    "max": 0.399,
+    "n_pairs": 153
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1574,
+   "cluster_id": 1616,
    "n_members": 12,
    "reference": "3D59",
    "reference_resolution": 1.5,

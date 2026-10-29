@@ -7,8 +7,8 @@
  "name": "Cytochrome c3",
  "clusters": [
   {
-   "cluster_id": 1658,
-   "n_members": 11,
+   "cluster_id": 1520,
+   "n_members": 12,
    "reference": "1J0P",
    "reference_resolution": 0.91,
    "space_group": "P 21 21 21",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 10,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 1
    },
    "n_pairs": 55,
    "rmsd_to_reference": {

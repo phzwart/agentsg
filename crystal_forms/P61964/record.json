@@ -7,7 +7,7 @@
  "name": "WD repeat-containing protein 5",
  "clusters": [
   {
-   "cluster_id": 923,
+   "cluster_id": 946,
    "n_members": 18,
    "reference": "8E9F",
    "reference_resolution": 1.55,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1167,
+   "cluster_id": 1193,
    "n_members": 15,
    "reference": "7WVK",
    "reference_resolution": 1.42,
@@ -106,7 +106,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1287,
+   "cluster_id": 1317,
    "n_members": 14,
    "reference": "6UHZ",
    "reference_resolution": 1.258,
@@ -153,6 +153,56 @@
    },
    "n_low_margin": 12,
    "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1593,
+   "n_members": 12,
+   "reference": "6E1Z",
+   "reference_resolution": 1.1,
+   "space_group": "P 1",
+   "reference_cell": [
+    46.589,
+    53.252,
+    65.524,
+    71.94,
+    89.94,
+    73.61
+   ],
+   "status_counts": {
+    "placed": 10,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.894,
+    "q25": 0.841,
+    "q75": 2.011,
+    "p5": 0.187,
+    "p95": 2.175,
+    "max": 2.195,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.674,
+    "q25": 0.574,
+    "q75": 0.918,
+    "p5": 0.168,
+    "p95": 1.102,
+    "max": 1.13,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.396,
+    "q25": 0.28,
+    "q75": 0.56,
+    "p5": 0.146,
+    "p95": 0.73,
+    "max": 0.76,
+    "n_pairs": 55
+   },
+   "n_low_margin": 3,
+   "n_via_neighbour": 3
   }
  ]
 }

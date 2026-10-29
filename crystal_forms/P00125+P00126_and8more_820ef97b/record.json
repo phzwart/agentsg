@@ -16,7 +16,7 @@
  "name": "Cytochrome b-c1 complex subunit 1, mitochondrial",
  "clusters": [
   {
-   "cluster_id": 1031,
+   "cluster_id": 1059,
    "n_members": 16,
    "reference": "2FYU",
    "reference_resolution": 2.26,

@@ -7,8 +7,8 @@
  "name": "Tyrosine-protein kinase Lck",
  "clusters": [
   {
-   "cluster_id": 633,
-   "n_members": 24,
+   "cluster_id": 609,
+   "n_members": 25,
    "reference": "1QPC",
    "reference_resolution": 1.6,
    "space_group": "P 21 21 21",
@@ -22,35 +22,35 @@
    ],
    "status_counts": {
     "reference": 1,
-    "placed": 23
+    "placed": 24
    },
-   "n_pairs": 276,
+   "n_pairs": 300,
    "rmsd_to_reference": {
-    "median": 0.33,
-    "q25": 0.282,
-    "q75": 0.396,
+    "median": 0.333,
+    "q25": 0.283,
+    "q75": 0.413,
     "p5": 0.245,
-    "p95": 0.505,
-    "max": 0.533,
-    "n_pairs": 23
+    "p95": 0.529,
+    "max": 1.224,
+    "n_pairs": 24
    },
    "pairwise_frame_rmsd": {
-    "median": 0.602,
-    "q25": 0.45,
-    "q75": 0.882,
-    "p5": 0.297,
-    "p95": 1.309,
-    "max": 1.692,
-    "n_pairs": 276
+    "median": 0.629,
+    "q25": 0.463,
+    "q75": 0.969,
+    "p5": 0.304,
+    "p95": 5.98,
+    "max": 6.735,
+    "n_pairs": 300
    },
    "pairwise_fit_rmsd": {
-    "median": 0.277,
-    "q25": 0.236,
-    "q75": 0.339,
-    "p5": 0.174,
-    "p95": 0.393,
-    "max": 0.452,
-    "n_pairs": 276
+    "median": 0.287,
+    "q25": 0.241,
+    "q75": 0.351,
+    "p5": 0.176,
+    "p95": 0.652,
+    "max": 0.746,
+    "n_pairs": 300
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0

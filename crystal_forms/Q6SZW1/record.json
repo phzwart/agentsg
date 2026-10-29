@@ -7,8 +7,8 @@
  "name": "NAD(+) hydrolase SARM1",
  "clusters": [
   {
-   "cluster_id": 883,
-   "n_members": 19,
+   "cluster_id": 709,
+   "n_members": 23,
    "reference": "7NAJ",
    "reference_resolution": 1.6,
    "space_group": "P 21 21 2",
@@ -22,7 +22,8 @@
    ],
    "status_counts": {
     "placed": 18,
-    "reference": 1
+    "reference": 1,
+    "different_space_group": 4
    },
    "n_pairs": 171,
    "rmsd_to_reference": {

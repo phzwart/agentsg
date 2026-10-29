@@ -7,8 +7,8 @@
  "name": "Catalase HPII",
  "clusters": [
   {
-   "cluster_id": 339,
-   "n_members": 39,
+   "cluster_id": 333,
+   "n_members": 40,
    "reference": "6ZTX",
    "reference_resolution": 1.3,
    "space_group": "P 1 21 1",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 38,
+    "placed": 39,
     "reference": 1
    },
-   "n_pairs": 741,
+   "n_pairs": 780,
    "rmsd_to_reference": {
     "median": 0.356,
-    "q25": 0.278,
-    "q75": 0.432,
+    "q25": 0.28,
+    "q75": 0.436,
     "p5": 0.238,
-    "p95": 0.565,
+    "p95": 0.773,
     "max": 15.739,
-    "n_pairs": 38
+    "n_pairs": 39
    },
    "pairwise_frame_rmsd": {
-    "median": 0.283,
-    "q25": 0.199,
-    "q75": 0.429,
+    "median": 0.291,
+    "q25": 0.203,
+    "q75": 0.447,
     "p5": 0.127,
-    "p95": 16.273,
-    "max": 17.145,
-    "n_pairs": 741
+    "p95": 3.483,
+    "max": 18.481,
+    "n_pairs": 780
    },
    "pairwise_fit_rmsd": {
-    "median": 0.178,
-    "q25": 0.148,
-    "q75": 0.214,
-    "p5": 0.109,
-    "p95": 0.448,
+    "median": 0.182,
+    "q25": 0.151,
+    "q75": 0.223,
+    "p5": 0.11,
+    "p95": 0.447,
     "max": 0.58,
-    "n_pairs": 741
+    "n_pairs": 780
    },
-   "n_low_margin": 0,
+   "n_low_margin": 16,
    "n_via_neighbour": 0
   }
  ]

@@ -7,8 +7,8 @@
  "name": "CREB-binding protein",
  "clusters": [
   {
-   "cluster_id": 1088,
-   "n_members": 16,
+   "cluster_id": 907,
+   "n_members": 19,
    "reference": "4NR7",
    "reference_resolution": 1.2,
    "space_group": "P 21 21 21",
@@ -23,7 +23,7 @@
    "status_counts": {
     "reference": 1,
     "placed": 14,
-    "different_space_group": 1
+    "different_space_group": 4
    },
    "n_pairs": 105,
    "rmsd_to_reference": {
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1450,
+   "cluster_id": 1484,
    "n_members": 13,
    "reference": "5MQG",
    "reference_resolution": 1.35,

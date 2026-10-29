@@ -8,7 +8,7 @@
  "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit alpha isoform",
  "clusters": [
   {
-   "cluster_id": 676,
+   "cluster_id": 694,
    "n_members": 23,
    "reference": "3HHM",
    "reference_resolution": 2.8,
@@ -57,7 +57,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1269,
+   "cluster_id": 1301,
    "n_members": 14,
    "reference": "4JPS",
    "reference_resolution": 2.2,
@@ -102,7 +102,7 @@
     "max": 1.387,
     "n_pairs": 91
    },
-   "n_low_margin": 12,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]

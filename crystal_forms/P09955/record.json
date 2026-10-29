@@ -7,7 +7,7 @@
  "name": "Carboxypeptidase B",
  "clusters": [
   {
-   "cluster_id": 1051,
+   "cluster_id": 1079,
    "n_members": 16,
    "reference": "1Z5R",
    "reference_resolution": 1.4,
@@ -54,6 +54,55 @@
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1163,
+   "n_members": 15,
+   "reference": "4Z65",
+   "reference_resolution": 1.25,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    79.38,
+    79.38,
+    100.37,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.84,
+    "q25": 0.231,
+    "q75": 1.632,
+    "p5": 0.125,
+    "p95": 1.812,
+    "max": 2.022,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.979,
+    "q25": 0.322,
+    "q75": 2.643,
+    "p5": 0.147,
+    "p95": 3.458,
+    "max": 3.621,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.309,
+    "q25": 0.151,
+    "q75": 0.363,
+    "p5": 0.109,
+    "p95": 0.465,
+    "max": 0.52,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
   }
  ]
 }

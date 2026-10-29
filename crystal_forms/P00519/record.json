@@ -7,8 +7,8 @@
  "name": "Tyrosine-protein kinase ABL1",
  "clusters": [
   {
-   "cluster_id": 1226,
-   "n_members": 14,
+   "cluster_id": 827,
+   "n_members": 20,
    "reference": "2HZI",
    "reference_resolution": 1.7,
    "space_group": "P 21 21 2",
@@ -21,38 +21,38 @@
     90.0
    ],
    "status_counts": {
-    "placed": 13,
+    "placed": 19,
     "reference": 1
    },
-   "n_pairs": 91,
+   "n_pairs": 190,
    "rmsd_to_reference": {
-    "median": 0.817,
-    "q25": 0.719,
-    "q75": 1.147,
-    "p5": 0.632,
-    "p95": 1.398,
-    "max": 1.551,
-    "n_pairs": 13
+    "median": 1.147,
+    "q25": 0.799,
+    "q75": 31.573,
+    "p5": 0.641,
+    "p95": 38.293,
+    "max": 38.346,
+    "n_pairs": 19
    },
    "pairwise_frame_rmsd": {
-    "median": 0.878,
-    "q25": 0.546,
-    "q75": 1.282,
-    "p5": 0.385,
-    "p95": 1.602,
-    "max": 1.914,
-    "n_pairs": 91
+    "median": 1.786,
+    "q25": 0.864,
+    "q75": 37.436,
+    "p5": 0.415,
+    "p95": 38.104,
+    "max": 59.041,
+    "n_pairs": 190
    },
    "pairwise_fit_rmsd": {
-    "median": 0.614,
-    "q25": 0.419,
-    "q75": 0.96,
-    "p5": 0.288,
-    "p95": 1.072,
-    "max": 1.137,
-    "n_pairs": 91
+    "median": 1.044,
+    "q25": 0.608,
+    "q75": 1.28,
+    "p5": 0.319,
+    "p95": 18.154,
+    "max": 18.976,
+    "n_pairs": 190
    },
-   "n_low_margin": 0,
+   "n_low_margin": 5,
    "n_via_neighbour": 0
   }
  ]

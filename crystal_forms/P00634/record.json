@@ -7,7 +7,7 @@
  "name": "Alkaline phosphatase",
  "clusters": [
   {
-   "cluster_id": 627,
+   "cluster_id": 641,
    "n_members": 24,
    "reference": "1Y6V",
    "reference_resolution": 1.6,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 959,
+   "cluster_id": 986,
    "n_members": 17,
    "reference": "1KH5",
    "reference_resolution": 2.0,

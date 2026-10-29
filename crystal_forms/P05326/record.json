@@ -7,7 +7,7 @@
  "name": "Isopenicillin N synthase",
  "clusters": [
   {
-   "cluster_id": 211,
+   "cluster_id": 213,
    "n_members": 56,
    "reference": "6ZAN",
    "reference_resolution": 1.35,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 394,
+   "cluster_id": 399,
    "n_members": 35,
    "reference": "1ODM",
    "reference_resolution": 1.15,

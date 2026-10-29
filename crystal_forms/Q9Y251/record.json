@@ -7,7 +7,7 @@
  "name": "Heparanase",
  "clusters": [
   {
-   "cluster_id": 418,
+   "cluster_id": 425,
    "n_members": 34,
    "reference": "7RG8",
    "reference_resolution": 1.3,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 892,
+   "cluster_id": 916,
    "n_members": 19,
    "reference": "7PR7",
    "reference_resolution": 1.52,

@@ -7,8 +7,8 @@
  "name": "Heat shock protein HSP 90-alpha",
  "clusters": [
   {
-   "cluster_id": 12,
-   "n_members": 317,
+   "cluster_id": 13,
+   "n_members": 319,
    "reference": "6TN5",
    "reference_resolution": 1.165,
    "space_group": "I 2 2 2",
@@ -23,7 +23,7 @@
    "status_counts": {
     "placed": 310,
     "no_shared_accession": 2,
-    "different_space_group": 4,
+    "different_space_group": 6,
     "reference": 1
    },
    "n_pairs": 48205,
@@ -58,8 +58,8 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 355,
-   "n_members": 38,
+   "cluster_id": 345,
+   "n_members": 39,
    "reference": "3T10",
    "reference_resolution": 1.24,
    "space_group": "P 1 21 1",
@@ -72,43 +72,43 @@
     90.0
    ],
    "status_counts": {
-    "placed": 36,
+    "placed": 37,
     "reference": 1,
     "different_space_group": 1
    },
-   "n_pairs": 666,
+   "n_pairs": 703,
    "rmsd_to_reference": {
-    "median": 1.081,
+    "median": 1.422,
     "q25": 0.452,
-    "q75": 1.775,
-    "p5": 0.34,
+    "q75": 1.778,
+    "p5": 0.342,
     "p95": 1.903,
     "max": 35.121,
-    "n_pairs": 36
+    "n_pairs": 37
    },
    "pairwise_frame_rmsd": {
-    "median": 1.539,
-    "q25": 0.691,
-    "q75": 1.911,
-    "p5": 0.291,
-    "p95": 33.96,
+    "median": 1.572,
+    "q25": 0.724,
+    "q75": 1.942,
+    "p5": 0.293,
+    "p95": 33.95,
     "max": 34.266,
-    "n_pairs": 666
+    "n_pairs": 703
    },
    "pairwise_fit_rmsd": {
-    "median": 0.858,
-    "q25": 0.409,
-    "q75": 1.11,
-    "p5": 0.239,
-    "p95": 17.854,
+    "median": 0.846,
+    "q25": 0.424,
+    "q75": 1.111,
+    "p5": 0.242,
+    "p95": 17.849,
     "max": 18.425,
-    "n_pairs": 666
+    "n_pairs": 703
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 908,
+   "cluster_id": 928,
    "n_members": 18,
    "reference": "6CYH",
    "reference_resolution": 1.49,

@@ -7,7 +7,7 @@
  "name": "Tyrosine-protein kinase SYK",
  "clusters": [
   {
-   "cluster_id": 295,
+   "cluster_id": 301,
    "n_members": 43,
    "reference": "4FYO",
    "reference_resolution": 1.4,
@@ -31,17 +31,17 @@
     "q25": 0.563,
     "q75": 0.89,
     "p5": 0.377,
-    "p95": 27.823,
-    "max": 28.424,
+    "p95": 2.219,
+    "max": 2.464,
     "n_pairs": 41
    },
    "pairwise_frame_rmsd": {
     "median": 0.707,
     "q25": 0.552,
-    "q75": 1.025,
+    "q75": 1.024,
     "p5": 0.403,
-    "p95": 28.047,
-    "max": 29.388,
+    "p95": 2.797,
+    "max": 3.202,
     "n_pairs": 861
    },
    "pairwise_fit_rmsd": {
@@ -57,54 +57,54 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 1278,
-   "n_members": 14,
-   "reference": "5LMA",
-   "reference_resolution": 1.43,
+   "cluster_id": 656,
+   "n_members": 24,
+   "reference": "4YJR",
+   "reference_resolution": 1.32,
    "space_group": "P 1 21 1",
    "reference_cell": [
-    39.175,
-    87.454,
-    39.851,
+    39.43,
+    86.63,
+    40.27,
     90.0,
-    99.64,
+    93.49,
     90.0
    ],
    "status_counts": {
-    "placed": 11,
-    "different_space_group": 2,
-    "reference": 1
+    "placed": 20,
+    "reference": 1,
+    "different_space_group": 3
    },
-   "n_pairs": 66,
+   "n_pairs": 210,
    "rmsd_to_reference": {
-    "median": 1.27,
-    "q25": 1.207,
-    "q75": 1.429,
-    "p5": 1.116,
-    "p95": 28.495,
-    "max": 28.607,
-    "n_pairs": 11
+    "median": 2.362,
+    "q25": 1.944,
+    "q75": 2.632,
+    "p5": 0.391,
+    "p95": 28.198,
+    "max": 28.775,
+    "n_pairs": 20
    },
    "pairwise_frame_rmsd": {
-    "median": 3.596,
-    "q25": 1.754,
-    "q75": 28.261,
-    "p5": 0.655,
-    "p95": 30.453,
-    "max": 30.682,
-    "n_pairs": 66
+    "median": 4.766,
+    "q25": 2.636,
+    "q75": 6.493,
+    "p5": 0.793,
+    "p95": 29.489,
+    "max": 30.745,
+    "n_pairs": 210
    },
    "pairwise_fit_rmsd": {
-    "median": 0.705,
-    "q25": 0.587,
-    "q75": 17.698,
-    "p5": 0.338,
-    "p95": 18.134,
-    "max": 18.191,
-    "n_pairs": 66
+    "median": 1.279,
+    "q25": 0.734,
+    "q75": 1.859,
+    "p5": 0.373,
+    "p95": 18.136,
+    "max": 18.31,
+    "n_pairs": 210
    },
    "n_low_margin": 2,
-   "n_via_neighbour": 0
+   "n_via_neighbour": 1
   }
  ]
 }

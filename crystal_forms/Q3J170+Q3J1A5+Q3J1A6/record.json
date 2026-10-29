@@ -9,7 +9,7 @@
  "name": "Reaction center protein M chain",
  "clusters": [
   {
-   "cluster_id": 840,
+   "cluster_id": 858,
    "n_members": 20,
    "reference": "4IN5",
    "reference_resolution": 2.2,

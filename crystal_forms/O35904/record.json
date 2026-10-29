@@ -7,7 +7,7 @@
  "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit delta isoform",
  "clusters": [
   {
-   "cluster_id": 255,
+   "cluster_id": 258,
    "n_members": 48,
    "reference": "7OI4",
    "reference_resolution": 1.8,
@@ -56,7 +56,7 @@
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 953,
+   "cluster_id": 978,
    "n_members": 17,
    "reference": "5T2I",
    "reference_resolution": 2.3,

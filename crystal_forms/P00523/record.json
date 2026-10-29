@@ -7,7 +7,7 @@
  "name": "Proto-oncogene tyrosine-protein kinase Src",
  "clusters": [
   {
-   "cluster_id": 219,
+   "cluster_id": 220,
    "n_members": 55,
    "reference": "7WF5",
    "reference_resolution": 1.798,
@@ -26,37 +26,37 @@
    },
    "n_pairs": 1485,
    "rmsd_to_reference": {
-    "median": 1.19,
+    "median": 1.185,
     "q25": 0.952,
-    "q75": 1.294,
+    "q75": 1.287,
     "p5": 0.724,
-    "p95": 10.071,
-    "max": 26.02,
+    "p95": 1.361,
+    "max": 1.699,
     "n_pairs": 54
    },
    "pairwise_frame_rmsd": {
-    "median": 1.498,
-    "q25": 1.12,
-    "q75": 2.056,
-    "p5": 0.746,
-    "p95": 26.107,
-    "max": 26.489,
+    "median": 1.452,
+    "q25": 1.099,
+    "q75": 1.915,
+    "p5": 0.724,
+    "p95": 2.839,
+    "max": 4.837,
     "n_pairs": 1485
    },
    "pairwise_fit_rmsd": {
-    "median": 0.8,
-    "q25": 0.605,
-    "q75": 1.106,
-    "p5": 0.42,
-    "p95": 1.601,
-    "max": 7.563,
+    "median": 0.808,
+    "q25": 0.613,
+    "q75": 1.08,
+    "p5": 0.413,
+    "p95": 1.372,
+    "max": 1.833,
     "n_pairs": 1485
    },
    "n_low_margin": 0,
    "n_via_neighbour": 0
   },
   {
-   "cluster_id": 958,
+   "cluster_id": 985,
    "n_members": 17,
    "reference": "4OMN",
    "reference_resolution": 1.5,

@@ -7,7 +7,7 @@
  "name": "FNR type regulator",
  "clusters": [
   {
-   "cluster_id": 1774,
+   "cluster_id": 1826,
    "n_members": 11,
    "reference": "9QMC",
    "reference_resolution": 2.1,

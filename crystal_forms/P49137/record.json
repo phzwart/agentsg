@@ -7,7 +7,7 @@
  "name": "MAP kinase-activated protein kinase 2",
  "clusters": [
   {
-   "cluster_id": 1724,
+   "cluster_id": 1777,
    "n_members": 11,
    "reference": "3KA0",
    "reference_resolution": 2.9,
@@ -53,7 +53,7 @@
     "max": 2.021,
     "n_pairs": 45
    },
-   "n_low_margin": 9,
+   "n_low_margin": 0,
    "n_via_neighbour": 0
   }
  ]
