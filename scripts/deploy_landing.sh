@@ -10,8 +10,8 @@ fi
 
 stage="$(mktemp -d)"
 trap 'rm -rf "$stage"' EXIT
+cp -R landing/. "$stage/"
 cp agentsg/src/agentsg/serve/index.html "$stage/index.html"
-cp landing/_headers "$stage/_headers"
 
 npx --yes wrangler pages project create mxagents --production-branch main \
   || true

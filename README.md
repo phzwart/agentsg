@@ -258,7 +258,8 @@ from the agentsg tunnel. Until that hostname is free, stage the site on
 ## Landing page
 
 `https://mxagents.org` and `https://www.mxagents.org` are the static page in
-`agentsg/src/agentsg/serve/index.html`. Publish it with:
+`agentsg/src/agentsg/serve/index.html` plus everything under `landing/` (the blog
+is `landing/blog/`, one directory per post). Publish it with:
 
 ```bash
 ./scripts/deploy_landing.sh
