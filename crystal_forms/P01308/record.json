@@ -1,0 +1,159 @@
+{
+ "identity": "P01308",
+ "accessions": [
+  "P01308"
+ ],
+ "deposition_group": null,
+ "name": "Insulin [Cleaved into: Insulin B chain; Insulin A chain]",
+ "clusters": [
+  {
+   "cluster_id": 98,
+   "n_members": 99,
+   "reference": "3W7Y",
+   "reference_resolution": 0.92,
+   "space_group": "H 3",
+   "reference_cell": [
+    81.12,
+    81.12,
+    33.93,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 96,
+    "different_space_group": 1,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 4656,
+   "rmsd_to_reference": {
+    "median": 2.013,
+    "q25": 0.268,
+    "q75": 8.064,
+    "p5": 0.224,
+    "p95": 8.91,
+    "max": 9.586,
+    "n_pairs": 96
+   },
+   "pairwise_frame_rmsd": {
+    "median": 7.387,
+    "q25": 0.933,
+    "q75": 8.44,
+    "p5": 0.199,
+    "p95": 9.371,
+    "max": 16.557,
+    "n_pairs": 4656
+   },
+   "pairwise_fit_rmsd": {
+    "median": 5.028,
+    "q25": 0.561,
+    "q75": 5.615,
+    "p5": 0.146,
+    "p95": 5.776,
+    "max": 6.781,
+    "n_pairs": 4656
+   },
+   "n_low_margin": 5,
+   "n_via_neighbour": 27
+  },
+  {
+   "cluster_id": 283,
+   "n_members": 45,
+   "reference": "5HQI",
+   "reference_resolution": 0.97,
+   "space_group": "I 21 3",
+   "reference_cell": [
+    78.234,
+    78.234,
+    78.234,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 44,
+    "reference": 1
+   },
+   "n_pairs": 990,
+   "rmsd_to_reference": {
+    "median": 0.328,
+    "q25": 0.279,
+    "q75": 0.386,
+    "p5": 0.219,
+    "p95": 0.763,
+    "max": 2.346,
+    "n_pairs": 44
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.441,
+    "q25": 0.321,
+    "q75": 0.63,
+    "p5": 0.191,
+    "p95": 1.212,
+    "max": 2.74,
+    "n_pairs": 990
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.274,
+    "q25": 0.184,
+    "q75": 0.398,
+    "p5": 0.117,
+    "p95": 1.038,
+    "max": 2.149,
+    "n_pairs": 990
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 877,
+   "n_members": 19,
+   "reference": "4AJX",
+   "reference_resolution": 1.2,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    47.31,
+    62.49,
+    57.27,
+    90.0,
+    111.8,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 18,
+    "reference": 1
+   },
+   "n_pairs": 171,
+   "rmsd_to_reference": {
+    "median": 1.917,
+    "q25": 1.417,
+    "q75": 2.044,
+    "p5": 1.073,
+    "p95": 3.378,
+    "max": 9.042,
+    "n_pairs": 18
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.522,
+    "q25": 1.14,
+    "q75": 2.315,
+    "p5": 0.472,
+    "p95": 8.5,
+    "max": 9.689,
+    "n_pairs": 171
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.682,
+    "q25": 0.428,
+    "q75": 1.154,
+    "p5": 0.216,
+    "p95": 4.807,
+    "max": 4.877,
+    "n_pairs": 171
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

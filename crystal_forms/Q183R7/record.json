@@ -1,0 +1,59 @@
+{
+ "identity": "Q183R7",
+ "accessions": [
+  "Q183R7"
+ ],
+ "deposition_group": null,
+ "name": "Pro-Pro endopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1810,
+   "n_members": 11,
+   "reference": "6R4Z",
+   "reference_resolution": 1.052,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    37.039,
+    42.806,
+    119.048,
+    90.0,
+    92.41,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.933,
+    "q25": 0.898,
+    "q75": 1.006,
+    "p5": 0.302,
+    "p95": 1.051,
+    "max": 1.058,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.451,
+    "q25": 0.333,
+    "q75": 0.625,
+    "p5": 0.185,
+    "p95": 0.944,
+    "max": 1.069,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.242,
+    "q25": 0.194,
+    "q75": 0.315,
+    "p5": 0.143,
+    "p95": 0.399,
+    "max": 0.451,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

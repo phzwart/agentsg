@@ -1,0 +1,59 @@
+{
+ "identity": "P14900",
+ "accessions": [
+  "P14900"
+ ],
+ "deposition_group": null,
+ "name": "UDP-N-acetylmuramoylalanine--D-glutamate ligase",
+ "clusters": [
+  {
+   "cluster_id": 786,
+   "n_members": 21,
+   "reference": "9BN9",
+   "reference_resolution": 1.23,
+   "space_group": "P 41",
+   "reference_cell": [
+    65.381,
+    65.381,
+    134.681,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 0.567,
+    "q25": 0.446,
+    "q75": 0.613,
+    "p5": 0.345,
+    "p95": 0.671,
+    "max": 1.02,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.577,
+    "q25": 0.428,
+    "q75": 0.771,
+    "p5": 0.293,
+    "p95": 0.981,
+    "max": 1.348,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.424,
+    "q25": 0.33,
+    "q75": 0.545,
+    "p5": 0.221,
+    "p95": 0.693,
+    "max": 0.899,
+    "n_pairs": 210
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

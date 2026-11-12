@@ -1,0 +1,59 @@
+{
+ "identity": "O59952",
+ "accessions": [
+  "O59952"
+ ],
+ "deposition_group": null,
+ "name": "Lipase",
+ "clusters": [
+  {
+   "cluster_id": 1055,
+   "n_members": 16,
+   "reference": "7APP",
+   "reference_resolution": 1.7,
+   "space_group": "P 61",
+   "reference_cell": [
+    137.851,
+    137.851,
+    79.942,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.929,
+    "q25": 1.867,
+    "q75": 2.092,
+    "p5": 1.743,
+    "p95": 2.782,
+    "max": 2.949,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.771,
+    "q25": 0.572,
+    "q75": 1.287,
+    "p5": 0.274,
+    "p95": 1.974,
+    "max": 2.651,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.409,
+    "q25": 0.34,
+    "q75": 0.49,
+    "p5": 0.243,
+    "p95": 0.553,
+    "max": 0.649,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

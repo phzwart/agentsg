@@ -1,0 +1,59 @@
+{
+ "identity": "O96693",
+ "accessions": [
+  "O96693"
+ ],
+ "deposition_group": null,
+ "name": "1-deoxy-D-xylulose 5-phosphate reductoisomerase, apicoplastic",
+ "clusters": [
+  {
+   "cluster_id": 726,
+   "n_members": 22,
+   "reference": "9JZ9",
+   "reference_resolution": 1.33,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    51.934,
+    77.572,
+    111.659,
+    90.0,
+    93.2,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 0.562,
+    "q25": 0.401,
+    "q75": 1.21,
+    "p5": 0.342,
+    "p95": 2.02,
+    "max": 14.932,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.77,
+    "q25": 0.498,
+    "q75": 2.088,
+    "p5": 0.332,
+    "p95": 14.343,
+    "max": 15.655,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.563,
+    "q25": 0.43,
+    "q75": 0.909,
+    "p5": 0.229,
+    "p95": 1.18,
+    "max": 1.273,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

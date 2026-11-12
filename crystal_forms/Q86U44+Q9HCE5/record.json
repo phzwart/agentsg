@@ -1,0 +1,60 @@
+{
+ "identity": "Q86U44+Q9HCE5",
+ "accessions": [
+  "Q86U44",
+  "Q9HCE5"
+ ],
+ "deposition_group": null,
+ "name": "N(6)-adenosine-methyltransferase non-catalytic subunit METTL14",
+ "clusters": [
+  {
+   "cluster_id": 174,
+   "n_members": 67,
+   "reference": "9RS1",
+   "reference_resolution": 1.73,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    63.86,
+    63.86,
+    225.75,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 66,
+    "reference": 1
+   },
+   "n_pairs": 2211,
+   "rmsd_to_reference": {
+    "median": 0.91,
+    "q25": 0.892,
+    "q75": 0.952,
+    "p5": 0.849,
+    "p95": 1.089,
+    "max": 1.274,
+    "n_pairs": 66
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.483,
+    "q25": 0.369,
+    "q75": 0.679,
+    "p5": 0.262,
+    "p95": 0.966,
+    "max": 1.524,
+    "n_pairs": 2211
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.341,
+    "q25": 0.262,
+    "q75": 0.494,
+    "p5": 0.196,
+    "p95": 0.88,
+    "max": 1.143,
+    "n_pairs": 2211
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

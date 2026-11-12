@@ -1,0 +1,60 @@
+{
+ "identity": "P35439+Q00959",
+ "accessions": [
+  "P35439",
+  "Q00959"
+ ],
+ "deposition_group": null,
+ "name": "Glutamate receptor ionotropic, NMDA 1",
+ "clusters": [
+  {
+   "cluster_id": 589,
+   "n_members": 26,
+   "reference": "5U8C",
+   "reference_resolution": 1.598,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    59.55,
+    84.227,
+    121.218,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 3.149,
+    "q25": 2.287,
+    "q75": 21.346,
+    "p5": 1.142,
+    "p95": 21.906,
+    "max": 22.302,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 9.452,
+    "q25": 2.921,
+    "q75": 21.151,
+    "p5": 0.576,
+    "p95": 22.41,
+    "max": 23.321,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 3.801,
+    "q25": 0.59,
+    "q75": 20.561,
+    "p5": 0.296,
+    "p95": 20.971,
+    "max": 21.427,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 12
+  }
+ ]
+}

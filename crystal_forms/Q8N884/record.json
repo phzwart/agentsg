@@ -1,0 +1,158 @@
+{
+ "identity": "Q8N884",
+ "accessions": [
+  "Q8N884"
+ ],
+ "deposition_group": null,
+ "name": "Cyclic GMP-AMP synthase",
+ "clusters": [
+  {
+   "cluster_id": 487,
+   "n_members": 31,
+   "reference": "8IMG",
+   "reference_resolution": 1.8,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    214.057,
+    46.045,
+    86.849,
+    90.0,
+    113.94,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.865,
+    "q25": 1.454,
+    "q75": 2.076,
+    "p5": 0.574,
+    "p95": 3.329,
+    "max": 3.425,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.844,
+    "q25": 1.895,
+    "q75": 4.95,
+    "p5": 0.945,
+    "p95": 8.394,
+    "max": 10.44,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.129,
+    "q25": 0.848,
+    "q75": 1.4,
+    "p5": 0.521,
+    "p95": 1.791,
+    "max": 2.063,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 4
+  },
+  {
+   "cluster_id": 518,
+   "n_members": 29,
+   "reference": "9MDC",
+   "reference_resolution": 1.25,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    129.03,
+    51.12,
+    60.19,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 2.899,
+    "q25": 1.442,
+    "q75": 3.103,
+    "p5": 0.367,
+    "p95": 3.737,
+    "max": 3.874,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.463,
+    "q25": 1.424,
+    "q75": 3.345,
+    "p5": 0.727,
+    "p95": 3.887,
+    "max": 4.275,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.521,
+    "q25": 0.903,
+    "q75": 1.9,
+    "p5": 0.505,
+    "p95": 2.128,
+    "max": 2.441,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 711,
+   "n_members": 23,
+   "reference": "7FU8",
+   "reference_resolution": 1.718,
+   "space_group": "P 21 2 21",
+   "reference_cell": [
+    46.959,
+    58.551,
+    163.681,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 3.276,
+    "q25": 3.044,
+    "q75": 3.384,
+    "p5": 1.007,
+    "p95": 4.234,
+    "max": 4.812,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.568,
+    "q25": 1.065,
+    "q75": 3.309,
+    "p5": 0.674,
+    "p95": 4.133,
+    "max": 5.927,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.046,
+    "q25": 0.807,
+    "q75": 1.443,
+    "p5": 0.534,
+    "p95": 1.953,
+    "max": 2.138,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

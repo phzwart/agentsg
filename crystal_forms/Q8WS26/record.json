@@ -1,0 +1,59 @@
+{
+ "identity": "Q8WS26",
+ "accessions": [
+  "Q8WS26"
+ ],
+ "deposition_group": null,
+ "name": "Farnesyl diphosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 210,
+   "n_members": 57,
+   "reference": "6R09",
+   "reference_resolution": 1.28,
+   "space_group": "P 61 2 2",
+   "reference_cell": [
+    58.105,
+    58.105,
+    397.072,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 56,
+    "reference": 1
+   },
+   "n_pairs": 1596,
+   "rmsd_to_reference": {
+    "median": 0.494,
+    "q25": 0.373,
+    "q75": 0.77,
+    "p5": 0.265,
+    "p95": 1.327,
+    "max": 4.422,
+    "n_pairs": 56
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.639,
+    "q25": 0.394,
+    "q75": 1.018,
+    "p5": 0.242,
+    "p95": 3.879,
+    "max": 5.476,
+    "n_pairs": 1596
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.242,
+    "q25": 0.203,
+    "q75": 0.31,
+    "p5": 0.161,
+    "p95": 0.796,
+    "max": 1.084,
+    "n_pairs": 1596
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

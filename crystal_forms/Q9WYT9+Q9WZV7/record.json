@@ -1,0 +1,60 @@
+{
+ "identity": "Q9WYT9+Q9WZV7",
+ "accessions": [
+  "Q9WYT9",
+  "Q9WZV7"
+ ],
+ "deposition_group": null,
+ "name": "histidine kinase",
+ "clusters": [
+  {
+   "cluster_id": 1851,
+   "n_members": 11,
+   "reference": "6RH8",
+   "reference_resolution": 1.9,
+   "space_group": "I 1 2 1",
+   "reference_cell": [
+    68.547,
+    92.189,
+    175.015,
+    90.0,
+    93.61,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.705,
+    "q25": 0.425,
+    "q75": 1.146,
+    "p5": 0.307,
+    "p95": 3.068,
+    "max": 3.249,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.113,
+    "q25": 0.745,
+    "q75": 4.278,
+    "p5": 0.434,
+    "p95": 5.35,
+    "max": 6.09,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.636,
+    "q25": 0.355,
+    "q75": 1.08,
+    "p5": 0.282,
+    "p95": 1.217,
+    "max": 1.251,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

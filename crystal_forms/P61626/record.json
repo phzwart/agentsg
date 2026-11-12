@@ -1,0 +1,59 @@
+{
+ "identity": "P61626",
+ "accessions": [
+  "P61626"
+ ],
+ "deposition_group": null,
+ "name": "Lysozyme C",
+ "clusters": [
+  {
+   "cluster_id": 36,
+   "n_members": 186,
+   "reference": "2NWD",
+   "reference_resolution": 1.04,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    56.261,
+    61.133,
+    32.851,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 185,
+    "reference": 1
+   },
+   "n_pairs": 17205,
+   "rmsd_to_reference": {
+    "median": 0.483,
+    "q25": 0.324,
+    "q75": 0.576,
+    "p5": 0.166,
+    "p95": 1.386,
+    "max": 18.874,
+    "n_pairs": 185
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.857,
+    "q25": 0.479,
+    "q75": 1.263,
+    "p5": 0.212,
+    "p95": 2.561,
+    "max": 21.857,
+    "n_pairs": 17205
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.281,
+    "q25": 0.224,
+    "q75": 0.353,
+    "p5": 0.132,
+    "p95": 1.391,
+    "max": 8.681,
+    "n_pairs": 17205
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

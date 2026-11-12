@@ -33,7 +33,9 @@ Two layers:
     Database table export (CSV/TSV) or a tree of COD CIFs
     (:mod:`agentsg.cell.cod`) and inserts the cells as ``COD<id>`` with
     ``source = 'cod'``, their esds and chemical formula. PDB rows carry
-    ``source = 'pdb'``.
+    ``source = 'pdb'``. The same loader takes any CIF collection under its own
+    prefix and source label (``prefix="AMCSD", source="amcsd"`` for the
+    American Mineralogist Crystal Structure Database bulk file).
 
 A published snapshot of the built table (206,214 cells) is
 https://doi.org/10.5281/zenodo.22986222.
@@ -208,8 +210,8 @@ def cell_insert_values(pdb_id, cell, sg_number=None, sg_hm=None, *,
     ]
 
 
-def prepare_cod_insert(rec):
-    """One COD record as insert values, or None when the cell cannot be reduced."""
+def prepare_cod_insert(rec, prefix="COD", source="cod"):
+    """One COD/CIF record as insert values, or None when the cell cannot be reduced."""
     from ..space_groups import space_group
     from .cod import centring_symbol
 
@@ -221,9 +223,9 @@ def prepare_cod_insert(rec):
         except Exception:
             pass
     values = cell_insert_values(
-        f"COD{rec['cod_id']}", rec["cell"], number, sg_hm,
+        f"{prefix}{rec['cod_id']}", rec["cell"], number, sg_hm,
         centring=centring_symbol(rec["sg_hm"], rec["sg_hall"]),
-        source="cod",
+        source=source,
     )
     if values is None:
         return None
@@ -391,30 +393,37 @@ class CellDatabase:
             values)
         return True
 
-    def add_cod(self, path, *, progress=False, source_label=None):
+    def add_cod(self, path, *, progress=False, source_label=None,
+                prefix="COD", source="cod"):
         """Insert Crystallography Open Database cells from ``path``.
 
         ``path`` is a COD table export (CSV/TSV with ``file, a, siga, ...``
         columns), one CIF, or a directory of CIFs (:func:`agentsg.cell.cod.iter_cod_cells`).
-        Rows are keyed ``COD<id>`` with ``source = 'cod'``; the cell esds go to
-        ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT number is
-        resolved from the H-M symbol (falling back to the file's number, then
-        None). Reduction of each cell runs in a process pool. Ids already
-        stored are left in place, so an interrupted load resumes. Returns
-        ``(inserted, skipped)``; ``schema_meta.cod_source`` records where the
-        cells came from.
+        Rows are keyed ``<prefix><id>`` with the given ``source``; the cell esds
+        go to ``sig_*`` and ``_chemical_formula_sum`` to ``formula``. The IT
+        number is resolved from the H-M symbol (falling back to the file's
+        number, then None). Reduction of each cell runs in a process pool. Ids
+        already stored are left in place, so an interrupted load resumes.
+        Returns ``(inserted, skipped)``; ``schema_meta.<source>_source`` records
+        where the cells came from.
+
+        Any CIF collection loads the same way: the AMCSD bulk file with
+        ``prefix="AMCSD", source="amcsd"``, for instance.
         """
         import os
         from concurrent.futures import ProcessPoolExecutor
+        from functools import partial
         from multiprocessing import get_context
 
         import numpy as np
 
         from .cod import iter_cod_cells
 
+        prepare = partial(prepare_cod_insert, prefix=prefix, source=source)
         present = {
             row[0] for row in self._db.execute(
-                "SELECT pdb_id FROM cells WHERE pdb_id LIKE 'COD%'"
+                "SELECT pdb_id FROM cells WHERE pdb_id LIKE ?",
+                [f"{prefix}%"],
             ).fetchall()
         }
         workers = min(16, os.cpu_count() or 1)
@@ -454,9 +463,9 @@ class CellDatabase:
             if not batch:
                 return
             if pool is None:
-                prepared_rows = map(prepare_cod_insert, batch)
+                prepared_rows = map(prepare, batch)
             else:
-                prepared_rows = pool.map(prepare_cod_insert, batch, chunksize=64)
+                prepared_rows = pool.map(prepare, batch, chunksize=64)
             buckets = [[] for _ in insert_columns]
             kept = 0
             for prepared in prepared_rows:
@@ -483,17 +492,17 @@ class CellDatabase:
             batch.clear()
 
         def consume(pool):
+            nonlocal n_seen
             for rec in iter_cod_cells(path):
-                nonlocal n_seen
                 n_seen += 1
-                if f"COD{rec['cod_id']}" in present:
+                if f"{prefix}{rec['cod_id']}" in present:
                     continue
                 batch.append(rec)
                 if len(batch) >= 8000:
                     flush(pool)
                 if progress and n_seen % 10_000 == 0:
                     print(
-                        f"  {n_seen} COD records read, {n_ok} inserted, "
+                        f"  {n_seen} {source} records read, {n_ok} inserted, "
                         f"{len(present)} already stored",
                         flush=True,
                     )
@@ -507,9 +516,9 @@ class CellDatabase:
         else:
             consume(None)
         self._db.execute(
-            "INSERT INTO schema_meta (key, value) VALUES ('cod_source', ?) "
+            "INSERT INTO schema_meta (key, value) VALUES (?, ?) "
             "ON CONFLICT (key) DO UPDATE SET value = excluded.value",
-            [source_label or str(path)],
+            [f"{source}_source", source_label or str(path)],
         )
         return n_ok, n_skip
 

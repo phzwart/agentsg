@@ -1,0 +1,109 @@
+{
+ "identity": "P05089",
+ "accessions": [
+  "P05089"
+ ],
+ "deposition_group": null,
+ "name": "Arginase-1",
+ "clusters": [
+  {
+   "cluster_id": 361,
+   "n_members": 38,
+   "reference": "2AEB",
+   "reference_resolution": 1.29,
+   "space_group": "P 3",
+   "reference_cell": [
+    91.422,
+    91.422,
+    69.637,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.354,
+    "q25": 0.313,
+    "q75": 0.379,
+    "p5": 0.275,
+    "p95": 0.521,
+    "max": 0.611,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.408,
+    "q25": 0.318,
+    "q75": 0.535,
+    "p5": 0.232,
+    "p95": 0.835,
+    "max": 1.459,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.259,
+    "q25": 0.217,
+    "q75": 0.314,
+    "p5": 0.167,
+    "p95": 0.39,
+    "max": 0.505,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1158,
+   "n_members": 15,
+   "reference": "7K4H",
+   "reference_resolution": 1.65,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    53.14,
+    286.09,
+    66.952,
+    90.0,
+    90.12,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1,
+    "too_few_paired_atoms": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.268,
+    "q25": 0.215,
+    "q75": 0.473,
+    "p5": 0.186,
+    "p95": 1.438,
+    "max": 1.495,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.431,
+    "q25": 0.275,
+    "q75": 1.385,
+    "p5": 0.171,
+    "p95": 1.758,
+    "max": 1.878,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.188,
+    "q25": 0.148,
+    "q75": 0.22,
+    "p5": 0.13,
+    "p95": 0.339,
+    "max": 0.385,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

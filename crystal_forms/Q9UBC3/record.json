@@ -1,0 +1,60 @@
+{
+ "identity": "Q9UBC3",
+ "accessions": [
+  "Q9UBC3"
+ ],
+ "deposition_group": null,
+ "name": "DNA",
+ "clusters": [
+  {
+   "cluster_id": 1848,
+   "n_members": 11,
+   "reference": "5NRR",
+   "reference_resolution": 1.7,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    73.502,
+    73.502,
+    159.958,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.813,
+    "q25": 0.759,
+    "q75": 0.978,
+    "p5": 0.576,
+    "p95": 1.101,
+    "max": 1.141,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.981,
+    "q25": 0.665,
+    "q75": 1.353,
+    "p5": 0.453,
+    "p95": 1.798,
+    "max": 1.921,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.33,
+    "q25": 0.286,
+    "q75": 0.382,
+    "p5": 0.192,
+    "p95": 0.443,
+    "max": 0.539,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

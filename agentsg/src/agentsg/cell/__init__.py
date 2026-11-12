@@ -34,6 +34,13 @@ primitive reduction, PDB search). The *metric* bridge remains
   * neartree.py     Exact metric nearest-neighbour index (Andrews 2001) for
                     arbitrary metrics; `lattice_index` builds a scipy cKDTree on
                     the sorted root key for fast Euclidean search.
+  * clusters.py     Same-protein crystal-form clusters in the PDB cell database:
+                    connected components of same-UniProt pairs within a strain
+                    price band (widened Selling closure) and a volume gate.
+  * cluster_frames.py  One setting and origin per cluster: reindexing coset,
+                    exact origin solve, allowed origins chosen by Cα RMSD.
+  * pdb_coords.py   Cα with UniProt residue numbers and resolution from the
+                    deposited mmCIF (files.rcsb.org; needs gemmi).
   * diagrams.py     ITA-style space-group diagrams (general-position +
                     symmetry-element plates). Needs matplotlib (+ numpy); loaded
                     lazily so the core package stays dependency-free.

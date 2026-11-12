@@ -1,0 +1,208 @@
+{
+ "identity": "P00698",
+ "accessions": [
+  "P00698"
+ ],
+ "deposition_group": null,
+ "name": "Lysozyme C",
+ "clusters": [
+  {
+   "cluster_id": 2,
+   "n_members": 1146,
+   "reference": "8ZST",
+   "reference_resolution": 0.8,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    77.03,
+    77.03,
+    38.97,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 1135,
+    "different_space_group": 8,
+    "no_shared_accession": 2,
+    "reference": 1
+   },
+   "n_pairs": 644680,
+   "rmsd_to_reference": {
+    "median": 0.936,
+    "q25": 0.692,
+    "q75": 1.02,
+    "p5": 0.457,
+    "p95": 1.412,
+    "max": 3.357,
+    "n_pairs": 1135
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.169,
+    "q25": 0.662,
+    "q75": 2.001,
+    "p5": 0.32,
+    "p95": 3.139,
+    "max": 7.994,
+    "n_pairs": 644680
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.276,
+    "q25": 0.223,
+    "q75": 0.335,
+    "p5": 0.145,
+    "p95": 0.498,
+    "max": 2.146,
+    "n_pairs": 644680
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 5
+  },
+  {
+   "cluster_id": 360,
+   "n_members": 38,
+   "reference": "6F1O",
+   "reference_resolution": 0.96,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    30.062,
+    56.176,
+    73.289,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 0.849,
+    "q25": 0.382,
+    "q75": 15.407,
+    "p5": 0.064,
+    "p95": 15.684,
+    "max": 15.945,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.541,
+    "q25": 0.739,
+    "q75": 15.638,
+    "p5": 0.245,
+    "p95": 16.242,
+    "max": 20.533,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.395,
+    "q25": 0.316,
+    "q75": 0.534,
+    "p5": 0.148,
+    "p95": 0.885,
+    "max": 1.198,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 412,
+   "n_members": 34,
+   "reference": "2VB1",
+   "reference_resolution": 0.65,
+   "space_group": "P 1",
+   "reference_cell": [
+    27.07,
+    31.25,
+    33.76,
+    87.98,
+    108.0,
+    112.11
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.403,
+    "q25": 0.375,
+    "q75": 0.472,
+    "p5": 0.327,
+    "p95": 0.625,
+    "max": 7.486,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.676,
+    "q25": 0.454,
+    "q75": 1.151,
+    "p5": 0.236,
+    "p95": 7.745,
+    "max": 8.049,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.324,
+    "q25": 0.246,
+    "q75": 0.491,
+    "p5": 0.134,
+    "p95": 0.628,
+    "max": 0.838,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 465,
+   "n_members": 31,
+   "reference": "3WL2",
+   "reference_resolution": 0.96,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    27.353,
+    62.563,
+    60.09,
+    90.0,
+    90.11,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.504,
+    "q25": 0.434,
+    "q75": 1.479,
+    "p5": 0.42,
+    "p95": 1.617,
+    "max": 1.691,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.398,
+    "q25": 0.442,
+    "q75": 1.646,
+    "p5": 0.184,
+    "p95": 2.044,
+    "max": 2.863,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.584,
+    "q25": 0.278,
+    "q75": 1.379,
+    "p5": 0.134,
+    "p95": 1.454,
+    "max": 1.654,
+    "n_pairs": 465
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 0
+  }
+ ]
+}

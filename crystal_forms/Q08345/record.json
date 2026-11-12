@@ -1,0 +1,59 @@
+{
+ "identity": "Q08345",
+ "accessions": [
+  "Q08345"
+ ],
+ "deposition_group": null,
+ "name": "Epithelial discoidin domain-containing receptor 1",
+ "clusters": [
+  {
+   "cluster_id": 1204,
+   "n_members": 15,
+   "reference": "5SB1",
+   "reference_resolution": 1.53,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    62.102,
+    74.248,
+    76.686,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 5.877,
+    "q25": 1.566,
+    "q75": 17.815,
+    "p5": 0.606,
+    "p95": 21.231,
+    "max": 21.552,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 17.765,
+    "q25": 1.978,
+    "q75": 20.207,
+    "p5": 0.805,
+    "p95": 21.648,
+    "max": 21.842,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 16.981,
+    "q25": 1.19,
+    "q75": 17.489,
+    "p5": 0.566,
+    "p95": 19.468,
+    "max": 19.779,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

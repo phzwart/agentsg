@@ -37,7 +37,19 @@ database. ``build-cod`` makes a second database that holds only those cells::
     python -m agentsg.cell.cod_explorer cod_cells.duckdb
 
 ``source`` is a COD table export, one CIF, or a directory of CIFs. Rows are
-keyed ``COD<id>`` with ``source = 'cod'``.
+keyed ``COD<id>`` with ``source = 'cod'``. Any other CIF collection loads the
+same way under its own prefix::
+
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb amcsd_cifs.txt --prefix AMCSD --source amcsd
+
+``clusters`` finds every same-protein crystal-form cluster of more than 10
+entries (same UniProt set, or deposition group without one; strain price within
+7 %, primitive volume within 7 %) and writes them to a second DuckDB file
+(see :mod:`agentsg.cell.clusters`)::
+
+    python -m agentsg.cell.pdb_app clusters pdb_cells.duckdb clusters.duckdb \\
+        [--band 0.07] [--vol-tol 0.07] [--min-size 11]
 
 Only the standard library and DuckDB are used (DuckDB via the optional
 ``agentsg[db]`` extra); the root precompute needs no extra dependency.
@@ -323,12 +335,25 @@ def _cli(argv=None):
         build_cod_database(argv[1], argv[2])
         return 0
     if cmd == "add-cod":
+        usage = ("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir> "
+                 "[--prefix COD] [--source cod]")
         if len(argv) < 3:
-            print("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
+            print(usage)
             return 2
+        prefix, source = "COD", "cod"
+        rest = argv[3:]
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--prefix" and i + 1 < len(rest):
+                prefix = rest[i + 1]; i += 2
+            elif rest[i] == "--source" and i + 1 < len(rest):
+                source = rest[i + 1]; i += 2
+            else:
+                print(usage)
+                return 2
         db = CellDatabase(argv[1])
-        n_ok, n_skip = db.add_cod(argv[2], progress=True)
-        print(f"added {n_ok:,} COD cells to {argv[1]} ({n_skip:,} skipped)")
+        n_ok, n_skip = db.add_cod(argv[2], progress=True, prefix=prefix, source=source)
+        print(f"added {n_ok:,} {source} cells to {argv[1]} ({n_skip:,} skipped)")
         db.close()
         return 0
     if cmd == "query":
@@ -356,10 +381,35 @@ def _cli(argv=None):
             print(f"{pdb_id}\t{dist:.4f}")
         db.close()
         return 0
+    if cmd == "clusters":
+        usage = ("usage: pdb_app clusters <db_path> <out.duckdb> "
+                 "[--band 0.07] [--vol-tol 0.07] [--min-size 11]")
+        if len(argv) < 3:
+            print(usage)
+            return 2
+        from .clusters import (DEFAULT_BAND, DEFAULT_MIN_SIZE, DEFAULT_VOL_TOL,
+                               cluster_cells, write_clusters)
+        opts = {"--band": DEFAULT_BAND, "--vol-tol": DEFAULT_VOL_TOL,
+                "--min-size": DEFAULT_MIN_SIZE}
+        rest = argv[3:]
+        try:
+            while rest:
+                flag = rest.pop(0)
+                if flag not in opts or not rest:
+                    raise ValueError(f"unrecognised clusters argument {flag!r}")
+                opts[flag] = type(opts[flag])(rest.pop(0))
+        except ValueError as exc:
+            print(f"{usage}\n{exc}")
+            return 2
+        result = cluster_cells(argv[1], band=opts["--band"], vol_tol=opts["--vol-tol"],
+                               min_size=opts["--min-size"], progress=True)
+        write_clusters(result, argv[2])
+        print(f"wrote {len(result.clusters):,} clusters to {argv[2]}")
+        return 0
     print(
         f"unknown command: {cmd!r} "
         "(use build | backfill-similarity | backfill-linear | backfill-selling | "
-        "backfill-uniprot | backfill-deposit-group | build-cod | add-cod | query)"
+        "backfill-uniprot | backfill-deposit-group | build-cod | add-cod | query | clusters)"
     )
     return 2
 

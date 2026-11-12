@@ -1,0 +1,60 @@
+{
+ "identity": "Q9NWZ3",
+ "accessions": [
+  "Q9NWZ3"
+ ],
+ "deposition_group": null,
+ "name": "Interleukin-1 receptor-associated kinase 4",
+ "clusters": [
+  {
+   "cluster_id": 134,
+   "n_members": 82,
+   "reference": "9NA5",
+   "reference_resolution": 1.73,
+   "space_group": "I 1 2 1",
+   "reference_cell": [
+    87.261,
+    141.638,
+    111.259,
+    90.0,
+    93.56,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 47,
+    "different_space_group": 34,
+    "reference": 1
+   },
+   "n_pairs": 1128,
+   "rmsd_to_reference": {
+    "median": 2.385,
+    "q25": 2.127,
+    "q75": 2.626,
+    "p5": 0.521,
+    "p95": 3.353,
+    "max": 24.026,
+    "n_pairs": 47
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.897,
+    "q25": 1.387,
+    "q75": 2.664,
+    "p5": 0.705,
+    "p95": 4.274,
+    "max": 24.516,
+    "n_pairs": 1128
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.788,
+    "q25": 0.599,
+    "q75": 0.958,
+    "p5": 0.408,
+    "p95": 1.4,
+    "max": 17.33,
+    "n_pairs": 1128
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 1
+  }
+ ]
+}

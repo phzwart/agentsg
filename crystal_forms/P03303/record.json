@@ -1,0 +1,59 @@
+{
+ "identity": "P03303",
+ "accessions": [
+  "P03303"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: P1; Capsid protein VP0",
+ "clusters": [
+  {
+   "cluster_id": 526,
+   "n_members": 28,
+   "reference": "1NCQ",
+   "reference_resolution": 2.5,
+   "space_group": "P 21 3",
+   "reference_cell": [
+    438.72,
+    438.72,
+    438.72,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 27,
+    "reference": 1
+   },
+   "n_pairs": 378,
+   "rmsd_to_reference": {
+    "median": 18.042,
+    "q25": 18.036,
+    "q75": 18.048,
+    "p5": 18.026,
+    "p95": 18.056,
+    "max": 18.058,
+    "n_pairs": 27
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.309,
+    "q25": 0.191,
+    "q75": 0.681,
+    "p5": 0.133,
+    "p95": 18.172,
+    "max": 18.196,
+    "n_pairs": 378
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.306,
+    "q25": 0.189,
+    "q75": 0.612,
+    "p5": 0.131,
+    "p95": 0.693,
+    "max": 0.745,
+    "n_pairs": 378
+   },
+   "n_low_margin": 25,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "identity": "P42212",
+ "accessions": [
+  "P42212"
+ ],
+ "deposition_group": null,
+ "name": "Green fluorescent protein",
+ "clusters": [
+  {
+   "cluster_id": 27,
+   "n_members": 233,
+   "reference": "6L27",
+   "reference_resolution": 0.77,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.875,
+    62.561,
+    68.76,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 198,
+    "no_shared_accession": 12,
+    "too_few_paired_atoms": 5,
+    "different_space_group": 17,
+    "reference": 1
+   },
+   "n_pairs": 19701,
+   "rmsd_to_reference": {
+    "median": 0.912,
+    "q25": 0.744,
+    "q75": 1.268,
+    "p5": 0.619,
+    "p95": 3.336,
+    "max": 24.076,
+    "n_pairs": 198
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.169,
+    "q25": 0.849,
+    "q75": 1.958,
+    "p5": 0.497,
+    "p95": 3.858,
+    "max": 25.567,
+    "n_pairs": 19701
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.51,
+    "q25": 0.391,
+    "q75": 0.672,
+    "p5": 0.255,
+    "p95": 3.327,
+    "max": 5.328,
+    "n_pairs": 19701
+   },
+   "n_low_margin": 4,
+   "n_via_neighbour": 0
+  }
+ ]
+}

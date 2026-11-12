@@ -1,0 +1,59 @@
+{
+ "identity": "P04035",
+ "accessions": [
+  "P04035"
+ ],
+ "deposition_group": null,
+ "name": "3-hydroxy-3-methylglutaryl-coenzyme A reductase",
+ "clusters": [
+  {
+   "cluster_id": 995,
+   "n_members": 17,
+   "reference": "1DQA",
+   "reference_resolution": 2.0,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    73.918,
+    172.63,
+    73.991,
+    90.0,
+    117.5,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 1.708,
+    "q25": 1.513,
+    "q75": 2.184,
+    "p5": 0.675,
+    "p95": 2.253,
+    "max": 2.305,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.163,
+    "q25": 0.925,
+    "q75": 1.491,
+    "p5": 0.286,
+    "p95": 1.9,
+    "max": 2.501,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.419,
+    "q25": 0.333,
+    "q75": 0.592,
+    "p5": 0.179,
+    "p95": 0.688,
+    "max": 0.77,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

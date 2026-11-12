@@ -1,0 +1,160 @@
+{
+ "identity": "O94925",
+ "accessions": [
+  "O94925"
+ ],
+ "deposition_group": null,
+ "name": "Glutaminase kidney isoform, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 981,
+   "n_members": 17,
+   "reference": "8JUB",
+   "reference_resolution": 2.01,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    49.479,
+    138.71,
+    178.425,
+    90.0,
+    93.09,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 0.859,
+    "q25": 0.498,
+    "q75": 1.091,
+    "p5": 0.4,
+    "p95": 1.337,
+    "max": 1.433,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.033,
+    "q25": 0.863,
+    "q75": 3.268,
+    "p5": 0.592,
+    "p95": 6.66,
+    "max": 7.857,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.503,
+    "q25": 0.386,
+    "q75": 0.648,
+    "p5": 0.299,
+    "p95": 0.813,
+    "max": 0.867,
+    "n_pairs": 120
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1255,
+   "n_members": 14,
+   "reference": "8BSK",
+   "reference_resolution": 2.1,
+   "space_group": "I 41 2 2",
+   "reference_cell": [
+    139.88,
+    139.88,
+    155.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 12,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 78,
+   "rmsd_to_reference": {
+    "median": 0.454,
+    "q25": 0.368,
+    "q75": 0.518,
+    "p5": 0.282,
+    "p95": 0.66,
+    "max": 0.698,
+    "n_pairs": 12
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.449,
+    "q25": 0.345,
+    "q75": 0.62,
+    "p5": 0.183,
+    "p95": 1.011,
+    "max": 1.056,
+    "n_pairs": 78
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.365,
+    "q25": 0.266,
+    "q75": 0.579,
+    "p5": 0.164,
+    "p95": 0.893,
+    "max": 1.007,
+    "n_pairs": 78
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1519,
+   "n_members": 12,
+   "reference": "5HL1",
+   "reference_resolution": 2.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    98.53,
+    139.382,
+    177.959,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "reference": 1,
+    "different_space_group": 2
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.485,
+    "q25": 0.351,
+    "q75": 0.574,
+    "p5": 0.291,
+    "p95": 0.658,
+    "max": 0.677,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.663,
+    "q25": 0.547,
+    "q75": 0.796,
+    "p5": 0.375,
+    "p95": 0.944,
+    "max": 1.181,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.365,
+    "q25": 0.326,
+    "q75": 0.482,
+    "p5": 0.221,
+    "p95": 0.519,
+    "max": 0.538,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "Q45135",
+ "accessions": [
+  "Q45135"
+ ],
+ "deposition_group": null,
+ "name": "Homoprotocatechuate 2,3-dioxygenase",
+ "clusters": [
+  {
+   "cluster_id": 485,
+   "n_members": 31,
+   "reference": "4Z6M",
+   "reference_resolution": 1.35,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    110.485,
+    152.089,
+    96.188,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 0.446,
+    "q25": 0.381,
+    "q75": 0.505,
+    "p5": 0.131,
+    "p95": 10.629,
+    "max": 18.682,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.335,
+    "q25": 0.234,
+    "q75": 0.69,
+    "p5": 0.129,
+    "p95": 18.991,
+    "max": 19.391,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.122,
+    "q25": 0.096,
+    "q75": 0.154,
+    "p5": 0.067,
+    "p95": 0.28,
+    "max": 0.315,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

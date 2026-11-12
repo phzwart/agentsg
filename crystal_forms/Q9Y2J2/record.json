@@ -1,0 +1,59 @@
+{
+ "identity": "Q9Y2J2",
+ "accessions": [
+  "Q9Y2J2"
+ ],
+ "deposition_group": null,
+ "name": "Band 4.1-like protein 3",
+ "clusters": [
+  {
+   "cluster_id": 239,
+   "n_members": 52,
+   "reference": "6IBE",
+   "reference_resolution": 1.45,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    38.915,
+    78.687,
+    98.981,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.985,
+    "q25": 0.921,
+    "q75": 1.064,
+    "p5": 0.83,
+    "p95": 1.345,
+    "max": 1.598,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.491,
+    "q25": 0.367,
+    "q75": 0.681,
+    "p5": 0.244,
+    "p95": 1.146,
+    "max": 1.608,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.427,
+    "q25": 0.321,
+    "q75": 0.608,
+    "p5": 0.205,
+    "p95": 1.028,
+    "max": 1.44,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

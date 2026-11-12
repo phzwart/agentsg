@@ -1,0 +1,59 @@
+{
+ "identity": "P27694",
+ "accessions": [
+  "P27694"
+ ],
+ "deposition_group": null,
+ "name": "Replication protein A 70 kDa DNA-binding subunit",
+ "clusters": [
+  {
+   "cluster_id": 940,
+   "n_members": 18,
+   "reference": "4O0A",
+   "reference_resolution": 1.2,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    37.912,
+    53.582,
+    53.932,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.494,
+    "q25": 0.382,
+    "q75": 0.572,
+    "p5": 0.221,
+    "p95": 1.101,
+    "max": 1.851,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.467,
+    "q25": 0.365,
+    "q75": 0.662,
+    "p5": 0.258,
+    "p95": 2.131,
+    "max": 2.514,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.359,
+    "q25": 0.282,
+    "q75": 0.463,
+    "p5": 0.203,
+    "p95": 0.745,
+    "max": 1.024,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

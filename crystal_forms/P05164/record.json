@@ -1,0 +1,109 @@
+{
+ "identity": "P05164",
+ "accessions": [
+  "P05164"
+ ],
+ "deposition_group": null,
+ "name": "Myeloperoxidase",
+ "clusters": [
+  {
+   "cluster_id": 1275,
+   "n_members": 14,
+   "reference": "5FIW",
+   "reference_resolution": 1.7,
+   "space_group": "P 43 21 2",
+   "reference_cell": [
+    105.16,
+    105.16,
+    225.52,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "different_space_group": 6,
+    "placed": 7
+   },
+   "n_pairs": 28,
+   "rmsd_to_reference": {
+    "median": 9.343,
+    "q25": 6.461,
+    "q75": 9.806,
+    "p5": 1.436,
+    "p95": 10.062,
+    "max": 10.123,
+    "n_pairs": 7
+   },
+   "pairwise_frame_rmsd": {
+    "median": 6.092,
+    "q25": 0.612,
+    "q75": 8.885,
+    "p5": 0.344,
+    "p95": 9.51,
+    "max": 9.594,
+    "n_pairs": 28
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.276,
+    "q25": 0.219,
+    "q75": 0.302,
+    "p5": 0.186,
+    "p95": 0.342,
+    "max": 0.345,
+    "n_pairs": 28
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1537,
+   "n_members": 12,
+   "reference": "1D2V",
+   "reference_resolution": 1.75,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    111.155,
+    63.488,
+    92.476,
+    90.0,
+    97.36,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.203,
+    "q25": 0.166,
+    "q75": 0.254,
+    "p5": 0.135,
+    "p95": 0.524,
+    "max": 0.624,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.28,
+    "q25": 0.206,
+    "q75": 0.373,
+    "p5": 0.14,
+    "p95": 0.71,
+    "max": 0.76,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.208,
+    "q25": 0.171,
+    "q75": 0.242,
+    "p5": 0.111,
+    "p95": 0.307,
+    "max": 0.319,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

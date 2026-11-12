@@ -1,0 +1,108 @@
+{
+ "identity": "P08684",
+ "accessions": [
+  "P08684"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome P450 3A4",
+ "clusters": [
+  {
+   "cluster_id": 87,
+   "n_members": 107,
+   "reference": "5VCC",
+   "reference_resolution": 1.7,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    76.3,
+    98.91,
+    133.66,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 106,
+    "reference": 1
+   },
+   "n_pairs": 5671,
+   "rmsd_to_reference": {
+    "median": 1.511,
+    "q25": 1.208,
+    "q75": 1.79,
+    "p5": 0.667,
+    "p95": 2.374,
+    "max": 21.865,
+    "n_pairs": 106
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.421,
+    "q25": 1.004,
+    "q75": 1.9,
+    "p5": 0.664,
+    "p95": 3.642,
+    "max": 21.997,
+    "n_pairs": 5671
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.753,
+    "q25": 0.598,
+    "q75": 1.108,
+    "p5": 0.43,
+    "p95": 1.435,
+    "max": 21.356,
+    "n_pairs": 5671
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1729,
+   "n_members": 11,
+   "reference": "3NXU",
+   "reference_resolution": 2.0,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    162.123,
+    94.69,
+    93.13,
+    90.0,
+    124.25,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 2.202,
+    "q25": 2.134,
+    "q75": 2.307,
+    "p5": 2.083,
+    "p95": 2.704,
+    "max": 2.895,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.934,
+    "q25": 0.632,
+    "q75": 1.454,
+    "p5": 0.46,
+    "p95": 4.082,
+    "max": 4.681,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.458,
+    "q25": 0.376,
+    "q75": 1.171,
+    "p5": 0.299,
+    "p95": 1.243,
+    "max": 1.34,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P24863+P49336",
+ "accessions": [
+  "P24863",
+  "P49336"
+ ],
+ "deposition_group": null,
+ "name": "Cyclin-dependent kinase 8",
+ "clusters": [
+  {
+   "cluster_id": 455,
+   "n_members": 32,
+   "reference": "5XS2",
+   "reference_resolution": 2.04,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    69.802,
+    76.173,
+    166.419,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 2.585,
+    "q25": 2.25,
+    "q75": 2.7,
+    "p5": 0.661,
+    "p95": 3.033,
+    "max": 14.18,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.704,
+    "q25": 1.094,
+    "q75": 2.373,
+    "p5": 0.602,
+    "p95": 13.145,
+    "max": 15.434,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.945,
+    "q25": 0.667,
+    "q75": 1.235,
+    "p5": 0.408,
+    "p95": 1.595,
+    "max": 2.04,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "P07824",
+ "accessions": [
+  "P07824"
+ ],
+ "deposition_group": null,
+ "name": "Arginase-1",
+ "clusters": [
+  {
+   "cluster_id": 472,
+   "n_members": 31,
+   "reference": "1ZPE",
+   "reference_resolution": 1.7,
+   "space_group": "P 32",
+   "reference_cell": [
+    88.078,
+    88.078,
+    106.34,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.743,
+    "q25": 1.122,
+    "q75": 2.009,
+    "p5": 0.22,
+    "p95": 2.288,
+    "max": 2.357,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.409,
+    "q25": 0.908,
+    "q75": 1.929,
+    "p5": 0.393,
+    "p95": 2.764,
+    "max": 3.697,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.319,
+    "q25": 0.261,
+    "q75": 0.371,
+    "p5": 0.169,
+    "p95": 0.437,
+    "max": 0.504,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

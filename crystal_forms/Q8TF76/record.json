@@ -1,0 +1,59 @@
+{
+ "identity": "Q8TF76",
+ "accessions": [
+  "Q8TF76"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase haspin",
+ "clusters": [
+  {
+   "cluster_id": 379,
+   "n_members": 37,
+   "reference": "4QTC",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    77.89,
+    78.36,
+    81.75,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 1.029,
+    "q25": 0.798,
+    "q75": 31.234,
+    "p5": 0.54,
+    "p95": 31.345,
+    "max": 31.367,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.177,
+    "q25": 1.034,
+    "q75": 31.373,
+    "p5": 0.539,
+    "p95": 31.65,
+    "max": 32.043,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.72,
+    "q25": 0.521,
+    "q75": 0.909,
+    "p5": 0.24,
+    "p95": 1.187,
+    "max": 1.631,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 8
+  }
+ ]
+}

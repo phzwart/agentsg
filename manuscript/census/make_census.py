@@ -36,6 +36,7 @@ from sellingproofs.claims import test_z44_widened_complete as z44  # noqa: E402
 from evaluate import members_by  # noqa: E402
 from sellingproofs.claims.test_z50_specialisations import EXPECTED  # noqa: E402
 from sellingproofs.claims.test_z54_table_from_operators import S6_TO_SLOT, TABLE, _sella_partition  # noqa: E402
+from sellingproofs.claims.test_z57_perslot_bands import consistent_construct, delta_obtuse  # noqa: E402
 
 from agentsg.cell.celldb import CellDatabase  # noqa: E402
 from agentsg.cell.cod import centring_symbol  # noqa: E402
@@ -103,6 +104,9 @@ VISIBLE_SYSTEM = {
     48: "cubic", 24: "hexagonal", 16: "tetragonal", 12: "rhombohedral",
     8: "orthorhombic", 4: "monoclinic", 2: "triclinic",
 }
+SIGMA_NOMINAL = math.sin(math.radians(0.03))
+SIGMA_3 = math.sin(math.radians(3.0)) / 4.0
+RATIO_BINS = ("<1.5", "1.5-2.4", "2.4-3", "3-5", "5-10", ">10")
 CLOSURE_BUCKETS = (1, 2, 3, 6, 16)
 LOG_EDGES = [-6.0 + 0.5 * i for i in range(13)]  # -6 .. 0 inclusive
 POP_LEVELS = [10 ** (-6 + 0.5 * i) for i in range(13)]
@@ -408,11 +412,11 @@ def _close_to_sort(zero, parent):
     if cached is not None:
         return cached
     if key in SORT_OF:
-        found = (SORT_OF[key], SORT_PERM[key])
+        found = (SORT_OF[key], SORT_PERM[key], key)
         _CLOSE_CACHE[key] = found
         return found
     raw_zs, raw_part = key
-    best_name, best_perm, best_cost = "unlisted", 0, None
+    best_name, best_perm, best_key, best_cost = "unlisted", 0, None, None
     candidates = []
     for extra in range(0, 7 - len(raw_zs)):
         for added in itertools.combinations(sorted(set(range(6)) - raw_zs), extra):
@@ -435,9 +439,36 @@ def _close_to_sort(zero, parent):
             best_cost = cost
             best_name = SORT_OF[pattern]
             best_perm = SORT_PERM[pattern]
-    found = (best_name, best_perm)
+            best_key = pattern
+    found = (best_name, best_perm, best_key)
     _CLOSE_CACHE[key] = found
     return found
+
+
+def _pattern_contains(outer, inner):
+    """True when the closed pattern ``outer`` contains every constraint of ``inner``."""
+    if outer is None or inner is None:
+        return False
+    oz, opart = outer
+    iz, ipart = inner
+    if not iz.issubset(oz):
+        return False
+    for group in ipart:
+        remain = [slot for slot in group if slot not in oz]
+        if len(remain) <= 1:
+            continue
+        host = next((cl for cl in opart if remain[0] in cl), None)
+        if host is None or any(slot not in host for slot in remain):
+            return False
+    return True
+
+
+def _pattern_cost(key):
+    """Number of independent constraints in a closed pattern. At most five."""
+    if not key:
+        return None
+    zeros, part = key
+    return len(zeros) + sum(len(group) - 1 for group in part)
 
 
 def _step_band(t_lo, t_hi, zero_d, eq_d, sig_p, pair):
@@ -520,8 +551,10 @@ def path_one(item):
             ra, rb = find(a), find(b)
             if ra != rb:
                 parent[rb] = ra
-    sort, perm = _close_to_sort(zero, parent)
+    sort, perm, current_key = _close_to_sort(zero, parent)
     sort_exact = sort
+    exact_perm = perm
+    exact_key = current_key
     exact_ids = np.empty(6, dtype=np.int64)
     exact_ids[zero] = -1
     for i in alive:
@@ -536,8 +569,9 @@ def path_one(item):
             groups[-1][1] = value
         else:
             groups.append([value, value])
-    steps_t, steps_s, steps_e, steps_b = [], [], [], []
+    steps_t, steps_s, steps_e, steps_b, step_perms, step_keys = [], [], [], [], [], []
     jumps = 0
+    path_bug = False
     prev_zero, prev_ids = zero.copy(), exact_ids
     for t_lo, t_hi in groups:
         zero = (p <= tol) | (zero_d <= t_hi)
@@ -555,26 +589,45 @@ def path_one(item):
                 ra, rb = find(a), find(b)
                 if ra != rb:
                     parent[rb] = ra
-        name, name_perm = _close_to_sort(zero, parent)
-        if name == "unlisted":
+        name, name_perm, name_key = _close_to_sort(zero, parent)
+        if name == "unlisted" or name_key is None:
             break
         ids = np.empty(6, dtype=np.int64)
         ids[zero] = -1
         for i in alive:
             ids[i] = find(i)
-        if name != sort:
-            edge = _edge_name(sort, name, prev_zero, zero, prev_ids, ids, perm)
-            if (sort, name) not in EDGE_OF and (t_hi - t_lo) > 1e-12:
-                jumps += 1
-            steps_t.append(t_hi)
-            steps_s.append(name)
-            steps_e.append(edge)
-            steps_b.append(_step_band(t_lo, t_hi, zero_d, eq_d, sig_p, pair))
-            sort, perm = name, name_perm
-            if len(steps_t) == 6:
-                break
+        if name == sort:
+            prev_zero, prev_ids = zero, ids
+            continue
+        if current_key is not None and not _pattern_contains(name_key, current_key):
+            continue
+        if _pattern_cost(name_key) is not None and _pattern_cost(current_key) is not None and _pattern_cost(name_key) <= _pattern_cost(current_key):
+            continue
+        if len(steps_t) >= 5:
+            path_bug = True
+            break
+        edge = _edge_name(sort, name, prev_zero, zero, prev_ids, ids, perm)
+        if (sort, name) not in EDGE_OF and (t_hi - t_lo) > 1e-12:
+            jumps += 1
+        steps_t.append(t_hi)
+        steps_s.append(name)
+        steps_e.append(edge)
+        steps_b.append(_step_band(t_lo, t_hi, zero_d, eq_d, sig_p, pair))
+        step_perms.append(name_perm)
+        step_keys.append(name_key)
+        sort, perm, current_key = name, name_perm, name_key
         prev_zero, prev_ids = zero, ids
-    overflow = bool(groups) and len(steps_t) == 6 and steps_t[-1] < groups[-1][1] and sort != "C5"
+    monotone = True
+    prev = exact_key
+    prev_cost = _pattern_cost(exact_key)
+    for key in step_keys:
+        cost = _pattern_cost(key)
+        if prev is not None and (not _pattern_contains(key, prev) or (prev_cost is not None and cost is not None and cost <= prev_cost)):
+            monotone = False
+        if key is not None:
+            prev = key
+            prev_cost = cost
+    path_bug = path_bug or (not monotone) or len(steps_t) > 5
     order = visible_order(p, float(tau))
     zero4 = p <= 4.0 * float(tau)
     forced = np.zeros(6, dtype=bool)
@@ -592,7 +645,8 @@ def path_one(item):
     ambiguous = bool(steps_t) and steps_t[0] <= steps_b[0]
     return {
         "i": index, "sort_exact": sort_exact, "t": steps_t, "sorts": steps_s,
-        "edges": steps_e, "bands": steps_b, "overflow": overflow, "jumps": jumps,
+        "edges": steps_e, "bands": steps_b, "perms": step_perms, "exact_perm": exact_perm,
+        "overflow": path_bug, "jumps": jumps,
         "visible": order, "forced": forced, "cos": cos, "ambiguous": ambiguous,
         "unlisted": sort_exact == "unlisted" or "unlisted" in steps_s,
     }
@@ -624,6 +678,118 @@ def _niggli_setting_differs(red, p, tau, gmax):
 
 
 def closure_one(item):
+    index, p, tau, red, gmax, sigma = item
+    p = np.asarray(p, float)
+    tau = float(tau)
+    sigma = float(sigma)
+    out = {
+        "i": index, "ok": True, "error": "", "singular": False,
+        "n_closure": None, "n_walk_tau": None, "n_walk_2tau": None,
+        "niggli_diff": False, "mono_repeat": False,
+        "slot_n": None, "slot_status": "refused",
+        "deg3_n": None, "deg3_status": "refused",
+    }
+    gram = z44._gram(p)
+
+    def _alarm(signum, frame):
+        raise TimeoutError("closure search exceeded 5s")
+
+    def _limited(fn):
+        previous = signal.signal(signal.SIGALRM, _alarm)
+        signal.alarm(5)
+        try:
+            return fn()
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, previous)
+
+    try:
+        closed, walked, walked2 = _limited(lambda: (
+            members_by("closure", p, tau),
+            members_by("walk-tau", p, tau),
+            members_by("walk-2tau", p, tau),
+        ))
+    except TimeoutError as exc:
+        out["ok"] = False
+        out["singular"] = True
+        out["error"] = str(exc)
+        closed = None
+    except Exception as exc:
+        out["ok"] = False
+        out["error"] = f"{type(exc).__name__}: {exc}"
+        closed = None
+    if out["error"] and closed is None and out["singular"]:
+        pass
+    elif closed is None and not out["error"]:
+        out["singular"] = True
+    elif closed is not None:
+        out["n_closure"] = len(closed)
+        out["n_walk_tau"] = len(walked) if walked is not None else None
+        out["n_walk_2tau"] = len(walked2) if walked2 is not None else None
+        if len(closed) > 1:
+            orders = []
+            for superbase in closed:
+                try:
+                    orders.append(visible_order(z44._cn(superbase, gram), tau))
+                except Exception:
+                    orders.append(-1)
+            out["mono_repeat"] = any(v >= 2 for v in Counter(orders).values())
+    try:
+        out["niggli_diff"] = _niggli_setting_differs(red, p, tau, gmax)
+    except Exception as exc:
+        out["error"] = f"niggli {type(exc).__name__}: {exc}"
+    try:
+        slot_set, _z, status, _rounds = _limited(lambda: consistent_construct(gram, sigma))
+        if slot_set is None:
+            out["slot_status"] = "refused"
+        else:
+            out["slot_n"] = len(slot_set)
+            out["slot_status"] = status
+        deg_set, _z3, status3, _r3 = _limited(lambda: consistent_construct(gram, SIGMA_3))
+        if deg_set is None:
+            out["deg3_status"] = "refused"
+        else:
+            out["deg3_n"] = len(deg_set)
+            out["deg3_status"] = status3
+    except TimeoutError as exc:
+        out["error"] = str(exc)
+        out["slot_status"] = out["slot_status"] or "refused"
+    except Exception as exc:
+        out["error"] = f"perslot {type(exc).__name__}: {exc}"
+    return out
+
+
+def brute_one(item):
+    """Compare the consistent set with the [-K, K] widened set."""
+    index, p, sigma, status, do4 = item
+    gram = z44._gram(np.asarray(p, float))
+    out = {"i": index, "timeout": False, "verdict": "refused", "maxent": None, "added4": None, "error": ""}
+
+    def _alarm(signum, frame):
+        raise TimeoutError("brute search exceeded 30s")
+
+    previous = signal.signal(signal.SIGALRM, _alarm)
+    signal.alarm(30)
+    try:
+        found, maxent = delta_obtuse(gram, float(sigma), 3)
+        out["maxent"] = int(maxent)
+        if status == "hypothesis":
+            slot_set, _z, _status, _rounds = consistent_construct(gram, float(sigma))
+            if slot_set is None:
+                out["verdict"] = "refused"
+            else:
+                out["verdict"] = "exact" if slot_set == found else "wrong"
+        if do4:
+            wider, _more = delta_obtuse(gram, float(sigma), 4)
+            out["added4"] = len(wider - found) > 0
+    except TimeoutError:
+        out["timeout"] = True
+    except Exception as exc:
+        out["error"] = f"{type(exc).__name__}: {exc}"
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, previous)
+    return out
     index, p, tau, red, gmax = item
     p = np.asarray(p, float)
     tau = float(tau)
@@ -844,6 +1010,10 @@ def main(argv=None):
     print(f"metrics on {device}", flush=True)
     p = prepared["p"]
     lengths = prepared["lengths"]
+    sl = np.array(SL)
+    pair = lengths[:, sl[:, 0]] * lengths[:, sl[:, 1]]
+    cosine_band = prepared["sig_p"] / np.maximum(pair, 1e-30)
+    sigma = np.where(prepared["kind"] == "esd", 3.0 * cosine_band.max(axis=1), SIGMA_NOMINAL)
     gmax = np.maximum(prepared["gmax"], 0.0)
     lam1 = prepared["lam1"]
     tau = prepared["tau"]
@@ -873,7 +1043,7 @@ def main(argv=None):
     rate = 0.0
     if args.sample is None and len(obtuse_idx) > timer_n:
         timed = [
-            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]))
+            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]), float(sigma[i]))
             for i in timer_pick
         ]
         t_cl = time.perf_counter()
@@ -903,7 +1073,7 @@ def main(argv=None):
     if args.sample is not None or len(obtuse_idx) <= timer_n:
         already = set()
         todo = [
-            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]))
+            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]), float(sigma[i]))
             for i in closure_idx
         ]
         t_cl = time.perf_counter()
@@ -914,25 +1084,438 @@ def main(argv=None):
         timed_out = []
     else:
         todo = [
-            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]))
+            (int(i), p[i].tolist(), float(tau[i]), red[i].tolist(), float(gmax[i]), float(sigma[i]))
             for i in closure_idx if i not in already
         ]
         closed_out = _pool_map(closure_one, todo, workers) if todo else []
     closures = {item["i"]: item for item in list(timed_out) + list(closed_out)}
+    brute, brute_rate = run_brute(p, sigma, closures, workers, args.seed)
 
     summary, tables, flagged, conorm = assemble(
         rows, p, lengths, lam1, tau, kind, prepared["sig_p"], gmax, obtuse,
         systems, sources, letters, paths, closures, cob_fail,
         closure_mode, closure_idx, rate, extrapolated, device, workers, args, started, meta_rows,
+        red, sigma, brute, brute_rate,
     )
     summary["spot_text"] = spot_text(args.db, rows, p, lam1, tau, kind, paths, closures, systems)
     write_outputs(out, summary, tables, flagged, conorm, rows, meta_rows)
     print(f"wrote {out} in {time.perf_counter() - started:.1f}s", flush=True)
 
 
+ANGLE_TOLS = (0.03, 0.1, 0.3, 1.0, 3.0)
+LENGTH_TOLS = (0.5, 1.0, 2.0, 5.0)
+K_SIGMAS = (1, 2, 3, 5, 10)
+RULES = (
+    ("0.1deg/0.5pct", 0.1, 0.5),
+    ("0.3deg/1pct", 0.3, 1.0),
+    ("1deg/2pct", 1.0, 2.0),
+    ("3deg/5pct", 3.0, 5.0),
+)
+TOP_COS = math.sin(math.radians(3.0))
+
+
+def ratio_bin(edges):
+    hi = float(max(edges))
+    lo = float(min(edges))
+    if lo <= 0:
+        return ">10"
+    ratio = hi / lo
+    if ratio < 1.5:
+        return "<1.5"
+    if ratio < 2.4:
+        return "1.5-2.4"
+    if ratio < 3.0:
+        return "2.4-3"
+    if ratio < 5.0:
+        return "3-5"
+    if ratio < 10.0:
+        return "5-10"
+    return ">10"
+
+
+def run_brute(p, sigma, closures, workers, seed):
+    """Widened enumeration of every refused cell and 2000 hypothesis cells."""
+    refused = [i for i, rec in closures.items() if rec.get("slot_status") == "refused"]
+    hypothesis = [i for i, rec in closures.items() if rec.get("slot_status") == "hypothesis"]
+    rng = np.random.default_rng(seed)
+    if len(hypothesis) > 2000:
+        hypothesis = list(map(int, rng.choice(np.asarray(hypothesis), size=2000, replace=False)))
+    jobs = list(refused) + list(hypothesis)
+    print(
+        f"brute force on {len(refused):,} refused and {len(hypothesis):,} hypothesis cells",
+        flush=True,
+    )
+    if not jobs:
+        return [], 0.0
+    k4 = set(jobs[:200])
+
+    def item(i):
+        return (int(i), p[i].tolist(), float(sigma[i]), closures[i].get("slot_status"), i in k4)
+
+    out = []
+    started_at = time.perf_counter()
+    ctx = get_context("spawn")
+    items = [item(i) for i in jobs]
+    with ProcessPoolExecutor(max_workers=workers, mp_context=ctx) as pool:
+        for done, rec in enumerate(pool.map(brute_one, items, chunksize=4), 1):
+            out.append(rec)
+            if done == 8 or done == len(items) or done % 100 == 0:
+                elapsed = max(time.perf_counter() - started_at, 1e-9)
+                print(f"brute {done:,}/{len(items):,} at {done / elapsed:.2f} cells/s", flush=True)
+    return out, len(out) / max(time.perf_counter() - started_at, 1e-9)
+
+
+def _letters_of(sort_name, perm):
+    canon = LETTERS[sort_name]
+    src = PERM_SRC[int(perm)]
+    return [canon[int(src[n])] for n in range(6)]
+
+
+def _measure_condition(cond, letters, pp, pair, sig, esd):
+    text = cond.strip()
+    if " - " in text:
+        left, rest = text.split(" - ", 1)
+        right = rest.replace("= 0", "").strip()
+        left = left.strip()
+        slots_r = [n for n, letter in enumerate(letters) if letter == left]
+        slots_s = [n for n, letter in enumerate(letters) if letter == right]
+        if not slots_r or not slots_s:
+            return None
+        pr = float(np.mean(pp[slots_r]))
+        ps = float(np.mean(pp[slots_s]))
+        d_rel = abs(pr - ps) / max(pr, ps, 1e-30)
+        d_cos = 0.0
+        for i in slots_r:
+            for j in slots_s:
+                d_cos = max(
+                    d_cos,
+                    abs(float(pp[i]) - float(pp[j])) / math.sqrt(max(float(pair[i] * pair[j]), 1e-30)),
+                )
+        d_sig = None
+        if esd:
+            sr = max(float(sig[n]) for n in slots_r)
+            ss = max(float(sig[n]) for n in slots_s)
+            scale = math.sqrt(sr * sr + ss * ss)
+            d_sig = abs(pr - ps) / scale if scale > 0 else None
+        return {"type": "tie", "d_cos": d_cos, "d_rel": d_rel, "d_sig": d_sig}
+    letter = text.split()[0]
+    slots = [n for n, name in enumerate(letters) if name == letter]
+    if not slots:
+        return None
+    d_cos = max(float(pp[n]) / max(float(pair[n]), 1e-30) for n in slots)
+    d_sig = None
+    if esd:
+        vals = [float(pp[n]) / float(sig[n]) for n in slots if float(sig[n]) > 0]
+        d_sig = max(vals) if vals else None
+    return {"type": "zero", "d_cos": d_cos, "d_rel": None, "d_sig": d_sig}
+
+
+def cell_edge_measures(path, pp, pair, sig, esd):
+    visits = [(path["sort_exact"], path.get("exact_perm", 0))]
+    visits.extend(zip(path.get("sorts", []), path.get("perms", [])))
+    seen = set()
+    found = []
+    for sort_name, perm in visits:
+        if sort_name in seen or sort_name not in LETTERS:
+            continue
+        seen.add(sort_name)
+        letters = _letters_of(sort_name, perm)
+        for (src, dst), conds in EDGE_OF.items():
+            if src != sort_name:
+                continue
+            for cond in conds:
+                measured = _measure_condition(cond, letters, pp, pair, sig, esd)
+                if measured is None:
+                    continue
+                found.append((f"{src}>{dst}: {cond}", measured))
+    return found
+
+
+def calibration_table(rows, p, lengths, sig_p, kind, systems, sources, paths):
+    """Tolerance fractions while each path sits in the source sort of an edge."""
+    sl = np.array(SL)
+    through = Counter()
+    through_esd = Counter()
+    within = Counter()
+    group_n = Counter()
+    group_esd = Counter()
+    any_within = Counter()
+    for i, path in paths.items():
+        esd = kind[i] == "esd"
+        groups = ((sources[i], systems[i]), (sources[i], "all"))
+        for group in groups:
+            group_n[group] += 1
+            if esd:
+                group_esd[group] += 1
+        pair = np.maximum(lengths[i, sl[:, 0]] * lengths[i, sl[:, 1]], 1e-30)
+        measures = cell_edge_measures(path, p[i], pair, sig_p[i], esd)
+        zero_pass = {angle: False for angle in ANGLE_TOLS}
+        tie_pass = {pct: False for pct in LENGTH_TOLS}
+        sig_pass = {k: False for k in K_SIGMAS}
+        seen = set()
+        for edge, measured in measures:
+            if edge in seen:
+                continue
+            seen.add(edge)
+            etype = measured["type"]
+            for group in groups:
+                through[(group, edge, etype)] += 1
+                if esd:
+                    through_esd[(group, edge, etype)] += 1
+                if etype == "zero":
+                    for angle in ANGLE_TOLS:
+                        if measured["d_cos"] <= math.sin(math.radians(angle)):
+                            within[(group, edge, etype, "angle_deg", angle)] += 1
+                            zero_pass[angle] = True
+                else:
+                    for pct in LENGTH_TOLS:
+                        if measured["d_rel"] is not None and measured["d_rel"] <= 2.0 * pct / 100.0:
+                            within[(group, edge, etype, "length_pct", pct)] += 1
+                            tie_pass[pct] = True
+                if esd and measured["d_sig"] is not None:
+                    for k in K_SIGMAS:
+                        if measured["d_sig"] <= k:
+                            within[(group, edge, etype, "k_sigma", k)] += 1
+                            sig_pass[k] = True
+        for group in groups:
+            for angle, ok in zero_pass.items():
+                if ok:
+                    any_within[(group, "any_zero", "zero", "angle_deg", angle)] += 1
+            for pct, ok in tie_pass.items():
+                if ok:
+                    any_within[(group, "any_tie", "tie", "length_pct", pct)] += 1
+            if esd:
+                for k, ok in sig_pass.items():
+                    if ok:
+                        any_within[(group, "any", "any", "k_sigma", k)] += 1
+            for name, angle, pct in RULES:
+                if zero_pass[angle] and tie_pass[pct]:
+                    any_within[(group, "any", "any", "rule", name)] += 1
+    out = []
+    for (group, edge, etype), n_through in sorted(through.items()):
+        source, system = group
+        specs = []
+        if etype == "zero":
+            specs.extend(("angle_deg", angle, n_through) for angle in ANGLE_TOLS)
+        else:
+            specs.extend(("length_pct", pct, n_through) for pct in LENGTH_TOLS)
+        if through_esd[(group, edge, etype)]:
+            specs.extend(("k_sigma", k, through_esd[(group, edge, etype)]) for k in K_SIGMAS)
+        for tol_kind, tol_value, denom in specs:
+            n_within = within[(group, edge, etype, tol_kind, tol_value)]
+            out.append({
+                "source": source, "reported_system": system, "edge": edge, "edge_type": etype,
+                "tol_kind": tol_kind, "tol_value": tol_value,
+                "n_through": denom, "n_within": n_within,
+                "frac": (n_within / denom) if denom else 0.0,
+            })
+    for group, n_cells in sorted(group_n.items()):
+        source, system = group
+        for edge, etype, tol_kind, values, denom in (
+            ("any_zero", "zero", "angle_deg", ANGLE_TOLS, n_cells),
+            ("any_tie", "tie", "length_pct", LENGTH_TOLS, n_cells),
+        ):
+            for value in values:
+                n_within = any_within[(group, edge, etype, tol_kind, value)]
+                out.append({
+                    "source": source, "reported_system": system, "edge": edge, "edge_type": etype,
+                    "tol_kind": tol_kind, "tol_value": value,
+                    "n_through": denom, "n_within": n_within,
+                    "frac": (n_within / denom) if denom else 0.0,
+                })
+        n_esd = group_esd[group]
+        if n_esd:
+            for k in K_SIGMAS:
+                n_within = any_within[(group, "any", "any", "k_sigma", k)]
+                out.append({
+                    "source": source, "reported_system": system, "edge": "any", "edge_type": "any",
+                    "tol_kind": "k_sigma", "tol_value": k,
+                    "n_through": n_esd, "n_within": n_within,
+                    "frac": n_within / n_esd,
+                })
+        for name, _angle, _pct in RULES:
+            n_within = any_within[(group, "any", "any", "rule", name)]
+            out.append({
+                "source": source, "reported_system": system, "edge": "any", "edge_type": "any",
+                "tol_kind": "rule", "tol_value": name,
+                "n_through": n_cells, "n_within": n_within,
+                "frac": (n_within / n_cells) if n_cells else 0.0,
+            })
+    return out
+
+
+def gap_of(path, t0):
+    steps = [float(t) for t in path.get("t") or []]
+    sorts = list(path.get("sorts") or [])
+    kept = [(t, name) for t, name in zip(steps, sorts) if t0 < t < TOP_COS]
+    marks = [float(t0)] + [t for t, _name in kept] + [TOP_COS]
+    labels = [path["sort_exact"]] + [name for _t, name in kept]
+    best_w, best_k = -1.0, 1
+    for k in range(1, len(marks)):
+        lo, hi = marks[k - 1], marks[k]
+        width = math.log10(hi) - math.log10(lo) if lo > 0 and hi > lo else 0.0
+        if width > best_w:
+            best_w, best_k = width, k
+    lo, hi = marks[best_k - 1], marks[best_k]
+    mid = math.sqrt(max(lo, 0.0) * max(hi, 0.0))
+    return lo, hi, best_w, mid, labels[best_k - 1]
+
+
+def filtration_tables(rows, lengths, sig_p, kind, systems, sources, paths):
+    sl = np.array(SL)
+    grouped = defaultdict(list)
+    by_gap = defaultdict(list)
+    per_cell = {}
+    for i, path in paths.items():
+        if kind[i] == "esd":
+            pair = np.maximum(lengths[i, sl[:, 0]] * lengths[i, sl[:, 1]], 1e-30)
+            t0 = max(float(np.max(sig_p[i] / pair)), 1e-12)
+        else:
+            t0 = 1e-6
+        lo, hi, width, mid, gap_sort = gap_of(path, t0)
+        per_cell[i] = (lo, hi, width, mid, gap_sort)
+        grouped[(sources[i], path["sort_exact"], str(kind[i]))].append((width, mid, gap_sort))
+        by_gap[(sources[i], gap_sort)].append((width, mid))
+    quantiles = (0.10, 0.25, 0.50, 0.75, 0.90)
+
+    def qvals(values):
+        if not values:
+            return [0.0] * len(quantiles)
+        return [float(x) for x in np.quantile(np.asarray(values, float), quantiles)]
+
+    gap_rows = []
+    for (source, sort_name, tau_kind), recs in sorted(grouped.items()):
+        widths = [item[0] for item in recs]
+        mids = [item[1] for item in recs]
+        wq = qvals(widths)
+        mid_deg = [math.degrees(math.asin(min(max(x, 0.0), 1.0))) for x in qvals(mids)]
+        sorts = Counter(item[2] for item in recs)
+        top_sort, top_n = sorts.most_common(1)[0]
+        gap_rows.append({
+            "source": source, "sort_exact": sort_name, "tau_kind": tau_kind, "n": len(recs),
+            "width_q10": wq[0], "width_q25": wq[1], "width_q50": wq[2],
+            "width_q75": wq[3], "width_q90": wq[4],
+            "frac_width_ge_1": sum(w >= 1 for w in widths) / len(recs),
+            "frac_width_ge_2": sum(w >= 2 for w in widths) / len(recs),
+            "mid_deg_q10": mid_deg[0], "mid_deg_q50": mid_deg[2], "mid_deg_q90": mid_deg[4],
+            "top_gap_sort": top_sort, "frac_top_gap_sort": top_n / len(recs),
+        })
+    sort_rows = []
+    for (source, gap_sort), recs in sorted(by_gap.items()):
+        widths = [item[0] for item in recs]
+        mids = [item[1] for item in recs]
+        sort_rows.append({
+            "source": source, "gap_sort": gap_sort, "n": len(recs),
+            "mid_deg_q50": math.degrees(math.asin(min(max(qvals(mids)[2], 0.0), 1.0))),
+            "width_q50": qvals(widths)[2],
+        })
+    return gap_rows, sort_rows, per_cell
+
+
+def perslot_table(closures, systems, sources, kind):
+    rows_out = []
+    by_source = sorted(set(sources[i] for i in closures))
+    for source in by_source:
+        for system in SYSTEMS:
+            for kind_name in ("esd", "nominal"):
+                group = [
+                    i for i in closures
+                    if sources[i] == source and systems[i] == system and kind[i] == kind_name
+                ]
+                if not group:
+                    continue
+                buckets = Counter()
+                ok = hypothesis = refused = misses = 0
+                for i in group:
+                    rec = closures[i]
+                    status = rec.get("slot_status") or "refused"
+                    if status == "ok":
+                        ok += 1
+                    elif status == "hypothesis":
+                        hypothesis += 1
+                    else:
+                        refused += 1
+                    nslot = rec.get("slot_n")
+                    if nslot is not None:
+                        buckets[nslot if nslot in CLOSURE_BUCKETS else "other"] += 1
+                    walked = rec.get("n_walk_tau")
+                    if nslot is not None and walked is not None and walked < nslot:
+                        misses += 1
+                rows_out.append({
+                    "source": source, "system": system, "tau_kind": kind_name, "n": len(group),
+                    "ok": ok, "hypothesis": hypothesis, "refused": refused,
+                    "walk_smaller": misses, "frac_walk_smaller": misses / len(group),
+                    **{f"n_{k}": buckets.get(k, 0) for k in (1, 2, 3, 6, 16, "other")},
+                })
+    return rows_out
+
+
+def three_degree_table(rows, red, closures, systems, sources):
+    out = []
+    grouped = defaultdict(list)
+    for i, rec in closures.items():
+        grouped[(sources[i], systems[i], ratio_bin(red[i, :3]))].append(rec)
+    for (source, system, ratio), recs in sorted(grouped.items(), key=lambda kv: (kv[0][0], kv[0][1], RATIO_BINS.index(kv[0][2]) if kv[0][2] in RATIO_BINS else 99)):
+        buckets = Counter()
+        ok = hypothesis = refused = 0
+        for rec in recs:
+            status = rec.get("deg3_status") or "refused"
+            if status == "ok":
+                ok += 1
+            elif status == "hypothesis":
+                hypothesis += 1
+            else:
+                refused += 1
+            nslot = rec.get("deg3_n")
+            if nslot is not None:
+                buckets[nslot if nslot in CLOSURE_BUCKETS else "other"] += 1
+        out.append({
+            "source": source, "system": system, "axis_ratio": ratio, "n": len(recs),
+            "ok": ok, "hypothesis": hypothesis, "refused": refused,
+            **{f"n_{k}": buckets.get(k, 0) for k in (1, 2, 3, 6, 16, "other")},
+        })
+    return out
+
+
+def brute_table(rows, brute):
+    exact = wrong = refused = timeout = 0
+    maxent = Counter()
+    added = checked4 = 0
+    wrong_ids = []
+    wrong_cells = []
+    for rec in brute:
+        if rec.get("timeout"):
+            timeout += 1
+            continue
+        verdict = rec.get("verdict") or "refused"
+        if verdict == "exact":
+            exact += 1
+        elif verdict == "wrong":
+            wrong += 1
+            if len(wrong_ids) < 5:
+                i = rec["i"]
+                wrong_ids.append(rows[i]["pdb_id"])
+                wrong_cells.append([float(rows[i][name]) for name in ("a", "b", "c", "alpha", "beta", "gamma")])
+        else:
+            refused += 1
+        if rec.get("maxent") in (1, 2, 3):
+            maxent[rec["maxent"]] += 1
+        if rec.get("added4") is not None:
+            checked4 += 1
+            if rec["added4"]:
+                added += 1
+    summary = [{
+        "n": len(brute), "exact": exact, "wrong": wrong, "refused": refused, "timeout": timeout,
+        "maxent_1": maxent.get(1, 0), "maxent_2": maxent.get(2, 0), "maxent_3": maxent.get(3, 0),
+        "k4_checked": checked4, "k4_added": added,
+    }]
+    return summary, wrong, wrong_ids, wrong_cells
+
+
 def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, sources,
              letters, paths, closures, cob_fail, closure_mode, closure_idx,
-             rate, extrapolated, device, workers, args, started, meta_rows):
+             rate, extrapolated, device, workers, args, started, meta_rows,
+             red, sigma, brute, brute_rate):
     n = len(rows)
     closure_set = set(closures)
     issues = []
@@ -1192,8 +1775,8 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         issues.append({"name": "non-codimension-one-jump", "n": jump_n, "ids": jump_ids,
                        "detail": "A sort change was not one of the 37 codimension-one edges of Table C2."})
     if overflow_n:
-        issues.append({"name": "path-longer-than-six", "n": overflow_n, "ids": overflow_ids,
-                       "detail": "The monotone path changed sort more than six times. The first six steps are stored."})
+        issues.append({"name": "path-not-monotone-or-longer-than-five", "n": overflow_n, "ids": overflow_ids,
+                       "detail": "A monotone path from six free conorms to one has at most five codimension-one steps. These paths were not monotone, or a sixth containing step remained. The stored path stops at five."})
 
     edge_rows = []
     for (source, edge), hist in sorted(edge_hist.items()):
@@ -1243,7 +1826,20 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         })
     flagged = stratify_flags(flagged, 500)
 
-    conorm = pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, paths)
+    slot_rows = perslot_table(closures, systems, sources, kind)
+    degree_rows = three_degree_table(rows, red, closures, systems, sources)
+    cal_rows = calibration_table(rows, p, lengths, sig_p, kind, systems, sources, paths)
+    gap_rows, gap_sort_rows, gaps = filtration_tables(rows, lengths, sig_p, kind, systems, sources, paths)
+    brute_rows, wrong_n, wrong_ids, wrong_cells = brute_table(rows, brute)
+    if wrong_n:
+        shown = [f"{pid} {cell}" for pid, cell in zip(wrong_ids, wrong_cells)]
+        issues.append({
+            "name": "perslot-wrong-closure", "n": wrong_n, "ids": wrong_ids,
+            "detail": "The consistent construction and the K=3 enumeration disagree. "
+                      + "Examples: " + "; ".join(shown) + ".",
+        })
+
+    conorm = pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, paths, gaps)
     summary = {
         "db": str(args.db), "seed": args.seed, "sample": args.sample, "n": n,
         "closure_mode": closure_mode, "closure_n": len(closures),
@@ -1255,6 +1851,7 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         "symmetry": sym_rows, "off_diagonal": off_rows, "cross": cross_rows,
         "traps": trap_rows, "niggli": niggli_rows,
         "ambiguous": amb_rows, "issues": issues,
+        "brute_rate": brute_rate,
         "wall_seconds": time.perf_counter() - started,
     }
     tables = {
@@ -1273,6 +1870,12 @@ def assemble(rows, p, lengths, lam1, tau, kind, sig_p, gmax, obtuse, systems, so
         "sort_population.csv": (pop_rows, ["source", "sort", "t", "n"]),
         "sorts_by_source.csv": (level_rows, ["source", "sort", "tolerance", "n"]),
         "ambiguous_esd.csv": (amb_rows, ["source", "sort_exact", "n", "ambiguous_esd", "frac"]),
+        "perslot_closure.csv": (slot_rows, ["source", "system", "tau_kind", "n", "ok", "hypothesis", "refused", "walk_smaller", "frac_walk_smaller", "n_1", "n_2", "n_3", "n_6", "n_16", "n_other"]),
+        "three_degree.csv": (degree_rows, ["source", "system", "axis_ratio", "n", "ok", "hypothesis", "refused", "n_1", "n_2", "n_3", "n_6", "n_16", "n_other"]),
+        "brute_check.csv": (brute_rows, ["n", "exact", "wrong", "refused", "timeout", "maxent_1", "maxent_2", "maxent_3", "k4_checked", "k4_added"]),
+        "tolerance_calibration.csv": (cal_rows, ["source", "reported_system", "edge", "edge_type", "tol_kind", "tol_value", "n_through", "n_within", "frac"]),
+        "filtration_gaps.csv": (gap_rows, ["source", "sort_exact", "tau_kind", "n", "width_q10", "width_q25", "width_q50", "width_q75", "width_q90", "frac_width_ge_1", "frac_width_ge_2", "mid_deg_q10", "mid_deg_q50", "mid_deg_q90", "top_gap_sort", "frac_top_gap_sort"]),
+        "filtration_gap_sorts.csv": (gap_sort_rows, ["source", "gap_sort", "n", "mid_deg_q50", "width_q50"]),
     }
     return summary, tables, flagged, conorm
 
@@ -1304,22 +1907,22 @@ def stratify_flags(flagged, limit):
     return chosen
 
 
-def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, paths):
+def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, paths, gaps):
     n = len(rows)
     pair = np.maximum(
         lengths[:, np.array(SL)[:, 0]] * lengths[:, np.array(SL)[:, 1]], 1e-30)
     cos = p / pair
     sort_codes = {name: i for i, name in enumerate(["", *SORT_NAMES, "unlisted"])}
-    t_path = np.full((n, 6), np.nan, np.float32)
-    band_path = np.full((n, 6), np.nan, np.float32)
-    sort_path = np.full((n, 6), -1, np.int16)
+    t_path = np.full((n, 5), np.nan, np.float32)
+    band_path = np.full((n, 5), np.nan, np.float32)
+    sort_path = np.full((n, 5), -1, np.int16)
     exact = np.full(n, -1, np.int16)
     forced = np.zeros((n, 6), dtype=bool)
     amb = np.zeros(n, dtype=bool)
     for i, path in paths.items():
         exact[i] = sort_codes.get(path["sort_exact"], sort_codes["unlisted"])
         for k, (t, name) in enumerate(zip(path["t"], path["sorts"])):
-            if k == 6:
+            if k == 5:
                 break
             t_path[i, k] = t
             sort_path[i, k] = sort_codes.get(name, sort_codes["unlisted"])
@@ -1327,6 +1930,17 @@ def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, pat
                 band_path[i, k] = path["bands"][k]
         forced[i] = path["forced"]
         amb[i] = bool(path.get("ambiguous"))
+    gap_lo = np.full(n, np.nan, np.float32)
+    gap_hi = np.full(n, np.nan, np.float32)
+    gap_width = np.full(n, np.nan, np.float32)
+    gap_mid = np.full(n, np.nan, np.float32)
+    gap_sort = np.full(n, -1, np.int16)
+    for i, (lo, hi, width, mid, name) in gaps.items():
+        gap_lo[i] = lo
+        gap_hi[i] = hi
+        gap_width[i] = width
+        gap_mid[i] = mid
+        gap_sort[i] = sort_codes.get(name, sort_codes["unlisted"])
     sig = np.array(sig_p, np.float32)
     sig[kind != "esd"] = np.nan
     return {
@@ -1340,6 +1954,8 @@ def pack_conorms(rows, p, lengths, lam1, tau, kind, sig_p, systems, sources, pat
         "p": p.astype(np.float32), "cos": cos.astype(np.float32), "sig": sig,
         "forced": forced, "sort_exact": exact, "t_path": t_path, "sort_path": sort_path,
         "ambiguous_esd": amb, "band_path": band_path,
+        "gap_lo": gap_lo, "gap_hi": gap_hi, "gap_width": gap_width,
+        "gap_mid": gap_mid, "gap_sort": gap_sort,
         "sort_codes": np.array(list(sort_codes.keys())),
     }
 
@@ -1524,8 +2140,13 @@ def render_readme(summary, tables, conorm_path, env):
         "The reduced superbase is built from the stored Selling cell. `tau` is three times the largest conorm standard deviation, and never smaller than `1e-9 max|G|`. "
         "A parameter fixed by the reported crystal system (a 90° or 120° angle, or a length the system equates to another) has σ = 0. "
         "`tau_kind = esd` when every free parameter has an esd and at least one of those esds is positive; otherwise the nominal errors are `0.001 * length` and `0.03` degrees. "
-        "A sort path imposes cosine-scaled zeros and ties in order. Each constraint set is replaced by the finest closed Table 4 pattern that contains it. "
-        "A transition is inside the measurement when its cosine is within `3 σ(p)` of that slot, scaled by the edge lengths.",
+        "A sort path imposes cosine-scaled zeros and ties in order. Equal cosine crossings are one step. "
+        "A step is kept only when the next closed pattern contains the previous one and adds a constraint, so a path from six free conorms to one has at most five steps. "
+        "Each constraint set is replaced by the finest closed Table 4 pattern that contains it. "
+        "A transition is inside the measurement when its cosine is within `3 σ(p)` of that slot, scaled by the edge lengths. "
+        "The per-slot closure is `consistent_construct`: esd rows use `sigma = 3 max σ(p_ij)/(|u_i||u_j|)`, nominal rows use `sin(0.03°)`. "
+        "`ok` is Conjecture A6''. The 3° table uses `sigma = sin(3°)/4` on every cell. "
+        "`d_sig` uses the largest slot sigma in a class and ignores covariances.",
         "",
         "## Inventory",
         "",
@@ -1548,6 +2169,42 @@ def render_readme(summary, tables, conorm_path, env):
         md_table(*tables["closure_counts.csv"]) if tables["closure_counts.csv"][0] else "",
         "",
         md_table(*tables["closure_flags.csv"]) if tables["closure_flags.csv"][0] else "",
+        "",
+        "## Per-slot closure",
+        "",
+        "Frame-consistent closure beside the uniform table. `walk_smaller` is the number of cells whose uniform `walk-tau` count is smaller than this closure.",
+        "",
+        md_table(*tables["perslot_closure.csv"]) if tables["perslot_closure.csv"][0] else "",
+        "",
+        f"Brute force (`delta_obtuse`, K=3) on every refused cell and 2000 hypothesis cells, plus K=4 on 200 of them, ran at {summary.get('brute_rate', 0):.2f} cells/s.",
+        "",
+        md_table(*tables["brute_check.csv"]) if tables["brute_check.csv"][0] else "",
+        "",
+        "## Three-degree rule",
+        "",
+        "Every cell at `sigma = sin(3°)/4`, by reported system and reduced-cell axis ratio (longest edge over shortest).",
+        "",
+        md_table(*tables["three_degree.csv"]) if tables["three_degree.csv"][0] else "",
+        "",
+        "## Tolerance calibration",
+        "",
+        "Distances are read while the path sits in the source sort of each Table C2 edge. "
+        "`d_cos` is the cosine of a zero class or the cosine separation of a tie. "
+        "`d_rel` is the relative length of a tie. `d_sig` is the same separation in units of the largest slot sigma; covariances are ignored, and it is reported for esd rows only. "
+        "The combined rules are on the `any` rows: a cell is within when some zero-type edge passes the angle and some tie-type edge passes the length.",
+        "",
+        md_table(
+            [row for row in tables["tolerance_calibration.csv"][0] if row["edge"] == "any"],
+            tables["tolerance_calibration.csv"][1],
+        ) if tables["tolerance_calibration.csv"][0] else "",
+        "",
+        "## Filtration gaps",
+        "",
+        "Widest log-gap of the merged path inside `(t0, sin 3°)`. `t0` is the cell's 1σ cosine band on esd rows and `1e-6` otherwise.",
+        "",
+        md_table(*tables["filtration_gaps.csv"]) if tables["filtration_gaps.csv"][0] else "",
+        "",
+        md_table(*tables["filtration_gap_sorts.csv"]) if tables["filtration_gap_sorts.csv"][0] else "",
         "",
         "## Symmetry",
         "",

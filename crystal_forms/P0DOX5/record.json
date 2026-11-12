@@ -1,0 +1,59 @@
+{
+ "identity": "P0DOX5",
+ "accessions": [
+  "P0DOX5"
+ ],
+ "deposition_group": null,
+ "name": "Immunoglobulin gamma-1 heavy chain",
+ "clusters": [
+  {
+   "cluster_id": 1005,
+   "n_members": 17,
+   "reference": "6YTB",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.158,
+    75.218,
+    149.476,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 3.354,
+    "q25": 3.083,
+    "q75": 3.526,
+    "p5": 2.313,
+    "p95": 8.746,
+    "max": 23.527,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.825,
+    "q25": 0.824,
+    "q75": 4.885,
+    "p5": 0.52,
+    "p95": 23.312,
+    "max": 24.127,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.466,
+    "q25": 0.366,
+    "q75": 1.169,
+    "p5": 0.253,
+    "p95": 21.85,
+    "max": 22.003,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 4
+  }
+ ]
+}

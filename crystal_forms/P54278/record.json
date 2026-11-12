@@ -1,0 +1,59 @@
+{
+ "identity": "P54278",
+ "accessions": [
+  "P54278"
+ ],
+ "deposition_group": null,
+ "name": "Mismatch repair endonuclease PMS2",
+ "clusters": [
+  {
+   "cluster_id": 1784,
+   "n_members": 11,
+   "reference": "1H7S",
+   "reference_resolution": 1.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    74.157,
+    74.851,
+    135.34,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.679,
+    "q25": 0.637,
+    "q75": 0.779,
+    "p5": 0.529,
+    "p95": 1.403,
+    "max": 1.809,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.919,
+    "q25": 0.841,
+    "q75": 1.322,
+    "p5": 0.428,
+    "p95": 1.754,
+    "max": 1.942,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.429,
+    "q25": 0.354,
+    "q75": 0.537,
+    "p5": 0.248,
+    "p95": 0.775,
+    "max": 1.189,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

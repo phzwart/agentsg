@@ -1,0 +1,59 @@
+{
+ "identity": "P02879",
+ "accessions": [
+  "P02879"
+ ],
+ "deposition_group": null,
+ "name": "Ricin [Cleaved into: Ricin A chain",
+ "clusters": [
+  {
+   "cluster_id": 370,
+   "n_members": 37,
+   "reference": "7Y07",
+   "reference_resolution": 1.25,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    67.752,
+    67.752,
+    141.397,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.346,
+    "q25": 0.291,
+    "q75": 0.433,
+    "p5": 0.213,
+    "p95": 1.298,
+    "max": 1.664,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.545,
+    "q25": 0.36,
+    "q75": 0.879,
+    "p5": 0.225,
+    "p95": 1.896,
+    "max": 2.166,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.317,
+    "q25": 0.245,
+    "q75": 0.396,
+    "p5": 0.166,
+    "p95": 1.121,
+    "max": 1.322,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

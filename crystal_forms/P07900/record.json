@@ -1,0 +1,161 @@
+{
+ "identity": "P07900",
+ "accessions": [
+  "P07900"
+ ],
+ "deposition_group": null,
+ "name": "Heat shock protein HSP 90-alpha",
+ "clusters": [
+  {
+   "cluster_id": 13,
+   "n_members": 319,
+   "reference": "6TN5",
+   "reference_resolution": 1.165,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    65.72,
+    89.53,
+    100.025,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 310,
+    "no_shared_accession": 2,
+    "different_space_group": 6,
+    "reference": 1
+   },
+   "n_pairs": 48205,
+   "rmsd_to_reference": {
+    "median": 1.677,
+    "q25": 0.442,
+    "q75": 1.846,
+    "p5": 0.186,
+    "p95": 2.692,
+    "max": 3.072,
+    "n_pairs": 310
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.859,
+    "q25": 0.689,
+    "q75": 2.468,
+    "p5": 0.327,
+    "p95": 4.154,
+    "max": 6.787,
+    "n_pairs": 48205
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.847,
+    "q25": 0.332,
+    "q75": 0.939,
+    "p5": 0.202,
+    "p95": 1.045,
+    "max": 1.644,
+    "n_pairs": 48205
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 345,
+   "n_members": 39,
+   "reference": "3T10",
+   "reference_resolution": 1.24,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    53.17,
+    44.972,
+    53.854,
+    90.0,
+    115.15,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 37,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 703,
+   "rmsd_to_reference": {
+    "median": 1.422,
+    "q25": 0.452,
+    "q75": 1.778,
+    "p5": 0.342,
+    "p95": 1.894,
+    "max": 1.906,
+    "n_pairs": 37
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.54,
+    "q25": 0.701,
+    "q75": 1.897,
+    "p5": 0.283,
+    "p95": 3.049,
+    "max": 3.432,
+    "n_pairs": 703
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.822,
+    "q25": 0.413,
+    "q75": 1.097,
+    "p5": 0.228,
+    "p95": 1.391,
+    "max": 1.57,
+    "n_pairs": 703
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 928,
+   "n_members": 18,
+   "reference": "6CYH",
+   "reference_resolution": 1.49,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    64.426,
+    88.873,
+    99.001,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.343,
+    "q25": 0.288,
+    "q75": 0.423,
+    "p5": 0.253,
+    "p95": 0.495,
+    "max": 0.584,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.947,
+    "q25": 0.557,
+    "q75": 1.682,
+    "p5": 0.31,
+    "p95": 3.23,
+    "max": 3.852,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.229,
+    "q25": 0.199,
+    "q75": 0.266,
+    "p5": 0.159,
+    "p95": 0.309,
+    "max": 0.362,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

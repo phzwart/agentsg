@@ -1,0 +1,59 @@
+{
+ "identity": "P96084",
+ "accessions": [
+  "P96084"
+ ],
+ "deposition_group": null,
+ "name": "Proline iminopeptidase",
+ "clusters": [
+  {
+   "cluster_id": 1321,
+   "n_members": 14,
+   "reference": "1MTZ",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    54.961,
+    57.095,
+    82.274,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 2.304,
+    "q25": 2.245,
+    "q75": 2.864,
+    "p5": 1.512,
+    "p95": 2.968,
+    "max": 2.982,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.453,
+    "q25": 0.779,
+    "q75": 2.127,
+    "p5": 0.359,
+    "p95": 2.857,
+    "max": 3.081,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.484,
+    "q25": 0.406,
+    "q75": 0.628,
+    "p5": 0.279,
+    "p95": 0.814,
+    "max": 0.89,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  }
+ ]
+}

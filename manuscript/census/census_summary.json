@@ -1,12 +1,12 @@
 {
-  "db": "/home/sparksvc/Projects/agentsg/data/cod_cells.duckdb",
+  "db": "data/cod_cells.duckdb",
   "seed": 0,
   "sample": null,
   "n": 528439,
   "closure_mode": "full",
   "closure_n": 528439,
-  "cells_per_second": 3764.274320778849,
-  "extrapolated_full_seconds": 140.38270194151607,
+  "cells_per_second": 2941.2114537883986,
+  "extrapolated_full_seconds": 179.66712298748507,
   "device": "cuda",
   "workers": 20,
   "inventory": [
@@ -1055,8 +1055,8 @@
       "source": "cod",
       "sort_exact": "A2",
       "n": 110,
-      "ambiguous_esd": 36,
-      "frac": 0.32727272727272727
+      "ambiguous_esd": 35,
+      "frac": 0.3181818181818182
     },
     {
       "source": "cod",
@@ -1104,15 +1104,15 @@
       "source": "cod",
       "sort_exact": "M2A",
       "n": 31787,
-      "ambiguous_esd": 507,
-      "frac": 0.01594991663258565
+      "ambiguous_esd": 498,
+      "frac": 0.01566678201780602
     },
     {
       "source": "cod",
       "sort_exact": "M4",
       "n": 191551,
-      "ambiguous_esd": 1990,
-      "frac": 0.010388878157775214
+      "ambiguous_esd": 1989,
+      "frac": 0.010383657615987387
     },
     {
       "source": "cod",
@@ -1146,8 +1146,8 @@
       "source": "cod",
       "sort_exact": "O5",
       "n": 78474,
-      "ambiguous_esd": 786,
-      "frac": 0.010016056273415399
+      "ambiguous_esd": 722,
+      "frac": 0.009200499528506257
     },
     {
       "source": "cod",
@@ -1250,20 +1250,9 @@
         "COD9009269"
       ],
       "detail": "A closed (zeros, equality classes) set matched none of the 24 Table 4 patterns."
-    },
-    {
-      "name": "path-longer-than-six",
-      "n": 11948,
-      "ids": [
-        "COD1000507",
-        "COD1001380",
-        "COD1001564",
-        "COD1001646",
-        "COD1004000"
-      ],
-      "detail": "The monotone path changed sort more than six times. The first six steps are stored."
     }
   ],
-  "wall_seconds": 103.61410833499394,
+  "brute_rate": 8.731742649472958,
+  "wall_seconds": 369.33068635105155,
   "spot_text": "- COD9000001: `COD9000001` (cod), formula `- Pb S -`, sg 225 F m -3 m, cell 5.93 5.93 5.93 90.0 90.0 90.0. lam1=17.5825 tau=0.0527474 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- alpha-quartz: `COD1011097` (cod), formula `- O2 Si -`, sg 152 P 31 2 1, cell 4.913 4.913 5.404 90.0 90.0 120.0. lam1=24.1376 tau=0.184879 (nominal) visible=4 sort=H4 n_closure=6 n_walk_tau=6 n_walk_2tau=6\n- NaCl: `COD1000041` (cod), formula `- Cl Na -`, sg 225 F m -3 m, cell 5.62 5.62 5.62 90.0 90.0 90.0. lam1=15.7922 tau=0.0473766 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- Si: `COD1526655` (cod), formula `- Si -`, sg 227 F d -3 m :1, cell 5.381 5.381 5.381 90.0 90.0 90.0. lam1=14.4776 tau=0.0434327 (nominal) visible=16 sort=C3 n_closure=3 n_walk_tau=3 n_walk_2tau=3\n- albite: `COD1521704` (cod), formula `- Al Na O8 Si3 -`, sg 12 C 1 2/m 1, cell 8.126 12.996 7.164 90.0 116.65 90.0. lam1=51.3229 tau=0.254666 (nominal) visible=4 sort=M1A n_closure=1 n_walk_tau=1 n_walk_2tau=1\n- diopside: `COD1000007` (cod), formula `- Ca Mg O6 Si2 -`, sg 15 C 1 2/c 1, cell 9.7397 8.9174 5.2503 90.0 105.866 90.0. lam1=27.5657 tau=0.223636 (nominal) visible=4 sort=M1B n_closure=1 n_walk_tau=1 n_walk_2tau=1\n- AMCSD feldspar: not in this database.\n- 193L: not in this database.\n- 1LYZ: not in this database.\n- 2HHB: not in this database."
 }

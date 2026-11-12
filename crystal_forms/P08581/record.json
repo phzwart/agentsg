@@ -1,0 +1,109 @@
+{
+ "identity": "P08581",
+ "accessions": [
+  "P08581"
+ ],
+ "deposition_group": null,
+ "name": "Hepatocyte growth factor receptor",
+ "clusters": [
+  {
+   "cluster_id": 450,
+   "n_members": 32,
+   "reference": "3DKC",
+   "reference_resolution": 1.52,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.027,
+    45.083,
+    167.264,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 31,
+    "reference": 1
+   },
+   "n_pairs": 496,
+   "rmsd_to_reference": {
+    "median": 4.744,
+    "q25": 4.414,
+    "q75": 5.022,
+    "p5": 3.068,
+    "p95": 18.316,
+    "max": 30.56,
+    "n_pairs": 31
+   },
+   "pairwise_frame_rmsd": {
+    "median": 4.069,
+    "q25": 2.005,
+    "q75": 4.998,
+    "p5": 0.321,
+    "p95": 31.443,
+    "max": 34.362,
+    "n_pairs": 496
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.702,
+    "q25": 0.811,
+    "q75": 2.463,
+    "p5": 0.243,
+    "p95": 18.539,
+    "max": 19.571,
+    "n_pairs": 496
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  },
+  {
+   "cluster_id": 1728,
+   "n_members": 11,
+   "reference": "9T3Q",
+   "reference_resolution": 1.629,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    42.476,
+    79.845,
+    91.63,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 9,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.628,
+    "q25": 0.58,
+    "q75": 0.858,
+    "p5": 0.359,
+    "p95": 1.23,
+    "max": 1.281,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.861,
+    "q25": 0.633,
+    "q75": 1.184,
+    "p5": 0.416,
+    "p95": 1.866,
+    "max": 2.098,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.618,
+    "q25": 0.462,
+    "q75": 0.771,
+    "p5": 0.369,
+    "p95": 1.15,
+    "max": 1.188,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

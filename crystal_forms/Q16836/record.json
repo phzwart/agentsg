@@ -1,0 +1,59 @@
+{
+ "identity": "Q16836",
+ "accessions": [
+  "Q16836"
+ ],
+ "deposition_group": null,
+ "name": "Hydroxyacyl-coenzyme A dehydrogenase, mitochondrial",
+ "clusters": [
+  {
+   "cluster_id": 1622,
+   "n_members": 12,
+   "reference": "1F0Y",
+   "reference_resolution": 1.8,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    50.488,
+    87.971,
+    159.002,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 5.052,
+    "q25": 2.787,
+    "q75": 7.039,
+    "p5": 0.378,
+    "p95": 8.822,
+    "max": 8.892,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 5.231,
+    "q25": 1.051,
+    "q75": 7.193,
+    "p5": 0.556,
+    "p95": 8.766,
+    "max": 9.117,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 2.103,
+    "q25": 0.506,
+    "q75": 7.092,
+    "p5": 0.284,
+    "p95": 7.382,
+    "max": 7.413,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

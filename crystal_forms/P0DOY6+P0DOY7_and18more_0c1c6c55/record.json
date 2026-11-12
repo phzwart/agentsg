@@ -1,0 +1,78 @@
+{
+ "identity": "P0DOY6+P0DOY7+P0DOY9+P17291+P80371+P80372+P80373+P80374+P80376+P80377+P80380+Q5SHN3+Q5SHN7+Q5SHP2+Q5SHQ5+Q5SIH3+Q5SJ76+Q5SJH3+Q5SLP8+Q5SLQ0",
+ "accessions": [
+  "P0DOY6",
+  "P0DOY7",
+  "P0DOY9",
+  "P17291",
+  "P80371",
+  "P80372",
+  "P80373",
+  "P80374",
+  "P80376",
+  "P80377",
+  "P80380",
+  "Q5SHN3",
+  "Q5SHN7",
+  "Q5SHP2",
+  "Q5SHQ5",
+  "Q5SIH3",
+  "Q5SJ76",
+  "Q5SJH3",
+  "Q5SLP8",
+  "Q5SLQ0"
+ ],
+ "deposition_group": null,
+ "name": "Small ribosomal subunit protein uS2",
+ "clusters": [
+  {
+   "cluster_id": 103,
+   "n_members": 96,
+   "reference": "2VQE",
+   "reference_resolution": 2.5,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    401.998,
+    401.998,
+    175.648,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 95,
+    "reference": 1
+   },
+   "n_pairs": 4179,
+   "rmsd_to_reference": {
+    "median": 1.607,
+    "q25": 1.346,
+    "q75": 1.838,
+    "p5": 1.078,
+    "p95": 39.068,
+    "max": 46.856,
+    "n_pairs": 95
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.004,
+    "q25": 1.446,
+    "q75": 28.39,
+    "p5": 0.865,
+    "p95": 42.188,
+    "max": 72.316,
+    "n_pairs": 4179
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.132,
+    "q25": 0.766,
+    "q75": 1.656,
+    "p5": 0.428,
+    "p95": 19.342,
+    "max": 19.542,
+    "n_pairs": 4179
+   },
+   "n_low_margin": 17,
+   "n_via_neighbour": 0
+  }
+ ]
+}

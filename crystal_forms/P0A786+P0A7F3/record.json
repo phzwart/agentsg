@@ -1,0 +1,60 @@
+{
+ "identity": "P0A786+P0A7F3",
+ "accessions": [
+  "P0A786",
+  "P0A7F3"
+ ],
+ "deposition_group": null,
+ "name": "Aspartate carbamoyltransferase catalytic subunit",
+ "clusters": [
+  {
+   "cluster_id": 255,
+   "n_members": 49,
+   "reference": "4FYY",
+   "reference_resolution": 1.9395,
+   "space_group": "P 3 2 1",
+   "reference_cell": [
+    121.133,
+    121.133,
+    141.438,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 48,
+    "reference": 1
+   },
+   "n_pairs": 1176,
+   "rmsd_to_reference": {
+    "median": 1.56,
+    "q25": 1.43,
+    "q75": 3.441,
+    "p5": 0.93,
+    "p95": 3.508,
+    "max": 4.645,
+    "n_pairs": 48
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.493,
+    "q25": 0.923,
+    "q75": 2.824,
+    "p5": 0.308,
+    "p95": 3.168,
+    "max": 4.955,
+    "n_pairs": 1176
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.877,
+    "q25": 0.736,
+    "q75": 2.327,
+    "p5": 0.228,
+    "p95": 2.426,
+    "max": 2.685,
+    "n_pairs": 1176
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

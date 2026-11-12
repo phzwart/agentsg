@@ -1,0 +1,59 @@
+{
+ "identity": "P08046",
+ "accessions": [
+  "P08046"
+ ],
+ "deposition_group": null,
+ "name": "Early growth response protein 1",
+ "clusters": [
+  {
+   "cluster_id": 1726,
+   "n_members": 11,
+   "reference": "1A1H",
+   "reference_resolution": 1.6,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    44.1,
+    55.9,
+    130.5,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.852,
+    "q25": 0.793,
+    "q75": 1.217,
+    "p5": 0.626,
+    "p95": 1.255,
+    "max": 1.273,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.182,
+    "q25": 0.74,
+    "q75": 1.525,
+    "p5": 0.459,
+    "p95": 2.027,
+    "max": 2.826,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.531,
+    "q25": 0.403,
+    "q75": 0.682,
+    "p5": 0.257,
+    "p95": 0.822,
+    "max": 0.905,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

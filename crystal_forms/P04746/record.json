@@ -1,0 +1,59 @@
+{
+ "identity": "P04746",
+ "accessions": [
+  "P04746"
+ ],
+ "deposition_group": null,
+ "name": "Pancreatic alpha-amylase",
+ "clusters": [
+  {
+   "cluster_id": 246,
+   "n_members": 50,
+   "reference": "5U3A",
+   "reference_resolution": 0.95,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    52.1,
+    67.84,
+    130.41,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 49,
+    "reference": 1
+   },
+   "n_pairs": 1225,
+   "rmsd_to_reference": {
+    "median": 0.433,
+    "q25": 0.365,
+    "q75": 15.373,
+    "p5": 0.259,
+    "p95": 16.02,
+    "max": 16.697,
+    "n_pairs": 49
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.83,
+    "q25": 1.232,
+    "q75": 22.072,
+    "p5": 0.423,
+    "p95": 24.308,
+    "max": 27.05,
+    "n_pairs": 1225
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.326,
+    "q25": 0.266,
+    "q75": 0.389,
+    "p5": 0.18,
+    "p95": 0.483,
+    "max": 1.538,
+    "n_pairs": 1225
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

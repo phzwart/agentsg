@@ -1,0 +1,59 @@
+{
+ "identity": "P07711",
+ "accessions": [
+  "P07711"
+ ],
+ "deposition_group": null,
+ "name": "Procathepsin L",
+ "clusters": [
+  {
+   "cluster_id": 684,
+   "n_members": 23,
+   "reference": "3HHA",
+   "reference_resolution": 1.27,
+   "space_group": "P 1",
+   "reference_cell": [
+    57.26,
+    62.69,
+    68.24,
+    105.6,
+    93.22,
+    115.55
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 0.206,
+    "q25": 0.173,
+    "q75": 0.256,
+    "p5": 0.164,
+    "p95": 0.319,
+    "max": 0.886,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.218,
+    "q25": 0.162,
+    "q75": 0.286,
+    "p5": 0.115,
+    "p95": 0.891,
+    "max": 0.964,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.149,
+    "q25": 0.123,
+    "q75": 0.185,
+    "p5": 0.097,
+    "p95": 0.607,
+    "max": 0.618,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

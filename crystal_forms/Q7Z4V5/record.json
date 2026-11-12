@@ -1,0 +1,59 @@
+{
+ "identity": "Q7Z4V5",
+ "accessions": [
+  "Q7Z4V5"
+ ],
+ "deposition_group": null,
+ "name": "Hepatoma-derived growth factor-related protein 2",
+ "clusters": [
+  {
+   "cluster_id": 162,
+   "n_members": 72,
+   "reference": "9I7I",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.699,
+    42.272,
+    159.698,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 71,
+    "reference": 1
+   },
+   "n_pairs": 2556,
+   "rmsd_to_reference": {
+    "median": 0.299,
+    "q25": 0.177,
+    "q75": 0.476,
+    "p5": 0.116,
+    "p95": 0.683,
+    "max": 1.198,
+    "n_pairs": 71
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.383,
+    "q25": 0.246,
+    "q75": 0.604,
+    "p5": 0.132,
+    "p95": 0.964,
+    "max": 1.735,
+    "n_pairs": 2556
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.133,
+    "q25": 0.107,
+    "q75": 0.188,
+    "p5": 0.084,
+    "p95": 0.261,
+    "max": 0.367,
+    "n_pairs": 2556
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

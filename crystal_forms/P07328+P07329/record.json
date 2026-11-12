@@ -1,0 +1,60 @@
+{
+ "identity": "P07328+P07329",
+ "accessions": [
+  "P07328",
+  "P07329"
+ ],
+ "deposition_group": null,
+ "name": "Nitrogenase molybdenum-iron protein beta chain",
+ "clusters": [
+  {
+   "cluster_id": 471,
+   "n_members": 31,
+   "reference": "3U7Q",
+   "reference_resolution": 1.0,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    81.19,
+    130.696,
+    107.224,
+    90.0,
+    110.67,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 30,
+    "reference": 1
+   },
+   "n_pairs": 465,
+   "rmsd_to_reference": {
+    "median": 1.101,
+    "q25": 0.334,
+    "q75": 1.238,
+    "p5": 0.077,
+    "p95": 1.317,
+    "max": 1.332,
+    "n_pairs": 30
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.989,
+    "q25": 0.491,
+    "q75": 1.408,
+    "p5": 0.199,
+    "p95": 1.882,
+    "max": 2.079,
+    "n_pairs": 465
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.193,
+    "q25": 0.163,
+    "q75": 0.216,
+    "p5": 0.106,
+    "p95": 0.248,
+    "max": 0.304,
+    "n_pairs": 465
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

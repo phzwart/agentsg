@@ -1,0 +1,60 @@
+{
+ "identity": "P46937+Q15561",
+ "accessions": [
+  "P46937",
+  "Q15561"
+ ],
+ "deposition_group": null,
+ "name": "Transcriptional enhancer factor TEF-3",
+ "clusters": [
+  {
+   "cluster_id": 1775,
+   "n_members": 11,
+   "reference": "6GEI",
+   "reference_resolution": 1.65,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    59.036,
+    59.036,
+    158.969,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.663,
+    "q25": 0.6,
+    "q75": 0.675,
+    "p5": 0.294,
+    "p95": 0.814,
+    "max": 0.925,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.563,
+    "q25": 0.334,
+    "q75": 0.698,
+    "p5": 0.215,
+    "p95": 0.831,
+    "max": 0.935,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.48,
+    "q25": 0.256,
+    "q75": 0.627,
+    "p5": 0.153,
+    "p95": 0.731,
+    "max": 0.86,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "P11172",
+ "accessions": [
+  "P11172"
+ ],
+ "deposition_group": null,
+ "name": "Uridine 5'-monophosphate synthase",
+ "clusters": [
+  {
+   "cluster_id": 73,
+   "n_members": 116,
+   "reference": "9HDW",
+   "reference_resolution": 0.83,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    78.83,
+    116.56,
+    61.99,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 41,
+    "placed": 74,
+    "reference": 1
+   },
+   "n_pairs": 2775,
+   "rmsd_to_reference": {
+    "median": 0.315,
+    "q25": 0.231,
+    "q75": 0.486,
+    "p5": 0.148,
+    "p95": 0.967,
+    "max": 1.548,
+    "n_pairs": 74
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.299,
+    "q25": 0.186,
+    "q75": 0.498,
+    "p5": 0.127,
+    "p95": 2.323,
+    "max": 2.586,
+    "n_pairs": 2775
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.227,
+    "q25": 0.136,
+    "q75": 0.444,
+    "p5": 0.091,
+    "p95": 0.756,
+    "max": 0.941,
+    "n_pairs": 2775
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

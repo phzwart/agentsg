@@ -414,7 +414,12 @@ python -m agentsg.cell.pdb_app query cod_cells.duckdb \
 
 The path may be one `.cif` or a directory of them. Rows are keyed `COD<id>`
 with `source = 'cod'`, their cell esds in `sig_a … sig_gamma` and the chemical
-formula. The COD file has no UniProt list and no deposition-group id.
+formula; PDB rows carry `source = 'pdb'`. The COD file has no UniProt list and
+no deposition-group id. Any other CIF collection loads the same way under its
+own prefix — the
+[AMCSD](https://www.rruff.net/about/download-data/) bulk file (all mineral
+records concatenated in one `.txt`) with
+`add-cod pdb_cells.duckdb amcsd_cifs.txt --prefix AMCSD --source amcsd`.
 
 ```bash
 python -m agentsg.cell.cod_explorer cod_cells.duckdb
@@ -426,8 +431,10 @@ root of the primitive-cell volume, so the axes are shape. The lower right
 panel turns that cloud in 3D. Colour is crystal system or centring. A click
 shows the deposited cell, the Selling cell, and the formula, with a link to
 the COD entry.
-Rhombohedral-axes cells (`R 3 m :R`) are primitive. `add-cod` is the same
-insert into a database that already exists, including `pdb_cells.duckdb`.
+Rhombohedral-axes cells (`R 3 m :R`) are primitive and are keyed as such, so
+corundum on hexagonal and on rhombohedral axes lands on the same lattice point.
+`add-cod` is the same insert into a database that already exists, including
+`pdb_cells.duckdb`.
 
 ```python
 from agentsg.cell import CellDatabase

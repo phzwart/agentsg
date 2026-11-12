@@ -1,0 +1,59 @@
+{
+ "identity": "A0A161XU12",
+ "accessions": [
+  "A0A161XU12"
+ ],
+ "deposition_group": null,
+ "name": "Uncharacterized protein",
+ "clusters": [
+  {
+   "cluster_id": 1663,
+   "n_members": 11,
+   "reference": "6EER",
+   "reference_resolution": 1.82,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    110.242,
+    93.464,
+    187.903,
+    90.0,
+    95.02,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.568,
+    "q25": 0.354,
+    "q75": 2.168,
+    "p5": 0.318,
+    "p95": 2.722,
+    "max": 2.731,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.933,
+    "q25": 1.013,
+    "q75": 14.403,
+    "p5": 0.704,
+    "p95": 15.409,
+    "max": 15.78,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.31,
+    "q25": 0.26,
+    "q75": 0.398,
+    "p5": 0.214,
+    "p95": 0.545,
+    "max": 0.579,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

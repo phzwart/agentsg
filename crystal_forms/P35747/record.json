@@ -1,0 +1,59 @@
+{
+ "identity": "P35747",
+ "accessions": [
+  "P35747"
+ ],
+ "deposition_group": null,
+ "name": "Albumin",
+ "clusters": [
+  {
+   "cluster_id": 509,
+   "n_members": 29,
+   "reference": "4ZBQ",
+   "reference_resolution": 1.92,
+   "space_group": "P 61",
+   "reference_cell": [
+    93.58,
+    93.58,
+    141.07,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.613,
+    "q25": 0.481,
+    "q75": 1.128,
+    "p5": 0.312,
+    "p95": 2.5,
+    "max": 2.542,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.171,
+    "q25": 0.817,
+    "q75": 2.301,
+    "p5": 0.51,
+    "p95": 3.073,
+    "max": 3.575,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.651,
+    "q25": 0.461,
+    "q75": 0.991,
+    "p5": 0.342,
+    "p95": 1.275,
+    "max": 1.507,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

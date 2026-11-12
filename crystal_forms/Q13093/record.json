@@ -1,0 +1,108 @@
+{
+ "identity": "Q13093",
+ "accessions": [
+  "Q13093"
+ ],
+ "deposition_group": null,
+ "name": "Platelet-activating factor acetylhydrolase",
+ "clusters": [
+  {
+   "cluster_id": 953,
+   "n_members": 18,
+   "reference": "5LP1",
+   "reference_resolution": 1.91,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    100.28,
+    91.56,
+    51.65,
+    90.0,
+    111.88,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.254,
+    "q25": 0.211,
+    "q75": 0.313,
+    "p5": 0.187,
+    "p95": 1.215,
+    "max": 1.223,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.312,
+    "q25": 0.236,
+    "q75": 0.866,
+    "p5": 0.181,
+    "p95": 1.158,
+    "max": 1.275,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.227,
+    "q25": 0.182,
+    "q75": 0.303,
+    "p5": 0.147,
+    "p95": 0.38,
+    "max": 0.399,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1616,
+   "n_members": 12,
+   "reference": "3D59",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    116.184,
+    83.061,
+    96.705,
+    90.0,
+    115.09,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 11
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.432,
+    "q25": 0.301,
+    "q75": 0.467,
+    "p5": 0.228,
+    "p95": 0.523,
+    "max": 0.524,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.59,
+    "q25": 0.455,
+    "q75": 0.941,
+    "p5": 0.321,
+    "p95": 1.359,
+    "max": 1.409,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.259,
+    "q25": 0.223,
+    "q75": 0.299,
+    "p5": 0.178,
+    "p95": 0.409,
+    "max": 0.449,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

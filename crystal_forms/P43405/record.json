@@ -1,0 +1,110 @@
+{
+ "identity": "P43405",
+ "accessions": [
+  "P43405"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosine-protein kinase SYK",
+ "clusters": [
+  {
+   "cluster_id": 301,
+   "n_members": 43,
+   "reference": "4FYO",
+   "reference_resolution": 1.4,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    39.953,
+    85.563,
+    90.031,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 41,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 861,
+   "rmsd_to_reference": {
+    "median": 0.682,
+    "q25": 0.563,
+    "q75": 0.89,
+    "p5": 0.377,
+    "p95": 2.219,
+    "max": 2.464,
+    "n_pairs": 41
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.707,
+    "q25": 0.552,
+    "q75": 1.024,
+    "p5": 0.403,
+    "p95": 2.797,
+    "max": 3.202,
+    "n_pairs": 861
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.486,
+    "q25": 0.388,
+    "q75": 0.612,
+    "p5": 0.283,
+    "p95": 0.826,
+    "max": 1.071,
+    "n_pairs": 861
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 656,
+   "n_members": 24,
+   "reference": "4YJR",
+   "reference_resolution": 1.32,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    39.43,
+    86.63,
+    40.27,
+    90.0,
+    93.49,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 20,
+    "reference": 1,
+    "different_space_group": 3
+   },
+   "n_pairs": 210,
+   "rmsd_to_reference": {
+    "median": 2.362,
+    "q25": 1.944,
+    "q75": 2.527,
+    "p5": 0.391,
+    "p95": 4.003,
+    "max": 28.183,
+    "n_pairs": 20
+   },
+   "pairwise_frame_rmsd": {
+    "median": 4.594,
+    "q25": 2.372,
+    "q75": 5.95,
+    "p5": 0.767,
+    "p95": 28.659,
+    "max": 32.865,
+    "n_pairs": 210
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.07,
+    "q25": 0.666,
+    "q75": 1.62,
+    "p5": 0.354,
+    "p95": 18.86,
+    "max": 19.034,
+    "n_pairs": 210
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 1
+  }
+ ]
+}

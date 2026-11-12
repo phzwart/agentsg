@@ -1,0 +1,110 @@
+{
+ "identity": "P80457",
+ "accessions": [
+  "P80457"
+ ],
+ "deposition_group": null,
+ "name": "Xanthine dehydrogenase/oxidase [Includes: Xanthine dehydrogenase",
+ "clusters": [
+  {
+   "cluster_id": 1601,
+   "n_members": 12,
+   "reference": "3UNC",
+   "reference_resolution": 1.65,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    167.573,
+    124.37,
+    148.177,
+    90.0,
+    91.02,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 9,
+    "reference": 1
+   },
+   "n_pairs": 45,
+   "rmsd_to_reference": {
+    "median": 0.329,
+    "q25": 0.302,
+    "q75": 0.366,
+    "p5": 0.186,
+    "p95": 0.549,
+    "max": 0.589,
+    "n_pairs": 9
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.834,
+    "q25": 0.63,
+    "q75": 1.096,
+    "p5": 0.476,
+    "p95": 1.336,
+    "max": 1.653,
+    "n_pairs": 45
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.316,
+    "q25": 0.266,
+    "q75": 0.342,
+    "p5": 0.175,
+    "p95": 0.395,
+    "max": 0.418,
+    "n_pairs": 45
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1602,
+   "n_members": 12,
+   "reference": "3NVW",
+   "reference_resolution": 1.6,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    132.683,
+    73.396,
+    138.113,
+    90.0,
+    96.97,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "different_space_group": 1,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.195,
+    "q25": 0.123,
+    "q75": 32.581,
+    "p5": 0.095,
+    "p95": 33.043,
+    "max": 33.096,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 33.17,
+    "q25": 0.273,
+    "q75": 33.63,
+    "p5": 0.153,
+    "p95": 33.786,
+    "max": 33.975,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.267,
+    "q25": 0.173,
+    "q75": 0.332,
+    "p5": 0.118,
+    "p95": 0.456,
+    "max": 0.481,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

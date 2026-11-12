@@ -1,0 +1,60 @@
+{
+ "identity": "P33981",
+ "accessions": [
+  "P33981"
+ ],
+ "deposition_group": null,
+ "name": "Dual specificity protein kinase TTK",
+ "clusters": [
+  {
+   "cluster_id": 170,
+   "n_members": 68,
+   "reference": "4JS8",
+   "reference_resolution": 1.94,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    70.704,
+    107.939,
+    113.233,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 66,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 2211,
+   "rmsd_to_reference": {
+    "median": 2.656,
+    "q25": 0.931,
+    "q75": 4.517,
+    "p5": 0.619,
+    "p95": 5.131,
+    "max": 5.462,
+    "n_pairs": 66
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.882,
+    "q25": 1.449,
+    "q75": 3.636,
+    "p5": 0.678,
+    "p95": 4.813,
+    "max": 6.082,
+    "n_pairs": 2211
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.787,
+    "q25": 0.616,
+    "q75": 0.984,
+    "p5": 0.433,
+    "p95": 1.742,
+    "max": 2.631,
+    "n_pairs": 2211
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

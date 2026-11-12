@@ -1,0 +1,59 @@
+{
+ "identity": "P06956",
+ "accessions": [
+  "P06956"
+ ],
+ "deposition_group": null,
+ "name": "Recombinase cre",
+ "clusters": [
+  {
+   "cluster_id": 1277,
+   "n_members": 14,
+   "reference": "1XO0",
+   "reference_resolution": 2.0,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    107.4,
+    123.0,
+    180.2,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.942,
+    "q25": 0.891,
+    "q75": 1.056,
+    "p5": 0.769,
+    "p95": 1.183,
+    "max": 1.201,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.617,
+    "q25": 1.222,
+    "q75": 1.929,
+    "p5": 0.874,
+    "p95": 2.581,
+    "max": 2.922,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.799,
+    "q25": 0.686,
+    "q75": 0.866,
+    "p5": 0.499,
+    "p95": 1.0,
+    "max": 1.059,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

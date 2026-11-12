@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UHD2",
+ "accessions": [
+  "Q9UHD2"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase TBK1",
+ "clusters": [
+  {
+   "cluster_id": 1118,
+   "n_members": 16,
+   "reference": "4IM0",
+   "reference_resolution": 2.4001,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    133.921,
+    133.921,
+    85.67,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 15
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 1.119,
+    "q25": 1.06,
+    "q75": 1.225,
+    "p5": 0.706,
+    "p95": 1.506,
+    "max": 2.041,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.411,
+    "q25": 0.978,
+    "q75": 1.987,
+    "p5": 0.446,
+    "p95": 5.866,
+    "max": 6.626,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.769,
+    "q25": 0.617,
+    "q75": 0.944,
+    "p5": 0.206,
+    "p95": 1.07,
+    "max": 1.166,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}
