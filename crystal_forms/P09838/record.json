@@ -1,0 +1,60 @@
+{
+ "identity": "P09838",
+ "accessions": [
+  "P09838"
+ ],
+ "deposition_group": null,
+ "name": "DNA nucleotidylexotransferase",
+ "clusters": [
+  {
+   "cluster_id": 883,
+   "n_members": 19,
+   "reference": "4I2A",
+   "reference_resolution": 1.9,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.935,
+    84.893,
+    114.687,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "no_shared_accession": 1,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.449,
+    "q25": 0.314,
+    "q75": 1.173,
+    "p5": 0.22,
+    "p95": 4.246,
+    "max": 5.176,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.116,
+    "q25": 0.539,
+    "q75": 3.98,
+    "p5": 0.255,
+    "p95": 5.431,
+    "max": 7.723,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.466,
+    "q25": 0.197,
+    "q75": 1.416,
+    "p5": 0.144,
+    "p95": 3.72,
+    "max": 4.036,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

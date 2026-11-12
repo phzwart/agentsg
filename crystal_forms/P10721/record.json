@@ -1,0 +1,61 @@
+{
+ "identity": "P10721",
+ "accessions": [
+  "P10721"
+ ],
+ "deposition_group": null,
+ "name": "Mast/stem cell growth factor receptor Kit",
+ "clusters": [
+  {
+   "cluster_id": 782,
+   "n_members": 21,
+   "reference": "8PQD",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    59.39,
+    59.37,
+    192.89,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 1,
+    "no_shared_accession": 2,
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.451,
+    "q25": 0.348,
+    "q75": 0.601,
+    "p5": 0.249,
+    "p95": 1.849,
+    "max": 2.01,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.575,
+    "q25": 0.425,
+    "q75": 0.878,
+    "p5": 0.302,
+    "p95": 2.063,
+    "max": 2.467,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.344,
+    "q25": 0.251,
+    "q75": 0.654,
+    "p5": 0.196,
+    "p95": 1.689,
+    "max": 1.814,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

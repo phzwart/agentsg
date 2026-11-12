@@ -1,0 +1,60 @@
+{
+ "identity": "O60341+Q9UKL0",
+ "accessions": [
+  "O60341",
+  "Q9UKL0"
+ ],
+ "deposition_group": null,
+ "name": "Lysine-specific histone demethylase 1A",
+ "clusters": [
+  {
+   "cluster_id": 143,
+   "n_members": 78,
+   "reference": "2IW5",
+   "reference_resolution": 2.57,
+   "space_group": "I 2 2 2",
+   "reference_cell": [
+    120.354,
+    178.222,
+    234.932,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 77,
+    "reference": 1
+   },
+   "n_pairs": 3003,
+   "rmsd_to_reference": {
+    "median": 0.55,
+    "q25": 0.47,
+    "q75": 0.679,
+    "p5": 0.415,
+    "p95": 1.136,
+    "max": 57.127,
+    "n_pairs": 77
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.998,
+    "q25": 0.716,
+    "q75": 1.365,
+    "p5": 0.446,
+    "p95": 25.419,
+    "max": 58.043,
+    "n_pairs": 3003
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.431,
+    "q25": 0.363,
+    "q75": 0.53,
+    "p5": 0.278,
+    "p95": 25.17,
+    "max": 25.394,
+    "n_pairs": 3003
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

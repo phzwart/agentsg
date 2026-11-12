@@ -1,0 +1,59 @@
+{
+ "identity": "Q86W56",
+ "accessions": [
+  "Q86W56"
+ ],
+ "deposition_group": null,
+ "name": "Poly(ADP-ribose) glycohydrolase",
+ "clusters": [
+  {
+   "cluster_id": 961,
+   "n_members": 18,
+   "reference": "7KG8",
+   "reference_resolution": 1.43,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    66.408,
+    89.201,
+    93.877,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.513,
+    "q25": 0.361,
+    "q75": 0.584,
+    "p5": 0.221,
+    "p95": 0.664,
+    "max": 0.815,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.425,
+    "q25": 0.352,
+    "q75": 0.525,
+    "p5": 0.191,
+    "p95": 0.716,
+    "max": 0.945,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.272,
+    "q25": 0.232,
+    "q75": 0.328,
+    "p5": 0.14,
+    "p95": 0.369,
+    "max": 0.419,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

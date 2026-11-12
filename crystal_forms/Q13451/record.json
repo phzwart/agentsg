@@ -1,0 +1,158 @@
+{
+ "identity": "Q13451",
+ "accessions": [
+  "Q13451"
+ ],
+ "deposition_group": null,
+ "name": "Peptidyl-prolyl cis-trans isomerase FKBP5",
+ "clusters": [
+  {
+   "cluster_id": 257,
+   "n_members": 49,
+   "reference": "9GPQ",
+   "reference_resolution": 1.35,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    49.002,
+    49.002,
+    195.356,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "different_space_group": 2,
+    "placed": 46,
+    "reference": 1
+   },
+   "n_pairs": 1081,
+   "rmsd_to_reference": {
+    "median": 0.645,
+    "q25": 0.483,
+    "q75": 1.563,
+    "p5": 0.226,
+    "p95": 2.077,
+    "max": 3.121,
+    "n_pairs": 46
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.929,
+    "q25": 0.563,
+    "q75": 1.759,
+    "p5": 0.33,
+    "p95": 2.452,
+    "max": 3.712,
+    "n_pairs": 1081
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.39,
+    "q25": 0.3,
+    "q75": 0.452,
+    "p5": 0.183,
+    "p95": 0.636,
+    "max": 1.039,
+    "n_pairs": 1081
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 404,
+   "n_members": 35,
+   "reference": "7APW",
+   "reference_resolution": 0.89,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.906,
+    54.933,
+    56.82,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 34,
+    "reference": 1
+   },
+   "n_pairs": 595,
+   "rmsd_to_reference": {
+    "median": 0.325,
+    "q25": 0.274,
+    "q75": 0.41,
+    "p5": 0.168,
+    "p95": 0.641,
+    "max": 0.902,
+    "n_pairs": 34
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.369,
+    "q25": 0.27,
+    "q75": 0.52,
+    "p5": 0.158,
+    "p95": 0.69,
+    "max": 0.783,
+    "n_pairs": 595
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.235,
+    "q25": 0.18,
+    "q75": 0.297,
+    "p5": 0.12,
+    "p95": 0.479,
+    "max": 0.541,
+    "n_pairs": 595
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 854,
+   "n_members": 20,
+   "reference": "7AOT",
+   "reference_resolution": 0.85,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.504,
+    49.633,
+    59.903,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 19,
+    "reference": 1
+   },
+   "n_pairs": 190,
+   "rmsd_to_reference": {
+    "median": 21.511,
+    "q25": 7.286,
+    "q75": 21.585,
+    "p5": 0.386,
+    "p95": 24.727,
+    "max": 24.901,
+    "n_pairs": 19
+   },
+   "pairwise_frame_rmsd": {
+    "median": 21.562,
+    "q25": 3.473,
+    "q75": 23.326,
+    "p5": 0.708,
+    "p95": 25.283,
+    "max": 28.362,
+    "n_pairs": 190
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.055,
+    "q25": 0.727,
+    "q75": 1.423,
+    "p5": 0.367,
+    "p95": 1.566,
+    "max": 1.706,
+    "n_pairs": 190
+   },
+   "n_low_margin": 2,
+   "n_via_neighbour": 5
+  }
+ ]
+}

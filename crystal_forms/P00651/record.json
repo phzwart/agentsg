@@ -1,0 +1,60 @@
+{
+ "identity": "P00651",
+ "accessions": [
+  "P00651"
+ ],
+ "deposition_group": null,
+ "name": "Guanyl-specific ribonuclease T1",
+ "clusters": [
+  {
+   "cluster_id": 306,
+   "n_members": 42,
+   "reference": "1I0V",
+   "reference_resolution": 1.234,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    40.321,
+    47.609,
+    50.541,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "different_space_group": 5,
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.508,
+    "q25": 0.244,
+    "q75": 1.598,
+    "p5": 0.146,
+    "p95": 1.748,
+    "max": 21.429,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.113,
+    "q25": 0.475,
+    "q75": 2.216,
+    "p5": 0.177,
+    "p95": 21.422,
+    "max": 21.899,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.284,
+    "q25": 0.197,
+    "q75": 0.457,
+    "p5": 0.119,
+    "p95": 0.513,
+    "max": 0.558,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "identity": "P06746",
+ "accessions": [
+  "P06746"
+ ],
+ "deposition_group": null,
+ "name": "DNA polymerase beta",
+ "clusters": [
+  {
+   "cluster_id": 11,
+   "n_members": 338,
+   "reference": "8VFG",
+   "reference_resolution": 1.54,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    54.38,
+    79.24,
+    54.88,
+    90.0,
+    105.49,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 337,
+    "reference": 1
+   },
+   "n_pairs": 56953,
+   "rmsd_to_reference": {
+    "median": 6.207,
+    "q25": 0.827,
+    "q75": 6.305,
+    "p5": 0.345,
+    "p95": 7.101,
+    "max": 32.313,
+    "n_pairs": 337
+   },
+   "pairwise_frame_rmsd": {
+    "median": 6.174,
+    "q25": 0.638,
+    "q75": 7.324,
+    "p5": 0.28,
+    "p95": 8.099,
+    "max": 34.571,
+    "n_pairs": 56953
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.349,
+    "q25": 0.443,
+    "q75": 2.703,
+    "p5": 0.232,
+    "p95": 2.926,
+    "max": 3.374,
+    "n_pairs": 56953
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 17
+  },
+  {
+   "cluster_id": 118,
+   "n_members": 88,
+   "reference": "3OGU",
+   "reference_resolution": 1.845,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    175.474,
+    56.782,
+    47.602,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 87,
+    "reference": 1
+   },
+   "n_pairs": 3828,
+   "rmsd_to_reference": {
+    "median": 0.893,
+    "q25": 0.874,
+    "q75": 0.945,
+    "p5": 0.849,
+    "p95": 1.052,
+    "max": 1.88,
+    "n_pairs": 87
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.494,
+    "q25": 0.372,
+    "q75": 0.663,
+    "p5": 0.237,
+    "p95": 1.391,
+    "max": 2.443,
+    "n_pairs": 3828
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.334,
+    "q25": 0.275,
+    "q75": 0.385,
+    "p5": 0.179,
+    "p95": 0.505,
+    "max": 1.032,
+    "n_pairs": 3828
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

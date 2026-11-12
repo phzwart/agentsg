@@ -1,0 +1,59 @@
+{
+ "identity": "P35968",
+ "accessions": [
+  "P35968"
+ ],
+ "deposition_group": null,
+ "name": "Vascular endothelial growth factor receptor 2",
+ "clusters": [
+  {
+   "cluster_id": 1770,
+   "n_members": 11,
+   "reference": "2XIR",
+   "reference_resolution": 1.5,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    135.267,
+    56.827,
+    52.187,
+    90.0,
+    94.18,
+    90.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.137,
+    "q25": 0.559,
+    "q75": 16.544,
+    "p5": 0.334,
+    "p95": 16.77,
+    "max": 16.838,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 16.154,
+    "q25": 1.259,
+    "q75": 16.485,
+    "p5": 0.678,
+    "p95": 16.758,
+    "max": 17.008,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 15.784,
+    "q25": 0.462,
+    "q75": 15.989,
+    "p5": 0.275,
+    "p95": 16.102,
+    "max": 16.15,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

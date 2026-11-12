@@ -1,0 +1,108 @@
+{
+ "identity": "P28482",
+ "accessions": [
+  "P28482"
+ ],
+ "deposition_group": null,
+ "name": "Mitogen-activated protein kinase 1",
+ "clusters": [
+  {
+   "cluster_id": 112,
+   "n_members": 91,
+   "reference": "8AOJ",
+   "reference_resolution": 1.12,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    48.687,
+    70.306,
+    60.921,
+    90.0,
+    109.8,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 90,
+    "reference": 1
+   },
+   "n_pairs": 4095,
+   "rmsd_to_reference": {
+    "median": 0.904,
+    "q25": 0.779,
+    "q75": 1.033,
+    "p5": 0.586,
+    "p95": 1.328,
+    "max": 2.022,
+    "n_pairs": 90
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.02,
+    "q25": 0.748,
+    "q75": 1.55,
+    "p5": 0.515,
+    "p95": 2.559,
+    "max": 4.361,
+    "n_pairs": 4095
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.7,
+    "q25": 0.552,
+    "q75": 0.927,
+    "p5": 0.389,
+    "p95": 1.564,
+    "max": 2.259,
+    "n_pairs": 4095
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 941,
+   "n_members": 18,
+   "reference": "5K4I",
+   "reference_resolution": 1.76,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    43.668,
+    71.333,
+    119.529,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.742,
+    "q25": 0.6,
+    "q75": 1.278,
+    "p5": 0.51,
+    "p95": 11.141,
+    "max": 11.481,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.935,
+    "q25": 0.668,
+    "q75": 1.794,
+    "p5": 0.471,
+    "p95": 10.454,
+    "max": 10.718,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.607,
+    "q25": 0.517,
+    "q75": 0.986,
+    "p5": 0.357,
+    "p95": 1.38,
+    "max": 1.585,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

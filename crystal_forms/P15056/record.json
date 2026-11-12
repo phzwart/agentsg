@@ -1,0 +1,157 @@
+{
+ "identity": "P15056",
+ "accessions": [
+  "P15056"
+ ],
+ "deposition_group": null,
+ "name": "Serine/threonine-protein kinase B-raf",
+ "clusters": [
+  {
+   "cluster_id": 692,
+   "n_members": 23,
+   "reference": "6N0Q",
+   "reference_resolution": 2.04,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    94.32,
+    94.32,
+    162.34,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 22,
+    "reference": 1
+   },
+   "n_pairs": 253,
+   "rmsd_to_reference": {
+    "median": 3.979,
+    "q25": 3.093,
+    "q75": 4.264,
+    "p5": 1.138,
+    "p95": 4.511,
+    "max": 4.744,
+    "n_pairs": 22
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.334,
+    "q25": 1.638,
+    "q75": 4.588,
+    "p5": 0.619,
+    "p95": 5.635,
+    "max": 6.091,
+    "n_pairs": 253
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.273,
+    "q25": 0.656,
+    "q75": 1.789,
+    "p5": 0.427,
+    "p95": 2.181,
+    "max": 2.542,
+    "n_pairs": 253
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1086,
+   "n_members": 16,
+   "reference": "5VAM",
+   "reference_resolution": 2.1,
+   "space_group": "P 41 21 2",
+   "reference_cell": [
+    109.39,
+    109.39,
+    135.98,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 15,
+    "reference": 1
+   },
+   "n_pairs": 120,
+   "rmsd_to_reference": {
+    "median": 3.82,
+    "q25": 3.178,
+    "q75": 4.229,
+    "p5": 2.64,
+    "p95": 4.628,
+    "max": 4.656,
+    "n_pairs": 15
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.413,
+    "q25": 0.966,
+    "q75": 3.279,
+    "p5": 0.633,
+    "p95": 4.533,
+    "max": 6.045,
+    "n_pairs": 120
+   },
+   "pairwise_fit_rmsd": {
+    "median": 1.533,
+    "q25": 0.685,
+    "q75": 2.06,
+    "p5": 0.445,
+    "p95": 3.894,
+    "max": 3.943,
+    "n_pairs": 120
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 6
+  },
+  {
+   "cluster_id": 1292,
+   "n_members": 14,
+   "reference": "8C7X",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    49.129,
+    97.56,
+    114.9,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 28.227,
+    "q25": 27.908,
+    "q75": 28.665,
+    "p5": 1.354,
+    "p95": 30.666,
+    "max": 31.564,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 6.801,
+    "q25": 4.023,
+    "q75": 27.017,
+    "p5": 1.223,
+    "p95": 29.052,
+    "max": 30.882,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 3.852,
+    "q25": 1.247,
+    "q75": 5.929,
+    "p5": 0.638,
+    "p95": 6.791,
+    "max": 8.918,
+    "n_pairs": 91
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 1
+  }
+ ]
+}

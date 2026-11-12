@@ -1,0 +1,59 @@
+{
+ "identity": "P11362",
+ "accessions": [
+  "P11362"
+ ],
+ "deposition_group": null,
+ "name": "Fibroblast growth factor receptor 1",
+ "clusters": [
+  {
+   "cluster_id": 176,
+   "n_members": 66,
+   "reference": "5EW8",
+   "reference_resolution": 1.63,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    209.11,
+    57.89,
+    65.26,
+    90.0,
+    107.51,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 65,
+    "reference": 1
+   },
+   "n_pairs": 2145,
+   "rmsd_to_reference": {
+    "median": 1.161,
+    "q25": 0.63,
+    "q75": 3.497,
+    "p5": 0.351,
+    "p95": 24.694,
+    "max": 42.888,
+    "n_pairs": 65
+   },
+   "pairwise_frame_rmsd": {
+    "median": 3.158,
+    "q25": 1.036,
+    "q75": 3.981,
+    "p5": 0.525,
+    "p95": 36.928,
+    "max": 44.366,
+    "n_pairs": 2145
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.792,
+    "q25": 0.583,
+    "q75": 1.073,
+    "p5": 0.362,
+    "p95": 18.902,
+    "max": 20.744,
+    "n_pairs": 2145
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 27
+  }
+ ]
+}

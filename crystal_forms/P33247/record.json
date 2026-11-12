@@ -1,0 +1,59 @@
+{
+ "identity": "P33247",
+ "accessions": [
+  "P33247"
+ ],
+ "deposition_group": null,
+ "name": "Squalene--hopene cyclase",
+ "clusters": [
+  {
+   "cluster_id": 1304,
+   "n_members": 14,
+   "reference": "1UMP",
+   "reference_resolution": 2.13,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    139.144,
+    139.144,
+    240.699,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.677,
+    "q25": 0.668,
+    "q75": 0.702,
+    "p5": 0.651,
+    "p95": 0.713,
+    "max": 0.725,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.374,
+    "q25": 0.268,
+    "q75": 0.534,
+    "p5": 0.194,
+    "p95": 1.675,
+    "max": 2.071,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.203,
+    "q25": 0.171,
+    "q75": 0.24,
+    "p5": 0.144,
+    "p95": 0.412,
+    "max": 0.44,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

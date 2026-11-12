@@ -1,0 +1,59 @@
+{
+ "identity": "P50579",
+ "accessions": [
+  "P50579"
+ ],
+ "deposition_group": null,
+ "name": "Methionine aminopeptidase 2",
+ "clusters": [
+  {
+   "cluster_id": 372,
+   "n_members": 37,
+   "reference": "5D6E",
+   "reference_resolution": 1.49,
+   "space_group": "C 2 2 21",
+   "reference_cell": [
+    89.6,
+    98.79,
+    101.43,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.619,
+    "q25": 0.298,
+    "q75": 1.056,
+    "p5": 0.188,
+    "p95": 1.619,
+    "max": 1.949,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.939,
+    "q25": 0.46,
+    "q75": 1.321,
+    "p5": 0.256,
+    "p95": 1.986,
+    "max": 2.497,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.357,
+    "q25": 0.276,
+    "q75": 0.454,
+    "p5": 0.178,
+    "p95": 0.738,
+    "max": 0.952,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

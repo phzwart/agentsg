@@ -1,0 +1,60 @@
+{
+ "identity": "Q99497",
+ "accessions": [
+  "Q99497"
+ ],
+ "deposition_group": null,
+ "name": "Parkinson disease protein 7",
+ "clusters": [
+  {
+   "cluster_id": 157,
+   "n_members": 74,
+   "reference": "9YFR",
+   "reference_resolution": 0.92,
+   "space_group": "P 31 2 1",
+   "reference_cell": [
+    74.836,
+    74.836,
+    75.347,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 69,
+    "different_space_group": 4,
+    "reference": 1
+   },
+   "n_pairs": 2415,
+   "rmsd_to_reference": {
+    "median": 0.338,
+    "q25": 0.277,
+    "q75": 0.368,
+    "p5": 0.177,
+    "p95": 0.502,
+    "max": 0.567,
+    "n_pairs": 69
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.516,
+    "q25": 0.339,
+    "q75": 0.82,
+    "p5": 0.177,
+    "p95": 1.202,
+    "max": 1.599,
+    "n_pairs": 2415
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.228,
+    "q25": 0.17,
+    "q75": 0.254,
+    "p5": 0.089,
+    "p95": 0.299,
+    "max": 0.564,
+    "n_pairs": 2415
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

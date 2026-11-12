@@ -1,0 +1,59 @@
+{
+ "identity": "Q5ZUA2",
+ "accessions": [
+  "Q5ZUA2"
+ ],
+ "deposition_group": null,
+ "name": "Ectonucleoside triphosphate diphosphohydrolase I",
+ "clusters": [
+  {
+   "cluster_id": 1822,
+   "n_members": 11,
+   "reference": "4BRC",
+   "reference_resolution": 1.3,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    63.07,
+    84.756,
+    70.837,
+    90.0,
+    106.48,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.966,
+    "q25": 1.725,
+    "q75": 2.021,
+    "p5": 0.807,
+    "p95": 2.36,
+    "max": 2.597,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.802,
+    "q25": 0.598,
+    "q75": 2.487,
+    "p5": 0.331,
+    "p95": 3.696,
+    "max": 5.332,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.597,
+    "q25": 0.379,
+    "q75": 0.726,
+    "p5": 0.222,
+    "p95": 0.86,
+    "max": 0.994,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

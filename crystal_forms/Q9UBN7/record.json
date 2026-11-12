@@ -1,0 +1,59 @@
+{
+ "identity": "Q9UBN7",
+ "accessions": [
+  "Q9UBN7"
+ ],
+ "deposition_group": null,
+ "name": "Protein deacetylase HDAC6",
+ "clusters": [
+  {
+   "cluster_id": 1043,
+   "n_members": 17,
+   "reference": "5B8D",
+   "reference_resolution": 1.05,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    41.434,
+    44.157,
+    56.549,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.657,
+    "q25": 0.432,
+    "q75": 0.809,
+    "p5": 0.337,
+    "p95": 0.955,
+    "max": 1.119,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.431,
+    "q25": 0.315,
+    "q75": 0.597,
+    "p5": 0.153,
+    "p95": 0.92,
+    "max": 1.203,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.223,
+    "q25": 0.176,
+    "q75": 0.349,
+    "p5": 0.099,
+    "p95": 0.43,
+    "max": 0.524,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

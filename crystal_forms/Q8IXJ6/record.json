@@ -1,0 +1,59 @@
+{
+ "identity": "Q8IXJ6",
+ "accessions": [
+  "Q8IXJ6"
+ ],
+ "deposition_group": null,
+ "name": "NAD-dependent protein deacetylase sirtuin-2",
+ "clusters": [
+  {
+   "cluster_id": 355,
+   "n_members": 39,
+   "reference": "9S1Z",
+   "reference_resolution": 1.1,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    34.827,
+    72.743,
+    54.89,
+    90.0,
+    91.31,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 38,
+    "reference": 1
+   },
+   "n_pairs": 741,
+   "rmsd_to_reference": {
+    "median": 1.928,
+    "q25": 1.735,
+    "q75": 2.212,
+    "p5": 1.502,
+    "p95": 3.06,
+    "max": 3.062,
+    "n_pairs": 38
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.268,
+    "q25": 0.723,
+    "q75": 2.271,
+    "p5": 0.406,
+    "p95": 2.809,
+    "max": 3.579,
+    "n_pairs": 741
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.852,
+    "q25": 0.611,
+    "q75": 1.509,
+    "p5": 0.349,
+    "p95": 1.945,
+    "max": 2.657,
+    "n_pairs": 741
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "B2ZB02",
+ "accessions": [
+  "B2ZB02"
+ ],
+ "deposition_group": null,
+ "name": "Tyrosinase",
+ "clusters": [
+  {
+   "cluster_id": 1679,
+   "n_members": 11,
+   "reference": "4HD4",
+   "reference_resolution": 1.8,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    48.0,
+    78.58,
+    85.89,
+    90.0,
+    106.13,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.407,
+    "q25": 0.273,
+    "q75": 0.631,
+    "p5": 0.22,
+    "p95": 0.873,
+    "max": 0.943,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.49,
+    "q25": 0.384,
+    "q75": 1.057,
+    "p5": 0.284,
+    "p95": 1.45,
+    "max": 2.031,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.294,
+    "q25": 0.265,
+    "q75": 0.351,
+    "p5": 0.205,
+    "p95": 0.399,
+    "max": 0.42,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "identity": "B8GAY9",
+ "accessions": [
+  "B8GAY9"
+ ],
+ "deposition_group": null,
+ "name": "Circadian input-output histidine kinase CikA",
+ "clusters": [
+  {
+   "cluster_id": 867,
+   "n_members": 19,
+   "reference": "6RHF",
+   "reference_resolution": 1.07,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    53.934,
+    110.044,
+    38.945,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 17,
+    "reference": 1,
+    "different_space_group": 1
+   },
+   "n_pairs": 153,
+   "rmsd_to_reference": {
+    "median": 0.36,
+    "q25": 0.236,
+    "q75": 0.576,
+    "p5": 0.168,
+    "p95": 10.952,
+    "max": 11.057,
+    "n_pairs": 17
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.668,
+    "q25": 0.404,
+    "q75": 12.409,
+    "p5": 0.267,
+    "p95": 12.991,
+    "max": 13.319,
+    "n_pairs": 153
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.249,
+    "q25": 0.168,
+    "q75": 0.702,
+    "p5": 0.118,
+    "p95": 1.176,
+    "max": 1.195,
+    "n_pairs": 153
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

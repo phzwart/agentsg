@@ -1,0 +1,59 @@
+{
+ "identity": "P05050",
+ "accessions": [
+  "P05050"
+ ],
+ "deposition_group": null,
+ "name": "Alpha-ketoglutarate-dependent dioxygenase AlkB",
+ "clusters": [
+  {
+   "cluster_id": 1274,
+   "n_members": 14,
+   "reference": "4NIH",
+   "reference_resolution": 1.374,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    41.072,
+    76.369,
+    53.178,
+    90.0,
+    108.98,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 13,
+    "reference": 1
+   },
+   "n_pairs": 91,
+   "rmsd_to_reference": {
+    "median": 0.775,
+    "q25": 0.721,
+    "q75": 0.821,
+    "p5": 0.353,
+    "p95": 0.847,
+    "max": 0.859,
+    "n_pairs": 13
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.471,
+    "q25": 0.893,
+    "q75": 2.049,
+    "p5": 0.538,
+    "p95": 3.207,
+    "max": 4.069,
+    "n_pairs": 91
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.392,
+    "q25": 0.22,
+    "q75": 0.59,
+    "p5": 0.138,
+    "p95": 0.747,
+    "max": 0.864,
+    "n_pairs": 91
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

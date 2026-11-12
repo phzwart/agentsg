@@ -1,0 +1,60 @@
+{
+ "identity": "Q2IU02",
+ "accessions": [
+  "Q2IU02"
+ ],
+ "deposition_group": null,
+ "name": "Cytochrome P450",
+ "clusters": [
+  {
+   "cluster_id": 106,
+   "n_members": 94,
+   "reference": "9DOE",
+   "reference_resolution": 1.265,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    44.465,
+    51.387,
+    79.052,
+    90.0,
+    92.34,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 90,
+    "no_shared_accession": 3,
+    "reference": 1
+   },
+   "n_pairs": 4095,
+   "rmsd_to_reference": {
+    "median": 0.25,
+    "q25": 0.185,
+    "q75": 0.549,
+    "p5": 0.12,
+    "p95": 0.945,
+    "max": 1.714,
+    "n_pairs": 90
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.43,
+    "q25": 0.287,
+    "q75": 0.588,
+    "p5": 0.18,
+    "p95": 0.987,
+    "max": 1.376,
+    "n_pairs": 4095
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.266,
+    "q25": 0.19,
+    "q75": 0.321,
+    "p5": 0.132,
+    "p95": 0.413,
+    "max": 0.575,
+    "n_pairs": 4095
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 1
+  }
+ ]
+}

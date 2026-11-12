@@ -1,0 +1,59 @@
+{
+ "identity": "P43490",
+ "accessions": [
+  "P43490"
+ ],
+ "deposition_group": null,
+ "name": "Nicotinamide phosphoribosyltransferase",
+ "clusters": [
+  {
+   "cluster_id": 161,
+   "n_members": 72,
+   "reference": "8DSC",
+   "reference_resolution": 1.321,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    60.376,
+    106.338,
+    82.806,
+    90.0,
+    96.45,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 71,
+    "reference": 1
+   },
+   "n_pairs": 2556,
+   "rmsd_to_reference": {
+    "median": 0.229,
+    "q25": 0.201,
+    "q75": 0.27,
+    "p5": 0.167,
+    "p95": 0.423,
+    "max": 13.778,
+    "n_pairs": 71
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.29,
+    "q25": 0.233,
+    "q75": 0.374,
+    "p5": 0.173,
+    "p95": 0.783,
+    "max": 13.954,
+    "n_pairs": 2556
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.202,
+    "q25": 0.17,
+    "q75": 0.249,
+    "p5": 0.129,
+    "p95": 0.629,
+    "max": 13.873,
+    "n_pairs": 2556
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

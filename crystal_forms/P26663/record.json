@@ -1,0 +1,108 @@
+{
+ "identity": "P26663",
+ "accessions": [
+  "P26663"
+ ],
+ "deposition_group": null,
+ "name": "Genome polyprotein [Cleaved into: Core protein precursor",
+ "clusters": [
+  {
+   "cluster_id": 235,
+   "n_members": 52,
+   "reference": "2GIQ",
+   "reference_resolution": 1.65,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    85.872,
+    105.416,
+    126.104,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 51,
+    "reference": 1
+   },
+   "n_pairs": 1326,
+   "rmsd_to_reference": {
+    "median": 0.675,
+    "q25": 0.536,
+    "q75": 2.081,
+    "p5": 0.339,
+    "p95": 2.431,
+    "max": 2.568,
+    "n_pairs": 51
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.093,
+    "q25": 0.599,
+    "q75": 2.231,
+    "p5": 0.379,
+    "p95": 2.567,
+    "max": 3.078,
+    "n_pairs": 1326
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.416,
+    "q25": 0.355,
+    "q75": 0.482,
+    "p5": 0.259,
+    "p95": 0.622,
+    "max": 0.797,
+    "n_pairs": 1326
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 1577,
+   "n_members": 12,
+   "reference": "4B76",
+   "reference_resolution": 2.14,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    91.353,
+    110.311,
+    142.149,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 11,
+    "reference": 1
+   },
+   "n_pairs": 66,
+   "rmsd_to_reference": {
+    "median": 0.639,
+    "q25": 0.577,
+    "q75": 0.937,
+    "p5": 0.42,
+    "p95": 1.187,
+    "max": 1.31,
+    "n_pairs": 11
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.893,
+    "q25": 0.714,
+    "q75": 1.263,
+    "p5": 0.501,
+    "p95": 1.816,
+    "max": 2.08,
+    "n_pairs": 66
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.465,
+    "q25": 0.427,
+    "q75": 0.527,
+    "p5": 0.323,
+    "p95": 0.603,
+    "max": 0.636,
+    "n_pairs": 66
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

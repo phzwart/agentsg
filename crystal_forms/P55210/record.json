@@ -1,0 +1,59 @@
+{
+ "identity": "P55210",
+ "accessions": [
+  "P55210"
+ ],
+ "deposition_group": null,
+ "name": "Caspase-7",
+ "clusters": [
+  {
+   "cluster_id": 374,
+   "n_members": 37,
+   "reference": "2QL9",
+   "reference_resolution": 2.14,
+   "space_group": "P 32 2 1",
+   "reference_cell": [
+    87.158,
+    87.158,
+    187.416,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 36,
+    "reference": 1
+   },
+   "n_pairs": 666,
+   "rmsd_to_reference": {
+    "median": 0.833,
+    "q25": 0.636,
+    "q75": 1.204,
+    "p5": 0.212,
+    "p95": 2.344,
+    "max": 6.184,
+    "n_pairs": 36
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.978,
+    "q25": 0.669,
+    "q75": 1.841,
+    "p5": 0.367,
+    "p95": 6.592,
+    "max": 8.785,
+    "n_pairs": 666
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.416,
+    "q25": 0.255,
+    "q75": 0.855,
+    "p5": 0.172,
+    "p95": 5.616,
+    "max": 8.436,
+    "n_pairs": 666
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

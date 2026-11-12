@@ -1,0 +1,60 @@
+{
+ "identity": "P37231+Q15788",
+ "accessions": [
+  "P37231",
+  "Q15788"
+ ],
+ "deposition_group": null,
+ "name": "Peroxisome proliferator-activated receptor gamma",
+ "clusters": [
+  {
+   "cluster_id": 748,
+   "n_members": 22,
+   "reference": "5GTN",
+   "reference_resolution": 1.85,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    131.65,
+    52.454,
+    54.289,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 21,
+    "reference": 1
+   },
+   "n_pairs": 231,
+   "rmsd_to_reference": {
+    "median": 1.073,
+    "q25": 0.781,
+    "q75": 1.657,
+    "p5": 0.655,
+    "p95": 2.016,
+    "max": 2.08,
+    "n_pairs": 21
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.836,
+    "q25": 0.628,
+    "q75": 1.124,
+    "p5": 0.386,
+    "p95": 1.727,
+    "max": 2.347,
+    "n_pairs": 231
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.598,
+    "q25": 0.448,
+    "q75": 0.812,
+    "p5": 0.306,
+    "p95": 1.41,
+    "max": 2.054,
+    "n_pairs": 231
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

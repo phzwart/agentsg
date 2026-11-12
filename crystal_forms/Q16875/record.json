@@ -1,0 +1,59 @@
+{
+ "identity": "Q16875",
+ "accessions": [
+  "Q16875"
+ ],
+ "deposition_group": null,
+ "name": "6-phosphofructo-2-kinase/fructose-2,6-bisphosphatase 3",
+ "clusters": [
+  {
+   "cluster_id": 593,
+   "n_members": 26,
+   "reference": "6HVI",
+   "reference_resolution": 1.96,
+   "space_group": "P 65 2 2",
+   "reference_cell": [
+    103.036,
+    103.036,
+    255.012,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "placed": 25,
+    "reference": 1
+   },
+   "n_pairs": 325,
+   "rmsd_to_reference": {
+    "median": 0.668,
+    "q25": 0.597,
+    "q75": 0.846,
+    "p5": 0.354,
+    "p95": 1.115,
+    "max": 1.185,
+    "n_pairs": 25
+   },
+   "pairwise_frame_rmsd": {
+    "median": 2.956,
+    "q25": 1.596,
+    "q75": 4.96,
+    "p5": 0.821,
+    "p95": 7.588,
+    "max": 10.759,
+    "n_pairs": 325
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.56,
+    "q25": 0.387,
+    "q75": 1.078,
+    "p5": 0.239,
+    "p95": 3.128,
+    "max": 3.273,
+    "n_pairs": 325
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

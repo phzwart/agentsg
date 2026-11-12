@@ -1,0 +1,13 @@
+pdb_id	status	resolution	sg_hm	a	b	c	alpha	beta	gamma	L	t	rmsd_to_ref	n_paired	margin	asu_rmsd	accept	n_classes	class_price	via	member_chain	ref_chain	unp_offset	acc_fallback	ambiguous_snap
+1O1H	too_few_paired_atoms	1.40	P 21 21 2	85.334	93.070	98.795	90.000	90.000	90.000							0.20	2					0	0	0
+3GNX	too_few_paired_atoms	2.00	P 21 21 2	98.853	87.650	94.531	90.000	90.000	90.000							0.20	2					0	0	0
+4US6	too_few_paired_atoms	1.20	P 21 21 2	85.999	93.677	99.215	90.000	90.000	90.000							0.20	2					0	0	0
+4ZB0	too_few_paired_atoms	2.00	P 21 21 2	83.485	95.020	98.484	90.000	90.000	90.000							0.20	2					0	0	0
+4ZBC	too_few_paired_atoms	2.00	P 21 21 2	81.629	93.641	97.640	90.000	90.000	90.000							0.20	2					0	0	0
+5AVN	reference	1.03	P 21 21 2	94.082	98.285	85.777	90.000	90.000	90.000	1,0,0;0,1,0;0,0,1	0.000000,0.000000,0.000000	0.000			0.000							0	0	0
+6QUK	too_few_paired_atoms	1.58	P 21 21 2	85.900	92.598	99.111	90.000	90.000	90.000							0.20	2					0	0	0
+7CJO	too_few_paired_atoms	1.40	P 21 21 2	85.718	92.765	98.822	90.000	90.000	90.000							0.20	2					0	0	0
+7CJP	too_few_paired_atoms	1.50	P 21 21 2	86.288	93.009	98.914	90.000	90.000	90.000							0.20	2					0	0	0
+8AW8	too_few_paired_atoms	1.63	P 21 21 2	82.826	96.307	97.757	90.000	90.000	90.000							0.20	2					0	0	0
+8AW9	too_few_paired_atoms	1.62	P 21 21 2	83.144	96.591	97.913	90.000	90.000	90.000							0.20	2					0	0	0
+8AWF	too_few_paired_atoms	1.61	P 21 21 2	87.100	98.750	94.710	90.000	90.000	90.000							0.20	2					0	0	0

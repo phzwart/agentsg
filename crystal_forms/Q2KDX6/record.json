@@ -1,0 +1,59 @@
+{
+ "identity": "Q2KDX6",
+ "accessions": [
+  "Q2KDX6"
+ ],
+ "deposition_group": null,
+ "name": "Probable sugar kinase protein",
+ "clusters": [
+  {
+   "cluster_id": 1811,
+   "n_members": 11,
+   "reference": "4K8K",
+   "reference_resolution": 1.5,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    80.592,
+    91.1,
+    93.34,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 10,
+    "reference": 1
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 0.365,
+    "q25": 0.274,
+    "q75": 0.482,
+    "p5": 0.182,
+    "p95": 0.576,
+    "max": 0.626,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.352,
+    "q25": 0.289,
+    "q75": 0.456,
+    "p5": 0.192,
+    "p95": 0.59,
+    "max": 0.686,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.154,
+    "q25": 0.126,
+    "q75": 0.174,
+    "p5": 0.105,
+    "p95": 0.354,
+    "max": 0.387,
+    "n_pairs": 55
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

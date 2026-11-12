@@ -1,0 +1,61 @@
+{
+ "identity": "O75396+O95486+Q15436",
+ "accessions": [
+  "O75396",
+  "O95486",
+  "Q15436"
+ ],
+ "deposition_group": null,
+ "name": "Protein transport protein Sec23A",
+ "clusters": [
+  {
+   "cluster_id": 1136,
+   "n_members": 15,
+   "reference": "2NUT",
+   "reference_resolution": 2.3,
+   "space_group": "C 1 2 1",
+   "reference_cell": [
+    148.28,
+    97.58,
+    129.8,
+    90.0,
+    90.15,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 14,
+    "reference": 1
+   },
+   "n_pairs": 105,
+   "rmsd_to_reference": {
+    "median": 0.418,
+    "q25": 0.344,
+    "q75": 0.596,
+    "p5": 0.286,
+    "p95": 0.711,
+    "max": 0.722,
+    "n_pairs": 14
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.743,
+    "q25": 0.588,
+    "q75": 0.927,
+    "p5": 0.37,
+    "p95": 1.12,
+    "max": 1.367,
+    "n_pairs": 105
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.435,
+    "q25": 0.281,
+    "q75": 0.569,
+    "p5": 0.178,
+    "p95": 0.633,
+    "max": 0.655,
+    "n_pairs": 105
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "identity": "O30298",
+ "accessions": [
+  "O30298"
+ ],
+ "deposition_group": null,
+ "name": "Fructose-1,6-bisphosphatase/inositol-1-monophosphatase",
+ "clusters": [
+  {
+   "cluster_id": 1700,
+   "n_members": 11,
+   "reference": "1LBW",
+   "reference_resolution": 2.0,
+   "space_group": "P 32",
+   "reference_cell": [
+    89.368,
+    89.368,
+    103.558,
+    90.0,
+    90.0,
+    120.0
+   ],
+   "status_counts": {
+    "reference": 1,
+    "placed": 10
+   },
+   "n_pairs": 55,
+   "rmsd_to_reference": {
+    "median": 1.952,
+    "q25": 0.677,
+    "q75": 2.905,
+    "p5": 0.547,
+    "p95": 3.306,
+    "max": 3.517,
+    "n_pairs": 10
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.62,
+    "q25": 0.864,
+    "q75": 2.684,
+    "p5": 0.476,
+    "p95": 3.285,
+    "max": 3.647,
+    "n_pairs": 55
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.331,
+    "q25": 0.236,
+    "q75": 0.475,
+    "p5": 0.194,
+    "p95": 0.517,
+    "max": 0.599,
+    "n_pairs": 55
+   },
+   "n_low_margin": 1,
+   "n_via_neighbour": 0
+  }
+ ]
+}

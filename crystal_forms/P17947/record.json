@@ -1,0 +1,59 @@
+{
+ "identity": "P17947",
+ "accessions": [
+  "P17947"
+ ],
+ "deposition_group": null,
+ "name": "Transcription factor PU.1",
+ "clusters": [
+  {
+   "cluster_id": 508,
+   "n_members": 29,
+   "reference": "8EE9",
+   "reference_resolution": 1.22,
+   "space_group": "P 1 21 1",
+   "reference_cell": [
+    42.873,
+    61.185,
+    44.59,
+    90.0,
+    117.16,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 28,
+    "reference": 1
+   },
+   "n_pairs": 406,
+   "rmsd_to_reference": {
+    "median": 0.46,
+    "q25": 0.373,
+    "q75": 0.553,
+    "p5": 0.167,
+    "p95": 0.608,
+    "max": 5.509,
+    "n_pairs": 28
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.467,
+    "q25": 0.328,
+    "q75": 0.712,
+    "p5": 0.203,
+    "p95": 5.921,
+    "max": 6.251,
+    "n_pairs": 406
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.138,
+    "q25": 0.11,
+    "q75": 0.177,
+    "p5": 0.073,
+    "p95": 0.216,
+    "max": 0.279,
+    "n_pairs": 406
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

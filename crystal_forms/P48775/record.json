@@ -1,0 +1,59 @@
+{
+ "identity": "P48775",
+ "accessions": [
+  "P48775"
+ ],
+ "deposition_group": null,
+ "name": "Tryptophan 2,3-dioxygenase",
+ "clusters": [
+  {
+   "cluster_id": 1023,
+   "n_members": 17,
+   "reference": "6PYZ",
+   "reference_resolution": 2.02,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    143.648,
+    154.158,
+    87.951,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 16,
+    "reference": 1
+   },
+   "n_pairs": 136,
+   "rmsd_to_reference": {
+    "median": 0.908,
+    "q25": 0.744,
+    "q75": 0.978,
+    "p5": 0.223,
+    "p95": 11.858,
+    "max": 38.886,
+    "n_pairs": 16
+   },
+   "pairwise_frame_rmsd": {
+    "median": 1.076,
+    "q25": 0.74,
+    "q75": 2.478,
+    "p5": 0.283,
+    "p95": 40.21,
+    "max": 40.568,
+    "n_pairs": 136
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.788,
+    "q25": 0.402,
+    "q75": 0.866,
+    "p5": 0.179,
+    "p95": 1.034,
+    "max": 1.238,
+    "n_pairs": 136
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}

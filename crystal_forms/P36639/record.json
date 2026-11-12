@@ -1,0 +1,157 @@
+{
+ "identity": "P36639",
+ "accessions": [
+  "P36639"
+ ],
+ "deposition_group": null,
+ "name": "Oxidized purine nucleoside triphosphate hydrolase",
+ "clusters": [
+  {
+   "cluster_id": 329,
+   "n_members": 41,
+   "reference": "5WS7",
+   "reference_resolution": 1.0,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    46.62,
+    47.344,
+    123.818,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 40,
+    "reference": 1
+   },
+   "n_pairs": 820,
+   "rmsd_to_reference": {
+    "median": 0.927,
+    "q25": 0.614,
+    "q75": 1.096,
+    "p5": 0.451,
+    "p95": 1.163,
+    "max": 1.177,
+    "n_pairs": 40
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.716,
+    "q25": 0.556,
+    "q75": 0.884,
+    "p5": 0.267,
+    "p95": 1.121,
+    "max": 1.409,
+    "n_pairs": 820
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.549,
+    "q25": 0.4,
+    "q75": 0.774,
+    "p5": 0.178,
+    "p95": 1.001,
+    "max": 1.146,
+    "n_pairs": 820
+   },
+   "n_low_margin": 35,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 335,
+   "n_members": 40,
+   "reference": "7N03",
+   "reference_resolution": 1.13,
+   "space_group": "P 21 21 2",
+   "reference_cell": [
+    59.806,
+    66.068,
+    36.585,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 39,
+    "reference": 1
+   },
+   "n_pairs": 780,
+   "rmsd_to_reference": {
+    "median": 0.509,
+    "q25": 0.457,
+    "q75": 0.592,
+    "p5": 0.376,
+    "p95": 0.681,
+    "max": 0.697,
+    "n_pairs": 39
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.449,
+    "q25": 0.354,
+    "q75": 0.555,
+    "p5": 0.256,
+    "p95": 0.724,
+    "max": 1.014,
+    "n_pairs": 780
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.311,
+    "q25": 0.257,
+    "q75": 0.38,
+    "p5": 0.174,
+    "p95": 0.489,
+    "max": 0.682,
+    "n_pairs": 780
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  },
+  {
+   "cluster_id": 421,
+   "n_members": 34,
+   "reference": "6F22",
+   "reference_resolution": 1.55,
+   "space_group": "P 21 21 21",
+   "reference_cell": [
+    59.466,
+    66.626,
+    83.076,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "status_counts": {
+    "placed": 33,
+    "reference": 1
+   },
+   "n_pairs": 561,
+   "rmsd_to_reference": {
+    "median": 0.624,
+    "q25": 0.541,
+    "q75": 0.736,
+    "p5": 0.266,
+    "p95": 0.909,
+    "max": 1.039,
+    "n_pairs": 33
+   },
+   "pairwise_frame_rmsd": {
+    "median": 0.5,
+    "q25": 0.377,
+    "q75": 0.636,
+    "p5": 0.266,
+    "p95": 0.844,
+    "max": 1.134,
+    "n_pairs": 561
+   },
+   "pairwise_fit_rmsd": {
+    "median": 0.298,
+    "q25": 0.243,
+    "q75": 0.354,
+    "p5": 0.177,
+    "p95": 0.433,
+    "max": 0.622,
+    "n_pairs": 561
+   },
+   "n_low_margin": 0,
+   "n_via_neighbour": 0
+  }
+ ]
+}
