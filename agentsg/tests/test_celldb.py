@@ -559,3 +559,41 @@ def test_source_migration_marks_old_rows_pdb(tmp_path):
     db = CellDatabase(path)
     assert db.sql("SELECT source FROM cells WHERE pdb_id='1ABC'")[0][0] == "pdb"
     db.close()
+
+
+_AMCSD_TXT = """data_global
+_chemical_name_mineral 'Albite'
+_database_code_amcsd 0000524
+_chemical_formula_sum 'Na Al Si3 O8'
+_cell_length_a 8.1372(5)
+_cell_length_b 12.7869(7)
+_cell_length_c 7.1574(4)
+_cell_angle_alpha 94.245(5)
+_cell_angle_beta 116.605(5)
+_cell_angle_gamma 87.809(5)
+_symmetry_space_group_name_H-M 'C -1'
+data_global
+_chemical_name_mineral 'Diopside'
+_database_code_amcsd 0000113
+_chemical_formula_sum 'Ca Mg Si2 O6'
+_cell_length_a 9.746
+_cell_length_b 8.899
+_cell_length_c 5.251
+_cell_angle_alpha 90
+_cell_angle_beta 105.63
+_cell_angle_gamma 90
+_symmetry_space_group_name_H-M 'C 2/c'
+"""
+
+
+def test_add_amcsd_bulk_txt(tmp_path):
+    f = tmp_path / "amcsd.txt"
+    f.write_text(_AMCSD_TXT)
+    db = CellDatabase(":memory:")
+    assert db.add_cod(str(f), prefix="AMCSD", source="amcsd") == (2, 0)
+    rows = {r[0]: r for r in db.sql("SELECT pdb_id, source, sg_number, sig_beta, formula FROM cells")}
+    assert set(rows) == {"AMCSD0000524", "AMCSD0000113"}
+    assert rows["AMCSD0000524"][1] == "amcsd" and rows["AMCSD0000524"][2] == 2
+    assert rows["AMCSD0000524"][3] == 0.005 and rows["AMCSD0000113"][2] == 15
+    assert db.sql("SELECT value FROM schema_meta WHERE key='amcsd_source'")[0][0] == str(f)
+    db.close()

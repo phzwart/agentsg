@@ -37,7 +37,11 @@ database. ``build-cod`` makes a second database that holds only those cells::
     python -m agentsg.cell.cod_explorer cod_cells.duckdb
 
 ``source`` is a COD table export, one CIF, or a directory of CIFs. Rows are
-keyed ``COD<id>`` with ``source = 'cod'``.
+keyed ``COD<id>`` with ``source = 'cod'``. Any other CIF collection loads the
+same way under its own prefix::
+
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb cod_cells.csv
+    python -m agentsg.cell.pdb_app add-cod pdb_cells.duckdb amcsd_cifs.txt --prefix AMCSD --source amcsd
 
 ``clusters`` finds every same-protein crystal-form cluster of more than 10
 entries (same UniProt set, or deposition group without one; strain price within
@@ -331,12 +335,25 @@ def _cli(argv=None):
         build_cod_database(argv[1], argv[2])
         return 0
     if cmd == "add-cod":
+        usage = ("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir> "
+                 "[--prefix COD] [--source cod]")
         if len(argv) < 3:
-            print("usage: pdb_app add-cod <db_path> <cod_table.csv | file.cif | cif_dir>")
+            print(usage)
             return 2
+        prefix, source = "COD", "cod"
+        rest = argv[3:]
+        i = 0
+        while i < len(rest):
+            if rest[i] == "--prefix" and i + 1 < len(rest):
+                prefix = rest[i + 1]; i += 2
+            elif rest[i] == "--source" and i + 1 < len(rest):
+                source = rest[i + 1]; i += 2
+            else:
+                print(usage)
+                return 2
         db = CellDatabase(argv[1])
-        n_ok, n_skip = db.add_cod(argv[2], progress=True)
-        print(f"added {n_ok:,} COD cells to {argv[1]} ({n_skip:,} skipped)")
+        n_ok, n_skip = db.add_cod(argv[2], progress=True, prefix=prefix, source=source)
+        print(f"added {n_ok:,} {source} cells to {argv[1]} ({n_skip:,} skipped)")
         db.close()
         return 0
     if cmd == "query":
